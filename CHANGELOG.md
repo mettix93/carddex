@@ -3,6 +3,8 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Trasparente chiaro: la pagina che gira ora è una luce diffusa che sbiadisce le carte sotto (invece del velo opaco)
+- Fix: il colore della pagina non cambia più appena la giri (la pagina successiva non traspare più da sotto)
 - Trasparente chiaro: pagina che gira più opaca sopra l'altra
 - Fix: carte Neo schiacciate e non muovibili da aperte
 - Trasparente chiaro: un po' più opaco

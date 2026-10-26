@@ -303,7 +303,7 @@ html body .sheet,html body .flp{-webkit-backdrop-filter:var(--pgbf,none);backdro
 html body .slot:not(.em){box-shadow:0 0 0 2px var(--pk1,#232329),0 0 0 3px var(--pk2,#3b3b44)!important}
 html body .slot.em{border-color:var(--pk2,#3a3a42)!important}
 html body .gh{border-color:var(--pk2,rgba(255,255,255,.17))}
-html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.4)!important}
+html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.22)!important;-webkit-backdrop-filter:blur(3px) brightness(1.35) saturate(.7)!important;backdrop-filter:blur(3px) brightness(1.35) saturate(.7)!important}
 html[data-pg="trasp2"] body .flp{background-color:rgba(30,32,44,.88)!important}
 html[data-pg="trasp"] body .slot:not(.on) img,html[data-pg="trasp2"] body .slot:not(.on) img{filter:grayscale(1) contrast(.85) brightness(.62)!important}
 /* riquadro illustrazione misurato sugli screenshot */
@@ -473,11 +473,12 @@ function layoutPages(again){document.body.classList.remove("pv");if(!again)docum
     R.style.setProperty("--G",Math.max(4,G)+"px")}
   applyState()}
 function resetCurl(o){if(o.fc&&o.nb!==-9){o.fc.innerHTML="";o.nb=-9}o.sh.style.clipPath="";o.cs.style.display="none";o.fl.style.display="none";o.fl.style.opacity=1;o.fl.style.transform=""}
-function applyState(){const v=new Set();
+function applyState(){PG.forEach(q=>{q.e.style.clipPath=""});const v=new Set();
   if(!LS){v.add(pg);if(pg+1<np)v.add(pg+1)}
   else{const R=Rof(sp),Lp=Lof(sp);if(R<np){v.add(R);if(R+2<np)v.add(R+2)}if(Lp>=1){v.add(Lp);if(Lp>=3)v.add(Lp-2)}}
   const ctr=LS?Rof(sp):pg;
   PG.forEach((o,k)=>{o.e.style.display=Math.abs(k-ctr)<=5||v.has(k)?"":"none";o.e.style.visibility=v.has(k)?"visible":"hidden";o.e.style.zIndex=(LS&&k%2)?k:np-k;o.e.style.opacity="";resetCurl(o)});
+  if(!LS&&PG[pg+1])PG[pg+1].e.style.clipPath="polygon(0 0,0 0,0 0)";
   foot();stat();slid()}
 function slid(){const s=$("#sl"),mx=LS?smax():np-1;s.max=mx;s.value=LS?sp:pg;$("#slw").style.visibility=mx>0?"visible":"hidden"}
 function foot(){let t;
@@ -489,7 +490,7 @@ function foot(){let t;
 function clipP(P,f){const out=[];for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],fa=f(a[0],a[1]),fb=f(b[0],b[1]);
   if(fa>=0)out.push(a);if((fa>=0)!==(fb>=0)){const u=fa/(fa-fb);out.push([a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u])}}return out}
 /* piega: t=0 pagina piatta, t=1 pagina girata; dir=1 angolo basso-destra, -1 basso-sinistra */
-function setCurl(k,t,dir){const o=PG[k],W=o.W,H=o.H;if(t<=.002){resetCurl(o);return}
+function setCurl(k,t,dir){const o=PG[k],W=o.W,H=o.H;if(t<=.002){resetCurl(o);if(!LS&&PG[k+1])PG[k+1].e.style.clipPath="polygon(0 0,0 0,0 0)";return}
   const e=Math.min(1,t),Px=W*(1-2*e),Py=H;
   let nx=W-Px,ny=H-Py;const Ln=Math.hypot(nx,ny)||1;nx/=Ln;ny/=Ln;
   const Mx=(W+Px)/2,My=(H+Py)/2,sd=(x,y)=>(x-Mx)*nx+(y-My)*ny,ext=LS?W:0;
@@ -500,7 +501,7 @@ function setCurl(k,t,dir){const o=PG[k],W=o.W,H=o.H;if(t<=.002){resetCurl(o);ret
   const str=(pts,off)=>pts.length<3?"polygon(0 0,0 0,0 0)":"polygon("+pts.map(p=>{const q=mx(p);return(q[0]-off).toFixed(1)+"px "+q[1].toFixed(1)+"px"}).join(",")+")";
   const gx=dir>0?nx:-nx,gy=ny,fxP=mx([Mx,My])[0];
   const grad=(bw,fx)=>{const th=Math.atan2(gx,-gy)*180/Math.PI,Lg=Math.abs(bw*gx)+Math.abs(H*gy),fp=(fx-bw/2)*gx+(My-H/2)*gy+Lg/2;return[th,fp]};
-  o.sh.style.clipPath=str(front,0);
+  o.sh.style.clipPath=str(front,0);if(!LS&&PG[k+1])PG[k+1].e.style.clipPath=str(corner,0);
   const[t1,f1]=grad(W,fxP);o.cs.style.display="block";o.cs.style.clipPath=str(corner,0);
   o.cs.style.background=`linear-gradient(${t1}deg,rgba(0,0,0,.6) ${f1}px,rgba(0,0,0,.2) ${f1+34}px,rgba(0,0,0,0) ${f1+90}px)`;
   const[t2,f2]=grad(W+ext,fxP-ox);if(LS){const u=PG[k-dir];if(u)u.e.style.opacity=Math.max(0,Math.min(1,1-(e-.55)/.4)).toFixed(3)}o.fl.style.display="block";o.fl.style.left=ox+"px";{const f=LS?1-Math.pow(e,4):1;o.fg.style.opacity=f;o.cs.style.opacity=f}o.fl.style.transform=LS?"translateX("+((dir>0?-6:6)*e).toFixed(2)+"px)":"";o.fl.style.width=(W+ext)+"px";o.fl.style.clipPath=str(flap,ox);
