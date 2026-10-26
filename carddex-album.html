@@ -244,13 +244,17 @@ body.pv footer{margin-top:0!important}
 
 .slot:not(.on):not(.em){opacity:1!important}
 .slot:not(.on) img,.slot:not(.on) .ph{filter:grayscale(1) contrast(.9) brightness(.8)}
-.hl.evo{clip-path:polygon(23% 0,100% 0,100% 100%,0 100%,0 17%,23% 17%)}
+.hl.evo{clip-path:polygon(17.5% 0,100% 0,100% 100%,0 100%,0 15.8%,6% 15.8%,9.3% 14.3%,12.2% 10.7%,14.8% 5.3%)}
+.hl.evo.neo{clip-path:polygon(8.9% 0,100% 0,100% 100%,0 100%,0 10.7%,1.6% 10.5%,4.5% 9%,6.9% 6.1%,8.5% 2.3%)}
 #sr,#ne{padding-top:calc(env(safe-area-inset-top,0px) + 16vh)!important}
 @media (orientation:landscape) and (max-height:700px){#sr,#ne{padding-top:calc(env(safe-area-inset-top,0px) + 8px)!important}}
-body.ls .slot.on::after{background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.42),rgba(255,255,255,0) 60%),linear-gradient(115deg,#fff0 40%,#fff3 50%,#fff0 60%);mix-blend-mode:screen}
+.slot.on::after{background:radial-gradient(circle at var(--mx,38%) var(--my,30%),rgba(255,255,255,.58),rgba(255,255,255,0) 62%),linear-gradient(115deg,#fff0 38%,#fff6 50%,#fff0 62%);mix-blend-mode:screen}
 
 .slot.ar::after{background:rgba(255,149,0,.46)!important;mix-blend-mode:normal}
 .slot.ar{box-shadow:0 0 0 2px #ff9500aa,0 0 0 3px #3b3b44}
+
+.gl{opacity:.82}
+.gl{background:radial-gradient(circle at var(--gx,50%) var(--gy,25%),#ffffffd0,#fff0 58%)}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -558,11 +562,11 @@ $("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j
 
 /* visualizzatore 3D */
 const card=$("#card"),stg=$("#stage"),hl=$(".hl");let ry=0,rx=0,dr=null,curH=false;
-const ap=()=>{card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
-  const a=((ry%360)+540)%360-180,k=Math.max(-1,Math.min(1,a/45)),m=Math.max(-1,Math.min(1,rx/35));
+let TX=0,TY=0;const ap=()=>{const RY=ry+TX,RX=rx+TY;card.style.transform=`rotateX(${RX}deg) rotateY(${RY}deg)`;
+  const a=((RY%360)+540)%360-180,k=Math.max(-1,Math.min(1,a/45)),m=Math.max(-1,Math.min(1,RX/35));
   card.style.setProperty("--gx",(50-k*45)+"%");card.style.setProperty("--gy",(50+m*45)+"%");
   card.style.setProperty("--hx",(50+k*50)+"%");card.style.setProperty("--hy",(50+m*50)+"%");
-  const b2=((ry+180)%360+540)%360-180,k2=Math.max(-1,Math.min(1,b2/45));card.style.setProperty("--gx2",(50-k2*45)+"%");card.style.setProperty("--hx2",(50+k2*50)+"%");const hb=document.querySelector(".bk .hl");hb.style.opacity=0;const fu=hl.classList.contains("full");hl.style.opacity=curH?((fu?.1:.3)+(fu?.3:.55)*Math.min(1,Math.hypot(k,m))):0};
+  const b2=((RY+180)%360+540)%360-180,k2=Math.max(-1,Math.min(1,b2/45));card.style.setProperty("--gx2",(50-k2*45)+"%");card.style.setProperty("--hx2",(50+k2*50)+"%");const hb=document.querySelector(".bk .hl");hb.style.opacity=0;const fu=hl.classList.contains("full");hl.style.opacity=curH?((fu?.1:.3)+(fu?.3:.55)*Math.min(1,Math.hypot(k,m))):0};
 function applyBack(c){const b=document.querySelector(".bk"),u=(c&&c.back)||URLS.BACK||DEFBACK,L=Array.isArray(u)?u:[u];b.style.backgroundImage=L.map(x=>`url("${x}")`).join(",");b.classList.add("ph2")}
 const fb=$("#fb");
 fb.onchange=async()=>{const f=fb.files[0];if(!f)return;try{await setImg("BACK",f)}catch(e){}applyBack(window.__vc)};
@@ -570,30 +574,33 @@ const EVO=new Set([2,3,5,6,8,9,11,12,14,15,17,18,20,22,24,26,28,30,31,33,34,36,3
 /* luce in movimento */
 let LUCE=true;try{LUCE=localStorage.getItem("carddex_luce")!=="0"}catch(e){}
 let mBase=null,mRaf=0,mAsked=0,mOn=0;
-function mHandler(e){if(!LUCE||!document.body.classList.contains("ls")||e.beta==null)return;
+function mHandler(e){if(!LUCE||e.beta==null)return;
   const a=(screen.orientation&&screen.orientation.angle!=null)?screen.orientation.angle:(window.orientation||0);let tx,ty;
   if(a===90){tx=e.beta;ty=-e.gamma}else if(a===270||a===-90){tx=-e.beta;ty=e.gamma}else if(a===180){tx=-e.gamma;ty=-e.beta}else{tx=e.gamma;ty=e.beta}
   if(!mBase)mBase={x:tx,y:ty};mBase.x+=(tx-mBase.x)*.004;mBase.y+=(ty-mBase.y)*.004;
   const dx=Math.max(-35,Math.min(35,tx-mBase.x)),dy=Math.max(-35,Math.min(35,ty-mBase.y));
-  if(mRaf)return;mRaf=requestAnimationFrame(()=>{mRaf=0;const r=document.documentElement.style;r.setProperty("--mx",(50+dx*1.3).toFixed(1)+"%");r.setProperty("--my",(40+dy*1.3).toFixed(1)+"%")})}
+  if(mRaf)return;mRaf=requestAnimationFrame(()=>{mRaf=0;const r=document.documentElement.style;r.setProperty("--mx",(50+dx*1.3).toFixed(1)+"%");r.setProperty("--my",(40+dy*1.3).toFixed(1)+"%");if(!$("#vw").hidden){TX=Math.max(-14,Math.min(14,dx*.55));TY=Math.max(-12,Math.min(12,dy*.45));ap()}})}
 function motionOn(){if(mOn||!window.DeviceOrientationEvent)return;
   if(typeof DeviceOrientationEvent.requestPermission==="function"){if(mAsked)return;mAsked=1;DeviceOrientationEvent.requestPermission().then(r=>{if(r==="granted"){mOn=1;addEventListener("deviceorientation",mHandler)}}).catch(()=>{})}
   else{mOn=1;addEventListener("deviceorientation",mHandler)}}
-document.addEventListener("pointerup",()=>{if(LUCE&&document.body.classList.contains("ls"))motionOn()},true);
+document.addEventListener("pointerup",()=>{if(LUCE)motionOn()},true);
 /* versi */
 const AU=new Audio();AU.preload="auto";let CRYON=true;try{CRYON=localStorage.getItem("carddex_cry")!=="0"}catch(e){}
 let auOK=0;document.addEventListener("pointerdown",()=>{if(auOK)return;auOK=1;try{AU.src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";const p=AU.play();if(p&&p.then)p.then(()=>AU.pause()).catch(()=>{})}catch(e){}},{once:true,capture:true});
-function cry(c){if(!CRYON||!c||c.kd!=="p"||!c.dex)return;const n=DEXN[c.dex-1];if(!n)return;
+const DEXG2="Chikorita,Bayleef,Meganium,Cyndaquil,Quilava,Typhlosion,Totodile,Croconaw,Feraligatr,Sentret,Furret,Hoothoot,Noctowl,Ledyba,Ledian,Spinarak,Ariados,Crobat,Chinchou,Lanturn,Pichu,Cleffa,Igglybuff,Togepi,Togetic,Natu,Xatu,Mareep,Flaaffy,Ampharos,Bellossom,Marill,Azumarill,Sudowoodo,Politoed,Hoppip,Skiploom,Jumpluff,Aipom,Sunkern,Sunflora,Yanma,Wooper,Quagsire,Espeon,Umbreon,Murkrow,Slowking,Misdreavus,Unown,Wobbuffet,Girafarig,Pineco,Forretress,Dunsparce,Gligar,Steelix,Snubbull,Granbull,Qwilfish,Scizor,Shuckle,Heracross,Sneasel,Teddiursa,Ursaring,Slugma,Magcargo,Swinub,Piloswine,Corsola,Remoraid,Octillery,Delibird,Mantine,Skarmory,Houndour,Houndoom,Kingdra,Phanpy,Donphan,Porygon2,Stantler,Smeargle,Tyrogue,Hitmontop,Smoochum,Elekid,Magby,Miltank,Blissey,Raikou,Entei,Suicune,Larvitar,Pupitar,Tyranitar,Lugia,Ho-Oh,Celebi".split(",");
+function cry(c){if(!CRYON||!c||c.kd!=="p"||!c.dex)return;const n=c.dex<=151?DEXN[c.dex-1]:DEXG2[c.dex-152];if(!n)return;
   const id=n.toLowerCase().replace("♀","f").replace("♂","m").replace(/[^a-z0-9]/g,"");
   try{AU.onerror=()=>{AU.onerror=null;AU.src="https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"+c.dex+".ogg";AU.play().catch(()=>{})};AU.src="https://play.pokemonshowdown.com/audio/cries/"+id+".mp3";AU.volume=.8;const p=AU.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}
-function openCard(i){const s=LIST()[i],c=eff(s);
+let curI=-1,sw=null;
+function navCard(d){const L=LIST();for(let j=curI+d;j>=0&&j<L.length;j+=d){if(L[j].id&&L[j].o){openCard(j);try{stg.animate([{transform:"translateX("+(d*70)+"px)",opacity:0},{transform:"none",opacity:1}],{duration:240,easing:"ease-out"})}catch(e){}return}}}
+function openCard(i){curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   $("#vs").innerHTML=sicon(c.sid)+[esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),c.h?"Holo":"",esc(numTxt(c))].filter(Boolean).join(" · ");
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
-  curH=!!c.h;hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();$("#vw").hidden=false}
-stg.onpointerdown=e=>{dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
+  curH=!!c.h;hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();$("#vw").hidden=false}
+stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
 stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
-stg.onpointerup=stg.onpointercancel=()=>{if(!dr)return;dr=null;card.style.transition="transform .3s";ry=Math.round(ry/180)*180;rx=0;ap()};
+stg.onpointerup=stg.onpointercancel=e=>{if(sw){const dx=e.clientX-sw.x;sw=null;if(Math.abs(dx)>45)navCard(dx<0?1:-1);return}if(!dr)return;dr=null;card.style.transition="transform .3s";ry=Math.round(ry/180)*180;rx=0;ap()};
 $("#vx").onclick=()=>{$("#vw").hidden=true};
 $("#hud").onclick=()=>document.body.classList.toggle("ui");
 document.addEventListener("pointerdown",e=>{if(document.body.classList.contains("ui")&&!e.target.closest("header,footer,#hud,#sh,#ne,#sr"))document.body.classList.remove("ui")},true);
