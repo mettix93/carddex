@@ -309,7 +309,7 @@ html[data-pg="trasp"] body .slot:not(.on) img,html[data-pg="trasp2"] body .slot:
 /* riquadro illustrazione misurato sugli screenshot */
 .ft .hl:not(.full){inset:11.7% 10.2% 48.4% 10.75%}
 .ft .hl.neo:not(.full){inset:11.8% 11.1% 49% 11.3%}
-#card.nt.hol .ft .gl{-webkit-mask-size:100% 100%,77.6% 39.2%;mask-size:100% 100%,77.6% 39.2%;-webkit-mask-position:0 0,50.4% 19.6%;mask-position:0 0,50.4% 19.6%}
+#card.ntc.hol .ft .gl{-webkit-mask-size:100% 100%,77.6% 39.2%;mask-size:100% 100%,77.6% 39.2%;-webkit-mask-position:0 0,50.4% 19.6%;mask-position:0 0,50.4% 19.6%}
 /* trasparente chiaro: bordi sottili, alone dalle carte stesse, ombre di piega leggere */
 html[data-pg="trasp"] body .slot:not(.em){box-shadow:0 0 0 1px rgba(255,255,255,.2)!important;overflow:visible;isolation:isolate}
 html[data-pg="trasp"] body .slot.em{border-width:1px!important}
@@ -712,7 +712,7 @@ function openCard(i,na){curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   $("#vs").innerHTML=sicon(c.sid)+[esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),c.h?"Holo":"",esc(numTxt(c))].filter(Boolean).join(" · ");
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
-  curH=!!c.h;card.classList.toggle("hol",!!c.h);card.classList.toggle("nt","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
+  curH=!!c.h;card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
 stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
