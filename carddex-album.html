@@ -260,7 +260,7 @@ html.mv .slot.on::after{opacity:1}
 
 /* stile pagine / sfondo carta / holo glitter */
 html body .sheet,html body .flp{background-color:var(--pgbg,#08080a)!important;background-image:var(--pgimg,none)!important}
-html[data-pg="trasp"] body .sheet{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important}
+html[data-pg="trasp"] body .sheet,html[data-pg="trasp2"] body .sheet{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important}
 html[data-pg="bianco"] .gh{border-color:rgba(0,0,0,.2);background:rgba(0,0,0,.03);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
 .slot:not(.on) img,.slot:not(.on) .ph{filter:grayscale(1) contrast(.85) brightness(.62)!important}
 html[data-pg="bianco"] .slot:not(.on) img,html[data-pg="bianco"] .slot:not(.on) .ph{filter:grayscale(1) contrast(.8) brightness(1.3)!important}
@@ -303,7 +303,9 @@ html body .sheet,html body .flp{-webkit-backdrop-filter:var(--pgbf,none);backdro
 html body .slot:not(.em){box-shadow:0 0 0 2px var(--pk1,#232329),0 0 0 3px var(--pk2,#3b3b44)!important}
 html body .slot.em{border-color:var(--pk2,#3a3a42)!important}
 html body .gh{border-color:var(--pk2,rgba(255,255,255,.17))}
-html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.2)!important}
+html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.17)!important}
+html[data-pg="trasp2"] body .flp{background-color:rgba(30,32,44,.88)!important}
+html[data-pg="trasp"] body .slot:not(.on) img,html[data-pg="trasp2"] body .slot:not(.on) img{filter:grayscale(1) contrast(.85) brightness(.62)!important}
 /* riquadro illustrazione misurato sugli screenshot */
 .ft .hl:not(.full){inset:11.7% 10.2% 48.4% 10.75%}
 .ft .hl.neo:not(.full){inset:11.8% 11.1% 49% 11.3%}
@@ -622,14 +624,14 @@ $("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro d
     return"url("+c.toDataURL("image/png")+")"}
   const r=document.documentElement.style;r.setProperty("--sp1",tile(131,70,5));r.setProperty("--sp2",tile(97,48,4));r.setProperty("--sp3",tile(71,30,3.2))})();
 /* stile: colore pagine per collezione */
-const PGC={trasp:["Trasparente","rgba(255,255,255,.13)",null,null,null,null,"blur(22px) saturate(150%)"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],grigio:["Grigio","#808080","#ffffff26","#ffffff14","#55555a","#9a9aa0"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
+const PGC={trasp:["Trasparente","rgba(255,255,255,.1)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","blur(22px) saturate(150%)"],trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
 let PGS={};try{PGS=JSON.parse(localStorage.getItem("carddex_pgc")||"{}")||{}}catch(e){}
 function pgKey(){return cur==="?"?(typeof PREV!=="undefined"&&PREV)||"a":cur}
 function applyPgc(){const k=PGS[pgKey()]||"trasp",d=PGC[k]||PGC.trasp,r=document.documentElement;r.style.setProperty("--pgbg",d[1]);["--pk1","--pk2"].forEach((n,x)=>d[4+x]?r.style.setProperty(n,d[4+x]):r.style.removeProperty(n));r.style.setProperty("--pgbf",d[6]||"none");
   r.style.setProperty("--pgimg",d[2]?`radial-gradient(circle at 1.5px 1.5px,${d[2]} 0,${d[2]} 1px,transparent 1.5px),radial-gradient(circle at 4.5px 4.5px,${d[3]} 0,${d[3]} 1px,transparent 1.5px)`:"none");r.dataset.pg=k}
 function pgMenu(){let el=$("#pgp");if(!el){el=document.createElement("div");el.id="pgp";document.body.appendChild(el)}
   const NO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.3 17.7L17.7 6.3"/></svg>';
-  const draw=()=>{const cu=PGS[pgKey()]||"trasp";el.innerHTML='<div class="pgt">Colore pagine</div><div class="pgg">'+Object.entries(PGC).map(([k,d])=>`<button data-k="${k}" aria-label="${d[0]}" class="${k===cu?"on":""}"><i style="background:${k==="trasp"?"transparent":d[1]}">${k==="trasp"?NO:""}</i></button>`).join("")+'</div><button class="pgo">Fine</button>'};
+  const draw=()=>{const cu=PGS[pgKey()]||"trasp";el.innerHTML='<div class="pgt">Colore pagine</div><div class="pgg">'+Object.entries(PGC).map(([k,d])=>`<button data-k="${k}" aria-label="${d[0]}" class="${k===cu?"on":""}"><i style="background:${k==="trasp"?"transparent":d[1]}">${k==="trasp"||k==="trasp2"?NO:""}</i></button>`).join("")+'</div><button class="pgo">Fine</button>'};
   draw();el.hidden=false;
   el.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.classList.contains("pgo")){el.hidden=true;return}PGS[pgKey()]=b.dataset.k;try{localStorage.setItem("carddex_pgc",JSON.stringify(PGS))}catch(x){}applyPgc();draw()}}
 $("#sty").onclick=()=>{sheet([[(CRYON?"Versi Pokémon: attivi":"Versi Pokémon: disattivati"),()=>{CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}}],
