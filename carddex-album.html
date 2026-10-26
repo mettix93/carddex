@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>CardDex</title>
+<style>
+:root{--bg:#0d1b2a;--bg2:#1b3350;--sl:#d5dce8;--gold:#d9b45a;--tx:#eef1f7;--mut:#9fb0d0;--sb:#1b2a49;--bt:#26375c;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--tx);font-family:"Avenir Next","Trebuchet MS",system-ui,sans-serif}
+body{background:radial-gradient(120% 80% at 50% 0,var(--bg2),var(--bg) 60%)}
+#app{display:flex;flex-direction:column;height:100%}
+header{padding:10px 14px 6px}
+h1{margin:0;font:600 26px Georgia,"Times New Roman",serif;color:var(--gold);display:flex;justify-content:space-between;align-items:baseline}
+h1 small{font:400 13px "Avenir Next","Trebuchet MS",system-ui,sans-serif;color:var(--mut)}
+.tabs{display:flex;gap:8px;margin-top:8px}
+.tab{flex:1;padding:9px 6px;border-radius:20px;border:1px solid #3a5272;background:#0d1b2a88;color:#a9b8d6;font:inherit;font-size:13px}
+.tab.on{background:var(--gold);border-color:var(--gold);color:#1a1405;font-weight:600}
+#book{flex:1;min-height:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;touch-action:pan-x;scrollbar-width:none}
+#book::-webkit-scrollbar{display:none}
+.pg{flex:0 0 100%;scroll-snap-align:center;padding:8px 12px;display:flex;will-change:transform}
+.sheet{position:relative;flex:1;min-height:0;background:linear-gradient(160deg,#f7f9fc,#dde4ee);border-radius:4px 10px 10px 4px;padding:14px 12px 14px 20px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:10px;box-shadow:inset 0 0 0 1px #fff9,0 10px 24px #000b}
+.sheet::before{content:"";position:absolute;left:5px;top:8%;bottom:8%;width:8px;background:radial-gradient(circle,#7b889c 38%,transparent 42%) 0 0/8px 64px repeat-y}
+.slot{position:relative;height:100%;max-width:100%;aspect-ratio:63/88;margin:auto;border-radius:5px;background:var(--sl);overflow:hidden;min-height:0;box-shadow:0 0 0 2px #ffffffcc,0 0 0 3px #aab6c9,0 3px 7px #0005}
+.slot.on::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,#fff0 40%,#fff4 50%,#fff0 60%);pointer-events:none}
+.slot img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.slot:not(.on) img,.slot:not(.on) .ph{filter:grayscale(1) contrast(.9) brightness(.95)}
+.slot.em{background:none;box-shadow:none;border:2px dashed #aab6cb}
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:100%;padding:6px 4px;text-align:center;color:#1d2a44;line-height:1.15}
+.ph b{font:700 15px Georgia,serif}
+.ph span{font-size:11px;font-weight:600}
+.ph i{font-style:normal;font-size:10px;opacity:.7}
+.kp{background:linear-gradient(160deg,#f6e7a6,#e6c35c)}
+.kt{background:linear-gradient(160deg,#cfe3f7,#8fb4dc)}
+.ke{background:linear-gradient(160deg,#f7c9c4,#e08a80)}
+.nt{position:absolute;right:3px;top:3px;font-size:13px;background:#fffd;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
+footer{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 16px 10px;font-size:13px;color:var(--mut)}
+footer button{background:none;border:0;color:var(--mut);font:inherit;text-decoration:underline;padding:6px 0}
+#sh,#ne{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;z-index:5}
+.sb{width:100%;background:var(--sb);border-radius:14px 14px 0 0;padding:10px 12px calc(14px + env(safe-area-inset-bottom,0px));max-height:85%;overflow:auto}
+.sb p{margin:4px 6px 10px;color:var(--mut);font-size:13px}
+.sb button{display:block;width:100%;padding:13px;margin-top:6px;border:0;border-radius:9px;background:var(--bt);color:#fff;font:inherit;font-size:15px;text-align:left}
+.sb button.dg{color:#ff8a80}
+.sb textarea{width:100%;padding:10px;border-radius:9px;border:1px solid #3a5272;background:#0d1b2a;color:#fff;font:inherit;font-size:16px;-webkit-user-select:text;user-select:text}
+#vw{position:fixed;inset:0;background:#080d1af2;z-index:6;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.vt{padding:14px 56px 4px 18px}
+.vt b{display:block;font:600 22px Georgia,serif}
+.vt small{display:block;color:var(--mut);margin-top:3px;font-size:13px}
+.vt em{display:block;margin-top:8px;font-style:normal;color:#ffd98a;font-size:14px}
+#stage{flex:1;perspective:900px;display:flex;align-items:center;justify-content:center;touch-action:none}
+#card{width:min(78vw,calc(56vh*63/88));aspect-ratio:63/88;position:relative;transform-style:preserve-3d}
+#card>*{position:absolute;inset:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4.5%;box-shadow:0 12px 30px #000a;overflow:hidden}
+#fr img{width:100%;height:100%;object-fit:cover;display:block}
+#fr .ph b{font-size:34px}#fr .ph span{font-size:21px}#fr .ph i{font-size:15px}
+.bk{transform:rotateY(180deg);background:radial-gradient(circle at 50% 40%,#2f5ec4,#18306d 70%);border:7px solid #e8c34a;display:flex;align-items:center;justify-content:center}
+.bk i{width:46%;aspect-ratio:1;border-radius:50%;border:4px solid #14182a;background:linear-gradient(#e0453a 0 45%,#14182a 45% 55%,#f4f4f4 55%)}
+#vx,#vf{position:absolute;border:0;color:#fff;background:var(--bt);border-radius:20px;font:inherit}
+#vx{top:calc(10px + env(safe-area-inset-top,0px));right:12px;width:38px;height:38px;font-size:18px}
+#vf{bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);padding:11px 22px;font-size:15px}
+</style></head><body>
+<div id="app">
+<header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
+<div id="book"></div>
+<footer><span id="pn"></span><button id="bulk">Carica foto in blocco</button><button id="rs">Ripristina ordine</button></footer>
+</div>
+<div id="sh" hidden></div>
+<div id="ne" hidden><div class="sb"><p id="nl"></p><textarea id="nta" rows="4" placeholder="Scrivi una nota"></textarea><button id="nok">Salva nota</button><button id="nno">Annulla</button></div></div>
+<div id="vw" hidden>
+<div class="vt"><b id="vh"></b><small id="vs"></small><em id="vn"></em></div>
+<div id="stage"><div id="card"><div id="fr"></div><div class="bk"><i></i></div></div></div>
+<button id="vx">✕</button><button id="vf">Gira la carta</button>
+</div>
+<input type="file" id="fi" accept="image/*" hidden>
+<script>
+/*DATA*/
+const DEXN="Bulbasaur,Ivysaur,Venusaur,Charmander,Charmeleon,Charizard,Squirtle,Wartortle,Blastoise,Caterpie,Metapod,Butterfree,Weedle,Kakuna,Beedrill,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu,Raichu,Sandshrew,Sandslash,Nidoran♀,Nidorina,Nidoqueen,Nidoran♂,Nidorino,Nidoking,Clefairy,Clefable,Vulpix,Ninetales,Jigglypuff,Wigglytuff,Zubat,Golbat,Oddish,Gloom,Vileplume,Paras,Parasect,Venonat,Venomoth,Diglett,Dugtrio,Meowth,Persian,Psyduck,Golduck,Mankey,Primeape,Growlithe,Arcanine,Poliwag,Poliwhirl,Poliwrath,Abra,Kadabra,Alakazam,Machop,Machoke,Machamp,Bellsprout,Weepinbell,Victreebel,Tentacool,Tentacruel,Geodude,Graveler,Golem,Ponyta,Rapidash,Slowpoke,Slowbro,Magnemite,Magneton,Farfetch’d,Doduo,Dodrio,Seel,Dewgong,Grimer,Muk,Shellder,Cloyster,Gastly,Haunter,Gengar,Onix,Drowzee,Hypno,Krabby,Kingler,Voltorb,Electrode,Exeggcute,Exeggutor,Cubone,Marowak,Hitmonlee,Hitmonchan,Lickitung,Koffing,Weezing,Rhyhorn,Rhydon,Chansey,Tangela,Kangaskhan,Horsea,Seadra,Goldeen,Seaking,Staryu,Starmie,Mr. Mime,Scyther,Jynx,Electabuzz,Magmar,Pinsir,Tauros,Magikarp,Gyarados,Lapras,Ditto,Eevee,Vaporeon,Jolteon,Flareon,Porygon,Omanyte,Omastar,Kabuto,Kabutops,Aerodactyl,Snorlax,Articuno,Zapdos,Moltres,Dratini,Dragonair,Dragonite,Mewtwo,Mew".split(",");
+const SETS={
+B:{n:"Base",t:102,
+P:`1 Alakazam*;2 Blastoise*;3 Chansey*;4 Charizard*;5 Clefairy*;6 Gyarados*;7 Hitmonchan*;8 Machamp*;9 Magneton*;10 Mewtwo*;11 Nidoking*;12 Ninetales*;13 Poliwrath*;14 Raichu*;15 Venusaur*;16 Zapdos*;17 Beedrill;18 Dragonair;19 Dugtrio;20 Electabuzz;21 Electrode;22 Pidgeotto;23 Arcanine;24 Charmeleon;25 Dewgong;26 Dratini;27 Farfetch’d;28 Growlithe;29 Haunter;30 Ivysaur;31 Jynx;32 Kadabra;33 Kakuna;34 Machoke;35 Magikarp;36 Magmar;37 Nidorino;38 Poliwhirl;39 Porygon;40 Raticate;41 Seel;42 Wartortle;43 Abra;44 Bulbasaur;45 Caterpie;46 Charmander;47 Diglett;48 Doduo;49 Drowzee;50 Gastly;51 Koffing;52 Machop;53 Magnemite;54 Metapod;55 Nidoran♂;56 Onix;57 Pidgey;58 Pikachu;59 Poliwag;60 Ponyta;61 Rattata;62 Sandshrew;63 Squirtle;64 Starmie;65 Staryu;66 Tangela;67 Voltorb;68 Vulpix;69 Weedle`,
+T:`70 Clefairy Doll;71 Computer Search;72 Devolution Spray;73 Impostor Professor Oak;74 Item Finder;75 Lass;76 Pokémon Breeder;77 Pokémon Trader;78 Scoop Up;79 Super Energy Removal;80 Defender;81 Energy Retrieval;82 Full Heal;83 Maintenance;84 PlusPower;85 Pokémon Center;86 Pokémon Flute;87 Pokédex;88 Professor Oak;89 Revive;90 Super Potion;91 Bill;92 Energy Removal;93 Gust of Wind;94 Potion;95 Switch`,
+E:`96 Double Colorless Energy;97 Fighting Energy;98 Fire Energy;99 Grass Energy;100 Lightning Energy;101 Psychic Energy;102 Water Energy`},
+J:{n:"Jungle",t:64,
+P:`1 Clefable*;2 Electrode*;3 Flareon*;4 Jolteon*;5 Kangaskhan*;6 Mr. Mime*;7 Nidoqueen*;8 Pidgeot*;9 Pinsir*;10 Scyther*;11 Snorlax*;12 Vaporeon*;13 Venomoth*;14 Victreebel*;15 Vileplume*;16 Wigglytuff*;17 Clefable;18 Electrode;19 Flareon;20 Jolteon;21 Kangaskhan;22 Mr. Mime;23 Nidoqueen;24 Pidgeot;25 Pinsir;26 Scyther;27 Snorlax;28 Vaporeon;29 Venomoth;30 Victreebel;31 Vileplume;32 Wigglytuff;33 Butterfree;34 Dodrio;35 Exeggutor;36 Fearow;37 Gloom;38 Lickitung;39 Marowak;40 Nidorina;41 Parasect;42 Persian;43 Primeape;44 Rapidash;45 Rhydon;46 Seaking;47 Tauros;48 Weepinbell;49 Bellsprout;50 Cubone;51 Eevee;52 Exeggcute;53 Goldeen;54 Jigglypuff;55 Mankey;56 Meowth;57 Nidoran♀;58 Oddish;59 Paras;60 Pikachu;61 Rhyhorn;62 Spearow;63 Venonat`,
+T:`64 Poké Ball`},
+F:{n:"Fossil",t:62,
+P:`1 Aerodactyl*;2 Articuno*;3 Ditto*;4 Dragonite*;5 Gengar*;6 Haunter*;7 Hitmonlee*;8 Hypno*;9 Kabutops*;10 Lapras*;11 Magneton*;12 Moltres*;13 Muk*;14 Raichu*;15 Zapdos*;16 Aerodactyl;17 Articuno;18 Ditto;19 Dragonite;20 Gengar;21 Haunter;22 Hitmonlee;23 Hypno;24 Kabutops;25 Lapras;26 Magneton;27 Moltres;28 Muk;29 Raichu;30 Zapdos;31 Arbok;32 Cloyster;33 Gastly;34 Golbat;35 Golduck;36 Golem;37 Graveler;38 Kingler;39 Magmar;40 Omastar;41 Sandslash;42 Seadra;43 Slowbro;44 Tentacruel;45 Weezing;46 Ekans;47 Geodude;48 Grimer;49 Horsea;50 Kabuto;51 Krabby;52 Omanyte;53 Psyduck;54 Shellder;55 Slowpoke;56 Tentacool;57 Zubat`,
+T:`58 Mr. Fuji;59 Energy Search;60 Gambler;61 Recycle;62 Mysterious Fossil`},
+R:{n:"Team Rocket",t:82,
+P:`1 Dark Alakazam*;2 Dark Arbok*;3 Dark Blastoise*;4 Dark Charizard*;5 Dark Dragonite*;6 Dark Dugtrio*;7 Dark Golbat*;8 Dark Gyarados*;9 Dark Hypno*;10 Dark Machamp*;11 Dark Magneton*;12 Dark Slowbro*;13 Dark Vileplume*;14 Dark Weezing*;18 Dark Alakazam;19 Dark Arbok;20 Dark Blastoise;21 Dark Charizard;22 Dark Dragonite;23 Dark Dugtrio;24 Dark Golbat;25 Dark Gyarados;26 Dark Hypno;27 Dark Machamp;28 Dark Magneton;29 Dark Slowbro;30 Dark Vileplume;31 Dark Weezing;32 Dark Charmeleon;33 Dark Dragonair;34 Dark Electrode;35 Dark Flareon;36 Dark Gloom;37 Dark Golduck;38 Dark Jolteon;39 Dark Kadabra;40 Dark Machoke;41 Dark Muk;42 Dark Persian;43 Dark Primeape;44 Dark Rapidash;45 Dark Vaporeon;46 Dark Wartortle;47 Magikarp;48 Porygon;49 Abra;50 Charmander;51 Dark Raticate;52 Diglett;53 Dratini;54 Drowzee;55 Eevee;56 Ekans;57 Grimer;58 Koffing;59 Machop;60 Magnemite;61 Mankey;62 Meowth;63 Oddish;64 Ponyta;65 Psyduck;66 Rattata;67 Slowpoke;68 Squirtle;69 Voltorb;70 Zubat;83 Dark Raichu*`,
+T:`15 Here Comes Team Rocket!*;16 Rocket’s Sneak Attack*;71 Here Comes Team Rocket!;72 Rocket’s Sneak Attack;73 The Boss’s Way;74 Challenge!;75 Digger;76 Imposter Oak’s Revenge;77 Nightly Garbage Run;78 Goop Gas Attack;79 Sleep!`,
+E:`17 Rainbow Energy*;80 Rainbow Energy;81 Full Heal Energy;82 Potion Energy`}};
+const COLS=[{k:"a",t:"Base Jungle Fossil",s:["B","J","F"],x:1},{k:"r",t:"Team Rocket",s:["R"]}];
+const CARDS={};
+const SO={B:0,J:1,F:2,X:3,R:0};
+function parse(sid){const S=SETS[sid],out=[];
+  for(const [kd,key] of [["p","P"],["t","T"],["e","E"]]){
+    for(const it of (S[key]||"").split(";")){const m=it.match(/^(\d+) (.+?)(\*?)$/);if(!m)continue;
+      const d=kd==="p"?DEXN.indexOf(m[2].replace(/^Dark /,""))+1:0;
+      const c={id:sid+m[1],sid,num:+m[1],name:m[2],dex:d,kd,h:!!m[3],tot:S.t};CARDS[c.id]=c;out.push(c)}}
+  return out}
+function order(col){let L=[];col.s.forEach(s=>L.push(...parse(s)));
+  if(col.x){const c={id:"X1",sid:"X",num:0,name:"Mew antico",dex:151,kd:"p",h:false,tot:0};CARDS.X1=c;L.push(c)}
+  const so=(a,b)=>SO[a.sid]-SO[b.sid]||a.num-b.num;
+  const P=L.filter(c=>c.kd==="p").sort((a,b)=>a.dex-b.dex||so(a,b));
+  const T=L.filter(c=>c.kd==="t").sort(so),E=L.filter(c=>c.kd==="e").sort(so);
+  return [...P,...T,...E].map(c=>({id:c.id,o:0,n:""}))}
+/*END*/
+
+const $=s=>document.querySelector(s),book=$("#book");
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+let st={},cur="a",pg=0,np=1;
+try{st=JSON.parse(localStorage.getItem("carddex2"))||{}}catch(e){}
+const save=()=>{try{localStorage.setItem("carddex2",JSON.stringify(st))}catch(e){}};
+COLS.forEach(c=>{const o=order(c);if(!st[c.k])st[c.k]=o});
+
+/* foto: IndexedDB */
+const idb=new Promise(r=>{try{const q=indexedDB.open("carddex",1);q.onupgradeneeded=()=>q.result.createObjectStore("img");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
+const op=async(m,k,v)=>{const d=await idb;if(!d)return null;return new Promise(r=>{try{const s=d.transaction("img",m==="get"||m==="keys"?"readonly":"readwrite").objectStore("img");const q=m==="get"?s.get(k):m==="put"?s.put(v,k):m==="del"?s.delete(k):s.getAllKeys();q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}})};
+const URLS={};
+async function loadImgs(){const ks=(await op("keys"))||[];for(const k of ks){const b=await op("get",k);if(b)URLS[k]=URL.createObjectURL(b)}}
+async function shrink(f){const u=URL.createObjectURL(f);const im=await new Promise((ok,ko)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=ko;i.src=u});
+  const s=Math.min(1,720/im.naturalHeight),c=document.createElement("canvas");c.width=Math.round(im.naturalWidth*s);c.height=Math.round(im.naturalHeight*s);
+  c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);return new Promise(r=>c.toBlob(r,"image/jpeg",.86))}
+async function setImg(id,f){const b=await shrink(f);if(URLS[id])URL.revokeObjectURL(URLS[id]);URLS[id]=URL.createObjectURL(b);await op("put",id,b)}
+const fi=$("#fi");let job=null;
+function pick(i,multi){job={i,multi};fi.multiple=!!multi;fi.value="";fi.click()}
+fi.onchange=async()=>{const fs=[...fi.files];if(!fs.length||!job)return;const L=st[cur];let i=job.i,n=0;
+  for(const f of fs){while(i<L.length&&!L[i].id)i++;if(i>=L.length)break;$("#pn").textContent="Carico foto "+(++n)+" / "+fs.length+"…";
+    try{await setImg(L[i].id,f)}catch(e){}if(!job.multi)break;i++}
+  render()};
+$("#bulk").onclick=()=>{const L=st[cur];let i=L.findIndex(s=>s.id&&!URLS[s.id]);pick(i<0?0:i,true)};
+
+/* album */
+const pad=n=>String(n).padStart(3,"0");
+const numTxt=c=>c.tot?c.num+"/"+c.tot:"";
+const TD={B:"base1",J:"base2",F:"base3",R:"base5"};
+function face(c,hi){const ph=`<div class="ph k${c.kd}"><b>${c.kd==="p"&&c.dex?"#"+pad(c.dex):""}</b><span>${esc(c.name)}</span><i>${numTxt(c)}</i></div>`;
+  const u=URLS[c.id]||(TD[c.sid]?`https://assets.tcgdex.net/en/base/${TD[c.sid]}/${c.num}/${hi?"high":"low"}.webp`:"");
+  if(!u)return ph;
+  return `<img draggable="false" referrerpolicy="no-referrer" alt="${esc(c.name)}" src="${u}" data-p="${esc(ph)}" onerror="var p=document.createElement('div');p.innerHTML=this.getAttribute('data-p');this.replaceWith(p.firstChild)">`}
+function slot(i){const s=st[cur][i],c=s.id&&CARDS[s.id];
+  return `<div class="slot ${s.o&&c?"on":""} ${c?"":"em"}" data-i="${i}">${c?face(c):""}${s.n?'<span class="nt">📝</span>':""}</div>`}
+function render(){const L=st[cur];np=Math.max(1,Math.ceil(L.length/9));let h="";
+  for(let p=0;p<np;p++){h+='<div class="pg"><div class="sheet">';for(let i=p*9;i<p*9+9;i++)h+=i<L.length?slot(i):"<div></div>";h+="</div></div>"}
+  book.innerHTML=h;book.scrollLeft=Math.min(pg,np-1)*book.clientWidth;flip();stat()}
+function flip(){const w=book.clientWidth||1;
+  [...book.children].forEach((p,k)=>{const o=k-book.scrollLeft/w;p.style.transformOrigin=o>0?"left center":"right center";p.style.transform=`perspective(1200px) rotateY(${-o*32}deg)`;p.style.opacity=1-Math.min(1,Math.abs(o))*.55});
+  pg=Math.max(0,Math.min(np-1,Math.round(book.scrollLeft/w)));$("#pn").textContent="Pagina "+(pg+1)+" / "+np}
+book.addEventListener("scroll",flip,{passive:true});
+function stat(){const L=st[cur].filter(x=>x.id);$("#stat").textContent=L.filter(x=>x.o).length+" / "+L.length+" carte"}
+function tabs(){$("#tabs").innerHTML=COLS.map(c=>`<button class="tab ${c.k===cur?"on":""}" data-k="${c.k}">${c.t}</button>`).join("")}
+$("#tabs").onclick=e=>{const k=e.target.dataset.k;if(k&&k!==cur){cur=k;pg=0;tabs();render()}};
+function confirmSheet(t,f){sheet([["Sì, conferma",f,1]],t)}
+$("#rs").onclick=()=>confirmSheet("Ripristinare l’ordine originale di questa collezione? Perdi stato “ottenuta”, note e modifiche (le foto restano).",()=>{st[cur]=order(COLS.find(c=>c.k===cur));save();pg=0;render()});
+
+/* gesti: tocco = apri, doppio tocco = ottenuta, pressione lunga = menu */
+let g=null,last={i:-1,t:0},tm;
+book.addEventListener("pointerdown",e=>{const s=e.target.closest(".slot");if(!s)return;const i=+s.dataset.i;
+  g={i,x:e.clientX,y:e.clientY,lp:0,mv:0,t:setTimeout(()=>{g.lp=1;if(navigator.vibrate)navigator.vibrate(15);menu(i)},450)}});
+book.addEventListener("pointermove",e=>{if(g&&Math.hypot(e.clientX-g.x,e.clientY-g.y)>8){clearTimeout(g.t);g.mv=1}});
+book.addEventListener("pointerup",()=>{if(!g)return;clearTimeout(g.t);const x=g;g=null;if(!x.lp&&!x.mv)tap(x.i)});
+book.addEventListener("pointercancel",()=>{if(g){clearTimeout(g.t);g=null}});
+book.addEventListener("contextmenu",e=>e.preventDefault());
+function tap(i){const n=Date.now();clearTimeout(tm);
+  if(last.i===i&&n-last.t<320){last={i:-1,t:0};toggle(i)}
+  else{last={i,t:n};tm=setTimeout(()=>{const s=st[cur][i];if(s&&s.id&&s.o)openCard(i)},320)}}
+function toggle(i){const s=st[cur][i];if(!s.id)return;s.o=s.o?0:1;save();const e=book.querySelector(`[data-i="${i}"]`);if(e)e.classList.toggle("on",!!s.o);stat()}
+
+function sheet(items,title){const s=$("#sh");s.innerHTML='<div class="sb"><p>'+esc(title)+"</p></div>";const b=s.firstChild;
+  items.concat([["Annulla",()=>{}]]).forEach(([t,f,d])=>{const e=document.createElement("button");e.textContent=t;if(d)e.className="dg";e.onclick=()=>{s.hidden=true;f()};b.appendChild(e)});s.hidden=false}
+$("#sh").onclick=e=>{if(e.target.id==="sh")e.target.hidden=true};
+function noteEd(s,t){$("#nl").textContent=t;$("#nta").value=s.n||"";$("#ne").hidden=false;
+  $("#nok").onclick=()=>{s.n=$("#nta").value.trim();save();$("#ne").hidden=true;render()};$("#nno").onclick=()=>{$("#ne").hidden=true}}
+function menu(i){const L=st[cur],s=L[i],c=s.id&&CARDS[s.id],it=[];
+  if(s.id)it.push([s.o?"Segna come non ottenuta":"Segna come ottenuta",()=>toggle(i)]);
+  if(s.id){it.push([URLS[s.id]?"Cambia foto":"Carica foto",()=>pick(i,false)]);it.push(["Carica foto da qui in avanti",()=>pick(i,true)])}
+  if(s.id&&URLS[s.id])it.push(["Rimuovi foto",()=>{URL.revokeObjectURL(URLS[s.id]);delete URLS[s.id];op("del",s.id);render()}]);
+  it.push([s.n?"Modifica nota":"Aggiungi nota",()=>noteEd(s,c?c.name:"Slot vuoto")]);
+  if(s.n)it.push(["Rimuovi nota",()=>{s.n="";save();render()}]);
+  it.push(["Inserisci slot vuoto prima",()=>{L.splice(i,0,{id:null,o:0,n:""});save();render()}]);
+  it.push(["Inserisci slot vuoto dopo",()=>{L.splice(i+1,0,{id:null,o:0,n:""});save();render()}]);
+  if(s.id)it.push(["Duplica (aggiungi doppione)",()=>{L.splice(i+1,0,{id:s.id,o:0,n:""});save();render()}]);
+  it.push(["Elimina dalla collezione",()=>confirmSheet("Eliminare? Le carte successive scorrono indietro.",()=>{L.splice(i,1);save();render()}),1]);
+  sheet(it,c?c.name:"Slot vuoto")}
+
+/* visualizzatore 3D */
+const card=$("#card"),stg=$("#stage");let ry=0,rx=0,dr=null;
+const ap=()=>card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+function openCard(i){const s=st[cur][i],c=CARDS[s.id];
+  $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
+  $("#vs").textContent=[SETS[c.sid]?SETS[c.sid].n:"Promo",c.h?"Holo":"",numTxt(c)].filter(Boolean).join(" · ");
+  $("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
+  ry=rx=0;card.style.transition="";ap();$("#vw").hidden=false}
+stg.onpointerdown=e=>{dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
+stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
+stg.onpointerup=stg.onpointercancel=()=>{if(!dr)return;dr=null;card.style.transition="transform .3s";ry=Math.round(ry/180)*180;rx=0;ap()};
+$("#vf").onclick=()=>{card.style.transition="transform .4s";ry=Math.round(ry/180)*180+180;ap()};
+$("#vx").onclick=()=>{$("#vw").hidden=true};
+tabs();render();loadImgs().then(render);
+</script></body></html>
