@@ -248,7 +248,7 @@ body.pv footer{margin-top:0!important}
 .hl.evo.neo{clip-path:polygon(8.9% 0,100% 0,100% 100%,0 100%,0 10.7%,1.6% 10.5%,4.5% 9%,6.9% 6.1%,8.5% 2.3%)}
 #sr,#ne{padding-top:calc(env(safe-area-inset-top,0px) + 16vh)!important}
 @media (orientation:landscape) and (max-height:700px){#sr,#ne{padding-top:calc(env(safe-area-inset-top,0px) + 8px)!important}}
-.slot.on::after{opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.7),rgba(255,255,255,0) 58%),linear-gradient(115deg,#fff0 calc(var(--mx,50%) - 14%),#fff7 var(--mx,50%),#fff0 calc(var(--mx,50%) + 14%));mix-blend-mode:screen}
+.slot.on::after{opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(255,255,255,.55),rgba(255,255,255,0) 58%),linear-gradient(115deg,#fff0 calc(var(--mx,50%) - 14%),#fff2 var(--mx,50%),#fff0 calc(var(--mx,50%) + 14%));mix-blend-mode:screen}
 html.mv .slot.on::after{opacity:1}
 
 .slot.ar::after{background:rgba(255,149,0,.46)!important;mix-blend-mode:normal}
@@ -554,7 +554,7 @@ $("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro d
   if(!VIEW()){it.push(["Rimuovi gli slot vuoti",()=>confirmSheet("Rimuovere tutti gli slot vuoti? Le carte scorrono per coprire gli spazi.",()=>{st[cur]=st[cur].filter(x=>x.id);save();render()})]);
     it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come non ottenute? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
   it.push([(CRYON?"Versi Pokémon: attivi":"Versi Pokémon: disattivati"),()=>{CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}}]);
-  it.push([(LUCE?"Luce in movimento: attiva":"Luce in movimento: disattivata"),()=>{LUCE=!LUCE;try{localStorage.setItem("carddex_luce",LUCE?"1":"0")}catch(e){}if(LUCE)motionOn()}]);
+  it.push([(LUCE?"Luce in movimento: attiva":"Luce in movimento: disattivata"),()=>{LUCE=!LUCE;try{localStorage.setItem("carddex_luce",LUCE?"1":"0")}catch(e){}if(LUCE){mAsked=0;motionOn()}}]);
   it.push(["Esporta backup (senza foto)",()=>{const b=new Blob([JSON.stringify({app:"carddex",v:2,st})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}]);
   it.push(["Importa backup",()=>confirmSheet("Importare un backup sostituisce lo stato attuale (carte ottenute, note, ordine).",()=>{$("#fim").value="";$("#fim").click()}),1]);
   sheet(it,"Opzioni")};
@@ -564,7 +564,7 @@ $("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j
 
 /* visualizzatore 3D */
 const card=$("#card"),stg=$("#stage"),hl=$(".hl");let ry=0,rx=0,dr=null,curH=false;
-let TX=0,TY=0;const ap=()=>{const RY=ry+TX,RX=rx+TY;card.style.transform=`rotateX(${RX}deg) rotateY(${RY}deg)`;
+let TX=0,TY=0;const ap=()=>{const RY=ry+TX*2.4,RX=rx+TY*2.4;card.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
   const a=((RY%360)+540)%360-180,k=Math.max(-1,Math.min(1,a/45)),m=Math.max(-1,Math.min(1,RX/35));
   card.style.setProperty("--gx",(50-k*45)+"%");card.style.setProperty("--gy",(50+m*45)+"%");
   card.style.setProperty("--hx",(50+k*50)+"%");card.style.setProperty("--hy",(50+m*50)+"%");
@@ -574,7 +574,7 @@ const fb=$("#fb");
 fb.onchange=async()=>{const f=fb.files[0];if(!f)return;try{await setImg("BACK",f)}catch(e){}applyBack(window.__vc)};
 const EVO=new Set([2,3,5,6,8,9,11,12,14,15,17,18,20,22,24,26,28,30,31,33,34,36,38,40,42,44,45,47,49,51,53,55,57,59,61,62,64,65,67,68,70,71,73,75,76,78,80,82,85,87,89,91,93,94,97,99,101,103,105,110,112,117,119,121,130,134,135,136,139,141,148,149,153,154,156,157,159,160,162,164,166,168,169,171,176,178,180,181,182,184,186,189,192,195,196,197,199,205,208,210,212,217,219,221,224,229,230,232,233,237,242,247,248]);
 /* luce in movimento */
-let LUCE=true;try{LUCE=localStorage.getItem("carddex_luce")!=="0"}catch(e){}
+let LUCE=false;try{LUCE=localStorage.getItem("carddex_luce")==="1"}catch(e){}
 let mBase=null,mRaf=0,mAsked=0,mOn=0;
 function mHandler(e){if(!LUCE||e.beta==null)return;
   const a=(screen.orientation&&screen.orientation.angle!=null)?screen.orientation.angle:(window.orientation||0);let tx,ty;
@@ -585,14 +585,20 @@ function mHandler(e){if(!LUCE||e.beta==null)return;
 function motionOn(){if(mOn||!window.DeviceOrientationEvent)return;
   if(typeof DeviceOrientationEvent.requestPermission==="function"){if(mAsked)return;mAsked=1;DeviceOrientationEvent.requestPermission().then(r=>{if(r==="granted"){mOn=1;addEventListener("deviceorientation",mHandler)}}).catch(()=>{})}
   else{mOn=1;addEventListener("deviceorientation",mHandler)}}
-document.addEventListener("pointerup",()=>{if(LUCE)motionOn()},true);
+document.addEventListener("pointerup",()=>{acUnlock();if(LUCE)motionOn()},true);
 /* versi */
 const AU=new Audio();AU.preload="auto";let CRYON=true;try{CRYON=localStorage.getItem("carddex_cry")!=="0"}catch(e){}
 let auOK=0;document.addEventListener("pointerdown",()=>{if(auOK)return;auOK=1;try{AU.src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";const p=AU.play();if(p&&p.then)p.then(()=>AU.pause()).catch(()=>{})}catch(e){}},{once:true,capture:true});
 const DEXG2="Chikorita,Bayleef,Meganium,Cyndaquil,Quilava,Typhlosion,Totodile,Croconaw,Feraligatr,Sentret,Furret,Hoothoot,Noctowl,Ledyba,Ledian,Spinarak,Ariados,Crobat,Chinchou,Lanturn,Pichu,Cleffa,Igglybuff,Togepi,Togetic,Natu,Xatu,Mareep,Flaaffy,Ampharos,Bellossom,Marill,Azumarill,Sudowoodo,Politoed,Hoppip,Skiploom,Jumpluff,Aipom,Sunkern,Sunflora,Yanma,Wooper,Quagsire,Espeon,Umbreon,Murkrow,Slowking,Misdreavus,Unown,Wobbuffet,Girafarig,Pineco,Forretress,Dunsparce,Gligar,Steelix,Snubbull,Granbull,Qwilfish,Scizor,Shuckle,Heracross,Sneasel,Teddiursa,Ursaring,Slugma,Magcargo,Swinub,Piloswine,Corsola,Remoraid,Octillery,Delibird,Mantine,Skarmory,Houndour,Houndoom,Kingdra,Phanpy,Donphan,Porygon2,Stantler,Smeargle,Tyrogue,Hitmontop,Smoochum,Elekid,Magby,Miltank,Blissey,Raikou,Entei,Suicune,Larvitar,Pupitar,Tyranitar,Lugia,Ho-Oh,Celebi".split(",");
 function cry(c){if(!CRYON||!c||c.kd!=="p"||!c.dex)return;const n=c.dex<=151?DEXN[c.dex-1]:DEXG2[c.dex-152];if(!n)return;
   const id=n.toLowerCase().replace("♀","f").replace("♂","m").replace(/[^a-z0-9]/g,"");
-  try{AU.onerror=()=>{AU.onerror=null;AU.src="https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"+c.dex+".ogg";AU.play().catch(()=>{})};AU.src="https://play.pokemonshowdown.com/audio/cries/"+id+".mp3";AU.volume=.8;const p=AU.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}
+  const urls=["https://play.pokemonshowdown.com/audio/cries/"+id+".mp3","https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"+c.dex+".ogg"];playCry(urls)}
+let AC=null;const CB={};let cryTok=0,cryS=null;
+function acUnlock(){try{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();if(AC.state!=="running")AC.resume()}catch(e){}}
+async function playCry(urls){const tk=++cryTok;acUnlock();if(!AC)return;try{if(cryS){cryS.stop();cryS=null}}catch(e){}
+  let buf=CB[urls[0]];
+  if(!buf)for(const u of urls){try{const r=await fetch(u,{mode:"cors"});if(!r.ok)continue;const ab=await r.arrayBuffer();buf=await new Promise((ok,ko)=>AC.decodeAudioData(ab,ok,ko));CB[urls[0]]=buf;break}catch(e){}}
+  if(!buf||tk!==cryTok||$("#vw").hidden)return;const src=AC.createBufferSource(),g=AC.createGain();g.gain.value=.8;src.buffer=buf;src.connect(g);g.connect(AC.destination);src.start();cryS=src}
 let curI=-1,sw=null;
 let navB=0;function navCard(d){if(navB)return;const L=LIST();for(let j=curI+d;j>=0&&j<L.length;j+=d){if(L[j].id&&L[j].o){navB=1;const W=innerWidth*.9;
     try{stg.animate([{transform:"none",opacity:1},{transform:"translateX("+(-d*W)+"px)",opacity:0}],{duration:170,easing:"ease-in"}).onfinish=()=>{openCard(j);stg.animate([{transform:"translateX("+(d*W)+"px)",opacity:0},{transform:"none",opacity:1}],{duration:230,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=()=>{navB=0}}}catch(e){openCard(j);navB=0}return}}}
