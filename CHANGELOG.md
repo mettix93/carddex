@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Trasparente chiaro: pagina che gira più opaca sopra l'altra
 - Fix: carte Neo schiacciate e non muovibili da aperte
 - Trasparente chiaro: un po' più opaco
 - Stili pagina: "Trasparente scuro" primo e predefinito, "Trasparente" chiaro secondo; bordi tasche sottili; alone dalle carte stesse; ombre di piega leggere
