@@ -294,6 +294,9 @@ html[data-pg="bianco"] .slot:not(.on) img,html[data-pg="bianco"] .slot:not(.on) 
 #vw.holo::after{animation:none!important;opacity:.4!important;mix-blend-mode:screen!important;background-image:var(--sp1),linear-gradient(115deg,rgba(255,120,190,.5),rgba(255,210,120,.5),rgba(190,255,150,.5),rgba(120,255,210,.5),rgba(120,200,255,.5),rgba(180,150,255,.5),rgba(255,120,190,.5))!important;background-size:131px 137px,100% 100%!important;background-repeat:repeat,no-repeat!important;background-position:0 0,0 0!important;
  -webkit-mask-image:linear-gradient(110deg,rgba(0,0,0,.08) calc(var(--hx,50%) - 22%),#000 var(--hx,50%),rgba(0,0,0,.08) calc(var(--hx,50%) + 22%)),radial-gradient(ellipse 90% 65% at 50% 45%,#000 20%,transparent 85%)!important;-webkit-mask-composite:source-in!important;
  mask-image:linear-gradient(110deg,rgba(0,0,0,.08) calc(var(--hx,50%) - 22%),#000 var(--hx,50%),rgba(0,0,0,.08) calc(var(--hx,50%) + 22%)),radial-gradient(ellipse 90% 65% at 50% 45%,#000 20%,transparent 85%)!important;mask-composite:intersect!important}
+/* riflesso piu' leggero sulla finestra holo */
+#card.hol .ft .gl{-webkit-mask-image:linear-gradient(#000,#000),linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8));-webkit-mask-size:100% 100%,82% 41.6%;-webkit-mask-position:0 0,9% 11.2%;-webkit-mask-repeat:no-repeat;-webkit-mask-composite:destination-out;mask-image:linear-gradient(#000,#000),linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8));mask-size:100% 100%,82% 41.6%;mask-position:0 0,9% 11.2%;mask-repeat:no-repeat;mask-composite:subtract}
+#card.hol.hfull .ft .gl{-webkit-mask-image:none;mask-image:none;opacity:.35}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -684,7 +687,7 @@ function openCard(i,na){curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   $("#vs").innerHTML=sicon(c.sid)+[esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),c.h?"Holo":"",esc(numTxt(c))].filter(Boolean).join(" · ");
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
-  curH=!!c.h;hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
+  curH=!!c.h;card.classList.toggle("hol",!!c.h);card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
 stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
