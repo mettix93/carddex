@@ -303,7 +303,7 @@ html body .sheet,html body .flp{-webkit-backdrop-filter:var(--pgbf,none);backdro
 html body .slot:not(.em){box-shadow:0 0 0 2px var(--pk1,#232329),0 0 0 3px var(--pk2,#3b3b44)!important}
 html body .slot.em{border-color:var(--pk2,#3a3a42)!important}
 html body .gh{border-color:var(--pk2,rgba(255,255,255,.17))}
-html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.12)!important}
+html[data-pg="trasp"] body .flp{background-color:rgba(255,255,255,.17)!important}
 html[data-pg="trasp2"] body .flp{background-color:rgba(30,32,44,.88)!important}
 html[data-pg="trasp"] body .slot:not(.on) img,html[data-pg="trasp2"] body .slot:not(.on) img{filter:grayscale(1) contrast(.85) brightness(.62)!important}
 /* riquadro illustrazione misurato sugli screenshot */
@@ -636,7 +636,7 @@ $("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro d
 /* alone dalle carte stesse (stile trasparente) */
 document.addEventListener("load",e=>{const i=e.target;if(i.tagName==="IMG"){const sl=i.closest&&i.closest(".slot");if(sl&&i.currentSrc)sl.style.setProperty("--gi","url(\""+i.currentSrc+"\")")}},true);
 /* stile: colore pagine per collezione */
-const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null],trasp:["Trasparente","rgba(255,255,255,.07)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
+const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
 let PGS={};try{PGS=JSON.parse(localStorage.getItem("carddex_pgc")||"{}")||{}}catch(e){}
 function pgKey(){return cur==="?"?(typeof PREV!=="undefined"&&PREV)||"a":cur}
 function applyPgc(){const k=PGS[pgKey()]||"trasp2",d=PGC[k]||PGC.trasp2,r=document.documentElement;r.style.setProperty("--pgbg",d[1]);["--pk1","--pk2"].forEach((n,x)=>d[4+x]?r.style.setProperty(n,d[4+x]):r.style.removeProperty(n));r.style.setProperty("--pgbf",d[6]||"none");
