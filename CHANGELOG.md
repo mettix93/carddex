@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Topps: immagini salvate in modo permanente nella memoria dell'app (se il sito lo permette), così alle aperture successive non si riscaricano; altrimenti resta la cache normale.
 - Topps: il precaricamento parte subito all'avvio dell'app (prima le carte ottenute, poi le altre), 4 scaricamenti in parallelo.
 - Topps: sfondo della carta aperta più immediato (usa la miniatura già in memoria) e base neutra al posto del colore dei tipi TCG.
 - Versi più affidabili: audio sbloccato al primo tocco, versi delle carte vicine caricati in anticipo, doppia sorgente scaricata in parallelo.
