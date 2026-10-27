@@ -681,7 +681,12 @@ function menu(i){const L=LIST(),s=L[i],c=s.id&&CARDS[s.id],it=[];
 /* filtro + menu altre opzioni */
 $("#ft").onclick=()=>{const o=[["a","Intera collezione"],["o","Ottenute"],["n","Mancanti"],["i","In arrivo"]];
   sheet(o.map(([k,t])=>[(FLT===k?"✓  ":"")+t,()=>{FLT=k;pg=0;sp=0;tabs();render()}]),"Mostra")};
-$("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro delle carte",backMenu]];
+function widgetExport(){try{const seen=new Set(),L=[];COLS.forEach(co=>st[co.k].forEach(x=>{if(!x.id||!x.o)return;const c=eff(x);if(!c)return;
+    let u=c.img||(c.sid==="S"?toppsU(c,true):TD[c.sid]?`https://assets.tcgdex.net/en/${SER[c.sid]}/${TD[c.sid]}/${c.num}/high.webp`:"");if(!u||/^(blob|data):/.test(u)||seen.has(u))return;seen.add(u);L.push({n:c.name,u})}));
+    if(!L.length){toast("Non hai ancora carte ottenute");return}
+    const f=new File([JSON.stringify({v:1,c:L})],"carddex-widget.json",{type:"application/json"});
+    if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{});else{const a=document.createElement("a");a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();a.remove()}}catch(e){toast("Esportazione non riuscita")}}
+$("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro delle carte",backMenu],["Esporta carte per il widget",widgetExport]];
   if(!VIEW()){it.push(["Rimuovi gli slot vuoti",()=>confirmSheet("Rimuovere tutti gli slot vuoti? Le carte scorrono per coprire gli spazi.",()=>{st[cur]=st[cur].filter(x=>x.id);save();render()})]);
     it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come mancanti? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
   it.push(["Esporta backup (senza foto)",()=>{const b=new Blob([JSON.stringify({app:"carddex",v:2,st})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}]);
@@ -913,7 +918,7 @@ tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();appl
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261027203750";
+const BUILD="B261027203944";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
