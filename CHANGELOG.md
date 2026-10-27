@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Schermo intero: niente più giri a vuoto se avevi girato la carta più volte (gira solo se era sul retro).
+- Carta aperta: zoom temporaneo pizzicando con due dita (non a schermo intero); al rilascio la carta torna a posto.
 - Holo: ritaglio del badge del Pokémon base tracciato automaticamente pixel per pixel sui tuoi screenshot (segue anche le punte della stella nei set Base/Jungle/Fossil/Rocket e il cerchio dei Neo); lo stesso contorno vale per il buco nel riflesso di luce.
 - Versi: audio in modalità «ambient» (segue l'interruttore silenzioso dell'iPhone) e tolto lo sblocco che poteva forzare l'audio anche col silenzioso; con versi disattivati non parte nulla.
 - Holo: trovata la causa del rettangolo sopra la miniatura (era il buco nel riflesso di luce): ora ha la stessa forma del ritaglio. Ritaglio misurato sulle carte vere.
