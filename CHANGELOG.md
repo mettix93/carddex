@@ -3,6 +3,8 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Bustine: le carte si girano e tornano a posto come nelle carte aperte dell'album, e si cambia carta solo con swipe su o giù; il mazzetto ha lo spessore delle carte rimaste (si vede dai lati) e sotto non si vedono le carte successive.
+- Bustine: la bustina ha spessore e un effetto «piena»; ogni carta ha il suo sfondo del colore del tipo con dissolvenza al cambio, e le holo hanno l'effetto holo sia nello sfondo sia sull'illustrazione.
 - Home all'apertura: scegli «Collezione» (il tuo album di sempre) oppure «Gioco».
 - Gioco (prova con il Set Base): stesso album ma tutto da riempire; una bustina al giorno, che si accumulano; la bustina si ruota in 3D, si taglia col dito, le 11 carte si scorrono una a una (energia, 6 comuni, 3 non comuni, rara/holo per ultima, holo circa 1 volta su 3). Le carte vanno automaticamente nell'album di gioco, i doppioni aumentano le copie.
 - Nel menu ••• c'è «Torna alla home».
