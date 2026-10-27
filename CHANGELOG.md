@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Carte promo: simbolo stella Promo + «Promo» al posto del simbolo di rarità (Mew antico mostra «Promo Holo»).
 - Carta aperta: sotto il nome ora c'è «set · numero · simbolo rarità (● comune, ◆ non comune, ★ rara) + Holo». La rarità viene letta da tcgdex alla prima apertura di ogni carta e poi salvata sul telefono.
 - "Non ottenute" rinominato in "Mancanti" (filtro, titolo e messaggio di conferma).
 - Topps: lo sfondo dietro la carta aperta è ora la grafica della carta stessa, ingrandita e sfocata, che continua oltre i bordi (colori e disegni propri di ogni carta).
