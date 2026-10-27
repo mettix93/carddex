@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Topps: sfondo della carta aperta più immediato (usa la miniatura già in memoria) e base neutra al posto del colore dei tipi TCG.
 - Versi più affidabili: audio sbloccato al primo tocco, versi delle carte vicine caricati in anticipo, doppia sorgente scaricata in parallelo.
 - Topps più veloci: immagini piccole e grandi precaricate in background, anteprima subito visibile mentre arriva quella grande.
 - Luce in movimento: sempre spenta all'apertura dell'app; all'attivazione chiede il permesso e avvisa se negato o se non arrivano dati dai sensori.
