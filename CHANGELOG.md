@@ -3,6 +3,9 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Home all'apertura: scegli «Collezione» (il tuo album di sempre) oppure «Gioco».
+- Gioco (prova con il Set Base): stesso album ma tutto da riempire; una bustina al giorno, che si accumulano; la bustina si ruota in 3D, si taglia col dito, le 11 carte si scorrono una a una (energia, 6 comuni, 3 non comuni, rara/holo per ultima, holo circa 1 volta su 3). Le carte vanno automaticamente nell'album di gioco, i doppioni aumentano le copie.
+- Nel menu ••• c'è «Torna alla home».
 - Dettagli e note: il pannello compare in basso come gli altri menu e si alza sopra la tastiera quando scrivi.
 - Dettagli e note: i tasti Salva e Annulla restano sempre visibili (i campi scorrono), e si può chiudere toccando fuori dal pannello.
 - Dettagli carta: nel menu della carta «Dettagli e note» con copie (1x di default), lingua (italiano di default), stato, edizione, valutazione, prezzo, data e note; riepilogo sotto il titolo e badge «2x» sulle copie multiple.
