@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Carte promo: riga «simbolo Promo · numero (se presente) · Holo (se holo)».
 - Simboli di rarità (cerchio, rombo, stella) disegnati con la stessa dimensione, nel colore del testo e allineati ad esso.
 - Carte promo: simbolo stella Promo + «Promo» al posto del simbolo di rarità (Mew antico mostra «Promo Holo»).
 - Carta aperta: sotto il nome ora c'è «set · numero · simbolo rarità (● comune, ◆ non comune, ★ rara) + Holo». La rarità viene letta da tcgdex alla prima apertura di ogni carta e poi salvata sul telefono.
