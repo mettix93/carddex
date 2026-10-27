@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Hitmontop: tolto il ritaglio holo della miniatura (non ha miniatura di evoluzione).
 - Schermo intero: niente più giri a vuoto se avevi girato la carta più volte (gira solo se era sul retro).
 - Carta aperta: zoom temporaneo pizzicando con due dita (non a schermo intero); al rilascio la carta torna a posto.
 - Holo: ritaglio del badge del Pokémon base tracciato automaticamente pixel per pixel sui tuoi screenshot (segue anche le punte della stella nei set Base/Jungle/Fossil/Rocket e il cerchio dei Neo); lo stesso contorno vale per il buco nel riflesso di luce.

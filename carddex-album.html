@@ -711,7 +711,7 @@ let TX=0,TY=0;const ap=()=>{queueMicrotask(()=>{const v=$("#vw").style;["--hx","
 function applyBack(c){const b=document.querySelector(".bk"),u=(c&&c.back)||URLS.BACK||DEFBACK,L=Array.isArray(u)?u:[u];b.style.backgroundImage=L.map(x=>`url("${x}")`).join(",");b.classList.add("ph2")}
 const fb=$("#fb");
 fb.onchange=async()=>{const f=fb.files[0];if(!f)return;try{await setImg("BACK",f)}catch(e){}applyBack(window.__vc)};
-const EVO=new Set([2,3,5,6,8,9,11,12,14,15,17,18,20,22,24,26,28,30,31,33,34,36,38,40,42,44,45,47,49,51,53,55,57,59,61,62,64,65,67,68,70,71,73,75,76,78,80,82,85,87,89,91,93,94,97,99,101,103,105,110,112,117,119,121,130,134,135,136,139,141,148,149,153,154,156,157,159,160,162,164,166,168,169,171,176,178,180,181,182,184,186,189,192,195,196,197,199,205,208,210,212,217,219,221,224,229,230,232,233,237,242,247,248]);
+const EVO=new Set([2,3,5,6,8,9,11,12,14,15,17,18,20,22,24,26,28,30,31,33,34,36,38,40,42,44,45,47,49,51,53,55,57,59,61,62,64,65,67,68,70,71,73,75,76,78,80,82,85,87,89,91,93,94,97,99,101,103,105,110,112,117,119,121,130,134,135,136,139,141,148,149,153,154,156,157,159,160,162,164,166,168,169,171,176,178,180,181,182,184,186,189,192,195,196,197,199,205,208,210,212,217,219,221,224,229,230,232,233,242,247,248]);
 /* luce in movimento */
 let LUCE=false,mGot=0;try{localStorage.removeItem("carddex_luce")}catch(e){}
 let mBase=null,mSm=null,mRaf=0,mAsked=0,mOn=0;
@@ -804,7 +804,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027135100";
+const BUILD="B261027135904";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
