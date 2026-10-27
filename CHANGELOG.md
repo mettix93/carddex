@@ -3,6 +3,10 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Nuovo pulsante «Condividi» nella carta aperta: esporta un'immagine completa (sfondo colorato + scritte) oppure solo la carta, con gli effetti holo e riflesso.
+- Gesti: la carta aperta si chiude scorrendo verso l'alto o il basso; doppio tocco per lo schermo intero.
+- Ricerca estesa: oltre al nome, accetta tipo, rarità (comune/non comune/rara), holo, illustratore (es. «sugimori») e numero Pokédex.
+- Rarità e illustratore ora sono dati offline, senza attese di rete.
 
 - Hitmontop: tolto il ritaglio holo della miniatura (non ha miniatura di evoluzione).
 - Schermo intero: niente più giri a vuoto se avevi girato la carta più volte (gira solo se era sul retro).
