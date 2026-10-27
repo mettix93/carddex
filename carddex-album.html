@@ -330,12 +330,15 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 /* angoli carta aperta: raggio reale (~3 mm), circolare */
 #card>*{border-radius:4.5% / 3.2%!important}
 #card>*{border-radius:2.8% / 2%!important}
-#vbg{position:absolute;inset:-12%;z-index:0;pointer-events:none;background:var(--tu,none) 50% 34%/cover no-repeat;filter:blur(30px) saturate(1.35) brightness(.9);opacity:.6;transform:scale(1.7);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%)}
+#vbg,#vbo{position:absolute;inset:-12%;z-index:0;pointer-events:none;background:var(--tu,none) 50% 34%/cover no-repeat;filter:blur(30px) saturate(1.35) brightness(.9);opacity:.6;transform:scale(1.7);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%)}
 #vw.fs #vbg{display:none}
 #vs .rs{width:1em;height:1em;vertical-align:-.17em;fill:currentColor}
 #vs .pmi{height:1.25em;width:auto;vertical-align:-.28em;filter:invert(1)}
 #tst{position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:30;padding:12px 16px;border-radius:16px;background:rgba(28,28,34,.9);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:#fff;font:500 14px/1.35 -apple-system,system-ui,sans-serif;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s}
 #tst.on{opacity:1}
+@property --cc{syntax:"<color>";inherits:true;initial-value:#556}
+#vw{transition:--cc .5s ease-in-out}
+#vw.fs #vbo{display:none}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -764,7 +767,7 @@ function setVs(c){const r=RARC[c.id],k=c.sid==="X"?"p":rarKind(r),hol=c.h||/holo
 function rarGet(c){if(c.sid==="S"||!TD[c.sid]||RARC[c.id]!==undefined)return;const id=c.id;
   fetch("https://api.tcgdex.net/v2/en/sets/"+TD[c.sid]+"/"+c.num).then(r=>r.ok?r.json():null).then(j=>{if(!j)return;RARC[id]=j.rarity||"";try{localStorage.setItem("carddex_rar",JSON.stringify(RARC))}catch(e){}
     if(window.__vc&&window.__vc.id===id)setVs(window.__vc)}).catch(()=>{})}
-function openCard(i,na){curI=i;const s=LIST()[i],c=eff(s);
+function openCard(i,na){if(na&&!$("#vw").hidden){try{const vb=$("#vbg"),vw0=$("#vw"),o=vb.cloneNode();o.id="vbo";o.style.backgroundImage=getComputedStyle(vb).backgroundImage;vw0.insertBefore(o,vb);o.animate([{opacity:.6},{opacity:0}],{duration:520,easing:"ease-in-out",fill:"forwards"}).onfinish=()=>o.remove();vb.animate([{opacity:0},{opacity:.6}],{duration:520,easing:"ease-in-out"})}catch(e){}}curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   setVs(c);rarGet(c);
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);$("#fr").style.background=c.sid==="S"?"url(\""+tpu(toppsU(c,0))+"\") center/100% 100% no-repeat":"";
@@ -782,7 +785,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027123732";
+const BUILD="B261027124112";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
