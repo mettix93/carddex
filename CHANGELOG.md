@@ -4,6 +4,9 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Versi più affidabili: audio sbloccato al primo tocco, versi delle carte vicine caricati in anticipo, doppia sorgente scaricata in parallelo.
+- Topps più veloci: immagini piccole e grandi precaricate in background, anteprima subito visibile mentre arriva quella grande.
+- Luce in movimento: sempre spenta all'apertura dell'app; all'attivazione chiede il permesso e avvisa se negato o se non arrivano dati dai sensori.
 - Logo Promo ora in stile con gli altri loghi dei set (sagoma monocromatica, stessa dimensione e colore del testo).
 - Carte promo: riga «simbolo Promo · numero (se presente) · Holo (se holo)».
 - Simboli di rarità (cerchio, rombo, stella) disegnati con la stessa dimensione, nel colore del testo e allineati ad esso.
