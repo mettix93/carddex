@@ -501,7 +501,7 @@ function foot(){let t;
   if(cur==="?"&&!SR.length){$("#pn").textContent="Nessun risultato per “"+SQ+"”";$("#hud").textContent=$("#pn").textContent;return}
   if(!LS)t="Pagina "+(pg+1)+" / "+np;
   else{const a=Lof(sp)+1,b=Rof(sp)<np?Rof(sp)+1:0;t=sp?"Pagine "+a+(b?"–"+b:"")+" / "+np:"Pagina 1 / "+np}
-  if(cur==="?")t="“"+SQ+"” · "+t;if(FLT!=="a")t=(FLT==="o"?"Ottenute":FLT==="i"?"In arrivo":"Non ottenute")+" · "+t;$("#pn").textContent=t;$("#hud").textContent=t}
+  if(cur==="?")t="“"+SQ+"” · "+t;if(FLT!=="a")t=(FLT==="o"?"Ottenute":FLT==="i"?"In arrivo":"Mancanti")+" · "+t;$("#pn").textContent=t;$("#hud").textContent=t}
 function clipP(P,f){const out=[];for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],fa=f(a[0],a[1]),fb=f(b[0],b[1]);
   if(fa>=0)out.push(a);if((fa>=0)!==(fb>=0)){const u=fa/(fa-fb);out.push([a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u])}}return out}
 /* piega: t=0 pagina piatta, t=1 pagina girata; dir=1 angolo basso-destra, -1 basso-sinistra */
@@ -626,11 +626,11 @@ function menu(i){const L=LIST(),s=L[i],c=s.id&&CARDS[s.id],it=[];
   it.push(["Elimina dalla collezione",()=>confirmSheet("Eliminare? Le carte successive scorrono indietro.",()=>{L.splice(i,1);save();render()}),1])}
   sheet(it,c?c.name:"Slot vuoto")}
 /* filtro + menu altre opzioni */
-$("#ft").onclick=()=>{const o=[["a","Intera collezione"],["o","Ottenute"],["n","Non ottenute"],["i","In arrivo"]];
+$("#ft").onclick=()=>{const o=[["a","Intera collezione"],["o","Ottenute"],["n","Mancanti"],["i","In arrivo"]];
   sheet(o.map(([k,t])=>[(FLT===k?"✓  ":"")+t,()=>{FLT=k;pg=0;sp=0;tabs();render()}]),"Mostra")};
 $("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro delle carte",backMenu]];
   if(!VIEW()){it.push(["Rimuovi gli slot vuoti",()=>confirmSheet("Rimuovere tutti gli slot vuoti? Le carte scorrono per coprire gli spazi.",()=>{st[cur]=st[cur].filter(x=>x.id);save();render()})]);
-    it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come non ottenute? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
+    it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come mancanti? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
   it.push(["Esporta backup (senza foto)",()=>{const b=new Blob([JSON.stringify({app:"carddex",v:2,st})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}]);
   it.push(["Importa backup",()=>confirmSheet("Importare un backup sostituisce lo stato attuale (carte ottenute, note, ordine).",()=>{$("#fim").value="";$("#fim").click()}),1]);
   sheet(it,"Opzioni")};
@@ -742,7 +742,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027014534";
+const BUILD="B261027015010";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
