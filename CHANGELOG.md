@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- App vera: ora è installabile (manifest, icone) e funziona anche senza rete grazie a un service worker; le immagini delle carte restano salvate dopo la prima visualizzazione. Si aggiorna comunque da sola quando c'è rete.
 - Condividi: ora è nel menu a tre puntini (il menu si apre sopra la carta), con voci «Immagine completa» e «Solo carta»; lo sfondo holo viene esportato.
 - Ricerca: «holo» mostra solo le carte davvero holo; «e» combina i criteri (veleno e sugimori), «o» li unisce (veleno o sugimori). Campo rinominato «Effettua una ricerca», senza suggerimento.
 - Nuovo pulsante «Condividi» nella carta aperta: esporta un'immagine completa (sfondo colorato + scritte) oppure solo la carta, con gli effetti holo e riflesso.
