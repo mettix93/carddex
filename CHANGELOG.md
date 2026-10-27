@@ -3,6 +3,9 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Dettagli carta: nel menu della carta «Dettagli e note» con copie (1x di default), lingua (italiano di default), stato, edizione, valutazione, prezzo, data e note; riepilogo sotto il titolo e badge «2x» sulle copie multiple.
+- Ricerca: «2x» trova le carte con almeno due copie; anche lingua, stato, «prima edizione», shadowless, valutata.
+- Il menu a tre puntini della carta aperta contiene ora tutte le opzioni della pressione lunga (più Condividi), e la pressione lunga funziona anche a carta aperta.
 - Widget: carta un po' più grande, con margine ridotto.
 - Widget: una carta al giorno (cambia a mezzanotte), con margine e sfondo del colore del tipo (holo con fasce arcobaleno e brillantini). Serve rifare l'esportazione dal menu •••.
 - Widget: nel menu ••• c'è «Esporta carte per il widget»; in widget/carddex-widget.js c'è lo script per l'app Scriptable che mostra una carta ottenuta a caso.
