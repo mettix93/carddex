@@ -3,6 +3,9 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Bustina: rifatta come sacchetto curvo, sottile alle saldature e bombato al centro; di lato si vede lo spessore vero. All'apertura il taglio stacca la saldatura e parte un lampo con raggi e scintille (dorati se c'è una holo).
+- Mazzo: spessore reale di una carta (circa 0,3 mm in scala) con le carte ben distinte di lato e angoli arrotondati; l'apertura del mazzo ha un'entrata con rimbalzo.
+- Etichette: «NUOVA» (dorata con stellina) e «2x» in stile album, più in alto sopra la carta.
 - Bustine: l'etichetta «NUOVA» / «×N» sta fuori dalla carta, centrata in alto.
 - Bustina: niente più lati a scatola; ora è un sacchetto bombato (strati con il contorno vero), con riflesso lucido che passa, leggera fluttuazione e lampo al taglio.
 - Mazzo: ogni carta è distinta e con gli angoli arrotondati (prima erano lati squadrati e carte fuse).
