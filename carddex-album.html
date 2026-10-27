@@ -329,6 +329,9 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 #vw.fs #card{width:min(100vw,calc(100vh*63/88))!important;width:min(100vw,calc(100dvh*63/88))!important;max-width:none!important}
 /* angoli carta aperta: raggio reale (~3 mm), circolare */
 #card>*{border-radius:4.5% / 3.2%!important}
+#card:not(.tpc)>.ft{border-radius:0!important;overflow:visible!important;box-shadow:none!important}
+#card:not(.tpc)>.ft #fr img{filter:drop-shadow(0 12px 14px #000a)}
+#card:not(.tpc)>.ft .gl,#card:not(.tpc)>.ft .hl{border-radius:4.5% / 3.2%}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -724,7 +727,7 @@ function openCard(i,na){curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   $("#vs").innerHTML=sicon(c.sid)+[esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),c.h?"Holo":"",esc(numTxt(c))].filter(Boolean).join(" · ");
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
-  curH=!!c.h;card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
+  curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}if($("#vw").classList.contains("fs"))return;dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
 stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
