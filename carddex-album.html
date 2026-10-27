@@ -750,7 +750,7 @@ function toppsSample(c){const tk=++spTok,vw=$("#vw");vw.style.setProperty("--tx"
     if(!n)return;r/=n;g/=n;b/=n;const mx=Math.max(r,g,b),mn=Math.min(r,g,b),mid=(mx+mn)/2,col=[r,g,b].map(v=>Math.round(Math.max(0,Math.min(255,mid+(v-mid)*1.5))));
     vw.style.setProperty("--cc","rgb("+col+")");
     const T=document.createElement("canvas"),tw=Math.max(2,Math.round(im.naturalWidth*.07)),th=Math.round(im.naturalHeight*.8);T.width=tw;T.height=th;const t=T.getContext("2d");t.globalAlpha=.14;t.drawImage(im,0,im.naturalHeight*.1,tw,th,0,0,tw,th);
-    vw.style.setProperty("--tx","url("+T.toDataURL("image/png")+")")}catch(e){}};
+    }catch(e){}};
   im.src=tpu(u)}
 /* rarita': simbolo ● ◆ ★ + Holo, da tcgdex (in cache locale) */
 let RARC={};try{RARC=JSON.parse(localStorage.getItem("carddex_rar")||"{}")}catch(e){}
@@ -782,7 +782,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027122334";
+const BUILD="B261027123732";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
