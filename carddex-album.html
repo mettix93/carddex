@@ -672,7 +672,7 @@ let TX=0,TY=0;const ap=()=>{queueMicrotask(()=>{const v=$("#vw").style;["--hx","
   const a=((RY%360)+540)%360-180,k=Math.max(-1,Math.min(1,a/45)),m=Math.max(-1,Math.min(1,RX/35));
   card.style.setProperty("--gx",(50-k*45)+"%");card.style.setProperty("--gy",(50+m*45)+"%");
   card.style.setProperty("--hx",(50+k*50)+"%");card.style.setProperty("--hy",(50+m*50)+"%");
-  const b2=((RY+180)%360+540)%360-180,k2=Math.max(-1,Math.min(1,b2/45));card.style.setProperty("--gx2",(50-k2*45)+"%");card.style.setProperty("--hx2",(50+k2*50)+"%");const hb=document.querySelector(".bk .hl");hb.style.opacity=0;const fu=hl.classList.contains("full");hl.style.opacity=curH?((fu?.4:.5)+(fu?.4:.5)*Math.min(1,Math.hypot(k,m))):0};
+  const b2=((RY+180)%360+540)%360-180,k2=Math.max(-1,Math.min(1,b2/45));card.style.setProperty("--gx2",(50-k2*45)+"%");card.style.setProperty("--hx2",(50+k2*50)+"%");const hb=document.querySelector(".bk .hl");hb.style.opacity=0;const fu=hl.classList.contains("full");hl.style.opacity=curH?((fu?.55:.5)+(fu?.45:.5)*Math.min(1,Math.hypot(k,m))):0};
 function applyBack(c){const b=document.querySelector(".bk"),u=(c&&c.back)||URLS.BACK||DEFBACK,L=Array.isArray(u)?u:[u];b.style.backgroundImage=L.map(x=>`url("${x}")`).join(",");b.classList.add("ph2")}
 const fb=$("#fb");
 fb.onchange=async()=>{const f=fb.files[0];if(!f)return;try{await setImg("BACK",f)}catch(e){}applyBack(window.__vc)};
@@ -739,10 +739,10 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B20261027a";
+const BUILD="B261027012727";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
- try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD="([^"]+)"/);
+ try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD="B261027012727"]+)"/);
   if(m&&m[1]!==BUILD){const vw=document.getElementById("vw");if(vw&&!vw.hidden)return;
    let g="";try{g=sessionStorage.getItem("cdx_rl")||""}catch(e){}
    if(g===m[1])return;try{sessionStorage.setItem("cdx_rl",m[1])}catch(e){}
