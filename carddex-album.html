@@ -36,7 +36,7 @@ h1 small{font:400 13px "Avenir Next","Trebuchet MS",system-ui,sans-serif;color:v
 .nt{position:absolute;right:3px;top:3px;font-size:13px;background:#fffd;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center}
 footer{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 16px 10px;font-size:13px;color:var(--mut)}
 footer button{background:none;border:0;color:var(--mut);font:inherit;text-decoration:underline;padding:6px 0}
-#sh,#ne,#sr{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;z-index:5}
+#sh,#ne,#sr{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;z-index:60}
 .sb{width:100%;background:var(--sb);border-radius:14px 14px 0 0;padding:10px 12px calc(14px + env(safe-area-inset-bottom,0px));max-height:85%;overflow:auto}
 .sb p{margin:4px 6px 10px;color:var(--mut);font-size:13px}
 .sb button{display:block;width:100%;padding:13px;margin-top:6px;border:0;border-radius:9px;background:var(--bt);color:#fff;font:inherit;font-size:15px;text-align:left}
@@ -365,7 +365,7 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 <footer><span id="pn"></span><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.3 3.7a1.9 1.9 0 0 0-2.7 0l-7.4 7.5 2.7 2.7 7.4-7.5a1.9 1.9 0 0 0 0-2.7z"/><path d="M10.2 11.2l2.6 2.6"/><path d="M10.9 14.3c-2.7-.8-5.2.9-5.2 3.3 0 1.2-.7 2.3-1.9 2.9 3.9 1.3 8.2-.1 8.6-3.9z" fill="currentColor" fill-opacity=".18"/></svg></button><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg></button></footer>
 </div>
 <div id="sh" hidden></div>
-<div id="sr" hidden><div class="sb"><p>Cerca un Pokémon per nome</p><input id="sri" type="search" placeholder="Es. Pikachu · fuoco holo · sugimori · 25" autocapitalize="off" autocomplete="off"><button id="srok">Cerca</button><button id="srno">Annulla</button></div></div>
+<div id="sr" hidden><div class="sb"><p>Effettua una ricerca</p><input id="sri" type="search" autocapitalize="off" autocomplete="off"><button id="srok">Cerca</button><button id="srno">Annulla</button></div></div>
 <div id="ne" hidden><div class="sb"><p id="nl"></p><textarea id="nta" rows="4" placeholder="Scrivi una nota"></textarea><button id="nok">Salva nota</button><button id="nno">Annulla</button></div></div>
 <div id="vw" hidden>
 <div id="vbg"></div>
@@ -599,7 +599,7 @@ function doRestore(){if(VIEW()){sheet([[cur==="?"?"Esci dalla ricerca":"Mostra l
     st[cur]=[...C,...L.filter(x=>!x.id)];save();pg=0;sp=0;render()})}
 
 const STYQ={erba:"G",grass:"G",fuoco:"R",fire:"R",acqua:"W",water:"W",elettro:"L",elettrico:"L",elettrica:"L",lightning:"L",psico:"P",psichico:"P",psychic:"P",lotta:"F",fighting:"F",incolore:"C",colorless:"C",buio:"D",oscurit:"D",darkness:"D",metallo:"M",metal:"M"};
-function srMatch(c,toks,ph){const o=rdOf(c)||{};const nm=(c.name||"").toLowerCase();
+function srMatch(c,toks,ph,hv){const o=rdOf(c)||{};const nm=(c.name||"").toLowerCase();
   const ty=o.t||(c.kd==="p"&&c.dex?(TYP[c.dex-1]||""):"");const il=(o.i>=0?RD.ill[o.i]:"").toLowerCase();
   if(ph.length&&!ph.every(f=>f(c,o,ty,il,nm)))return false;
   return toks.every(w=>{
@@ -608,13 +608,14 @@ function srMatch(c,toks,ph){const o=rdOf(c)||{};const nm=(c.name||"").toLowerCas
     if(STYQ[w.replace(/[àa]$/,"")]||STYQ[w])return ty.includes(STYQ[w]||STYQ[w.replace(/[àa]$/,"")]);
     if(/^comun/.test(w))return o.r==="C";
     if(/^rar[ae]$/.test(w))return o.r==="R";
-    if(w==="holo"||w==="olo")return !!c.h;
+    if(w==="holo"||w==="olo")return !!hv;
     if(w.length>=3&&il.includes(w))return true;
     return false})}
+function srGroup(q){const ph=[];let r=q.replace(/\bnon\s+comun[ei]\b/g,()=>{ph.push((c,o)=>o.r==="U");return " "});
+  let toks=r.split(/[\s,;]+/).filter(Boolean).filter(w=>w!=="e"&&w!=="and");if(toks.length>1)toks=toks.filter(w=>w.length>2||/^#?\d+$/.test(w));return {toks,ph}}
 function doSearch(q){q=q.trim().toLowerCase();if(!q)return;SR=[];
-  const ph=[];let r=q.replace(/\bnon\s+comun[ei]\b/g,()=>{ph.push((c,o)=>o.r==="U");return " "});
-  let toks=r.split(/[\s,;]+/).filter(Boolean);if(toks.length>1)toks=toks.filter(w=>w.length>2||/^#?\d+$/.test(w));
-  COLS.forEach(c=>st[c.k].forEach((s,i)=>{const k=s.id&&CARDS[s.id];if(k&&srMatch(k,toks,ph))SR.push({c:c.k,i})}));
+  const gs=q.split(/\s+(?:o|or|oppure)\s+/).map(srGroup).filter(g=>g.toks.length||g.ph.length);
+  COLS.forEach(c=>st[c.k].forEach((s,i)=>{const k=s.id&&CARDS[s.id];if(!k)return;const e=eff(s)||k,hv=k.opts?!!(s.o&&e.h):!!k.h;if(gs.some(g=>srMatch(k,g.toks,g.ph,hv)))SR.push({c:c.k,i})}));
   if(cur!=="?")PREV=cur;SQ=q;cur="?";pg=0;sp=0;tabs();render()}
 function fitVV(){return;const v=window.visualViewport;["#sr","#ne"].forEach(s=>{const e=$(s);e.style.top=v.offsetTop+"px";e.style.bottom="auto";e.style.height=v.height+"px"})}
 if(window.visualViewport){visualViewport.addEventListener("resize",fitVV);visualViewport.addEventListener("scroll",fitVV)}
@@ -763,7 +764,9 @@ async function renderShare(mode){const fi=$("#fr img");if(!fi)throw 1;
   const W=1080,H=1920,cv=document.createElement("canvas");cv.width=W;cv.height=H;const x=cv.getContext("2d");
   let bg=null;if(cl.contains("tpc")){const m=getComputedStyle($("#vw")).getPropertyValue("--tu").match(/url\("?([^")]+)"?\)/);if(m)bg=await ldImg(m[1]).catch(()=>null)}
   bgScene(x,W,H,bg);
-  if(F.hol){x.save();x.globalCompositeOperation="screen";x.globalAlpha=.14;x.fillStyle=linG(x,115,W/2,H/2,W,H,["255,120,190","255,210,120","190,255,150","120,255,210","120,200,255","180,150,255","255,120,190"].map((q,i)=>[i/6,"rgba("+q+",.8)"]));x.fillRect(0,0,W,H);x.restore()}
+  if(F.hol){x.save();x.globalCompositeOperation="screen";x.globalAlpha=.4;const cols=["255,120,190","255,210,120","190,255,150","120,255,210","120,200,255","180,150,255","255,120,190"];
+    x.fillStyle=linG(x,115,W/2,H/2,W,H,cols.map((q,i)=>[i/6,"rgba("+q+",.5)"]));x.fillRect(0,0,W,H);
+    const t=F.tiles[0];if(t){const k=W/393,pt=x.createPattern(t,"repeat");pt.setTransform(new DOMMatrix().scale(131*k/t.width,137*k/t.height));x.fillStyle=pt;x.fillRect(0,0,W,H)}x.restore()}
   const cw=Math.round(W*.78),ch=Math.round(cw/ar),cx0=Math.round((W-cw)/2),cy0=Math.round(H*.54-ch/2);
   x.save();x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=60;x.shadowOffsetY=24;rrect(x,cx0,cy0,cw,ch,cw*.028,ch*.02);x.fillStyle="#000";x.fill();x.restore();
   drawFace(x,cx0,cy0,cw,ch,img,F);
@@ -775,8 +778,8 @@ async function shareCard(mode){try{toast("Preparo l’immagine…");const b=awai
     if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f]});return}catch(e){if(e&&e.name==="AbortError")return}}
     const u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=nm;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),20000)}
   catch(e){toast("Non riesco a creare l’immagine di questa carta")}}
-$("#vsh").innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
-$("#vsh").onclick=()=>sheet([["Immagine completa (sfondo e scritte)",()=>shareCard("scene")],["Solo la carta (con gli effetti)",()=>shareCard("card")]],"Condividi carta");
+$("#vsh").innerHTML='<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.5" cy="12" r="2"/></svg>';
+$("#vsh").onclick=()=>sheet([["Condividi",()=>sheet([["Immagine completa",()=>shareCard("scene")],["Solo carta",()=>shareCard("card")]],"Condividi")]],"Carta");
 
 /* alone dalle carte stesse (stile trasparente) */
 document.addEventListener("load",e=>{const i=e.target;if(i.tagName==="IMG"){const sl=i.closest&&i.closest(".slot");if(sl&&i.currentSrc)sl.style.setProperty("--gi","url(\""+i.currentSrc+"\")")}},true);
@@ -908,7 +911,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027201804";
+const BUILD="B261027203342";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

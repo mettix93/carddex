@@ -3,6 +3,8 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Condividi: ora è nel menu a tre puntini (il menu si apre sopra la carta), con voci «Immagine completa» e «Solo carta»; lo sfondo holo viene esportato.
+- Ricerca: «holo» mostra solo le carte davvero holo; «e» combina i criteri (veleno e sugimori), «o» li unisce (veleno o sugimori). Campo rinominato «Effettua una ricerca», senza suggerimento.
 - Nuovo pulsante «Condividi» nella carta aperta: esporta un'immagine completa (sfondo colorato + scritte) oppure solo la carta, con gli effetti holo e riflesso.
 - Gesti: la carta aperta si chiude scorrendo verso l'alto o il basso; doppio tocco per lo schermo intero.
 - Ricerca estesa: oltre al nome, accetta tipo, rarità (comune/non comune/rara), holo, illustratore (es. «sugimori») e numero Pokédex.
