@@ -5,7 +5,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 ## 27 ottobre 2026
 - Bustina: niente più lati a scatola; ora è un sacchetto bombato (strati con il contorno vero), con riflesso lucido che passa, leggera fluttuazione e lampo al taglio.
 - Mazzo: ogni carta è distinta e con gli angoli arrotondati (prima erano lati squadrati e carte fuse).
-- Carte e mazzo si ruotano solo in orizzontale, così lo swipe verso l'alto/basso non le inclina.
+- Bustine: per passare alla carta successiva basta toccare una volta la carta (la rotazione resta completa).
 - Bustine: ora sono le vere bustine del Set Base (Blastoise, Charizard, Venusaur) con il retro vero. Quando tocchi il pacchetto scegli quale aprire (il contenuto non cambia); il tasto «Cambia» permette di tornare alla scelta. Corretto anche il retro, che non si vedeva ruotando la bustina.
 - Gioco: bustine illimitate per le prove (da disattivare poi con PKTEST=false).
 - Bustine: le carte si girano e tornano a posto come nelle carte aperte dell'album, e si cambia carta solo con swipe su o giù; il mazzetto ha lo spessore delle carte rimaste (si vede dai lati) e sotto non si vedono le carte successive.
