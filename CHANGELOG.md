@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Luce in movimento più fluida con il telefono in verticale (calcolo basato sulla gravità + smussatura dei movimenti).
 - Mew antico: effetto holo su tutta la carta leggermente più intenso (luci delle carte normali invariate).
 - Auto-aggiornamento: all'apertura e quando torni sull'app, controlla se c'è una versione nuova e si ricarica da sola (se non hai una carta aperta).
 - Carta aperta: aggiunto un angolo leggermente stondato (minimo) su tutte le carte.
