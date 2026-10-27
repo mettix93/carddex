@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Auto-aggiornamento: all'apertura e quando torni sull'app, controlla se c'è una versione nuova e si ricarica da sola (se non hai una carta aperta).
 - Carta aperta: aggiunto un angolo leggermente stondato (minimo) su tutte le carte.
 - Carta aperta: niente più ritaglio sugli angoli, si vedono quelli originali dell'immagine della carta (Topps mantengono un angolo arrotondato).
 - Carta aperta e schermo intero: angoli più fedeli alla carta reale (raggio calibrato, bordo completo visibile). Le pagine dell'album restano invariate.- Carta aperta: bottone schermo intero (sfondo nero, carta a tutta larghezza, rotazione col dito disattivata, luce col movimento attiva)

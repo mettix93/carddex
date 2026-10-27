@@ -737,4 +737,19 @@ $("#vx").onclick=()=>{$("#vw").hidden=true;setFs(false)};
 $("#hud").onclick=()=>document.body.classList.toggle("ui");
 document.addEventListener("pointerdown",e=>{if(document.body.classList.contains("ui")&&!e.target.closest("header,footer,#hud,#sh,#ne,#sr"))document.body.classList.remove("ui")},true);
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
-</script></body></html>
+</script><script>
+/* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
+const BUILD="B20261027a";
+(function(){let busy=0;
+async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
+ try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/const BUILD="([^"]+)"/);
+  if(m&&m[1]!==BUILD){const vw=document.getElementById("vw");if(vw&&!vw.hidden)return;
+   let g="";try{g=sessionStorage.getItem("cdx_rl")||""}catch(e){}
+   if(g===m[1])return;try{sessionStorage.setItem("cdx_rl",m[1])}catch(e){}
+   location.replace(location.pathname+"?v="+m[1])}}catch(e){}finally{busy=0}}
+addEventListener("load",()=>setTimeout(chk,1500));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)chk()});
+addEventListener("pageshow",e=>{if(e.persisted)chk()});
+})();
+</script>
+</body></html>
