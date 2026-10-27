@@ -265,7 +265,7 @@ html[data-pg="bianco"] .gh{border-color:rgba(0,0,0,.2);background:rgba(0,0,0,.03
 .slot:not(.on) img,.slot:not(.on) .ph{filter:grayscale(1) contrast(.85) brightness(.62)!important}
 html[data-pg="bianco"] .slot:not(.on) img,html[data-pg="bianco"] .slot:not(.on) .ph{filter:grayscale(1) contrast(.8) brightness(1.3)!important}
 #vw::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-size:auto,auto,150px auto;background-repeat:no-repeat,no-repeat,repeat;background-image:radial-gradient(ellipse 85% 60% at 50% 42%,color-mix(in srgb,var(--cc,#556) 92%,transparent),transparent 82%),radial-gradient(ellipse 120% 50% at 50% 105%,color-mix(in srgb,var(--cc,#556) 60%,transparent),transparent 75%),var(--tx,none)}
-#vw.holo::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+#vw::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:screen;opacity:.55;
  background:radial-gradient(circle,#fff 0 .9px,transparent 1.6px) 0 0/23px 27px,radial-gradient(circle,#bfeaff 0 .8px,transparent 1.5px) 7px 11px/31px 29px,radial-gradient(circle,#ffd6f5 0 .9px,transparent 1.7px) 3px 5px/41px 37px,radial-gradient(circle,#fff6b0 0 .8px,transparent 1.5px) 13px 2px/53px 47px;
  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 45%,#000,transparent 80%);mask-image:radial-gradient(ellipse 80% 60% at 50% 45%,#000,transparent 80%);animation:glt 5s ease-in-out infinite alternate}
 @keyframes glt{from{background-position:0 0,7px 11px,3px 5px,13px 2px;opacity:.3}to{background-position:9px 14px,-5px 3px,15px -9px,-8px 12px;opacity:.7}}
@@ -291,7 +291,7 @@ html[data-pg="bianco"] .slot:not(.on) img,html[data-pg="bianco"] .slot:not(.on) 
  -webkit-mask-image:linear-gradient(110deg,rgba(0,0,0,.24) calc(var(--hx,50%) - 26%),#000 var(--hx,50%),rgba(0,0,0,.24) calc(var(--hx,50%) + 26%));mask-image:linear-gradient(110deg,rgba(0,0,0,.24) calc(var(--hx,50%) - 26%),#000 var(--hx,50%),rgba(0,0,0,.24) calc(var(--hx,50%) + 26%))}
 .hl::after{background-image:var(--sp2),var(--sp3);background-size:97px 101px,71px 73px;background-position:23px 31px,35px 17px;
  -webkit-mask-image:linear-gradient(70deg,rgba(0,0,0,.24) calc(var(--hy,50%) - 26%),#000 var(--hy,50%),rgba(0,0,0,.24) calc(var(--hy,50%) + 26%));mask-image:linear-gradient(70deg,rgba(0,0,0,.24) calc(var(--hy,50%) - 26%),#000 var(--hy,50%),rgba(0,0,0,.24) calc(var(--hy,50%) + 26%))}
-#vw.holo::after{animation:none!important;opacity:.4!important;mix-blend-mode:screen!important;background-image:var(--sp1),linear-gradient(115deg,rgba(255,120,190,.5),rgba(255,210,120,.5),rgba(190,255,150,.5),rgba(120,255,210,.5),rgba(120,200,255,.5),rgba(180,150,255,.5),rgba(255,120,190,.5))!important;background-size:131px 137px,100% 100%!important;background-repeat:repeat,no-repeat!important;background-position:0 0,0 0!important;
+#vw::after{animation:none!important;opacity:.4!important;mix-blend-mode:screen!important;background-image:var(--sp1),linear-gradient(115deg,rgba(255,120,190,.5),rgba(255,210,120,.5),rgba(190,255,150,.5),rgba(120,255,210,.5),rgba(120,200,255,.5),rgba(180,150,255,.5),rgba(255,120,190,.5))!important;background-size:131px 137px,100% 100%!important;background-repeat:repeat,no-repeat!important;background-position:0 0,0 0!important;
  -webkit-mask-image:linear-gradient(110deg,rgba(0,0,0,.08) calc(var(--hx,50%) - 22%),#000 var(--hx,50%),rgba(0,0,0,.08) calc(var(--hx,50%) + 22%)),radial-gradient(ellipse 90% 65% at 50% 45%,#000 20%,transparent 85%)!important;-webkit-mask-composite:source-in!important;
  mask-image:linear-gradient(110deg,rgba(0,0,0,.08) calc(var(--hx,50%) - 22%),#000 var(--hx,50%),rgba(0,0,0,.08) calc(var(--hx,50%) + 22%)),radial-gradient(ellipse 90% 65% at 50% 45%,#000 20%,transparent 85%)!important;mask-composite:intersect!important}
 /* riflesso piu' leggero sulla finestra holo */
@@ -339,6 +339,8 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 @property --cc{syntax:"<color>";inherits:true;initial-value:#556}
 #vw{transition:--cc .5s ease-in-out}
 #vw.fs #vbo{display:none}
+#vw::after{transition:opacity .5s ease-in-out}
+#vw:not(.holo)::after{opacity:0!important}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -785,7 +787,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027124112";
+const BUILD="B261027124756";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

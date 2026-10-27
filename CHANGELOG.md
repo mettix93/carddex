@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Sfondo holo: compare e scompare con dissolvenza quando scorri tra carte holo e normali.
 - Carta aperta: lo sfondo cambia con una dissolvenza morbida (circa mezzo secondo) quando scorri da una carta all'altra, sia per le Topps sia per le carte TCG.
 - Topps: tolta la texture ripetuta dallo sfondo (creava righe/divisioni); resta lo sfondo sfocato della carta.
 - Topps: immagini salvate in modo permanente nella memoria dell'app (se il sito lo permette), così alle aperture successive non si riscaricano; altrimenti resta la cache normale.
