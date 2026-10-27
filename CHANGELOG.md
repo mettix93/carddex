@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Gioco: bustine illimitate per le prove (da disattivare poi con PKTEST=false).
 - Bustine: le carte si girano e tornano a posto come nelle carte aperte dell'album, e si cambia carta solo con swipe su o giù; il mazzetto ha lo spessore delle carte rimaste (si vede dai lati) e sotto non si vedono le carte successive.
 - Bustine: la bustina ha spessore e un effetto «piena»; ogni carta ha il suo sfondo del colore del tipo con dissolvenza al cambio, e le holo hanno l'effetto holo sia nello sfondo sia sull'illustrazione.
 - Home all'apertura: scegli «Collezione» (il tuo album di sempre) oppure «Gioco».

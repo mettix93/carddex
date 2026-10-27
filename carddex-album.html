@@ -1049,7 +1049,8 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11}};
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
 const pkSt=()=>{try{return JSON.parse(localStorage.getItem("carddex_pk")||"{}")||{}}catch(e){return{}}};
 const pkSv=o=>{try{localStorage.setItem("carddex_pk",JSON.stringify(o))}catch(e){}};
-function pkAvail(sid){sid=sid||"B";const o=pkSt();if(o.start==null){o.start=pkDay();o.op={};pkSv(o)}return Math.max(0,pkDay()-o.start+1-((o.op||{})[sid]||0))}
+const PKTEST=true;
+function pkAvail(sid){if(PKTEST)return 99;sid=sid||"B";const o=pkSt();if(o.start==null){o.start=pkDay();o.op={};pkSv(o)}return Math.max(0,pkDay()-o.start+1-((o.op||{})[sid]||0))}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 function pkPick(arr,k){const a=arr.slice(),o=[];while(o.length<k&&a.length)o.push(a.splice(rndI(a.length),1)[0]);return o}
 function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid),R=c=>{const d=rdOf(c);return d?d.r:""};
@@ -1079,11 +1080,11 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   [["pka",P.a],["pkb",P.b]].forEach(([k,p])=>{const f=w.querySelector("."+k);f.innerHTML=pkFace(S);f.style.clipPath=p;f.style.webkitClipPath=p});
   el.querySelector(".pkx").onclick=pkClose;pkGestures();return el}
 function pkClose(){const e=$("#pk");if(!e)return;e.hidden=true;cancelAnimationFrame(pkRaf);pkBusy=0;render();pkBadge()}
-function pkBadge(){const n=pkAvail("B"),b=$("#pkbn");if(b)b.textContent=n>0?n:""}
+function pkBadge(){const n=pkAvail("B"),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkScreen(){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");e.hidden=false;pkBusy=0;pkRY=0;pkRX=0;
-  $("#pkn").textContent=S.n;$("#pkcnt").textContent=n>0?(n===1?"1 bustina disponibile":n+" bustine disponibili"):"Nessuna bustina disponibile";
+  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n>0?(n===1?"1 bustina disponibile":n+" bustine disponibili"):"Nessuna bustina disponibile";
   const pk0=$("#pk");pk0.classList.remove("holo");pk0.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}$("#pks").hidden=false;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   const w=$("#pkw");w.style.display="";w.style.opacity=n>0?1:.45;w.style.transition="none";w.querySelectorAll(".pkf").forEach(f=>{f.style.transform="";f.style.opacity=1});w.querySelectorAll(".pkss").forEach(f=>f.style.opacity=1);
   w.querySelector(".pka").style.animation="none";pkApply();w.style.setProperty("--cut",0);
@@ -1142,7 +1143,7 @@ function pkNext(dy){if(pkLock||!pkCur)return;pkLock=1;if(pkNx)pkNx.style.visibil
     pkAp();pkShow();pkLock=0};
   if(a)a.onfinish=fin;else fin()}
 function pkSummary(){$("#pkg").classList.remove("on");$("#pkc2").textContent="";const s=$("#pksum"),n=pkAvail("B");
-  s.innerHTML=`<h2>Hai ottenuto</h2><div class="pkgd">${pkCards.map(x=>`<div class="${x.c.h?"ho":""}">${face(x.c,0)}${x.nw?'<span class="pkn">NUOVA</span>':'<span class="pkn d">×'+x.q+'</span>'}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra (${n})</button>`:""}</div>`;
+  s.innerHTML=`<h2>Hai ottenuto</h2><div class="pkgd">${pkCards.map(x=>`<div class="${x.c.h?"ho":""}">${face(x.c,0)}${x.nw?'<span class="pkn">NUOVA</span>':'<span class="pkn d">×'+x.q+'</span>'}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
   s.hidden=false;$("#pks1").onclick=pkClose;const b=$("#pks2");if(b)b.onclick=()=>pkScreen()}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
 const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3l1.5 1.2L10 3l1.5 1.2L13 3l1.5 1.2L16 3l1 .8V20l-1 .8-1.5-1.2L13 21l-1.5-1.2L10 21l-1.5-1.2L7 21l-1-.8V3.8z"/><path d="M9.5 10h5M9.5 14h5"/></svg>';
@@ -1154,7 +1155,7 @@ function homeBuild(){let h=$("#hm");if(h)return h;h=document.createElement("div"
   const go=m=>{try{sessionStorage.setItem("cdmode",m)}catch(e){}};
   $("#hmc").onclick=()=>{go("c");if(MODE==="g")location.reload();else h.hidden=true};
   $("#hmg").onclick=()=>{go("g");if(MODE!=="g")location.reload();else h.hidden=true};return h}
-function homeShow(){const h=homeBuild();const n=pkAvail("B");$("#hmn").textContent=n>0?n:"";$("#hmn").style.display=n>0?"":"none";h.hidden=false}
+function homeShow(){const h=homeBuild();const n=pkAvail("B");$("#hmn").textContent=PKTEST?"∞":n>0?n:"";$("#hmn").style.display=n>0?"":"none";h.hidden=false}
 function homeBack(){try{sessionStorage.removeItem("cdmode")}catch(e){}location.reload()}
 if(MODE==="g"){document.body.classList.add("gm");const b=$("#pkb");b.hidden=false;b.insertAdjacentHTML("afterbegin",PKI);b.onclick=pkScreen;pkBadge();
   const h1=document.querySelector("header h1");if(h1)h1.insertAdjacentHTML("afterbegin",'<span style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#ff9f0a;margin-right:6px;vertical-align:middle">GIOCO</span>')}
@@ -1162,7 +1163,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261027225411";
+const BUILD="B261027225655";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
