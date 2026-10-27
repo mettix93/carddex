@@ -341,6 +341,12 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 #vw.fs #vbo{display:none}
 #vw::after{transition:opacity .5s ease-in-out}
 #vw:not(.holo)::after{opacity:0!important}
+
+.hl.evo{clip-path:polygon(16.1% 0%,100% 0%,100% 100%,0% 100%,0% 15.1%,4.5% 14.6%,6.3% 13.7%,7.7% 12.9%,9% 11%,10.5% 9%,11.9% 7%,12.6% 4.6%,14% 1.6%)}
+.hl.evo.neo{clip-path:polygon(7% 0%,100% 0%,100% 100%,0% 100%,0% 9.3%,0.7% 8.7%,2.2% 7.5%,4% 5.6%,5.2% 4.1%,6.2% 1.9%)}
+.bdg{position:absolute;display:none;pointer-events:none;background-repeat:no-repeat;background-image:var(--bimg,none)}
+.hl.evo~.bdg{display:block;left:10.75%;top:11.7%;width:14.2%;height:6.8%;background-size:704.2% 1470.6%;background-position:12.53% 12.55%;clip-path:polygon(0% 0%,89.6% 0%,77.9% 9.4%,70.1% 27%,66.2% 41.1%,58.5% 52.8%,50.1% 64.5%,42.9% 75.7%,35.1% 80.4%,25.1% 85.7%,0% 88.6%)}
+.hl.evo.neo~.bdg{left:11.3%;top:11.8%;width:6.98%;height:3.92%;background-size:1432.7% 2551.0%;background-position:12.15% 12.28%;clip-path:polygon(0% 0%,78.4% 0%,68.4% 19%,57.3% 41%,45% 56%,25% 75%,7.2% 87%,0% 93%)}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -355,7 +361,7 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 <div id="vw" hidden>
 <div id="vbg"></div>
 <div class="vt"><b id="vh"></b><small id="vs"></small><em id="vn"></em></div>
-<div id="stage"><div id="card"><div class="ft"><div id="fr"></div><div class="hl"></div><div class="gl"></div></div><div class="bk"><i></i><div class="hl"></div><div class="gl"></div></div></div></div>
+<div id="stage"><div id="card"><div class="ft"><div id="fr"></div><div class="hl"></div><div class="bdg"></div><div class="gl"></div></div><div class="bk"><i></i><div class="hl"></div><div class="gl"></div></div></div></div>
 <button id="vfs" aria-label="Schermo intero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
 <button id="vx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 </div>
@@ -772,7 +778,7 @@ function rarGet(c){if(c.sid==="S"||!TD[c.sid]||RARC[c.id]!==undefined)return;con
 function openCard(i,na){if(na&&!$("#vw").hidden){try{const vb=$("#vbg"),vw0=$("#vw"),o=vb.cloneNode();o.id="vbo";o.style.backgroundImage=getComputedStyle(vb).backgroundImage;vw0.insertBefore(o,vb);o.animate([{opacity:.6},{opacity:0}],{duration:520,easing:"ease-in-out",fill:"forwards"}).onfinish=()=>o.remove();vb.animate([{opacity:0},{opacity:.6}],{duration:520,easing:"ease-in-out"})}catch(e){}}curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   setVs(c);rarGet(c);
-  window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);$("#fr").style.background=c.sid==="S"?"url(\""+tpu(toppsU(c,0))+"\") center/100% 100% no-repeat":"";
+  window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);{const fi=$("#fr img");card.style.setProperty("--bimg",fi?"url(\""+fi.getAttribute("src")+"\")":"none")}$("#fr").style.background=c.sid==="S"?"url(\""+tpu(toppsU(c,0))+"\") center/100% 100% no-repeat":"";
   curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",c.sid==="S"?"#4a5062":cardCol(c));vw.style.setProperty("--tx","none");vw.style.setProperty("--tu","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}if($("#vw").classList.contains("fs"))return;dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
@@ -787,7 +793,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027124756";
+const BUILD="B261027125957";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

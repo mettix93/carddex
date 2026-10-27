@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Holo: ritaglio della miniatura del Pokémon base rifatto misurando le carte vere (Base/Jungle/Fossil/Rocket e Neo); in più la miniatura viene ridisegnata sopra l'effetto, così non si vede più il rettangolo quando la carta è inclinata.
 - Sfondo holo: compare e scompare con dissolvenza quando scorri tra carte holo e normali.
 - Carta aperta: lo sfondo cambia con una dissolvenza morbida (circa mezzo secondo) quando scorri da una carta all'altra, sia per le Topps sia per le carte TCG.
 - Topps: tolta la texture ripetuta dallo sfondo (creava righe/divisioni); resta lo sfondo sfocato della carta.
