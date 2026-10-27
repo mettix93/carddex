@@ -395,7 +395,7 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 .pkt1 b{display:block;font-size:22px;font-weight:650}
 .pkt1 small{display:block;margin-top:3px;font-size:14px;color:rgba(235,235,245,.65)}
 #pks{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;perspective:1000px}
-#pkw{--pw:min(60vw,calc(50vh*.587));--t:14px;position:relative;width:var(--pw);aspect-ratio:480/818;transform-style:preserve-3d;transform:rotateX(0) rotateY(0)}
+#pkw{--pw:min(60vw,calc(50vh*.587));--t:12px;position:relative;width:var(--pw);aspect-ratio:480/818;transform-style:preserve-3d;transform:rotateX(0) rotateY(0)}
 #pkwr{display:flex;perspective:1000px;filter:drop-shadow(0 24px 30px rgba(0,0,0,.55))}
 .pkf{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;color:#fff;overflow:hidden;
   background:transparent center/100% 100% no-repeat}
@@ -418,19 +418,14 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 #pkd[hidden]{display:none}
 .pkq{--w:min(74vw,calc(60vh*63/88));--d:10px;position:absolute;width:var(--w);aspect-ratio:63/88;transform-style:preserve-3d;touch-action:none}
 .pkc{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-.pkc .ft,.pkc .bk{position:absolute;inset:0;border-radius:calc(var(--w)*.045);overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#111;box-shadow:none;border:0}
+.pkc .ft,.pkc .bk{position:absolute;inset:0;border-radius:calc(var(--w)*.05);overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#111;box-shadow:none;border:0}
 .pkc .ft{transform:translateZ(calc(var(--d)/2))}
 .pkc .bk{transform:rotateY(180deg) translateZ(calc(var(--d)/2));background-size:100% 100%;background-position:center}
 .pkc .fr{position:absolute;inset:0}
 .pkc .fr img{width:100%;height:100%;object-fit:fill;display:block}
 .pkc .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff;background:#222}
-.pkc .sd{position:absolute}
-.pkc .sd.l,.pkc .sd.r{top:calc(var(--w)*.045);bottom:calc(var(--w)*.045);width:var(--d);background:repeating-linear-gradient(90deg,#f4f4f7 0 .5px,#aeb2c0 .5px 1.1px)}
-.pkc .sd.l{left:calc(var(--d)/-2);transform:rotateY(90deg)}
-.pkc .sd.r{left:calc(100% - var(--d)/2);transform:rotateY(90deg)}
-.pkc .sd.t,.pkc .sd.b{left:calc(var(--w)*.045);right:calc(var(--w)*.045);height:var(--d);background:repeating-linear-gradient(0deg,#f4f4f7 0 .5px,#aeb2c0 .5px 1.1px)}
-.pkc .sd.t{top:calc(var(--d)/-2);transform:rotateX(90deg)}
-.pkc .sd.b{top:calc(100% - var(--d)/2);transform:rotateX(90deg)}
+.pkc .sl{position:absolute;inset:0;border-radius:calc(var(--w)*.05);background:linear-gradient(160deg,#f6f6f9,#cfd2dc);border:1px solid rgba(40,44,60,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);pointer-events:none}
+.pkc .sl:nth-child(odd){background:linear-gradient(160deg,#e4e6ee,#b9bdca)}
 .pkn{position:absolute;left:10px;top:10px;z-index:3;padding:3px 9px;border-radius:10px;background:#ff453a;color:#fff;font:700 12px -apple-system,system-ui,sans-serif;letter-spacing:.04em;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 .pkn.d{background:#0a84ff}
 #pkc2{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));text-align:center;font-size:14px;color:rgba(235,235,245,.7);pointer-events:none}
@@ -447,16 +442,15 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 .pkbt{display:flex;gap:10px;width:100%;max-width:460px;margin-top:12px}
 .pkbt button{flex:1;padding:14px;border-radius:16px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.12);color:#fff;font:600 16px -apple-system,system-ui,sans-serif}
 .pkbt button.p{background:#0a84ff;border-color:#0a84ff}
-.pkpf{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 72% 56% at 50% 50%,rgba(255,255,255,.24),transparent 72%),linear-gradient(90deg,rgba(0,0,0,.3),transparent 13%,transparent 87%,rgba(0,0,0,.3)),linear-gradient(0deg,rgba(0,0,0,.28),transparent 12%,transparent 90%,rgba(0,0,0,.2))}
-.pkss{position:absolute;background:linear-gradient(90deg,#39414f,#c9d0dc 45%,#f3f6fa 55%,#39414f)}
-.pkss.l,.pkss.r{top:3%;bottom:3%;width:var(--t)}
-.pkss.l{left:calc(var(--t)/-2);transform:rotateY(90deg)}
-.pkss.r{left:calc(100% - var(--t)/2);transform:rotateY(90deg)}
-.pkss.t,.pkss.b{left:0;right:0;height:var(--t);background:linear-gradient(180deg,#6e7788,#c9d0dc)}
-.pkss.t{top:calc(var(--t)/-2 + .8%);transform:rotateX(90deg)}
-.pkss.b{top:calc(100% - var(--t)/2 - .8%);transform:rotateX(90deg)}
+.pkpf{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 22px rgba(0,0,0,.4);background:radial-gradient(ellipse 60% 44% at 42% 38%,rgba(255,255,255,.3),transparent 70%),linear-gradient(90deg,rgba(0,0,0,.3),transparent 13%,transparent 87%,rgba(0,0,0,.3)),linear-gradient(0deg,rgba(0,0,0,.28),transparent 12%,transparent 90%,rgba(0,0,0,.2))}
 #pks[hidden],#pkp[hidden],.pkx[hidden]{display:none}
 .pkchg{left:14px;right:auto;width:auto;padding:0 15px;border-radius:20px;font:600 14px -apple-system,system-ui,sans-serif}
+#pkwr{animation:pkfl 3.8s ease-in-out infinite}
+@keyframes pkfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.pkl{position:absolute;inset:0;background:center/100% 100% no-repeat;filter:brightness(.5) saturate(.75);pointer-events:none}
+.pksw{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(112deg,transparent 42%,rgba(255,255,255,.55) 50%,transparent 58%) 130% 0/300% 100% no-repeat;animation:pksw 3.4s ease-in-out infinite}
+@keyframes pksw{0%{background-position:130% 0}60%,100%{background-position:-30% 0}}
+.pkflash{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 70% 26% at 50% 36%,rgba(255,255,255,.95),rgba(255,255,255,0) 72%)}
 #pkp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:0 4vw calc(30px + env(safe-area-inset-bottom,0px))}
 .pkpt{margin:0;font-size:17px;font-weight:600;color:rgba(235,235,245,.85)}
 .pkpr{display:flex;gap:3.5vw;align-items:flex-start;justify-content:center;width:100%;max-width:520px}
@@ -1045,7 +1039,7 @@ function pinchStart(){dr=null;sw=null;pzl=1;const a=[...PTS.values()],d=Math.hyp
 function pinchMove(){const a=[...PTS.values()];if(a.length<2||!pz)return;const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),k=Math.max(1,Math.min(4,d/pz.d)),mx=(a[0].x+a[1].x)/2,my=(a[0].y+a[1].y)/2;stg.style.scale=k;stg.style.translate=(mx-pz.mx)+"px "+(my-pz.my)+"px"}
 function pinchEnd(){pz=null;stg.style.transition="scale .3s cubic-bezier(.2,.8,.2,1),translate .3s cubic-bezier(.2,.8,.2,1)";stg.style.scale="1";stg.style.translate="0px 0px";setTimeout(()=>{if(!pz){stg.style.transition="none";stg.style.scale="";stg.style.translate=""}},340)}
 stg.onpointerdown=e=>{PTS.set(e.pointerId,{x:e.clientX,y:e.clientY});try{stg.setPointerCapture(e.pointerId)}catch(x){}if($("#vw").classList.contains("fs")){PTS.clear()}else if(PTS.size>=2){if(!pz)pinchStart();return}else if(pzl)return;const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX,y:e.clientY};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}if($("#vw").classList.contains("fs")){sw={x:e.clientX,y:e.clientY,fs:1};return}dr={x:e.clientX,y:e.clientY,a:ry,b:rx,t:Date.now()};card.style.transition="";stg.setPointerCapture(e.pointerId)};
-stg.onpointermove=e=>{if(PTS.has(e.pointerId))PTS.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pz){pinchMove();return}if(pzl)return;if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
+stg.onpointermove=e=>{if(PTS.has(e.pointerId))PTS.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pz){pinchMove();return}if(pzl)return;if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=0;ap()};
 stg.onpointerup=stg.onpointercancel=e=>{PTS.delete(e.pointerId);if(pz&&PTS.size<2)pinchEnd();if(pzl){if(!PTS.size)pzl=0;return}if(sw){const dx=e.clientX-sw.x,dy=e.clientY-sw.y,f=sw.fs;sw=null;if(Math.abs(dy)>70&&Math.abs(dy)>Math.abs(dx)*1.3){closeCard(dy)}else if(!f&&Math.abs(dx)>45)navCard(dx<0?1:-1);return}if(!dr)return;const d0=dr;dr=null;card.style.transition="transform .3s";ry=Math.round(ry/180)*180;rx=0;ap();{const dx=e.clientX-d0.x,dy=e.clientY-d0.y;if(Math.abs(dy)>130&&Math.abs(dy)>Math.abs(dx)*1.8&&Date.now()-d0.t<450)closeCard(dy)}};
 function closeCard(dy){if(navB)return;navB=1;const h=innerHeight*.45*(dy<0?-1:1);let a;try{a=stg.animate([{transform:"none",opacity:1},{transform:"translateY("+h+"px)",opacity:0}],{duration:200,easing:"ease-in"})}catch(e){}const fin=()=>{$("#vx").click();navB=0;try{a&&a.cancel()}catch(e){}};if(a)a.onfinish=fin;else fin()}
 (()=>{let tp=null,lt=0,lx=0,ly=0;stg.addEventListener("pointerdown",e=>{if(e.isPrimary&&PTS.size<=1)tp={x:e.clientX,y:e.clientY,t:Date.now()};else tp=null},true);stg.addEventListener("pointerup",e=>{if(!tp||pzl||pz){tp=null;return}const d=Math.hypot(e.clientX-tp.x,e.clientY-tp.y),t=Date.now(),r=card.getBoundingClientRect();const inC=e.clientX>=r.left-10&&e.clientX<=r.right+10&&e.clientY>=r.top-10&&e.clientY<=r.bottom+10;const ok=d<12&&t-tp.t<300&&inC;tp=null;if(!ok){lt=0;return}if(t-lt<380&&Math.hypot(e.clientX-lx,e.clientY-ly)<40){lt=0;setFs(!$("#vw").classList.contains("fs"))}else{lt=t;lx=e.clientX;ly=e.clientY}},true)})();
@@ -1086,9 +1080,10 @@ let pkBusy=0,pkRY=0,pkRX=0,pkRaf=0,pkCards=[],pkTop=null,pkIdx=0;
 const pkJ=(()=>{const a=[];for(let i=0;i<=24;i++)a.push(i===0||i===24?0:(Math.sin(i*12.9898)*43758.5453%1)*1.4-.7);return a})();
 function pkPoly(){const tr=[];for(let i=0;i<=24;i++)tr.push((i*100/24).toFixed(2)+"% "+(10+pkJ[i]).toFixed(2)+"%");
   return{full:"polygon(0 0,100% 0,100% 100%,0 100%)",a:"polygon(0 0,100% 0,"+tr.slice().reverse().join(",")+")",b:"polygon("+tr.join(",")+",100% 100%,0 100%)"}}
-function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pkpf"></div>`}
+function pkLayers(){const N=8;let h="";for(let k=1;k<=N;k++){const u=k/(N+1),z=(u-.5).toFixed(3),sc=(1+.024*(1-Math.pow(2*u-1,2))).toFixed(4);h+=`<div class="pkl" style="transform:translateZ(calc(var(--t)*${z})) scale(${sc})"></div>`}return h}
+function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
 function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;
-  el.innerHTML=`<button class="pkx pkchg" id="pkchg" aria-label="Cambia bustina" hidden>Cambia</button><button class="pkx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pks"><div id="pkwr"><div id="pkw"><div class="pkf pkbk"></div><div class="pkf pkb"></div><div class="pkf pka"></div><div class="pkcl"></div><div class="pkss l"></div><div class="pkss r"></div><div class="pkss t"></div><div class="pkss b"></div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
+  el.innerHTML=`<button class="pkx pkchg" id="pkchg" aria-label="Cambia bustina" hidden>Cambia</button><button class="pkx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pks"><div id="pkwr"><div id="pkw"><div class="pkf pkbk"></div><div class="pkf pkb"></div><div class="pkf pka"></div><div class="pkcl"></div>${pkLayers()}</div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);const P=pkPoly(),S=PKSET.B;
   const w=$("#pkw");w.style.setProperty("--c1",S.c1);w.style.setProperty("--c2",S.c2);
   w.querySelector(".pkbk").style.clipPath=P.full;w.querySelector(".pkbk").style.webkitClipPath=P.full;
@@ -1097,7 +1092,7 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div>`;
   p.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(p.classList.contains("go"))return;const i=+b.dataset.i;p.classList.add("go");b.classList.add("sel");setTimeout(()=>{p.classList.remove("go");b.classList.remove("sel");pkStage(i)},230)});
   pkGestures();return el}
-function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${PKIMG[PKP[i].k]})`;w.querySelector(".pka").style.backgroundImage=u;w.querySelector(".pkb").style.backgroundImage=u;w.querySelector(".pkbk").style.backgroundImage=`url(${PKIMG.bk})`}
+function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${PKIMG[PKP[i].k]})`;w.querySelector(".pka").style.backgroundImage=u;w.querySelector(".pkb").style.backgroundImage=u;w.querySelector(".pkbk").style.backgroundImage=`url(${PKIMG.bk})`;w.querySelectorAll(".pkl").forEach(l=>l.style.backgroundImage=u)}
 function pkClose(){const e=$("#pk");if(!e)return;e.hidden=true;cancelAnimationFrame(pkRaf);pkBusy=0;render();pkBadge()}
 function pkBadge(){const n=pkAvail("B"),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
@@ -1111,7 +1106,7 @@ function pkChoose(){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");e.hidden=false;pk
 function pkStage(i){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");pkArt(i);e.hidden=false;pkBusy=0;pkRY=0;pkRX=0;$("#pkp").hidden=true;$("#pkm").hidden=false;$("#pkchg").hidden=!(n>0);
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n>0?(n===1?"1 bustina disponibile":n+" bustine disponibili"):"Nessuna bustina disponibile";
   const pk0=$("#pk");pk0.classList.remove("holo");pk0.style.setProperty("--cc",PKP[i].c);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}$("#pks").hidden=false;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pkg").classList.remove("on");$("#pkc2").textContent="";
-  const w=$("#pkw");w.style.display="";w.style.opacity=n>0?1:.45;w.style.transition="none";w.querySelectorAll(".pkf").forEach(f=>{f.style.transform="";f.style.opacity=1});w.querySelectorAll(".pkss").forEach(f=>f.style.opacity=1);
+  const w=$("#pkw");w.style.display="";w.style.opacity=n>0?1:.45;w.style.transition="none";w.querySelectorAll(".pkf").forEach(f=>{f.style.transform="";f.style.opacity=1});w.querySelectorAll(".pkl").forEach(f=>f.style.opacity=1);
   w.querySelector(".pka").style.animation="none";pkApply();w.style.setProperty("--cut",0);
   $("#pkm").textContent=n>0?"Trascina per ruotare la bustina. Scorri il dito sul bordo superiore per tagliarla.":"Prossima bustina tra "+pkLeft()+" (a mezzanotte).";
   void w.offsetWidth;w.style.transition=""}
@@ -1123,20 +1118,21 @@ function pkGestures(){const stg=$("#pks");let g=null;
     else{pkRY=g.ry+dx*.5;pkRX=Math.max(-35,Math.min(35,g.rx-dy*.25));pkApply()}});
   const up=()=>{if(!g)return;if(g.cut){$("#pkw").style.setProperty("--cut",0)}g=null};
   stg.addEventListener("pointerup",up);stg.addEventListener("pointercancel",up)}
-function pkOpen(){if(pkBusy)return;pkBusy=1;$("#pkchg").hidden=true;const o=pkSt(),S=PKSET.B;o.op=o.op||{};o.op.B=(o.op.B||0)+1;pkSv(o);
+function pkOpen(){if(pkBusy)return;pkBusy=1;{const f=document.createElement('div');f.className='pkflash';$('#pk').appendChild(f);try{f.animate([{opacity:0},{opacity:1,offset:.2},{opacity:0}],{duration:750})}catch(e){}setTimeout(()=>f.remove(),780)}$("#pkchg").hidden=true;const o=pkSt(),S=PKSET.B;o.op=o.op||{};o.op.B=(o.op.B||0)+1;pkSv(o);
   const draw=pkDraw("B"),res=draw.map(c=>({c,...pkAdd(c)}));save();pkCards=res;pkIdx=0;pkBadge();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pka"),b=w.querySelector(".pkb");
-  w.querySelectorAll(".pkss,.pkbk").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:300,fill:"forwards"})}catch(e){}});
+  w.querySelectorAll(".pkl,.pkbk").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:300,fill:"forwards"})}catch(e){}});
   try{a.animate([{transform:"translateZ(7px)",opacity:1},{transform:"translateZ(7px) translate(60px,-110px) rotate(20deg)",opacity:0}],{duration:520,easing:"ease-out",fill:"forwards"})}catch(e){}
   setTimeout(()=>{pkDeck(res);try{b.animate([{transform:"translateZ(7px)",opacity:1},{transform:"translateZ(7px) translateY(60px)",opacity:0}],{duration:420,easing:"ease-in",fill:"forwards"})}catch(e){}
     setTimeout(()=>{w.style.display="none"},430)},380)}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 let pkCur=null,pkNx=null,pkLock=0,pkRYc=0,pkRXc=0;
+const SP=2.6;
 function pkCard(x,rem){const c=x.c,ev=!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)),neo="GDVT".includes(c.sid),q=document.createElement("div"),el=document.createElement("div");
-  q.className="pkq";q.style.setProperty("--d",(rem*1.1).toFixed(1)+"px");el.className="pkc"+(c.h?" hol":"")+(neo?" ntc":"")+(c.h&&c.full?" hfull":"")+(ev?" evoc":"");
+  q.className="pkq";q.style.setProperty("--d",(rem*SP).toFixed(1)+"px");el.className="pkc"+(c.h?" hol":"")+(neo?" ntc":"")+(c.h&&c.full?" hfull":"")+(ev?" evoc":"");
   const bu=(URLS&&URLS.BACK)||(c&&c.back)||DEFBACK,L=Array.isArray(bu)?bu:[bu];
-  el.innerHTML=`<div class="ft"><div class="fr">${face(c,1)}</div><div class="hl${ev?" evo":""}${neo?" neo":""}${c.full?" full":""}"></div><div class="gl"></div></div><div class="bk ph2" style="background-image:${L.map(u=>`url('${u}')`).join(",")}"></div><i class="sd l"></i><i class="sd r"></i><i class="sd t"></i><i class="sd b"></i>`;
+  el.innerHTML=`<div class="ft"><div class="fr">${face(c,1)}</div><div class="hl${ev?" evo":""}${neo?" neo":""}${c.full?" full":""}"></div><div class="gl"></div></div><div class="bk ph2" style="background-image:${L.map(u=>`url('${u}')`).join(",")}"></div>${Array.from({length:Math.max(0,rem-1)},(_,i)=>`<i class="sl" style="transform:translateZ(calc(var(--d)/2 - ${(i+1)*SP}px))"></i>`).join("")}`;
   el.querySelector(".hl").style.opacity=c.h?.5:0;el.dataset.h=c.h?1:0;
   el.querySelector(".ft").insertAdjacentHTML("beforeend",x.nw?'<span class="pkn">NUOVA</span>':'<span class="pkn d">×'+x.q+'</span>');q.appendChild(el);q._c=el;q._x=x;return q}
 function pkAp(){const q=pkCur;if(!q)return;const el=q._c;el.style.transform=`rotateX(${pkRXc}deg) rotateY(${pkRYc}deg)`;
@@ -1153,7 +1149,7 @@ function pkDeck(res){const d=$("#pkd");d.innerHTML="";d.hidden=false;pkIdx=0;pkL
   if(d._on)return;d._on=1;let g=null;
   d.addEventListener("pointerdown",e=>{if(!pkCur||pkLock||g)return;const r=pkCur.getBoundingClientRect(),out=e.clientY>r.bottom+8||e.clientY<r.top-8;
     g={x:e.clientX,y:e.clientY,t:Date.now(),a:pkRYc,b:pkRXc,out};pkCur._c.style.transition="";try{d.setPointerCapture(e.pointerId)}catch(x){}});
-  d.addEventListener("pointermove",e=>{if(!g||!pkCur||g.out)return;pkRYc=g.a+(e.clientX-g.x)*.7;pkRXc=clamp(g.b-(e.clientY-g.y)*.4,-40,40);pkAp()});
+  d.addEventListener("pointermove",e=>{if(!g||!pkCur||g.out)return;pkRYc=g.a+(e.clientX-g.x)*.7;pkRXc=0;pkAp()});
   const up=e=>{if(!g||!pkCur)return;const x=g;g=null;const dx=e.clientX-x.x,dy=e.clientY-x.y,dt=Date.now()-x.t;
     if(x.out){if(Math.abs(dy)>70&&Math.abs(dy)>Math.abs(dx)*1.3)pkNext(dy);return}
     pkCur._c.style.transition="transform .3s";pkRYc=Math.round(pkRYc/180)*180;pkRXc=0;pkAp();
@@ -1188,7 +1184,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261027231203";
+const BUILD="B261027232010";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
