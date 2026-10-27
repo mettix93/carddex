@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Topps: il precaricamento parte subito all'avvio dell'app (prima le carte ottenute, poi le altre), 4 scaricamenti in parallelo.
 - Topps: sfondo della carta aperta più immediato (usa la miniatura già in memoria) e base neutra al posto del colore dei tipi TCG.
 - Versi più affidabili: audio sbloccato al primo tocco, versi delle carte vicine caricati in anticipo, doppia sorgente scaricata in parallelo.
 - Topps più veloci: immagini piccole e grandi precaricate in background, anteprima subito visibile mentre arriva quella grande.

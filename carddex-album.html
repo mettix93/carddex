@@ -462,8 +462,8 @@ const eff=s=>{const c=CARDS[s.id];if(!c)return c;if(c.opts)return CARDS[s.o&&c.o
 const TD={B:"base1",J:"base2",F:"base3",R:"base5",G:"neo1",D:"neo2",V:"neo3",T:"neo4"},SER={B:"base",J:"base",F:"base",R:"base",G:"neo",D:"neo",V:"neo",T:"neo"};
 const PFQ=[],PFS=new Set();let PFN=0;
 function pf(u){if(!u||PFS.has(u))return;PFS.add(u);PFQ.push(u);pfRun()}
-function pfRun(){while(PFN<3&&PFQ.length){const u=PFQ.shift(),im=new Image();PFN++;im.referrerPolicy="no-referrer";im.onload=im.onerror=()=>{PFN--;pfRun()};im.src=u}}
-function toppsPre(){if(cur!=="t"||!st.t)return;const idle=window.requestIdleCallback||(f=>setTimeout(f,300));idle(()=>{const T=st.t.filter(x=>x.id&&CARDS[x.id]);T.forEach(x=>pf(toppsU(CARDS[x.id],0)));T.filter(x=>x.o).forEach(x=>pf(toppsU(CARDS[x.id],1)))})}
+function pfRun(){while(PFN<4&&PFQ.length){const u=PFQ.shift(),im=new Image();PFN++;im.referrerPolicy="no-referrer";im.onload=im.onerror=()=>{PFN--;pfRun()};im.src=u}}
+function toppsPre(){if(!st.t)return;const idle=window.requestIdleCallback||(f=>setTimeout(f,200));idle(()=>{const T=st.t.filter(x=>x.id&&CARDS[x.id]),O=T.filter(x=>x.o);O.forEach(x=>{pf(toppsU(CARDS[x.id],0));pf(toppsU(CARDS[x.id],1))});T.filter(x=>!x.o).forEach(x=>pf(toppsU(CARDS[x.id],0)))},{timeout:1500})}
 function face(c,hi){const ph=`<div class="ph k${c.kd}"><b>${c.kd==="p"&&c.dex?"#"+pad(c.dex):""}</b><span>${esc(c.name)}</span><i>${numTxt(c)}</i></div>`;
   const u=URLS[c.id]||(c.gid&&URLS[c.gid])||c.img||(c.sid==="S"?toppsU(c,hi):TD[c.sid]?`https://assets.tcgdex.net/en/${SER[c.sid]}/${TD[c.sid]}/${c.num}/${hi?"high":"low"}.webp`:"");
   if(!u)return ph;
@@ -774,7 +774,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027120423";
+const BUILD="B261027121840";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
