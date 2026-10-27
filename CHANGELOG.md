@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Carta aperta: bottone schermo intero (sfondo nero, carta a tutta larghezza, rotazione col dito disattivata, luce col movimento attiva)
 - Orizzontale: la pagina che lasci non sparisce più nel nero, resta visibile finché la nuova non è arrivata sopra
 - Fix: in verticale mancava un pezzo di pagina a destra mentre sfogli
 - Fix: in orizzontale il colore delle pagine in arrivo non cambia più a giro finito
