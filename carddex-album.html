@@ -368,6 +368,10 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 .dr .stp button{width:38px!important;height:38px;padding:0!important;margin:0!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.18)!important;background:rgba(255,255,255,.1)!important;color:#fff!important;font-size:20px!important;text-align:center!important;display:flex;align-items:center;justify-content:center}
 .dr .stp b{min-width:34px;text-align:center;font-size:17px}
 .cp{position:absolute;left:4px;bottom:4px;z-index:2;padding:1px 6px;border-radius:8px;background:#000b;color:#fff;font:700 11px -apple-system,system-ui,sans-serif;border:1px solid rgba(255,255,255,.25)}
+#ne{padding-top:calc(env(safe-area-inset-top,0px) + 10px)!important;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))!important;justify-content:flex-start!important}
+#ne .sb{display:flex;flex-direction:column;max-height:100%!important;overflow:hidden!important}
+#ne .sb #dtf{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#ne .sb>*{flex:0 0 auto}#ne .sb>#dtf{flex:1 1 auto}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -679,7 +683,7 @@ function done(i){if(FLT!=="a"){save();render();return}save();const e=book.queryS
 function sheet(items,title){const s=$("#sh");s.innerHTML='<div class="sb"><p></p></div><div class="sbc"></div>';s.querySelector("p").textContent=title;const b=s.firstChild,c=s.lastChild;
   items.forEach(([t,f,d])=>{const e=document.createElement("button");e.textContent=t;if(d)e.className="dg";e.onclick=()=>{s.hidden=true;f()};b.appendChild(e)});
   const x=document.createElement("button");x.textContent="Annulla";x.onclick=()=>{s.hidden=true};c.appendChild(x);s.hidden=false}
-$("#sh").onclick=e=>{if(e.target.id==="sh")e.target.hidden=true};
+$("#sh").onclick=e=>{if(e.target.id==="sh")e.target.hidden=true};$("#ne").onclick=e=>{if(e.target.id==="ne")e.target.hidden=true};
 const LGS=[["it","Italiano"],["en","Inglese"],["ja","Giapponese"],["fr","Francese"],["de","Tedesco"],["es","Spagnolo"],["pt","Portoghese"],["ko","Coreano"],["zh","Cinese"],["x","Altra lingua"]],
  CDS=[["","Non indicato"],["mint","Perfetta (Mint)"],["nm","Quasi perfetta (Near Mint)"],["ex","Ottima (Excellent)"],["gd","Buona (Good)"],["pl","Giocata (Played)"],["pr","Rovinata (Poor)"]],
  EDS=[["","Standard"],["1","1ª edizione"],["sh","Shadowless"]];
@@ -957,7 +961,7 @@ tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();appl
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261027210608";
+const BUILD="B261027211059";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
