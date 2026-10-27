@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
+- Widget: carta un po' più grande, con margine ridotto.
 - Widget: una carta al giorno (cambia a mezzanotte), con margine e sfondo del colore del tipo (holo con fasce arcobaleno e brillantini). Serve rifare l'esportazione dal menu •••.
 - Widget: nel menu ••• c'è «Esporta carte per il widget»; in widget/carddex-widget.js c'è lo script per l'app Scriptable che mostra una carta ottenuta a caso.
 - App vera: ora è installabile (manifest, icone) e funziona anche senza rete grazie a un service worker; le immagini delle carte restano salvate dopo la prima visualizzazione. Si aggiorna comunque da sola quando c'è rete.

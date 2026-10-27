@@ -50,7 +50,7 @@ try {
     }
   }
   // carta con margine e ombra morbida
-  const ar = img.size.width / img.size.height, m = 0.12;
+  const ar = img.size.width / img.size.height, m = 0.07;
   let ch = S.height * (1 - 2 * m), cw = ch * ar;
   if (cw > S.width * (1 - 2 * m)) { cw = S.width * (1 - 2 * m); ch = cw / ar; }
   const cr = new Rect((S.width - cw) / 2, (S.height - ch) / 2, cw, ch);
