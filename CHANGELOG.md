@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 27 ottobre 2026
 
+- Topps: lo sfondo dietro la carta aperta è ora la grafica della carta stessa, ingrandita e sfocata, che continua oltre i bordi (colori e disegni propri di ogni carta).
 - Luce in movimento più fluida con il telefono in verticale (calcolo basato sulla gravità + smussatura dei movimenti).
 - Mew antico: effetto holo su tutta la carta leggermente più intenso (luci delle carte normali invariate).
 - Auto-aggiornamento: all'apertura e quando torni sull'app, controlla se c'è una versione nuova e si ricarica da sola (se non hai una carta aperta).

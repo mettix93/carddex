@@ -330,6 +330,8 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 /* angoli carta aperta: raggio reale (~3 mm), circolare */
 #card>*{border-radius:4.5% / 3.2%!important}
 #card>*{border-radius:2.8% / 2%!important}
+#vbg{position:absolute;inset:-12%;z-index:0;pointer-events:none;background:var(--tu,none) 50% 34%/cover no-repeat;filter:blur(30px) saturate(1.35) brightness(.9);opacity:.6;transform:scale(1.7);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%);mask-image:radial-gradient(ellipse 80% 70% at 50% 45%,#000 30%,rgba(0,0,0,.55) 100%)}
+#vw.fs #vbg{display:none}
 </style></head><body>
 <div id="app">
 <header><h1>CardDex <small id="stat"></small></h1><div class="tabs" id="tabs"></div></header>
@@ -342,6 +344,7 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 <div id="sr" hidden><div class="sb"><p>Cerca un Pokémon per nome</p><input id="sri" type="search" placeholder="Es. Pikachu" autocapitalize="off" autocomplete="off"><button id="srok">Cerca</button><button id="srno">Annulla</button></div></div>
 <div id="ne" hidden><div class="sb"><p id="nl"></p><textarea id="nta" rows="4" placeholder="Scrivi una nota"></textarea><button id="nok">Salva nota</button><button id="nno">Annulla</button></div></div>
 <div id="vw" hidden>
+<div id="vbg"></div>
 <div class="vt"><b id="vh"></b><small id="vs"></small><em id="vn"></em></div>
 <div id="stage"><div id="card"><div class="ft"><div id="fr"></div><div class="hl"></div><div class="gl"></div></div><div class="bk"><i></i><div class="hl"></div><div class="gl"></div></div></div></div>
 <button id="vfs" aria-label="Schermo intero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg></button>
@@ -713,7 +716,7 @@ function cardCol(c){if(c.kd==="p"&&c.dex){const t=TYP[c.dex-1];return TCOL[t]||T
 
 /* topps: colore e trama dal bordo della carta */
 let spTok=0;
-function toppsSample(c){const tk=++spTok,vw=$("#vw");vw.style.setProperty("--tx","none");const u=URLS[c.id]||c.img||toppsU(c,1);if(!u)return;const im=new Image();im.crossOrigin="anonymous";
+function toppsSample(c){const tk=++spTok,vw=$("#vw");vw.style.setProperty("--tx","none");const u=URLS[c.id]||c.img||toppsU(c,1);if(!u)return;vw.style.setProperty("--tu","url(\""+u+"\")");const im=new Image();im.crossOrigin="anonymous";
   im.onload=()=>{if(tk!==spTok)return;try{const W=64,H=90,cv=document.createElement("canvas");cv.width=W;cv.height=H;const x=cv.getContext("2d");x.drawImage(im,0,0,W,H);const d=x.getImageData(0,0,W,H).data;let r=0,g=0,b=0,n=0;const bw=4;
     for(let yy=0;yy<H;yy++)for(let xx=0;xx<W;xx++)if(xx<bw||xx>=W-bw||yy<bw||yy>=H-bw){const i=(yy*W+xx)*4;if(d[i+3]>200){r+=d[i];g+=d[i+1];b+=d[i+2];n++}}
     if(!n)return;r/=n;g/=n;b/=n;const mx=Math.max(r,g,b),mn=Math.min(r,g,b),mid=(mx+mn)/2,col=[r,g,b].map(v=>Math.round(Math.max(0,Math.min(255,mid+(v-mid)*1.5))));
@@ -725,7 +728,7 @@ function openCard(i,na){curI=i;const s=LIST()[i],c=eff(s);
   $("#vh").textContent=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+c.name;
   $("#vs").innerHTML=sicon(c.sid)+[esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),c.h?"Holo":"",esc(numTxt(c))].filter(Boolean).join(" · ");
   window.__vc=c;$("#vn").textContent=s.n||"";$("#fr").innerHTML=face(c,1);
-  curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
+  curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("evo",!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex)));hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",cardCol(c));vw.style.setProperty("--tx","none");vw.style.setProperty("--tu","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 stg.onpointerdown=e=>{const r=card.getBoundingClientRect(),land=innerWidth>innerHeight;if(e.clientY>r.bottom+8||(land&&(e.clientX<r.left-8||e.clientX>r.right+8))){sw={x:e.clientX};try{stg.setPointerCapture(e.pointerId)}catch(x){}return}if($("#vw").classList.contains("fs"))return;dr={x:e.clientX,y:e.clientY,a:ry,b:rx};card.style.transition="";stg.setPointerCapture(e.pointerId)};
 stg.onpointermove=e=>{if(!dr)return;ry=dr.a+(e.clientX-dr.x)*.7;rx=Math.max(-40,Math.min(40,dr.b-(e.clientY-dr.y)*.4));ap()};
@@ -739,7 +742,7 @@ document.addEventListener("pointerdown",e=>{if(document.body.classList.contains(
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
-const BUILD="B261027013644";
+const BUILD="B261027014534";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
