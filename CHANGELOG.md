@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (decies)
+- Tutti i tasti (home, pillole dei set, contatore, tasti della barra) alti 38px; solo la barra in basso resta più grande. Spaziature ricalcolate in automatico.
+- Strisce sopra/sotto le schermate di gioco: lo sfondo della pagina ora prende il colore della schermata aperta.
+
 ## 29 ottobre 2026 (nonies)
 - Sfondo dietro la carta aperta ora opaco: niente più trasparenze/sfocature che lasciavano passare i colori dell'album sotto; dipende solo dal tipo della carta.
 
