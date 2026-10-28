@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (duetrigies)
+- Mazzo sbustato: se la carta è girata sul retro non si può passare alla successiva finché non torna di fronte.
+
 ## 29 ottobre 2026 (unetrigies)
 - Tolta la scritta "carta rara" dall'ultima carta del mazzo.
 - Icona punti: sotto il numero compare "pt".

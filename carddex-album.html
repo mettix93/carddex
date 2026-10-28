@@ -1406,7 +1406,7 @@ function pkDeck(res){const d=$("#pkd");d.innerHTML='<div id="pkbdg"></div>';d.hi
   d.addEventListener("pointerdown",e=>{if(!pkCur||pkLock||g)return;
     g={x:e.clientX,y:e.clientY,t:Date.now(),a:pkRYc,ax:null,dy:0};pkCur._c.style.transition="";pkCur.style.transition="none";try{d.setPointerCapture(e.pointerId)}catch(x){}});
   d.addEventListener("pointermove",e=>{if(!g||!pkCur)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
-    if(!g.ax){if(Math.hypot(dx,dy)<8)return;g.ax=Math.abs(dy)>Math.abs(dx)*1.1?"v":"h";if(g.ax==="v"){g.dy0=dy;if(pkNx)pkNx.style.visibility=""}}
+    if(!g.ax){if(Math.hypot(dx,dy)<8)return;g.ax=Math.abs(dy)>Math.abs(dx)*1.1?"v":"h";if(g.ax==="v"&&Math.abs(((pkRYc%360)+540)%360-180)>=90)g.ax="h";if(g.ax==="v"){g.dy0=dy;if(pkNx)pkNx.style.visibility=""}}
     if(g.ax==="h"){pkRYc=g.a+dx*.7;pkRXc=0;pkAp()}
     else{g.dy=dy;pkCur.style.transform=`translateY(${dy}px)`;const b=$("#pkbdg");if(b){pkBT++;b.style.transition="none";b.style.opacity=1-clamp(Math.abs(dy)/24,0,1)}}});
   const up=e=>{if(!g||!pkCur)return;const x=g;g=null;const dy=e.clientY-x.y,dt=Math.max(1,Date.now()-x.t);
