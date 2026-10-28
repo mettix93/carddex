@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quindecies)
+- Bustine: tolto il pezzetto che usciva dall'angolo alto a destra.
+- Prima carta del mazzo: raggi ridisegnati (immagine pre-renderizzata) e effetti sfalsati nel tempo per eliminare scatti.
+- Nuova schermata scelta bustina con barra in basso: Converti, Punti, Bustine disponibili.
+- Converti doppie: tocca una carta per convertire una copia (comune 1 punto, non comune 2, rara 3); ogni 10 punti si scambia una bustina Set Base.
+
 ## 29 ottobre 2026 (quaterdecies)
 - Corretto lo spostamento verso il basso delle grafiche (rimossa altezza estesa della pagina).
 - Colore della barra di stato: la meta theme-color viene ricreata a ogni cambio, così Safari la aggiorna; sfondo pagina scuro quando è aperto il visualizzatore.
