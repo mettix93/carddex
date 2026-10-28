@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (unetrigies)
+- Tolta la scritta "carta rara" dall'ultima carta del mazzo.
+- Icona punti: sotto il numero compare "pt".
+
 ## 29 ottobre 2026 (trigies)
 - Carta aperta e schermo intero: tasti in alto a destra (…, schermo intero, X) tutti 38px, stessa riga e stesso allineamento dei tasti degli album.
 
