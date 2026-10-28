@@ -457,7 +457,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #pkd[hidden]{display:none}
 .pkq{--w:min(74vw,calc(60vh*63/88));--d:10px;position:absolute;width:var(--w);aspect-ratio:63/88;transform-style:preserve-3d;touch-action:none}
 .pkc{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform;--cd:var(--d)}
-.pkc .ft,.pkc .bk{position:absolute;inset:0;border-radius:calc(var(--w)*.05);overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#111;box-shadow:none;border:0}
+.pkc .ft,.pkc .bk{position:absolute;inset:0;border-radius:calc(var(--w)*.028);overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;background:#111;box-shadow:none;border:0}
 .pkc .ft{transform:translateZ(calc(var(--d)/2))}
 .pkc .bk{transform:rotateY(180deg) translateZ(calc(var(--d)/2));background-size:100% 100%;background-position:center}
 .pkc .fr{position:absolute;inset:0}
@@ -1247,7 +1247,7 @@ function pkOpen(){if(pkBusy)return;pkBusy=1;pkPh="open";$("#pk").classList.add("
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
   w.querySelectorAll(".pkct,.pkcl").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:200,fill:"forwards"})}catch(e){}});
   const tl=w.classList.contains("rl")?-3.5:3.5;try{a.animate([{transform:`translate(0,0) rotate(${tl}deg)`,opacity:1},{transform:"translate(70px,-130px) rotate(26deg)",opacity:0}],{duration:560,easing:"ease-out",fill:"forwards"})}catch(e){}
-  setTimeout(()=>{$('#pk').classList.remove('studio');pkTheme('#0a0c17');pkDeck(res);pkBurst(res);try{b.animate([{opacity:1},{opacity:0}],{duration:300,easing:"ease-out",fill:"forwards"})}catch(e){}
+  setTimeout(()=>{$('#pk').classList.remove('studio');pkTheme('#0a0c17');setTimeout(()=>{pkDeck(res);pkBurst(res)},200);try{b.animate([{opacity:1},{opacity:0}],{duration:300,easing:"ease-out",fill:"forwards"})}catch(e){}
     setTimeout(()=>{w.style.display="none";$("#pk").classList.remove("opening")},350)},300)}
 function pkBurst(res){const p=$("#pk"),hol=res.some(x=>x.c.h),col=hol?"255,214,10":"190,215,255";
   const r=document.createElement("div");r.className="pkray";r.style.background=`repeating-conic-gradient(from 0deg at 50% 50%,rgba(${col},.9) 0 5deg,transparent 5deg 18deg)`;p.appendChild(r);
@@ -1257,7 +1257,7 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 let pkCur=null,pkNx=null,pkLock=0,pkRYc=0,pkRXc=0;
 const SP=1.9;
 function pkBadgeH(x,big){return x.nw?`<span class="pkn nw">NUOVA!</span>`:`<span class="pkn d">${x.q}x</span>`}
-function pkWalls(rem){const w=Math.min(innerWidth*.74,innerHeight*.6*63/88),h=w*88/63,R=w*.05,d=Math.max(.6,rem*SP-1),hw=w/2-.8,hh=h/2-.8,W2=w/2,H2=h/2,D=Math.PI/180;let o="";
+function pkWalls(rem){const w=Math.min(innerWidth*.74,innerHeight*.6*63/88),h=w*88/63,R=w*.028,d=Math.max(.6,rem*SP-1),hw=w/2-.8,hh=h/2-.8,W2=w/2,H2=h/2,D=Math.PI/180;let o="";
   const add=(cx,cy,L,nu)=>{if(L>w*.2)L+=.8;const b=.8+.1*Math.max(0,-.53*Math.cos(nu*D)-.85*Math.sin(nu*D)),m=v=>Math.min(255,Math.round(v*b)),c1=`rgb(${m(246)},${m(246)},${m(249)})`,c2=`rgb(${m(211)},${m(214)},${m(223)})`;
     o+=`<i class="sw" style="width:${L.toFixed(2)}px;height:${d.toFixed(1)}px;left:${(W2+cx-L/2).toFixed(2)}px;top:${(H2+cy-d/2).toFixed(2)}px;transform:rotateZ(${nu+90}deg) rotateX(90deg);background:repeating-linear-gradient(180deg,${c1} 0 1px,${c2} 1px 1.8px)"></i>`};
   add(0,-hh,w-2*R,-90);add(0,hh,w-2*R,90);add(-hw,0,h-2*R,180);add(hw,0,h-2*R,0);
@@ -1287,7 +1287,7 @@ function pkShow(){const x=pkCards[pkIdx],p=$("#pk");if(!x)return;pkBdgIn(x,pkIdx
 function pkDeck(res){const d=$("#pkd");d.innerHTML='<div id="pkbdg"></div>';d.hidden=false;pkIdx=0;pkLock=0;pkRYc=0;pkRXc=0;
   if(res[1]){pkNx=pkCard(res[1],res.length-1);pkNx.style.visibility="hidden";d.appendChild(pkNx)}else pkNx=null;
   pkCur=pkCard(res[0],res.length);d.appendChild(pkCur);pkAp();pkShow();
-  try{d.animate([{transform:"translateY(7%) scale(.9)",opacity:0},{transform:"none",opacity:1}],{duration:650,easing:"cubic-bezier(.2,.8,.3,1)"})}catch(e){}
+  try{d.animate([{transform:"translateY(3%) scale(.95)",opacity:0},{transform:"none",opacity:1}],{duration:520,easing:"cubic-bezier(.2,.8,.3,1)"})}catch(e){}
   if(d._on)return;d._on=1;let g=null;
   d.addEventListener("pointerdown",e=>{if(!pkCur||pkLock||g)return;
     g={x:e.clientX,y:e.clientY,t:Date.now(),a:pkRYc,ax:null,dy:0};pkCur._c.style.transition="";pkCur.style.transition="none";try{d.setPointerCapture(e.pointerId)}catch(x){}});

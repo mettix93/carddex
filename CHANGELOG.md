@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (terdecies)
+- Carte sbustate: angoli smussati come nelle carte aperte dall'album.
+- Comparsa della prima carta più pulita: arriva dopo che la bustina è sfumata, con entrata più morbida.
+
 ## 29 ottobre 2026 (duodecies)
 - Bordi delle carte negli album più sottili (tutti gli stili).
 - Strisce sopra/sotto: sfondo della pagina esteso a tutto lo schermo senza ripetizioni e colore della barra di stato aggiornato anche nel visualizzatore carta.
