@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (septies)
+- Gioco: titolo e testi del visualizzatore e dei menu di nuovo chiari (ereditavano il blu del tema chiaro).
+
 ## 29 ottobre 2026 (sexies)
 - Visualizzatore in Gioco: sfondo scuro come prima (con il tema chiaro dietro risultava più chiaro).
 

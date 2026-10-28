@@ -62,10 +62,11 @@ footer button{background:none;border:0;color:var(--mut);font:inherit;text-decora
 html.gml{background:linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%) fixed!important}
 html.gml body{background:transparent!important}
 body.gm{color:#1b2a49}
+body.gm #vw,body.gm #sh,body.gm #ne,body.gm #sr{color:#eef1f7!important}
 body.gm::before{inset:0;filter:none;background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%)}
-body.gm header{background:none}
-body.gm header,body.gm footer{--gl:rgba(255,255,255,.42);--sec:rgba(27,42,73,.72);color:#1b2a49}
-body.gm h1{color:#1b2a49}
+body.gm #app header{background:none}
+body.gm #app header,body.gm #app footer{--gl:rgba(255,255,255,.42);--sec:rgba(27,42,73,.72);color:#1b2a49}
+body.gm #app header h1{color:#1b2a49}
 body.gm .tabs,body.gm footer,body.gm #stat,body.gm #hmbtn,body.gm footer button{border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2)}
 body.gm .tabs::before,body.gm footer::before,body.gm #stat::before{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 45%)}
 body.gm .tab{color:rgba(27,42,73,.72)}
@@ -1326,7 +1327,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261028221606";
+const BUILD="B261028221840";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
