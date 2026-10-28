@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (sexdecies)
+- Barra bustine: i tre tasti hanno la stessa dimensione; frecce dell'icona Converti allineate.
+- Converti doppie: carte che scorrono sotto la barra in vetro con sfumatura, − / numero / + su ogni carta, nessun lampeggio al tocco, testo introduttivo su tre righe.
+
 ## 29 ottobre 2026 (quindecies)
 - Bustine: tolto il pezzetto che usciva dall'angolo alto a destra.
 - Prima carta del mazzo: raggi ridisegnati (immagine pre-renderizzata) e effetti sfalsati nel tempo per eliminare scatti.

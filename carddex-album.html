@@ -219,9 +219,9 @@ html,body{background:linear-gradient(#0b0b0e,#000 60%)!important}
 html:not(.gml){background:linear-gradient(#0b0b0e,#000 60%) no-repeat 0 0/100% 100%,#0b0b0e!important}
 html.h0 #app{visibility:hidden}
 #pkbar{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));height:52px;box-sizing:border-box;padding:7px 8px 7px 8px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2);color:#1b2a49}
-#pkbar button,#pkbk{height:38px;border:0;border-radius:999px;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,"SF Pro Text",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;box-sizing:border-box;position:relative}
-#pkbar svg{width:20px;height:20px;flex:none}#pkbar button:first-child{flex:1}
-#pkbk{padding:0 14px;background:rgba(255,255,255,.55)}#pkbar span{white-space:nowrap}
+#pkbar button,#pkbk{flex:1 1 0;min-width:0;height:38px;border:0;border-radius:999px;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,"SF Pro Text",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 8px;box-sizing:border-box;position:relative}
+#pkbar svg{width:20px;height:20px;flex:none}
+#pkbk{background:rgba(255,255,255,.55)}#pkbar span{white-space:nowrap}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 #tst{z-index:200!important}
 #cvs,#pts{position:fixed;inset:0;z-index:70;color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
@@ -231,17 +231,21 @@ html.h0 #app{visibility:hidden}
 .cvh b{color:#1b2a49!important;font-size:22px;font-weight:700;letter-spacing:-.02em}
 .cvx{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.55);color:#1b2a49;display:flex;align-items:center;justify-content:center;padding:0;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
 .cvh .cvx{position:absolute;right:16px;top:max(12px,env(safe-area-inset-top,0px))}.cvx svg{width:18px;height:18px}
-.cvi{margin:2px 24px 10px;text-align:center;font-size:13px;color:#4e5d7c;text-wrap:balance}
-.cvg{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 16px 12px;align-content:start}
+.cvi{margin:2px 16px 10px;text-align:center;font-size:13px;line-height:1.35;color:#4e5d7c;white-space:nowrap}
+.cvg{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 16px calc(90px + env(safe-area-inset-bottom,0px));align-content:start;-webkit-mask-image:linear-gradient(#000 calc(100% - 120px),rgba(0,0,0,.25) calc(100% - 50px),transparent);mask-image:linear-gradient(#000 calc(100% - 120px),rgba(0,0,0,.25) calc(100% - 50px),transparent)}
 .cvt{position:relative;display:block;width:100%;aspect-ratio:63/88;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;border-radius:6px}
 .cvt:active{transform:scale(.97)}
 .cvf{position:absolute;inset:0;border-radius:5px;overflow:hidden;background:#cfd8ea;box-shadow:0 4px 12px rgba(40,70,120,.28)}
 .cvf img,.cvf .ph{width:100%;height:100%;object-fit:fill;display:block}
-.cvt.on .cvf{box-shadow:0 0 0 2.5px #0a84ff,0 4px 14px rgba(10,132,255,.4)}.cvt.z .cvf{opacity:.55}
+.cvt.on .cvf{box-shadow:0 0 0 2.5px #0a84ff,0 4px 14px rgba(10,132,255,.4)}
+.cvc{position:absolute;left:6px;right:6px;bottom:6px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:space-between;padding:0 3px;background:rgba(10,12,23,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
+.cvc b{font:700 15px -apple-system,system-ui,sans-serif}
+.cvm{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.22);font:600 17px/23px -apple-system,system-ui,sans-serif;text-align:center}
+.cvt.z .cvm[data-d="1"],.cvt:not(.on) .cvm[data-d="-1"]{opacity:.35}
 .cvq{position:absolute;left:6px;bottom:6px;min-width:26px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:13px;background:rgba(10,12,23,.78);color:#fff;font:700 14px/26px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
-.cvm{position:absolute;right:6px;top:6px;height:26px;padding:0 9px;border-radius:13px;background:#0a84ff;color:#fff;font:700 13px/26px -apple-system,system-ui,sans-serif}
+
 .cve{grid-column:1/-1;text-align:center;color:#4e5d7c;margin-top:40px}
-.cvf2{display:flex;align-items:center;gap:10px;margin:0 16px max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));padding:7px 8px 7px 20px;height:52px;box-sizing:border-box;border-radius:999px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
+.cvf2{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));display:flex;align-items:center;gap:10px;padding:7px 8px 7px 20px;height:52px;box-sizing:border-box;border-radius:999px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
 .cvn{flex:1;display:flex;flex-direction:column;line-height:1.1}.cvn small{font-size:11px;color:#4e5d7c}.cvn b{font-size:20px}
 .cvf2 button{height:38px;border:0;border-radius:999px;padding:0 16px;font:600 14px -apple-system,system-ui,sans-serif;background:rgba(255,255,255,.7);color:#1b2a49}
 #cvok{background:#0a84ff!important;color:#fff!important}#cvok:disabled{opacity:.4}#cvz[hidden]{display:none}
@@ -1241,7 +1245,7 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   pkGestures();return el}
 
 /* ===== conversione doppie -> punti -> bustine ===== */
-const CVI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13"/><path d="M13.5 4.5L17 8l-3.5 3.5"/><path d="M20 16H7"/><path d="M10.5 12.5L7 16l3.5 3.5"/></svg>';
+const CVI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16"/><path d="M16.5 4.5L20 8l-3.5 3.5"/><path d="M20 16H4"/><path d="M7.5 12.5L4 16l3.5 3.5"/></svg>';
 const PTI='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 6 6.5.8-4.8 4.5 1.3 6.5L12 17.3 6.2 20.6l1.3-6.5L2.7 9.6l6.5-.8z"/></svg>';
 const PKPT={C:1,U:2,R:3};
 let cvSel={};
@@ -1249,14 +1253,16 @@ function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkBarUpd(){const a=$("#pkbpn"),b=$("#pkbkn");if(a)a.textContent=pkSt().pts||0;if(b)b.textContent=PKTEST?"∞":pkAvail("B")}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
-  e.innerHTML='<div class="cvh"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia. Comune 1 punto · non comune 2 · rara 3. Ogni 10 punti, una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
+  e.innerHTML='<div class="cvh"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
-  $("#cvz").onclick=()=>{cvSel={};cvDraw()};
+  $("#cvz").onclick=()=>{cvSel={};cvUpd()};
   $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt();o.pts=(o.pts||0)+tot;pkSv(o);cvSel={};cvDraw();pkBarUpd();toast("+"+tot+" punti ("+n+(n===1?" carta":" carte")+")")};
-  e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0;if(ev.target.closest(".cvm")){if(k>0)cvSel[id]=k-1}else if(k<x.sp)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvDraw()};
+  e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(m&&m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(k<x.sp)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
   return e}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0;
-  g.innerHTML=L.length?L.map(x=>{const k=cvSel[x.c.id]||0,rem=x.sp-k;tot+=k*cvPt(x.c);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><i class="cvq">${rem}</i>${k?`<span class="cvm">−${k}</span>`:""}</button>`}).join(""):'<p class="cve">Non hai carte doppie da convertire.</p>';
+  g.innerHTML=L.length?L.map(x=>{const k=cvSel[x.c.id]||0,rem=x.sp-k;tot+=k*cvPt(x.c);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}</b><span class="cvm" data-d="1">+</span></div></button>`}).join(""):'<p class="cve">Non hai carte doppie da convertire.</p>';
+  $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
+function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",k>=x.sp);b.querySelector(".cvc b").textContent=k});
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
 function cvOpen(){const e=cvBuild();cvSel={};cvDraw();e.hidden=false}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
