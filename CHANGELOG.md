@@ -2,6 +2,11 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quaterdecies)
+- Corretto lo spostamento verso il basso delle grafiche (rimossa altezza estesa della pagina).
+- Colore della barra di stato: la meta theme-color viene ricreata a ogni cambio, così Safari la aggiorna; sfondo pagina scuro quando è aperto il visualizzatore.
+- Dissolvenza leggera all'apertura di visualizzatore, riepilogo, fogli e scelta bustina.
+
 ## 29 ottobre 2026 (terdecies)
 - Carte sbustate: angoli smussati come nelle carte aperte dall'album.
 - Comparsa della prima carta più pulita: arriva dopo che la bustina è sfumata, con entrata più morbida.
