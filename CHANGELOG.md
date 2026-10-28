@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (nonies)
+- Sfondo dietro la carta aperta ora opaco: niente più trasparenze/sfocature che lasciavano passare i colori dell'album sotto; dipende solo dal tipo della carta.
+
 ## 29 ottobre 2026 (octies)
 - Visualizzatore: sfondo uniforme per tipo, tolto l'alone sfocato dell'illustrazione.
 - Mazzo: la carta sotto ha già l'effetto di luce nella posizione giusta quando inizi a sollevare quella sopra (niente scatti al cambio); apertura bustina più leggera (niente riflesso/ombre pesanti, entrata del mazzo più semplice, raggi più piccoli).
