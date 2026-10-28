@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (undecies)
+- Pagine "Trasparente scuro": bordi delle carte da neri a bianchi semitrasparenti, molto più leggeri (tutte le modalità).
+
 ## 29 ottobre 2026 (decies)
 - Tutti i tasti (home, pillole dei set, contatore, tasti della barra) alti 38px; solo la barra in basso resta più grande. Spaziature ricalcolate in automatico.
 - Strisce sopra/sotto le schermate di gioco: lo sfondo della pagina ora prende il colore della schermata aperta.
