@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (unvicies)
+- Schermata Converti: barra in basso e tasto X allineati misurando barra e tasti degli album; corretto un conflitto di nome che rimpiccioliva il titolo.
+
 ## 29 ottobre 2026 (vicies)
 - Barra scelta bustina e barra del riepilogo allineate (misurate) alla barra degli album; riepilogo con tasti in vetro da 38px.
 - Tasti home e X con stessa dimensione e posizione dei tasti in alto negli album (anche nel visualizzatore carta).

@@ -230,10 +230,10 @@ html.h0 #app{visibility:hidden}
 #cvs,#pts{position:fixed;inset:0;z-index:70;color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
 #cvs[hidden],#pts[hidden]{display:none}
 #cvs{display:flex;flex-direction:column;background:linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%)}
-.cvh{display:flex;align-items:center;justify-content:center;position:relative;padding:max(14px,env(safe-area-inset-top,0px)) 16px 6px;min-height:64px;box-sizing:border-box}
-.cvh b{color:#1b2a49!important;font-size:22px;font-weight:700;letter-spacing:-.02em}
+.cvhd{display:flex;align-items:center;justify-content:center;position:relative;padding:max(14px,env(safe-area-inset-top,0px)) 16px 6px;min-height:64px;box-sizing:border-box}
+.cvhd b{color:#1b2a49!important;font-size:22px;font-weight:700;letter-spacing:-.02em}
 .cvx{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.55);color:#1b2a49;display:flex;align-items:center;justify-content:center;padding:0;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
-.cvh .cvx{position:absolute;right:16px;top:max(12px,env(safe-area-inset-top,0px))}.cvx svg{width:18px;height:18px}
+.cvhd .cvx{position:absolute;right:var(--hbr,16px);top:var(--hbt,8px)}.cvx svg{width:18px;height:18px}
 .cvi{margin:2px 16px 10px;text-align:center;font-size:13px;line-height:1.35;color:#4e5d7c;white-space:nowrap}
 .cvg{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 16px calc(90px + env(safe-area-inset-bottom,0px));align-content:start;-webkit-mask-image:linear-gradient(#000 calc(100% - 120px),rgba(0,0,0,.25) calc(100% - 50px),transparent);mask-image:linear-gradient(#000 calc(100% - 120px),rgba(0,0,0,.25) calc(100% - 50px),transparent)}
 .cvt{position:relative;display:block;width:100%;aspect-ratio:63/88;border:0;padding:0;background:none;-webkit-tap-highlight-color:transparent;border-radius:6px}
@@ -249,7 +249,7 @@ html.h0 #app{visibility:hidden}
 .cvq{position:absolute;left:6px;bottom:6px;min-width:26px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:13px;background:rgba(10,12,23,.78);color:#fff;font:700 14px/26px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
 
 .cve{grid-column:1/-1;text-align:center;color:#4e5d7c;margin-top:40px}
-.cvf2{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));display:flex;align-items:center;gap:10px;padding:7px 8px 7px 20px;height:52px;box-sizing:border-box;border-radius:999px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
+.cvf2{position:absolute;left:16px;right:16px;bottom:var(--fbb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px)));display:flex;align-items:center;gap:10px;padding:7px 8px 7px 20px;height:52px;box-sizing:border-box;border-radius:999px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
 .cvn{flex:1;display:flex;flex-direction:column;line-height:1.1}.cvn small{font-size:11px;color:#4e5d7c}.cvn b{font-size:20px}
 .cvf2 button{height:38px;border:0;border-radius:999px;padding:0 16px;font:600 14px -apple-system,system-ui,sans-serif;background:rgba(255,255,255,.7);color:#1b2a49}
 #cvok{background:#0a84ff!important;color:#fff!important}#cvok:disabled{opacity:.4}#cvz[hidden]{display:none}
@@ -1257,11 +1257,11 @@ let cvSel={};
 function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}L.sort((a,b)=>(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,h=$("#hmbtn"),t=$("#stat");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px")}}if(t){const a=t.getBoundingClientRect();if(a.height)R.setProperty("--hbr",(innerWidth-a.right)+"px")}
-  const f=document.querySelector("#app footer"),e=$("#pk");if(!f||!e)return;const a=f.getBoundingClientRect(),b=e.getBoundingClientRect();if(a.height&&b.height)e.style.setProperty("--pkb",Math.max(0,b.bottom-a.bottom)+"px")}catch(x){}}
+  const f=document.querySelector("#app footer"),e=$("#pk");if(f){const a=f.getBoundingClientRect();if(a.height)R.setProperty("--fbb",Math.max(0,innerHeight-a.bottom)+"px")}if(!f||!e)return;const a=f.getBoundingClientRect(),b=e.getBoundingClientRect();if(a.height&&b.height)e.style.setProperty("--pkb",Math.max(0,b.bottom-a.bottom)+"px")}catch(x){}}
 addEventListener("resize",pkAlign);
 function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.textContent=v;a.style.fontSize=v>99?"11px":"14px"}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
-  e.innerHTML='<div class="cvh"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
+  e.innerHTML='<div class="cvhd"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
   $("#cvz").onclick=()=>{cvSel={};cvUpd()};
   $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt();o.pts=(o.pts||0)+tot;pkSv(o);cvSel={};cvDraw();pkBarUpd();toast("+"+tot+" punti ("+n+(n===1?" carta":" carte")+")")};
@@ -1272,7 +1272,7 @@ function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0;
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
 function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",k>=x.sp);b.querySelector(".cvc b").firstChild.nodeValue=k});
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
-function cvOpen(){const e=cvBuild();cvSel={};cvDraw();e.hidden=false}
+function cvOpen(){pkAlign();const e=cvBuild();cvSel={};cvDraw();e.hidden=false}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pti">'+PTI+'</div><small>I tuoi punti</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">Scambia 10 punti per 1 bustina</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
