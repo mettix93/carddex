@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (octvicies)
+- Converti doppie: scorrimento più fluido (tolti maschera e sfocature per carta, sfumatura in basso con un livello fisso, niente ridisegni inutili).
+
 ## 29 ottobre 2026 (septvicies)
 - Scelta bustina: tolto lo zoom dell'ingresso (spostava la barra giù e poi su); ora solo dissolvenza.
 
