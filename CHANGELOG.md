@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (novvicies)
+- Converti doppie: tolta la riga "Tocca una carta…"; testi "Comune 1 punto · Non comune 2 punti · Rara 3 punti".
+
 ## 29 ottobre 2026 (octvicies)
 - Converti doppie: scorrimento più fluido (tolti maschera e sfocature per carta, sfumatura in basso con un livello fisso, niente ridisegni inutili).
 
