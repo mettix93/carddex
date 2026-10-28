@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 28 ottobre 2026
+- Pulsante casetta per tornare alla home: in alto a sinistra nella schermata bustine e a sinistra del titolo nell'album (Collezione e Gioco). «Cambia bustina» è passato sotto la bustina.
+
 ## 27 ottobre 2026
 - Bustina: rifatta come sacchetto curvo, sottile alle saldature e bombato al centro; di lato si vede lo spessore vero. All'apertura il taglio stacca la saldatura e parte un lampo con raggi e scintille (dorati se c'è una holo).
 - Mazzo: spessore reale di una carta (circa 0,3 mm in scala) con le carte ben distinte di lato e angoli arrotondati; l'apertura del mazzo ha un'entrata con rimbalzo.
