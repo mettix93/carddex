@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (sexies)
+- Visualizzatore in Gioco: sfondo scuro come prima (con il tema chiaro dietro risultava più chiaro).
+
 ## 29 ottobre 2026 (quinquies)
 - Modalità Gioco in tema chiaro «liquid glass»: sfondo luminoso come la scena bustina, header, tab, footer e pulsanti in vetro chiaro con testi blu scuro. Le pagine degli album, il visualizzatore e il schermo intero restano invariati.
 - Carte energia: sfondo del colore del loro tipo (Fuoco, Acqua, Erba, Lampo, Psico, Lotta, Oscurità, Metallo; le speciali incolore). Le Allenatore restano grigie.
