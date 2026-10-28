@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quinvicies)
+- Icona bustina con illustrazione centrata più grande; badge bustine in home non più rosso.
+- "Apri un'altra": tolto l'effetto in alto; stesso per gli altri tasti blu.
+- Tocca l'icona bustina nella schermata di scelta: scheda con bustine apribili, barra che avanza verso la prossima e conto alla rovescia.
+- Prima carta: comparsa senza opacità sul contenitore 3D (niente salto finale); il taglio di luce sparisce subito all'apertura.
+
 ## 29 ottobre 2026 (quatervicies)
 - Icona pennello: punta solo contorno, senza riempimento.
 
