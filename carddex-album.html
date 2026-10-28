@@ -56,7 +56,7 @@ footer button{background:none;border:0;color:var(--mut);font:inherit;text-decora
 .bk{transform:rotateY(180deg);background:radial-gradient(circle at 50% 40%,#2f5ec4,#18306d 70%);border:7px solid #e8c34a;display:flex;align-items:center;justify-content:center}
 .bk i{width:46%;aspect-ratio:1;border-radius:50%;border:4px solid #14182a;background:linear-gradient(#e0453a 0 45%,#14182a 45% 55%,#f4f4f4 55%)}
 #vx,#vf{position:absolute;border:0;color:#fff;background:var(--bt);border-radius:20px;font:inherit}
-#vx{top:calc(10px + env(safe-area-inset-top,0px));right:12px;width:38px;height:38px;font-size:18px}
+#vx{top:var(--hbt,calc(8px + env(safe-area-inset-top,0px)));right:var(--hbr,16px);width:38px;height:38px;font-size:18px}
 #vf{bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);padding:11px 22px;font-size:15px}
 /* tema chiaro modalità Gioco (liquid glass) */
 html.gml{background:linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%) no-repeat 0 0/100% 100%,#9db7e6!important}
@@ -218,11 +218,12 @@ body::before{display:none!important}
 html,body{background:linear-gradient(#0b0b0e,#000 60%)!important}
 html:not(.gml){background:linear-gradient(#0b0b0e,#000 60%) no-repeat 0 0/100% 100%,#0b0b0e!important}
 html.h0 #app{visibility:hidden}
-#pkbar{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
+#pk{--pkb:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px))}
+#pkbar{position:absolute;left:16px;right:16px;bottom:var(--pkb);height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
 #pkbar .pbl{flex:1}
 #pkbar button,#pkbk{position:relative;width:38px;height:38px;padding:0;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.55);color:#1b2a49;box-sizing:border-box;flex:none}
-#pkbar svg{width:19px;height:19px}
-#pkbar i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff453a;color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
+#pkbar svg{width:19px;height:19px}#pkbar b{font:700 14px -apple-system,system-ui,sans-serif}
+#pkbar i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#1b2a49;box-shadow:0 0 0 1.5px rgba(255,255,255,.85);color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
 #pkbar i:empty{display:none}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 #tst{z-index:200!important}
@@ -466,12 +467,12 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #card>.bk{transform:rotateY(180deg) translateZ(calc(var(--cd)/2))}
 #card>i.sw{position:absolute;inset:auto;height:calc(var(--cd) - .8px);border-radius:0;box-shadow:none;overflow:visible;-webkit-backface-visibility:visible;backface-visibility:visible;pointer-events:none}
 #pkb{position:relative}
-#pkb i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff453a;color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
+#pkb i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#1b2a49;color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box;box-shadow:0 0 0 1.5px rgba(255,255,255,.85)}
 #pkb i:empty{display:none}
 #pk{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;color:#fff;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;background:radial-gradient(110% 70% at 50% 35%,#27304f 0,#0b0d18 65%,#05060a 100%);overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none}
 #pk[hidden]{display:none}
 #pk{--tx:none}
-.pkx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:14px;z-index:4;width:40px;height:40px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.pkx{position:absolute;top:var(--hbt,calc(8px + env(safe-area-inset-top,0px)));right:var(--hbr,16px);z-index:4;width:38px;height:38px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
 .pkx svg{width:18px;height:18px}
 .pkt1{margin-top:calc(16px + env(safe-area-inset-top,0px));text-align:center}
 .pkt1 b{display:block;font-size:22px;font-weight:650}
@@ -515,7 +516,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #pkc2{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));text-align:center;font-size:14px;color:rgba(235,235,245,.7);pointer-events:none}
 #pkg{position:absolute;left:50%;top:46%;width:130vw;height:130vw;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(circle,rgba(255,214,10,.45) 0,rgba(255,214,10,.12) 35%,transparent 62%)}
 #pkg.on{opacity:1}
-#pksum{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;padding:calc(66px + env(safe-area-inset-top,0px)) 14px calc(18px + env(safe-area-inset-bottom,0px));background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%),linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%);color:#1b2a49}
+#pksum{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;padding:calc(66px + env(safe-area-inset-top,0px)) 14px calc(var(--pkb) + 52px + 14px);background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%),linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%);color:#1b2a49}
 #pksum[hidden]{display:none}
 #pksum h2{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));left:56px;right:56px;margin:0;line-height:40px;text-align:center;font-size:20px;font-weight:650;color:#1b2a49}
 .pkgd{flex:1;min-height:0;overflow:auto;width:100%;max-width:460px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-content:start}
@@ -532,9 +533,9 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkgd .pkn{left:3px;top:3px;font-size:9px;padding:2px 5px}
 .pkgd .ho{box-shadow:0 0 0 2px #ffd60a,0 0 14px rgba(255,214,10,.6)}
 .pkgd>div{box-shadow:0 4px 10px rgba(40,70,120,.28)}
-.pkbt{display:flex;gap:10px;width:100%;max-width:460px;margin-top:12px}
-.pkbt button{flex:1;padding:14px;border-radius:16px;border:1px solid rgba(27,42,73,.18);background:rgba(255,255,255,.7);color:#1b2a49;font:600 16px -apple-system,system-ui,sans-serif}
-.pkbt button.p{background:#0a84ff;border-color:#0a84ff}
+.pkbt{position:absolute;left:16px;right:16px;bottom:var(--pkb);height:52px;box-sizing:border-box;display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2)}
+.pkbt button{flex:1;height:38px;padding:0 12px;border-radius:999px;border:0;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,system-ui,sans-serif;white-space:nowrap}
+.pkbt button.p{background:#0a84ff;color:#fff}
 .pkpf{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 22px rgba(0,0,0,.4);background:radial-gradient(ellipse 60% 44% at 42% 38%,rgba(255,255,255,.3),transparent 70%),linear-gradient(90deg,rgba(0,0,0,.3),transparent 13%,transparent 87%,rgba(0,0,0,.3)),linear-gradient(0deg,rgba(0,0,0,.28),transparent 12%,transparent 90%,rgba(0,0,0,.2))}
 /* bustina curva */
 .pkcap,.pkbody{position:absolute;inset:0;transform-style:preserve-3d}
@@ -551,7 +552,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkray{position:absolute;left:50%;top:46%;width:110vw;height:110vw;margin:-55vw 0 0 -55vw;will-change:transform,opacity;border-radius:50%;pointer-events:none;z-index:0;opacity:0}
 .pkst{position:absolute;left:50%;top:46%;border-radius:50%;pointer-events:none;z-index:2}
 #pks[hidden],#pkp[hidden],.pkx[hidden]{display:none}
-.pkhm{left:14px;right:auto}
+.pkhm{left:var(--hbl,16px);right:auto}
 .pkhm svg{width:20px;height:20px}
 .pkchg{left:50%;right:auto;top:auto;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:auto;height:36px;padding:0 18px;border-radius:18px;font:600 14px -apple-system,system-ui,sans-serif}
 #hmbtn{width:38px;height:38px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.12);flex:none}
@@ -611,7 +612,7 @@ h1.hg .hbl{justify-self:start;display:flex}h1.hg small{justify-self:end}
 <div id="book"></div>
 <div id="slw"><input id="sl" type="range" min="0" max="0" value="0" step="1" aria-label="Scorri le pagine"></div>
 <button id="hud" aria-label="Mostra comandi"></button>
-<footer><span id="pn"></span><button id="pkb" hidden aria-label="Bustine"><i id="pkbn"></i></button><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.3 3.7a1.9 1.9 0 0 0-2.7 0l-7.4 7.5 2.7 2.7 7.4-7.5a1.9 1.9 0 0 0 0-2.7z"/><path d="M10.2 11.2l2.6 2.6"/><path d="M10.9 14.3c-2.7-.8-5.2.9-5.2 3.3 0 1.2-.7 2.3-1.9 2.9 3.9 1.3 8.2-.1 8.6-3.9z" fill="currentColor" fill-opacity=".18"/></svg></button><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg></button></footer>
+<footer><span id="pn"></span><button id="pkb" hidden aria-label="Bustine"><i id="pkbn"></i></button><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.3 3.7a1.9 1.9 0 0 0-2.7 0l-7.4 7.5 2.7 2.7 7.4-7.5a1.9 1.9 0 0 0 0-2.7z"/><path d="M10.2 11.2l2.6 2.6"/><path d="M10.9 14.3c-2.7-.8-5.2.9-5.2 3.3 0 1.2-.7 2.3-1.9 2.9 3.9 1.3 8.2-.1 8.6-3.9z" fill="currentColor" fill-opacity=".85"/></svg></button><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg></button></footer>
 </div>
 <div id="sh" hidden></div>
 <div id="sr" hidden><div class="sb"><p>Effettua una ricerca</p><input id="sri" type="search" autocapitalize="off" autocomplete="off"><button id="srok">Cerca</button><button id="srno">Annulla</button></div></div>
@@ -1243,7 +1244,7 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   el.innerHTML=`<button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx pkchg" id="pkchg" aria-label="Cambia bustina" hidden>Cambia bustina</button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;$("#pkchg").onclick=()=>{if(!pkBusy)pkChoose()};
-  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pkbar"><span class="pbl">Set Base</span><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Punti">${PTI}<i id="pkbpn"></i></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div>`;
+  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pkbar"><span class="pbl">Set Base</span><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Punti"><b id="pkbpn">0</b></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div>`;
   $("#pkbc").onclick=cvOpen;$("#pkbp").onclick=ptOpen;
   p.querySelectorAll(".pkpr button").forEach(b=>b.onclick=()=>{if(p.classList.contains("go"))return;const i=+b.dataset.i,im=b.querySelector("img"),rc=im.getBoundingClientRect();p.classList.add("go");p.querySelectorAll(".pkpr button").forEach(o=>{if(o!==b)o.style.opacity=0});b.querySelector("span").style.opacity=0;im.style.visibility="hidden";pkStage(i,rc);setTimeout(()=>{p.hidden=true;p.classList.remove("go");p.querySelectorAll(".pkpr button").forEach(o=>{o.style.opacity="";o.querySelector("span").style.opacity="";o.querySelector("img").style.visibility=""})},340)});
   pkGestures();return el}
@@ -1255,7 +1256,10 @@ const PKPT={C:1,U:2,R:3};
 let cvSel={};
 function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}L.sort((a,b)=>(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
-function pkBarUpd(){const a=$("#pkbpn"),b=$("#pkbkn");if(a)a.textContent=pkSt().pts||"";if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
+function pkAlign(){try{const R=document.documentElement.style,h=$("#hmbtn"),t=$("#stat");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px")}}if(t){const a=t.getBoundingClientRect();if(a.height)R.setProperty("--hbr",(innerWidth-a.right)+"px")}
+  const f=document.querySelector("#app footer"),e=$("#pk");if(!f||!e)return;const a=f.getBoundingClientRect(),b=e.getBoundingClientRect();if(a.height&&b.height)e.style.setProperty("--pkb",Math.max(0,b.bottom-a.bottom)+"px")}catch(x){}}
+addEventListener("resize",pkAlign);
+function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.textContent=v;a.style.fontSize=v>99?"11px":"14px"}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvh"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
@@ -1404,7 +1408,7 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
 const HMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg>';
-const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3l1.5 1.2L10 3l1.5 1.2L13 3l1.5 1.2L16 3l1 .8V20l-1 .8-1.5-1.2L13 21l-1.5-1.2L10 21l-1.5-1.2L7 21l-1-.8V3.8z"/><path d="M9.5 10h5M9.5 14h5"/></svg>';
+const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3l1.5 1.2L10 3l1.5 1.2L13 3l1.5 1.2L16 3l1 .8V20l-1 .8-1.5-1.2L13 21l-1.5-1.2L10 21l-1.5-1.2L7 21l-1-.8V3.8z"/><rect x="9" y="6.6" width="6" height="5.4" rx=".9" fill="currentColor" stroke="none"/></svg>';
 const ALI='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M24 13c-4-3-9-4-15-3v27c6-1 11 0 15 3 4-3 9-4 15-3V10c-6-1-11 0-15 3z"/><path d="M24 13v27"/><path d="M14 19.5h5M14 25h5M29 19.5h5M29 25h5" stroke-opacity=".7"/></svg>';
 const PKL='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="12" y="6" width="24" height="36" rx="3.5"/><path d="M12 12h24M12 36h24" stroke-opacity=".7"/><path d="M24 17.5l2.2 5.3 5.3 2.2-5.3 2.2-2.2 5.3-2.2-5.3-5.3-2.2 5.3-2.2z"/></svg>';
 function homeBuild(){let h=$("#hm");if(h)return h;h=document.createElement("div");h.id="hm";h.hidden=true;
@@ -1420,6 +1424,7 @@ if(MODE==="g"){document.documentElement.classList.add("gml");pkTheme("#9db7e6");
 }
 if(MODE){const h1=document.querySelector("header h1"),tn=h1&&h1.firstChild;if(tn&&tn.nodeType===3){const L=document.createElement("span");L.className="hbl";L.innerHTML='<button id="hmbtn" aria-label="Home">'+HMI+'</button>';const C=document.createElement("span");C.className="hc";C.textContent=MODE==="g"?"Gioco":"Collezione";h1.replaceChild(C,tn);h1.insertBefore(L,C);h1.classList.add("hg");$("#hmbtn").onclick=homeBack}}
 if(!MODE)homeShow();
+requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 (()=>{const vw=$("#vw"),m=document.querySelector("meta[name=theme-color]");if(!vw||!m)return;new MutationObserver(()=>{document.documentElement.classList.toggle("vwo",!vw.hidden);if(!vw.hidden)setTC("#05060a");else{const p=$("#pk");setTC(p&&!p.hidden?(p.classList.contains("studio")?"#9db7e6":"#0a0c17"):MODE==="g"?"#9db7e6":"#0b0b0e")}}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */

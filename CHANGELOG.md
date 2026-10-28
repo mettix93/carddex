@@ -2,6 +2,11 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (vicies)
+- Barra scelta bustina e barra del riepilogo allineate (misurate) alla barra degli album; riepilogo con tasti in vetro da 38px.
+- Tasti home e X con stessa dimensione e posizione dei tasti in alto negli album (anche nel visualizzatore carta).
+- Icona bustina senza righe, con quadratino scuro in alto; punta del pennello piena; badge bustine in blu scuro; i punti sostituiscono la stella.
+
 ## 29 ottobre 2026 (novodecies)
 - Barra scelta bustina identica alla barra degli album (stessa posizione, bottoni tondi da 38px, badge).
 - Converti: 0/x grigio finché non si seleziona, poi blu.
