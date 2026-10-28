@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (septendecies)
+- Converti doppie: selettore − / n/tot / + in vetro chiaro e più leggero; il numero mostra copie selezionate su copie doppie disponibili.
+
 ## 29 ottobre 2026 (sexdecies)
 - Barra bustine: i tre tasti hanno la stessa dimensione; frecce dell'icona Converti allineate.
 - Converti doppie: carte che scorrono sotto la barra in vetro con sfumatura, − / numero / + su ogni carta, nessun lampeggio al tocco, testo introduttivo su tre righe.
