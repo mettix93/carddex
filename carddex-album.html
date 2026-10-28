@@ -78,7 +78,7 @@ body.gm .tab:not(.on) .si{opacity:.7}
 body.gm #sl::-webkit-slider-runnable-track{background:rgba(27,42,73,.28)}
 body.gm #sl::-webkit-slider-thumb{box-shadow:0 1px 6px rgba(27,42,73,.45),0 0 0 1px rgba(27,42,73,.12)}
 body.gm #hud{color:#1b2a49}
-body.gm #book{background:linear-gradient(#0b0b0e,#000 60%)}
+html body.gm .sheet,html body.gm .flp{background-color:transparent!important;background-image:var(--pgimg,none),linear-gradient(var(--pgbg,#08080a),var(--pgbg,#08080a)),linear-gradient(#000,#000)!important}
 body.gm #vw{background:rgba(5,6,10,.94)}
 </style><style>
 header{padding:8px 14px 2px}
@@ -1331,7 +1331,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261028222653";
+const BUILD="B261028222736";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
