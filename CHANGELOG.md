@@ -3,6 +3,7 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 28 ottobre 2026
+- Apertura bustina in stile Pocket: scena luminosa con pavimento lucido e riflessi, anello di bustine dietro, scintille, la bustina cade dall'alto e si fa girare (con inerzia). Toccandola si avvicina e compare la linea luminosa azzurra: trascinando il dito lungo la linea diventa rosa, poi lampo, anello dorato e la saldatura vola via.
 - Pulsante casetta per tornare alla home: in alto a sinistra nella schermata bustine e a sinistra del titolo nell'album (Collezione e Gioco). «Cambia bustina» è passato sotto la bustina.
 
 ## 27 ottobre 2026
