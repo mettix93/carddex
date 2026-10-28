@@ -224,8 +224,7 @@ body.gm #app .tab.on{background:#fff!important}
 #cvok,#ptx{box-shadow:none!important;border:0!important}
 body.gm #app #stat::before,body.gm #app .tab::before{display:none}
 
-#pk{--pkb:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px))}
-#pkbar{position:absolute;left:16px;right:16px;bottom:var(--pkb);height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
+#pkbar{position:absolute;left:16px;right:16px;bottom:var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px)));height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
 #pkbar .pbl{flex:1}
 #pkbar button,#pkbk{position:relative;width:38px;height:38px;padding:0;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.55);color:#1b2a49;box-sizing:border-box;flex:none}
 #pkbar svg{width:19px;height:19px}#pkbar b{font:700 14px -apple-system,system-ui,sans-serif}
@@ -508,6 +507,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkic svg{width:calc(var(--pw)*.34);height:calc(var(--pw)*.34)}
 .pkti{position:absolute;left:0;right:0;top:56%;text-align:center;font-size:calc(var(--pw)*.2);font-weight:900;line-height:1;letter-spacing:.02em;text-shadow:0 2px 0 rgba(0,0,0,.35)}
 .pkcn{position:absolute;left:0;right:0;bottom:12%;text-align:center;font-size:calc(var(--pw)*.065);letter-spacing:.2em;color:rgba(255,255,255,.9)}
+.pkwash{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 46%,#fff 0,#e3eeff 40%,#bcd2f8 100%)}
 .pkcl{position:absolute;left:0;top:10%;height:3px;width:calc(var(--cut,0)*100%);background:#fff;box-shadow:0 0 10px 2px #fff;transform:translateZ(3px);pointer-events:none;opacity:0}
 #pkw.cutting .pkcl{opacity:1}
 #pkm{position:absolute;left:0;right:0;bottom:calc(26px + env(safe-area-inset-bottom,0px));margin:0;text-align:center;font-size:14px;color:rgba(235,235,245,.65);padding:0 28px;pointer-events:none}
@@ -528,7 +528,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #pkc2{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom,0px));text-align:center;font-size:14px;color:rgba(235,235,245,.7);pointer-events:none}
 #pkg{position:absolute;left:50%;top:46%;width:130vw;height:130vw;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;opacity:0;transition:opacity .6s;background:radial-gradient(circle,rgba(255,214,10,.45) 0,rgba(255,214,10,.12) 35%,transparent 62%)}
 #pkg.on{opacity:1}
-#pksum{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;padding:calc(66px + env(safe-area-inset-top,0px)) 14px calc(var(--pkb) + 52px + 14px);background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%),linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%);color:#1b2a49}
+#pksum{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;padding:calc(66px + env(safe-area-inset-top,0px)) 14px calc(var(--pkb,10px) + 52px + 14px);background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%),linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%);color:#1b2a49}
 #pksum[hidden]{display:none}
 #pksum h2{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));left:56px;right:56px;margin:0;line-height:40px;text-align:center;font-size:20px;font-weight:650;color:#1b2a49}
 .pkgd{flex:1;min-height:0;overflow:auto;width:100%;max-width:460px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-content:start}
@@ -545,7 +545,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkgd .pkn{left:3px;top:3px;font-size:9px;padding:2px 5px}
 .pkgd .ho{box-shadow:0 0 0 2px #ffd60a,0 0 14px rgba(255,214,10,.6)}
 .pkgd>div{box-shadow:0 4px 10px rgba(40,70,120,.28)}
-.pkbt{position:absolute;left:16px;right:16px;bottom:var(--pkb);height:52px;box-sizing:border-box;display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2)}
+.pkbt{position:absolute;left:16px;right:16px;bottom:var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px)));height:52px;box-sizing:border-box;display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2)}
 .pkbt button{flex:1;height:38px;padding:0 12px;border-radius:999px;border:0;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,system-ui,sans-serif;white-space:nowrap}
 .pkbt button.p{background:#0a84ff;color:#fff}
 .pkpf{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 22px rgba(0,0,0,.4);background:radial-gradient(ellipse 60% 44% at 42% 38%,rgba(255,255,255,.3),transparent 70%),linear-gradient(90deg,rgba(0,0,0,.3),transparent 13%,transparent 87%,rgba(0,0,0,.3)),linear-gradient(0deg,rgba(0,0,0,.28),transparent 12%,transparent 90%,rgba(0,0,0,.2))}
@@ -1269,7 +1269,8 @@ let cvSel={};
 function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}L.sort((a,b)=>(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,h=$("#hmbtn"),t=$("#stat");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px")}}if(t){const a=t.getBoundingClientRect();if(a.height)R.setProperty("--hbr",(innerWidth-a.right)+"px")}
-  const f=document.querySelector("#app footer"),e=$("#pk");if(f){const a=f.getBoundingClientRect();if(a.height)R.setProperty("--fbb",Math.max(0,innerHeight-a.bottom)+"px")}if(!f||!e)return;const a=f.getBoundingClientRect(),b=e.getBoundingClientRect();if(a.height&&b.height)e.style.setProperty("--pkb",Math.max(0,b.bottom-a.bottom)+"px")}catch(x){}}
+  const f=document.querySelector("#app footer");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
+  const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-a.bottom);if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
 function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.textContent=v;a.style.fontSize=v>99?"11px":"14px"}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
@@ -1349,8 +1350,8 @@ function pkOpen(){if(pkBusy)return;pkBusy=1;pkPh="open";$("#pk").classList.add("
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
   w.classList.remove("cutting");w.querySelectorAll(".pkct,.pkcl").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:140,fill:"forwards"})}catch(e){}setTimeout(()=>{f.style.display="none"},160)});
   const tl=w.classList.contains("rl")?-3.5:3.5;try{a.animate([{transform:`translate(0,0) rotate(${tl}deg)`,opacity:1},{transform:"translate(70px,-130px) rotate(26deg)",opacity:0}],{duration:560,easing:"ease-out",fill:"forwards"})}catch(e){}
-  setTimeout(()=>{$('#pk').classList.remove('studio');pkTheme('#0a0c17');setTimeout(()=>{pkDeck(res);pkBurst(res)},200);try{b.animate([{opacity:1},{opacity:0}],{duration:300,easing:"ease-out",fill:"forwards"})}catch(e){}
-    setTimeout(()=>{w.style.display="none";$("#pk").classList.remove("opening")},350)},300)}
+  {const wa=document.createElement("div");wa.className="pkwash";$("#pk").appendChild(wa);try{wa.animate([{opacity:0},{opacity:1,offset:.4},{opacity:0}],{duration:1000,easing:"ease-in-out"})}catch(e){}setTimeout(()=>wa.remove(),1030)}
+  setTimeout(()=>{$('#pk').classList.remove('studio');pkTheme('#0a0c17');w.style.display="none";$("#pk").classList.remove("opening");pkDeck(res);pkBurst(res)},400)}
 let pkRayU={};
 function pkRayImg(col){if(pkRayU[col])return pkRayU[col];const N=512,c=document.createElement("canvas");c.width=c.height=N;const x=c.getContext("2d");x.translate(N/2,N/2);
   const g=x.createRadialGradient(0,0,0,0,0,N/2);g.addColorStop(0,`rgba(${col},.85)`);g.addColorStop(.7,`rgba(${col},.25)`);g.addColorStop(1,`rgba(${col},0)`);x.fillStyle=g;
@@ -1359,7 +1360,7 @@ function pkRayImg(col){if(pkRayU[col])return pkRayU[col];const N=512,c=document.
 function pkBurst(res){const p=$("#pk"),hol=res.some(x=>x.c.h),col=hol?"255,214,10":"190,215,255";
   setTimeout(()=>{if(!p||p.hidden)return;const r=document.createElement("img");r.className="pkray";r.alt="";r.src=pkRayImg(col);p.appendChild(r);
   try{r.animate([{opacity:0,transform:"scale(.4)"},{opacity:.9,offset:.3},{opacity:0,transform:"scale(1.2)"}],{duration:900,easing:"ease-out"})}catch(e){}
-  setTimeout(()=>r.remove(),930)},220)}
+  setTimeout(()=>r.remove(),930)},120)}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 let pkCur=null,pkNx=null,pkLock=0,pkRYc=0,pkRXc=0;
 const SP=1.9;
@@ -1429,11 +1430,11 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
 const HMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg>';
-const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M7 3l1.5 1.2L10 3l1.5 1.2L13 3l1.5 1.2L16 3l1 .8V20l-1 .8-1.5-1.2L13 21l-1.5-1.2L10 21l-1.5-1.2L7 21l-1-.8V3.8z"/><rect x="8.6" y="7.2" width="6.8" height="9.6" rx="1" fill="currentColor" stroke="none"/></svg>';
+const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M6 4.2L7.5 3 9 4.2 10.5 3 12 4.2 13.5 3 15 4.2 16.5 3 18 4.2V19.8L16.5 21 15 19.8 13.5 21 12 19.8 10.5 21 9 19.8 7.5 21 6 19.8z"/><rect x="8.5" y="7.5" width="7" height="9" rx="1" fill="currentColor" stroke="none"/></svg>';
 const ALI='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M24 13c-4-3-9-4-15-3v27c6-1 11 0 15 3 4-3 9-4 15-3V10c-6-1-11 0-15 3z"/><path d="M24 13v27"/><path d="M14 19.5h5M14 25h5M29 19.5h5M29 25h5" stroke-opacity=".7"/></svg>';
 const PKL='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="12" y="6" width="24" height="36" rx="3.5"/><path d="M12 12h24M12 36h24" stroke-opacity=".7"/><path d="M24 17.5l2.2 5.3 5.3 2.2-5.3 2.2-2.2 5.3-2.2-5.3-5.3-2.2 5.3-2.2z"/></svg>';
 function homeBuild(){let h=$("#hm");if(h)return h;h=document.createElement("div");h.id="hm";h.hidden=true;
-  h.innerHTML=`<h1>CardDex</h1><div class="hmw"><button class="hmb" id="hmc" style="--a:#ffd60a;--b:#ff9f0a">${ALI}<div><b>Collezione</b><span>Il tuo album personale, carta per carta</span></div></button><button class="hmb" id="hmg" style="--a:#ff9f0a;--b:#ff375f">${PKL}<div><b>Gioco</b><span>Una bustina al giorno, album da riempire</span></div><i id="hmn"></i></button></div>`;
+  h.innerHTML=`<h1>CardDex</h1><div class="hmw"><button class="hmb" id="hmc" style="--a:#ffd60a;--b:#ff9f0a">${ALI}<div><b>Collezione</b><span>Il tuo album personale, carta per carta</span></div></button><button class="hmb" id="hmg" style="--a:#ff9f0a;--b:#ff375f">${PKI}<div><b>Gioco</b><span>Una bustina al giorno, album da riempire</span></div><i id="hmn"></i></button></div>`;
   document.body.appendChild(h);
   const go=m=>{try{sessionStorage.setItem("cdmode",m)}catch(e){}};
   $("#hmc").onclick=()=>{go("c");if(MODE!=="c")fadeTo(()=>location.reload());else{h.classList.add("out");setTimeout(()=>{h.hidden=true;h.classList.remove("out")},250)}};

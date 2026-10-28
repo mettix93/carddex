@@ -2,6 +2,11 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (sexvicies)
+- Icona bustina unica (proporzioni 2:3, quadrato centrato) in barre, home e ovunque.
+- Barra scelta bustina: niente più scatto su/giù (la posizione è calcolata al caricamento).
+- Nuova transizione tra taglio e prima carta: lampo morbido di luce che sfuma sul mazzo, così le animazioni non si mischiano.
+
 ## 29 ottobre 2026 (quinvicies)
 - Icona bustina con illustrazione centrata più grande; badge bustine in home non più rosso.
 - "Apri un'altra": tolto l'effetto in alto; stesso per gli altri tasti blu.
