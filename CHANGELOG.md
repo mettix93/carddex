@@ -2,6 +2,15 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 28 ottobre 2026 (notte)
+- Home: casetta anche entrando da Collezione (prima mancava) e titolo centrato; home ridisegnata con icone nello stile dell'app e testo «Il tuo album personale, carta per carta».
+- Scelta bustina con lo stesso sfondo luminoso del taglio.
+- Bustina non più ruotabile: si tocca per avvicinarla. Il fascio azzurro di taglio ora ha una luce che scorre da sinistra a destra con dissolvenza.
+- Etichetta «NUOVA!» (senza stellina) più in alto sopra la carta.
+- Immagini: se una carta non carica in alta qualità prova in bassa e poi in PNG prima del segnaposto (es. Energia Combattimento).
+- Riepilogo: carte dimensionate per stare tutte in altezza.
+- Menu ⋯ aperto dal riepilogo ora compare sopra la carta.
+
 ## 28 ottobre 2026 (sera)
 - Bustina: tolti i cloni in cerchio, appare solo quella scelta. Rifatta più semplice e pulita (fronte, retro e bordo sottilissimo come in Pocket); di lato diventa una linea sottile.
 - Taglio: al posto del pallino rosa c'è una lama luminosa che scorre sulla linea e la striscia in alto si solleva mentre tagli.
