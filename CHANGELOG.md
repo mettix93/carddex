@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (bis)
+- Spessore delle carte leggermente aumentato (viewer 2,2 px, mazzo 2,4 px per carta).
+
 ## 29 ottobre 2026
 - Barra di stato dell'iPhone ora sopra lo sfondo dell'app (niente più fascia di colore diverso nelle schermate bustina, mazzo e riepilogo); se non cambia, ricarica l'app dalla home o riaggiungila.
 - Bustina: solo fronte (niente lati/retro/pezzi bianchi). Il raggio azzurro del taglio compare solo dopo il tocco, con una luce più visibile che scorre da sinistra a destra. Tolti pallini e anello all'apertura e sulle holo.

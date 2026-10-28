@@ -384,7 +384,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .hmb b{display:block;font-size:22px;font-weight:650}
 .hmb span{display:block;margin-top:3px;font-size:clamp(11px,3.5vw,14px);white-space:nowrap;color:rgba(235,235,245,.65)}
 .hmb i{position:absolute;right:16px;top:14px;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:#ff453a;color:#fff;font:700 13px/24px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
-#card{--cd:1.6px}
+#card{--cd:2.2px}
 #card>.ft{transform:translateZ(calc(var(--cd)/2))}
 #card>.bk{transform:rotateY(180deg) translateZ(calc(var(--cd)/2))}
 #card>i.sw{position:absolute;inset:auto;height:calc(var(--cd) - .4px);border-radius:0;box-shadow:none;overflow:visible;-webkit-backface-visibility:visible;backface-visibility:visible;pointer-events:none}
@@ -1219,7 +1219,7 @@ function pkBurst(res){const p=$("#pk"),hol=res.some(x=>x.c.h),col=hol?"255,214,1
   setTimeout(()=>r.remove(),1130)}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 let pkCur=null,pkNx=null,pkLock=0,pkRYc=0,pkRXc=0;
-const SP=1.8;
+const SP=2.4;
 function pkBadgeH(x,big){return x.nw?`<span class="pkn nw">NUOVA!</span>`:`<span class="pkn d">${x.q}x</span>`}
 function pkWalls(rem){const w=Math.min(innerWidth*.74,innerHeight*.6*63/88),h=w*88/63,R=w*.05,d=Math.max(.6,rem*SP-.4),hw=w/2,hh=h/2,D=Math.PI/180;let o="";
   const add=(cx,cy,L,nu)=>{L+=.8;const b=.9+.16*Math.max(0,-.53*Math.cos(nu*D)-.85*Math.sin(nu*D)),m=v=>Math.min(255,Math.round(v*b)),c1=`rgb(${m(246)},${m(246)},${m(249)})`,c2=`rgb(${m(211)},${m(214)},${m(223)})`;
@@ -1304,7 +1304,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261028215220";
+const BUILD="B261028215510";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
