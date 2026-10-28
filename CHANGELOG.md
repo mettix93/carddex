@@ -2,6 +2,13 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quinquies)
+- Modalità Gioco in tema chiaro «liquid glass»: sfondo luminoso come la scena bustina, header, tab, footer e pulsanti in vetro chiaro con testi blu scuro. Le pagine degli album, il visualizzatore e il schermo intero restano invariati.
+- Carte energia: sfondo del colore del loro tipo (Fuoco, Acqua, Erba, Lampo, Psico, Lotta, Oscurità, Metallo; le speciali incolore). Le Allenatore restano grigie.
+- Spessore carta singola a metà strada tra scala reale e prima (carta aperta 1,8 px; mazzo 1,9 px per carta).
+- Holo: effetto rifatto, alone luminoso dietro la carta e riflesso arcobaleno morbido che la attraversa (niente più scatti).
+- Colore della barra di stato (theme-color) aggiornato per ogni schermata bustina/mazzo/riepilogo.
+
 ## 29 ottobre 2026 (quater)
 - Mazzo: sistemato il bug per cui la prima carta sembrava sprofondare ruotando (la faccia non veniva più portata davanti allo spessore) e il bordo chiaro che la incorniciava.
 - Spessore intermedio tra le due versioni (carta aperta 1,9 px, mazzo 2,1 px per carta).
