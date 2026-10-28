@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (tervicies)
+- Gioco: tutti i tasti (home, contatore, pillole set, barra) con lo stesso stile in vetro bianco; un solo blu per le grafiche (#0a84ff).
+- Barra scelta bustina riallineata anche dopo rotazioni/ridimensionamenti.
+- Schermata punti senza stella.
+- Scegliendo una bustina, titolo e barra sfumano subito.
+
 ## 29 ottobre 2026 (duovicies)
 - Stile delle pagine album salvato separatamente per Collezione e Gioco (prima cambiarlo in una modalità lo cambiava anche nell'altra).
 

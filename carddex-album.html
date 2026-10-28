@@ -218,6 +218,11 @@ body::before{display:none!important}
 html,body{background:linear-gradient(#0b0b0e,#000 60%)!important}
 html:not(.gml){background:linear-gradient(#0b0b0e,#000 60%) no-repeat 0 0/100% 100%,#0b0b0e!important}
 html.h0 #app{visibility:hidden}
+body.gm #app #hmbtn,body.gm #app #stat,body.gm #app .tab,body.gm #app footer button,#pk.studio .pkx,#pkbar button,#pkbk,.pkbt button,.cvx{background:rgba(255,255,255,.55)!important;border:1px solid rgba(255,255,255,.75)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 18px rgba(40,70,120,.16)!important;color:#1b2a49!important;-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%)}
+body.gm #app .tab.on{background:#fff!important}
+.pkbt button.p{background:#0a84ff!important;border-color:#0a84ff!important;color:#fff!important}
+body.gm #app #stat::before,body.gm #app .tab::before{display:none}
+
 #pk{--pkb:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px))}
 #pkbar{position:absolute;left:16px;right:16px;bottom:var(--pkb);height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
 #pkbar .pbl{flex:1}
@@ -225,6 +230,8 @@ html.h0 #app{visibility:hidden}
 #pkbar svg{width:19px;height:19px}#pkbar b{font:700 14px -apple-system,system-ui,sans-serif}
 #pkbar i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#1b2a49;box-shadow:0 0 0 1.5px rgba(255,255,255,.85);color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
 #pkbar i:empty{display:none}
+#pkp .pkpt,#pkp #pkbar{transition:opacity .22s ease-in}
+#pkp.go .pkpt,#pkp.go #pkbar{opacity:0;pointer-events:none}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 #tst{z-index:200!important}
 #cvs,#pts{position:fixed;inset:0;z-index:70;color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
@@ -243,7 +250,7 @@ html.h0 #app{visibility:hidden}
 .cvt.on .cvf{box-shadow:0 0 0 2.5px #0a84ff,0 4px 14px rgba(10,132,255,.4)}
 .cvc{position:absolute;left:6px;right:6px;bottom:6px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:space-between;padding:0 4px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(180%);backdrop-filter:blur(14px) saturate(180%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.9);color:#1b2a49}
 .cvc b{font:600 14px -apple-system,system-ui,sans-serif;color:#4e5d7c}.cvc b em{font-style:normal;font-weight:500;color:#4e5d7c}
-.cvt.on .cvc b{color:#0a6ee0}
+.cvt.on .cvc b{color:#0a84ff}
 .cvm{width:24px;height:24px;font:400 20px/22px -apple-system,system-ui,sans-serif;text-align:center;color:#1b2a49}
 .cvt.z .cvm[data-d="1"],.cvt:not(.on) .cvm[data-d="-1"]{opacity:.3}
 .cvq{position:absolute;left:6px;bottom:6px;min-width:26px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:13px;background:rgba(10,12,23,.78);color:#fff;font:700 14px/26px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
@@ -1258,7 +1265,7 @@ function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,h=$("#hmbtn"),t=$("#stat");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px")}}if(t){const a=t.getBoundingClientRect();if(a.height)R.setProperty("--hbr",(innerWidth-a.right)+"px")}
   const f=document.querySelector("#app footer"),e=$("#pk");if(f){const a=f.getBoundingClientRect();if(a.height)R.setProperty("--fbb",Math.max(0,innerHeight-a.bottom)+"px")}if(!f||!e)return;const a=f.getBoundingClientRect(),b=e.getBoundingClientRect();if(a.height&&b.height)e.style.setProperty("--pkb",Math.max(0,b.bottom-a.bottom)+"px")}catch(x){}}
-addEventListener("resize",pkAlign);
+addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
 function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.textContent=v;a.style.fontSize=v>99?"11px":"14px"}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvhd"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
@@ -1274,7 +1281,7 @@ function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x)
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
 function cvOpen(){pkAlign();const e=cvBuild();cvSel={};cvDraw();e.hidden=false}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
-  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pti">'+PTI+'</div><small>I tuoi punti</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">Scambia 10 punti per 1 bustina</button></div>';
+  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><small>I tuoi punti</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">Scambia 10 punti per 1 bustina</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
   $("#ptx").onclick=()=>{const o=pkSt();if((o.pts||0)<10)return;o.pts-=10;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail("B")===1?"1 bustina disponibile":pkAvail("B")+" bustine disponibili";toast("Bustina ottenuta!")};
   return e}
@@ -1289,7 +1296,7 @@ function pkBadge(){const n=pkAvail("B"),b=$("#pkbn");if(b)b.textContent=PKTEST?"
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkScreen(){const e=pkBuild(),n=pkAvail("B");if(n>0)pkChoose();else pkStage(pkSel)}
-function pkChoose(){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");pkBarUpd();e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
+function pkChoose(){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";
   e.classList.remove("holo","close");e.classList.add("studio");pkTheme("#9db7e6");e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
   $("#pks").hidden=true;$("#pkm").hidden=true;$("#pkchg").hidden=true;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
