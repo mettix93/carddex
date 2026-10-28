@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (duodecies)
+- Bordi delle carte negli album più sottili (tutti gli stili).
+- Strisce sopra/sotto: sfondo della pagina esteso a tutto lo schermo senza ripetizioni e colore della barra di stato aggiornato anche nel visualizzatore carta.
+- All'avvio non si vede più l'album prima della home.
+- Transizioni home↔modalità con dissolvenza; apertura bustine dalla modalità Gioco con dissolvenza morbida.
+
 ## 29 ottobre 2026 (undecies)
 - Pagine "Trasparente scuro": bordi delle carte da neri a bianchi semitrasparenti, molto più leggeri (tutte le modalità).
 
