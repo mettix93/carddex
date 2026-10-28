@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (novodecies)
+- Barra scelta bustina identica alla barra degli album (stessa posizione, bottoni tondi da 38px, badge).
+- Converti: 0/x grigio finché non si seleziona, poi blu.
+- Tolto il lampo ovale all'apertura della bustina; corretto il flash laterale a fine effetto holo (riflesso che tornava visibile per un istante).
+- Striscia in alto durante lo sbusto: lo sfondo chiaro dello studio ora viene nascosto del tutto, non solo reso trasparente.
+
 ## 29 ottobre 2026 (octodecies)
 - Scelta bustina: nomi sotto le tre bustine leggibili (blu scuro, grassetto).
 

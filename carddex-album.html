@@ -218,10 +218,12 @@ body::before{display:none!important}
 html,body{background:linear-gradient(#0b0b0e,#000 60%)!important}
 html:not(.gml){background:linear-gradient(#0b0b0e,#000 60%) no-repeat 0 0/100% 100%,#0b0b0e!important}
 html.h0 #app{visibility:hidden}
-#pkbar{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));height:52px;box-sizing:border-box;padding:7px 8px 7px 8px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2);color:#1b2a49}
-#pkbar button,#pkbk{flex:1 1 0;min-width:0;height:38px;border:0;border-radius:999px;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,"SF Pro Text",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 8px;box-sizing:border-box;position:relative}
-#pkbar svg{width:20px;height:20px;flex:none}
-#pkbk{background:rgba(255,255,255,.55)}#pkbar span{white-space:nowrap}
+#pkbar{position:absolute;left:16px;right:16px;bottom:max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));height:52px;box-sizing:border-box;padding:6px 6px 6px 18px;border-radius:999px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2);color:#1b2a49;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif}
+#pkbar .pbl{flex:1}
+#pkbar button,#pkbk{position:relative;width:38px;height:38px;padding:0;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.55);color:#1b2a49;box-sizing:border-box;flex:none}
+#pkbar svg{width:19px;height:19px}
+#pkbar i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff453a;color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
+#pkbar i:empty{display:none}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 #tst{z-index:200!important}
 #cvs,#pts{position:fixed;inset:0;z-index:70;color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
@@ -239,7 +241,7 @@ html.h0 #app{visibility:hidden}
 .cvf img,.cvf .ph{width:100%;height:100%;object-fit:fill;display:block}
 .cvt.on .cvf{box-shadow:0 0 0 2.5px #0a84ff,0 4px 14px rgba(10,132,255,.4)}
 .cvc{position:absolute;left:6px;right:6px;bottom:6px;height:30px;border-radius:15px;display:flex;align-items:center;justify-content:space-between;padding:0 4px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(180%);backdrop-filter:blur(14px) saturate(180%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.9);color:#1b2a49}
-.cvc b{font:600 14px -apple-system,system-ui,sans-serif}.cvc b em{font-style:normal;font-weight:500;color:#4e5d7c}
+.cvc b{font:600 14px -apple-system,system-ui,sans-serif;color:#4e5d7c}.cvc b em{font-style:normal;font-weight:500;color:#4e5d7c}
 .cvt.on .cvc b{color:#0a6ee0}
 .cvm{width:24px;height:24px;font:400 20px/22px -apple-system,system-ui,sans-serif;text-align:center;color:#1b2a49}
 .cvt.z .cvm[data-d="1"],.cvt:not(.on) .cvm[data-d="-1"]{opacity:.3}
@@ -568,7 +570,8 @@ h1.hg .hbl{justify-self:start;display:flex}h1.hg small{justify-self:end}
 .pkflash{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 70% 20% at 50% 47%,rgba(255,255,255,.95),rgba(255,255,255,0) 72%)}
 .pkrng{position:absolute;left:50%;width:260px;height:80px;margin:-40px 0 0 -130px;border:5px solid #ffe066;border-radius:50%;box-shadow:0 0 24px 6px rgba(255,214,10,.7);pointer-events:none;z-index:2}
 #pkstudio{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .7s;background:radial-gradient(ellipse 80% 36% at 50% 64%,#fff 0,rgba(255,255,255,0) 72%),linear-gradient(180deg,#9db7e6 0%,#c4d6f4 38%,#e9f1fe 58%,#fff 70%,#e6eefb 100%)}
-#pk.studio #pkstudio{opacity:1}
+#pk.studio #pkstudio{opacity:1;visibility:visible;transition:opacity .7s}
+#pk:not(.studio) #pkstudio{visibility:hidden;transition:opacity .7s,visibility 0s .7s}
 #pk.studio .pkt1 b{color:#1b2a49}#pk.studio .pkt1 small{color:#4e5d7c}
 #pk.opening #pkwr{filter:none;-webkit-box-reflect:none;animation:none}
 #pk.studio .pkx{color:#1b2a49;background:rgba(255,255,255,.6);border-color:rgba(27,42,73,.18)}
@@ -1240,7 +1243,7 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   el.innerHTML=`<button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx pkchg" id="pkchg" aria-label="Cambia bustina" hidden>Cambia bustina</button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;$("#pkchg").onclick=()=>{if(!pkBusy)pkChoose()};
-  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pkbar"><button id="pkbc" aria-label="Converti doppie">${CVI}<span>Converti</span></button><button id="pkbp" aria-label="Punti">${PTI}<span id="pkbpn">0</span></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<span id="pkbkn">0</span></div></div>`;
+  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pkbar"><span class="pbl">Set Base</span><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Punti">${PTI}<i id="pkbpn"></i></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div>`;
   $("#pkbc").onclick=cvOpen;$("#pkbp").onclick=ptOpen;
   p.querySelectorAll(".pkpr button").forEach(b=>b.onclick=()=>{if(p.classList.contains("go"))return;const i=+b.dataset.i,im=b.querySelector("img"),rc=im.getBoundingClientRect();p.classList.add("go");p.querySelectorAll(".pkpr button").forEach(o=>{if(o!==b)o.style.opacity=0});b.querySelector("span").style.opacity=0;im.style.visibility="hidden";pkStage(i,rc);setTimeout(()=>{p.hidden=true;p.classList.remove("go");p.querySelectorAll(".pkpr button").forEach(o=>{o.style.opacity="";o.querySelector("span").style.opacity="";o.querySelector("img").style.visibility=""})},340)});
   pkGestures();return el}
@@ -1252,7 +1255,7 @@ const PKPT={C:1,U:2,R:3};
 let cvSel={};
 function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}L.sort((a,b)=>(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
-function pkBarUpd(){const a=$("#pkbpn"),b=$("#pkbkn");if(a)a.textContent=pkSt().pts||0;if(b)b.textContent=PKTEST?"∞":pkAvail("B")}
+function pkBarUpd(){const a=$("#pkbpn"),b=$("#pkbkn");if(a)a.textContent=pkSt().pts||"";if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvh"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><p class="cvi">Tocca una carta per convertirne una copia.<br>Comune 1 punto · non comune 2 · rara 3.<br>Ogni 10 punti ottieni una bustina.</p><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Punti da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
@@ -1315,7 +1318,7 @@ function pkGestures(){const stg=$("#pks");let g=null,vel=0,lt=0,lx=0;
 function pkZoom(){if(pkPh!=="show"||pkBusy)return;pkBusy=1;const w=$("#pkw");w.style.transition="transform .5s ease-out";pkRY=Math.round(pkRY/360)*360;pkRX=0;pkApply();
   setTimeout(()=>{$("#pk").classList.add("close");pkPh="close";$("#pkm").textContent="Scorri lungo la linea per tagliare la bustina.";$("#pkchg").hidden=true;pkBusy=0},300)}
 function pkUnzoom(){if(pkPh!=="close")return;$("#pk").classList.remove("close");pkPh="show";$("#pkm").textContent="Tocca la bustina per aprirla.";$("#pkchg").hidden=!(pkAvail("B")>0)}
-function pkOpen(){if(pkBusy)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");{const f=document.createElement('div');f.className='pkflash';$('#pk').appendChild(f);try{f.animate([{opacity:0},{opacity:1,offset:.2},{opacity:0}],{duration:750})}catch(e){}setTimeout(()=>f.remove(),780)}$("#pkchg").hidden=true;const o=pkSt(),S=PKSET.B;o.op=o.op||{};o.op.B=(o.op.B||0)+1;pkSv(o);
+function pkOpen(){if(pkBusy)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");$("#pkchg").hidden=true;const o=pkSt(),S=PKSET.B;o.op=o.op||{};o.op.B=(o.op.B||0)+1;pkSv(o);
   const draw=pkPre||pkDraw("B");pkPre=null;const res=draw.map(c=>({c,...pkAdd(c)}));save();pkCards=res;pkIdx=0;pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
@@ -1359,7 +1362,7 @@ function pkHoloFx(){const q=pkCur,d=$("#pkd");if(!q||!d)return;try{navigator.vib
   const h=document.createElement("div");h.className="pkhalo";d.insertBefore(h,d.firstChild);
   try{h.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.55)"},{opacity:1,transform:"translate(-50%,-50%) scale(1)",offset:.35},{opacity:0,transform:"translate(-50%,-50%) scale(1.25)"}],{duration:1500,easing:"ease-out"})}catch(e){}setTimeout(()=>h.remove(),1540);
   const ft=q._c.querySelector(".ft"),hs=document.createElement("div");hs.className="pkhs";hs.style.cssText="inset:0;border-radius:inherit";hs.innerHTML="<i></i>";ft.appendChild(hs);
-  try{hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1000,easing:"ease-in-out"})}catch(e){}setTimeout(()=>hs.remove(),1050)}
+  try{hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1000,easing:"ease-in-out",fill:"forwards"})}catch(e){}setTimeout(()=>hs.remove(),1000)}
 function pkShow(){const x=pkCards[pkIdx],p=$("#pk");if(!x)return;pkBdgIn(x,pkIdx===0?720:130);const ht=++pkHT;if(x.c.h)setTimeout(()=>{if(ht===pkHT&&pkCards[pkIdx]===x&&!$("#pkd").hidden&&$("#pksum").hidden)pkHoloFx()},pkIdx===0?1100:380);p.style.setProperty("--cc",cardCol(x.c));p.classList.toggle("holo",!!x.c.h);
   const last=pkIdx===pkCards.length-1;$("#pkg").classList.toggle("on",last);$("#pkc2").textContent=(pkIdx+1)+" / "+pkCards.length+(last?" · carta rara":"");
   $("#pkg").style.background=x.c.h?"radial-gradient(circle,rgba(255,214,10,.5) 0,rgba(255,45,149,.15) 38%,transparent 64%)":"radial-gradient(circle,rgba(190,210,255,.35) 0,rgba(190,210,255,.1) 35%,transparent 62%)"}
