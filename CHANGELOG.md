@@ -2,6 +2,11 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quater)
+- Mazzo: sistemato il bug per cui la prima carta sembrava sprofondare ruotando (la faccia non veniva più portata davanti allo spessore) e il bordo chiaro che la incorniciava.
+- Spessore intermedio tra le due versioni (carta aperta 1,9 px, mazzo 2,1 px per carta).
+- Holo: tolto il secondo lampo di raggi che arrivava fuori tempo; il riflesso arcobaleno ora scorre dentro la carta.
+
 ## 29 ottobre 2026 (ter)
 - Tolti i riflessi sugli angoli delle carte quando si girano (spigoli del bordo più scuri e senza sporgenze).
 
