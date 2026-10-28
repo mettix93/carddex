@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (octodecies)
+- Scelta bustina: nomi sotto le tre bustine leggibili (blu scuro, grassetto).
+
 ## 29 ottobre 2026 (septendecies)
 - Converti doppie: selettore − / n/tot / + in vetro chiaro e più leggero; il numero mostra copie selezionate su copie doppie disponibili.
 
