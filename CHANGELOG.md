@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (trigies)
+- Carta aperta e schermo intero: tasti in alto a destra (…, schermo intero, X) tutti 38px, stessa riga e stesso allineamento dei tasti degli album.
+
 ## 29 ottobre 2026 (novvicies)
 - Converti doppie: tolta la riga "Tocca una carta…"; testi "Comune 1 punto · Non comune 2 punti · Rara 3 punti".
 
