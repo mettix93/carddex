@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (ter)
+- Tolti i riflessi sugli angoli delle carte quando si girano (spigoli del bordo più scuri e senza sporgenze).
+
 ## 29 ottobre 2026 (bis)
 - Spessore delle carte leggermente aumentato (viewer 2,2 px, mazzo 2,4 px per carta).
 
