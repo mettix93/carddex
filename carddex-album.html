@@ -383,6 +383,10 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 .hmb b{display:block;font-size:22px;font-weight:650}
 .hmb span{display:block;margin-top:3px;font-size:14px;color:rgba(235,235,245,.65)}
 .hmb i{position:absolute;right:16px;top:14px;min-width:24px;height:24px;padding:0 7px;border-radius:12px;background:#ff453a;color:#fff;font:700 13px/24px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
+#card{--cd:1.6px}
+#card>.ft{transform:translateZ(calc(var(--cd)/2))}
+#card>.bk{transform:rotateY(180deg) translateZ(calc(var(--cd)/2))}
+#card>i.sw{position:absolute;inset:auto;height:var(--cd);border-radius:0;box-shadow:none;overflow:visible;-webkit-backface-visibility:visible;backface-visibility:visible;pointer-events:none;background:linear-gradient(180deg,#d9dbe3,#a9acb9)}
 #pkb{position:relative}
 #pkb i{position:absolute;right:-3px;top:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#ff453a;color:#fff;font:700 11px/17px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal;box-sizing:border-box}
 #pkb i:empty{display:none}
@@ -1091,6 +1095,13 @@ function openCard(i,na){if(na&&!$("#vw").hidden){try{const vb=$("#vbg"),vw0=$("#
   window.__vc=c;$("#vn").textContent=s.n||"";$("#vd").textContent=dtl(s).join(" · ");$("#fr").innerHTML=face(c,1);$("#fr").style.background=c.sid==="S"?"url(\""+tpu(toppsU(c,0))+"\") center/100% 100% no-repeat":"";
   curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);const ev=!!(c.h&&c.kd==="p"&&!c.full&&EVO.has(c.dex));hl.classList.toggle("evo",ev);card.classList.toggle("evoc",ev);hl.classList.toggle("neo","GDVT".includes(c.sid));cry(c);applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",c.sid==="S"?"#4a5062":cardCol(c));vw.style.setProperty("--tx","none");vw.style.setProperty("--tu","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
+/* spessore reale della carta aperta (bordi in percentuale, seguono la dimensione) */
+(()=>{const R=.028,H=88/63,D=Math.PI/180;let o="";
+  const add=(cx,cy,L,nu)=>{const b=(.9+.16*Math.max(0,-.53*Math.cos(nu*D)-.85*Math.sin(nu*D))).toFixed(2);
+    o+=`<i class="sw" style="width:calc(${(L*100).toFixed(3)}% + .8px);left:calc(50% + ${(cx*100).toFixed(3)}% - ${(L*50).toFixed(3)}% - .4px);top:calc(50% + ${(cy/H*100).toFixed(3)}% - var(--cd)/2);transform:rotateZ(${nu+90}deg) rotateX(90deg);filter:brightness(${b})"></i>`};
+  add(0,-H/2,1-2*R,-90);add(0,H/2,1-2*R,90);add(-.5,0,H-2*R,180);add(.5,0,H-2*R,0);
+  [[-.5+R,-H/2+R,180],[.5-R,-H/2+R,270],[.5-R,H/2-R,0],[-.5+R,H/2-R,90]].forEach(([cx,cy,a0])=>{for(let j=0;j<3;j++){const al=a0+15+30*j;add(cx+R*Math.cos(15*D)*Math.cos(al*D),cy+R*Math.cos(15*D)*Math.sin(al*D),2*R*Math.sin(15*D),al)}});
+  card.insertAdjacentHTML("beforeend",o)})();
 const PTS=new Map();let pz=null,pzl=0;
 function pinchReset(){pz=null;pzl=0;PTS.clear();stg.style.transition="none";stg.style.scale="";stg.style.translate=""}
 function pinchStart(){dr=null;sw=null;pzl=1;const a=[...PTS.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)||1;pz={d,mx:(a[0].x+a[1].x)/2,my:(a[0].y+a[1].y)/2};stg.style.transition="none";card.style.transition="transform .3s";ry=Math.round(ry/180)*180;rx=0;ap()}
@@ -1294,7 +1305,7 @@ if(!MODE)homeShow();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261028213353";
+const BUILD="B261028213808";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

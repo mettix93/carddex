@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 28 ottobre 2026 (tarda sera)
+- Spessore reale della carta anche nel visualizzatore (Collezione e Gioco): bordi sottili e angoli arrotondati quando la ruoti; tutti gli effetti restano uguali.
+
 ## 28 ottobre 2026 (notte)
 - Home: casetta anche entrando da Collezione (prima mancava) e titolo centrato; home ridisegnata con icone nello stile dell'app e testo «Il tuo album personale, carta per carta».
 - Scelta bustina con lo stesso sfondo luminoso del taglio.
