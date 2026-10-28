@@ -280,7 +280,7 @@ html::after{content:"";position:fixed;inset:0;z-index:999;background:#05060a;poi
 #lvo{position:fixed;inset:0;z-index:1000;background:#05060a;opacity:0;transition:opacity .22s ease-in;pointer-events:none}
 #lvo.on{opacity:1}
 #hm.out{opacity:0;transition:opacity .25s ease-in}
-@keyframes pkIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+@keyframes pkIn{from{opacity:0}to{opacity:1}}
 #pk:not([hidden]){animation:pkIn .4s cubic-bezier(.2,.7,.2,1)}
 .slot:not(.on):not(.em){opacity:.72}
 .sheet,.pl .sheet,.pr .sheet,.flp,.cs{border-radius:0!important}

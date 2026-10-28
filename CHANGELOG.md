@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (septvicies)
+- Scelta bustina: tolto lo zoom dell'ingresso (spostava la barra giù e poi su); ora solo dissolvenza.
+
 ## 29 ottobre 2026 (sexvicies)
 - Icona bustina unica (proporzioni 2:3, quadrato centrato) in barre, home e ovunque.
 - Barra scelta bustina: niente più scatto su/giù (la posizione è calcolata al caricamento).
