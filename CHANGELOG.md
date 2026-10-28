@@ -2,6 +2,18 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 28 ottobre 2026 (sera)
+- Bustina: tolti i cloni in cerchio, appare solo quella scelta. Rifatta più semplice e pulita (fronte, retro e bordo sottilissimo come in Pocket); di lato diventa una linea sottile.
+- Taglio: al posto del pallino rosa c'è una lama luminosa che scorre sulla linea e la striscia in alto si solleva mentre tagli.
+- Niente casetta mentre sbusti: la X porta al riepilogo delle carte di quella bustina.
+- Etichetta «NUOVA»/«2x» ferma e con dissolvenza: sparisce appena inizi a trascinare la carta, torna se la riporti al suo posto, e quella della carta sotto compare solo a carta completamente visibile.
+- Tolto lo «zoommino» nel passaggio tra le carte del mazzo.
+- Carta holo: effetto di festa (raggi, riflesso arcobaleno, scintille, vibrazione) appena è scoperta del tutto.
+- Caricamenti più veloci: le carte della bustina vengono pescate e precaricate quando scegli la bustina.
+- Riepilogo a 3 colonne; toccando una carta si apre nel visualizzatore.
+- Lati delle carte del mazzo più puliti e morbidi.
+- Titolo «CardDex» centrato (con «Gioco» accanto in modalità Gioco), casetta a sinistra in stile vetro come gli altri pulsanti (anche in Collezione); tolto «Torna alla home» dal menu dei tre puntini.
+
 ## 28 ottobre 2026
 - Apertura bustina in stile Pocket: scena luminosa con pavimento lucido e riflessi, anello di bustine dietro, scintille, la bustina cade dall'alto e si fa girare (con inerzia). Toccandola si avvicina e compare la linea luminosa azzurra: trascinando il dito lungo la linea diventa rosa, poi lampo, anello dorato e la saldatura vola via.
 - Pulsante casetta per tornare alla home: in alto a sinistra nella schermata bustine e a sinistra del titolo nell'album (Collezione e Gioco). «Cambia bustina» è passato sotto la bustina.
