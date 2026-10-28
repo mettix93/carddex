@@ -2,6 +2,12 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (octies)
+- Visualizzatore: sfondo uniforme per tipo, tolto l'alone sfocato dell'illustrazione.
+- Mazzo: la carta sotto ha già l'effetto di luce nella posizione giusta quando inizi a sollevare quella sopra (niente scatti al cambio); apertura bustina più leggera (niente riflesso/ombre pesanti, entrata del mazzo più semplice, raggi più piccoli).
+- Barra strumenti più in basso (a ridosso della curva dello schermo); gli spazi verticali si riadattano da soli. Tab e barra strumenti hanno la stessa altezza (52 px) e gli stessi margini.
+- Gioco: dietro le pagine dell'album c'è di nuovo il fondo nero come in Collezione.
+
 ## 29 ottobre 2026 (septies)
 - Gioco: titolo e testi del visualizzatore e dei menu di nuovo chiari (ereditavano il blu del tema chiaro).
 
