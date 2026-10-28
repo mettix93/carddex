@@ -2,6 +2,15 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026
+- Barra di stato dell'iPhone ora sopra lo sfondo dell'app (niente più fascia di colore diverso nelle schermate bustina, mazzo e riepilogo); se non cambia, ricarica l'app dalla home o riaggiungila.
+- Bustina: solo fronte (niente lati/retro/pezzi bianchi). Il raggio azzurro del taglio compare solo dopo il tocco, con una luce più visibile che scorre da sinistra a destra. Tolti pallini e anello all'apertura e sulle holo.
+- Dalla scelta bustina la bustina scelta si sposta e ingrandisce fino alla scena, senza stacchi.
+- Riepilogo «Carte ottenute»: sfondo luminoso come la scena, dissolvenza dall'ultima carta, titolo in linea con la X, carte più grandi, costruito in anticipo per aprirsi subito.
+- Spessore delle carte senza sfarfallio (colori fissi invece di filtri).
+- Titoli «Collezione» e «Gioco» al posto di CardDex negli album; home senza luci colorate, pulsanti centrati, icone in stile vetro come le altre e testi su una riga.
+- Testi bilanciati per evitare una sola parola a capo.
+
 ## 28 ottobre 2026 (tarda sera)
 - Spessore reale della carta anche nel visualizzatore (Collezione e Gioco): bordi sottili e angoli arrotondati quando la ruoti; tutti gli effetti restano uguali.
 
