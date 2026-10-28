@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (duovicies)
+- Stile delle pagine album salvato separatamente per Collezione e Gioco (prima cambiarlo in una modalità lo cambiava anche nell'altra).
+
 ## 29 ottobre 2026 (unvicies)
 - Schermata Converti: barra in basso e tasto X allineati misurando barra e tasti degli album; corretto un conflitto di nome che rimpiccioliva il titolo.
 
