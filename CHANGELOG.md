@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v188** · Moneta come unità più vicina al numero (Converti doppie e Pokédollari)
 - **v187** · Converti doppie: i numeri con la moneta centrati sotto le scritte «Pokédollari» e «Da convertire»
 - **v186** · Converti: nessun lampo bianco dopo «Converti» (le carte non vengono più ridisegnate, si aggiornano sul posto); messaggi con la spunta al posto del punto esclamativo
 - **v185** · «Da convertire»: blu pieno (#0a84ff) subito, senza dissolvenza di opacità
