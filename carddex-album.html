@@ -1572,7 +1572,7 @@ function pkAlign(){try{const R=document.documentElement.style,f0=document.queryS
   const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
   const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-a.bottom);if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
-function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL+'<i>'+v+'</i>'}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
+function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvhd"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Pokédollari da ottenere</small><b id="cvp">0</b></div><button id="cvz">Azzera</button><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
@@ -1596,7 +1596,7 @@ function bkDraw(){const n=PKTEST?"∞":pkAvail("B"),d=new Date(),m=new Date(d.ge
   const t=Math.floor(ms/1000),p=x=>String(x).padStart(2,"0");$("#bkc").textContent="Prossima tra "+p(Math.floor(t/3600))+":"+p(Math.floor(t%3600/60))+":"+p(t%60)}
 function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);bkT=setInterval(bkDraw,1000)}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
-  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">10 '+COINL+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button></div>';
+  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">10 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
   $("#ptx").onclick=()=>{const o=pkSt();if((o.pts||0)<10)return;o.pts-=10;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail("B")===1?"1 bustina disponibile":pkAvail("B")+" bustine disponibili";toast("Bustina ottenuta!")};
   return e}
@@ -1801,7 +1801,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030002838";
+const BUILD="B261030002946";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

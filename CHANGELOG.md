@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v181** · Barra Bustine: tolto il contatore dal tasto Pokédollari; scambio scritto «10 Pokédollari → 1 bustina»
 - **v180** · Carta aperta: tolti i tre puntini; nome e riga info (set · numero · rarità) alti 44px come i tasti e allineati in cima, con icone e testo sulla stessa linea
 - **v179** · Striscia in alto: un'unica funzione aggiorna sfondo, barra di stato e meta a ogni cambio (tema, mazzo, visualizzatore) e il colore della carta arriva da cima a fondo; Pokédollari al posto di «punti» ovunque, scambio «10 ₽ → 1 bustina»; sulle doppie 1/2/3 monetine con logo più fine; +/− visibili in scuro; puntini prima della tavolozza; barra Bustine con tre icone uguali e contatori in basso a destra; angoli del mazzo corretti (la classe .sw delle pareti ereditava gli stili dell'interruttore); alone bianco dietro le bustine in scuro; margine superiore = inferiore in orizzontale
 - **v178** · Icone nuove (Untitled UI, tratto 2, 24px, currentColor): Bustine, Album (libro con bustina sulla pagina), Collezione, Impostazioni, stile pagine, opzioni, filtro, cerca, schermo intero/riduci, chiudi, converti, holo, note; moneta con logo ₽ per i punti; cerchio 1/2/3 sulle carte doppie con riempimento bianco
