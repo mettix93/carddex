@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quattrotrigies)
+- Messaggi più visibili: pillola più grande con spunta blu, entrata con piccolo rimbalzo, sfondo più pieno.
+- Badge bustine in home: tondo bianco con numero scuro (colore della casella Gioco).
+
 ## 29 ottobre 2026 (tretrigies)
 - Messaggi dopo conversione e scambio punti: vetro in linea con le barre, centrati sopra la barra, entrambi con punto esclamativo.
 
