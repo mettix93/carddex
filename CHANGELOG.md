@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (cinquetrigies)
+- Badge bustine in home spostato sopra l'icona della bustina, come nella barra degli strumenti.
+
 ## 29 ottobre 2026 (quattrotrigies)
 - Messaggi più visibili: pillola più grande con spunta blu, entrata con piccolo rimbalzo, sfondo più pieno.
 - Badge bustine in home: tondo bianco con numero scuro (colore della casella Gioco).
