@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v186** · Converti: nessun lampo bianco dopo «Converti» (le carte non vengono più ridisegnate, si aggiornano sul posto); messaggi con la spunta al posto del punto esclamativo
 - **v185** · «Da convertire»: blu pieno (#0a84ff) subito, senza dissolvenza di opacità
 - **v184** · Converti doppie: tolto Azzera; barra con «Pokédollari» (disponibili) a sinistra, «Da convertire» al centro (0 sbiadito, blu e con piccolo ingrandimento a ogni variazione), Converti a destra; dopo la conversione il totale a sinistra si ingrandisce e si aggiorna
 - **v183** · Orizzontale: bordo sopra e sotto dell'album entrambi minimi (4px), il sotto non è più allargato dalla barra di sistema
