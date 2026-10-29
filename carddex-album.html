@@ -297,8 +297,8 @@ html.gml .nvp.mv .lens{background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1
 html.gml #bgl{background:#fff}
 #app header,#app footer,#book,#slw,#set{transition:none!important}
 #set{animation:none!important}
-body.pkn #app #nv{z-index:60!important;opacity:1!important;pointer-events:auto!important}
-body.pkn #pknv{visibility:hidden}
+body.pkNv #app #nv{z-index:60!important;opacity:1!important;pointer-events:auto!important}
+body.pkNv #pknv{visibility:hidden}
 html body .nvp button svg{width:28px;height:28px}
 html body .nvp .gic{width:38px;height:28px}
 .nvp .gic svg:first-child{width:28px;height:28px;-webkit-mask:radial-gradient(circle at 82% 78%,transparent 8px,#000 8.5px);mask:radial-gradient(circle at 82% 78%,transparent 8px,#000 8.5px)}
@@ -1503,7 +1503,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
   return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
-function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;
+function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;pkObs(el);
   el.innerHTML=`<button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;
@@ -1736,19 +1736,19 @@ function swMode(m,cb){let o=$("#lvo");if(!o){o=document.createElement("div");o.i
 function fx(){const b=document.body;b.classList.remove("fx");void b.offsetWidth;b.classList.add("fx");clearTimeout(fx.t);fx.t=setTimeout(()=>b.classList.remove("fx"),320)}
 function pkHide(){const e=$("#pk");pkClose();if(e){e.hidden=true;e.classList.remove("pkfo")}}
 function goTab(t){const p=$("#pk"),op=p&&!p.hidden,sett=document.body.classList.contains("sett");
-  if(t==="s"){if(sett&&!op)return;NAVB=0;if(op)pkHide();setOpen(1);fx();return}
-  if(t==="b"){if(op&&!sett)return;NAVB=1;if(sett)setOpen(0);setMode("g");pkScreen();return}
+  if(t==="s"){if(sett&&!op)return;NAVB=0;if(op)pkHide();setOpen(1);navSync();fx();return}
+  if(t==="b"){if(op&&!sett)return;NAVB=1;document.body.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync();return}
   if(!op&&!sett&&t===MODE)return;
-  NAVB=0;if(sett)setOpen(0);setMode(t);if(op)pkHide();fx()}
+  NAVB=0;if(sett)setOpen(0);setMode(t);if(op)pkHide();navSync();fx()}
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b)goTab(b.dataset.t)});
-(()=>{const pk=$("#pk");if(!pk)return;const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkn")===on)return;document.body.classList.toggle("pkn",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})})();
+function pkObs(pk){const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
 requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 (()=>{const vw=$("#vw"),m=document.querySelector("meta[name=theme-color]");if(!vw||!m)return;new MutationObserver(()=>{document.documentElement.classList.toggle("vwo",!vw.hidden);if(!vw.hidden)setTC("#05060a");else{const p=$("#pk");setTC(p&&!p.hidden?(p.classList.contains("studio")?STC():"#0a0c17"):isL()?"#ffffff":"#000000")}}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261029215939";
+const BUILD="B261029220542";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v172** · Barra in basso unica anche in Scegli la tua bustina (prima c'era una copia sotto): la lente scorre sempre, in tutti i passaggi da/verso Bustine; test automatico di tutti i passaggi
+
 - **v171** · Stile Apple Contatti: Classica grigio #f2f2f7 con schede bianche, Notte nero con schede #1c1c1e; Impostazioni identica (titoli di sezione, righe 17px, separatori rientrati, angoli 30px); barre in vetro più fedeli
 
 - **v170** · Lente nav corretta anche verso Bustine; separatori come prima; libro con pagine separate; icona Album meno bianco; moneta in stile icone (anche dopo i totali); slider a margini pagina e senza glitch al cambio; sfondi e dissolvenze del mazzo ripristinati; Impostazioni: titolo all'altezza dei tasti in alto e cornici visibili in Classica
