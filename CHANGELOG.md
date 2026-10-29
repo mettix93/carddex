@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (novtrigies)
+- Messaggi: al posto della spunta ora c'è un punto esclamativo.
+
 ## 29 ottobre 2026 (octotrigies)
 - Converti doppie: simbolo di rarità in alto a destra.
 
