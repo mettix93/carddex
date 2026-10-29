@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre 2026 (quadragies)
 
+- **Transizioni uniformi** tra tutti i tab della barra (dissolvenza del contenuto). Badge nuova/doppia a metà tra titolo e carta. Dal riepilogo la X torna a "Scegli la tua bustina".
+
 - **Widget**: considera solo carte Pokémon da gioco (via Allenatore, Energia e Topps). Va riesportato il file dal menu.
 
 - **Widget**: ora mostra solo l'illustrazione della carta, ritagliata e centrata, a tutto widget senza margini (script `widget/carddex-widget.js` da riaggiornare in Scriptable).
