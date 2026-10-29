@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v177** · Versi: non partivano durante lo sbusto (c'era un controllo che li bloccava se il visualizzatore era chiuso), ora partono sempre e vengono precaricati all'apertura; moneta con riempimento bianco; tolti i simboli doppie dall'album Gioco; bustine più chiare (+40%) in tutte le viste (nella scelta il filtro non veniva applicato); sfondo scelta/apertura bustina in Classica uguale a Impostazioni (#f2f2f7); striscia in alto: un solo colore sincronizzato (sfondo, meta, barra) a ogni cambio tema
 - **v176** · Tolta la View Transition (su Safari rompeva la larghezza della schermata): dissolvenza ora con un velo del colore del tema, uguale per tutti i passaggi; il cambio avviene solo a velo opaco; lente subito reattiva; test su geometria e velo
 
 - **v175** · Dissolvenza più sicura su Safari: niente regole che alterano la barra o la dimensione dello snapshot; se la dissolvenza si blocca (1,2 s) il passaggio avviene comunque e la dissolvenza si disattiva da sola; test del blocco
