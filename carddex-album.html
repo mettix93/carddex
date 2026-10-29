@@ -1029,8 +1029,8 @@ function widgetExport(){try{const seen=new Set(),L=[];COLS.forEach(co=>st[co.k].
 $("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro delle carte",backMenu],["Esporta carte per il widget",widgetExport]];
   if(!VIEW()){it.push(["Rimuovi gli slot vuoti",()=>confirmSheet("Rimuovere tutti gli slot vuoti? Le carte scorrono per coprire gli spazi.",()=>{st[cur]=st[cur].filter(x=>x.id);save();render()})]);
     it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come mancanti? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
-  it.push(["Esporta backup (senza foto)",()=>{const b=new Blob([JSON.stringify({app:"carddex",v:2,st})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=MODE==="g"?"carddex-gioco-backup.json":"carddex-backup.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}]);
-  it.push(["Importa backup",()=>confirmSheet("Importare un backup sostituisce lo stato attuale (carte ottenute, note, ordine).",()=>{$("#fim").value="";$("#fim").click()}),1]);
+  it.push(["Esporta backup completo (senza foto)",()=>{const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd("carddex2",{}),gm=rd("carddex2g",{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,pk:rd("carddex_pk",{}),pgc:rd("carddex_pgc",{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}]);
+  it.push(["Importa backup",()=>confirmSheet("Importare un backup sostituisce lo stato attuale di entrambi gli album (Collezione e Gioco) e delle bustine. I backup vecchi sostituiscono solo questo album.",()=>{$("#fim").value="";$("#fim").click()}),1]);
   sheet(it,"Opzioni")};
 
 
@@ -1144,9 +1144,16 @@ function pgMenu(){let el=$("#pgp");if(!el){el=document.createElement("div");el.i
 $("#sty").onclick=()=>{sheet([[(CRYON?"Versi Pokémon: attivi":"Versi Pokémon: disattivati"),()=>{CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}],
   [(LUCE?"Luce in movimento sulle pagine: attiva":"Luce in movimento sulle pagine: disattivata"),()=>{LUCE=!LUCE;if(LUCE){mAsked=0;motionOn(1)}else document.documentElement.classList.remove("mv")}],
   ["Colore pagine",pgMenu]],"Stile")};
-$("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j=JSON.parse(await f.text()),s=j&&j.st;if(!s||typeof s!=="object")throw 0;let n=0;
-  COLS.forEach(c=>{if(Array.isArray(s[c.k])){st[c.k]=s[c.k].filter(x=>x&&(!x.id||CARDS[x.id]));n++}});
-  if(!n)throw 0;save();FLT="a";cur="a";SR=[];pg=0;sp=0;tabs();render();sheet([],"Backup importato")}catch(e){sheet([],"File di backup non valido")}};
+$("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!j||typeof j!=="object")throw 0;
+  const cln=s=>{if(!s||typeof s!=="object")return null;const o={};let n=0;COLS.forEach(c=>{if(Array.isArray(s[c.k])){o[c.k]=s[c.k].filter(x=>x&&(!x.id||CARDS[x.id]));n++}});return n?o:null};
+  if(j.v>=3){const C=cln(j.coll),G=cln(j.game);if(!C&&!G)throw 0;const W=(k,o)=>{try{localStorage.setItem(k,JSON.stringify(o))}catch(e){}};
+    if(C){W("carddex2",C);if(MODE!=="g")st=C}if(G){W("carddex2g",G);if(MODE==="g")st=G}
+    if(j.pk&&typeof j.pk==="object")W("carddex_pk",j.pk);
+    if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W("carddex_pgc",PGS);try{applyPgc()}catch(e){}}
+    if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
+    try{pkBadge()}catch(e){}}
+  else{const s=cln(j.st);if(!s)throw 0;Object.assign(st,s)}
+  save();FLT="a";cur="a";SR=[];pg=0;sp=0;tabs();render();sheet([],"Backup importato")}catch(e){sheet([],"File di backup non valido")}};
 
 /* visualizzatore 3D */
 const card=$("#card"),stg=$("#stage"),hl=$(".hl");let ry=0,rx=0,dr=null,curH=false;

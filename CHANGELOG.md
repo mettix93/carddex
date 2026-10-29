@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre 2026 (quadragies)
 
+- **Backup completo**: un unico file con album Collezione, album Gioco, stato bustine/punti, colore pagine e impostazioni. L'import ripristina tutto; i vecchi backup valgono ancora per l'album corrente.
+
 - **Scegli la bustina con la stessa UI**: barra strumenti in alto (alla stessa altezza di quella dell'album), Home/Album in basso con la bustina evidenziata a destra; tolti i tasti home e X in alto.
 
 - **Nuova UI con barra in basso**: Home e Album al centro (liquid glass), bustina separata in basso a destra solo in Gioco. In cima ora ci sono le espansioni, subito sotto gli strumenti (con contatore carte e pagina). Tolti dall'intestazione nome modalità e tasto Home.
