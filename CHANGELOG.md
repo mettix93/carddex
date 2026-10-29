@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (octotrigies)
+- Converti doppie: simbolo di rarità in alto a destra.
+
 ## 29 ottobre 2026 (septtrigies)
 - Simbolo holo negli album tondo; simboli di rarità nelle doppie della stessa dimensione (20px).
 
