@@ -2,7 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
-## 29 ottobre 2026 (quadragies)
+## 29 ottobre
+
+- **v165** · Stile iOS 27: barra strumenti in cima (44pt, sopra i set), barra inferiore flottante 64pt con effetto liquid glass e lente scorrevole, stessi componenti e posizioni in tutte le pagine, tema Notte e Classica 2026 (quadragies)
 
 - **Transizioni uniformi** tra tutti i tab della barra (dissolvenza del contenuto). Badge nuova/doppia a metà tra titolo e carta. Dal riepilogo la X torna a "Scegli la tua bustina".
 
