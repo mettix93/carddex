@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (quadragies)
+- Mazzo sbustato: simbolo NUOVA/doppia sempre tra titolo e carta (anche in orizzontale), contatore 1/11 centrato nello spazio sotto la carta; posizioni ricalcolate a ogni rotazione.
+
 ## 29 ottobre 2026 (novtrigies)
 - Messaggi: al posto della spunta ora c'è un punto esclamativo.
 
