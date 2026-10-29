@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v173** · Slider: pallino bianco da fermo, vetro trasparente e più grande mentre lo trascini; dissolvenza tra le 4 schermate (ora affidabile anche su Safari); niente album sotto Impostazioni; Impostazioni identiche in Notte e Classica; moneta sulle doppie senza cerchio bianco e grande come la stellina holo; moneta unità con cerchio centrato; aggiunto tests/regress.js (si lancia prima di ogni rilascio)
+
 - **v172** · Barra in basso unica anche in Scegli la tua bustina (prima c'era una copia sotto): la lente scorre sempre, in tutti i passaggi da/verso Bustine; test automatico di tutti i passaggi
 
 - **v171** · Stile Apple Contatti: Classica grigio #f2f2f7 con schede bianche, Notte nero con schede #1c1c1e; Impostazioni identica (titoli di sezione, righe 17px, separatori rientrati, angoli 30px); barre in vetro più fedeli
