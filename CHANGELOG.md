@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v184** · Converti doppie: tolto Azzera; barra con «Pokédollari» (disponibili) a sinistra, «Da convertire» al centro (0 sbiadito, blu e con piccolo ingrandimento a ogni variazione), Converti a destra; dopo la conversione il totale a sinistra si ingrandisce e si aggiorna
 - **v183** · Orizzontale: bordo sopra e sotto dell'album entrambi minimi (4px), il sotto non è più allargato dalla barra di sistema
 - **v182** · Pannelli Pokédollari e Bustine: tolti i sottotitoli sotto le barre di progresso
 - **v181** · Barra Bustine: tolto il contatore dal tasto Pokédollari; scambio scritto «10 Pokédollari → 1 bustina»
