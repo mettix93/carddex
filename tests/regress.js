@@ -23,6 +23,11 @@ for(const to of ['s','b','g','c','s','b','c','s','c','g','b','s']){
   const live=document.getAnimations().filter(a=>a.playState==='running'&&a.effect&&a.effect.target&&['pk','pkp','set','book'].includes(a.effect.target.id)).length;
   return {vt:window.__vt-n0,live,op:out.every(x=>x[0]===1),bgs:[...new Set(out.map(x=>x[1]))].length}},to);
  ok(r.vt===1&&r.live===0&&r.op,'passaggio verso '+to+': 1 dissolvenza, nessuna animazione residua ('+r.live+'), schermata opaca '+r.op);await p.waitForTimeout(250)}
+// 2b) se la dissolvenza si blocca, l'app non deve restare ferma: il passaggio avviene lo stesso e la dissolvenza si disattiva
+{const q=await open('c');await q.evaluate(()=>{document.startViewTransition=f=>({finished:new Promise(()=>{}),ready:new Promise(()=>{}),skipTransition(){}})});
+ await q.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await q.waitForTimeout(1600);
+ const r=await q.evaluate(()=>({sett:document.body.classList.contains('sett'),xf:document.body.classList.contains('xf'),off:localStorage.getItem('carddex_vtoff')}));
+ ok(r.sett&&!r.xf&&r.off==='1','dissolvenza bloccata: passaggio comunque eseguito e dissolvenza disattivata')}
 // 3) Impostazioni identiche tra i temi
 const dump=async th=>{const q=await open(th);await q.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await q.waitForTimeout(800);
  return q.evaluate(()=>[...document.querySelectorAll('#set, #set *')].filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect(),c=getComputedStyle(e);return e.tagName+'|'+[r.x,r.y,r.width,r.height].map(v=>v.toFixed(1))+'|'+c.fontSize+'|'+c.fontWeight+'|'+c.borderTopWidth}))};
