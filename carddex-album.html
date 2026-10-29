@@ -218,6 +218,15 @@ body::before{display:none!important}
 html,body{background:linear-gradient(#0b0b0e,#000 60%)!important}
 html:not(.gml){background:linear-gradient(#0b0b0e,#000 60%) no-repeat 0 0/100% 100%,#0b0b0e!important}
 html.h0 #app{visibility:hidden}
+/* v156b: scegli bustina */
+#pk:has(#pkp:not([hidden])) #pkhm,#pk:has(#pkp:not([hidden])) #pkcls{display:none!important}
+#pkp #pkbar{bottom:auto!important;top:var(--tbt,var(--hbt,calc(8px + env(safe-area-inset-top,0px))))}
+#pkp{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
+#pknv{position:absolute;left:16px;right:16px;bottom:var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px)));display:flex;justify-content:center;align-items:center;transition:opacity .22s ease-in}
+#pkp.go #pknv{opacity:0;pointer-events:none}
+#pknv .pkn2{position:absolute;right:0;top:0;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0a84ff;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 #fff,0 8px 24px rgba(40,70,120,.2)}
+#pknv .pkn2 svg{width:24px;height:24px}
+
 /* v155: barra in basso */
 #app header{order:0}#app footer{order:1}#app #book{order:2}#app #slw{order:3}#app #nv{order:4}
 #app footer #stat#stat{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;min-height:0!important;border-radius:0;font:600 13px -apple-system,"SF Pro Text",system-ui,sans-serif;color:inherit;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
@@ -226,25 +235,25 @@ html.h0 #app{visibility:hidden}
 #app footer #pn{white-space:nowrap}
 body.gm #app footer #stat#stat{color:#1b2a49}
 #nv{position:relative;display:flex;justify-content:center;align-items:center;flex:none;margin:0 16px max(10px,calc(env(safe-area-inset-bottom,0px) - 20px));z-index:4}
-#nvp{display:flex;gap:4px;padding:4px;height:52px;box-sizing:border-box;border-radius:999px;position:relative;background:var(--gl);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 10px 30px rgba(0,0,0,.35)}
-#nvp::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 45%);pointer-events:none}
-#nvp button{position:relative;width:86px;height:42px;padding:0;border:0;border-radius:999px;background:none;color:var(--sec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:600 10px/1 -apple-system,"SF Pro Text",system-ui,sans-serif;text-decoration:none}
-#nvp button svg{width:21px;height:21px}
-#nvp button.on{background:rgba(255,255,255,.22);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
-#nvp button:active{filter:brightness(.9)}
+.nvp{display:flex;gap:4px;padding:4px;height:52px;box-sizing:border-box;border-radius:999px;position:relative;background:var(--gl);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 10px 30px rgba(0,0,0,.35)}
+.nvp::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,0) 45%);pointer-events:none}
+.nvp button{position:relative;width:86px;height:42px;padding:0;border:0;border-radius:999px;background:none;color:var(--sec);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:600 10px/1 -apple-system,"SF Pro Text",system-ui,sans-serif;text-decoration:none}
+.nvp button svg{width:21px;height:21px}
+.nvp button.on{background:rgba(255,255,255,.22);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+.nvp button:active{filter:brightness(.9)}
 #nv #pkb{position:absolute;right:0;top:0;width:52px;height:52px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--gl);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 10px 30px rgba(0,0,0,.35);text-decoration:none}
 #nv #pkb[hidden]{display:none}#nv #pkb svg{width:24px;height:24px}
 #nv #pkb i{right:-2px;top:-2px}
-body.gm #nvp,body.gm #nv #pkb{--gl:rgba(255,255,255,.42);border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
-body.gm #nvp{--sec:rgba(27,42,73,.72)}
-body.gm #nvp button.on{background:rgba(255,255,255,.88);color:#0a84ff;box-shadow:inset 0 1px 0 #fff,0 2px 10px rgba(40,70,120,.22)}
+body.gm .nvp,body.gm #nv #pkb,body.gm #pknv .pkn2{--gl:rgba(255,255,255,.42);border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(40,70,120,.2)}
+body.gm .nvp{--sec:rgba(27,42,73,.72)}
+body.gm .nvp button.on{background:rgba(255,255,255,.88);color:#0a84ff;box-shadow:inset 0 1px 0 #fff,0 2px 10px rgba(40,70,120,.22)}
 body.gm #nv #pkb{background:rgba(255,255,255,.55);color:#1b2a49}
 @media (orientation:portrait){#app footer,body.cp #app footer{margin:0 16px!important}body.pv #app .tabs{margin-top:0!important}}
 @media (orientation:landscape) and (max-height:700px){
 #app #nv{position:absolute;left:50%;right:auto;transform:translateX(-50%);bottom:0;margin:0 0 max(6px,env(safe-area-inset-bottom,0px));width:max-content;gap:10px;opacity:0;pointer-events:none;transition:opacity .2s}
 body.ui #app #nv{opacity:1;pointer-events:auto}
 #nv #pkb{position:static;width:44px;height:44px}
-#nvp{height:44px}#nvp button{height:36px;width:60px;flex-direction:row}#nvp button span{display:none}
+.nvp{height:44px}.nvp button{height:36px;width:60px;flex-direction:row}.nvp button span{display:none}
 }
 
 #vx,#vfs,#vsh{width:38px!important;height:38px!important;box-sizing:border-box;top:var(--hbt,calc(8px + env(safe-area-inset-top,0px)))!important;padding:0!important}
@@ -664,7 +673,7 @@ h1.hg .hbl{justify-self:start;display:flex}h1.hg small{justify-self:end}
 <div id="slw"><input id="sl" type="range" min="0" max="0" value="0" step="1" aria-label="Scorri le pagine"></div>
 <button id="hud" aria-label="Mostra comandi"></button>
 <footer><small id="stat"></small><span id="pn"></span><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.3 3.7a1.9 1.9 0 0 0-2.7 0l-7.4 7.5 2.7 2.7 7.4-7.5a1.9 1.9 0 0 0 0-2.7z"/><path d="M10.2 11.2l2.6 2.6"/><path d="M10.9 14.3c-2.7-.8-5.2.9-5.2 3.3 0 1.2-.7 2.3-1.9 2.9 3.9 1.3 8.2-.1 8.6-3.9z"/></svg></button><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg></button></footer>
-<nav id="nv"><div id="nvp"><button id="nvh" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg><span>Home</span></button><button id="nvb" class="on" aria-label="Album" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="4" y="3.5" width="7" height="9" rx="1.6"/><rect x="13" y="3.5" width="7" height="9" rx="1.6"/><rect x="4" y="14.5" width="7" height="6" rx="1.6"/><rect x="13" y="14.5" width="7" height="6" rx="1.6"/></svg><span>Album</span></button></div><button id="pkb" hidden aria-label="Bustine"><i id="pkbn"></i></button></nav>
+<nav id="nv"><div id="nvp" class="nvp"><button id="nvh" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg><span>Home</span></button><button id="nvb" class="on" aria-label="Album" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="4" y="3.5" width="7" height="9" rx="1.6"/><rect x="13" y="3.5" width="7" height="9" rx="1.6"/><rect x="4" y="14.5" width="7" height="6" rx="1.6"/><rect x="13" y="14.5" width="7" height="6" rx="1.6"/></svg><span>Album</span></button></div><button id="pkb" hidden aria-label="Bustine"><i id="pkbn"></i></button></nav>
 </div>
 <div id="sh" hidden></div>
 <div id="sr" hidden><div class="sb"><p>Effettua una ricerca</p><input id="sri" type="search" autocapitalize="off" autocomplete="off"><button id="srok">Cerca</button><button id="srno">Annulla</button></div></div>
@@ -1296,7 +1305,8 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
   el.innerHTML=`<button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx pkchg" id="pkchg" aria-label="Cambia bustina" hidden>Cambia bustina</button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;$("#pkchg").onclick=()=>{if(!pkBusy)pkChoose()};
-  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pkbar"><span class="pbl">Set Base</span><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Punti"><b id="pkbpn">0</b></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div>`;
+  const p=$("#pkp");p.innerHTML=`<p class="pkpt">Scegli la tua bustina</p><div class="pkpr">${PKP.map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${PKIMG[x.k]}"><span>${x.n}</span></button>`).join("")}</div><div id="pknv"><div class="nvp"><button id="pknh" aria-label="Home">${NVH}<span>Home</span></button><button id="pknb" aria-label="Album">${NVA}<span>Album</span></button></div><div class="pkn2" aria-label="Bustine">${PKI}</div></div><div id="pkbar"><span class="pbl">Set Base</span><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Punti"><b id="pkbpn">0</b></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div>`;
+  $("#pknh").onclick=homeBack;$("#pknb").onclick=()=>{if(!pkBusy)pkClose()};
   $("#pkbc").onclick=cvOpen;$("#pkbp").onclick=ptOpen;$("#pkbk").onclick=bkOpen;
   p.querySelectorAll(".pkpr button").forEach(b=>b.onclick=()=>{if(p.classList.contains("go"))return;const i=+b.dataset.i,im=b.querySelector("img"),rc=im.getBoundingClientRect();p.classList.add("go");p.querySelectorAll(".pkpr button").forEach(o=>{if(o!==b)o.style.opacity=0});b.querySelector("span").style.opacity=0;im.style.visibility="hidden";pkStage(i,rc);setTimeout(()=>{p.hidden=true;p.classList.remove("go");p.querySelectorAll(".pkpr button").forEach(o=>{o.style.opacity="";o.querySelector("span").style.opacity="";o.querySelector("img").style.visibility=""})},340)});
   pkGestures();return el}
@@ -1311,6 +1321,7 @@ let cvSel={};
 function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}const RK={R:0,U:1,C:2},KK=c=>c.kd==="p"?0:c.kd==="e"?2:1,rr=c=>{const d=rdOf(c);return RK[d&&d.r]??2};L.sort((a,b)=>rr(a.c)-rr(b.c)||KK(a.c)-KK(b.c)||(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,h=document.querySelector("#app .tabs");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px");R.setProperty("--hbr",(innerWidth-a.right)+"px")}}
+  const ft=document.querySelector("#app footer");if(ft&&innerHeight>innerWidth){const q=ft.getBoundingClientRect();if(q.height)R.setProperty("--tbt",q.top+"px")}else R.removeProperty("--tbt");
   const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
   const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-a.bottom);if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
@@ -1475,6 +1486,7 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
+const NVH=document.querySelector("#nvh").innerHTML.replace(/<span>.*<\/span>/,""),NVA=document.querySelector("#nvb").innerHTML.replace(/<span>.*<\/span>/,"");
 const HMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg>';
 const PKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M6 4.2L7.5 3 9 4.2 10.5 3 12 4.2 13.5 3 15 4.2 16.5 3 18 4.2V19.8L16.5 21 15 19.8 13.5 21 12 19.8 10.5 21 9 19.8 7.5 21 6 19.8z"/><rect x="8.5" y="7.5" width="7" height="9" rx="1" fill="currentColor" stroke="none"/></svg>';
 const ALI='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M24 13c-4-3-9-4-15-3v27c6-1 11 0 15 3 4-3 9-4 15-3V10c-6-1-11 0-15 3z"/><path d="M24 13v27"/><path d="M14 19.5h5M14 25h5M29 19.5h5M29 25h5" stroke-opacity=".7"/></svg>';
