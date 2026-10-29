@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v167** · Cambio tra le 4 schermate immediato e senza transizioni; slider pagine in vetro; sfondi bianco e nero puri come iOS; icone uniformi (tab piene, spessore 2); barra inferiore unica anche in Scegli la tua bustina con animazione lente; sfondo fisso contro le strisce
+
 - **v166** · Passaggi tra pagine senza scatti né schermate intermedie: un velo uniforme copre il cambio e si dissolve a layout pronto
 
 - **v165** · Stile iOS 27: barra strumenti in cima (44pt, sopra i set), barra inferiore flottante 64pt con effetto liquid glass e lente scorrevole, stessi componenti e posizioni in tutte le pagine, tema Notte e Classica 2026 (quadragies)
