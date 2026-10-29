@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (septtrigies)
+- Simbolo holo negli album tondo; simboli di rarità nelle doppie della stessa dimensione (20px).
+
 ## 29 ottobre 2026 (sestrigies)
 - Converti doppie: simbolo di rarità in alto a sinistra (cerchio, rombo, stella) e ordine rare → non comuni → comuni (Pokémon, poi Addestramento, poi Energia a parità di rarità).
 - Messaggi senza sfocatura (si ridisegnavano male alla chiusura della schermata su iOS).
