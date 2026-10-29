@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v176** · Tolta la View Transition (su Safari rompeva la larghezza della schermata): dissolvenza ora con un velo del colore del tema, uguale per tutti i passaggi; il cambio avviene solo a velo opaco; lente subito reattiva; test su geometria e velo
+
 - **v175** · Dissolvenza più sicura su Safari: niente regole che alterano la barra o la dimensione dello snapshot; se la dissolvenza si blocca (1,2 s) il passaggio avviene comunque e la dissolvenza si disattiva da sola; test del blocco
 
 - **v174** · Passaggi tra i 4 pulsanti: dissolvenza incrociata vera (View Transition), identica per ogni coppia di schermate; la barra resta ferma sopra con la lente animata; risolto l'album che riappariva sotto Bustine (l'animazione di apertura ripartiva a fine passaggio); test aggiornato
