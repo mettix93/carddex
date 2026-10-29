@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v169** · Impostazioni: Effetti sonori, Effetti di luce, Esporta backup; testi allineati ai titoli
+
 - **v168** · Dissolvenza uniforme tra tutte le schermate; moneta con punteggio al posto di rarità e 1x; nav: separatori a tutta altezza, icona Album libro+bustina, via il contatore; slider senza sfondo a tutta larghezza; theme-color corretto e sfondi anti-striscia; bustine più luminose; interruttori blu anche in Classica; carte più spesse; angoli del mazzo arrotondati; verso insieme a Nuova!; doppie: solo +/- cambiano il contatore (area più larga)
 
 - **v167** · Cambio tra le 4 schermate immediato e senza transizioni; slider pagine in vetro; sfondi bianco e nero puri come iOS; icone uniformi (tab piene, spessore 2); barra inferiore unica anche in Scegli la tua bustina con animazione lente; sfondo fisso contro le strisce
