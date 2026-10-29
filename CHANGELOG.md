@@ -2,6 +2,10 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (sestrigies)
+- Converti doppie: simbolo di rarità in alto a sinistra (cerchio, rombo, stella) e ordine rare → non comuni → comuni (Pokémon, poi Addestramento, poi Energia a parità di rarità).
+- Messaggi senza sfocatura (si ridisegnavano male alla chiusura della schermata su iOS).
+
 ## 29 ottobre 2026 (cinquetrigies)
 - Badge bustine in home spostato sopra l'icona della bustina, come nella barra degli strumenti.
 

@@ -237,7 +237,7 @@ body.gm #app #stat::before,body.gm #app .tab::before{display:none}
 #pkp .pkpt,#pkp #pkbar{transition:opacity .22s ease-in}
 #pkp.go .pkpt,#pkp.go #pkbar{opacity:0;pointer-events:none}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
-#tst{z-index:200!important;left:50%!important;right:auto!important;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;bottom:calc(var(--fbb,10px) + 52px + 16px)!important;padding:13px 22px 13px 14px!important;border-radius:999px!important;background:rgba(20,26,46,.92)!important;border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 34px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(26px) saturate(190%)!important;backdrop-filter:blur(26px) saturate(190%)!important;color:#fff;font:700 15px/1.25 -apple-system,"SF Pro Text",system-ui,sans-serif!important;display:flex;align-items:center;gap:10px;transform:translateX(-50%) translateY(14px) scale(.94);transition:opacity .22s,transform .38s cubic-bezier(.2,1.4,.4,1)!important}
+#tst{z-index:200!important;left:50%!important;right:auto!important;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;bottom:calc(var(--fbb,10px) + 52px + 16px)!important;padding:13px 22px 13px 14px!important;border-radius:999px!important;background:rgba(20,26,46,.97)!important;border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 34px rgba(0,0,0,.45);-webkit-backdrop-filter:none!important;backdrop-filter:none!important;will-change:transform,opacity;color:#fff;font:700 15px/1.25 -apple-system,"SF Pro Text",system-ui,sans-serif!important;display:flex;align-items:center;gap:10px;transform:translateX(-50%) translateY(14px) scale(.94);transition:opacity .22s,transform .38s cubic-bezier(.2,1.4,.4,1)!important}
 #tst::before{content:"";flex:none;width:24px;height:24px;border-radius:50%;background:#0a84ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/16px no-repeat}
 #tst.on{transform:translateX(-50%)}
 html.gml #tst{background:rgba(255,255,255,.94)!important;border-color:rgba(255,255,255,.95);color:#1b2a49!important;box-shadow:inset 0 1px 0 #fff,0 12px 34px rgba(40,70,120,.35)}
@@ -262,6 +262,7 @@ html.gml #tst{background:rgba(255,255,255,.94)!important;border-color:rgba(255,2
 .cvt.on .cvc b{color:#0a84ff}
 .cvm{width:24px;height:24px;font:400 20px/22px -apple-system,system-ui,sans-serif;text-align:center;color:#1b2a49}
 .cvt.z .cvm[data-d="1"],.cvt:not(.on) .cvm[data-d="-1"]{opacity:.3}
+.cvr{position:absolute;left:6px;top:6px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.88);color:#1b2a49;display:flex;align-items:center;justify-content:center}.cvr svg{width:16px;height:16px}
 .cvq{position:absolute;left:6px;bottom:6px;min-width:26px;height:26px;padding:0 8px;box-sizing:border-box;border-radius:13px;background:rgba(10,12,23,.78);color:#fff;font:700 14px/26px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
 
 .cve{grid-column:1/-1;text-align:center;color:#4e5d7c;margin-top:40px}
@@ -1274,8 +1275,10 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
 const CVI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16"/><path d="M16.5 4.5L20 8l-3.5 3.5"/><path d="M20 16H4"/><path d="M7.5 12.5L4 16l3.5 3.5"/></svg>';
 const PTI='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 6 6.5.8-4.8 4.5 1.3 6.5L12 17.3 6.2 20.6l1.3-6.5L2.7 9.6l6.5-.8z"/></svg>';
 const PKPT={C:1,U:2,R:3};
+const RARI={C:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.5" fill="currentColor"/></svg>',U:'<svg viewBox="0 0 24 24"><path d="M12 4.5l6 7.5-6 7.5L6 12z" fill="currentColor"/></svg>',R:'<svg viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.4 5.8.7-4.3 4 1.2 5.8L12 17l-5.2 2.7L8 13.9l-4.3-4 5.8-.7z" fill="currentColor"/></svg>'};
+const rr0=c=>{const d=rdOf(c);return d&&PKPT[d.r]?d.r:"C"};
 let cvSel={};
-function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}L.sort((a,b)=>(a.c.num||0)-(b.c.num||0));return L}
+function cvList(){const M={};Object.values(CARDS).forEach(c=>{if(c.sid==="B")M[c.id]=c});const L=[];for(const co of COLS)for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1})}const RK={R:0,U:1,C:2},KK=c=>c.kd==="p"?0:c.kd==="e"?2:1,rr=c=>{const d=rdOf(c);return RK[d&&d.r]??2};L.sort((a,b)=>rr(a.c)-rr(b.c)||KK(a.c)-KK(b.c)||(a.c.num||0)-(b.c.num||0));return L}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,h=$("#hmbtn"),t=$("#stat");if(h){const a=h.getBoundingClientRect();if(a.height){R.setProperty("--hbt",a.top+"px");R.setProperty("--hbl",a.left+"px")}}if(t){const a=t.getBoundingClientRect();if(a.height)R.setProperty("--hbr",(innerWidth-a.right)+"px")}
   const f=document.querySelector("#app footer");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
@@ -1290,7 +1293,7 @@ function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div")
   e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(m&&m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(k<x.sp)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
   return e}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0;
-  g.innerHTML=L.length?L.map(x=>{const k=cvSel[x.c.id]||0,rem=x.sp-k;tot+=k*cvPt(x.c);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}).join(""):'<p class="cve">Non hai carte doppie da convertire.</p>';
+  g.innerHTML=L.length?L.map(x=>{const k=cvSel[x.c.id]||0,rem=x.sp-k;tot+=k*cvPt(x.c);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${RARI[rr0(x.c)]}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}).join(""):'<p class="cve">Non hai carte doppie da convertire.</p>';
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
 function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",k>=x.sp);b.querySelector(".cvc b").firstChild.nodeValue=k});
   $("#cvp").textContent=tot;$("#cvok").disabled=!tot;$("#cvz").hidden=!tot}
