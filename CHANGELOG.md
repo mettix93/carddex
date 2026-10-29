@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre 2026 (quadragies)
 
+- **Bustina da aprire**: la X torna alla scelta bustina, tolto "Cambia bustina"; il testo "Tocca la bustina per aprirla" (senza punto) sta sopra la bustina.
+
 - **Backup completo**: un unico file con album Collezione, album Gioco, stato bustine/punti, colore pagine e impostazioni. L'import ripristina tutto; i vecchi backup valgono ancora per l'album corrente.
 
 - **Scegli la bustina con la stessa UI**: barra strumenti in alto (alla stessa altezza di quella dell'album), Home/Album in basso con la bustina evidenziata a destra; tolti i tasti home e X in alto.
