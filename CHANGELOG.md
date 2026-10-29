@@ -2,6 +2,9 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## 29 ottobre 2026 (tretrigies)
+- Messaggi dopo conversione e scambio punti: vetro in linea con le barre, centrati sopra la barra, entrambi con punto esclamativo.
+
 ## 29 ottobre 2026 (duetrigies)
 - Mazzo sbustato: se la carta è girata sul retro non si può passare alla successiva finché non torna di fronte.
 
