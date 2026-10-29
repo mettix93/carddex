@@ -3,6 +3,8 @@
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre 2026 (quadragies)
+
+- **Nuova UI con barra in basso**: Home e Album al centro (liquid glass), bustina separata in basso a destra solo in Gioco. In cima ora ci sono le espansioni, subito sotto gli strumenti (con contatore carte e pagina). Tolti dall'intestazione nome modalità e tasto Home.
 - Mazzo sbustato: simbolo NUOVA/doppia sempre tra titolo e carta (anche in orizzontale), contatore 1/11 centrato nello spazio sotto la carta; posizioni ricalcolate a ogni rotazione.
 
 ## 29 ottobre 2026 (novtrigies)
