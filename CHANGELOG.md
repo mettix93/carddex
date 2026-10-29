@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v183** · Orizzontale: bordo sopra e sotto dell'album entrambi minimi (4px), il sotto non è più allargato dalla barra di sistema
 - **v182** · Pannelli Pokédollari e Bustine: tolti i sottotitoli sotto le barre di progresso
 - **v181** · Barra Bustine: tolto il contatore dal tasto Pokédollari; scambio scritto «10 Pokédollari → 1 bustina»
 - **v180** · Carta aperta: tolti i tre puntini; nome e riga info (set · numero · rarità) alti 44px come i tasti e allineati in cima, con icone e testo sulla stessa linea
