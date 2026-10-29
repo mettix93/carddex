@@ -1,4 +1,4 @@
-// CardDex widget per l'app Scriptable: una carta ottenuta al giorno (cambia a mezzanotte).
+// CardDex widget per l'app Scriptable: l'illustrazione di una carta ottenuta al giorno, a tutto widget (cambia a mezzanotte).
 // Prima volta: in CardDex, menu ••• > "Esporta carte per il widget" > "Salva su File" > iCloud Drive > cartella Scriptable.
 const fm = FileManager.iCloud();
 const path = fm.joinPath(fm.documentsDirectory(), "carddex-widget.json");
@@ -26,39 +26,19 @@ try {
   const ctx = new DrawContext();
   ctx.size = S; ctx.opaque = true; ctx.respectScreenScale = true;
   ctx.setFillColor(new Color("#05060a")); ctx.fillRect(new Rect(0, 0, S.width, S.height));
-  if (pick.t) { // Topps: grafica della carta sfocata
-    const tiny = new DrawContext(); tiny.size = new Size(10, 14); tiny.respectScreenScale = false;
-    tiny.drawImageInRect(img, new Rect(0, 0, 10, 14));
-    ctx.drawImageInRect(tiny.getImage(), new Rect(-S.width * 0.1, -S.height * 0.1, S.width * 1.2, S.height * 1.2));
+  // ritaglio a tutto widget della sola illustrazione, centrata, con un piccolo margine interno per non far vedere i bordi
+  const IW = img.size.width, IH = img.size.height, asp = S.width / S.height;
+  let sw, sh, cx, cy;
+  if (pick.t) { // Topps: tutta la grafica, ritaglio centrale
+    sw = IW * 0.9; sh = sw / asp; if (sh > IH * 0.9) { sh = IH * 0.9; sw = sh * asp; }
+    cx = IW / 2; cy = IH / 2;
+  } else { // finestra dell'illustrazione: x 11.5-88.5%, y 16-50.5% della carta
+    const aw = IW * 0.77, ah = IH * 0.345;
+    sh = ah; sw = sh * asp; if (sw > aw) { sw = aw; sh = sw / asp; }
+    cx = IW * 0.5; cy = IH * (0.16 + 0.345 / 2);
   }
-  // alone del colore del tipo, dal centro verso i bordi
-  const c0 = pick.k || "#556", cx = S.width / 2, cy = S.height * 0.46, R = Math.max(S.width, S.height) * 0.75;
-  for (let i = 0; i < 36; i++) {
-    const r = R * (1 - i / 36);
-    ctx.setFillColor(hex(c0, pick.t ? 0.045 : 0.07));
-    ctx.fillEllipse(new Rect(cx - r, cy - r * 0.85, r * 2, r * 1.7));
-  }
-  if (pick.h) { // sfondo holo: fasce arcobaleno + brillantini
-    for (let x = 0; x < S.width + S.height; x += 6) {
-      ctx.setFillColor(hsl(((x / (S.width + S.height)) * 1.0) % 1, 0.2));
-      const p = new Path(); p.addLines([new Point(x, 0), new Point(x + 6, 0), new Point(x + 6 - S.height * 0.45, S.height), new Point(x - S.height * 0.45, S.height)]); ctx.addPath(p); ctx.fillPath();
-    }
-    ctx.setFillColor(new Color("#ffffff", 0.7));
-    for (let i = 0; i < 70; i++) {
-      const sx = rnd(10 + i) * S.width, sy = rnd(200 + i) * S.height, sz = 1.5 + rnd(400 + i) * 3;
-      ctx.fillEllipse(new Rect(sx, sy, sz, sz));
-    }
-  }
-  // carta con margine e ombra morbida
-  const ar = img.size.width / img.size.height, m = 0.07;
-  let ch = S.height * (1 - 2 * m), cw = ch * ar;
-  if (cw > S.width * (1 - 2 * m)) { cw = S.width * (1 - 2 * m); ch = cw / ar; }
-  const cr = new Rect((S.width - cw) / 2, (S.height - ch) / 2, cw, ch);
-  for (let i = 8; i > 0; i--) {
-    ctx.setFillColor(new Color("#000000", 0.05));
-    ctx.fillRect(new Rect(cr.x - i * 1.5, cr.y - i * 1.0 + 6, cr.width + i * 3, cr.height + i * 2));
-  }
-  ctx.drawImageInRect(img, cr);
+  const k = S.width / sw;
+  ctx.drawImageInRect(img, new Rect(-(cx - sw / 2) * k, -(cy - sh / 2) * k, IW * k, IH * k));
   w.backgroundImage = ctx.getImage();
 } catch (e) {
   w.backgroundColor = new Color("#0b0b0e");
