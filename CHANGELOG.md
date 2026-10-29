@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre 2026 (quadragies)
 
+- **Struttura nuova, senza Home**: barra unica in basso con tre tab Collezione · Bustine · Gioco. Il cambio è istantaneo (niente ricarica) e l'app si apre sull'ultima modalità usata. Tolti Home e tasto bustina separato.
+
 - **Passaggi più veloci e fluidi**: Home dall'album/bustine senza ricaricare la pagina (dissolvenza), chiusura bustine con dissolvenza, durate ridotte (cambio modalità, apertura bustine). Tolti i punti finali dalle frasi singole.
 
 - **Bustina da aprire**: la X torna alla scelta bustina, tolto "Cambia bustina"; il testo "Tocca la bustina per aprirla" (senza punto) sta sopra la bustina.
