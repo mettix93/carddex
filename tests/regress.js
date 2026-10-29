@@ -12,15 +12,17 @@ const p=await open('c');
 const path=[['b'],['g'],['b'],['s'],['b'],['c'],['s'],['b'],['c'],['g'],['c']];
 for(const [to] of path){
  const r=await p.evaluate(async to=>{const nv=document.querySelector('#nvp');let hid=0,moved=new Set();const t0=performance.now();document.querySelector('#nvp button[data-t='+to+']').click();
-  await new Promise(res=>{const f=()=>{const r=nv.getBoundingClientRect(),e=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);if(!nv.contains(e))hid++;moved.add(Math.round(nv.querySelector('.lens').getBoundingClientRect().x));if(performance.now()-t0<800)requestAnimationFrame(f);else res()};f()});
+  await new Promise(res=>{const f=()=>{const r=nv.getBoundingClientRect(),e=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);if(!nv.contains(e)&&e!==document.documentElement)hid++;moved.add(Math.round(nv.querySelector('.lens').getBoundingClientRect().x));if(performance.now()-t0<800)requestAnimationFrame(f);else res()};f()});
   const l=nv.querySelector('.lens').getBoundingClientRect(),a=nv.querySelector('button.on').getBoundingClientRect();return {hid,n:moved.size,dx:Math.abs(l.x-a.x)+Math.abs(l.width-a.width)}},to);
  ok(r.hid===0&&r.dx<3,'lente verso '+to+' (nascosta '+r.hid+' frame, scarto '+r.dx.toFixed(1)+'px, '+r.n+' posizioni)');await p.waitForTimeout(300)}
-// 2) dissolvenza tra le 4 schermate + nessun album sotto Impostazioni
-for(const [to,sett] of [['g',0],['s',1],['c',0]]){
- const r=await p.evaluate(async to=>{const out=[],t0=performance.now();const bk=document.querySelector('#book');document.querySelector('#nvp button[data-t='+to+']').click();
-  await new Promise(res=>{const f=()=>{const set=document.querySelector('#set');out.push([+getComputedStyle(bk).opacity,set&&!set.hidden?+getComputedStyle(set).opacity:-1]);if(performance.now()-t0<500)requestAnimationFrame(f);else res()};f()});return out},to);
- if(sett){ok(Math.max(...r.map(x=>x[0]))===0,'impostazioni: album mai visibile sotto');ok(Math.min(...r.filter(x=>x[1]>=0).map(x=>x[1]))<.5,'impostazioni: dissolvenza')}
- else ok(Math.min(...r.map(x=>x[0]))<.5&&r[r.length-1][0]===1,'dissolvenza verso '+to);await p.waitForTimeout(300)}
+// 2) dissolvenza unica (View Transition) tra le 4 schermate, nessuna animazione che riparte dopo, schermata Bustine sempre opaca
+await p.evaluate(()=>{window.__vt=0;const o=document.startViewTransition.bind(document);document.startViewTransition=f=>{window.__vt++;return o(f)}});
+for(const to of ['s','b','g','c','s','b','c','s','c','g','b','s']){
+ const r=await p.evaluate(async to=>{const n0=window.__vt,out=[],t0=performance.now();document.querySelector('#nvp button[data-t='+to+']').click();
+  await new Promise(res=>{const f=()=>{const k=document.querySelector('#pk');if(k&&!k.hidden&&!document.body.classList.contains('xf')===false||k&&!k.hidden){const c=getComputedStyle(k);out.push([+c.opacity,c.backgroundColor])}if(performance.now()-t0<900)requestAnimationFrame(f);else res()};f()});
+  const live=document.getAnimations().filter(a=>a.playState==='running'&&a.effect&&a.effect.target&&['pk','pkp','set','book'].includes(a.effect.target.id)).length;
+  return {vt:window.__vt-n0,live,op:out.every(x=>x[0]===1),bgs:[...new Set(out.map(x=>x[1]))].length}},to);
+ ok(r.vt===1&&r.live===0&&r.op,'passaggio verso '+to+': 1 dissolvenza, nessuna animazione residua ('+r.live+'), schermata opaca '+r.op);await p.waitForTimeout(250)}
 // 3) Impostazioni identiche tra i temi
 const dump=async th=>{const q=await open(th);await q.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await q.waitForTimeout(800);
  return q.evaluate(()=>[...document.querySelectorAll('#set, #set *')].filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect(),c=getComputedStyle(e);return e.tagName+'|'+[r.x,r.y,r.width,r.height].map(v=>v.toFixed(1))+'|'+c.fontSize+'|'+c.fontWeight+'|'+c.borderTopWidth}))};

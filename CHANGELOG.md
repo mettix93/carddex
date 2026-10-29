@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v174** · Passaggi tra i 4 pulsanti: dissolvenza incrociata vera (View Transition), identica per ogni coppia di schermate; la barra resta ferma sopra con la lente animata; risolto l'album che riappariva sotto Bustine (l'animazione di apertura ripartiva a fine passaggio); test aggiornato
+
 - **v173** · Slider: pallino bianco da fermo, vetro trasparente e più grande mentre lo trascini; dissolvenza tra le 4 schermate (ora affidabile anche su Safari); niente album sotto Impostazioni; Impostazioni identiche in Notte e Classica; moneta sulle doppie senza cerchio bianco e grande come la stellina holo; moneta unità con cerchio centrato; aggiunto tests/regress.js (si lancia prima di ogni rilascio)
 
 - **v172** · Barra in basso unica anche in Scegli la tua bustina (prima c'era una copia sotto): la lente scorre sempre, in tutti i passaggi da/verso Bustine; test automatico di tutti i passaggi
