@@ -271,13 +271,12 @@ html body .cvhd b{line-height:44px}
 #set .sgt{margin-left:17px}#set h2{margin-left:17px!important}
 .cvm{position:relative}.cvm::before{content:"";position:absolute;left:-14px;right:-14px;top:-14px;bottom:-14px}
 /* v168 */
-body.fx #app header,body.fx #app footer,body.fx #book,body.fx #slw{animation:pkIn .25s ease-out}
+body.fx #app header,body.fx #app footer,body.fx #book{animation:pkIn .25s ease-out}
 body.fx #set{animation:pkIn .25s ease-out!important}
 html.gml{color-scheme:light}
-html.gml #pk,html.gml #pk.studio{background:#fff!important}
+html.gml #pk.studio{background:#fff!important}html.gml #pk:not(.studio){background:#000!important}
 header{background:none!important}
 body.gm .sw.on{background:#0a84ff}
-.nvp .sep{align-self:center!important;height:64px!important;margin:-4px 0!important;width:1px}
 .nvp .gic{width:40px!important;height:30px!important}
 .nvp .gic svg:first-child{width:28px!important;height:28px!important;transform:rotate(-8deg);-webkit-mask:radial-gradient(circle at 112% 76%,transparent 10px,#000 10.5px)!important;mask:radial-gradient(circle at 112% 76%,transparent 10px,#000 10.5px)!important}
 .nvp .gic svg:last-child{width:19px!important;height:19px!important;right:0!important;bottom:-1px!important;transform:rotate(12deg)}
@@ -296,7 +295,7 @@ html.gml{--gbg:rgba(246,246,248,.8);--gbd:rgba(0,0,0,.07);--ghi:#fff;--gsh:0 6px
 html.gml .nvp.mv .lens{background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px #fff,0 8px 22px rgba(0,0,0,.18)}
 #bgl{position:fixed;left:0;right:0;top:-140px;bottom:-140px;z-index:-1;background:#000;pointer-events:none}
 html.gml #bgl{background:#fff}
-#app header,#app footer,#book,#slw,#set,#pk{transition:none!important}
+#app header,#app footer,#book,#slw,#set{transition:none!important}
 #set{animation:none!important}
 body.pkn #app #nv{z-index:60!important;opacity:1!important;pointer-events:auto!important}
 body.pkn #pknv{visibility:hidden}
@@ -832,6 +831,21 @@ h1.hg .hbl{justify-self:start;display:flex}h1.hg small{justify-self:end}
 .pkpr button:active{filter:brightness(.9)}
 #pkp.go button{opacity:0;transform:scale(.9)}
 #pkp.go button.sel{opacity:1;transform:scale(1.12)}
+/* v170 */
+:root .nvp .gic svg:first-child{-webkit-mask:radial-gradient(circle at 112% 76%,transparent 8px,#000 8.5px)!important;mask:radial-gradient(circle at 112% 76%,transparent 8px,#000 8.5px)!important}
+.nvp .gic svg:last-child{width:18px!important;height:18px!important}
+.coin{display:block}
+#pkbar .coin,html body #pkbar #pkbp .coin{width:28px;height:28px}
+html body .cvr{background:rgba(255,255,255,.92)!important;border-radius:50%!important;width:26px!important;height:26px!important;color:#1b2a49!important;display:flex;align-items:center;justify-content:center}
+html body .cvr svg{width:24px!important;height:24px!important}
+#cvp::after,#ptn::after{content:"";display:inline-block;width:.78em;height:.78em;margin-left:.3em;vertical-align:-.06em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Ccircle cx='10.5' cy='13.5' r='4.6' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Ccircle cx='10.5' cy='13.5' r='4.6' stroke-width='2'/%3E%3C/svg%3E") center/contain no-repeat}
+@media (orientation:portrait){
+html body #slw{margin:0!important;padding:0 16px!important;background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-radius:0!important}
+html body #sl::-webkit-slider-thumb{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
+html body #set{padding-top:var(--hbt,62px)!important}
+html.gml #set .sgr{background:rgba(120,120,128,.1)!important;border:1px solid rgba(0,0,0,.1)!important}
+html body #set h2{height:44px;line-height:44px!important;margin:0 17px 8px!important;padding:0}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -1484,7 +1498,7 @@ function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.crea
 const CVI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16"/><path d="M16.5 4.5L20 8l-3.5 3.5"/><path d="M20 16H4"/><path d="M7.5 12.5L4 16l3.5 3.5"/></svg>';
 const PTI='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 6 6.5.8-4.8 4.5 1.3 6.5L12 17.3 6.2 20.6l1.3-6.5L2.7 9.6l6.5-.8z"/></svg>';
 const PKPT={C:1,U:2,R:3};
-const COIN=n=>`<svg class="coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#f6c744" stroke="#b9780a" stroke-width="1.2"/><circle cx="11.2" cy="11.2" r="8.3" fill="none" stroke="#b9780a" stroke-opacity=".6" stroke-width="1.1"/><text x="12" y="${n>99?15.2:16.4}" text-anchor="middle" font-size="${n>99?8.5:n>9?11:13.5}" font-weight="800" fill="#6b4200" font-family="-apple-system,system-ui,sans-serif">${n}</text></svg>`;
+const COIN=n=>`<svg class="coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><text x="12" y="${n>99?15.2:16}" text-anchor="middle" font-size="${n>99?8:n>9?10.5:12.5}" font-weight="700" fill="currentColor" stroke="none" font-family="-apple-system,system-ui,sans-serif">${n}</text></svg>`;
 const RARI={C:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.5" fill="currentColor"/></svg>',U:'<svg viewBox="0 0 24 24"><path d="M12 4.5l6 7.5-6 7.5L6 12z" fill="currentColor"/></svg>',R:'<svg viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.4 5.8.7-4.3 4 1.2 5.8L12 17l-5.2 2.7L8 13.9l-4.3-4 5.8-.7z" fill="currentColor"/></svg>'};
 const rr0=c=>{const d=rdOf(c);return d&&PKPT[d.r]?d.r:"C"};
 let cvSel={};
@@ -1668,11 +1682,11 @@ function drawSet(){const e=$("#set");const sw=(id,on)=>'<button class="sw'+(on?"
   e.onclick=ev=>{const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
 const SETI='<svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 5.2a6.8 6.8 0 1 0 0 13.6 6.8 6.8 0 0 0 0-13.6zm0 4a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(0 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(45 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(90 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(135 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(180 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(225 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(270 12 12)"/><rect x="10.4" y="2" width="3.2" height="4.2" rx="1" transform="rotate(315 12 12)"/></svg>';
 function NAVH(on){const B=(t,n,ic,x)=>'<button data-t="'+t+'" class="'+(on===t?"on":"")+'" aria-label="'+n+'">'+ic+'<span>'+n+'</span>'+(x||"")+'</button>',S='<b class="sep"></b>';return '<i class="lens"></i>'+B("b","Bustine",PKI0,"")+B("g","Album",GIC)+S+B("c","Collezione",ALI0)+S+B("s","Impostazioni",SETI)}
-const ALI0='<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12 6.500C10 5 7 4.500 3.600 5.200a.8.8 0 0 0-.6.8v12.300c0 .5.5.9 1 .8 3.300-.5 6 0 8 1.400 2-1.400 4.700-1.900 8-1.400.5.1 1-.3 1-.8V6a.8.8 0 0 0-.6-.8C17 4.500 14 5 12 6.500zM11.300 8.200v11h1.400v-11z"/></svg>',PKI0='<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M8 2.5h8a1.5 1.5 0 0 1 1.5 1.5v16A1.5 1.5 0 0 1 16 21.500H8A1.5 1.5 0 0 1 6.500 20V4A1.5 1.5 0 0 1 8 2.500zm1 5.500a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/></svg>';
+const ALI0='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.2 7C9.3 5.4 6.7 4.8 3.6 5.2a.8.8 0 0 0-.6.8v12.3c0 .5.5.9 1 .8 3.1-.4 5.7 0 7.2 1.3z"/><path d="M12.8 7c1.9-1.6 4.5-2.2 7.6-1.8a.8.8 0 0 1 .6.8v12.300c0 .5-.5.9-1 .8-3.100-.4-5.700 0-7.200 1.300z"/></svg>',PKI0='<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M8 2.5h8a1.5 1.5 0 0 1 1.5 1.5v16A1.5 1.5 0 0 1 16 21.500H8A1.5 1.5 0 0 1 6.500 20V4A1.5 1.5 0 0 1 8 2.500zm1 5.500a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/></svg>';
 const GIC='<span class="gic">'+ALI0+PKI0+'</span>';
 const HMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg>';
 const PKI='<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M8 2.5h8a1.5 1.5 0 0 1 1.5 1.5v16A1.5 1.5 0 0 1 16 21.500H8A1.5 1.5 0 0 1 6.500 20V4A1.5 1.5 0 0 1 8 2.500zm1 5.500a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"/></svg>';
-const ALI='<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12 6.500C10 5 7 4.500 3.600 5.200a.8.8 0 0 0-.6.8v12.300c0 .5.5.9 1 .8 3.300-.5 6 0 8 1.400 2-1.400 4.700-1.900 8-1.400.5.1 1-.3 1-.8V6a.8.8 0 0 0-.6-.8C17 4.500 14 5 12 6.500zM11.300 8.200v11h1.400v-11z"/></svg>';
+const ALI='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.2 7C9.3 5.4 6.7 4.8 3.6 5.2a.8.8 0 0 0-.6.8v12.3c0 .5.5.9 1 .8 3.1-.4 5.7 0 7.2 1.3z"/><path d="M12.8 7c1.9-1.6 4.5-2.2 7.6-1.8a.8.8 0 0 1 .6.8v12.300c0 .5-.5.9-1 .8-3.100-.4-5.700 0-7.200 1.300z"/></svg>';
 const PKL='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><rect x="12" y="6" width="24" height="36" rx="3.5"/><path d="M12 12h24M12 36h24" stroke-opacity=".7"/><path d="M24 17.5l2.2 5.3 5.3 2.2-5.3 2.2-2.2 5.3-2.2-5.3-5.3-2.2 5.3-2.2z"/></svg>';
 function homeBuild(){let h=$("#hm");if(h)return h;h=document.createElement("div");h.id="hm";h.hidden=true;
   h.innerHTML=`<h1>CardDex</h1><div class="hmw"><button class="hmb" id="hmc" style="--a:#ffd60a;--b:#ff9f0a">${ALI}<div><b>Collezione</b><span>Il tuo album personale, carta per carta</span></div></button><button class="hmb" id="hmg" style="--a:#ff9f0a;--b:#ff375f">${PKI}<div><b>Gioco</b><span>Una bustina al giorno, album da riempire</span></div><i id="hmn"></i></button></div>`;
@@ -1691,7 +1705,8 @@ try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if
 function navSet(r,on,anim){if(!r)return;let tg=null;r.querySelectorAll("button[data-t]").forEach(b=>{const o=b.dataset.t===on;b.classList.toggle("on",o);if(o)tg=b});const l=r.querySelector(".lens");if(!l||!tg)return;
   r.style.setProperty("--lw",tg.offsetWidth+"px");r.style.setProperty("--lx",tg.offsetLeft+"px");
   if(anim&&l.dataset.p){r.classList.add("mv");clearTimeout(r._t);r._t=setTimeout(()=>r.classList.remove("mv"),420)}else{l.style.transition="none";void l.offsetWidth;requestAnimationFrame(()=>{l.style.transition=""})}l.dataset.p="1"}
-function navSync(){const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH(MODE);try{pkBadge()}catch(e){}}navSet(n,document.body.classList.contains("sett")?"s":MODE,1)}
+let NAVB=0;
+function navSync(){const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH(MODE);try{pkBadge()}catch(e){}}navSet(n,document.body.classList.contains("sett")?"s":NAVB?"b":MODE,1)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,document.body.classList.contains("sett")?"s":MODE,0)})
 const MS={};
 function setMode(m){if(m===MODE)return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;SKEY=m==="g"?"carddex2g":"carddex2";try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
@@ -1702,19 +1717,19 @@ function swMode(m,cb){let o=$("#lvo");if(!o){o=document.createElement("div");o.i
 function fx(){const b=document.body;b.classList.remove("fx");void b.offsetWidth;b.classList.add("fx");clearTimeout(fx.t);fx.t=setTimeout(()=>b.classList.remove("fx"),320)}
 function pkHide(){const e=$("#pk");pkClose();if(e){e.hidden=true;e.classList.remove("pkfo")}}
 function goTab(t){const p=$("#pk"),op=p&&!p.hidden,sett=document.body.classList.contains("sett");
-  if(t==="s"){if(sett&&!op)return;if(op)pkHide();setOpen(1);fx();return}
-  if(t==="b"){if(op&&!sett)return;if(sett)setOpen(0);setMode("g");pkScreen();return}
+  if(t==="s"){if(sett&&!op)return;NAVB=0;if(op)pkHide();setOpen(1);fx();return}
+  if(t==="b"){if(op&&!sett)return;NAVB=1;if(sett)setOpen(0);setMode("g");pkScreen();return}
   if(!op&&!sett&&t===MODE)return;
-  if(sett)setOpen(0);setMode(t);if(op)pkHide();fx()}
+  NAVB=0;if(sett)setOpen(0);setMode(t);if(op)pkHide();fx()}
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b)goTab(b.dataset.t)});
-(()=>{const pk=$("#pk");if(!pk)return;const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkn")===on)return;document.body.classList.toggle("pkn",on);navSet($("#nvp"),on?"b":document.body.classList.contains("sett")?"s":MODE,1)};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})})();
+(()=>{const pk=$("#pk");if(!pk)return;const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkn")===on)return;document.body.classList.toggle("pkn",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})})();
 applyMode();navSync();
 requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 (()=>{const vw=$("#vw"),m=document.querySelector("meta[name=theme-color]");if(!vw||!m)return;new MutationObserver(()=>{document.documentElement.classList.toggle("vwo",!vw.hidden);if(!vw.hidden)setTC("#05060a");else{const p=$("#pk");setTC(p&&!p.hidden?(p.classList.contains("studio")?STC():"#0a0c17"):isL()?"#ffffff":"#000000")}}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261029214448";
+const BUILD="B261029215711";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

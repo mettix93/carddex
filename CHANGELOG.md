@@ -4,6 +4,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v170** · Lente nav corretta anche verso Bustine; separatori come prima; libro con pagine separate; icona Album meno bianco; moneta in stile icone (anche dopo i totali); slider a margini pagina e senza glitch al cambio; sfondi e dissolvenze del mazzo ripristinati; Impostazioni: titolo all'altezza dei tasti in alto e cornici visibili in Classica
+
 - **v169** · Impostazioni: Effetti sonori, Effetti di luce, Esporta backup; testi allineati ai titoli
 
 - **v168** · Dissolvenza uniforme tra tutte le schermate; moneta con punteggio al posto di rarità e 1x; nav: separatori a tutta altezza, icona Album libro+bustina, via il contatore; slider senza sfondo a tutta larghezza; theme-color corretto e sfondi anti-striscia; bustine più luminose; interruttori blu anche in Classica; carte più spesse; angoli del mazzo arrotondati; verso insieme a Nuova!; doppie: solo +/- cambiano il contatore (area più larga)
