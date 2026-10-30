@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v204** · album: barre in alto di nuovo fisse (niente sfocatura) ma nascoste mentre sono aperti carta/sbusto/Impostazioni, così iOS non le legge; entrando/uscendo dal tutto schermo un velo di 14px colorato forza iOS a rileggere il colore
 - **v203** · carta aperta: tornati i rinforzi del colore della barra (v193) e la barra degli album non è più "fixed" (iOS la leggeva); a schermo intero la barra resta nera
 - **v202** · album: la barra fissa in alto (v201) veniva letta da iOS per il colore della barra di stato e restava trasparente → striscia; ora ha il colore corrente
 - **v201** · album (verticale): le due barre in alto sono fisse sopra la pagina e senza ritaglio, come nelle Bustine, per togliere la sfocatura; posizioni identiche a prima
