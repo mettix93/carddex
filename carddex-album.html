@@ -927,9 +927,8 @@ html body #cvh::after,html body #cvp::after,html body #ptn::after{margin-left:.1
 /* v191 */
 #pkp.none .pkpr button{opacity:.45!important;pointer-events:none!important}
 /* v201: barre in alto degli album come nelle Bustine (sopra, fisse, senza ritaglio) */
-@media (orientation:portrait){html:root body #app footer{position:fixed!important;top:0;left:16px;right:16px;margin:0!important;z-index:5}html:root body #app::before{content:"";order:-1;height:44px;flex:none}}
+@media (orientation:portrait){html:root body #app footer{position:absolute!important;top:0;left:16px;right:16px;margin:0!important;z-index:5}html:root body #app::before{content:"";order:-1;height:44px;flex:none}}
 html:root body #app #fi{overflow:visible!important}
-@media (orientation:portrait){html:root body #app footer{background-color:var(--ttc,#000)!important}}
 /* v198 */
 html:root body #set{background-color:var(--ttc,#000)!important}
 /* v195 */
@@ -1635,7 +1634,7 @@ function ptOpen(){const e=ptBuild();ptDraw();e.hidden=false}
 function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${PKIMG[PKP[i].k]})`,v=`url(${PKIMG.bk})`;w.querySelectorAll(".pkr.f").forEach(l=>{l.style.backgroundImage=u;l.firstChild.style.webkitMaskImage=u;l.firstChild.style.maskImage=u});w.querySelectorAll(".pkr.b").forEach(l=>{l.style.backgroundImage=v;l.firstChild.style.webkitMaskImage=v;l.firstChild.style.maskImage=v})}
 function pkX(){if(!$("#pks").hidden&&$("#pkd").hidden&&$("#pksum").hidden&&!pkBusy){pkChoose();return}if(!$("#pkd").hidden&&$("#pksum").hidden&&pkCards.length){pkCur=null;pkSummary()}else if(!$("#pksum").hidden)pkScreen();else pkClose()}
 function topC(c){return c==="#ffffff"?"#f2f2f7":c}
-let TCL="",TCT=[];function setTC(c){try{c=topC(c);const put=(rep)=>{const o=document.querySelector("meta[name=theme-color]");if(o&&!rep){if(o.content!==c)o.content=c;return}const m=document.createElement("meta");m.name="theme-color";m.content=c;if(o)o.replaceWith(m);else document.head.appendChild(m)};put(0);TCL=c}catch(e){}}
+let TCL="",TCT=[];function setTC(c){try{c=topC(c);const put=(rep)=>{const o=document.querySelector("meta[name=theme-color]");if(o&&!rep){if(o.content!==c)o.content=c;return}const m=document.createElement("meta");m.name="theme-color";m.content=c;if(o)o.replaceWith(m);else document.head.appendChild(m)};put(0);if(c===TCL)return;TCL=c;TCT.forEach(clearTimeout);TCT=[60,250,700,1500,3000].map(t=>setTimeout(()=>{if(TCL===c)put(1)},t))}catch(e){}}
 function pkTheme(c){try{c=topC(c);setTC(c);document.documentElement.style.setProperty("background",c,"important");document.documentElement.style.setProperty("--ttc",c);const g=document.getElementById("bgl");if(g){g.style.setProperty("background",c,"important");void g.offsetHeight}}catch(e){}}
 let TCX=null;const topTint=el=>{try{const v=(el.style.getPropertyValue("--cc")||"").trim();if(!v)return"#05060a";TCX=TCX||document.createElement("canvas").getContext("2d");TCX.fillStyle="#000000";TCX.fillStyle=v;const h=TCX.fillStyle;if(h[0]!=="#")return"#05060a";const n=[1,3,5].map(i=>parseInt(h.substr(i,2),16)),b=[5,6,10];return"#"+n.map((x,i)=>Math.round(x*.88+b[i]*.12).toString(16).padStart(2,"0")).join("")}catch(e){return"#05060a"}};
 function topRefresh(){try{const vw=document.getElementById("vw"),pk=document.getElementById("pk");let c;if(vw&&!vw.hidden)c=vw.classList.contains("fs")?"#000000":topTint(vw);else if(pk&&!pk.hidden)c=pk.classList.contains("studio")?STC():topTint(pk);else c=isL()?"#f2f2f7":"#000000";pkTheme(c)}catch(e){}}
@@ -1831,7 +1830,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030133850";
+const BUILD="B261030135209";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
