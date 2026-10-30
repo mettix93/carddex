@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v208** · Full screen: impulso nero in cima (5px) animato dal colore precedente; sbusto: sfondo e striscia in cima con transizione di colore (come la carta aperta).
 - **v207** · Bustine infinite (PKTEST) e sbusto completo incluso nel test automatico.
 - **v206** · Test automatico nel pannello debug (▶ AVVIA TEST): nessuna modifica al comportamento dell’app.
 - **v205** · Sbusto: barra alta e X seguono lo sfondo sotto (X semitrasparente, striscia dietro i contenuti); impulso fullscreen dietro il titolo; cambio tema in Impostazioni: barra anticipata senza scatto.
