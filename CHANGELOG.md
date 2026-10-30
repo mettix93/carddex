@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v199** · sbusto: la regola del tema chiaro batteva il fondo del mazzo (barra restava nera, ora colore carta); la X del mazzo segue subito il colore della carta, senza sfumare dal precedente
 - **v198** · Impostazioni: il contenitore della pagina (a schermo intero) ora ha lo stesso colore della barra di stato, così iOS la aggiorna al cambio tema
 - **v197** · carta aperta: lo sfondo di base del visualizzatore restava #05060a (una regola più forte batteva la mia) e iOS lo usava per la barra; ora segue il colore della carta
 - **v196** · barra di stato dopo il cambio tema: il velo di dissolvenza restava a schermo intero con il colore del tema vecchio e iOS lo usava per la barra; ora è non campionabile (absolute + nascosto a riposo)
