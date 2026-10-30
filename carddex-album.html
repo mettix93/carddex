@@ -1835,7 +1835,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030141302";
+const BUILD="B261030141955";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
@@ -1854,8 +1854,27 @@ try{const o=window.pkTheme;if(typeof o==="function"){window.pkTheme=function(c){
 const pr=document.createElement("div");pr.style.cssText="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)";document.body.appendChild(pr);
 function snap(){const cs=getComputedStyle(pr),hb=getComputedStyle(document.documentElement).backgroundColor,bb=getComputedStyle(document.body).backgroundColor,mt=document.querySelector("meta[name=theme-color]"),vv=window.visualViewport,vw=document.getElementById("vw"),pk=document.getElementById("pk");
 const rows=["standalone: "+(navigator.standalone?"si":"no")+" / display-mode "+(matchMedia("(display-mode: standalone)").matches?"standalone":"browser"),"tema: "+(typeof isL==="function"&&isL()?"chiaro":"scuro")+" / sistema "+(matchMedia("(prefers-color-scheme: dark)").matches?"scuro":"chiaro"),"safe sopra/sotto: "+cs.paddingTop+" / "+cs.paddingBottom,"innerH "+innerHeight+" visualVP "+(vv?Math.round(vv.height):"-")+" screenH "+screen.height+" docH "+document.documentElement.clientHeight,"meta theme-color: "+(mt?mt.content:"-"),"html bg: "+hb,"body bg: "+bb,"--ttc: "+(getComputedStyle(document.documentElement).getPropertyValue("--ttc")||"-"),"viewer "+(vw&&!vw.hidden?"aperto":"chiuso")+" / sbusto "+(pk&&!pk.hidden?"aperto":"chiuso"),"ultimi cambi:"].concat(LOG.slice().reverse());return rows.join("\n")}
-function show(){if(el)return;el=document.createElement("pre");el.style.cssText="position:fixed;left:6px;right:6px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:2147483647;margin:0;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.82);color:#9f9;font:11px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;pointer-events:auto";el.onclick=()=>{on=0;el.remove();el=null;clearInterval(tm)};document.body.appendChild(el);const up=()=>{if(el)el.textContent=snap()};up();tm=setInterval(up,400)}
+function show(){if(el)return;el=document.createElement("pre");el.style.cssText="position:fixed;left:6px;right:6px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:2147483647;margin:0;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.82);color:#9f9;font:11px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;pointer-events:auto";el.onclick=()=>{on=0;el.remove();el=null;clearInterval(tm)};document.body.appendChild(el);if(!document.getElementById("tstb")){const bt=document.createElement("button");bt.id="tstb";bt.textContent="▶ AVVIA TEST";bt.style.cssText="position:fixed;right:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 330px);z-index:2147483647;padding:10px 14px;border-radius:10px;border:0;background:#0a84ff;color:#fff;font:700 14px -apple-system,sans-serif";bt.onclick=ev=>{ev.stopPropagation();bt.remove();if(el){el.remove();el=null;clearInterval(tm)}on=0;setTimeout(runTest,600)};document.body.appendChild(bt)}const up=()=>{if(el)el.textContent=snap()};up();tm=setInterval(up,400)}
 let taps=[];addEventListener("pointerdown",e=>{if(e.clientX>90||e.clientY>90)return;const n=Date.now();taps=taps.filter(t=>n-t<1800);taps.push(n);if(taps.length>=5){taps=[];show()}},true);
+/* v206 test automatico: registra con lo schermo, poi mandami il video */
+function runTest(){if(window.__tst)return;window.__tst=1;const lab=document.createElement("div");lab.style.cssText="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 150px);z-index:2147483647;padding:10px 16px;border-radius:12px;background:#fff;color:#000;font:700 20px/1.2 -apple-system,sans-serif;pointer-events:none;text-align:center";document.body.appendChild(lab);
+const R=[],wait=ms=>new Promise(r=>setTimeout(r,ms)),T0=Date.now();
+const samp=n=>{const mt=document.querySelector("meta[name=theme-color]"),h=document.documentElement,x=document.elementFromPoint(innerWidth/2,2);R.push(((Date.now()-T0)/1000).toFixed(1)+"s "+n+" | meta "+(mt?mt.content:"-")+" ttc "+(getComputedStyle(h).getPropertyValue("--ttc")||"-").trim()+" bg "+getComputedStyle(h).backgroundColor+" top:"+(x?(x.id||x.tagName):"-"))};
+const st=async(n,f,ms)=>{lab.textContent=n;try{await f()}catch(e){R.push("ERR "+n+" "+e)}samp(n);await wait(ms||3000)};
+const th0=THM;(async()=>{
+await st("1 Album",()=>goTab("c"));
+await st("2 Carta aperta",()=>{let k=LIST().findIndex(x=>x&&x.id&&x.o);openCard(k<0?0:k)},3500);
+await st("3 Schermo intero",()=>document.getElementById("vfs").click());
+await st("4 Esco dallo schermo intero",()=>document.getElementById("vfs").click());
+await st("5 Chiudo la carta",()=>document.getElementById("vx").click(),3500);
+await st("6 Impostazioni",()=>setOpen(true));
+await st("7 Tema opposto",()=>setTheme(isL()?"n":"c"),3500);
+await st("8 Tema di nuovo",()=>setTheme(isL()?"n":"c"),3500);
+await st("9 Chiudo impostazioni",()=>setOpen(false));
+await st("10 Scelta bustina",()=>{goTab("g");pkChoose()},3500);
+await st("11 Torno all'album",()=>{pkClose();goTab("c")},3000);
+try{setTheme(th0)}catch(e){}
+lab.style.cssText+=";bottom:auto;top:60%;left:8px;right:8px;transform:none;text-align:left;font:11px/1.3 ui-monospace,Menlo,monospace;font-weight:400;background:rgba(0,0,0,.85);color:#9f9;white-space:pre-wrap";lab.textContent="FINE TEST - fai uno screenshot di questo riquadro e fermi la registrazione\n"+R.join("\n");lab.style.pointerEvents="auto";lab.onclick=()=>{lab.remove();window.__tst=0}})()}
 if(/[?&]dbg/.test(location.search))setTimeout(show,500)})();
 </script>
 </body></html>
