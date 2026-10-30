@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v222** · Carta aperta e full screen: titolo e pulsanti 8px più in basso, sotto la sfumatura che iOS disegna in cima.
 - **v221** · Pulsanti in alto (carta aperta, full screen, scelta bustina, sbusto) riallineati alla barra dell’album: erano 14px troppo in basso (doppio abbassamento).
 - **v220** · Ripristinata la v218 (l’altezza originale dei componenti rompeva la barra in alto). Il tentativo v219 è annullato.
 - **v219** · Componenti riportati all’altezza originale (tolto l’abbassamento di 14px). Ripiego: v218.
