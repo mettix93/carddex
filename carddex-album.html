@@ -1822,7 +1822,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030013710";
+const BUILD="B261030111504";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
@@ -1834,5 +1834,15 @@ addEventListener("load",()=>setTimeout(chk,1500));
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)chk()});
 addEventListener("pageshow",e=>{if(e.persisted)chk()});
 })();
+/* v194 diagnostica: 5 tocchi veloci nell'angolo in alto a sinistra (o ?dbg) */
+(function(){let on=0,el=null,tm=null,LOG=[];const t0=Date.now();
+const lg=m=>{LOG.push(((Date.now()-t0)/1000).toFixed(1)+"s "+m);if(LOG.length>7)LOG.shift()};
+try{const o=window.pkTheme;if(typeof o==="function"){window.pkTheme=function(c){try{lg("colore "+c)}catch(e){}return o.apply(this,arguments)}}}catch(e){}
+const pr=document.createElement("div");pr.style.cssText="position:fixed;left:0;top:0;width:0;height:0;visibility:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)";document.body.appendChild(pr);
+function snap(){const cs=getComputedStyle(pr),hb=getComputedStyle(document.documentElement).backgroundColor,bb=getComputedStyle(document.body).backgroundColor,mt=document.querySelector("meta[name=theme-color]"),vv=window.visualViewport,vw=document.getElementById("vw"),pk=document.getElementById("pk");
+const rows=["standalone: "+(navigator.standalone?"si":"no")+" / display-mode "+(matchMedia("(display-mode: standalone)").matches?"standalone":"browser"),"tema: "+(typeof isL==="function"&&isL()?"chiaro":"scuro")+" / sistema "+(matchMedia("(prefers-color-scheme: dark)").matches?"scuro":"chiaro"),"safe sopra/sotto: "+cs.paddingTop+" / "+cs.paddingBottom,"innerH "+innerHeight+" visualVP "+(vv?Math.round(vv.height):"-")+" screenH "+screen.height+" docH "+document.documentElement.clientHeight,"meta theme-color: "+(mt?mt.content:"-"),"html bg: "+hb,"body bg: "+bb,"--ttc: "+(getComputedStyle(document.documentElement).getPropertyValue("--ttc")||"-"),"viewer "+(vw&&!vw.hidden?"aperto":"chiuso")+" / sbusto "+(pk&&!pk.hidden?"aperto":"chiuso"),"ultimi cambi:"].concat(LOG.slice().reverse());return rows.join("\n")}
+function show(){if(el)return;el=document.createElement("pre");el.style.cssText="position:fixed;left:6px;right:6px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:2147483647;margin:0;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.82);color:#9f9;font:11px/1.35 ui-monospace,Menlo,monospace;white-space:pre-wrap;pointer-events:auto";el.onclick=()=>{on=0;el.remove();el=null;clearInterval(tm)};document.body.appendChild(el);const up=()=>{if(el)el.textContent=snap()};up();tm=setInterval(up,400)}
+let taps=[];addEventListener("pointerdown",e=>{if(e.clientX>90||e.clientY>90)return;const n=Date.now();taps=taps.filter(t=>n-t<1800);taps.push(n);if(taps.length>=5){taps=[];show()}},true);
+if(/[?&]dbg/.test(location.search))setTimeout(show,500)})();
 </script>
 </body></html>

@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v194** · pannello diagnostico (5 tocchi veloci in alto a sinistra, o ?dbg): mostra standalone, margini, altezze, colore barra di stato e ultimi cambi
 - **v193** · barra di stato: il colore (theme-color) viene riaffermato più volte dopo ogni cambio, per evitare che iOS resti sul colore vecchio
 - **v192** · fascia in alto: tolto black-translucent (iOS 26.1+ ci disegnava sopra uno scrim nero), il colore della barra di stato ora segue la pagina; Holo più vicino al simbolo rarità
 - **v191** · senza bustine: contatore a 0, le 3 bustine sbiadite e non selezionabili, titolo "Prossima bustina tra …", niente più bustina che scende
