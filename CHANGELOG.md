@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v219** · Componenti riportati all’altezza originale (tolto l’abbassamento di 14px). Ripiego: v218.
 - **v218** · Sbusto: lo sfondo della pagina parte subito e la barra cambia colore a metà dissolvenza (0,38s dopo), per evitare la banda gialla in cima tra bustina e prima carta.
 - **v217** · Avvio: sfondo del tema applicato subito (niente lampo nero in cima); sbusto: barra e spazio in cima cambiano prima, lo sfondo della pagina dopo 0,23s e con dissolvenza più lunga (0,7s) tra le carte.
 - **v216** · Sbusto: tolto il nero forzato all’inizio dell’apertura (causava il lampo scuro tra bustina e prima carta); ritardo cambio colore 0,15s anche per le fasi intermedie.
