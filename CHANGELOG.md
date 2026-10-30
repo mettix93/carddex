@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v196** · barra di stato dopo il cambio tema: il velo di dissolvenza restava a schermo intero con il colore del tema vecchio e iOS lo usava per la barra; ora è non campionabile (absolute + nascosto a riposo)
 - **v195** · barra di stato: anche lo sfondo di <body> segue il colore corrente (iOS lo usava e restava nero)
 - **v194** · pannello diagnostico (5 tocchi veloci in alto a sinistra, o ?dbg): mostra standalone, margini, altezze, colore barra di stato e ultimi cambi
 - **v193** · barra di stato: il colore (theme-color) viene riaffermato più volte dopo ogni cambio, per evitare che iOS resti sul colore vecchio
