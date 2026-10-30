@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v220** · Ripristinata la v218 (l’altezza originale dei componenti rompeva la barra in alto). Il tentativo v219 è annullato.
 - **v219** · Componenti riportati all’altezza originale (tolto l’abbassamento di 14px). Ripiego: v218.
 - **v218** · Sbusto: lo sfondo della pagina parte subito e la barra cambia colore a metà dissolvenza (0,38s dopo), per evitare la banda gialla in cima tra bustina e prima carta.
 - **v217** · Avvio: sfondo del tema applicato subito (niente lampo nero in cima); sbusto: barra e spazio in cima cambiano prima, lo sfondo della pagina dopo 0,23s e con dissolvenza più lunga (0,7s) tra le carte.
