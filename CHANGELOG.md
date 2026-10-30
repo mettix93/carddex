@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v191** · senza bustine: contatore a 0, le 3 bustine sbiadite e non selezionabili, titolo "Prossima bustina tra …", niente più bustina che scende
 - **v190** · carta aperta e sbusto: il colore della carta arriva fino in cima al telefono, senza fascia nera/bianca
 - **v189** · Limite di 2 bustine al giorno (costante PKDAILY, da portare a 1 più avanti); tolta la modalità prova (bustine illimitate); le bustine partono da 2 oggi; aperture bloccate a 0 disponibili
 - **v188** · Moneta come unità più vicina al numero (Converti doppie e Pokédollari)

@@ -924,6 +924,8 @@ html body #cvp.z{opacity:.35;color:inherit;transition:none}
 html body .cvf2 .cvn{align-items:center;text-align:center;flex:none}
 html body .cvf2 .cvn:first-child{margin-right:auto}
 html body #cvh::after,html body #cvp::after,html body #ptn::after{margin-left:.12em}
+/* v191 */
+#pkp.none .pkpr button{opacity:.45!important;pointer-events:none!important}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -1587,7 +1589,8 @@ function pkAlign(){try{const R=document.documentElement.style,f0=document.queryS
   const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
   const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-a.bottom);if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
-function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL}if(b)b.textContent=PKTEST?"∞":pkAvail("B")||""}
+function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL}if(b)b.textContent=PKTEST?"∞":pkAvail("B");pkNone()}
+function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail("B")<1,t=p.querySelector(".pkpt");p.classList.toggle("none",z);if(t)t.textContent=z?"Prossima bustina tra "+pkLeft():"Scegli la tua bustina"}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvhd"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
@@ -1631,9 +1634,9 @@ function pkClose(){const e=$("#pk");if(!e||e.hidden||e.classList.contains("pkfo"
 function pkBadge(){const n=pkAvail("B"),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
-function pkScreen(){const e=pkBuild(),n=pkAvail("B");e.classList.remove("pkfo");if(n>0)pkChoose();else pkStage(pkSel)}
+function pkScreen(){const e=pkBuild();e.classList.remove("pkfo");pkChoose()}
 function pkChoose(){const e=pkBuild(),S=PKSET.B,n=pkAvail("B");pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
-  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";
+  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
   e.classList.remove("holo","close");e.classList.add("studio");pkTheme(STC());e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
   $("#pks").hidden=true;$("#pkm").hidden=true;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   $("#pkp").hidden=false;requestAnimationFrame(()=>navSet(document.querySelector("#pknv .nvp"),"b",0))}
@@ -1817,7 +1820,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030010505";
+const BUILD="B261030010805";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
