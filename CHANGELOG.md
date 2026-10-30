@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v214** · Ripristinato il comportamento della v212 (barra che seguiva bene lo sbusto): tolti transizione sul colore dell’html e ritaglio disattivato nello sbusto, che bloccavano la barra. Solo gli angoli in alto restano dritti.
 - **v213** · Angoli in alto dritti; colore dello spazio in cima con transizione (barra più fluida nei cambi schermata); durante lo sbusto le carte non vengono più ritagliate nei 14px in alto.
 - **v212** · Esperimento: app abbassata di 14px ma niente fascia nera; lo spazio sopra prende il colore della pagina (come la barra di stato). Ripristinato il colore nello sbusto.
 - **v211** · Fascia nera: striscia fissa nera in cima alla finestra e sfondo del body nero (iOS stava leggendo il colore dalla pagina).
