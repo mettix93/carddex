@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v212** · Esperimento: app abbassata di 14px ma niente fascia nera; lo spazio sopra prende il colore della pagina (come la barra di stato). Ripristinato il colore nello sbusto.
 - **v211** · Fascia nera: striscia fissa nera in cima alla finestra e sfondo del body nero (iOS stava leggendo il colore dalla pagina).
 - **v210** · Fascia in alto SEMPRE nera in ogni schermata e tema (verticale): l’app inizia 14px più in basso con angoli arrotondati; barra di stato fissa nera, niente più cambi colore.
 - **v209** · Sbusto: barra in alto sempre nera con angoli arrotondati sul colore della carta (iOS non aggiornava la barra qui).
