@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v216** · Sbusto: tolto il nero forzato all’inizio dell’apertura (causava il lampo scuro tra bustina e prima carta); ritardo cambio colore 0,15s anche per le fasi intermedie.
 - **v215** · Sbusto: la barra cambia colore a metà dissolvenza (dall’apertura pacchetto alla prima carta e dall’ultima al riepilogo) invece che subito.
 - **v214** · Ripristinato il comportamento della v212 (barra che seguiva bene lo sbusto): tolti transizione sul colore dell’html e ritaglio disattivato nello sbusto, che bloccavano la barra. Solo gli angoli in alto restano dritti.
 - **v213** · Angoli in alto dritti; colore dello spazio in cima con transizione (barra più fluida nei cambi schermata); durante lo sbusto le carte non vengono più ritagliate nei 14px in alto.
