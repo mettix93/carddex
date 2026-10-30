@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v201** · album (verticale): le due barre in alto sono fisse sopra la pagina e senza ritaglio, come nelle Bustine, per togliere la sfocatura; posizioni identiche a prima
 - **v200** · carta a schermo intero: barra di stato nera; tolte le riaffermazioni ripetute del colore (facevano ripartire la sfumatura della barra)
 - **v199** · sbusto: la regola del tema chiaro batteva il fondo del mazzo (barra restava nera, ora colore carta); la X del mazzo segue subito il colore della carta, senza sfumare dal precedente
 - **v198** · Impostazioni: il contenitore della pagina (a schermo intero) ora ha lo stesso colore della barra di stato, così iOS la aggiorna al cambio tema
