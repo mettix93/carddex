@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v207** · Bustine infinite (PKTEST) e sbusto completo incluso nel test automatico.
 - **v206** · Test automatico nel pannello debug (▶ AVVIA TEST): nessuna modifica al comportamento dell’app.
 - **v205** · Sbusto: barra alta e X seguono lo sfondo sotto (X semitrasparente, striscia dietro i contenuti); impulso fullscreen dietro il titolo; cambio tema in Impostazioni: barra anticipata senza scatto.
 - **v204** · album: barre in alto di nuovo fisse (niente sfocatura) ma nascoste mentre sono aperti carta/sbusto/Impostazioni, così iOS non le legge; entrando/uscendo dal tutto schermo un velo di 14px colorato forza iOS a rileggere il colore

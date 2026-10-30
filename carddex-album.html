@@ -1549,7 +1549,7 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11}};
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
 const pkSt=()=>{try{return JSON.parse(localStorage.getItem("carddex_pk")||"{}")||{}}catch(e){return{}}};
 const pkSv=o=>{try{localStorage.setItem("carddex_pk",JSON.stringify(o))}catch(e){}};
-const PKTEST=false,PKDAILY=2;
+const PKTEST=true,PKDAILY=2;
 function pkAvail(sid){if(PKTEST)return 99;sid=sid||"B";const o=pkSt();if(o.start==null||!o.lim2){o.start=pkDay();o.op={};o.lim2=1;pkSv(o)}return Math.max(0,(pkDay()-o.start+1)*PKDAILY-((o.op||{})[sid]||0)+(o.bonus||0))}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 function pkPick(arr,k){const a=arr.slice(),o=[];while(o.length<k&&a.length)o.push(a.splice(rndI(a.length),1)[0]);return o}
@@ -1835,7 +1835,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030141955";
+const BUILD="B261030143358";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
@@ -1871,8 +1871,13 @@ await st("6 Impostazioni",()=>setOpen(true));
 await st("7 Tema opposto",()=>setTheme(isL()?"n":"c"),3500);
 await st("8 Tema di nuovo",()=>setTheme(isL()?"n":"c"),3500);
 await st("9 Chiudo impostazioni",()=>setOpen(false));
-await st("10 Scelta bustina",()=>{goTab("g");pkChoose()},3500);
-await st("11 Torno all'album",()=>{pkClose();goTab("c")},3000);
+await st("10 Scelta bustina",()=>{goTab("b");pkChoose()},3500);
+await st("11 Bustina scelta",()=>pkStage(0),3000);
+await st("12 Apro la bustina",()=>pkOpen(),5500);
+for(let k=1;k<=6;k++){if(!document.getElementById("pksum").hidden)break;await st("13."+k+" Carta "+k+" dello sbusto",()=>pkNext(-1),2200)}
+await st("14 Riepilogo",()=>{if(document.getElementById("pksum").hidden&&typeof pkSummary==="function"){pkCur=null;pkSummary()}},3000);
+await st("15 Chiudo lo sbusto",()=>pkClose(),2500);
+await st("16 Torno all'album",()=>goTab("c"),3000);
 try{setTheme(th0)}catch(e){}
 lab.style.cssText+=";bottom:auto;top:60%;left:8px;right:8px;transform:none;text-align:left;font:11px/1.3 ui-monospace,Menlo,monospace;font-weight:400;background:rgba(0,0,0,.85);color:#9f9;white-space:pre-wrap";lab.textContent="FINE TEST - fai uno screenshot di questo riquadro e fermi la registrazione\n"+R.join("\n");lab.style.pointerEvents="auto";lab.onclick=()=>{lab.remove();window.__tst=0}})()}
 if(/[?&]dbg/.test(location.search))setTimeout(show,500)})();
