@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v210** · Fascia in alto SEMPRE nera in ogni schermata e tema (verticale): l’app inizia 14px più in basso con angoli arrotondati; barra di stato fissa nera, niente più cambi colore.
 - **v209** · Sbusto: barra in alto sempre nera con angoli arrotondati sul colore della carta (iOS non aggiornava la barra qui).
 - **v208** · Full screen: impulso nero in cima (5px) animato dal colore precedente; sbusto: sfondo e striscia in cima con transizione di colore (come la carta aperta).
 - **v207** · Bustine infinite (PKTEST) e sbusto completo incluso nel test automatico.
