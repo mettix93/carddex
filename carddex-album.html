@@ -946,6 +946,8 @@ html:root body #pk{overflow:visible!important}
 /* v210 fascia in alto sempre nera: l'app finisce sotto, con angoli arrotondati */
 @media (orientation:portrait){html:root,html:root:root{background:#000!important}
 html:root body{position:fixed!important;top:14px!important;left:0!important;right:0!important;bottom:0!important;width:auto!important;height:auto!important;margin:0!important;transform:translateZ(0);overflow:hidden!important;border-radius:30px!important;isolation:isolate}}
+@media (orientation:portrait){html:root:root:root body{background:#000!important}#tstrip{display:block!important}}
+#tstrip{display:none;position:fixed;left:0;right:0;top:0;height:14px;background:#000;z-index:2147483647;pointer-events:none}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -1842,7 +1844,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261030162907";
+const BUILD="B261030165034";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
@@ -1854,6 +1856,7 @@ addEventListener("load",()=>setTimeout(chk,1500));
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)chk()});
 addEventListener("pageshow",e=>{if(e.persisted)chk()});
 })();
+(function(){try{if(!document.getElementById("tstrip")){const t=document.createElement("div");t.id="tstrip";document.documentElement.appendChild(t)}}catch(e){}})();
 /* v194 diagnostica: 5 tocchi veloci nell'angolo in alto a sinistra (o ?dbg) */
 (function(){let on=0,el=null,tm=null,LOG=[];const t0=Date.now();
 const lg=m=>{LOG.push(((Date.now()-t0)/1000).toFixed(1)+"s "+m);if(LOG.length>7)LOG.shift()};
