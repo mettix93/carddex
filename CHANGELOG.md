@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v221** · Pulsanti in alto (carta aperta, full screen, scelta bustina, sbusto) riallineati alla barra dell’album: erano 14px troppo in basso (doppio abbassamento).
 - **v220** · Ripristinata la v218 (l’altezza originale dei componenti rompeva la barra in alto). Il tentativo v219 è annullato.
 - **v219** · Componenti riportati all’altezza originale (tolto l’abbassamento di 14px). Ripiego: v218.
 - **v218** · Sbusto: lo sfondo della pagina parte subito e la barra cambia colore a metà dissolvenza (0,38s dopo), per evitare la banda gialla in cima tra bustina e prima carta.
