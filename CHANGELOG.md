@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v229** · Sbusto: fascia sottile in alto ora cambia insieme alla pagina (prima restava col colore della carta precedente); nell’apertura bustina → prima carta la barra cambia a metà dissolvenza, non all’inizio. Ripiego: v228.
 - **v228** · Sbusto: la barra in alto e lo spazio sotto seguono a ogni fotogramma il colore reale dello sfondo (bustina → prima carta e tra le carte). Note tecniche in NOTE-BARRA-ALTA.md. Ripiego: v227.
 - **v227** · Carta aperta: scorrendo tra le carte, la barra in alto e lo spazio sotto seguono frame per frame il colore dello sfondo (niente salto a metà). Ripiego: v226.
 - **v226** · Corretto errore della v225: il nome della classe collideva con l’interruttore (.sw) e riduceva la carta aperta durante lo scorrimento.
