@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v224** · Carta aperta: i pulsanti in alto prendono il colore della carta con la stessa dissolvenza della pagina (prima saltavano subito al colore nuovo).
 - **v223** · Carta aperta: scorrendo tra le carte la barra cambia colore a metà dissolvenza (0,25s), non prima della pagina.
 - **v222** · Carta aperta e full screen: titolo e pulsanti 8px più in basso, sotto la sfumatura che iOS disegna in cima.
 - **v221** · Pulsanti in alto (carta aperta, full screen, scelta bustina, sbusto) riallineati alla barra dell’album: erano 14px troppo in basso (doppio abbassamento).
