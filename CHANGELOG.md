@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v225** · Carta aperta: scorrendo tra le carte la dissolvenza dura 0,26s e la barra cambia a metà (0,12s), così il salto della barra è quasi impercettibile.
 - **v224** · Carta aperta: i pulsanti in alto prendono il colore della carta con la stessa dissolvenza della pagina (prima saltavano subito al colore nuovo).
 - **v223** · Carta aperta: scorrendo tra le carte la barra cambia colore a metà dissolvenza (0,25s), non prima della pagina.
 - **v222** · Carta aperta e full screen: titolo e pulsanti 8px più in basso, sotto la sfumatura che iOS disegna in cima.
