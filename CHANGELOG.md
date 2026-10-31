@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v231** · Barra in basso a 3 tasti (Bustine · Album · Impostazioni). In alto a sinistra interruttore Collezione/Album di gioco (stessa pagina e stesso set), contatore al centro, testo "Pagina x / y" tra album e slider. Ripiego: v230-ok.
 - **v230** · Converti doppie: stesse rarità raggruppate, dentro ciascuna ordine per numero di collezione. Ripiego: v229-ok.
 - **v229** · Sbusto: fascia sottile in alto ora cambia insieme alla pagina (prima restava col colore della carta precedente); nell’apertura bustina → prima carta la barra cambia a metà dissolvenza, non all’inizio. Ripiego: v228.
 - **v228** · Sbusto: la barra in alto e lo spazio sotto seguono a ogni fotogramma il colore reale dello sfondo (bustina → prima carta e tra le carte). Note tecniche in NOTE-BARRA-ALTA.md. Ripiego: v227.
