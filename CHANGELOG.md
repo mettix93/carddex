@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v228** · Sbusto: la barra in alto e lo spazio sotto seguono a ogni fotogramma il colore reale dello sfondo (bustina → prima carta e tra le carte). Note tecniche in NOTE-BARRA-ALTA.md. Ripiego: v227.
 - **v227** · Carta aperta: scorrendo tra le carte, la barra in alto e lo spazio sotto seguono frame per frame il colore dello sfondo (niente salto a metà). Ripiego: v226.
 - **v226** · Corretto errore della v225: il nome della classe collideva con l’interruttore (.sw) e riduceva la carta aperta durante lo scorrimento.
 - **v225** · Carta aperta: scorrendo tra le carte la dissolvenza dura 0,26s e la barra cambia a metà (0,12s), così il salto della barra è quasi impercettibile.
