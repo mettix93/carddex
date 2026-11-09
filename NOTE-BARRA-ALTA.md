@@ -10,3 +10,4 @@ Cosa abbiamo scoperto (da riusare):
 - Cose che hanno rotto la barra: transizione CSS su `html`, `overflow:visible` sul body nello sbusto, togliere l'abbassamento di 14px, pkTheme('#000000') forzato all'inizio dello sbusto.
 - Ripieghi salvati come tag git: v214-ok, v218-ok, v221-ok, v222-ok, v223-ok, v224-ok, v226-ok, v227-ok.
 - v229: la pagina in alto dello sbusto la dipinge `#pk::before` (gradiente col colore della carta, cambia di colpo), non lo sfondo di `#pk`. La fascia sottile (html) deve quindi usare il colore finale (`--pkbg`), non quello animato di `#pk`. La barra (meta) cambia di colpo: al cambio di fase (scelta → apertura → carte → riepilogo) la ritardo di 330ms, a metà della dissolvenza.
+- v232: bustina → prima carta: velo `#pkstudio` in uscita a .15s e meta ritardato di 110ms (da fase "p"). Idea: dove la barra non può sfumare, accorciare la dissolvenza della pagina.
