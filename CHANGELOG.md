@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v240** · Album Hoenn: del set Deoxys restano solo le 6 carte di Deoxys; tolte le altre carte, gli allenatori e le energie di quel set. Ripiego: v239-ok.
 - **v239** · Riga dei set: tolto lo scorrimento ad anello, ora si ferma al primo e all’ultimo set. Ripiego: v238-ok.
 - **v238** · Riga dei set: tolto il blocco ai tocchi sul contenitore che su iPhone impediva lo scorrimento col dito. Ripiego: v237-ok.
 - **v237** · Album Hoenn ridotto a 5 set (Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste, Deoxys): 135 Pokémon, 45 allenatori, 13 energie. Scelta della carta in ordine di uscita dei set. Ripiego: v236-ok.
