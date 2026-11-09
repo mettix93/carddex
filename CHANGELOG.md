@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v238** · Riga dei set: tolto il blocco ai tocchi sul contenitore che su iPhone impediva lo scorrimento col dito. Ripiego: v237-ok.
 - **v237** · Album Hoenn ridotto a 5 set (Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste, Deoxys): 135 Pokémon, 45 allenatori, 13 energie. Scelta della carta in ordine di uscita dei set. Ripiego: v236-ok.
 - **v236** · Riga dei set: scorrimento continuo ad anello (dopo l’ultimo set ricomincia il primo, in entrambe le direzioni). Ripiego: v235-ok.
 - **v235** · Nuovo album Hoenn (terza generazione): 135 Pokémon con scelta della carta tra 7 set EX (Rubino e Zaffiro → Smeraldo), più 73 allenatori e 26 energie (nomi in inglese per ora). Riga dei set scorrevole in orizzontale. Ripiego: v234-ok.
