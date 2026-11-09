@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v235** · Nuovo album Hoenn (terza generazione): 135 Pokémon con scelta della carta tra 7 set EX (Rubino e Zaffiro → Smeraldo), più 73 allenatori e 26 energie (nomi in inglese per ora). Riga dei set scorrevole in orizzontale. Ripiego: v234-ok.
 - **v234** · Icone dei set: non selezionate col colore dei tasti della barra in basso, selezionate in blu come il tasto attivo. Ripiego: v233-ok.
 - **v233** · In alto a sinistra un solo tasto acceso/spento (icona persona): acceso = album personale, spento = album di gioco. "Pagina x / y" esattamente a metà tra album e pallina dello slider. Ripiego: v232-ok.
 - **v232** · Sbusto: il velo chiaro tra bustina e prima carta ora sfuma in 0,15 s (era 0,7 s) e la barra in alto cambia a metà, così lo scarto è di pochi fotogrammi. Ripiego: v231-ok.
