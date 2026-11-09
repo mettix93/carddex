@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v233** · In alto a sinistra un solo tasto acceso/spento (icona persona): acceso = album personale, spento = album di gioco. "Pagina x / y" esattamente a metà tra album e pallina dello slider. Ripiego: v232-ok.
 - **v232** · Sbusto: il velo chiaro tra bustina e prima carta ora sfuma in 0,15 s (era 0,7 s) e la barra in alto cambia a metà, così lo scarto è di pochi fotogrammi. Ripiego: v231-ok.
 - **v231** · Barra in basso a 3 tasti (Bustine · Album · Impostazioni). In alto a sinistra interruttore Collezione/Album di gioco (stessa pagina e stesso set), contatore al centro, testo "Pagina x / y" tra album e slider. Ripiego: v230-ok.
 - **v230** · Converti doppie: stesse rarità raggruppate, dentro ciascuna ordine per numero di collezione. Ripiego: v229-ok.
