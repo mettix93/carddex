@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v245** · Preparazione (invisibile): album personali e album del gioco hanno definizioni separate; salvataggi invariati. Ripiego: v244.
 - **v244** · Nomi italiani di allenatori ed energie dei set EX Hoenn presi da tcgdex e salvati sul telefono (se mancano restano in inglese, nuovo tentativo dopo 7 giorni). Ripiego: v243.
 - **v243** · Holo EX: leggero offset verso l'esterno solo per la finestra dell'illustrazione, nessun offset per il bordo holo. Ripiego: v242.
 - **v242** · Versi dei Pokémon di terza generazione (252–386) nell'album Hoenn. Ripiego: v241.
