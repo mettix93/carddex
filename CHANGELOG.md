@@ -384,3 +384,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - Animazione di apertura carta e scorrimento tra carte
 - Luce in movimento solo col telefono, spenta di default; versi che rispettano il silenzioso
 - Barra in basso più alta; carte non ottenute più scure
+- **v246** · Album Bustine riorganizzato: un set completo per pillola, in ordine di uscita, raggruppati per serie (Originale, Neo, EX) con Topps in fondo; carte mancanti dei set Neo/EX aggiunte; nomi italiani anche per Deoxys. Album personale invariato. Ripiego: v245.
