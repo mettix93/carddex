@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v243** · Holo EX: leggero offset verso l'esterno solo per la finestra dell'illustrazione, nessun offset per il bordo holo. Ripiego: v242.
 - **v242** · Versi dei Pokémon di terza generazione (252–386) nell'album Hoenn. Ripiego: v241.
 - **v241** · Holo delle carte EX (Hoenn): finestra misurata per set, bordo con brillantini sulle carte ex, ritaglio del cerchietto dell'evoluzione; vale anche per la condivisione. Ripiego: v240-ok.
 - **v240** · Album Hoenn: del set Deoxys restano solo le 6 carte di Deoxys; tolte le altre carte, gli allenatori e le energie di quel set. Ripiego: v239-ok.
