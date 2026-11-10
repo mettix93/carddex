@@ -1558,7 +1558,8 @@ const CBP={};
 function cryLoad(urls){const k=urls[0];if(CB[k])return Promise.resolve(CB[k]);if(CBP[k])return CBP[k];if(!AC)acUnlock();if(!AC)return Promise.resolve(null);
   const one=u=>fetch(u,{mode:"cors"}).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((ok,ko)=>AC.decodeAudioData(ab,ok,ko)));
   const p=new Promise(res=>{let n=urls.length;urls.forEach(u=>one(u).then(b=>{CB[k]=b;res(b)}).catch(()=>{if(--n===0)res(null)}))}).then(b=>{delete CBP[k];return b});CBP[k]=p;return p}
-function cryUrls(c){if(!c||c.kd!=="p"||!c.dex)return null;const n=c.dex<=151?DEXN[c.dex-1]:DEXG2[c.dex-152];if(!n)return null;
+const DEXG3="Treecko,Grovyle,Sceptile,Torchic,Combusken,Blaziken,Mudkip,Marshtomp,Swampert,Poochyena,Mightyena,Zigzagoon,Linoone,Wurmple,Silcoon,Beautifly,Cascoon,Dustox,Lotad,Lombre,Ludicolo,Seedot,Nuzleaf,Shiftry,Taillow,Swellow,Wingull,Pelipper,Ralts,Kirlia,Gardevoir,Surskit,Masquerain,Shroomish,Breloom,Slakoth,Vigoroth,Slaking,Nincada,Ninjask,Shedinja,Whismur,Loudred,Exploud,Makuhita,Hariyama,Azurill,Nosepass,Skitty,Delcatty,Sableye,Mawile,Aron,Lairon,Aggron,Meditite,Medicham,Electrike,Manectric,Plusle,Minun,Volbeat,Illumise,Roselia,Gulpin,Swalot,Carvanha,Sharpedo,Wailmer,Wailord,Numel,Camerupt,Torkoal,Spoink,Grumpig,Spinda,Trapinch,Vibrava,Flygon,Cacnea,Cacturne,Swablu,Altaria,Zangoose,Seviper,Lunatone,Solrock,Barboach,Whiscash,Corphish,Crawdaunt,Baltoy,Claydol,Lileep,Cradily,Anorith,Armaldo,Feebas,Milotic,Castform,Kecleon,Shuppet,Banette,Duskull,Dusclops,Tropius,Chimecho,Absol,Wynaut,Snorunt,Glalie,Spheal,Sealeo,Walrein,Clamperl,Huntail,Gorebyss,Relicanth,Luvdisc,Bagon,Shelgon,Salamence,Beldum,Metang,Metagross,Regirock,Regice,Registeel,Latias,Latios,Kyogre,Groudon,Rayquaza,Jirachi,Deoxys".split(",");
+function cryUrls(c){if(!c||c.kd!=="p"||!c.dex)return null;const n=c.dex<=151?DEXN[c.dex-1]:c.dex<=251?DEXG2[c.dex-152]:DEXG3[c.dex-252];if(!n)return null;
   const id=n.toLowerCase().replace("♀","f").replace("♂","m").replace(/[^a-z0-9]/g,"");
   return ["https://play.pokemonshowdown.com/audio/cries/"+id+".mp3","https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"+c.dex+".ogg"]}
 function cry(c){if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}return}const u=cryUrls(c);if(u)playCry(u)}
@@ -1935,7 +1936,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261110225418";
+const BUILD="B261110230011";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
