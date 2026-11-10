@@ -1303,7 +1303,7 @@ const PFQ=[],PFS=new Set();let PFN=0;
 tpInit().then(()=>{if(cur==="t"&&Object.keys(TPB).length)try{render()}catch(e){}});
 function pf(u){if(!u||PFS.has(u))return;PFS.add(u);PFQ.push(u);pfRun()}
 function pfRun(){while(PFN<4&&PFQ.length){const u=PFQ.shift();PFN++;const done=()=>{PFN--;pfRun()};tpLoad(u).then(ok=>{if(ok)return done();const im=new Image();im.referrerPolicy="no-referrer";im.onload=im.onerror=done;im.src=u})}}
-function toppsPre(){if(!st.t)return;const idle=window.requestIdleCallback||(f=>setTimeout(f,200));idle(()=>{const T=st.t.filter(x=>x.id&&CARDS[x.id]),O=T.filter(x=>x.o);O.forEach(x=>{pf(toppsU(CARDS[x.id],0));pf(toppsU(CARDS[x.id],1))});T.filter(x=>!x.o).forEach(x=>pf(toppsU(CARDS[x.id],0)))},{timeout:1500})}
+function toppsPre(){if(!st.t)return;const S0=st.t,idle=window.requestIdleCallback||(f=>setTimeout(f,200));idle(()=>{const T=S0.filter(x=>x.id&&CARDS[x.id]),O=T.filter(x=>x.o);O.forEach(x=>{pf(toppsU(CARDS[x.id],0));pf(toppsU(CARDS[x.id],1))});T.filter(x=>!x.o).forEach(x=>pf(toppsU(CARDS[x.id],0)))},{timeout:1500})}
 function face(c,hi){const ph=`<div class="ph k${c.kd}"><b>${c.kd==="p"&&c.dex?"#"+pad(c.dex):""}</b><span>${esc(c.name)}</span><i>${numTxt(c)}</i></div>`;
   let u=URLS[c.id]||(c.gid&&URLS[c.gid])||c.img||(c.sid==="S"?toppsU(c,hi):TD[c.sid]?`https://assets.tcgdex.net/en/${SER[c.sid]}/${TD[c.sid]}/${c.num}/${hi?"high":"low"}.webp`:"");
   if(!u)return ph;
@@ -2146,12 +2146,14 @@ function goTab(t){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B.classL
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b)goTab(b.dataset.t)});
 function pkObs(pk){new MutationObserver(topRefresh).observe(pk,{attributes:true,attributeFilter:["hidden","class","style"]});const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
+/* all'apertura: pagina principale Bustine */
+try{if(MODE!=="g")setMode("g");NAVB=1;document.body.classList.add("pkNv");pkScreen();navSync()}catch(e){}
 requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 (()=>{const vw=$("#vw"),m=document.querySelector("meta[name=theme-color]");if(!vw||!m)return;new MutationObserver(()=>{if(vw.hidden){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}document.documentElement.classList.toggle("vwo",!vw.hidden);topRefresh()}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261111004106";
+const BUILD="B261111005048";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
