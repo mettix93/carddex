@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v244** · Nomi italiani di allenatori ed energie dei set EX Hoenn presi da tcgdex e salvati sul telefono (se mancano restano in inglese, nuovo tentativo dopo 7 giorni). Ripiego: v243.
 - **v243** · Holo EX: leggero offset verso l'esterno solo per la finestra dell'illustrazione, nessun offset per il bordo holo. Ripiego: v242.
 - **v242** · Versi dei Pokémon di terza generazione (252–386) nell'album Hoenn. Ripiego: v241.
 - **v241** · Holo delle carte EX (Hoenn): finestra misurata per set, bordo con brillantini sulle carte ex, ritaglio del cerchietto dell'evoluzione; vale anche per la condivisione. Ripiego: v240-ok.
