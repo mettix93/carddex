@@ -4,6 +4,7 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 
 ## 29 ottobre
 
+- **v241** · Holo delle carte EX (Hoenn): finestra misurata per set, bordo con brillantini sulle carte ex, ritaglio del cerchietto dell'evoluzione; vale anche per la condivisione. Ripiego: v240-ok.
 - **v240** · Album Hoenn: del set Deoxys restano solo le 6 carte di Deoxys; tolte le altre carte, gli allenatori e le energie di quel set. Ripiego: v239-ok.
 - **v239** · Riga dei set: tolto lo scorrimento ad anello, ora si ferma al primo e all’ultimo set. Ripiego: v238-ok.
 - **v238** · Riga dei set: tolto il blocco ai tocchi sul contenitore che su iPhone impediva lo scorrimento col dito. Ripiego: v237-ok.
