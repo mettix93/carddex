@@ -151,7 +151,7 @@ html body.dex #md{visibility:hidden!important}
 html body.dex #fi{transform:translateX(var(--dxs,0px))}html body.dex #app .tab.on{color:#0a84ff!important}
 html body.dex #mo,html body.dex #sty{display:none!important}
 html:root body.dex.sett #app header{visibility:visible!important}
-#set .dxg+.dxg{margin-top:16px}
+#set .dxw+.dxw{margin-top:6px}#set .dxw>.sgt{margin-top:14px!important}
 #set .dxs{position:absolute;left:5px;bottom:4px;max-width:calc(100% - 10px);z-index:2;display:flex;flex-wrap:wrap;gap:3px 6px;align-items:center;color:#000}
 #set .dxs i{display:inline-flex;font-style:normal}
 #set .dxs .si{height:11px}
@@ -2102,7 +2102,7 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;l
       o.forEach(x=>{const v={...x.s,id:x.c.id,o:1};delete v.v;DXE.push({d,v})});
       const own=new Set(o.map(x=>x.c.sid)),ss=[...new Set([...cand.map(x=>x.sid),...o.map(x=>x.c.sid)])].sort((p,q)=>RK.indexOf(p)-RK.indexOf(q));
       h+='<div class="dxi" data-d="'+d+'"><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+(has?'<div class="dxs">'+ss.filter(x=>own.has(x)).map(x=>'<i>'+sicon(x)+'</i>').join("")+'</div>':"")+'</div><small>#'+pad(d)+' '+nmH(nm)+'</small></div>'}
-    return h?'<div class="dxg" data-g="'+gi+'">'+h+'</div>':""}).join("");
+    return h?'<section class="dxw" data-g="'+gi+'"><div class="sgt">'+t+'</div><div class="dxg">'+h+'</div></section>':""}).join("");
   e.innerHTML=secs||'<div class="sgt">Nessun Pokémon trovato</div>';e.scrollTop=y;e.onscroll=dxSpy;dxSpy();
   $("#stat").innerHTML=n+" / 386";$("#ft").classList.toggle("on",DXF!=="a"||DXS!=="t");$("#sq").classList.toggle("on",!!DXQ);$("#sq").innerHTML=DXQ?XI:LENS;$("#sq").setAttribute("aria-label",DXQ?"Chiudi ricerca":"Cerca Pokémon");
   e.onclick=null;
@@ -2117,8 +2117,8 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;l
 const DXR=[["Kanto",1,151],["Johto",152,251],["Hoenn",252,386]];
 function dxTabs(){$("#tabs").innerHTML=DXR.map(([t],i)=>'<button class="tab" data-k="'+i+'">'+t+'</button>').join("")}
 function dxPos(){const e=$("#set"),h=$("#app header");if(!e||!h)return;try{const f=$("#fi"),st=document.documentElement.style;st.setProperty("--dxs","0px");const r=$("#stat").getBoundingClientRect();if(r.width)st.setProperty("--dxs",Math.round(innerWidth/2-(r.left+r.right)/2)+"px")}catch(x){}e.style.setProperty("top",Math.round(h.getBoundingClientRect().bottom)+"px","important");e.style.setProperty("padding-top","10px","important")}
-function dxGo(i){const e=$("#set");let g=null;for(let j=i;j<DXR.length&&!g;j++)g=e.querySelector('.dxg[data-g="'+j+'"]');if(!g)return;e.scrollTop=Math.max(0,g.offsetTop-10)}
-function dxSpy(){const e=$("#set"),gs=[...e.querySelectorAll(".dxg")];if(!gs.length)return;let a=+gs[0].dataset.g;const t=e.scrollTop+12;gs.forEach(g=>{if(g.offsetTop-10<=t)a=+g.dataset.g});if(e.scrollTop+e.clientHeight>=e.scrollHeight-3)a=+gs[gs.length-1].dataset.g;
+function dxGo(i){const e=$("#set");let g=null;for(let j=i;j<DXR.length&&!g;j++)g=e.querySelector('.dxw[data-g="'+j+'"]');if(!g)return;e.scrollTop=Math.max(0,g.offsetTop-10)}
+function dxSpy(){const e=$("#set"),gs=[...e.querySelectorAll(".dxw")];if(!gs.length)return;let a=+gs[0].dataset.g;const t=e.scrollTop+12;gs.forEach(g=>{if(g.offsetTop-10<=t)a=+g.dataset.g});if(e.scrollTop+e.clientHeight>=e.scrollHeight-3)a=+gs[gs.length-1].dataset.g;
   document.querySelectorAll("#tabs .tab").forEach(b=>b.classList.toggle("on",+b.dataset.k===a))}
 addEventListener("resize",()=>{if(document.body.classList.contains("dex")&&!$("#set").hidden)dxPos()});
 function dxOpen(d){const i=DXE.findIndex(x=>x.d===d);if(i<0)return;DXL=DXE.map(x=>x.v);openCard(i)}
@@ -2186,7 +2186,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261111011751";
+const BUILD="B261111104126";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
