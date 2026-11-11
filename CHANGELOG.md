@@ -397,3 +397,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v256** · Titoli di pagina (Collezione, Album, Bustine, Pokédex) come Impostazioni; barra: Collezione · Bustine · Pokédex · Impostazioni, apertura su Collezione; Pokédex: etichetta sopra la carta, regioni fisse con conteggio, niente simboli set, Topps escluse. Ripiego: v255.
 - **v257** · Pokédex: esclusa davvero la serie Topps (prima per errore era esclusa Neo Destiny). Ripiego: v256.
 - **v258** · Pokédex: i set Neo non contano i Pokémon di Kanto; i set EX non contano quelli di Kanto e Johto. Ripiego: v257.
+- **v259** · Set di una generazione senza Pokémon delle precedenti ovunque (Neo senza Kanto, EX senza Kanto/Johto); le carte già possedute vengono messe da parte (carddex_hidx), non cancellate. Ripiego: v258.
