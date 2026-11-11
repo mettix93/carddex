@@ -398,3 +398,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v257** · Pokédex: esclusa davvero la serie Topps (prima per errore era esclusa Neo Destiny). Ripiego: v256.
 - **v258** · Pokédex: i set Neo non contano i Pokémon di Kanto; i set EX non contano quelli di Kanto e Johto. Ripiego: v257.
 - **v259** · Set di una generazione senza Pokémon delle precedenti ovunque (Neo senza Kanto, EX senza Kanto/Johto); le carte già possedute vengono messe da parte (carddex_hidx), non cancellate. Ripiego: v258.
+- **v260** · Bustine Giungla e Fossile (grafica provvisoria generata), scelta del set con pillole per serie, pool giornaliero unico (3 al giorno, ora illimitate in prova), etichette serie su due righe, tolta la scritta del set sopra le bustine. Ripiego: v259.
