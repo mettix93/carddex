@@ -147,10 +147,10 @@ html:root body.dex.sett #app footer{visibility:visible!important;position:relati
 html body.dex #md{visibility:hidden!important}
 html body.dex #mo,html body.dex #sty{display:none!important}
 html body.dex #set{padding-top:calc(var(--hbt,16px) + 58px)!important}
-#set .dxs{display:flex;gap:6px;align-items:center;justify-content:center;min-height:14px;flex-wrap:wrap;color:#8e8e93;max-width:100%}
+#set .dxs{position:absolute;left:4px;bottom:4px;max-width:calc(100% - 8px);z-index:2;display:flex;flex-wrap:wrap;gap:3px 6px;align-items:center;padding:3px 7px;border-radius:9px;background:#000b;color:#fff;border:1px solid rgba(255,255,255,.25)}
 #set .dxs i{display:inline-flex;font-style:normal}
-#set .dxs i.m{opacity:.35}
 #set .dxs .si{height:11px}
+#set .dxi small{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 11px -apple-system,"SF Pro Text",system-ui,sans-serif;color:#8e8e93}
 #set .dxi{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 .sb .th button.miss .tp{opacity:.45;filter:grayscale(1)}
 #set .dxg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 12px;padding:4px 18px 6px}
@@ -162,7 +162,6 @@ html.gml #set .dxc{background:#e8e8ee;box-shadow:0 0 0 2px #fff,0 0 0 3px #c7c7c
 #set .dxc:not(.on){opacity:.72}
 #set .dxc:not(.on)::after{content:"";position:absolute;inset:0;background:#ffffff52;pointer-events:none}
 #set .dxc .ph{color:#1d2a44}
-#set .dxc.on .cp{position:absolute;right:4px;bottom:4px}
 .tabs .tab .tn{margin-left:5px;font-size:11px;font-weight:600;max-width:86px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle}
 .tabs .tab.tpl{flex:0 0 auto;padding:8px 14px;font-size:20px;line-height:1}
 .tab{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -2096,7 +2095,7 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=[["Ka
       const c=has?o[0].c:cand[0],nm=dxName(d,D.all),fc=c?face(c):'<div class="ph kp"><b>#'+pad(d)+'</b><span>'+esc(nm)+'</span></div>';
       o.forEach(x=>{const v={...x.s,id:x.c.id,o:1};delete v.v;DXE.push({d,v})});
       const own=new Set(o.map(x=>x.c.sid)),ss=[...new Set([...cand.map(x=>x.sid),...o.map(x=>x.c.sid)])].sort((p,q)=>RK.indexOf(p)-RK.indexOf(q));
-      h+='<div class="dxi" data-d="'+d+'"><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+(o.length>1?'<span class="cp">'+o.length+'x</span>':"")+'</div><div class="dxs">'+ss.map(x=>'<i class="'+(own.has(x)?"":"m")+'">'+sicon(x)+'</i>').join("")+'</div></div>'}
+      h+='<div class="dxi" data-d="'+d+'"><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+(has?'<div class="dxs">'+ss.filter(x=>own.has(x)).map(x=>'<i>'+sicon(x)+'</i>').join("")+'</div>':"")+'</div><small>#'+pad(d)+' '+esc(nm)+'</small></div>'}
     return h?'<div class="sgt">'+t+' · '+all+'/'+(b-a+1)+'</div><div class="dxg">'+h+'</div>':""}).join("");
   e.innerHTML=secs||'<div class="sgt">Nessun Pokémon trovato</div>';e.scrollTop=y;
   $("#stat").innerHTML=n+" / 386";$("#ft").classList.toggle("on",DXF!=="a"||DXS!=="t");$("#sq").classList.toggle("on",!!DXQ);$("#sq").innerHTML=DXQ?XI:LENS;$("#sq").setAttribute("aria-label",DXQ?"Chiudi ricerca":"Cerca Pokémon");
@@ -2174,7 +2173,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261111010149";
+const BUILD="B261111010628";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
