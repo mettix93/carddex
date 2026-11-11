@@ -1081,6 +1081,10 @@ html:not(.gml) #trm .ptc,html:not(.gml) #trm .trt{color:#fff}
 html:not(.gml) #trm .trn{color:rgba(235,235,245,.65)}
 html:not(.gml) #trm .trbtn{background:rgba(255,255,255,.12);color:#fff}html:not(.gml) #trm .trbtn.p{background:#0a84ff}
 html:not(.gml) #trm textarea{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+/* v267 allineamenti footer Doppie */
+html body .cvf2 .cvn,html body .cvf2 .cvmid{align-items:flex-start!important;text-align:left!important}
+html body .cvf2 .cvmid b,html body .cvf2 .cvn b{transform-origin:left center}
+html body #cvs .cvf2 #cvok,html body #cvs .cvf2 #tro{width:112px!important;padding:0!important;flex:none}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -2005,7 +2009,7 @@ function trCodeSheet(t,n,give,get,code,sum){let h="";if(give.length)h+='<div cla
 function trTab(m,quiet){TRM=m;if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
 function trBanner(){const b=$("#cvs .trb");if(!b)return;const r=TR.reply;b.hidden=!r;if(!r){b.innerHTML="";return}b.innerHTML='<div class="trbh"><b>Offerta ricevuta</b><button class="trbx">Annulla</button></div>'+trFaces(r.a)+'<p>Scegli dalle tue doppie: '+trTxt(r.a)+"</p>";b.querySelector(".trbx").onclick=()=>{TR.reply=null;cvSel={};trBanner();cvDraw();trUpd()}}
 function trSel(){const o=[];for(const x of cvList()){const k=cvSel[x.c.id]||0;for(let i=0;i<k;i++)o.push(x.c.id)}return o}
-function trUpd(){const a=trSel(),r=TR.reply;let ok;if(r){const nd=r.a.length;$("#trsl").textContent="Scelte";$("#trs").textContent=a.length+"/"+nd;ok=a.length===nd&&trSame(a,r.a);$("#tro").textContent="Invia risposta"}else{$("#trsl").textContent=a.length?trTxt(a):"Nessuna carta";$("#trs").textContent=a.length;ok=a.length>0;$("#tro").textContent="Crea offerta"}$("#tro").disabled=!ok}
+function trUpd(){const a=trSel(),r=TR.reply;let ok;if(r){const nd=r.a.length;$("#trsl").textContent="Scelte";$("#trs").textContent=a.length+"/"+nd;ok=a.length===nd&&trSame(a,r.a);$("#tro").textContent="Rispondi"}else{$("#trsl").textContent=a.length?trTxt(a):"Nessuna carta";$("#trs").textContent=a.length;ok=a.length>0;$("#tro").textContent="Offri"}$("#tro").disabled=!ok}
 function trGo(){const a=trSel(),r=TR.reply,S=trSt();if(!a.length)return;
   if(r){if(!trSame(a,r.a)||!trSpare(a)){toast("Selezione non valida");return}S.p[r.id]={r:"b",a:r.a,b:a};trSv(S);TR.reply=null;const code=trEnc("r",r.id,r.a,a);trTab("t");trCodeSheet("Risposta pronta","Mandala al tuo amico. Quando la conferma, ti arriverà una ricevuta da incollare qui: lo scambio si completa allora.",a,r.a,code,"Risposta allo scambio: ti do "+trTxt(a)+", ricevo "+trTxt(r.a));return}
   if(!trSpare(a)){toast("Selezione non valida");return}const id=Math.random().toString(36).slice(2,8);S.p[id]={r:"a",a,b:[]};trSv(S);const code=trEnc("o",id,a,[]);trTab("t");trCodeSheet("Offerta pronta","Mandala al tuo amico. Quando risponde, incolla qui la sua risposta.",a,[],code,"Offro "+trTxt(a))}
@@ -2018,7 +2022,7 @@ function trIn(txt){const d=trDec(txt),S=trSt();if(!d){toast("Codice non valido")
   if(d.t==="f"){if(!p||p.r!=="b"||trMs(p.a)!==trMs(d.a)||trMs(p.b)!==trMs(d.b)){toast("Ricevuta non trovata tra i tuoi scambi");return}if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}
     trSheet({t:"Completa scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.b)+'<div class="trl">Ricevi</div>'+trFaces(p.a),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}trApply(p.b,p.a);delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");toast("Scambio completato!")}},{t:"Annulla"}]})}}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
-  e.innerHTML='<div class="cvhd"><b>Doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="t">Scambia</button></div><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Incolla</button><button id="tro" disabled>Crea offerta</button></div>';
+  e.innerHTML='<div class="cvhd"><b>Doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="t">Scambia</button></div><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Ricevi</button><button id="tro" disabled>Offri</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
   e.querySelector(".cvtb").onclick=ev=>{const b=ev.target.closest("button");if(b)trTab(b.dataset.m)};
   $("#trp").onclick=trPaste;$("#tro").onclick=trGo;
@@ -2318,7 +2322,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261112003009";
+const BUILD="B261112004351";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
