@@ -392,3 +392,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v251** · Pokédex: ripristinati numero e nome sotto le carte; il contatore 2x/3x dentro la carta è sostituito dai simboli dei soli set di cui hai quel Pokémon. Ripiego: v250.
 - **v252** · Pokédex: pastiglie Kanto · Johto · Hoenn nella stessa posizione e con lo stesso stile di quelle degli album; un tocco porta alla prima carta di quella generazione in cima, scorrendo a mano la pastiglia si seleziona quando la sua prima carta arriva in cima. Tolte le etichette di sezione. Ripiego: v251.
 - **v253** · Pokédex: simboli set in nero senza sfondo; segno ♀/♂ riallineato al nome (Nidoran) ovunque. Ripiego: v252.
+- **v254** · Pokédex: pillole regioni selezionate come negli album (testo blu), contatore centrato, doppio tap / pressione lunga sulla miniatura apre la lista carte (il tap fantasma chiudeva il foglio). Ripiego: v253.
