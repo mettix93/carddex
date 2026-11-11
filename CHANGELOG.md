@@ -399,3 +399,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v258** · Pokédex: i set Neo non contano i Pokémon di Kanto; i set EX non contano quelli di Kanto e Johto. Ripiego: v257.
 - **v259** · Set di una generazione senza Pokémon delle precedenti ovunque (Neo senza Kanto, EX senza Kanto/Johto); le carte già possedute vengono messe da parte (carddex_hidx), non cancellate. Ripiego: v258.
 - **v260** · Bustine Giungla e Fossile (grafica provvisoria generata), scelta del set con pillole per serie, pool giornaliero unico (3 al giorno, ora illimitate in prova), etichette serie su due righe, tolta la scritta del set sopra le bustine. Ripiego: v259.
+- **v261** · fascia che tagliava i simboli dei set nelle Bustine (padding della riga). Ripiego: v260.
