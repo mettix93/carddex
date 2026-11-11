@@ -406,3 +406,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v265** · "Vai all'album" e icona album dalle Bustine aprono l'album del set della bustina appena aperta. Ripiego: v264.
 - **v266** · scambio doppie con codici (scheda Scambia nella pagina Doppie): stessa rarità, solo carte bustine, offerta→risposta→ricevuta. Ripiego: v265.
 - **v267** · pagina Doppie: numeri del footer allineati a sinistra con le etichette, Ricevi/Offri, pulsante blu uguale in Converti e Scambia. Ripiego: v266.
+- **v268** · nomi sotto le bustine dritti e allineati; ordine Set Base Venusaur · Charizard · Blastoise. Ripiego: v267.
