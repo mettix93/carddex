@@ -404,3 +404,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v263** · immagini reali delle bustine Giungla (Wigglytuff, Scyther, Flareon) e Fossile (Lapras, Aerodactyl, Zapdos), Fossile schiarite. Ripiego: v262.
 - **v264** · luminosità delle tre bustine Fossile resa uguale. Ripiego: v263.
 - **v265** · "Vai all'album" e icona album dalle Bustine aprono l'album del set della bustina appena aperta. Ripiego: v264.
+- **v266** · scambio doppie con codici (scheda Scambia nella pagina Doppie): stessa rarità, solo carte bustine, offerta→risposta→ricevuta. Ripiego: v265.

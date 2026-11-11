@@ -1052,6 +1052,35 @@ html.gml body #pkst .tab.on{background:#fff!important}
 html:not(.gml) #cvs .cvw>.sgt{background:#000}
 html.gml #cvs .cvw>.sgt{background:#f2f2f7}
 #cvs .cvw>.sgt em{font:600 14px -apple-system,system-ui,sans-serif;font-style:normal;color:#8e8e93}
+/* v266 scambio doppie */
+#cvs .cvtb{display:flex;gap:3px;margin:4px auto 8px;padding:3px;border-radius:999px;background:rgba(27,42,73,.1);flex:none}
+#cvs .cvtb button{height:34px;padding:0 20px;border:0;border-radius:999px;background:none;font:600 14px -apple-system,system-ui,sans-serif;color:#4e5d7c}
+#cvs .cvtb button.on{background:#fff;color:#1b2a49;box-shadow:0 1px 4px rgba(20,30,55,.18)}
+html:not(.gml) #cvs .cvtb{background:rgba(255,255,255,.12)}html:not(.gml) #cvs .cvtb button{color:rgba(235,235,245,.65)}html:not(.gml) #cvs .cvtb button.on{background:rgba(255,255,255,.27);color:#fff;box-shadow:none}
+#cvs .cvf2[hidden]{display:none}
+html body #cvs.tr .cvr{display:none!important}
+#trf .cvn{align-items:flex-start;text-align:left;margin-right:auto}
+html body #cvs #trf #tro{background:#0a84ff!important;border:0!important;color:#fff!important}#trf #tro:disabled{opacity:.4}
+#cvs .trb{margin:0 16px 8px;padding:10px 12px 8px;border-radius:20px;background:rgba(10,132,255,.12);flex:none}
+#cvs .trbh{display:flex;align-items:center;justify-content:space-between}#cvs .trbh b{font-size:15px}
+#cvs .trbx{height:30px;padding:0 12px;border:0;border-radius:15px;background:rgba(27,42,73,.12);color:inherit;font:600 13px -apple-system,system-ui,sans-serif}
+#cvs .trb p{margin:2px 0 0;font-size:13px;color:#4e5d7c;text-align:center}html:not(.gml) #cvs .trb p{color:rgba(235,235,245,.7)}
+.trr{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:6px 0}
+.trfc{width:50px}.trfc .cvf{width:100%;aspect-ratio:63/88;border-radius:4px;overflow:hidden;position:relative}
+.trfc .cvf .ph{font-size:6px}
+#trm{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:rgba(10,14,30,.4);animation:cdFd .2s ease-out;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif}
+#trm[hidden]{display:none}
+#trm .ptc{max-height:86vh;overflow:auto;width:min(90vw,360px);align-items:stretch;gap:0;color:#1b2a49}
+#trm .trt{font:700 21px -apple-system,system-ui,sans-serif;letter-spacing:-.02em;padding:0 30px}
+#trm .trn{margin:6px 0 4px;font-size:13px;color:#4e5d7c}
+#trm .trl{margin-top:8px;font:600 11px -apple-system,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8e8e93}
+#trm textarea{width:100%;height:96px;margin-top:8px;border-radius:14px;border:1px solid rgba(27,42,73,.2);padding:10px;font:13px ui-monospace,Menlo,monospace;box-sizing:border-box;resize:none;background:rgba(255,255,255,.7);color:#1b2a49}
+#trm .trbtn{width:100%;height:44px;margin-top:8px;border:0;border-radius:22px;background:rgba(27,42,73,.1);color:#1b2a49;font:600 15px -apple-system,system-ui,sans-serif}
+#trm .trbtn.p{background:#0a84ff;color:#fff}
+html:not(.gml) #trm .ptc,html:not(.gml) #trm .trt{color:#fff}
+html:not(.gml) #trm .trn{color:rgba(235,235,245,.65)}
+html:not(.gml) #trm .trbtn{background:rgba(255,255,255,.12);color:#fff}html:not(.gml) #trm .trbtn.p{background:#0a84ff}
+html:not(.gml) #trm textarea{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -1934,7 +1963,9 @@ const COINL='<svg class="coin" viewBox="0 0 24 24" fill="none" stroke="currentCo
 const RARI={C:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.5" fill="currentColor"/></svg>',U:'<svg viewBox="0 0 24 24"><path d="M12 4.5l6 7.5-6 7.5L6 12z" fill="currentColor"/></svg>',R:'<svg viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.4 5.8.7-4.3 4 1.2 5.8L12 17l-5.2 2.7L8 13.9l-4.3-4 5.8-.7z" fill="currentColor"/></svg>'};
 const rr0=c=>{const d=rdOf(c);return d&&PKPT[d.r]?d.r:"C"};
 let cvSel={};
-function cvList(){const M={};Object.values(CARDS).forEach(c=>{M[c.id]=c});const L=[];COLS.forEach((co,ci)=>{for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1,co,ci})}});const RK={R:0,U:1,C:2},rr=c=>{const d=rdOf(c);return RK[d&&d.r]??2};L.sort((a,b)=>a.ci-b.ci||rr(a.c)-rr(b.c)||(a.c.num||0)-(b.c.num||0));return L}
+function cvList0(){const M={};Object.values(CARDS).forEach(c=>{M[c.id]=c});const L=[];COLS.forEach((co,ci)=>{for(const s of st[co.k]){const c=M[s.id];if(c&&s.o&&s.q>1)L.push({c,s,sp:s.q-1,co,ci})}});const RK={R:0,U:1,C:2},rr=c=>{const d=rdOf(c);return RK[d&&d.r]??2};L.sort((a,b)=>a.ci-b.ci||rr(a.c)-rr(b.c)||(a.c.num||0)-(b.c.num||0));return L}
+function cvList(){const L=cvList0();if(TRM==="t"&&TR.reply){const nd=TR.reply.need;return L.filter(x=>nd[trK(x.c)])}return L}
+function cvRoom(x,k){let r=x.sp-k;if(TRM==="t"&&TR.reply){const key=trK(x.c),nd=TR.reply.need[key]||0;let u=0;for(const y of cvList())if(trK(y.c)===key)u+=cvSel[y.c.id]||0;r=Math.min(r,nd-u)}return r}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
 function pkAlign(){try{const R=document.documentElement.style,f0=document.querySelector("#app footer"),h=document.querySelector("#app .tabs"),pt=innerHeight>innerWidth;{const e=pt?f0:h;if(e){const a=e.getBoundingClientRect();if(a.height){R.setProperty("--hbt",(a.top-document.body.getBoundingClientRect().top)+"px");R.setProperty("--hbl",a.left+"px");R.setProperty("--hbr",(innerWidth-a.right)+"px")}}}
   const ft=document.querySelector("#app footer");if(ft&&innerHeight>innerWidth){const q=ft.getBoundingClientRect();if(q.height)R.setProperty("--tbt",(q.top-document.body.getBoundingClientRect().top)+"px")}else R.removeProperty("--tbt");
@@ -1943,22 +1974,67 @@ function pkAlign(){try{const R=document.documentElement.style,f0=document.queryS
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
 function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL}if(b)b.textContent=PKTEST?"∞":pkAvail();pkNone()}
 function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail()<1,t=p.querySelector(".pkpt");p.classList.toggle("none",z);if(t&&t.firstChild)t.firstChild.nodeValue=z?"Prossima bustina tra "+pkLeft():"Scegli la tua bustina"}
+
+/* ===== scambio doppie con codici (solo carte delle bustine) ===== */
+let TRM="c",TR={reply:null};
+const TRN={C:["comune","comuni"],U:["non comune","non comuni"],R:["rara","rare"],Rh:["rara olografica","rare olografiche"],E:["energia","energie"]},TRO=["C","U","R","Rh","E"];
+const TRURL="https://mettix93.github.io/carddex/carddex-album.html";
+function trK(c){if(c.kd==="e")return"E";const d=rdOf(c),r=d&&d.r||"C";return r==="R"&&c.h?"Rh":r}
+let TRC=null;function trCard(id){if(!TRC){TRC={};Object.values(CARDS).forEach(c=>{TRC[c.id]=c})}return TRC[id]||null}
+function trTally(ids){const n={};ids.forEach(i=>{const c=trCard(i);const k=c?trK(c):"?";n[k]=(n[k]||0)+1});return n}
+function trTxt(ids){const n=trTally(ids),o=[];TRO.forEach(k=>{if(n[k])o.push(n[k]+" "+TRN[k][n[k]===1?0:1])});return o.join(" · ")||"nessuna carta"}
+function trSame(a,b){const x=trTally(a),y=trTally(b),k=Object.keys(x).concat(Object.keys(y));return k.every(q=>q!=="?"&&(x[q]||0)===(y[q]||0))}
+function trMs(a){return a.slice().sort().join(",")}
+function trH(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return(h>>>0).toString(36)}
+function trEnc(t,id,a,b){const p=[t,id,a.join(","),b.join(",")].join("|"),b64=btoa(unescape(encodeURIComponent(p))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");return"CDX1."+b64+"."+trH(p)}
+function trDec(txt){const m=(txt||"").match(/CDX1\.([A-Za-z0-9_-]+)\.([a-z0-9]+)/);if(!m)return null;let p;try{let b=m[1].replace(/-/g,"+").replace(/_/g,"/");while(b.length%4)b+="=";p=decodeURIComponent(escape(atob(b)))}catch(e){return null}if(trH(p)!==m[2])return null;const q=p.split("|");if(q.length!==4||!/^[ofr]$/.test(q[0])||!/^[a-z0-9]{4,12}$/.test(q[1]))return null;const a=q[2]?q[2].split(","):[],b=q[3]?q[3].split(","):[];if(!a.every(trCard)||!b.every(trCard))return null;return{t:q[0],id:q[1],a,b}}
+const trSt=()=>{try{const o=JSON.parse(localStorage.getItem("carddex_tr")||"{}")||{};o.p=o.p||{};o.d=o.d||[];return o}catch(e){return{p:{},d:[]}}};
+const trSv=o=>{try{localStorage.setItem("carddex_tr",JSON.stringify(o))}catch(e){}};
+function trSlot(id){for(const co of COLS){const s=st[co.k].find(x=>x.id===id);if(s)return s}return null}
+function trSpare(ids){const n={};ids.forEach(i=>{n[i]=(n[i]||0)+1});return Object.keys(n).every(i=>{const s=trSlot(i);return s&&s.o&&s.q>1&&s.q-1>=n[i]})}
+function trApply(give,get){give.forEach(i=>{const s=trSlot(i);if(s)s.q-=1});get.forEach(i=>{const s=trSlot(i);if(!s)return;if(s.o)s.q=(s.q>1?s.q:1)+1;else{s.o=1;s.a=0;s.q=1}});save();try{render()}catch(e){}}
+function trFaces(ids){return'<div class="trr">'+ids.map(i=>{const c=trCard(i);return'<div class="trfc"><div class="cvf">'+face(c,0)+"</div></div>"}).join("")+"</div>"}
+function trSheet(o){let e=$("#trm");if(!e){e=document.createElement("div");e.id="trm";e.hidden=true;document.body.appendChild(e);e.onclick=ev=>{if(ev.target===e)e.hidden=true}}
+  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="trt">'+o.t+"</div>"+(o.n?'<p class="trn">'+o.n+"</p>":"")+(o.h||"")+"</div>";
+  const c=e.querySelector(".ptc");(o.b||[]).forEach(b=>{const x=document.createElement("button");x.className="trbtn"+(b.p?" p":"");x.textContent=b.t;x.onclick=()=>{if(b.k!==1)e.hidden=true;b.f&&b.f()};c.appendChild(x)});
+  e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.hidden=false;return e}
+async function trShare(code,sum){const txt="🎴 CardDex · scambio\n"+sum+"\n"+code+"\nApp: "+TRURL;try{if(navigator.share){await navigator.share({text:txt});return}}catch(e){if(e&&e.name==="AbortError")return}trCopy(txt)}
+async function trCopy(txt){try{await navigator.clipboard.writeText(txt);toast("Codice copiato");return}catch(e){}try{const t=document.createElement("textarea");t.value=txt;t.style.cssText="position:fixed;opacity:0";document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();toast("Codice copiato")}catch(e){toast("Impossibile copiare")}}
+function trCodeSheet(t,n,give,get,code,sum){let h="";if(give.length)h+='<div class="trl">Dai</div>'+trFaces(give);if(get.length)h+='<div class="trl">Ricevi</div>'+trFaces(get);
+  trSheet({t,n,h,b:[{t:"Condividi codice",p:1,k:1,f:()=>trShare(code,sum)},{t:"Copia codice",k:1,f:()=>trCopy("🎴 CardDex · scambio\n"+sum+"\n"+code+"\nApp: "+TRURL)},{t:"Chiudi"}]})}
+function trTab(m,quiet){TRM=m;if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
+function trBanner(){const b=$("#cvs .trb");if(!b)return;const r=TR.reply;b.hidden=!r;if(!r){b.innerHTML="";return}b.innerHTML='<div class="trbh"><b>Offerta ricevuta</b><button class="trbx">Annulla</button></div>'+trFaces(r.a)+'<p>Scegli dalle tue doppie: '+trTxt(r.a)+"</p>";b.querySelector(".trbx").onclick=()=>{TR.reply=null;cvSel={};trBanner();cvDraw();trUpd()}}
+function trSel(){const o=[];for(const x of cvList()){const k=cvSel[x.c.id]||0;for(let i=0;i<k;i++)o.push(x.c.id)}return o}
+function trUpd(){const a=trSel(),r=TR.reply;let ok;if(r){const nd=r.a.length;$("#trsl").textContent="Scelte";$("#trs").textContent=a.length+"/"+nd;ok=a.length===nd&&trSame(a,r.a);$("#tro").textContent="Invia risposta"}else{$("#trsl").textContent=a.length?trTxt(a):"Nessuna carta";$("#trs").textContent=a.length;ok=a.length>0;$("#tro").textContent="Crea offerta"}$("#tro").disabled=!ok}
+function trGo(){const a=trSel(),r=TR.reply,S=trSt();if(!a.length)return;
+  if(r){if(!trSame(a,r.a)||!trSpare(a)){toast("Selezione non valida");return}S.p[r.id]={r:"b",a:r.a,b:a};trSv(S);TR.reply=null;const code=trEnc("r",r.id,r.a,a);trTab("t");trCodeSheet("Risposta pronta","Mandala al tuo amico. Quando la conferma, ti arriverà una ricevuta da incollare qui: lo scambio si completa allora.",a,r.a,code,"Risposta allo scambio: ti do "+trTxt(a)+", ricevo "+trTxt(r.a));return}
+  if(!trSpare(a)){toast("Selezione non valida");return}const id=Math.random().toString(36).slice(2,8);S.p[id]={r:"a",a,b:[]};trSv(S);const code=trEnc("o",id,a,[]);trTab("t");trCodeSheet("Offerta pronta","Mandala al tuo amico. Quando risponde, incolla qui la sua risposta.",a,[],code,"Offro "+trTxt(a))}
+function trPaste(){const S=trSt(),np=Object.keys(S.p).length;const e=trSheet({t:"Incolla codice",n:"Incolla il messaggio o il codice ricevuto dal tuo amico.",h:'<textarea id="trta" placeholder="CDX1.…" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>',b:[{t:"Dagli appunti",k:1,f:async()=>{try{const t=await navigator.clipboard.readText();$("#trta").value=t||"";if(!t)toast("Appunti vuoti")}catch(x){toast("Incolla a mano nel riquadro")}}},{t:"Avanti",p:1,k:1,f:()=>{const d=$("#trta").value;if(!trDec(d)){toast("Codice non valido");return}$("#trm").hidden=true;trIn(d)}}].concat(np?[{t:"Annulla scambi in sospeso ("+np+")",k:1,f:()=>{const q=trSt();q.p={};trSv(q);toast("Scambi in sospeso annullati");$("#trm").hidden=true}}]:[])});
+  setTimeout(()=>{try{$("#trta").focus()}catch(x){}},120)}
+function trIn(txt){const d=trDec(txt),S=trSt();if(!d){toast("Codice non valido");return}if(S.d.includes(d.id)){toast("Scambio già concluso");return}const p=S.p[d.id];
+  if(d.t==="o"){if(p){toast("Questa è la tua offerta");return}if(!d.a.length){toast("Offerta vuota");return}TR.reply={id:d.id,a:d.a,need:trTally(d.a)};trTab("t");return}
+  if(d.t==="r"){if(!p||p.r!=="a"||trMs(p.a)!==trMs(d.a)){toast("Risposta non trovata tra le tue offerte");return}if(!trSame(d.a,d.b)||!d.b.length){toast("Risposta non valida");return}if(!trSpare(p.a)){toast("Non hai più quelle doppie");return}
+    trSheet({t:"Conferma scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.a)+'<div class="trl">Ricevi</div>'+trFaces(d.b),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.a)){toast("Non hai più quelle doppie");return}trApply(p.a,d.b);delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");const code=trEnc("f",d.id,p.a,d.b);trCodeSheet("Scambio fatto","Manda la ricevuta al tuo amico: incollandola completa lo scambio anche per lui.",[],d.b,code,"Ricevuta dello scambio")}},{t:"Annulla"}]});return}
+  if(d.t==="f"){if(!p||p.r!=="b"||trMs(p.a)!==trMs(d.a)||trMs(p.b)!==trMs(d.b)){toast("Ricevuta non trovata tra i tuoi scambi");return}if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}
+    trSheet({t:"Completa scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.b)+'<div class="trl">Ricevi</div>'+trFaces(p.a),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}trApply(p.b,p.a);delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");toast("Scambio completato!")}},{t:"Annulla"}]})}}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
-  e.innerHTML='<div class="cvhd"><b>Converti doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvg"></div><div class="cvf2"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div>';
+  e.innerHTML='<div class="cvhd"><b>Doppie</b><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="t">Scambia</button></div><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Incolla</button><button id="tro" disabled>Crea offerta</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
+  e.querySelector(".cvtb").onclick=ev=>{const b=ev.target.closest("button");if(b)trTab(b.dataset.m)};
+  $("#trp").onclick=trPaste;$("#tro").onclick=trGo;
   $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt();o.pts=(o.pts||0)+tot;pkSv(o);cvSel={};cvSync();pkBarUpd();toast("+"+tot+(tot===1?" Pokédollaro":" Pokédollari")+" ("+n+(n===1?" carta":" carte")+")!")};
-  e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(!m)return;if(m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(k<x.sp)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
+  e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(!m)return;if(m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(cvRoom(x,k)>0)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
   return e}
 function cvNum(el,v){if(!el)return;const o=el.textContent;el.textContent=v;if(el.id==="cvp")el.classList.toggle("z",!v);if(String(v)!==o&&el.dataset.i&&(el.id!=="cvp"||v>0)){try{el.animate([{transform:"scale(1)"},{transform:"scale(1.3)"},{transform:"scale(1)"}],{duration:280,easing:"ease-out"})}catch(e){}}el.dataset.i=1}
 function cvSync(){const L=cvList(),M={};L.forEach(x=>M[x.c.id]=x);const g=$("#cvs .cvg");document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x){b.remove();return}b.classList.remove("on");b.classList.toggle("z",x.sp<=0);const e=b.querySelector(".cvc b");if(e)e.innerHTML="0<em>/"+x.sp+"</em>"});document.querySelectorAll("#cvs .cvw").forEach(w=>{const t=w.querySelectorAll(".cvt");if(!t.length){w.remove();return}let n=0;t.forEach(b=>{const x=M[b.dataset.id];if(x)n+=x.sp});const e=w.querySelector(".sgt em");if(e)e.textContent=n});if(!L.length&&g)g.innerHTML='<p class="cve">Non hai carte doppie da convertire</p>';cvNum($("#cvp"),0);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=true}
-function cvTile(x,k,tot){const rem=x.sp-k;return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
+function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0,h="",ci=-1;
   L.forEach(x=>{const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);if(x.ci!==ci){if(ci>=0)h+="</div></section>";ci=x.ci;const n=L.filter(y=>y.ci===ci).reduce((a,y)=>a+y.sp,0);h+=`<section class="cvw" data-ci="${ci}"><div class="sgt">${esc(x.co.t)}<em>${n}</em></div><div class="cvgg">`}h+=cvTile(x,k)});if(ci>=0)h+="</div></section>";
-  g.innerHTML=h||'<p class="cve">Non hai carte doppie da convertire</p>';
-  cvNum($("#cvp"),tot);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=!tot}
-function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",k>=x.sp);b.querySelector(".cvc b").firstChild.nodeValue=k});
-  cvNum($("#cvp"),tot);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=!tot}
-function cvOpen(){pkAlign();const e=cvBuild();cvSel={};cvDraw();e.hidden=false}
+  g.innerHTML=h||'<p class="cve">'+(TRM==="t"?(TR.reply?"Non hai doppie delle rarità richieste":"Non hai doppie da scambiare"):"Non hai carte doppie da convertire")+'</p>';
+  cvNum($("#cvp"),tot);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=!tot;if(TRM==="t")trUpd()}
+function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",cvRoom(x,k)<=0);b.querySelector(".cvc b").firstChild.nodeValue=k});
+  cvNum($("#cvp"),tot);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=!tot;if(TRM==="t")trUpd()}
+function cvOpen(){pkAlign();const e=cvBuild();cvSel={};TR.reply=null;trTab("c",1);e.hidden=false}
 
 let bkT=0;
 function bkBuild(){let e=$("#bks");if(e)return e;e=document.createElement("div");e.id="bks";e.className="ptsw";e.hidden=true;
@@ -2242,7 +2318,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261112001339";
+const BUILD="B261112003009";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
