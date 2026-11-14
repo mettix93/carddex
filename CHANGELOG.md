@@ -417,3 +417,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v276** · nuovo album Promo (prime 49 carte Wizards Black Star Promos, solo album bustine, in fondo dopo Hoenn; ancora non ottenibili). Ripiego: v275.
 - **v277** · bustine reali Team Rocket, Gym Heroes, Gym Challenge (4 per set, luminosità allineata ai set esistenti). Ripiego: v276.
 - **v278** · bustine reali Neo (Genesis, Discovery, Revelation, Destiny: 4 per set), ritagliate/raddrizzate; luminosità riallineata su Rocket, Gym e Neo. Ripiego: v277.
+- **v279** · Neo Genesis: Meganium raddrizzato (prospettiva), Meganium e Lugia portati a vivacità/luminosità di Typhlosion e Feraligatr. Ripiego: v278.
