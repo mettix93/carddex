@@ -413,3 +413,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v272** · bustine Hoenn (EX Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste): 9 carte, blocco 4 (sblocco al 80% del blocco 3), grafica provvisoria. Ripiego: v271.
 - **v273** · riepilogo con più bustine: carte alla larghezza solita e pagina scorrevole. Ripiego: v272.
 - **v274** · conversione Pokédollari: il popup si trasforma in "+1 bustina" con tasto "Apri ora" (stessa dimensione). Ripiego: v273.
+- **v275** · calcolo copertura blocchi in cache (meno lavoro nel disegnare le pillole). Ripiego: v274.
