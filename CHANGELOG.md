@@ -414,3 +414,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v273** · riepilogo con più bustine: carte alla larghezza solita e pagina scorrevole. Ripiego: v272.
 - **v274** · conversione Pokédollari: il popup si trasforma in "+1 bustina" con tasto "Apri ora" (stessa dimensione). Ripiego: v273.
 - **v275** · calcolo copertura blocchi in cache (meno lavoro nel disegnare le pillole). Ripiego: v274.
+- **v276** · nuovo album Promo (prime 49 carte Wizards Black Star Promos, solo album bustine, in fondo dopo Hoenn; ancora non ottenibili). Ripiego: v275.
