@@ -408,3 +408,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v267** · pagina Doppie: numeri del footer allineati a sinistra con le etichette, Ricevi/Offri, pulsante blu uguale in Converti e Scambia. Ripiego: v266.
 - **v268** · nomi sotto le bustine dritti e allineati; ordine Set Base Venusaur · Charizard · Blastoise. Ripiego: v267.
 - **v269** · bustine (grafica generata) per Team Rocket, Gym Heroes, Gym Challenge e i 4 Neo; Gym Heroes e Gym Challenge aggiunti come set dell'Album (non in Collezione né Pokédex). Ripiego: v268.
+- **v270** · icone dei set Gym Heroes e Gym Challenge (file forniti). Ripiego: v269.
