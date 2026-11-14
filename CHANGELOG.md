@@ -409,3 +409,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v268** · nomi sotto le bustine dritti e allineati; ordine Set Base Venusaur · Charizard · Blastoise. Ripiego: v267.
 - **v269** · bustine (grafica generata) per Team Rocket, Gym Heroes, Gym Challenge e i 4 Neo; Gym Heroes e Gym Challenge aggiunti come set dell'Album (non in Collezione né Pokédex). Ripiego: v268.
 - **v270** · icone dei set Gym Heroes e Gym Challenge (file forniti). Ripiego: v269.
+- **v271** · energia nelle bustine Gym Heroes/Challenge, 20 Pokédollari per bustina + "Apri ora", tetto 6 bustine accumulabili, set a blocchi (sblocco al 80%), apertura multipla ×1/×2/×3 con riepilogo unico. Ripiego: v270.

@@ -1089,6 +1089,9 @@ html body #cvs .cvf2 #cvok,html body #cvs .cvf2 #tro{width:112px!important;paddi
 html body .pkpr button{transform:none!important;align-self:flex-start}
 html body .pkpr button span{text-align:center;transform:none!important}
 html body #pkst::after{content:"";flex:0 0 16px}
+#pto{width:100%;height:46px;border:0;border-radius:23px;background:rgba(10,132,255,.14);color:#0a84ff;font:600 16px -apple-system,system-ui,sans-serif;margin-top:8px}#pto[hidden]{display:none}
+#pkst .tab{position:relative}#pkst .tab.lk img,#pkst .tab.lk svg:not(.lkb svg){opacity:.35}#pkst .lkb{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);display:flex;align-items:center;gap:2px;font:700 10px -apple-system,system-ui,sans-serif;font-style:normal;color:#fff;background:rgba(0,0,0,.6);border-radius:9px;padding:2px 5px;white-space:nowrap;pointer-events:none}#pkst .lkb svg{width:11px;height:11px;opacity:1}
+#pkq{position:absolute;left:0;right:0;top:calc(128px + env(safe-area-inset-top,0px));display:flex;gap:10px;justify-content:center;z-index:3}#pkq button{min-width:64px;height:42px;border:0;border-radius:21px;background:#0a84ff;color:#fff;font:700 17px -apple-system,system-ui,sans-serif}#pk.close #pkq,#pk.opening #pkq,#pk.chain #pkq{display:none}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -1938,13 +1941,16 @@ const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezone
 const pkSt=()=>{try{return JSON.parse(localStorage.getItem("carddex_pk")||"{}")||{}}catch(e){return{}}};
 const pkSv=o=>{try{localStorage.setItem("carddex_pk",JSON.stringify(o))}catch(e){}};
 const PKTEST=true,PKDAILY=3;
-function pkAvail(){if(PKTEST)return 99;const o=pkSt();if(o.start==null||!o.lim2){o.start=pkDay();o.op={};o.lim2=1;pkSv(o)}return Math.max(0,(pkDay()-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0)+(o.bonus||0))}
+const PKCAP=6;
+function pkSync(o){const d=pkDay();if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;return 1}if(o.dd<d){o.dl=Math.min(PKCAP,(o.dl||0)+PKDAILY*(d-o.dd));o.dd=d;return 1}return 0}
+function pkAvail(){if(PKTEST)return 99;const o=pkSt();if(pkSync(o))pkSv(o);return (o.dl||0)+(o.bonus||0)}
+function pkSpend(o){if(PKTEST)return;pkSync(o);if((o.dl||0)>0)o.dl--;else if((o.bonus||0)>0)o.bonus--}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 function pkPick(arr,k){const a=arr.slice(),o=[];while(o.length<k&&a.length)o.push(a.splice(rndI(a.length),1)[0]);return o}
 function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go),R=c=>{const d=rdOf(c);return d?d.r:""};
   const en=P.filter(c=>c.kd==="e"&&R(c)==="C"),com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);
   const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:ra[rndI(ra.length)];
-  return PKSET[sid]&&PKSET[sid].e===0?[...pkPick(com,7),...pkPick(un,3),rare]:[...pkPick(en,1),...pkPick(com,6),...pkPick(un,3),rare]}
+  return PKSET[sid]&&PKSET[sid].e===0&&!en.length?[...pkPick(com,7),...pkPick(un,3),rare]:[...pkPick(en,1),...pkPick(com,6),...pkPick(un,3),rare]}
 function pkAdd(c){for(const co of COLS){const s=st[co.k].find(x=>x.id===c.id);if(s){if(s.o){s.q=(s.q>1?s.q:1)+1;return{nw:0,q:s.q}}s.o=1;s.a=0;return{nw:1,q:1}}}return{nw:1,q:1}}
 function pkLeft(){const d=new Date(),m=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),s=Math.max(0,Math.round((m-d)/6e4)),h=Math.floor(s/60);return h+" h "+(s%60)+" min"}
 /* copia le regole grafiche della carta aperta (effetto holo) anche per le carte delle bustine */
@@ -1954,6 +1960,7 @@ let pkCss=0;function pkCloneCss(){if(pkCss)return;pkCss=1;
     else if(r.selectorText&&/#card/.test(r.selectorText)&&/\.ft/.test(r.selectorText)){try{ins(r.cssText.replace(/#card/g,".pkc"))}catch(e){}}
     else if(r.selectorText&&(/^#vw(::(before|after)|:not\(\.holo\)::after)$/.test(r.selectorText)||(r.selectorText==="#vw"&&/--cc/.test(r.cssText)))){try{ins(r.cssText.replace(/#vw/g,"#pk"))}catch(e){}}}};
   [...document.styleSheets].forEach(ss=>{try{go(ss.cssRules,t=>ss.insertRule(t,ss.cssRules.length))}catch(e){}})}
+let pkMul={n:1,left:0,all:[]};const pkAll=()=>pkMul.all.length?pkMul.all:pkCards;
 let pkBusy=0,pkRY=0,pkRX=0,pkRaf=0,pkCards=[],pkTop=null,pkIdx=0;
 const pkJ=(()=>{const a=[];for(let i=0;i<=24;i++)a.push(i===0||i===24?0:(Math.sin(i*12.9898)*43758.5453%1)*1.4-.7);return a})();
 function pkPoly(){const tr=[];for(let i=0;i<=24;i++)tr.push((i*100/24).toFixed(2)+"% "+(10+pkJ[i]).toFixed(2)+"%");
@@ -1965,12 +1972,15 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
   return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
-function pkRender(){const p=$("#pkp"),r=p.querySelector(".pkpr");r.innerHTML=pkP().map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${pkImg(x)}"><span>${x.n}</span></button>`).join("");
+const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"]],PKTH=.8;
+function pkCov(b){let t=0,o=0;const ids=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));t=ids.size;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});return t?o/t:0}
+function pkLk(sid){if(PKTEST)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
+function pkRender(){if(pkLk(PKCUR))PKCUR="B";const p=$("#pkp"),r=p.querySelector(".pkpr");r.innerHTML=pkP().map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${pkImg(x)}"><span>${x.n}</span></button>`).join("");
   r.querySelectorAll("button").forEach(b=>b.onclick=()=>{if(p.classList.contains("go"))return;const i=+b.dataset.i,im=b.querySelector("img"),rc=im.getBoundingClientRect();p.classList.add("go");p.querySelectorAll(".pkpr button").forEach(o=>{if(o!==b)o.style.opacity=0});b.querySelector("span").style.opacity=0;im.style.visibility="hidden";pkStage(i,rc);setTimeout(()=>{p.hidden=true;p.classList.remove("go");p.querySelectorAll(".pkpr button").forEach(o=>{o.style.opacity="";o.querySelector("span").style.opacity="";o.querySelector("img").style.visibility=""})},340)});
-  const T=$("#pkst");let g0="";T.innerHTML=Object.keys(PKSET).map(sid=>{const c=GCOLS.find(x=>x.k==="g"+sid)||{g:""},l=c.g&&c.g!==g0?(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`):"";return l+`<button class="tab ${sid===PKCUR?"on":""}" data-s="${sid}" aria-label="${esc(PKSET[sid].n)}">${sicon(sid)}</button>`}).join("");
-  T.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{const sid=b.dataset.s;if(sid===PKCUR||p.classList.contains("go"))return;PKCUR=sid;try{localStorage.setItem("carddex_pks",sid)}catch(e){}pkRender();$("#pk").style.setProperty("--cc",PKSET[sid].c1);$("#pkn").textContent=PKSET[sid].n})}
+  const T=$("#pkst");let g0="";T.innerHTML=Object.keys(PKSET).map(sid=>{const c=GCOLS.find(x=>x.k==="g"+sid)||{g:""},l=c.g&&c.g!==g0?(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`):"";const lk=pkLk(sid);return l+`<button class="tab ${sid===PKCUR?"on":""}${lk?" lk":""}" data-s="${sid}" aria-label="${esc(PKSET[sid].n)}">${sicon(sid)}${lk?`<em class="lkb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>−${Math.max(1,Math.ceil(PKTH*100-pkCov(lk-1)*100))}%</em>`:""}</button>`}).join("");
+  T.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{const sid=b.dataset.s;if(sid===PKCUR||p.classList.contains("go"))return;{const lk=pkLk(sid);if(lk){toast("Sbloccalo con l’80% del Blocco "+lk+" (ora "+Math.floor(pkCov(lk-1)*100)+"%)");return}}PKCUR=sid;try{localStorage.setItem("carddex_pks",sid)}catch(e){}pkRender();$("#pk").style.setProperty("--cc",PKSET[sid].c1);$("#pkn").textContent=PKSET[sid].n})}
 function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;pkObs(el);
-  el.innerHTML=`<i id="pktc"></i><button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
+  el.innerHTML=`<i id="pktc"></i><button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><div id="pkq"></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;
   const p=$("#pkp");p.innerHTML=`<div id="pkst" class="pkst"></div><p class="pkpt">Scegli la tua bustina</p><div class="pkpr"></div><div id="pknv"><div class="nvp">${NAVH("b")}</div></div><div id="pkbar"><h2 class="pbt">Bustine</h2><div class="pbg"><button id="pkba" aria-label="Album">${ALI}</button><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Pokédollari"><span id="pkbpn"></span></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div></div>`;
@@ -2069,11 +2079,12 @@ function bkDraw(){const n=PKTEST?"∞":pkAvail(),d=new Date(),m=new Date(d.getFu
   const t=Math.floor(ms/1000),p=x=>String(x).padStart(2,"0");$("#bkc").textContent="Prossima tra "+p(Math.floor(t/3600))+":"+p(Math.floor(t%3600/60))+":"+p(t%60)}
 function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);bkT=setInterval(bkDraw,1000)}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
-  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">10 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button></div>';
+  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button><button id="pto" hidden>Apri ora</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
-  $("#ptx").onclick=()=>{const o=pkSt();if((o.pts||0)<10)return;o.pts-=10;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";toast("Bustina ottenuta!")};
+  $("#ptx").onclick=()=>{const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";toast("Bustina ottenuta!");ptDraw()};
+  $("#pto").onclick=()=>{e.hidden=true;pkScreen()};
   return e}
-function ptDraw(){const p=pkSt().pts||0;$("#ptn").textContent=p;$("#ptf").style.width=Math.min(100,(p%10)*10+(p>=10&&p%10===0?100:0))+"%";$("#ptt").textContent=p>=10?"Puoi scambiare "+Math.floor(p/10)+(Math.floor(p/10)===1?" bustina":" bustine"):"Ti "+(10-p===1?"manca 1 Pokédollaro":"mancano "+(10-p)+" Pokédollari")+" per una bustina";$("#ptx").disabled=p<10}
+function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20);$("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent=k>0?"Puoi scambiare "+k+(k===1?" bustina":" bustine"):"Ti "+(20-p===1?"manca 1 Pokédollaro":"mancano "+(20-p)+" Pokédollari")+" per una bustina";$("#ptx").disabled=p<20;$("#pto").hidden=!(PKTEST||(pkSt().bonus||0)>0)}
 function ptOpen(){const e=ptBuild();ptDraw();e.hidden=false}
 function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${pkImg(pkP()[i])})`,v=`url(${PKIMG.bk})`;w.querySelectorAll(".pkr.f").forEach(l=>{l.style.backgroundImage=u;l.firstChild.style.webkitMaskImage=u;l.firstChild.style.maskImage=u});w.querySelectorAll(".pkr.b").forEach(l=>{l.style.backgroundImage=v;l.firstChild.style.webkitMaskImage=v;l.firstChild.style.maskImage=v})}
 function pkX(){if(!$("#pks").hidden&&$("#pkd").hidden&&$("#pksum").hidden&&!pkBusy){pkChoose();return}if(!$("#pkd").hidden&&$("#pksum").hidden&&pkCards.length){pkCur=null;pkSummary()}else if(!$("#pksum").hidden)pkScreen();else pkClose()}
@@ -2094,16 +2105,18 @@ function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rota
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkToAlbum(){const sid=PKCUR,k="g"+sid;pkClose();if(MODE!=="g")setMode("g");if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync()}
 function pkScreen(){const e=pkBuild();e.classList.remove("pkfo");pkChoose()}
-function pkChoose(){const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
+function pkChoose(){pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
   e.classList.remove("holo","close");e.classList.add("studio");pkTheme(STC());e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
   $("#pks").hidden=true;$("#pkm").hidden=true;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   $("#pkp").hidden=false;requestAnimationFrame(()=>navSet(document.querySelector("#pknv .nvp"),"b",0))}
+function pkQ(n){const q=$("#pkq");q.innerHTML="";for(let k=1;k<=Math.min(3,n);k++){const b=document.createElement("button");b.textContent="×"+k;b.onclick=()=>{if(pkPh!=="show"||pkBusy)return;pkMul={n:k,left:k,all:[]};pkZoom()};q.appendChild(b)}}
+function pkChain(){$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";pkStage(pkSel);$("#pk").classList.add("chain");setTimeout(()=>{if(pkPh==="show")pkZoom()},900)}
 function pkStage(i,from){const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkArt(i);e.hidden=false;pkBusy=0;pkRY=0;pkRX=0;$("#pkhm").hidden=true;pkPre=pkDraw(PKCUR);pkPreload(pkPre);if(!from)$("#pkp").hidden=true;$("#pkm").hidden=false;;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n>0?(n===1?"1 bustina disponibile":n+" bustine disponibili"):"Nessuna bustina disponibile";
   const pk0=$("#pk");pk0.classList.remove("holo");pk0.style.setProperty("--cc",pkP()[i].c);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}$("#pks").hidden=false;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   const w=$("#pkw");w.style.display="";w.style.opacity=n>0?1:.45;w.style.transition="none";w.querySelectorAll(".pkcap,.pkbody,.pkct,.pkcl").forEach(f=>{f.style.opacity="";f.style.display=""});pkApply();w.style.setProperty("--cut",0);w.classList.remove("rl","cutting");
-  $("#pkm").textContent=n>0?"Tocca la bustina per aprirla":"Prossima bustina tra "+pkLeft()+" (a mezzanotte)";
+  $("#pkm").textContent=n>0?"Quante bustine vuoi aprire?":"Prossima bustina tra "+pkLeft()+" (a mezzanotte)";pk0.classList.remove("chain");pkQ(n);
   void w.offsetWidth;w.style.transition="";pkPh="show";pk0.classList.remove("close");pk0.classList.add("studio");pkTheme(STC());
   if(from){const t=$("#pkw").getBoundingClientRect(),k=from.width/t.width,dx=from.left+from.width/2-(t.left+t.width/2),dy=from.top+from.height/2-(t.top+t.height/2);try{$("#pkwr").animate([{transform:`translate(${dx}px,${dy}px) scale(${k})`},{transform:"none"}],{duration:750,easing:"cubic-bezier(.2,.8,.2,1)"})}catch(e){}return}
   try{$("#pkwr").animate([{transform:"translateY(-110vh) rotate(18deg)",easing:"cubic-bezier(.45,0,.9,.6)"},{transform:"translateY(16px) rotate(-3deg)",offset:.6,easing:"ease-out"},{transform:"translateY(-6px) rotate(1deg)",offset:.8},{transform:"none"}],{duration:1100})}catch(e){}}
@@ -2121,14 +2134,14 @@ function pkGestures(){const stg=$("#pks");let g=null,vel=0,lt=0,lx=0;
     });
   const up=e=>{if(!g)return;const x=g;g=null;
     if(x.ph==="close"){$("#pkw").style.setProperty("--cut",0);$("#pkw").classList.remove("cutting");if(x.mv<10&&!x.on)pkUnzoom();return}
-    if(x.mv<10&&Date.now()-x.t<400){if(x.on)pkZoom();return}
+    if(x.mv<10&&Date.now()-x.t<400){return}
     };
   stg.addEventListener("pointerup",up);stg.addEventListener("pointercancel",up)}
 function pkZoom(){if(pkPh!=="show"||pkBusy)return;pkBusy=1;const w=$("#pkw");w.style.transition="transform .5s ease-out";pkRY=Math.round(pkRY/360)*360;pkRX=0;pkApply();
   setTimeout(()=>{$("#pk").classList.add("close");pkPh="close";$("#pkm").textContent="Scorri lungo la linea per tagliare la bustina";pkBusy=0},300)}
-function pkUnzoom(){if(pkPh!=="close")return;$("#pk").classList.remove("close");pkPh="show";$("#pkm").textContent="Tocca la bustina per aprirla"}
-function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");const o=pkSt(),S=PKSET[PKCUR];o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;pkSv(o);
-  const draw=pkPre||pkDraw(PKCUR);pkPre=null;const res=draw.map(c=>({c,...pkAdd(c)}));save();pkCards=res;pkIdx=0;pkBadge();pkSumBuild();
+function pkUnzoom(){if(pkPh!=="close"||$("#pk").classList.contains("chain"))return;$("#pk").classList.remove("close");pkPh="show";$("#pkm").textContent="Quante bustine vuoi aprire?"}
+function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");const o=pkSt(),S=PKSET[PKCUR];o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;pkSpend(o);pkSv(o);
+  const draw=pkPre||pkDraw(PKCUR);pkPre=null;const res=draw.map(c=>({c,...pkAdd(c)}));save();pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
   w.classList.remove("cutting");w.querySelectorAll(".pkct,.pkcl").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:140,fill:"forwards"})}catch(e){}setTimeout(()=>{f.style.display="none"},160)});
@@ -2198,17 +2211,17 @@ function pkDeck(res){const d=$("#pkd");d.innerHTML='<div id="pkbdg"></div>';d.hi
 function pkNext(dy,off){if(pkLock||!pkCur)return;pkLock=1;pkBT++;{const bb=$("#pkbdg");if(bb){bb.style.transition="opacity .12s";bb.style.opacity=0}}if(pkNx)pkNx.style.visibility="";const q=pkCur,h=innerHeight*.5*(dy<0?-1:1),o=off||0;let a;
   try{a=q.animate([{transform:o?`translateY(${o}px)`:"none",opacity:1},{transform:"translateY("+h+"px)",opacity:0}],{duration:o?180:200,easing:"ease-in"})}catch(e){}
   const fin=()=>{q.remove();pkIdx++;pkRYc=0;pkRXc=0;
-    if(pkIdx>=pkCards.length){pkCur=null;pkSummary();pkLock=0;return}
+    if(pkIdx>=pkCards.length){pkCur=null;pkLock=0;if(pkMul.left>1&&pkAvail()>=1){pkMul.left--;pkChain();return}pkSummary();return}
     pkCur=pkNx;pkCur.style.transform="";
     pkNx=pkCards[pkIdx+1]?pkCard(pkCards[pkIdx+1],pkCards.length-pkIdx-1):null;if(pkNx){pkNx.style.visibility="hidden";$("#pkd").insertBefore(pkNx,pkCur)}
     pkAp();pkShow();pkLock=0};
   if(a)a.onfinish=fin;else fin()}
 function pkSumBuild(){const s=$("#pksum"),n=pkAvail();
-  s.innerHTML=`<h2>Carte ottenute</h2><div class="pkgd">${pkCards.map((x,j)=>`<div data-j="${j}" class="${x.c.h?"ho":""}">${face(x.c,1)}${pkBadgeH(x,0)}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
-  s.hidden=true;$("#pks1").onclick=()=>pkToAlbum();const b=$("#pks2");if(b)b.onclick=()=>pkScreen();s.querySelectorAll(".pkgd>div").forEach(d=>d.onclick=()=>pkView(pkCards[+d.dataset.j].c))}
+  s.innerHTML=`<h2>Carte ottenute</h2><div class="pkgd">${pkAll().map((x,j)=>`<div data-j="${j}" class="${x.c.h?"ho":""}">${face(x.c,1)}${pkBadgeH(x,0)}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
+  s.hidden=true;$("#pks1").onclick=()=>pkToAlbum();const b=$("#pks2");if(b)b.onclick=()=>pkScreen();s.querySelectorAll(".pkgd>div").forEach(d=>d.onclick=()=>pkView(pkAll()[+d.dataset.j].c))}
 function pkSummary(){$("#pkg").classList.remove("on");$("#pkc2").textContent="";const s=$("#pksum");if(!s.firstChild)pkSumBuild();
   $("#pk").classList.add("studio");pkTheme(STC());s.hidden=false;
-  {const g=s.querySelector(".pkgd"),rows=Math.ceil(pkCards.length/3),av=g.clientHeight,cw=Math.max(60,Math.min(170,(innerWidth-40-16)/3,(av-(rows-1)*8-4)/rows*63/88));g.style.cssText=`grid-template-columns:repeat(3,${cw.toFixed(0)}px);justify-content:center`}
+  {const g=s.querySelector(".pkgd"),rows=Math.ceil(pkAll().length/3),av=g.clientHeight,cw=Math.max(60,Math.min(170,(innerWidth-40-16)/3,(av-(rows-1)*8-4)/rows*63/88));g.style.cssText=`grid-template-columns:repeat(3,${cw.toFixed(0)}px);justify-content:center`}
   try{s.animate([{opacity:0},{opacity:1}],{duration:520,easing:"ease-out"})}catch(e){}}
 function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c.id)){k=co.k;break}}if(!k)return;
   if(cur!==k||FLT!=="a"){cur=k;FLT="a";SR=[];SQ="";pg=0;sp=0;tabs();render()}
@@ -2342,7 +2355,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261114183844";
+const BUILD="B261114192604";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
