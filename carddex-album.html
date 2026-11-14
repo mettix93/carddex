@@ -1921,10 +1921,10 @@ const PKIMG={"bl": "data:image/webp;base64,UklGRgxhAQBXRUJQVlA4WAoAAAAQAAAA3wEAM
 const PKP=[{k:"ve",n:"Venusaur",c:"#3b9a3f"},{k:"ch",n:"Charizard",c:"#d4541d"},{k:"bl",n:"Blastoise",c:"#2b62c9"}];
 let pkSel=0;
 /* bustine: grafica provvisoria generata in codice (sostituibile con immagini vere: campo img di ogni bustina) */
-function pkGen(pc,sc,t,nm){const W=480,H=818,e=x=>String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;");let d="M14 30";for(let x=14,i=0;x<466;x+=10,i++)d+=" L"+(x+5)+" "+(i%2?30:14)+" L"+(x+10)+" 30";d+=" L466 788";for(let x=466,i=0;x>14;x-=10,i++)d+=" L"+(x-5)+" "+(i%2?788:804)+" L"+(x-10)+" 788";d+=" Z";
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+pc+'"/><stop offset="1" stop-color="'+sc+'"/></linearGradient><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".45" stop-color="#fff" stop-opacity=".28"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="'+d+'" fill="url(#g)"/><path d="'+d+'" fill="url(#s)"/><path d="'+d+'" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/><g font-family="-apple-system,Helvetica,Arial,sans-serif" text-anchor="middle" font-weight="800"><text x="240" y="130" font-size="66" fill="#ffd60a" stroke="#1b2a49" stroke-width="9" paint-order="stroke" font-style="italic">Pokémon</text><text x="240" y="170" font-size="19" fill="#fff" letter-spacing="3">TRADING CARD GAME</text><text x="240" y="420" font-size="'+Math.min(78,Math.floor(430/(t.length*.66)))+'" fill="#fff" stroke="#1b2a49" stroke-width="10" paint-order="stroke">'+e(t)+'</text><text x="240" y="560" font-size="46" fill="#fff" stroke="#1b2a49" stroke-width="7" paint-order="stroke">'+e(nm)+'</text><text x="240" y="745" font-size="22" fill="#fff" letter-spacing="2">11 CARTE</text></g></svg>';
+function pkGen(pc,sc,t,nm,cn){const W=480,H=818,e=x=>String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;");let d="M14 30";for(let x=14,i=0;x<466;x+=10,i++)d+=" L"+(x+5)+" "+(i%2?30:14)+" L"+(x+10)+" 30";d+=" L466 788";for(let x=466,i=0;x>14;x-=10,i++)d+=" L"+(x-5)+" "+(i%2?788:804)+" L"+(x-10)+" 788";d+=" Z";
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+pc+'"/><stop offset="1" stop-color="'+sc+'"/></linearGradient><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".45" stop-color="#fff" stop-opacity=".28"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="'+d+'" fill="url(#g)"/><path d="'+d+'" fill="url(#s)"/><path d="'+d+'" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/><g font-family="-apple-system,Helvetica,Arial,sans-serif" text-anchor="middle" font-weight="800"><text x="240" y="130" font-size="66" fill="#ffd60a" stroke="#1b2a49" stroke-width="9" paint-order="stroke" font-style="italic">Pokémon</text><text x="240" y="170" font-size="19" fill="#fff" letter-spacing="3">TRADING CARD GAME</text><text x="240" y="420" font-size="'+Math.min(78,Math.floor(430/(t.length*.66)))+'" fill="#fff" stroke="#1b2a49" stroke-width="10" paint-order="stroke">'+e(t)+'</text><text x="240" y="560" font-size="46" fill="#fff" stroke="#1b2a49" stroke-width="7" paint-order="stroke">'+e(nm)+'</text><text x="240" y="745" font-size="22" fill="#fff" letter-spacing="2">'+(cn||11)+' CARTE</text></g></svg>';
   return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)}
-const pkMk=(l,n,t,c1,c2,d,pc)=>({n,c1,c2,cnt:11,e:0,p:[1,2,3].map((i,x)=>({k:l+"_"+i,n:"Bustina "+i,c:pc[x],img:pkGen(pc[x],d,t,"Bustina "+i)}))});
+const pkMk=(l,n,t,c1,c2,d,pc,cn)=>({n,c1,c2,cnt:cn||11,e:0,p:[1,2,3].map((i,x)=>({k:l+"_"+i,n:"Bustina "+i,c:pc[x],img:pkGen(pc[x],d,t,"Bustina "+i,cn)}))});
 const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:PKP},
   J:{n:"Giungla",c1:"#1f7a3a",c2:"#9ad84a",cnt:11,e:0,p:[["Wigglytuff","#e58bc0"],["Scyther","#7cc242"],["Flareon","#e8641c"]].map(([n,c])=>({k:"j_"+n,n,c,img:pkGen(c,"#14502a","GIUNGLA",n)}))},
   F:{n:"Fossile",c1:"#6a2f8f",c2:"#e0833a",cnt:11,e:0,p:[["Lapras","#2c7fd0"],["Aerodactyl","#9a6bb8"],["Zapdos","#e9b81a"]].map(([n,c])=>({k:"f_"+n,n,c,img:pkGen(c,"#3d1a5c","FOSSILE",n)}))},
@@ -1934,7 +1934,11 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:
   G:pkMk("g","Neo Genesis","NEO GENESIS","#3b6fd8","#b9d7ff","#1b2f6b",["#3b6fd8","#3a9a5a","#d4541d"]),
   D:pkMk("d","Neo Discovery","NEO DISCOVERY","#5a3d99","#e8b84a","#2d1d52",["#7a5cc2","#d9a23a","#2f8f9a"]),
   V:pkMk("v","Neo Revelation","NEO REVELATION","#b3262f","#f2a65a","#5c1218",["#d1453a","#e8a22b","#2f6fb8"]),
-  T:pkMk("t","Neo Destiny","NEO DESTINY","#2b2d42","#8d99ae","#12131f",["#4a4e69","#c06a2b","#7a5cc2"])};
+  T:pkMk("t","Neo Destiny","NEO DESTINY","#2b2d42","#8d99ae","#12131f",["#4a4e69","#c06a2b","#7a5cc2"]),
+  H:pkMk("h","EX Rubino e Zaffiro","EX RUBINO E ZAFFIRO","#b3202a","#3a7bd5","#3a0d12",["#c8302f","#2f6fc2","#3a9a5a"],9),
+  I:pkMk("i","EX Tempesta di Sabbia","EX TEMPESTA DI SABBIA","#c98a2b","#f2d58a","#5c3a0c",["#d9992b","#8a5a2b","#2f8f9a"],9),
+  K:pkMk("k","EX Drago","EX DRAGO","#2f8f6a","#8ad8b8","#0f3d2c",["#2f9a6f","#3a6fc2","#c2452d"],9),
+  M:pkMk("m","EX Leggende Nascoste","EX LEGGENDE NASCOSTE","#5a3d99","#a8c8f0","#2d1d52",["#7a5cc2","#2f6fb8","#c28a2b"],9)};
 let PKCUR="B";try{const q=localStorage.getItem("carddex_pks");if(q&&PKSET[q])PKCUR=q}catch(e){}
 const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
@@ -1950,6 +1954,7 @@ function pkPick(arr,k){const a=arr.slice(),o=[];while(o.length<k&&a.length)o.pus
 function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go),R=c=>{const d=rdOf(c);return d?d.r:""};
   const en=P.filter(c=>c.kd==="e"&&R(c)==="C"),com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);
   const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:ra[rndI(ra.length)];
+  if(PKSET[sid]&&PKSET[sid].cnt===9)return[...pkPick(com.concat(en),5),...pkPick(un,3),rare];
   return PKSET[sid]&&PKSET[sid].e===0&&!en.length?[...pkPick(com,7),...pkPick(un,3),rare]:[...pkPick(en,1),...pkPick(com,6),...pkPick(un,3),rare]}
 function pkAdd(c){for(const co of COLS){const s=st[co.k].find(x=>x.id===c.id);if(s){if(s.o){s.q=(s.q>1?s.q:1)+1;return{nw:0,q:s.q}}s.o=1;s.a=0;return{nw:1,q:1}}}return{nw:1,q:1}}
 function pkLeft(){const d=new Date(),m=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),s=Math.max(0,Math.round((m-d)/6e4)),h=Math.floor(s/60);return h+" h "+(s%60)+" min"}
@@ -1972,7 +1977,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
   return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
-const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"]],PKTH=.8;
+const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"],["H","I","K","M"]],PKTH=.8;
 function pkCov(b){let t=0,o=0;const ids=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));t=ids.size;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});return t?o/t:0}
 function pkLk(sid){if(PKTEST)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
 function pkRender(){if(pkLk(PKCUR))PKCUR="B";const p=$("#pkp"),r=p.querySelector(".pkpr");r.innerHTML=pkP().map((x,i)=>`<button data-i="${i}" aria-label="${x.n}"><img alt="" src="${pkImg(x)}"><span>${x.n}</span></button>`).join("");
@@ -2355,7 +2360,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261114192604";
+const BUILD="B261114194048";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

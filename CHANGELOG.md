@@ -410,3 +410,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v269** · bustine (grafica generata) per Team Rocket, Gym Heroes, Gym Challenge e i 4 Neo; Gym Heroes e Gym Challenge aggiunti come set dell'Album (non in Collezione né Pokédex). Ripiego: v268.
 - **v270** · icone dei set Gym Heroes e Gym Challenge (file forniti). Ripiego: v269.
 - **v271** · energia nelle bustine Gym Heroes/Challenge, 20 Pokédollari per bustina + "Apri ora", tetto 6 bustine accumulabili, set a blocchi (sblocco al 80%), apertura multipla ×1/×2/×3 con riepilogo unico. Ripiego: v270.
+- **v272** · bustine Hoenn (EX Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste): 9 carte, blocco 4 (sblocco al 80% del blocco 3), grafica provvisoria. Ripiego: v271.
