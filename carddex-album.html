@@ -1089,9 +1089,9 @@ html body #cvs .cvf2 #cvok,html body #cvs .cvf2 #tro{width:112px!important;paddi
 html body .pkpr button{transform:none!important;align-self:flex-start}
 html body .pkpr button span{text-align:center;transform:none!important}
 html body #pkst::after{content:"";flex:0 0 16px}
-#pto{width:100%;height:46px;border:0;border-radius:23px;background:rgba(10,132,255,.14);color:#0a84ff;font:600 16px -apple-system,system-ui,sans-serif;margin-top:8px}#pto[hidden]{display:none}
 #pkst .tab{position:relative}#pkst .tab.lk img,#pkst .tab.lk svg:not(.lkb svg){opacity:.35}#pkst .lkb{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);display:flex;align-items:center;gap:2px;font:700 10px -apple-system,system-ui,sans-serif;font-style:normal;color:#fff;background:rgba(0,0,0,.6);border-radius:9px;padding:2px 5px;white-space:nowrap;pointer-events:none}#pkst .lkb svg{width:11px;height:11px;opacity:1}
 #pkq{position:absolute;left:0;right:0;top:calc(128px + env(safe-area-inset-top,0px));display:flex;gap:10px;justify-content:center;z-index:3}#pkq button{min-width:64px;height:42px;border:0;border-radius:21px;background:#0a84ff;color:#fff;font:700 17px -apple-system,system-ui,sans-serif}#pk.close #pkq,#pk.opening #pkq,#pk.chain #pkq{display:none}
+#pts.done #ptn::after{display:none}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div></header>
@@ -2084,13 +2084,15 @@ function bkDraw(){const n=PKTEST?"∞":pkAvail(),d=new Date(),m=new Date(d.getFu
   const t=Math.floor(ms/1000),p=x=>String(x).padStart(2,"0");$("#bkc").textContent="Prossima tra "+p(Math.floor(t/3600))+":"+p(Math.floor(t%3600/60))+":"+p(t%60)}
 function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);bkT=setInterval(bkDraw,1000)}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
-  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button><button id="pto" hidden>Apri ora</button></div>';
+  e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
-  $("#ptx").onclick=()=>{const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";toast("Bustina ottenuta!");ptDraw()};
-  $("#pto").onclick=()=>{e.hidden=true;pkScreen()};
+  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw()};
   return e}
-function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20);$("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent=k>0?"Puoi scambiare "+k+(k===1?" bustina":" bustine"):"Ti "+(20-p===1?"manca 1 Pokédollaro":"mancano "+(20-p)+" Pokédollari")+" per una bustina";$("#ptx").disabled=p<20;$("#pto").hidden=!(PKTEST||(pkSt().bonus||0)>0)}
-function ptOpen(){const e=ptBuild();ptDraw();e.hidden=false}
+let ptDone=0;const PTX0='20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina';
+function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Conversione completata":"I tuoi Pokédollari";
+  if(ptDone){$("#ptn").textContent="+1 bustina";$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent="Hai guadagnato una bustina! Ti restano "+p+" Pokédollari";$("#ptx").innerHTML="Apri ora";$("#ptx").disabled=false;return}
+  $("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent=k>0?"Puoi scambiare "+k+(k===1?" bustina":" bustine"):"Ti "+(20-p===1?"manca 1 Pokédollaro":"mancano "+(20-p)+" Pokédollari")+" per una bustina";$("#ptx").innerHTML=PTX0;$("#ptx").disabled=p<20}
+function ptOpen(){const e=ptBuild();ptDone=0;ptDraw();e.hidden=false}
 function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${pkImg(pkP()[i])})`,v=`url(${PKIMG.bk})`;w.querySelectorAll(".pkr.f").forEach(l=>{l.style.backgroundImage=u;l.firstChild.style.webkitMaskImage=u;l.firstChild.style.maskImage=u});w.querySelectorAll(".pkr.b").forEach(l=>{l.style.backgroundImage=v;l.firstChild.style.webkitMaskImage=v;l.firstChild.style.maskImage=v})}
 function pkX(){if(!$("#pks").hidden&&$("#pkd").hidden&&$("#pksum").hidden&&!pkBusy){pkChoose();return}if(!$("#pkd").hidden&&$("#pksum").hidden&&pkCards.length){pkCur=null;pkSummary()}else if(!$("#pksum").hidden)pkScreen();else pkClose()}
 function topC(c){return c==="#ffffff"?"#f2f2f7":c}
@@ -2360,7 +2362,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261114195321";
+const BUILD="B261114195736";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
