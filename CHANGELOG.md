@@ -416,3 +416,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v275** · calcolo copertura blocchi in cache (meno lavoro nel disegnare le pillole). Ripiego: v274.
 - **v276** · nuovo album Promo (prime 49 carte Wizards Black Star Promos, solo album bustine, in fondo dopo Hoenn; ancora non ottenibili). Ripiego: v275.
 - **v277** · bustine reali Team Rocket, Gym Heroes, Gym Challenge (4 per set, luminosità allineata ai set esistenti). Ripiego: v276.
+- **v278** · bustine reali Neo (Genesis, Discovery, Revelation, Destiny: 4 per set), ritagliate/raddrizzate; luminosità riallineata su Rocket, Gym e Neo. Ripiego: v277.
