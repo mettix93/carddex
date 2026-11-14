@@ -419,3 +419,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v278** · bustine reali Neo (Genesis, Discovery, Revelation, Destiny: 4 per set), ritagliate/raddrizzate; luminosità riallineata su Rocket, Gym e Neo. Ripiego: v277.
 - **v279** · Neo Genesis: Meganium raddrizzato (prospettiva), Meganium e Lugia portati a vivacità/luminosità di Typhlosion e Feraligatr. Ripiego: v278.
 - **v280** · Bustine: nuova pagina "Scegli la tua bustina" a carosello perpetuo (bustina a grandezza intera, nome del set sotto), pagina "Apri bustina" con pulsante Apri + ×N (massimo apribile). Ripiego: v279.
+- **v281** · Bustine: nomi Jungle/Fossil; "×N" bianco circolare con bordo blu; fix pulsanti rimasti tornando a Scegli; bustine più piccole nel carosello (vicine tagliate a metà) con ingrandimento animato; fix flash bustina nelle aperture in serie; pillole set tutte cerchi uguali; titolo = nome del set, nome della bustina sotto ciascuna. Ripiego: v280.
