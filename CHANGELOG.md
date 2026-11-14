@@ -418,3 +418,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v277** · bustine reali Team Rocket, Gym Heroes, Gym Challenge (4 per set, luminosità allineata ai set esistenti). Ripiego: v276.
 - **v278** · bustine reali Neo (Genesis, Discovery, Revelation, Destiny: 4 per set), ritagliate/raddrizzate; luminosità riallineata su Rocket, Gym e Neo. Ripiego: v277.
 - **v279** · Neo Genesis: Meganium raddrizzato (prospettiva), Meganium e Lugia portati a vivacità/luminosità di Typhlosion e Feraligatr. Ripiego: v278.
+- **v280** · Bustine: nuova pagina "Scegli la tua bustina" a carosello perpetuo (bustina a grandezza intera, nome del set sotto), pagina "Apri bustina" con pulsante Apri + ×N (massimo apribile). Ripiego: v279.
