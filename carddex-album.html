@@ -1099,7 +1099,7 @@ html body #pk #pkm,html body #pk.close #pkm{top:calc(var(--hbt,14px) + 138px);fo
 #pkp{overflow:hidden;display:block}
 #pkp:not(.none) .pkpt{text-transform:uppercase;letter-spacing:.06em}#pkms{position:absolute;right:16px;bottom:calc(var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px))) + 76px);z-index:3;display:flex;align-items:center;gap:8px;height:44px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);color:rgba(235,235,245,.85);font:600 15px -apple-system,system-ui,sans-serif;transition:opacity .22s}#pkms svg{width:22px;height:22px;flex:none}#pkp.go #pkms,#pkp.none #pkms{opacity:0;pointer-events:none}html.gml #pkms{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.75);color:#1b2a49}
 #msp{position:absolute;inset:0;z-index:12;overflow:auto;padding:calc(var(--hbt,14px) + 56px) 16px 40px;background:#0a0c17;color:#fff}html.gml #msp{background:#f2f2f7;color:#1b2a49}#msp h2{position:absolute;left:16px;top:var(--hbt,14px);margin:0;font:700 32px/44px -apple-system,"SF Pro Display",system-ui,sans-serif;letter-spacing:-.01em}#msp .pkx{z-index:2}.msi{position:relative;padding:14px 16px;margin-bottom:10px;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);display:grid;gap:4px}html.gml .msi{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 #fff,0 4px 14px rgba(40,70,120,.12)}.msi b{font:600 17px -apple-system,system-ui,sans-serif}.msi span{font:500 14px -apple-system,system-ui,sans-serif;opacity:.6}.msi i{display:block;height:6px;border-radius:3px;background:rgba(127,127,140,.25);overflow:hidden;margin-top:6px}.msi u{display:block;height:100%;background:#0a84ff;border-radius:3px}.msi em{font-style:normal;font-size:12px;opacity:.6}.msn{text-align:center;font-size:13px;opacity:.55;margin-top:18px}
-#pkp .pkpt b{font-weight:800}#pkp .pkpt em,#sn em{font-style:normal;font-weight:500;opacity:.6;margin-left:8px;letter-spacing:.02em}
+html[data-env=dev] #pkbar .pbt::after{content:"DEV";margin-left:10px;padding:3px 8px;border-radius:8px;background:#ff9f0a;color:#fff;font:700 11px/1 -apple-system,system-ui,sans-serif;letter-spacing:.06em;vertical-align:middle}#pkp .pkpt b{font-weight:800}#pkp .pkpt em,#sn em{font-style:normal;font-weight:500;opacity:.6;margin-left:8px;letter-spacing:.02em}
 html body #pkp .pkpt{position:absolute;left:0;right:0;top:calc(var(--hbt,14px) + 138px);text-align:center;padding:0 20px}
 .pkcar{position:absolute;left:0;right:0;top:var(--pky);height:var(--ph);touch-action:pan-y;user-select:none;-webkit-user-select:none}
 #pk{--cw:min(var(--pw),calc(50vw - 18px));--ch:calc(var(--cw)*818/480)}
@@ -1175,6 +1175,10 @@ html body .vt small{display:block!important;white-space:normal!important;height:
 </div>
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
+const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
+const ENV=(()=>{if(!DEVOK)return"app";try{return localStorage.getItem("carddex_env")==="app"?"app":"dev"}catch(e){return"dev"}})();
+const GK=k=>ENV==="dev"?k:k+"_a";
+document.documentElement.dataset.env=ENV;
 /*DATA*/
 const DEXN="Bulbasaur,Ivysaur,Venusaur,Charmander,Charmeleon,Charizard,Squirtle,Wartortle,Blastoise,Caterpie,Metapod,Butterfree,Weedle,Kakuna,Beedrill,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu,Raichu,Sandshrew,Sandslash,Nidoran♀,Nidorina,Nidoqueen,Nidoran♂,Nidorino,Nidoking,Clefairy,Clefable,Vulpix,Ninetales,Jigglypuff,Wigglytuff,Zubat,Golbat,Oddish,Gloom,Vileplume,Paras,Parasect,Venonat,Venomoth,Diglett,Dugtrio,Meowth,Persian,Psyduck,Golduck,Mankey,Primeape,Growlithe,Arcanine,Poliwag,Poliwhirl,Poliwrath,Abra,Kadabra,Alakazam,Machop,Machoke,Machamp,Bellsprout,Weepinbell,Victreebel,Tentacool,Tentacruel,Geodude,Graveler,Golem,Ponyta,Rapidash,Slowpoke,Slowbro,Magnemite,Magneton,Farfetch’d,Doduo,Dodrio,Seel,Dewgong,Grimer,Muk,Shellder,Cloyster,Gastly,Haunter,Gengar,Onix,Drowzee,Hypno,Krabby,Kingler,Voltorb,Electrode,Exeggcute,Exeggutor,Cubone,Marowak,Hitmonlee,Hitmonchan,Lickitung,Koffing,Weezing,Rhyhorn,Rhydon,Chansey,Tangela,Kangaskhan,Horsea,Seadra,Goldeen,Seaking,Staryu,Starmie,Mr. Mime,Scyther,Jynx,Electabuzz,Magmar,Pinsir,Tauros,Magikarp,Gyarados,Lapras,Ditto,Eevee,Vaporeon,Jolteon,Flareon,Porygon,Omanyte,Omastar,Kabuto,Kabutops,Aerodactyl,Snorlax,Articuno,Zapdos,Moltres,Dratini,Dragonair,Dragonite,Mewtwo,Mew".split(",");
 const SETS={
@@ -1418,7 +1422,7 @@ const BASE=()=>cur==="?"?SR.map(r=>st[r.c][r.i]):st[cur];
 let DXL=null;
 const LIST=()=>{if(DXL)return DXL;let b=BASE();if(HID())b=b.filter(HF);return FLT==="a"?b:b.filter(s=>s.id&&(FLT==="o"?s.o:FLT==="i"?(!s.o&&s.a):(!s.o&&!s.a)))};
 const VIEW=()=>cur==="?"||FLT!=="a"||HID();
-let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})(),SKEY=MODE==="g"?"carddex2g":"carddex2";
+let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})(),SKEY=MODE==="g"?GK("carddex2g"):"carddex2";
 let COLS=MODE==="g"?GCOLS:PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 const save=()=>{try{localStorage.setItem(SKEY,JSON.stringify(st))}catch(e){}try{albWatch()}catch(e){}};
@@ -1848,8 +1852,8 @@ $("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j
   else if(Array.isArray(j.alb.a)&&j.alb.a.length&&j.alb.a.every(a=>a&&a.k&&Array.isArray(a.s)&&a.s.every(x=>SETS[x]))){try{localStorage.setItem(ALK,JSON.stringify(j.alb))}catch(e){}albLoad()}
   const cln=s=>{if(!s||typeof s!=="object")return null;const o={};let n=0;[...PCOLS,...GCOLS].forEach(c=>{if(Array.isArray(s[c.k])){o[c.k]=s[c.k].filter(x=>x&&(!x.id||CARDS[x.id]));n++}});return n?o:null};
   if(j.v>=3){const C=cln(j.coll),G=cln(j.game);if(!C&&!G)throw 0;const W=(k,o)=>{try{localStorage.setItem(k,JSON.stringify(o))}catch(e){}};
-    if(C){W("carddex2",C);if(MODE!=="g")st=C}if(G){W("carddex2g",G);if(MODE==="g")st=G}
-    if(j.pk&&typeof j.pk==="object")W("carddex_pk",j.pk);
+    if(C){W("carddex2",C);if(MODE!=="g")st=C}if(G){W(GK("carddex2g"),G);if(MODE==="g")st=G}
+    if(j.pk&&typeof j.pk==="object")W(GK("carddex_pk"),j.pk);
     if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W("carddex_pgc",PGS);try{applyPgc()}catch(e){}}
     if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
     try{pkBadge()}catch(e){}}
@@ -2008,16 +2012,16 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:
   I:pkMk("i","EX Tempesta di Sabbia","EX TEMPESTA DI SABBIA","#c98a2b","#f2d58a","#5c3a0c",["#d9992b","#8a5a2b","#2f8f9a"],9),
   K:pkMk("k","EX Drago","EX DRAGO","#2f8f6a","#8ad8b8","#0f3d2c",["#2f9a6f","#3a6fc2","#c2452d"],9),
   M:pkMk("m","EX Leggende Nascoste","EX LEGGENDE NASCOSTE","#5a3d99","#a8c8f0","#2d1d52",["#7a5cc2","#2f6fb8","#c28a2b"],9)};
-let PKCUR="B";try{const q=localStorage.getItem("carddex_pks");if(q&&PKSET[q])PKCUR=q}catch(e){}
+let PKCUR="B";try{const q=localStorage.getItem(GK("carddex_pks"));if(q&&PKSET[q])PKCUR=q}catch(e){}
 const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
-const pkSt=()=>{try{return JSON.parse(localStorage.getItem("carddex_pk")||"{}")||{}}catch(e){return{}}};
-const pkSv=o=>{try{localStorage.setItem("carddex_pk",JSON.stringify(o))}catch(e){}};
-const PKTEST=true,PKDAILY=3;
+const pkSt=()=>{let o={};try{o=JSON.parse(localStorage.getItem(GK("carddex_pk"))||"{}")||{}}catch(e){}if(ENV==="dev"&&!((o.pts||0)>=1000))o.pts=1000;return o};
+const pkSv=o=>{try{localStorage.setItem(GK("carddex_pk"),JSON.stringify(o))}catch(e){}};
+const PKTEST=false,PKDEV=ENV==="dev",PKDAILY=3;
 const PKCAP=6;
 function pkSync(o){const d=pkDay();if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;return 1}if(o.dd<d){o.dl=Math.min(PKCAP,(o.dl||0)+PKDAILY*(d-o.dd));o.dd=d;return 1}return 0}
-function pkAvail(){if(PKTEST)return 99;const o=pkSt();if(pkSync(o))pkSv(o);return (o.dl||0)+(o.bonus||0)}
-function pkSpend(o){if(PKTEST)return;pkSync(o);if((o.dl||0)>0)o.dl--;else if((o.bonus||0)>0)o.bonus--}
+function pkAvail(){if(PKDEV)return PKCAP+(pkSt().bonus||0);const o=pkSt();if(pkSync(o))pkSv(o);return (o.dl||0)+(o.bonus||0)}
+function pkSpend(o){if(PKDEV)return;pkSync(o);if((o.dl||0)>0)o.dl--;else if((o.bonus||0)>0)o.bonus--}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 function pkPick(arr,k){const a=arr.slice(),o=[];while(o.length<k&&a.length)o.push(a.splice(rndI(a.length),1)[0]);return o}
 function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go),R=c=>{const d=rdOf(c);return d?d.r:""};
@@ -2049,7 +2053,7 @@ function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"><
 const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"],["H","I","K","M"]],PKTH=.8;
 const PKIDS={};let pkCvC=null;
 function pkCov(b){if(pkCvC&&pkCvC[b]!=null)return pkCvC[b];if(!PKIDS[b])PKIDS[b]=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));const ids=PKIDS[b];let o=0;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});const v=ids.size?o/ids.size:0;if(pkCvC)pkCvC[b]=v;return v}
-function pkLk(sid){if(PKTEST)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
+function pkLk(sid){if(PKDEV)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
 let pkCI=0,pkCPos=0,pkCRaf=0;
 function pkTtl(){try{const p=$("#pkp"),t=p&&p.querySelector(".pkpt"),st=$("#pkst"),l=p&&p.querySelector(".pkcnm");if(!t||!st||!l||p.hidden)return;const a=st.getBoundingClientRect(),pb=Math.min(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().top)),pe=Math.max(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().bottom)),lt=l.getBoundingClientRect().top,h=t.getBoundingClientRect().height;if(!isFinite(pe)||!lt)return;const op=t.offsetParent?t.offsetParent.getBoundingClientRect().top:0;t.style.top=((pe+lt)/2-h/2-op).toFixed(1)+"px"}catch(e){}}
 addEventListener("resize",()=>pkTtl());
@@ -2079,7 +2083,7 @@ function pkSelect(i){const p=$("#pkp");if(p.classList.contains("go")||pkAvail()<
 function pkRender(){pkCvC={};try{pkRender0()}finally{pkCvC=null}}
 function pkRender0(){if(pkLk(PKCUR))PKCUR="B";const p=$("#pkp");pkCarBuild();
   const T=$("#pkst");let g0="";T.innerHTML=Object.keys(PKSET).map(sid=>{const c=GCOLS.find(x=>x.k==="g"+sid)||{g:""},l=c.g&&c.g!==g0?((g0?'<i class="dv"></i>':"")+(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`)):"";const lk=pkLk(sid);return l+`<button class="tab ${sid===PKCUR?"on":""}${lk?" lk":""}" data-s="${sid}" aria-label="${esc(PKSET[sid].n)}">${sicon(sid)}${lk?`<em class="lkb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>−${Math.max(1,Math.ceil(PKTH*100-pkCov(lk-1)*100))}%</em>`:""}</button>`}).join("");
-  T.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{const sid=b.dataset.s;if(sid===PKCUR||p.classList.contains("go"))return;{const lk=pkLk(sid);if(lk){toast("Sbloccalo con l’80% del Blocco "+lk+" (ora "+Math.floor(pkCov(lk-1)*100)+"%)");return}}PKCUR=sid;try{localStorage.setItem("carddex_pks",sid)}catch(e){}pkRender();$("#pk").style.setProperty("--cc",PKSET[sid].c1);$("#pkn").textContent=PKSET[sid].n})}
+  T.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{const sid=b.dataset.s;if(sid===PKCUR||p.classList.contains("go"))return;{const lk=pkLk(sid);if(lk){toast("Sbloccalo con l’80% del Blocco "+lk+" (ora "+Math.floor(pkCov(lk-1)*100)+"%)");return}}PKCUR=sid;try{localStorage.setItem(GK("carddex_pks"),sid)}catch(e){}pkRender();$("#pk").style.setProperty("--cc",PKSET[sid].c1);$("#pkn").textContent=PKSET[sid].n})}
 function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;pkObs(el);
   el.innerHTML=`<i id="pktc"></i><button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><div id="pkq"></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
   document.body.appendChild(el);
@@ -2124,8 +2128,8 @@ function trMs(a){return a.slice().sort().join(",")}
 function trH(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return(h>>>0).toString(36)}
 function trEnc(t,id,a,b){const p=[t,id,a.join(","),b.join(",")].join("|"),b64=btoa(unescape(encodeURIComponent(p))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");return"CDX1."+b64+"."+trH(p)}
 function trDec(txt){const m=(txt||"").match(/CDX1\.([A-Za-z0-9_-]+)\.([a-z0-9]+)/);if(!m)return null;let p;try{let b=m[1].replace(/-/g,"+").replace(/_/g,"/");while(b.length%4)b+="=";p=decodeURIComponent(escape(atob(b)))}catch(e){return null}if(trH(p)!==m[2])return null;const q=p.split("|");if(q.length!==4||!/^[ofr]$/.test(q[0])||!/^[a-z0-9]{4,12}$/.test(q[1]))return null;const a=q[2]?q[2].split(","):[],b=q[3]?q[3].split(","):[];if(!a.every(trCard)||!b.every(trCard))return null;return{t:q[0],id:q[1],a,b}}
-const trSt=()=>{try{const o=JSON.parse(localStorage.getItem("carddex_tr")||"{}")||{};o.p=o.p||{};o.d=o.d||[];return o}catch(e){return{p:{},d:[]}}};
-const trSv=o=>{try{localStorage.setItem("carddex_tr",JSON.stringify(o))}catch(e){}};
+const trSt=()=>{try{const o=JSON.parse(localStorage.getItem(GK("carddex_tr"))||"{}")||{};o.p=o.p||{};o.d=o.d||[];return o}catch(e){return{p:{},d:[]}}};
+const trSv=o=>{try{localStorage.setItem(GK("carddex_tr"),JSON.stringify(o))}catch(e){}};
 function trSlot(id){for(const co of COLS){const s=st[co.k].find(x=>x.id===id);if(s)return s}return null}
 function trSpare(ids){const n={};ids.forEach(i=>{n[i]=(n[i]||0)+1});return Object.keys(n).every(i=>{const s=trSlot(i);return s&&s.o&&s.q>1&&s.q-1>=n[i]})}
 function trApply(give,get){give.forEach(i=>{const s=trSlot(i);if(s)s.q-=1});get.forEach(i=>{const s=trSlot(i);if(!s)return;if(s.o)s.q=(s.q>1?s.q:1)+1;else{s.o=1;s.a=0;s.q=1}});save();try{render()}catch(e){}}
@@ -2333,22 +2337,23 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
-function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd("carddex2",{}),gm=rd("carddex2g",{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd("carddex_pk",{}),pgc:rd("carddex_pgc",{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
+function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd("carddex2",{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd("carddex_pgc",{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale di entrambi gli album (Collezione e Gioco) e delle bustine. I backup vecchi sostituiscono solo questo album.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
 function setLuce(){LUCE=!LUCE;if(LUCE){mAsked=0;motionOn(1)}else document.documentElement.classList.remove("mv")}
 function setTheme(v){THM=v;try{localStorage.setItem("carddex_theme",v)}catch(e){}const nl=v==="c"||(v!=="n"&&!matchMedia("(prefers-color-scheme: dark)").matches);applyMode()}
 function setOpen(o){const b=document.body;b.classList.toggle("sett",!!o);if(!o)b.classList.remove("dex");let e=$("#set");if(!e){e=document.createElement("div");e.id="set";e.hidden=true;document.body.appendChild(e)}
   if(o){b.classList.contains("dex")?drawDex():drawSet();e.hidden=false;if(b.classList.contains("dex"))dxSpy()}else e.hidden=true;if(!b.classList.contains("dex")){DXQ="";try{tabs();stat()}catch(x){}}navSync()}
+let SDV=0,SDT=0;
 function drawSet(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;const sw=(id,on)=>'<button class="sw'+(on?" on":"")+'" data-a="'+id+'" role="switch" aria-checked="'+(!!on)+'"><i></i></button>';
-  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>';
-  e.onclick=ev=>{const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
+  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div><div class="row"><span>'+(ENV==="dev"?"Dev: 6 bustine sempre, 1000 Pokédollari, set sbloccati":"App: limiti normali, dati propri (parte da zero)")+'<small>Le collezioni sono comuni a entrambe</small></span></div></div>':'');
+  e.onclick=ev=>{if(ev.target.tagName==="H2"){SDV=(SDV||0)+1;clearTimeout(SDT);SDT=setTimeout(()=>{SDV=0},2500);if(SDV>=7&&!DEVOK){SDV=0;try{localStorage.setItem("carddex_devok","1")}catch(x){}toast("Sviluppo attivato");setTimeout(()=>location.reload(),500)}return}const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="env"){if(b.dataset.v!==ENV){try{localStorage.setItem("carddex_env",b.dataset.v)}catch(x){}fadeTo(()=>location.reload())}return}if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
 
 /* ===== Pokédex ===== */
 let DXS=(()=>{try{return localStorage.getItem("carddex_dxs")||"t"}catch(e){return"t"}})(),DXF="a";
 const DXI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h5.5M15.5 12H21"/><circle cx="12" cy="12" r="3.2"/></svg>',
  PERI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.3163 19.4384C5.92462 18.0052 7.34492 17 9 17H15C16.6551 17 18.0754 18.0052 18.6837 19.4384M16 9.5C16 11.7091 14.2091 13.5 12 13.5C9.79086 13.5 8 11.7091 8 9.5C8 7.29086 9.79086 5.5 12 5.5C14.2091 5.5 16 7.29086 16 9.5ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"/></svg>';
-function dxRaw(src){if(MODE===src)return st;try{return JSON.parse(localStorage.getItem(src==="c"?"carddex2":"carddex2g"))||{}}catch(e){return{}}}
+function dxRaw(src){if(MODE===src)return st;try{return JSON.parse(localStorage.getItem(src==="c"?"carddex2":GK("carddex2g")))||{}}catch(e){return{}}}
 /* Pokédex: niente Topps; i set di una generazione contano solo i Pokémon di quella generazione (Neo: non Kanto; EX: non Kanto/Johto) */
 const dxOk=c=>c.sid!=="S"&&c.sid!=="Y"&&c.sid!=="Z"&&c.sid!=="Q"&&genOk(c);
 function dxData(){const eP=s=>{const c=CARDS[s.id];if(!c)return null;if(c.opts)return CARDS[s.o&&c.opts.includes(s.v)?s.v:c.opts[0]];return c.alt&&s.o&&s.v==="n"?CARDS[c.alt]:c};
@@ -2362,7 +2367,7 @@ function dxData(){const eP=s=>{const c=CARDS[s.id];if(!c)return null;if(c.opts)r
 function dxName(d,all){const L=all[d];if(L&&L.length)return L[0].name.replace(/ ex$/i,"").replace(/ \[.\]$/,"");return d<=151?DEXN[d-1]:d<=251?DEXG2[d-152]:DEXG3[d-252]}
 function dxScope(D,d){const S=DXS;const o=S==="t"?[...(D.own.c[d]||[]),...(D.own.g[d]||[])]:(D.own[S][d]||[]);o.sort((a,b)=>D.rk(a.c,b.c));
   const cand=(D.all[d]||[]).filter(c=>S==="t"?(D.sets.c.has(c.sid)||D.sets.g.has(c.sid)):D.sets[S].has(c.sid));return{o,cand}}
-let DXPF={};try{DXPF=JSON.parse(localStorage.getItem("carddex_dxp"))||{}}catch(e){}
+let DXPF={};try{DXPF=JSON.parse(localStorage.getItem(GK("carddex_dxp")))||{}}catch(e){}
 let DXQ="",DXE=[],DXLT={d:0,t:0},DXP=null,DXTM=0;
 function dxMatch(D,d,gs){const {o,cand}=dxScope(D,d),cards=[...cand];o.forEach(x=>{if(!cards.some(c=>c.id===x.c.id))cards.push(x.c)});
   if(!cards.length){const nm=dxName(d,D.all).toLowerCase();return gs.some(g=>g.toks.every(t=>nm.includes(t)||("#"+pad(d)).includes(t)))}
@@ -2397,7 +2402,7 @@ function dxSpy(){const e=$("#set"),gs=[...e.querySelectorAll(".dxw")];if(!gs.len
 addEventListener("resize",()=>{if(document.body.classList.contains("dex")&&!$("#set").hidden)dxPos()});
 function dxOpen(d){const i=DXE.findIndex(x=>x.d===d);if(i<0)return;DXL=DXE.map(x=>x.v);openCard(i)}
 function dxPick(d){window.SHLK=Date.now()+600;const D=dxData(),{o,cand}=dxScope(D,d),L=[...cand];o.forEach(x=>{if(!L.some(c=>c.id===x.c.id))L.push(x.c)});L.sort(D.rk);if(!L.length)return;const shown=DXPF[d]&&o.some(x=>x.c.id===DXPF[d])?DXPF[d]:(o.length?o[0].c.id:cand[0].id);
-  pickCard("#"+pad(d)+" "+dxName(d,D.all)+" — carte disponibili",L.map(c=>({c,v:c.id,k:o.some(x=>x.c.id===c.id),cur:c.id===shown})),id=>{const x=o.find(z=>z.c.id===id);DXL=[x?{...x.s,id,o:1,v:undefined}:{id,o:0,n:""}];openCard(0)},(id,btn)=>{const nm="#"+pad(d)+" "+dxName(d,D.all),S2=$("#sh2"),set=v=>{if(v)DXPF[d]=v;else delete DXPF[d];try{localStorage.setItem("carddex_dxp",JSON.stringify(DXPF))}catch(e){}$("#sh").hidden=true;drawDex(1)};btn.classList.add("hp");const mo=new MutationObserver(()=>{if(S2.hidden){btn.classList.remove("hp");mo.disconnect()}});mo.observe(S2,{attributes:true,attributeFilter:["hidden"]});if(DXPF[d]===id)sheet([["Torna alla carta predefinita",()=>set(0),1]],"Questa è la carta mostrata nel Pokédex per "+nm,S2);else sheet([["Sì, conferma",()=>set(id),1]],"Mostrare questa carta nel Pokédex per "+nm+"?",S2)})}
+  pickCard("#"+pad(d)+" "+dxName(d,D.all)+" — carte disponibili",L.map(c=>({c,v:c.id,k:o.some(x=>x.c.id===c.id),cur:c.id===shown})),id=>{const x=o.find(z=>z.c.id===id);DXL=[x?{...x.s,id,o:1,v:undefined}:{id,o:0,n:""}];openCard(0)},(id,btn)=>{const nm="#"+pad(d)+" "+dxName(d,D.all),S2=$("#sh2"),set=v=>{if(v)DXPF[d]=v;else delete DXPF[d];try{localStorage.setItem(GK("carddex_dxp"),JSON.stringify(DXPF))}catch(e){}$("#sh").hidden=true;drawDex(1)};btn.classList.add("hp");const mo=new MutationObserver(()=>{if(S2.hidden){btn.classList.remove("hp");mo.disconnect()}});mo.observe(S2,{attributes:true,attributeFilter:["hidden"]});if(DXPF[d]===id)sheet([["Torna alla carta predefinita",()=>set(0),1]],"Questa è la carta mostrata nel Pokédex per "+nm,S2);else sheet([["Sì, conferma",()=>set(id),1]],"Mostrare questa carta nel Pokédex per "+nm+"?",S2)})}
 function dxFilter(){const F=[["a","Tutti i Pokémon"],["o","Ottenuti"],["n","Mancanti"]],S=[["c","Collezione"],["g","Album"],["t","Entrambi"]];
   sheet([...F.map(([k,t])=>[(DXF===k?"✓  ":"")+t,()=>{DXF=k;drawDex(1)}]),...S.map(([k,t])=>[(DXS===k?"✓  ":"")+"Carte: "+t,()=>{DXS=k;try{localStorage.setItem("carddex_dxs",DXS)}catch(x){}drawDex(1)}])],"Mostra")}
 const SETI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.0005 15C13.6573 15 15.0005 13.6569 15.0005 12C15.0005 10.3431 13.6573 9 12.0005 9C10.3436 9 9.00049 10.3431 9.00049 12C9.00049 13.6569 10.3436 15 12.0005 15Z"/><path d="M9.28957 19.3711L9.87402 20.6856C10.0478 21.0768 10.3313 21.4093 10.6902 21.6426C11.0492 21.8759 11.4681 22.0001 11.8962 22C12.3244 22.0001 12.7433 21.8759 13.1022 21.6426C13.4612 21.4093 13.7447 21.0768 13.9185 20.6856L14.5029 19.3711C14.711 18.9047 15.0609 18.5159 15.5029 18.26C15.9477 18.0034 16.4622 17.8941 16.9729 17.9478L18.4029 18.1C18.8286 18.145 19.2582 18.0656 19.6396 17.8713C20.021 17.6771 20.3379 17.3763 20.5518 17.0056C20.766 16.635 20.868 16.2103 20.8455 15.7829C20.823 15.3555 20.677 14.9438 20.4251 14.5978L19.5785 13.4344C19.277 13.0171 19.1159 12.5148 19.1185 12C19.1184 11.4866 19.281 10.9864 19.5829 10.5711L20.4296 9.40778C20.6814 9.06175 20.8275 8.65007 20.85 8.22267C20.8725 7.79528 20.7704 7.37054 20.5562 7C20.3423 6.62923 20.0255 6.32849 19.644 6.13423C19.2626 5.93997 18.833 5.86053 18.4074 5.90556L16.9774 6.05778C16.4667 6.11141 15.9521 6.00212 15.5074 5.74556C15.0645 5.48825 14.7144 5.09736 14.5074 4.62889L13.9185 3.31444C13.7447 2.92317 13.4612 2.59072 13.1022 2.3574C12.7433 2.12408 12.3244 1.99993 11.8962 2C11.4681 1.99993 11.0492 2.12408 10.6902 2.3574C10.3313 2.59072 10.0478 2.92317 9.87402 3.31444L9.28957 4.62889C9.0825 5.09736 8.73245 5.48825 8.28957 5.74556C7.84479 6.00212 7.33024 6.11141 6.81957 6.05778L5.38513 5.90556C4.95946 5.86053 4.52987 5.93997 4.14844 6.13423C3.76702 6.32849 3.45014 6.62923 3.23624 7C3.02206 7.37054 2.92002 7.79528 2.94251 8.22267C2.96499 8.65007 3.11103 9.06175 3.36291 9.40778L4.20957 10.5711C4.51151 10.9864 4.67411 11.4866 4.67402 12C4.67411 12.5134 4.51151 13.0137 4.20957 13.4289L3.36291 14.5922C3.11103 14.9382 2.96499 15.3499 2.94251 15.7773C2.92002 16.2047 3.02206 16.6295 3.23624 17C3.45036 17.3706 3.76727 17.6712 4.14864 17.8654C4.53001 18.0596 4.95949 18.1392 5.38513 18.0944L6.81513 17.9422C7.3258 17.8886 7.84034 17.9979 8.28513 18.2544C8.72966 18.511 9.08134 18.902 9.28957 19.3711Z"/></svg>';
@@ -2433,7 +2438,7 @@ function mdLook(m,anim){const e=$("#md");if(!e)return;if(!e.firstChild)e.innerHT
 function mdSync(anim){mdLook(MODE,anim===undefined?1:anim)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,navOn(),0);mdSync(0)})
 const MS={};
-function setMode(m,keep){if(m===MODE)return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS:PCOLS;SKEY=m==="g"?"carddex2g":"carddex2";try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
+function setMode(m,keep){if(m===MODE)return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS:PCOLS;SKEY=m==="g"?GK("carddex2g"):"carddex2";try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
   st={};try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}fillSt();if(m==="c")albInit();
   const k0=COLS[0].k,mp=keep?(m==="g"?(PCOLS.find(c=>c.k===cur)||{}).gm:(()=>{const g=GCOLS.find(c=>c.k===cur);return g&&(PCOLS.find(a=>a.s.includes(g.s[0]))||{}).k})()):null,r=keep?{cur:mp||k0,pg:mp?0:pg,sp:mp?0:sp,FLT,PREV:mp||k0}:MS[m]||{cur:k0,pg:0,sp:0,FLT:"a",PREV:k0};cur=r.cur==="?"?k0:r.cur;if(!COLS.some(c=>c.k===cur))cur=k0;pg=r.pg;sp=r.sp;FLT=r.FLT;PREV=COLS.some(c=>c.k===r.PREV)?r.PREV:k0;SR=[];SQ="";
   applyMode();navSync();tabs();render()}
@@ -2461,7 +2466,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261115012538";
+const BUILD="B261115013658";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);

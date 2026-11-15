@@ -430,3 +430,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v289** · Collezione: tolti i nomi testuali dalle pillole dei set (restano solo i simboli; il nome è sopra le pagine). Ripiego: v288.
 - **v290** · Collezione: "+" più grande (icona 22px) nel cerchio. Ripiego: v289.
 - **v291** · Apri ×1: larghezza adattata al testo, gruppo centrato. Ripiego: v290.
+- **v292** · Ambienti Dev/App: Dev = dati attuali, 6 bustine fisse (non scendono), 1000 Pokédollari, set sbloccati; App = chiavi proprie (parte da zero), limiti normali. Interruttore in Impostazioni > Sviluppo (si attiva con 7 tocchi sul titolo Impostazioni). Collezioni comuni. Ripiego: v291.
