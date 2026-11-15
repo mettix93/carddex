@@ -2062,9 +2062,11 @@ const pkSt=()=>{let o={};try{o=JSON.parse(localStorage.getItem(GK("carddex_pk"))
 const pkSv=o=>{try{localStorage.setItem(GK("carddex_pk"),JSON.stringify(o))}catch(e){}};
 const PKTEST=false,PKDEV=ENV==="dev",PKDAILY=3;
 const PKCAP=6;
-function pkSync(o){const d=pkDay();if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;return 1}if(o.dd<d){o.dl=Math.min(PKCAP,(o.dl||0)+PKDAILY*(d-o.dd));o.dd=d;return 1}return 0}
-function pkAvail(){if(PKDEV)return PKCAP+(pkSt().bonus||0);const o=pkSt();if(pkSync(o))pkSv(o);return (o.dl||0)+(o.bonus||0)}
-function pkSpend(o){if(PKDEV)return;pkSync(o);if((o.dl||0)>0)o.dl--;else if((o.bonus||0)>0)o.bonus--}
+function pkSync(o){const d=pkDay();let ch=0;if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;ch=1}
+  if(!o.lim4){o.dl=(o.dl||0)+(o.bonus||0);o.bonus=0;o.lim4=1;ch=1}
+  if(o.dd<d){if((o.dl||0)<PKCAP)o.dl=Math.min(PKCAP,(o.dl||0)+PKDAILY*(d-o.dd));o.dd=d;ch=1}return ch}
+function pkAvail(){const o=pkSt();if(PKDEV)return PKCAP+(o.dl||0);if(pkSync(o))pkSv(o);return o.dl||0}
+function pkSpend(o){if(PKDEV)return;pkSync(o);if((o.dl||0)>0)o.dl--}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 const pkKey=c=>c.name.replace(/ \[.\]$/,"");
 function pkPick(arr,k,u){u=u||new Set();const a=arr.slice(),o=[];while(o.length<k&&a.length){let p=a.filter(c=>!u.has(pkKey(c)));if(!p.length)p=a;const c=p[rndI(p.length)];a.splice(a.indexOf(c),1);u.add(pkKey(c));o.push(c)}return o}
@@ -2318,14 +2320,14 @@ let bkT=0;
 function bkBuild(){let e=$("#bks");if(e)return e;e=document.createElement("div");e.id="bks";e.className="ptsw";e.hidden=true;
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>Bustine</small><b id="bkn">0</b><div class="ptb"><i id="bkf"></i></div><p id="bkt"></p><div id="bkc"></div></div>';
   document.body.appendChild(e);const cl=()=>{e.hidden=true;clearInterval(bkT)};e.querySelector(".cvx").onclick=cl;e.onclick=ev=>{if(ev.target===e)cl()};return e}
-function bkDraw(){const n=PKTEST?"∞":pkAvail(),d=new Date(),m=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),ms=m-d;$("#bkn").textContent=n;$("#bkf").style.width=((1-ms/864e5)*100).toFixed(2)+"%";
+function bkDraw(){const n=PKTEST?"∞":pkAvail(),d=new Date(),m=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),ms=m-d;$("#bkn").textContent=PKTEST?n:n+"/"+PKCAP;$("#bkf").style.width=((1-ms/864e5)*100).toFixed(2)+"%";
   $("#bkt").textContent=PKTEST?"Puoi aprire bustine illimitate (prova)":n===1?"Puoi aprire 1 bustina":"Puoi aprire "+n+" bustine";
-  const t=Math.floor(ms/1000),p=x=>String(x).padStart(2,"0");$("#bkc").textContent="Prossima tra "+p(Math.floor(t/3600))+":"+p(Math.floor(t%3600/60))+":"+p(t%60)}
+  const t=Math.floor(ms/1000),p=x=>String(x).padStart(2,"0");$("#bkc").textContent=!PKTEST&&n>=PKCAP?"Limite raggiunto":"Nuove bustine tra "+p(Math.floor(t/3600))+":"+p(Math.floor(t%3600/60))+":"+p(t%60)}
 function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);bkT=setInterval(bkDraw,1000)}
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx"><span class="pxn">20</span>'+COINL+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg><span class="pxn">+1</span>'+PKI+'</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
-  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);{const M=msSt();M.conv=(M.conv||0)+1;msSv(M)}ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw()};
+  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;pkSync(o);o.dl=(o.dl||0)+1;pkSv(o);{const M=msSt();M.conv=(M.conv||0)+1;msSv(M)}ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw()};
   return e}
 let ptDone=0;const PTX0=()=>'<span class="pxn">20</span>'+COINL+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg><span class="pxn">+1</span>'+PKI;
 function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Conversione completata":"I tuoi Pokédollari";
