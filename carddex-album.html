@@ -1489,7 +1489,7 @@ function face(c,hi){const ph=`<div class="ph k${c.kd}"><b>${c.kd==="p"&&c.dex?"#
   u=tpu(u);
   return `<img draggable="false" ${hi?"":'loading="lazy" decoding="async"'} referrerpolicy="no-referrer" alt="${esc(c.name)}" src="${u}" data-p="${esc(ph)}" onerror="var s=this.src,r=+this.dataset.r||0;if(r==0&&/high\.webp$/.test(s)){this.dataset.r=1;this.src=s.replace('high.webp','low.webp')}else if(r<2&&/\.webp$/.test(s)){this.dataset.r=2;this.src=s.replace(/\.webp$/,'.png')}else{var p=document.createElement('div');p.innerHTML=this.getAttribute('data-p');this.replaceWith(p.firstChild)}">`}
 const MYS='<div class="mys"><u></u><b>?</b><s></s></div>';
-function slot(i){const s=LIST()[i],c=s.id&&eff(s),my=c&&!s.o&&MODE==="g"&&!PKDEV&&(c.sid==="Q"||c.sid==="X");
+function slot(i){const s=LIST()[i],c=s.id&&eff(s),my=c&&!s.o&&MODE==="g"&&ENV!=="dev"&&(c.sid==="Q"||c.sid==="X");
   if(my)return `<div class="slot my" data-i="${i}">${MYS}</div>`;
   return `<div class="slot ${s.o&&c?"on":""} ${c?"":"em"} ${c&&!s.o&&s.a?"ar":""}" data-i="${i}">${c?face(c):""}${c&&c.h?HOLO:""}${s.n?NOTE:""}${s.id&&s.q>1?`<span class="cp">${s.q}x</span>`:""}</div>`}
 
