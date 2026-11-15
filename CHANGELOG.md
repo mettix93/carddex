@@ -441,3 +441,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v300** · Icona bustina rifatta ovunque, senza "+": sagoma da bustina con estremità zigrinate (stesso tratto e ingombro di prima). Ripiego: v299.
 - **v301** · Pokédex, segnaposto: cornice esterna un filo più sottile, cornice illustrazione un filo più spessa, area carta con leggerissimo grigio e finestra illustrazione bianca. Ripiego: v300.
 - **v302** · Conversione Pokédollari: icona bustina accanto a "+1" allineata a base e altezza delle cifre. Ripiego: v301.
+- **v303** · Animazione Pokédex: la carta nuova scende nel suo spazio dall'alto, come nella tasca di un album. Ripiego: v302.
