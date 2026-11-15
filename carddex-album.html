@@ -2121,9 +2121,9 @@ msArtN=()=>{const A=msSt().art||{};return msArtL().filter(k=>A[k]).length};
 const MSL=[
 {id:"mew",t:"Maestro di Kanto",d:"Registra nel Pokédex delle bustine i primi 150 Pokémon di Kanto, con qualsiasi carta.",n:msKanto,N:()=>150,r:"X1",sec:1,w:"Ricompensa: una carta segreta",ok:"Mew Antico aggiunto: lo trovi nel Pokédex e nell’album Promo"},
 {id:"art",t:"Tutte le bustine",d:"Apri almeno una bustina di ogni illustrazione dei set Base, Jungle e Fossil.",n:msArtN,N:()=>msArtL().length,r:"Q7",w:"Ricompensa: Jigglypuff promo 7",ok:"Jigglypuff aggiunto all’album Promo"},
-{id:"op10",t:"Dieci bustine",d:"Apri 10 bustine, di qualsiasi set.",n:()=>Math.min(10,msOp()),N:()=>10,r:"Q10",w:"Ricompensa: Meowth promo 10",ok:"Meowth aggiunto all’album Promo"},
-{id:"earn",t:"Piccolo risparmiatore",d:"Guadagna 20 Pokédollari convertendo le carte doppie.",n:()=>Math.min(20,msSt().earn||0),N:()=>20,r:"Q18",w:"Ricompensa: Meowth del Team Rocket promo",ok:"Meowth del Team Rocket aggiunto all’album Promo"},
-{id:"conv",t:"Scambio equo",d:"Ottieni una bustina scambiando i Pokédollari.",n:()=>msSt().conv?1:0,N:()=>1,r:"Q17",w:"Ricompensa: Dark Persian promo",ok:"Dark Persian aggiunto all’album Promo"}];
+{id:"op10",t:"Dieci giorni",d:"Apri almeno una bustina in 10 giorni diversi.",n:()=>Math.min(10,Object.keys(msSt().days||{}).length),N:()=>10,r:"Q10",w:"Ricompensa: Meowth promo 10",ok:"Meowth aggiunto all’album Promo"},
+{id:"earn",t:"Piccolo risparmiatore",d:"Guadagna 60 Pokédollari convertendo le carte doppie.",n:()=>Math.min(60,msSt().earn||0),N:()=>60,r:"Q18",w:"Ricompensa: Meowth del Team Rocket promo",ok:"Meowth del Team Rocket aggiunto all’album Promo"},
+{id:"conv",t:"Scambio equo",d:"Ottieni 3 bustine scambiando i Pokédollari.",n:()=>Math.min(3,msSt().conv||0),N:()=>3,r:"Q17",w:"Ricompensa: Dark Persian promo",ok:"Dark Persian aggiunto all’album Promo"}];
 const msDone=m=>!!msSt()[m.id==="mew"?"mew":"c_"+m.id];
 function msClaim(id){const m=MSL.find(x=>x.id===id),M=msSt();if(!m||msDone(m)||m.n()<m.N())return false;
   let raw={};try{raw=JSON.parse(localStorage.getItem(GK("carddex2g")))||{}}catch(e){}
@@ -2257,7 +2257,7 @@ function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);b
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx">20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
-  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);{const M=msSt();M.conv=1;msSv(M)}ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw()};
+  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<20)return;o.pts-=20;o.bonus=(o.bonus||0)+1;pkSv(o);{const M=msSt();M.conv=(M.conv||0)+1;msSv(M)}ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw()};
   return e}
 let ptDone=0;const PTX0='20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina';
 function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Conversione completata":"I tuoi Pokédollari";
@@ -2318,7 +2318,7 @@ function pkGestures(){const stg=$("#pks");let g=null,vel=0,lt=0,lx=0;
 function pkZoom(){if(pkPh!=="show"||pkBusy)return;pkBusy=1;const w=$("#pkw");w.style.transition="transform .5s ease-out";pkRY=Math.round(pkRY/360)*360;pkRX=0;pkApply();
   setTimeout(()=>{$("#pk").classList.add("close");pkPh="close";$("#pkm").textContent="Scorri lungo la linea per tagliare la bustina";pkBusy=0},300)}
 function pkUnzoom(){if(pkPh!=="close"||$("#pk").classList.contains("chain"))return;$("#pk").classList.remove("close");pkPh="show";$("#pkm").textContent=""}
-function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");const o=pkSt(),S=PKSET[PKCUR];o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}}catch(e){}pkSpend(o);pkSv(o);
+function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;pkPh="open";$("#pk").classList.add("opening");const o=pkSt(),S=PKSET[PKCUR];o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);pkSv(o);
   const draw=pkPre||pkDraw(PKCUR);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex)});dxQSave();save();pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
