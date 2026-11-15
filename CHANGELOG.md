@@ -447,3 +447,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v306** · Scroller Pokédex: corretto lo scatto al tocco (una regola CSS esterna spostava la maniglia); si afferra solo la maniglia e segue il dito esattamente. Ripiego: v305.
 - **v307** · Missioni: Meowth promo 10 → una bustina aperta in 10 giorni diversi; Meowth Team Rocket → 60 Pokédollari guadagnati; Dark Persian → 3 bustine ottenute scambiando Pokédollari. Ripiego: v306.
 - **v308** · Scroller Pokédex: centrato nel margine tra carte e bordo schermo, sia a riposo sia premuto (si allarga restando centrato). Ripiego: v307.
+- **v309** · Animazione carte nel Pokédex rifatta: la carta scende dall'alto direttamente nel suo spazio (stesso riquadro, quindi si ferma esatta), più veloce (0,65 s), si aspetta la fine dello scorrimento prima di ogni carta così si vedono tutte. Ripiego: v308.
