@@ -442,3 +442,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v301** · Pokédex, segnaposto: cornice esterna un filo più sottile, cornice illustrazione un filo più spessa, area carta con leggerissimo grigio e finestra illustrazione bianca. Ripiego: v300.
 - **v302** · Conversione Pokédollari: icona bustina accanto a "+1" allineata a base e altezza delle cifre. Ripiego: v301.
 - **v303** · Animazione Pokédex: la carta nuova scende nel suo spazio dall'alto, come nella tasca di un album. Ripiego: v302.
+- **v304** · Animazioni carte verso il Pokédex (riepilogo e Pokédex) più lente e fluide. Ripiego: v303.
