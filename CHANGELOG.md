@@ -439,3 +439,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v298** · Icona bustina (conversione, menu in basso, contatore, home): stesso spessore e ingombro, con una linea sopra e una sotto a simulare le estremità argentate. Ripiego: v297.
 - **v299** · Animazione riepilogo: le carte in volo mantengono forma e grafica (prima si deformavano) e il volo verso Pokédex è più lungo e visibile; aprendo il Pokédex con carte nuove la vista parte già sulla prima carta da inserire. Ripiego: v298.
 - **v300** · Icona bustina rifatta ovunque, senza "+": sagoma da bustina con estremità zigrinate (stesso tratto e ingombro di prima). Ripiego: v299.
+- **v301** · Pokédex, segnaposto: cornice esterna un filo più sottile, cornice illustrazione un filo più spessa, area carta con leggerissimo grigio e finestra illustrazione bianca. Ripiego: v300.
