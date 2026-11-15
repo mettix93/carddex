@@ -443,3 +443,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v302** · Conversione Pokédollari: icona bustina accanto a "+1" allineata a base e altezza delle cifre. Ripiego: v301.
 - **v303** · Animazione Pokédex: la carta nuova scende nel suo spazio dall'alto, come nella tasca di un album. Ripiego: v302.
 - **v304** · Animazioni carte verso il Pokédex (riepilogo e Pokédex) più lente e fluide. Ripiego: v303.
+- **v305** · Pokédex: scroller verticale (compare mentre scorri, sparisce dopo ~1 s, trascinabile); Dev: massimo ×3 bustine insieme; animazione carte nel Pokédex rifatta (entrano dall'alto nella tasca e si fermano esatte, una alla volta); nuove missioni (tutte le illustrazioni Base/Jungle/Fossil → Jigglypuff promo 7, 10 bustine → Meowth promo 10, 20 Pokédollari guadagnati → Meowth Team Rocket promo, scambio Pokédollari→bustina → Dark Persian promo); Mew Antico sempre come carta 0 dell'album Promo. Ripiego: v304.
