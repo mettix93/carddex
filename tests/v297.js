@@ -1,0 +1,17 @@
+const {chromium}=require('playwright');
+(async()=>{const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'});const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.route('**/official-artwork/**',r=>r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==','base64')}));
+await p.addInitScript(()=>{sessionStorage.cdmode='c'});await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1500);
+await p.evaluate(()=>document.querySelector('#nvp button[data-t=b]').click());await p.waitForTimeout(900);
+const r=await p.evaluate(async()=>{pkOpen();await new Promise(r=>setTimeout(r,200));return {q:PKDQ.slice(),n:pkAll().length,dx:pkAll().filter(x=>x.dx).length}});console.log('open',JSON.stringify(r));
+await p.evaluate(()=>{pkBusy=0;pkSummary()});await p.waitForTimeout(800);
+await p.screenshot({path:'/tmp/v297_sum.png'});
+await p.evaluate(()=>pkX());await p.waitForTimeout(350);
+const mid=await p.evaluate(()=>document.querySelectorAll("body>div[style*='z-index: 211']").length);console.log('flying',mid);
+await p.screenshot({path:'/tmp/v297_fly.png'});await p.waitForTimeout(1800);
+console.log('badge',await p.evaluate(()=>{const e=document.querySelector('#nvp .dxb');return e&&e.textContent}),'queue',await p.evaluate(()=>PKDQ.length));
+await p.screenshot({path:'/tmp/v297_back.png'});
+await p.evaluate(()=>document.querySelector('#nvp button[data-t=d]').click());await p.waitForTimeout(700);
+await p.screenshot({path:'/tmp/v297_dex0.png'});await p.waitForTimeout(2500);
+console.log('after queue',await p.evaluate(()=>PKDQ.length),'badge',await p.evaluate(()=>!!document.querySelector('#nvp .dxb')),'filled',await p.evaluate(()=>document.querySelectorAll('#set .dxc.on').length));
+await p.screenshot({path:'/tmp/v297_dex1.png'});console.log('errs',errs);await b.close()})();
