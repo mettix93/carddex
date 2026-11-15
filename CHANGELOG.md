@@ -431,3 +431,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v290** · Collezione: "+" più grande (icona 22px) nel cerchio. Ripiego: v289.
 - **v291** · Apri ×1: larghezza adattata al testo, gruppo centrato. Ripiego: v290.
 - **v292** · Ambienti Dev/App: Dev = dati attuali, 6 bustine fisse (non scendono), 1000 Pokédollari, set sbloccati; App = chiavi proprie (parte da zero), limiti normali. Interruttore in Impostazioni > Sviluppo (si attiva con 7 tocchi sul titolo Impostazioni). Collezioni comuni. Ripiego: v291.
+- **v293** · Dev e App totalmente separate: App = collezioni e dati attuali (gioco da zero), Dev = copia iniziale delle collezioni (poi indipendente) + dati di gioco di prova; foto separate. Impostazioni: solo le due opzioni. Ripiego: v292.

@@ -1178,6 +1178,8 @@ html body .vt small{display:block!important;white-space:normal!important;height:
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
 const ENV=(()=>{if(!DEVOK)return"app";try{return localStorage.getItem("carddex_env")==="app"?"app":"dev"}catch(e){return"dev"}})();
 const GK=k=>ENV==="dev"?k:k+"_a";
+const CK=k=>ENV==="dev"?k+"_d":k;
+if(ENV==="dev")try{["carddex2","carddex2a","carddex_pgc","carddex_rar","carddex_itt","carddex_itn","carddex_hidx"].forEach(k=>{if(localStorage.getItem(k+"_d")==null&&localStorage.getItem(k)!=null)localStorage.setItem(k+"_d",localStorage.getItem(k))})}catch(e){}
 document.documentElement.dataset.env=ENV;
 /*DATA*/
 const DEXN="Bulbasaur,Ivysaur,Venusaur,Charmander,Charmeleon,Charizard,Squirtle,Wartortle,Blastoise,Caterpie,Metapod,Butterfree,Weedle,Kakuna,Beedrill,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu,Raichu,Sandshrew,Sandslash,Nidoran♀,Nidorina,Nidoqueen,Nidoran♂,Nidorino,Nidoking,Clefairy,Clefable,Vulpix,Ninetales,Jigglypuff,Wigglytuff,Zubat,Golbat,Oddish,Gloom,Vileplume,Paras,Parasect,Venonat,Venomoth,Diglett,Dugtrio,Meowth,Persian,Psyduck,Golduck,Mankey,Primeape,Growlithe,Arcanine,Poliwag,Poliwhirl,Poliwrath,Abra,Kadabra,Alakazam,Machop,Machoke,Machamp,Bellsprout,Weepinbell,Victreebel,Tentacool,Tentacruel,Geodude,Graveler,Golem,Ponyta,Rapidash,Slowpoke,Slowbro,Magnemite,Magneton,Farfetch’d,Doduo,Dodrio,Seel,Dewgong,Grimer,Muk,Shellder,Cloyster,Gastly,Haunter,Gengar,Onix,Drowzee,Hypno,Krabby,Kingler,Voltorb,Electrode,Exeggcute,Exeggutor,Cubone,Marowak,Hitmonlee,Hitmonchan,Lickitung,Koffing,Weezing,Rhyhorn,Rhydon,Chansey,Tangela,Kangaskhan,Horsea,Seadra,Goldeen,Seaking,Staryu,Starmie,Mr. Mime,Scyther,Jynx,Electabuzz,Magmar,Pinsir,Tauros,Magikarp,Gyarados,Lapras,Ditto,Eevee,Vaporeon,Jolteon,Flareon,Porygon,Omanyte,Omastar,Kabuto,Kabutops,Aerodactyl,Snorlax,Articuno,Zapdos,Moltres,Dratini,Dragonair,Dragonite,Mewtwo,Mew".split(",");
@@ -1302,9 +1304,9 @@ function parse(sid){const S=SETS[sid],out=[];
 function orderSet(col){return parse(col.s[0]).sort((a,b)=>a.num-b.num).map(c=>({id:c.id,o:0,n:""}))}
 function order(col){if(col.set)return orderSet(col);return genA(col)}
 /* ===== album personali: configurazione, ordini, conversione ===== */
-const ALK="carddex2a",RK="BJFXRYZGDVTHIKLMNOQS",ALT={};
+const ALK=CK("carddex2a"),RK="BJFXRYZGDVTHIKLMNOQS",ALT={};
 function albName(s){return s.map(x=>x==="S"?"Topps":SETS[x].n).join(" + ")}
-function albDef(){let raw={};try{raw=JSON.parse(localStorage.getItem("carddex2"))||{}}catch(e){}
+function albDef(){let raw={};try{raw=JSON.parse(localStorage.getItem(CK("carddex2")))||{}}catch(e){}
   return [["a","Base Jungle Fossil",["B","J","F"],0,1],["r","Team Rocket",["R"],0,0],["n","Neo",["G","D","V","T"],1,0],["h","Hoenn",["H","I","K","M","N"],1,0],["t","Topps",["S"],0,0]].map(([k,t,s,one,x])=>({k,t,s,x,one,lg:1,ord:"dex",base:"dex",tr:1,full:0,cu:[],sig:"",pend:Array.isArray(raw[k])&&raw[k].length?1:0}))}
 function albSave(){try{localStorage.setItem(ALK,JSON.stringify({v:1,a:PCOLS.map(a=>{const o={...a};delete o.gm;return o})}))}catch(e){}}
 function albFix(a){a.gm="g"+a.s[0];a.cu=a.cu||[];if(a.tr==null)a.tr=1;if(!a.base)a.base="dex";if(!a.ord)a.ord=a.base;a.one=a.one?1:0;a.t=a.t||albName(a.s);a.sig=a.sig||""}
@@ -1352,7 +1354,7 @@ function albCommit(A){A.sig=albSig(A.k);albSave();save();pg=0;sp=0;tabs();render
 function albSet(A,o){if(o==="num"||o==="dex")A.base=o;A.ord=o;albApply(A,o,false);albCommit(A)}
 /* conversione tra "tutte le carte" e "una carta per Pokémon" (con istantanea per annullare) */
 function albConv(A,one){const k=A.k,old=st[k];
-  try{localStorage.setItem("carddex2u",JSON.stringify({k,one:A.one,ord:A.ord,base:A.base,cu:A.cu,sl:old}))}catch(e){}
+  try{localStorage.setItem(CK("carddex2u"),JSON.stringify({k,one:A.one,ord:A.ord,base:A.base,cu:A.cu,sl:old}))}catch(e){}
   A.one=one?1:0;const T=genA(A,A.base).map(x=>x.id),out=[];
   if(one){
     const mem=s=>{const c=CARDS[s.id];return c&&c.alt&&s.o&&s.v==="n"?c.alt:s.id},used=new Set(),all=old.filter(s=>s.id);
@@ -1370,8 +1372,8 @@ function albConv(A,one){const k=A.k,old=st[k];
       else out.push({id,o:0,n:""})})}
   old.filter(s=>!s.id).forEach(s=>out.push(s));
   st[k]=out;A.ord=A.base;albCommit(A)}
-function albUndo(){let u=null;try{u=JSON.parse(localStorage.getItem("carddex2u"))}catch(e){}const A=u&&PCOLS.find(a=>a.k===u.k);if(!A)return;
-  A.one=u.one;A.ord=u.ord;A.base=u.base;A.cu=u.cu;st[A.k]=u.sl;try{localStorage.removeItem("carddex2u")}catch(e){}albCommit(A)}
+function albUndo(){let u=null;try{u=JSON.parse(localStorage.getItem(CK("carddex2u")))}catch(e){}const A=u&&PCOLS.find(a=>a.k===u.k);if(!A)return;
+  A.one=u.one;A.ord=u.ord;A.base=u.base;A.cu=u.cu;st[A.k]=u.sl;try{localStorage.removeItem(CK("carddex2u"))}catch(e){}albCommit(A)}
 const HF=s=>!s.id||!CARDS[s.id]||CARDS[s.id].kd==="p";
 function HID(){if(MODE!=="c"||cur==="?")return false;const A=PCOLS.find(a=>a.k===cur);return !!A&&A.tr===0}
 /* interfaccia: menu Ordine, creazione/modifica album */
@@ -1384,7 +1386,7 @@ function ordMenu(){const A=PCOLS.find(a=>a.k===cur);if(!A)return;const it=[];
   const c=A.cu.find(x=>x.i===A.ord);
   if(c){it.push(["Rinomina «"+c.n+"»",()=>albWiz({title:"Rinomina ordine",name:c.n,ph:"Nome",btn:"Salva",ok:nm=>{if(nm){c.n=nm;albSave()}}})]);
     it.push(["Elimina «"+c.n+"»",()=>confirmSheet("Eliminare questo ordine? Le carte tornano nell’ordine «"+(A.base==="num"?"Numero":"Pokédex")+"».",()=>{A.cu=A.cu.filter(x=>x!==c);albSet(A,A.base)}),1])}
-  let u=null;try{u=JSON.parse(localStorage.getItem("carddex2u"))}catch(e){}
+  let u=null;try{u=JSON.parse(localStorage.getItem(CK("carddex2u")))}catch(e){}
   if(u&&u.k===A.k)it.push(["Annulla l’ultima conversione",albUndo]);
   sheet(it,"Ordine · "+A.t)}
 function albWiz(o){let e=$("#alw");if(!e){e=document.createElement("div");e.id="alw";e.hidden=true;document.body.appendChild(e)}
@@ -1422,11 +1424,11 @@ const BASE=()=>cur==="?"?SR.map(r=>st[r.c][r.i]):st[cur];
 let DXL=null;
 const LIST=()=>{if(DXL)return DXL;let b=BASE();if(HID())b=b.filter(HF);return FLT==="a"?b:b.filter(s=>s.id&&(FLT==="o"?s.o:FLT==="i"?(!s.o&&s.a):(!s.o&&!s.a)))};
 const VIEW=()=>cur==="?"||FLT!=="a"||HID();
-let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})(),SKEY=MODE==="g"?GK("carddex2g"):"carddex2";
+let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})(),SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS:PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 const save=()=>{try{localStorage.setItem(SKEY,JSON.stringify(st))}catch(e){}try{albWatch()}catch(e){}};
-function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));COLS.forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem("carddex_hidx")||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem("carddex_hidx",JSON.stringify(H))}catch(e){}}})}
+function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));COLS.forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}})}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
 Object.values(CARDS).forEach(c=>{if(c.twin)ALT[c.id]=c.twin});
@@ -1437,7 +1439,7 @@ if(MODE==="c")albInit();
 
 
 /* foto: IndexedDB */
-const idb=new Promise(r=>{try{const q=indexedDB.open("carddex",1);q.onupgradeneeded=()=>q.result.createObjectStore("img");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
+const idb=new Promise(r=>{try{const q=indexedDB.open(ENV==="dev"?"carddex_d":"carddex",1);q.onupgradeneeded=()=>q.result.createObjectStore("img");q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
 const op=async(m,k,v)=>{const d=await idb;if(!d)return null;return new Promise(r=>{try{const s=d.transaction("img",m==="get"||m==="keys"?"readonly":"readwrite").objectStore("img");const q=m==="get"?s.get(k):m==="put"?s.put(v,k):m==="del"?s.delete(k):s.getAllKeys();q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}})};
 const URLS={};
 async function loadImgs(){const ks=(await op("keys"))||[];for(const k of ks){const b=await op("get",k);if(b)URLS[k]=URL.createObjectURL(b)}}
@@ -1837,7 +1839,7 @@ $("#vsh").onclick=()=>menu(curI,1);
 document.addEventListener("load",e=>{const i=e.target;if(i.tagName==="IMG"){const sl=i.closest&&i.closest(".slot");if(sl&&i.currentSrc)sl.style.setProperty("--gi","url(\""+i.currentSrc+"\")")}},true);
 /* stile: colore pagine per collezione */
 const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null,"rgba(255,255,255,.06)","rgba(255,255,255,.13)"],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
-let PGS={};try{PGS=JSON.parse(localStorage.getItem("carddex_pgc")||"{}")||{}}catch(e){}
+let PGS={};try{PGS=JSON.parse(localStorage.getItem(CK("carddex_pgc"))||"{}")||{}}catch(e){}
 function pgKey(){return (MODE==="g"?"g:":"")+(cur==="?"?(typeof PREV!=="undefined"&&PREV)||"a":cur)}
 function applyPgc(){const k=PGS[pgKey()]||"trasp2",d=PGC[k]||PGC.trasp2,r=document.documentElement;r.style.setProperty("--pgbg",d[1]);["--pk1","--pk2"].forEach((n,x)=>d[4+x]?r.style.setProperty(n,d[4+x]):r.style.removeProperty(n));r.style.setProperty("--pgbf",d[6]||"none");
   r.style.setProperty("--pgimg",d[2]?`radial-gradient(circle at 1.5px 1.5px,${d[2]} 0,${d[2]} 1px,transparent 1.5px),radial-gradient(circle at 4.5px 4.5px,${d[3]} 0,${d[3]} 1px,transparent 1.5px)`:"none");r.dataset.pg=k}
@@ -1845,16 +1847,16 @@ function pgMenu(){let el=$("#pgp");if(!el){el=document.createElement("div");el.i
   const NO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.3 17.7L17.7 6.3"/></svg>';
   const draw=()=>{const cu=PGS[pgKey()]||"trasp2";el.innerHTML='<div class="pgt">Colore pagine</div><div class="pgg">'+Object.entries(PGC).map(([k,d])=>`<button data-k="${k}" aria-label="${d[0]}" class="${k===cu?"on":""}"><i style="background:${k==="trasp"?"rgba(255,255,255,.42)":k==="trasp2"?"rgba(14,15,22,.92)":d[1]}">${k==="trasp"||k==="trasp2"?NO:""}</i></button>`).join("")+'</div><button class="pgo">Fine</button>'};
   draw();el.hidden=false;
-  el.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.classList.contains("pgo")){el.hidden=true;return}PGS[pgKey()]=b.dataset.k;try{localStorage.setItem("carddex_pgc",JSON.stringify(PGS))}catch(x){}applyPgc();draw()}}
+  el.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.classList.contains("pgo")){el.hidden=true;return}PGS[pgKey()]=b.dataset.k;try{localStorage.setItem(CK("carddex_pgc"),JSON.stringify(PGS))}catch(x){}applyPgc();draw()}}
 $("#sty").onclick=pgMenu;
 $("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!j||typeof j!=="object")throw 0;
   if(!j.alb){albEnsure(Object.keys(j.coll||j.st||{}));PCOLS.forEach(a=>{if(a.lg&&!a.cu.length)a.pend=1})}
   else if(Array.isArray(j.alb.a)&&j.alb.a.length&&j.alb.a.every(a=>a&&a.k&&Array.isArray(a.s)&&a.s.every(x=>SETS[x]))){try{localStorage.setItem(ALK,JSON.stringify(j.alb))}catch(e){}albLoad()}
   const cln=s=>{if(!s||typeof s!=="object")return null;const o={};let n=0;[...PCOLS,...GCOLS].forEach(c=>{if(Array.isArray(s[c.k])){o[c.k]=s[c.k].filter(x=>x&&(!x.id||CARDS[x.id]));n++}});return n?o:null};
   if(j.v>=3){const C=cln(j.coll),G=cln(j.game);if(!C&&!G)throw 0;const W=(k,o)=>{try{localStorage.setItem(k,JSON.stringify(o))}catch(e){}};
-    if(C){W("carddex2",C);if(MODE!=="g")st=C}if(G){W(GK("carddex2g"),G);if(MODE==="g")st=G}
+    if(C){W(CK("carddex2"),C);if(MODE!=="g")st=C}if(G){W(GK("carddex2g"),G);if(MODE==="g")st=G}
     if(j.pk&&typeof j.pk==="object")W(GK("carddex_pk"),j.pk);
-    if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W("carddex_pgc",PGS);try{applyPgc()}catch(e){}}
+    if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W(CK("carddex_pgc"),PGS);try{applyPgc()}catch(e){}}
     if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
     try{pkBadge()}catch(e){}}
   else{const s=cln(j.st);if(!s)throw 0;Object.assign(st,s)}
@@ -1936,7 +1938,7 @@ const RD={ill: ["Mitsuhiro Arita", "Keiji Kinebuchi", "Ken Sugimori", "Tomoaki I
 const RDP={};
 function rdOf(c){const k=TD[c.sid];if(!k||!RD.d[k]||!(c.num>0))return null;let a=RDP[k];if(!a)a=RDP[k]=RD.d[k].split(";");const t=a[c.num-1];if(!t)return null;const m=t.match(/^([CUR]?)(\d*)\|(.*)$/);return m?{r:m[1],i:m[2]===""?-1:+m[2],t:m[3]}:null}
 const RNAME={C:"Common",U:"Uncommon",R:"Rare"};
-let RARC={};try{RARC=JSON.parse(localStorage.getItem("carddex_rar")||"{}")}catch(e){}
+let RARC={};try{RARC=JSON.parse(localStorage.getItem(CK("carddex_rar"))||"{}")}catch(e){}
 function rarKind(r){r=(r||"").toLowerCase();if(/promo/.test(r))return"p";if(/uncommon/.test(r))return"u";if(/common/.test(r))return"c";if(/rare|holo|ultra|secret|promo/.test(r))return"r";return""}
 const PMI="data:image/png;base64,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";
 IC.Q={u:PMI,r:"128/116"};
@@ -1946,15 +1948,15 @@ function setVs(c){const o=rdOf(c),r=o&&o.r?RNAME[o.r]:RARC[c.id],k=c.sid==="X"||
   const tail=(sym||hol)?sym+(hol?"Holo":""):"";
   $("#vs").innerHTML=[sicon(c.sid)+esc(SETS[c.sid]?SETS[c.sid].n:"Promo"),esc(numTxt(c)),tail].filter(Boolean).join(" · ")}
 function rarGet(c){if(c.sid==="S"||c.sid==="Q"||!TD[c.sid]||RARC[c.id]!==undefined||rdOf(c))return;const id=c.id;
-  fetch("https://api.tcgdex.net/v2/en/sets/"+TD[c.sid]+"/"+c.num).then(r=>r.ok?r.json():null).then(j=>{if(!j)return;RARC[id]=j.rarity||"";try{localStorage.setItem("carddex_rar",JSON.stringify(RARC))}catch(e){}
+  fetch("https://api.tcgdex.net/v2/en/sets/"+TD[c.sid]+"/"+c.num).then(r=>r.ok?r.json():null).then(j=>{if(!j)return;RARC[id]=j.rarity||"";try{localStorage.setItem(CK("carddex_rar"),JSON.stringify(RARC))}catch(e){}
     if(window.__vc&&window.__vc.id===id)setVs(window.__vc)}).catch(()=>{})}
 /* nomi italiani di allenatori ed energie dei set EX (Hoenn): da tcgdex, salvati sul telefono; se manca, resta l'inglese */
-const ITV=new Set(Object.values(IT));let ITN={},ITT={};try{ITN=JSON.parse(localStorage.getItem("carddex_itn")||"{}");ITT=JSON.parse(localStorage.getItem("carddex_itt")||"{}")}catch(e){}
+const ITV=new Set(Object.values(IT));let ITN={},ITT={};try{ITN=JSON.parse(localStorage.getItem(CK("carddex_itn"))||"{}");ITT=JSON.parse(localStorage.getItem(CK("carddex_itt"))||"{}")}catch(e){}
 const itList=()=>Object.values(CARDS).filter(c=>c.kd!=="p"&&"HIKMN".includes(c.sid)&&c.num>0&&!ITV.has(c.name)&&!c.itn);
 function itApply(){Object.values(CARDS).forEach(c=>{if(ITN[c.id]&&c.kd!=="p"&&"HIKMN".includes(c.sid)){if(!c.en)c.en=c.name;c.name=ITN[c.id];c.itn=1}})}
 function itFetch(c){const t=ITT[c.id];if(ITN[c.id]||(t&&Date.now()-t<6048e5))return Promise.resolve();
   return fetch("https://api.tcgdex.net/v2/it/sets/"+TD[c.sid]+"/"+c.num).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.name&&typeof j.name==="string")ITN[c.id]=j.name;else ITT[c.id]=Date.now();
-    try{localStorage.setItem("carddex_itn",JSON.stringify(ITN));localStorage.setItem("carddex_itt",JSON.stringify(ITT))}catch(e){}
+    try{localStorage.setItem(CK("carddex_itn"),JSON.stringify(ITN));localStorage.setItem(CK("carddex_itt"),JSON.stringify(ITT))}catch(e){}
     itApply();if(window.__vc&&window.__vc.id===c.id&&$("#vh"))$("#vh").innerHTML=nmH(window.__vc.name)}).catch(()=>{})}
 itApply();
 (async()=>{if(!navigator.onLine)return;await new Promise(r=>setTimeout(r,4000));for(const c of itList()){await itFetch(c);await new Promise(r=>setTimeout(r,120))}})();
@@ -2337,7 +2339,7 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
-function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd("carddex2",{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd("carddex_pgc",{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
+function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale di entrambi gli album (Collezione e Gioco) e delle bustine. I backup vecchi sostituiscono solo questo album.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
 function setLuce(){LUCE=!LUCE;if(LUCE){mAsked=0;motionOn(1)}else document.documentElement.classList.remove("mv")}
@@ -2346,14 +2348,14 @@ function setOpen(o){const b=document.body;b.classList.toggle("sett",!!o);if(!o)b
   if(o){b.classList.contains("dex")?drawDex():drawSet();e.hidden=false;if(b.classList.contains("dex"))dxSpy()}else e.hidden=true;if(!b.classList.contains("dex")){DXQ="";try{tabs();stat()}catch(x){}}navSync()}
 let SDV=0,SDT=0;
 function drawSet(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;const sw=(id,on)=>'<button class="sw'+(on?" on":"")+'" data-a="'+id+'" role="switch" aria-checked="'+(!!on)+'"><i></i></button>';
-  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div><div class="row"><span>'+(ENV==="dev"?"Dev: 6 bustine sempre, 1000 Pokédollari, set sbloccati":"App: limiti normali, dati propri (parte da zero)")+'<small>Le collezioni sono comuni a entrambe</small></span></div></div>':'');
+  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div></div>':'');
   e.onclick=ev=>{if(ev.target.tagName==="H2"){SDV=(SDV||0)+1;clearTimeout(SDT);SDT=setTimeout(()=>{SDV=0},2500);if(SDV>=7&&!DEVOK){SDV=0;try{localStorage.setItem("carddex_devok","1")}catch(x){}toast("Sviluppo attivato");setTimeout(()=>location.reload(),500)}return}const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="env"){if(b.dataset.v!==ENV){try{localStorage.setItem("carddex_env",b.dataset.v)}catch(x){}fadeTo(()=>location.reload())}return}if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
 
 /* ===== Pokédex ===== */
 let DXS=(()=>{try{return localStorage.getItem("carddex_dxs")||"t"}catch(e){return"t"}})(),DXF="a";
 const DXI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h5.5M15.5 12H21"/><circle cx="12" cy="12" r="3.2"/></svg>',
  PERI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.3163 19.4384C5.92462 18.0052 7.34492 17 9 17H15C16.6551 17 18.0754 18.0052 18.6837 19.4384M16 9.5C16 11.7091 14.2091 13.5 12 13.5C9.79086 13.5 8 11.7091 8 9.5C8 7.29086 9.79086 5.5 12 5.5C14.2091 5.5 16 7.29086 16 9.5ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"/></svg>';
-function dxRaw(src){if(MODE===src)return st;try{return JSON.parse(localStorage.getItem(src==="c"?"carddex2":GK("carddex2g")))||{}}catch(e){return{}}}
+function dxRaw(src){if(MODE===src)return st;try{return JSON.parse(localStorage.getItem(src==="c"?CK("carddex2"):GK("carddex2g")))||{}}catch(e){return{}}}
 /* Pokédex: niente Topps; i set di una generazione contano solo i Pokémon di quella generazione (Neo: non Kanto; EX: non Kanto/Johto) */
 const dxOk=c=>c.sid!=="S"&&c.sid!=="Y"&&c.sid!=="Z"&&c.sid!=="Q"&&genOk(c);
 function dxData(){const eP=s=>{const c=CARDS[s.id];if(!c)return null;if(c.opts)return CARDS[s.o&&c.opts.includes(s.v)?s.v:c.opts[0]];return c.alt&&s.o&&s.v==="n"?CARDS[c.alt]:c};
@@ -2438,7 +2440,7 @@ function mdLook(m,anim){const e=$("#md");if(!e)return;if(!e.firstChild)e.innerHT
 function mdSync(anim){mdLook(MODE,anim===undefined?1:anim)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,navOn(),0);mdSync(0)})
 const MS={};
-function setMode(m,keep){if(m===MODE)return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS:PCOLS;SKEY=m==="g"?GK("carddex2g"):"carddex2";try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
+function setMode(m,keep){if(m===MODE)return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS:PCOLS;SKEY=m==="g"?GK("carddex2g"):CK("carddex2");try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
   st={};try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}fillSt();if(m==="c")albInit();
   const k0=COLS[0].k,mp=keep?(m==="g"?(PCOLS.find(c=>c.k===cur)||{}).gm:(()=>{const g=GCOLS.find(c=>c.k===cur);return g&&(PCOLS.find(a=>a.s.includes(g.s[0]))||{}).k})()):null,r=keep?{cur:mp||k0,pg:mp?0:pg,sp:mp?0:sp,FLT,PREV:mp||k0}:MS[m]||{cur:k0,pg:0,sp:0,FLT:"a",PREV:k0};cur=r.cur==="?"?k0:r.cur;if(!COLS.some(c=>c.k===cur))cur=k0;pg=r.pg;sp=r.sp;FLT=r.FLT;PREV=COLS.some(c=>c.k===r.PREV)?r.PREV:k0;SR=[];SQ="";
   applyMode();navSync();tabs();render()}
@@ -2466,7 +2468,7 @@ requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261115013658";
+const BUILD="B261115015212";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
