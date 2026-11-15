@@ -448,3 +448,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v307** · Missioni: Meowth promo 10 → una bustina aperta in 10 giorni diversi; Meowth Team Rocket → 60 Pokédollari guadagnati; Dark Persian → 3 bustine ottenute scambiando Pokédollari. Ripiego: v306.
 - **v308** · Scroller Pokédex: centrato nel margine tra carte e bordo schermo, sia a riposo sia premuto (si allarga restando centrato). Ripiego: v307.
 - **v309** · Animazione carte nel Pokédex rifatta: la carta scende dall'alto direttamente nel suo spazio (stesso riquadro, quindi si ferma esatta), più veloce (0,65 s), si aspetta la fine dello scorrimento prima di ogni carta così si vedono tutte. Ripiego: v308.
+- **v310** · Animazione Pokédex: la carta parte da un filo più in alto; appena entra nello spazio fa un piccolo "assestamento" (scala 1,045→1) e un riflesso di luce che attraversa la carta. Ripiego: v309.
