@@ -429,3 +429,4 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v288** · Rinomina album: nome intero prefilled, il nome personalizzato compare sopra le pagine; tolto il completamento accanto al numero pagina; spazi uguali fine pagina/numero/slider/menu; Missioni: pillola 44px, stile uniformato, si chiude dal menu; menu in basso fisso in Pokédex/Impostazioni; Pokédex: carte scorrono dietro titolo e menu; cornice blu sulla carta mostrata. Ripiego: v287.
 - **v289** · Collezione: tolti i nomi testuali dalle pillole dei set (restano solo i simboli; il nome è sopra le pagine). Ripiego: v288.
 - **v290** · Collezione: "+" più grande (icona 22px) nel cerchio. Ripiego: v289.
+- **v291** · Apri ×1: larghezza adattata al testo, gruppo centrato. Ripiego: v290.
