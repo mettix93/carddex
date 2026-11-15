@@ -2108,7 +2108,7 @@ function dxScr(e,y){const y0=e.scrollTop,d=y-y0,D=Math.min(900,Math.max(260,Math
 function dxJump(){if(!PKDQ.length)return;try{const e=$("#set"),D=dxData(),d=[...PKDQ].sort((a,b)=>a-b).find(d=>dxScope(D,d).o.length>0),slot=d&&e.querySelector('.dxi[data-d="'+d+'"]');if(!slot)return;const pt=parseFloat(e.style.paddingTop)||0;e.scrollTop=Math.max(0,slot.getBoundingClientRect().top-e.getBoundingClientRect().top+e.scrollTop-pt-14);dxSpy()}catch(x){}}
 function dxFillAnim(){if(dxFilling||!PKDQ.length||!document.body.classList.contains("dex")||!document.body.classList.contains("sett"))return;
   const e=$("#set");if(!e||!e.animate){PKDQ=[];dxQSave();dxBadge();return}
-  DXF="a";try{drawDex(1)}catch(x){}const D=dxData(),L=[...PKDQ].sort((a,b)=>a-b).filter(d=>dxScope(D,d).o.length>0);
+  DXF="a";try{drawDex(0);e.scrollTop=0}catch(x){}const D=dxData(),L=[...PKDQ].sort((a,b)=>a-b).filter(d=>dxScope(D,d).o.length>0);
   PKDQ=PKDQ.filter(d=>L.includes(d));dxQSave();dxBadge();
   if(!L.length){drawDex(1);return}
   dxFilling=1;
@@ -2604,7 +2604,7 @@ function pkReset(){const p=$("#pkp");if(!p||p.classList.contains("go"))return;co
 function goTab(t,direct){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B.classList.contains("sett"),dex=B.classList.contains("dex"),asl=B.classList.contains("asl"),stg=sett&&!dex&&!asl;
   if(t==="m"||t==="a")t=t==="a"?MODE:"b";
   if(t==="s"){if(stg&&!op)return;navSet($("#nvp"),"s",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.remove("asl");setOpen(1);navSync()});return}
-  if(t==="d"){if(sett&&dex&&!op){fastTop();return}navSet($("#nvp"),"d",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("asl");B.classList.add("dex");setOpen(1);navSync();setTimeout(dxFillAnim,480)});return}
+  if(t==="d"){if(sett&&dex&&!op){fastTop();return}navSet($("#nvp"),"d",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("asl");B.classList.add("dex");setOpen(1);{const q=$("#set");if(q)q.scrollTop=0}navSync();requestAnimationFrame(()=>{const q=$("#set");if(q&&PKDQ.length)q.scrollTop=0});setTimeout(dxFillAnim,480)});return}
   if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
   if(t==="c"&&!direct){if(asl&&!op)return;if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
   if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}navSync()})}}
