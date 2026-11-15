@@ -166,7 +166,7 @@ html.gml #set .dxc{background:#e8e8ee;box-shadow:0 0 0 2px #fff,0 0 0 3px #c7c7c
 #set .dxc:not(.on) img,#set .dxc:not(.on) .ph{filter:grayscale(1) contrast(.9) brightness(.95)}
 #set .dxc:not(.on){opacity:.72}
 #set .dxc:not(.on)::after{content:"";position:absolute;inset:0;background:#ffffff52;pointer-events:none}
-#set .dxc .ph{color:#1d2a44}
+#set .dxc .ph{color:#1d2a44}#set .dxc .dxf{position:absolute;inset:0;box-sizing:border-box;border:6px solid rgba(231,200,90,.75);border-radius:6px}#set .dxc .dxy{position:absolute;left:9%;right:9%;top:11.2%;bottom:47.2%;box-sizing:border-box;border:1.5px solid rgba(231,200,90,.75);background:rgba(255,255,255,.22);overflow:hidden}#set .dxc .dxy img{width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .7s ease;filter:grayscale(1) contrast(.85) brightness(1.12)}#set .dxc .dxy img.ok{opacity:.7}
 .tabs .tab .tn{margin-left:5px;font-size:11px;font-weight:600;max-width:86px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle}
 .tabs .tab.lk .si{opacity:.35}.tabs .tab.tpl svg{width:22px;height:22px;display:block}.tabs .tab.tpl{flex:0 0 auto;padding:8px 14px;font-size:20px;line-height:1}
 .tab{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
@@ -476,7 +476,7 @@ body.gm #app #stat::before,body.gm #app .tab::before{display:none}
 #pkp{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 #tst{z-index:200!important;left:50%!important;right:auto!important;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;bottom:calc(var(--fbb,10px) + 52px + 16px)!important;padding:13px 22px 13px 14px!important;border-radius:999px!important;background:rgba(20,26,46,.97)!important;border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 34px rgba(0,0,0,.45);-webkit-backdrop-filter:none!important;backdrop-filter:none!important;will-change:transform,opacity;color:#fff;font:700 15px/1.25 -apple-system,"SF Pro Text",system-ui,sans-serif!important;display:flex;align-items:center;gap:10px;transform:translateX(-50%) translateY(14px) scale(.94);transition:opacity .22s,transform .38s cubic-bezier(.2,1.4,.4,1)!important}
 #tst::before{content:"";flex:none;width:24px;height:24px;border-radius:50%;background:#0a84ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/16px no-repeat}
-#tst.on{transform:translateX(-50%)}#tst.warn::before{background:#ff9f0a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 6v8'/%3E%3Cpath d='M12 18.2v.1'/%3E%3C/svg%3E") center/16px no-repeat}
+#tst.on{transform:translateX(-50%)}#tst.warn::before{background:#0a84ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 6v8'/%3E%3Cpath d='M12 18.2v.1'/%3E%3C/svg%3E") center/16px no-repeat}
 html.gml #tst{background:rgba(255,255,255,.94)!important;border-color:rgba(255,255,255,.95);color:#1b2a49!important;box-shadow:inset 0 1px 0 #fff,0 12px 34px rgba(40,70,120,.35)}
 #cvs,#pts{position:fixed;inset:0;z-index:70;color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
 #cvs[hidden],#pts[hidden]{display:none}
@@ -510,7 +510,7 @@ html.gml #tst{background:rgba(255,255,255,.94)!important;border-color:rgba(255,2
 #pts{display:flex;align-items:center;justify-content:center;background:rgba(20,30,55,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .ptc{position:relative;width:min(86vw,340px);padding:28px 22px 22px;border-radius:30px;text-align:center;background:linear-gradient(180deg,#dfe9fb,#fff);box-shadow:0 20px 60px rgba(20,30,55,.4);display:flex;flex-direction:column;align-items:center;gap:6px}
 .ptc .cvx{position:absolute;right:12px;top:12px;width:32px;height:32px}
-.pti svg{width:34px;height:34px;color:#ffb300}.ptc small{font-size:13px;color:#4e5d7c}.ptc #ptn{font-size:54px;line-height:1;font-weight:700}
+.pti svg{width:34px;height:34px;color:#ffb300}.ptc small{font-size:13px;color:#4e5d7c}.ptc #ptn .ptb svg{width:.8em;height:.8em;vertical-align:-.08em;margin-left:.18em}#ptn{font-size:54px;line-height:1;font-weight:700}
 #bks{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;background:rgba(20,30,55,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#1b2a49;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;animation:cdFd .28s ease-out}
 #bks[hidden]{display:none}
 #bks #bkn{font-size:54px;line-height:1;font-weight:700}#bkt{margin:6px 0 2px;font-size:14px;color:#4e5d7c}#bkc{font:600 18px -apple-system,system-ui,sans-serif;color:#0a84ff;font-variant-numeric:tabular-nums;margin-bottom:4px}
@@ -1099,7 +1099,7 @@ html body #pk #pkm,html body #pk.close #pkm{top:calc(var(--hbt,14px) + 138px);fo
 #pkp{overflow:hidden;display:block}
 #pkp:not(.none) .pkpt{text-transform:uppercase;letter-spacing:.06em}#pkms{position:absolute;right:16px;bottom:calc(var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px))) + 76px);z-index:3;display:flex;align-items:center;gap:8px;height:44px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);color:rgba(235,235,245,.85);font:600 15px -apple-system,system-ui,sans-serif;transition:opacity .22s}#pkms svg{width:22px;height:22px;flex:none}#pkp.go #pkms,#pkp.none #pkms{opacity:0;pointer-events:none}html.gml #pkms{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.75);color:#1b2a49}
 #msp{position:absolute;inset:0;z-index:12;overflow:auto;padding:calc(var(--hbt,14px) + 56px) 16px 40px;background:#0a0c17;color:#fff}html.gml #msp{background:#f2f2f7;color:#1b2a49}#msp h2{position:absolute;left:16px;top:var(--hbt,14px);margin:0;font:700 32px/44px -apple-system,"SF Pro Display",system-ui,sans-serif;letter-spacing:-.01em}#msp .pkx{z-index:2}.msi{position:relative;padding:14px 16px;margin-bottom:10px;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);display:grid;gap:4px}html.gml .msi{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 #fff,0 4px 14px rgba(40,70,120,.12)}.msr{display:flex;gap:12px;align-items:center}.msr .mss{position:relative;width:56px;flex:none;border-radius:6px;overflow:hidden}.msr .mss img{width:100%;display:block;filter:blur(9px) brightness(.35) saturate(.3);transform:scale(1.15)}.msr .mss u{position:absolute;inset:0;height:auto;background:none;border-radius:0;display:flex;align-items:center;justify-content:center;color:#fff;font:700 26px -apple-system,system-ui,sans-serif;text-decoration:none}.msr .mss.open img{filter:none;transform:none}.msr .mss.open u{display:none}.msx{display:grid;gap:3px}.msw{color:#0a84ff;font-weight:600!important;opacity:1!important}.msb{margin-top:8px;height:44px;border:0;border-radius:22px;background:rgba(127,127,140,.25);color:inherit;font:600 15px -apple-system,system-ui,sans-serif}.msb.on{background:#0a84ff;color:#fff}.msi b{font:600 17px -apple-system,system-ui,sans-serif}.msi span{font:500 14px -apple-system,system-ui,sans-serif;opacity:.6}.msi i{display:block;height:6px;border-radius:3px;background:rgba(127,127,140,.25);overflow:hidden;margin-top:6px}.msi u{display:block;height:100%;background:#0a84ff;border-radius:3px}.msi em{font-style:normal;font-size:12px;opacity:.6}.msn{text-align:center;font-size:13px;opacity:.55;margin-top:18px}
-html[data-env=dev] #pkbar .pbt::after{content:"DEV";margin-left:10px;padding:3px 8px;border-radius:8px;background:#ff9f0a;color:#fff;font:700 11px/1 -apple-system,system-ui,sans-serif;letter-spacing:.06em;vertical-align:middle}.nvp .dxb{position:absolute;top:2px;right:6px;min-width:18px;height:18px;border-radius:9px;background:#0a84ff;color:#fff;font:700 11px/18px -apple-system,system-ui,sans-serif;font-style:normal;text-align:center;padding:0 5px;pointer-events:none}.nvp .dxb:empty{display:none}#pkp .pkpt b{font-weight:800}#pkp .pkpt em,#sn em{font-style:normal;font-weight:500;opacity:.6;margin-left:8px;letter-spacing:.02em}
+html[data-env=dev] .nvp button[data-t=s]::after{content:"";position:absolute;top:7px;right:calc(50% - 20px);width:8px;height:8px;border-radius:50%;background:#ff9f0a;box-shadow:0 0 0 2px var(--gbg,#fff)}.nvp .dxb{position:absolute;top:2px;right:6px;min-width:18px;height:18px;border-radius:9px;background:#0a84ff;color:#fff;font:700 11px/18px -apple-system,system-ui,sans-serif;font-style:normal;text-align:center;padding:0 5px;pointer-events:none}.nvp .dxb:empty{display:none}#pkp .pkpt b{font-weight:800}#pkp .pkpt em,#sn em{font-style:normal;font-weight:500;opacity:.6;margin-left:8px;letter-spacing:.02em}
 html body #pkp .pkpt{position:absolute;left:0;right:0;top:calc(var(--hbt,14px) + 138px);text-align:center;padding:0 20px}
 .pkcar{position:absolute;left:0;right:0;top:var(--pky);height:var(--ph);touch-action:pan-y;user-select:none;-webkit-user-select:none}
 #pk{--cw:min(var(--pw),calc(50vw - 18px));--ch:calc(var(--cw)*818/480)}
@@ -2033,7 +2033,7 @@ function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go),
   const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:ra[rndI(ra.length)];
   if(PKSET[sid]&&PKSET[sid].cnt===9)return[...pkPick(com.concat(en),5),...pkPick(un,3),rare];
   return PKSET[sid]&&PKSET[sid].e===0&&!en.length?[...pkPick(com,7),...pkPick(un,3),rare]:[...pkPick(en,1),...pkPick(com,6),...pkPick(un,3),rare]}
-function pkDxSeen(){try{const D=dxData();return new Set([...Object.keys(D.own.c),...Object.keys(D.own.g)].map(Number))}catch(e){return new Set()}}
+function pkDxSeen(){try{const D=dxData();return new Set(Object.keys(D.own.g).map(Number))}catch(e){return new Set()}}
 function pkDxNew(c,seen){if(c.kd!=="p"||!c.dex||c.dex>386||!dxOk(c)||seen.has(c.dex))return 0;seen.add(c.dex);return 1}
 let pkFlyB=0;
 function pkDexOut(){const s=$("#pksum"),L=pkAll().map((x,j)=>({x,j})).filter(o=>o.x.dx).sort((a,b)=>a.x.c.dex-b.x.c.dex);
@@ -2218,7 +2218,7 @@ function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div")
   return e}
 let ptDone=0;const PTX0='20 Pokédollari <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg> 1 bustina';
 function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/20),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Conversione completata":"I tuoi Pokédollari";
-  if(ptDone){$("#ptn").textContent="+1 bustina";$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent="Hai guadagnato una bustina! Ti restano "+p+" Pokédollari";$("#ptx").innerHTML="Apri ora";$("#ptx").disabled=false;return}
+  if(ptDone){$("#ptn").innerHTML='+1<span class="ptb">'+PKI+'</span>';$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent="Hai guadagnato una bustina! Ti restano "+p+" Pokédollari";$("#ptx").innerHTML="Apri ora";$("#ptx").disabled=false;return}
   $("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*5)+"%";$("#ptt").textContent=k>0?"Puoi scambiare "+k+(k===1?" bustina":" bustine"):"Ti "+(20-p===1?"manca 1 Pokédollaro":"mancano "+(20-p)+" Pokédollari")+" per una bustina";$("#ptx").innerHTML=PTX0;$("#ptx").disabled=p<20}
 function ptOpen(){const e=ptBuild();ptDone=0;ptDraw();e.hidden=false}
 function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${pkImg(pkP()[i])})`,v=`url(${PKIMG.bk})`;w.querySelectorAll(".pkr.f").forEach(l=>{l.style.backgroundImage=u;l.firstChild.style.webkitMaskImage=u;l.firstChild.style.maskImage=u});w.querySelectorAll(".pkr.b").forEach(l=>{l.style.backgroundImage=v;l.firstChild.style.webkitMaskImage=v;l.firstChild.style.maskImage=v})}
@@ -2399,12 +2399,13 @@ let DXQ="",DXE=[],DXLT={d:0,t:0},DXP=null,DXTM=0;
 function dxMatch(D,d,gs){const {o,cand}=dxScope(D,d),cards=[...cand];o.forEach(x=>{if(!cards.some(c=>c.id===x.c.id))cards.push(x.c)});
   if(!cards.length){const nm=dxName(d,D.all).toLowerCase();return gs.some(g=>g.toks.every(t=>nm.includes(t)||("#"+pad(d)).includes(t)))}
   return cards.some(c=>{const ow=o.filter(x=>x.c.id===c.id),s0=ow[0]&&ow[0].s,x={o:ow.length>0,q:ow.reduce((a,z)=>a+(z.s.q>1?z.s.q:1),0),lg:s0&&s0.lg,cd:s0&&s0.cd,ed:s0&&s0.ed,gr:s0&&s0.gr};return gs.some(g=>srMatch(c,g.toks,g.ph,!!c.h,x))})}
+const dxPh=d=>'<i class="dxf"></i><div class="dxy"><img loading="lazy" decoding="async" alt="" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/'+d+'.png" onload="this.classList.add(\'ok\')" onerror="this.remove()"></div>';
 function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;let n=0;DXE=[];dxTabs();dxPos();
   const gs=DXQ?DXQ.split(/\s+(?:o|or|oppure)\s+/).map(srGroup).filter(g=>g.toks.length||g.ph.length):null;
   const secs=G.map(([t,a,b],gi)=>{let h="",all=0;
     let tot=0;for(let d=a;d<=b;d++){const {o,cand}=dxScope(D,d),has=o.length>0;tot++;if(has){all++;n++}
       if(DXF==="o"&&!has||DXF==="n"&&has)continue;if(gs&&!dxMatch(D,d,gs))continue;
-      const pf=has&&DXPF[d]&&o.find(x=>x.c.id===DXPF[d]),c=has?(pf?pf.c:o[0].c):cand[0],nm=dxName(d,D.all),fc=c?face(c):'<div class="ph kp"><b>#'+pad(d)+'</b><span>'+nmH(nm)+'</span></div>';
+      const pf=has&&DXPF[d]&&o.find(x=>x.c.id===DXPF[d]),c=has?(pf?pf.c:o[0].c):cand[0],nm=dxName(d,D.all),fc=has?face(c):dxPh(d);
       o.forEach(x=>{const v={...x.s,id:x.c.id,o:1};delete v.v;DXE.push({d,v})});
       const own=new Set(o.map(x=>x.c.sid)),ss=[...new Set([...cand.map(x=>x.sid),...o.map(x=>x.c.sid)])].sort((p,q)=>RK.indexOf(p)-RK.indexOf(q));
       h+='<div class="dxi" data-d="'+d+'"><small>#'+pad(d)+' '+nmH(nm)+'</small><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+'</div></div>'}
@@ -2494,7 +2495,7 @@ try{if(sessionStorage.getItem("cdx_set")){sessionStorage.removeItem("cdx_set");g
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))try{navigator.serviceWorker.register("sw.js").catch(()=>{})}catch(e){}
-const BUILD="B261115023521";
+const BUILD="B261115024746";
 (function(){let busy=0;
 async function chk(){if(busy||!/^https?:/.test(location.protocol))return;busy=1;
  try{const r=await fetch(location.pathname+"?c="+Date.now(),{cache:"no-store"});const t=await r.text();const m=t.match(/BUILD\x3d"([^"]+)"/);
