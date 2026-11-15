@@ -21,7 +21,7 @@ for(const to of ['s','b','c','d','b','c','s','d','c','b','s']){
   const vis=()=>{const o=document.querySelector('#xo');return o?+getComputedStyle(o).opacity:0};
   document.querySelector('#nvp button[data-t='+to+']').click();
   await new Promise(res=>{const f=()=>{const k=document.querySelector('#pk');
-   const st=[document.body.classList.contains('sett'),document.body.classList.contains('dex'),!!(k&&!k.hidden),typeof MODE!=='undefined'?MODE:''].join();
+   const st=[document.body.classList.contains('sett'),document.body.classList.contains('dex'),document.body.classList.contains('asl'),!!(k&&!k.hidden),typeof MODE!=='undefined'?MODE:''].join();
    if(prev!==null&&st!==prev){swaps++;if(vis()<.9)bad++}prev=st;if(performance.now()-t0<900)requestAnimationFrame(f);else res()};f()});
   const live=document.getAnimations().filter(a=>a.playState==='running'&&a.effect&&a.effect.target&&['pk','pkp','set','book'].includes(a.effect.target.id)).length;
   return {bad,swaps,live,xo:vis(),xf:document.body.classList.contains('xf')}},to);
