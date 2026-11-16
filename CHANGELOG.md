@@ -497,3 +497,10 @@ Ripiego: v341
 - Album: durante l'inserimento si salta direttamente alla pagina con la carta nuova (un solo giro di pagina, senza passare dalle pagine intermedie).
 - Sbustinare: ordine effetto rara/holo → verso → "Nuova!" (animazione + suono) appena finito il verso.
 Ripiego: v342
+
+## v344
+- Pokédex: doppio tocco / pressione su Pokémon non registrato non apre più il pop-up miniature; le miniature di carte non ottenute non si aprono (restano ferme); aprendo una carta dal pop-up si scorre poi tra i Pokémon con le carte mostrate nel Pokédex.
+- Sbusto: le scritte compaiono subito (stessa velocità di x2/x3), animazione e suono "Nuova" alla fine dopo il verso; "NUOVA!" diventa "NUOVA CARTA!" (solo sbusto) e le due pillole stanno nella larghezza della carta.
+- Alone dorato rettangolare (forma della carta) in Album e Pokédex.
+- Barra che si abbassava dopo la chiusura del riepilogo: riallineamento ripetuto dopo la chiusura (causa non riprodotta qui).
+Ripiego: v343
