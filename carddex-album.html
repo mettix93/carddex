@@ -1280,7 +1280,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v356";
+const APPV="v357";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2613,7 +2613,10 @@ function pkHoloWow(d,tg){try{
 function vwFx(c){document.querySelectorAll("#vw .vwfx").forEach(e=>e.remove());const vw=$("#vw"),cd=$("#card");if(!vw||vw.hidden||!cd||!c)return;
   const hol=!!c.h,rr=!hol&&rarKind(((rdOf(c)||{}).r?RNAME[rdOf(c).r]:RARC[c.id]))==="r";if(!hol&&!rr)return;
   const r=cd.getBoundingClientRect(),w=document.createElement("div");w.className="vwfx";w.style.cssText="position:fixed;z-index:2;pointer-events:none;width:0;height:0;margin-top:-17px;left:"+(r.left+r.width/2)+"px;top:"+(r.top+r.height/2)+"px";vw.appendChild(w);
-  try{if(hol)pkHoloWow(w,cd);else pkRareFx(w,cd)}catch(e){}setTimeout(()=>w.remove(),2200)}
+  try{if(hol){pkHoloWow(w,cd);const h=document.createElement("div");h.className="pkhalo";h.style.top="17px";h.style.left="0";w.insertBefore(h,w.firstChild);
+    h.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.55)"},{opacity:1,transform:"translate(-50%,-50%) scale(1)",offset:.35},{opacity:0,transform:"translate(-50%,-50%) scale(1.25)"}],{duration:1500,easing:"ease-out"});
+    const ft=cd.querySelector(".ft")||cd,hs=document.createElement("div");hs.className="pkhs";hs.style.cssText="inset:0;border-radius:inherit";hs.innerHTML="<i></i>";ft.appendChild(hs);
+    hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1000,easing:"ease-in-out",fill:"forwards"});setTimeout(()=>hs.remove(),1000)}else pkRareFx(w,cd)}catch(e){}setTimeout(()=>w.remove(),2200)}
 function pkHoloFx(){const q=pkCur,d=$("#pkd");if(!q||!d)return;sfx("holo");pkHoloWow(d);try{navigator.vibrate&&navigator.vibrate([22,50,22])}catch(e){}
   const h=document.createElement("div");h.className="pkhalo";d.insertBefore(h,d.firstChild);
   try{h.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.55)"},{opacity:1,transform:"translate(-50%,-50%) scale(1)",offset:.35},{opacity:0,transform:"translate(-50%,-50%) scale(1.25)"}],{duration:1500,easing:"ease-out"})}catch(e){}setTimeout(()=>h.remove(),1540);
