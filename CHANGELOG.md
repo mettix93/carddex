@@ -479,3 +479,10 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - **v314** · Menu: «Album» (ex Collezione) apre la scelta Album bustine / Collezione personale; ricliccando in un album torna alla scelta, da altre pagine riapre l’ultima modalità; X rotonda negli album, via l’icona album dalle Bustine; titolo e X fissi nelle Missioni; Pokédex: secondo tap sull’icona → torna in cima; Bustine: secondo tap → Set Base, primo pacchetto. Ripiego: v313.
 - **v313** · Missioni completate compatte (spunta blu, testo max 2 righe); nomi italiani (Meowth del Team Rocket…); Pokédex: precarico immagini prima di ogni carta e anteprime più leggere/anticipate; bustine senza doppioni di nome e max 1 Unown; simbolo Pokédex vicino a NUOVA!; Bulbasaur promo in alta definizione; holo promo 9,10,11,13,15,17,24,34,35 (34/35 senza illustrazione e cornice). Ripiego: v312.
 - **v312** · FIX avvio da iPhone: v311 si bloccava all'apertura (pagine vuote) perché l'album Promo leggeva `PKDEV` prima della sua definizione quando l'ultima modalità era «Bustine»; ora usa `ENV`. Aggiunto test di avvio `tests/startg.js` (App/Dev × Bustine/Collezione). Ripiego: v310 (v311 difettosa).
+
+## v341
+- Album (animazione riempimento): carta ferma in posizione con lo stesso bordo della tasca (niente "sotto la tasca"), luce dorata dietro la carta come nel Pokédex, pagina che si gira (curl + suono) quando si cambia pagina durante l'inserimento.
+- Verso del Pokémon anche aprendo la carta promo appena riscattata da missione (precarico + ritentativo); XT (Bulbasaur) ora ha il verso.
+- Sbustinare: effetto "Nuova!"/"NUOVO POKÉMON!" dalle scritte (pop, anelli, stelle) insieme al suono, poi il verso; per rare/holo prima effetto+suono, poi il verso.
+- Album bustine: set non ancora sbloccati non apribili, stesso messaggio di Bustine.
+Ripiego: v340
