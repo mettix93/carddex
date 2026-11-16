@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v363 — Missioni, riscatto: animazione ricompensa. Carte mostrate: retro che sale con raggi dorati, si gira, flash + effetti; carte segrete: sagoma sigillata con ? che trema ed esplode. Tocco per saltare. Poi si apre la carta come prima. Ripiego: v362
+
 ## v362 — Missioni: cerchio blu con ! (stesso stile della V) per le missioni completate da riscattare. Ripiego: v361
 
 ## v361 — Tolti aptici iOS (interruttore, prova, trucco switch): bloccato da iOS 26.5, non fattibile da web. Resta solo vibrate Android invisibile. Ripiego: v360

@@ -1280,7 +1280,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v362";
+const APPV="v363";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2343,9 +2343,39 @@ function msRegen(){const M=msSt();let raw={};try{raw=JSON.parse(localStorage.get
   const S=MODE==="g"?st:raw;if(S.gQ)S.gQ=S.gQ.filter(x=>!(x&&x.id==="XT"));
   try{if(MODE==="g")save();else localStorage.setItem(GK("carddex2g"),JSON.stringify(raw))}catch(e){}
   M.tp=0;M.tr=0;delete M.c_dev;delete M.t_dev;msSv(M)}
+/* animazione di riscatto missione: "mostrata" = retro che sale e si gira; "segreta" = sagoma sigillata che trema ed esplode */
+function msReveal(cc,sec,done){let fin=0;const end=()=>{if(fin)return;fin=1;done()};
+  try{if(!document.getElementById("msrcss")){const st=document.createElement("style");st.id="msrcss";st.textContent=".msrv{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(30,34,70,.94),rgba(4,5,12,.97) 70%);perspective:1100px;overflow:hidden}.msrv .mrw{position:relative;width:min(76vw,calc(56vh*63/88));aspect-ratio:63/88;transform-style:preserve-3d}.msrv .mrf,.msrv .mrb,.msrv .mrq{position:absolute;inset:0;border-radius:5%;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}.msrv .mrf img,.msrv .mrf .ph{width:100%;height:100%;object-fit:fill;display:block}.msrv .mrb{transform:rotateY(180deg);background-size:100% 100%;box-shadow:0 0 40px rgba(255,214,10,.35)}.msrv .mrq{background:#101015;box-shadow:0 0 50px rgba(255,214,10,.4);container-type:inline-size}.msrv .mrq .mys{opacity:1;background:#17171b}.msrv .mrq .mys::after{display:none}.msrv .mry{position:absolute;left:50%;top:50%;width:min(150vw,720px);aspect-ratio:1;margin:calc(min(150vw,720px)/-2) 0 0 calc(min(150vw,720px)/-2);pointer-events:none}.msrv .mrl{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}";document.head.appendChild(st)}
+    const o=document.createElement("div");o.className="msrv";const w=document.createElement("div");w.className="mrw";
+    const bu=(cc&&cc.back)||URLS.BACK||DEFBACK,BL=Array.isArray(bu)?bu:[bu];
+    w.innerHTML='<div class="mrf">'+face(cc,1)+'</div>'+(sec?'<div class="mrq">'+MYS+'</div>':'<div class="mrb" style="background-image:'+BL.map(x=>'url(&quot;'+x+'&quot;)').join(",")+'"></div>');
+    const ry=document.createElement("div");ry.className="mry";const im=document.createElement("img");im.src=pkRayImg("255,214,10");im.style.cssText="width:100%;height:100%";ry.appendChild(im);ry.style.opacity="0";
+    const fl=document.createElement("div");fl.className="mrl";o.appendChild(ry);o.appendChild(w);o.appendChild(fl);document.body.appendChild(o);
+    const A=(e,k,t)=>{try{return e.animate(k,t)}catch(x){return{onfinish:null,cancel(){}}}};
+    const hol=!!cc.h,burst=()=>{try{const c=document.createElement("div");c.style.cssText="position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none";o.appendChild(c);if(hol)pkHoloWow(c,w);else pkRareFx(c,w);setTimeout(()=>c.remove(),2200)}catch(e){}};
+    const out=()=>{if(fin)return;A(o,[{opacity:1},{opacity:0}],{duration:240,easing:"ease-in",fill:"forwards"}).onfinish=()=>o.remove();setTimeout(()=>o.remove(),600);end()};
+    let sk=0;o.onclick=()=>{if(sk)return;sk=1;try{o.getAnimations({subtree:true}).forEach(a=>a.finish())}catch(e){}out()};
+    A(o,[{opacity:0},{opacity:1}],{duration:260,fill:"backwards"});
+    A(ry,[{opacity:0,transform:"rotate(0deg) scale(.6)"},{opacity:.85,offset:.35,transform:"rotate(30deg) scale(1)"},{opacity:.7,transform:"rotate(120deg) scale(1.1)"}],{duration:3400,easing:"linear",fill:"forwards"});
+    if(!sec){
+      w.style.transform="rotateY(180deg)";
+      const up=A(w,[{transform:"translateY(70vh) rotateY(180deg) scale(.55)"},{transform:"translateY(-3vh) rotateY(172deg) scale(1.04)",offset:.7},{transform:"translateY(0) rotateY(180deg) scale(1)"}],{duration:1000,easing:"cubic-bezier(.2,.8,.25,1)",fill:"forwards"});
+      try{sfx("swipe")}catch(e){}
+      up.onfinish=()=>{if(sk)return;setTimeout(()=>{if(sk)return;try{sfx("land")}catch(e){}
+        const fp=A(w,[{transform:"rotateY(180deg) scale(1)"},{transform:"rotateY(90deg) scale(1.1)",offset:.5},{transform:"rotateY(0deg) scale(1)"}],{duration:700,easing:"cubic-bezier(.4,0,.2,1)",fill:"forwards"});
+        fp.onfinish=()=>{if(sk)return;A(fl,[{opacity:.9},{opacity:0}],{duration:500,easing:"ease-out"});try{sfx("gain")}catch(e){}burst();setTimeout(out,900)}},320)};
+    }else{
+      const q=w.querySelector(".mrq"),f=w.querySelector(".mrf");f.style.opacity="0";
+      A(w,[{transform:"scale(.4)",opacity:0},{transform:"scale(1)",opacity:1}],{duration:700,easing:"cubic-bezier(.2,.9,.3,1.1)",fill:"forwards"}).onfinish=()=>{if(sk)return;
+        try{sfx("rare")}catch(e){}
+        const sh=A(w,[{transform:"translate(0,0) rotate(0)"},{transform:"translate(-3px,1px) rotate(-.8deg)",offset:.1},{transform:"translate(3px,-2px) rotate(.8deg)",offset:.2},{transform:"translate(-5px,2px) rotate(-1.4deg)",offset:.4},{transform:"translate(6px,-3px) rotate(1.6deg)",offset:.6},{transform:"translate(-9px,3px) rotate(-2.4deg)",offset:.8},{transform:"translate(10px,-4px) rotate(2.8deg) scale(1.04)"}],{duration:1400,easing:"ease-in",fill:"forwards"});
+        A(w,[{filter:"brightness(1)"},{filter:"brightness(1.4)"}],{duration:1400,easing:"ease-in",fill:"forwards"});
+        sh.onfinish=()=>{if(sk)return;q.style.display="none";f.style.opacity="1";w.getAnimations().forEach(a=>a.cancel());w.style.filter="";
+          A(fl,[{opacity:1},{opacity:0}],{duration:650,easing:"ease-out"});A(w,[{transform:"scale(1.12)"},{transform:"scale(1)"}],{duration:450,easing:"cubic-bezier(.2,.8,.3,1)"});try{sfx("gain")}catch(e){}burst();setTimeout(out,900)}}}
+  }catch(e){end()}}
 function msBuild(){const sy0=(()=>{const w=document.querySelector("#msp .msw2");return w?w.scrollTop:0})();msBuild0();const w=document.querySelector("#msp .msw2");if(w)w.scrollTop=sy0}
 function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createElement("div");m.id="msp";m.hidden=true;e.appendChild(m);m.addEventListener("click",ev=>{if(ev.target.closest("#msx")||ev.target===m){m.hidden=true;return}
-    const b=ev.target.closest(".msc");if(b){const mm=msAll().find(x=>x.id===b.dataset.m);if(msClaim(b.dataset.m)){msBuild();const cc=CARDS[mm.r],n0=cryN;try{acUnlock();const u=cryUrls(cc);if(u)cryLoad(u)}catch(x){}try{pkView(cc)}catch(x){}setTimeout(()=>{try{if(cryN===n0&&!$("#vw").hidden)cry(cc)}catch(x){}},1100);setTimeout(()=>toast(mm.ok),500)}return}
+    const b=ev.target.closest(".msc");if(b){const mm=msAll().find(x=>x.id===b.dataset.m);if(msClaim(b.dataset.m)){msBuild();const cc=CARDS[mm.r],n0=cryN;try{acUnlock();const u=cryUrls(cc);if(u)cryLoad(u)}catch(x){}msReveal(cc,!!mm.sec,()=>{try{pkView(cc)}catch(x){}setTimeout(()=>{try{if(cryN===n0&&!$("#vw").hidden)cry(cc)}catch(x){}},1100);setTimeout(()=>toast(mm.ok),500)})}return}
     const d=ev.target.closest(".msi.dv");if(d&&PKDEV){const M=msSt();if(msDone(MSD)){M.tr=(M.tr||0)+1;msSv(M);if(M.tr>=3){msRegen();toast("Missione di prova rigenerata")}msBuild()}else if((M.tp||0)<3){M.tp=(M.tp||0)+1;msSv(M);msBuild()}}})}
   const L=msAll(),act=L.filter(x=>!msDone(x)),dn=L.filter(msDone).sort((a,b)=>(msSt()["t_"+a.id]||0)-(msSt()["t_"+b.id]||0));
   const card=x=>{const n=Math.min(x.n(),x.N()),N=x.N(),done=msDone(x),ok=n>=N,c=CARDS[x.r],dv=x.dev?" dv":"",
