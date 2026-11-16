@@ -547,3 +547,8 @@ Ripiego: v351
 ## v353
 - Bacheche: le carte holo mantengono l'effetto holo (come nella carta aperta), che reagisce a rotazione col dito e movimento del telefono.
 Ripiego: v352
+
+## v354
+- Bacheche: si cambia bacheca scorrendo orizzontalmente sulla zona in basso (scritte e pallini); il trascinamento sulla bacheca la ruota soltanto.
+- Rotazione più corretta: la bacheca ruota come un blocco unico (niente profondità interna che faceva muovere le carte l'una rispetto alle altre), prospettiva più morbida, angoli limitati.
+Ripiego: v353
