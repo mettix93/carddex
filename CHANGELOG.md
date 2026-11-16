@@ -513,3 +513,7 @@ Ripiego: v344
 ## v346
 - Effetto rarità/holo ancora più anticipato (primo pacchetto 500 ms, carte successive 130 ms).
 Ripiego: v345
+
+## v346
+- Effetto rarità/holo ancora più anticipato (primo pacchetto 500 ms, carte successive 130 ms).
+Ripiego: v345
