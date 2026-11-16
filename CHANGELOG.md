@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v359 — Volumi: versi -30% (.8→.55); nuova, rara, holo, guadagno alzati (circa +80%) per avvicinarli ai versi; effetti secondari invariati. Ripiego: v358
+
 ## v358 — Aptici: swipe carte aperte, sbusto, preferiti, conferma bacheca, carta in tasca (album/Pokédex), raggruppo carte dopo riepilogo + ingresso icona Album; interruttore Vibrazione in Impostazioni; Android vibrate, iPhone tick switch (da verificare). Ripiego: v357
 
 ## v357 — Carta holo aperta (album/Pokédex/bacheca): animazione identica allo sbusto (aggiunti alone e riflesso). Ripiego: v356

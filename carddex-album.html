@@ -1280,7 +1280,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v358";
+const APPV="v359";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2035,16 +2035,16 @@ function sxN(t,d,f0,f1,v,ty,q){const b=SFXN();if(!b)return;const s=AC.createBuff
 const SFX={
  rip:t=>{sxN(t,.42,2200,600,.22,"bandpass",.8);for(let i=0;i<7;i++)sxN(t+i*.05+Math.random()*.02,.03,3500+Math.random()*2500,0,.12,"highpass",.5)},
  swipe:t=>{sxN(t,.16,900,3200,.1,"bandpass",.7)},
- nuova:t=>{sxT(t,880,0,.22,"sine",.16);sxT(t+.09,1320,0,.3,"sine",.14)},
- rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.13,.01))},
- holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.12,.01);sxT(t+i*.075,f*2,0,.5,"sine",.04,.01)});sxN(t+.2,.9,6000,9000,.05,"highpass",.4)},
+ nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
+ rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
+ holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
  land:t=>{sxT(t,200,90,.16,"sine",.2);sxT(t+.02,1500,1100,.1,"sine",.05)},
  page:t=>{sxN(t,.12,2600,1400,.07,"bandpass",.6);sxN(t+.09,.08,3400,2000,.04,"bandpass",.6)},
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
  unfav:t=>{sxT(t,700,430,.12,"sine",.12)},
  coin:t=>{sxT(t,1318,0,.12,"square",.05);sxT(t+.08,1760,0,.45,"square",.05);sxT(t+.08,3520,0,.3,"sine",.04)},
- gain:t=>{[523,659,784,1047].forEach((f,i)=>sxT(t+i*.09,f,0,.4,"triangle",.12,.01))}};
+ gain:t=>{[523,659,784,1047].forEach((f,i)=>sxT(t+i*.09,f,0,.4,"triangle",.17,.01))}};
 function sfx(n,dl){if(!CRYON)return;try{acUnlock();if(!AC)return;audAmb();const t=AC.currentTime+.02+(dl||0);if(SFX[n])SFX[n](t)}catch(e){}}
 const CBP={};
 function cryLoad(urls){const k=urls[0];if(CB[k])return Promise.resolve(CB[k]);if(CBP[k])return CBP[k];if(!AC)acUnlock();if(!AC)return Promise.resolve(null);
@@ -2061,7 +2061,7 @@ async function playCry(urls,at){const tk=++cryTok;acUnlock();if(!AC)return;try{i
   if(!buf||tk!==cryTok)return;
   if(at){const w=at-performance.now();if(w>0)await new Promise(r=>setTimeout(r,w));if(tk!==cryTok)return}
   if(AC.state!=="running"){try{await Promise.race([AC.resume(),new Promise(r=>setTimeout(r,500))])}catch(e){}}
-  if(tk!==cryTok||!CRYON)return;audAmb();const src=AC.createBufferSource(),g=AC.createGain();g.gain.value=.8;src.buffer=buf;src.connect(g);g.connect(AC.destination);src.start();cryS=src;cryN++;setTimeout(()=>cryPre(curI),600)}
+  if(tk!==cryTok||!CRYON)return;audAmb();const src=AC.createBufferSource(),g=AC.createGain();g.gain.value=.55;src.buffer=buf;src.connect(g);g.connect(AC.destination);src.start();cryS=src;cryN++;setTimeout(()=>cryPre(curI),600)}
 let curI=-1,sw=null,cryN=0;
 let navB=0;function navCard(d){if(navB)return;const L=LIST();for(let j=curI+d;j>=0&&j<L.length;j+=d){if(L[j].id&&L[j].o){navB=1;hap(1);const W=innerWidth*.9;
     try{stg.animate([{transform:"none",opacity:1},{transform:"translateX("+(-d*W)+"px)",opacity:0}],{duration:170,easing:"ease-in"}).onfinish=()=>{openCard(j,1);stg.animate([{transform:"translateX("+(d*W)+"px)",opacity:0},{transform:"none",opacity:1}],{duration:230,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=()=>{navB=0}}}catch(e){openCard(j,1);navB=0}return}}}
