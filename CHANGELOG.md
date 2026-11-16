@@ -543,3 +543,7 @@ Ripiego: v350
 ## v352
 - Bacheche: si passa da una all'altra scorrendo in orizzontale (swipe lungo o veloce); un trascinamento breve ruota la bacheca. Pallini sotto.
 Ripiego: v351
+
+## v353
+- Bacheche: le carte holo mantengono l'effetto holo (come nella carta aperta), che reagisce a rotazione col dito e movimento del telefono.
+Ripiego: v352

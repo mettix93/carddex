@@ -1279,7 +1279,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v352";
+const APPV="v353";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2678,11 +2678,14 @@ function bcOrg(b){return b.o==="g"?"Album bustine":"Collezione · "+(bcAlN(b.al)
 function bcAlN(k){const a=COLS.concat(PCOLS).find(x=>x.k===k);return a?(a.nm?a.t:albName(a.s)):""}
 function bcSrc(b){const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}},g=b.o==="g",S=g?(MODE==="g"?st:rd(GK("carddex2g"))):(MODE==="c"?st:rd(CK("carddex2"))),keys=g?GCOLS.map(c=>c.k):[b.al],out=[],seen=new Set();
   keys.forEach(k=>(S[k]||[]).forEach(s=>{if(!s||!s.id||!s.o)return;let c=CARDS[s.id];if(!c)return;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];if(c&&!seen.has(c.id)){seen.add(c.id);out.push(c)}}));return out}
+function bcFace(c,mini){if(!c.h||mini)return face(c,1);try{pkCloneCss()}catch(e){}
+  const ev=!!(c.kd==="p"&&!c.full&&!c.hz&&EVO.has(c.dex)),neo="GDVT".includes(c.sid);
+  return `<div class="pkc hol${neo?" ntc":""}${c.full?" hfull":""}${ev?" evoc":""}" data-h="1" style="--w:var(--cw);--d:2px"><div class="ft"><div class="fr">${face(c,1)}</div><div class="hl${ev?" evo":""}${neo?" neo":""}${c.full?" full":""}${c.hz?" hzc":""}" style="opacity:.5"></div><div class="gl${c.hz?" hzg":""}"></div></div></div>`}
 function bcCase(b,mini){let h=`<div class="bcase ${BCSC[b.st]||"bsg_"} n${b.sz}${mini?" mini":""}"><div class="bin">`;
-  for(let i=0;i<b.sz;i++){const id=b.cards[i],c=id&&CARDS[id];h+=c?`<div class="bsl f" data-i="${i}">${face(c,1)}${c.h?'<i class="bsh"></i>':""}</div>`:`<div class="bsl e" data-i="${i}">${mini?"":BCPL}</div>`}
+  for(let i=0;i<b.sz;i++){const id=b.cards[i],c=id&&CARDS[id];h+=c?`<div class="bsl f" data-i="${i}">${bcFace(c,mini)}</div>`:`<div class="bsl e" data-i="${i}">${mini?"":BCPL}</div>`}
   return h+'</div><i class="bgl"></i></div>'}
 let BCI=0,BCT={ax:0,ay:0},BCD=0;
-function bcApply(c){if(!c)return;c.style.transform=`rotateX(${BCT.ax}deg) rotateY(${BCT.ay}deg)`;c.style.setProperty("--gp",(50+BCT.ay*1.7-BCT.ax*.8).toFixed(1)+"%")}
+function bcApply(c){if(!c)return;c.style.transform=`rotateX(${BCT.ax}deg) rotateY(${BCT.ay}deg)`;c.style.setProperty("--gp",(50+BCT.ay*1.7-BCT.ax*.8).toFixed(1)+"%");try{c.querySelectorAll(".pkc").forEach(el=>pkApE(el,BCT.ay*1.6,BCT.ax*1.6))}catch(e){}}
 function bcGy(dx,dy){const c=document.querySelector("#set .bcase");if(!c||BCD)return;c.style.transition="none";BCT.ay=clamp(dx*.8,-24,24);BCT.ax=clamp(-dy*.6,-18,18);bcApply(c)}
 function bcInfo(){const e=$("#set"),inf=e.querySelector(".bcinf");if(!inf)return;const b=BCH[BCI];
   inf.innerHTML=b?`<div class="bcn"><b>${esc(b.nm)}</b><span>${BCSN[b.st]} · ${BCZN[b.sz]} · ${b.cards.filter(Boolean).length}/${b.sz} carte · ${esc(bcOrg(b))}</span></div><button class="bcb bcmore" aria-label="Opzioni">${BCDT}</button>`:`<div class="bcn"><span>${BCH.length?"Crea una nuova bacheca":"Nessuna bacheca"}</span></div>`;
