@@ -1260,10 +1260,19 @@ html.gml .asc{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 </div>
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
+/* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
+const APPV="v340";
+function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
+addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
 const ENV=(()=>{if(!DEVOK)return"app";try{return localStorage.getItem("carddex_env")==="app"?"app":"dev"}catch(e){return"dev"}})();
 const GK=k=>ENV==="dev"?k:k+"_a";
 const CK=k=>ENV==="dev"?k+"_d":k;
+/* avvio protetto: se l'avvio precedente non è arrivato in fondo, questa volta si parte senza le code in sospeso (animazioni carte) */
+let SAFE=0;try{const t=+localStorage.getItem("carddex_boot");if(t&&Date.now()-t<864e5){SAFE=1;localStorage.removeItem(GK("carddex_aq"));localStorage.removeItem(GK("carddex_dxq"));try{localStorage.setItem("carddex_err",JSON.stringify({v:APPV,t:new Date().toISOString(),w:"avvio",m:"l'avvio precedente non si era completato: code in sospeso azzerate",s:""}))}catch(e){}}localStorage.setItem("carddex_boot",String(Date.now()))}catch(e){}
+const bootOk=()=>!!document.querySelector("#tabs .tab");
+const bootDone=()=>{try{if(bootOk())localStorage.removeItem("carddex_boot")}catch(e){}};
+addEventListener("pagehide",bootDone);document.addEventListener("visibilitychange",()=>{if(document.hidden)bootDone()});
 if(ENV==="dev")try{["carddex2","carddex2a","carddex_pgc","carddex_rar","carddex_itt","carddex_itn","carddex_hidx"].forEach(k=>{if(localStorage.getItem(k+"_d")==null&&localStorage.getItem(k)!=null)localStorage.setItem(k+"_d",localStorage.getItem(k))})}catch(e){}
 document.documentElement.dataset.env=ENV;
 /*DATA*/
@@ -2185,7 +2194,8 @@ function aqFirst(pref){const ks=new Set(PKAQ.map(e=>e.k));if(pref&&ks.has(pref))
 function aqEnter(pref){if(MODE!=="g"||!PKAQ.length||aqRun)return;aqClean();const k=aqFirst(pref);if(!k)return;
   cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim(k),560)}
 function aqLater(k,n){if(aqRun&&n>0)setTimeout(()=>aqLater(k,n-1),350);else aqAnim(k)}
-function aqAnim(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();if(!PKAQ.some(e=>e.k===k))return;
+function aqAnim(k){try{aqAnim0(k)}catch(x){aqRun=0;errRep(x,"animazione album")}}
+function aqAnim0(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();if(!PKAQ.some(e=>e.k===k))return;
   if(FLT!=="a"){FLT="a";tabs();render()}
   const L=LIST(),pend=PKAQ.filter(e=>e.k===k).map(e=>({e,i:L.findIndex(x=>x.id===e.id)})).sort((a,b)=>a.i-b.i);
   const bad=pend.filter(o=>o.i<0);if(bad.length){PKAQ=PKAQ.filter(e=>!bad.some(o=>o.e===e));aqSave()}const Q=pend.filter(o=>o.i>=0);if(!Q.length){aqBadge();return}
@@ -2463,7 +2473,7 @@ function pkClose(){const e=$("#pk");if(!e||e.hidden||e.classList.contains("pkfo"
 function pkBadge(){const n=pkAvail(),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
-function pkToAlbum(){const sid=PKCUR,k="g"+sid;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(e){}pkClose();if(MODE!=="g")setMode("g");if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync();aqEnter(k)}
+function pkToAlbum(){const sid=PKCUR,k="g"+sid;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(e){}pkClose();if(MODE!=="g")setMode("g");if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync();try{aqEnter(k)}catch(x){errRep(x,"aqEnter")}}
 function pkScreen(){const e=pkBuild();e.classList.remove("pkfo");pkChoose()}
 function pkChoose(){requestAnimationFrame(pkTtl);setTimeout(pkTtl,120);setTimeout(pkTtl,450);pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
@@ -2670,8 +2680,8 @@ function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}
 let SDV=0,SDT=0;
 function drawSet(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;const sw=(id,on)=>'<button class="sw'+(on?" on":"")+'" data-a="'+id+'" role="switch" aria-checked="'+(!!on)+'"><i></i></button>';
-  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div></div>':'');
-  e.onclick=ev=>{if(ev.target.tagName==="H2"){SDV=(SDV||0)+1;clearTimeout(SDT);SDT=setTimeout(()=>{SDV=0},2500);if(SDV>=7&&!DEVOK){SDV=0;try{localStorage.setItem("carddex_devok","1")}catch(x){}toast("Sviluppo attivato");setTimeout(()=>location.reload(),500)}return}const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="env"){if(b.dataset.v!==ENV){try{localStorage.setItem("carddex_env",b.dataset.v)}catch(x){}try{sessionStorage.setItem("cdx_set","1")}catch(x){}fadeTo(()=>location.reload())}return}if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
+  e.innerHTML='<h2>Impostazioni</h2><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(localStorage.getItem("carddex_err")?'<div class="sgt">Diagnostica</div><div class="sgr"><button class="row act" data-a="erc">Copia ultimo errore</button></div>':"")+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div></div>':'');
+  e.onclick=ev=>{if(ev.target.tagName==="H2"){SDV=(SDV||0)+1;clearTimeout(SDT);SDT=setTimeout(()=>{SDV=0},2500);if(SDV>=7&&!DEVOK){SDV=0;try{localStorage.setItem("carddex_devok","1")}catch(x){}toast("Sviluppo attivato");setTimeout(()=>location.reload(),500)}return}const b=ev.target.closest("button[data-a]");if(!b)return;const a=b.dataset.a;if(a==="env"){if(b.dataset.v!==ENV){try{localStorage.setItem("carddex_env",b.dataset.v)}catch(x){}try{sessionStorage.setItem("cdx_set","1")}catch(x){}fadeTo(()=>location.reload())}return}if(a==="th")setTheme(b.dataset.v);else if(a==="cry")setCry();else if(a==="luce")setLuce();else if(a==="bke")bkExport();else if(a==="bki")bkImport();else if(a==="erc"){const t=localStorage.getItem("carddex_err")||"";try{navigator.clipboard.writeText(t).then(()=>toast("Errore copiato"),()=>toast(t.slice(0,160)))}catch(x){toast(t.slice(0,160))}}setTimeout(()=>{if(!e.hidden)drawSet()},a==="luce"?500:0)}}
 
 /* ===== Pokédex ===== */
 let DXS=(()=>{try{return localStorage.getItem("carddex_dxs2")||"g"}catch(e){return"g"}})(),DXF="a";
@@ -2781,7 +2791,7 @@ function pkHide(){const e=$("#pk");pkClose();if(e){e.hidden=true;e.classList.rem
 function vt(fn){const B=document.body;let o=$("#xo");if(!o){o=document.createElement("div");o.id="xo";B.appendChild(o)}
   if(vt.p){clearTimeout(vt.t1);clearTimeout(vt.t2);const q=vt.p;vt.p=null;q()}
   o.style.background=isL()?"#f2f2f7":"#000";B.classList.add("xf");void o.offsetWidth;o.classList.add("on");
-  vt.p=fn;vt.t1=setTimeout(()=>{const q=vt.p;vt.p=null;if(q)q();requestAnimationFrame(()=>requestAnimationFrame(()=>{o.classList.remove("on");vt.t2=setTimeout(()=>B.classList.remove("xf"),200)}))},135)}
+  vt.p=fn;vt.t1=setTimeout(()=>{const q=vt.p;vt.p=null;try{if(q)q()}catch(x){errRep(x,"transizione")}requestAnimationFrame(()=>requestAnimationFrame(()=>{o.classList.remove("on");vt.t2=setTimeout(()=>B.classList.remove("xf"),200)}))},135);clearTimeout(vt.t3);vt.t3=setTimeout(()=>{o.classList.remove("on");B.classList.remove("xf")},2200)}
 function fastTop(){const e=$("#set");if(!e||e.scrollTop<2)return;const y0=e.scrollTop,t0=performance.now(),D=Math.min(520,220+y0/14);(function f(t){const k=Math.min(1,(t-t0)/D),q=1-Math.pow(1-k,3);e.scrollTop=y0*(1-q);if(k<1)requestAnimationFrame(f)})(t0)}
 function pkReset(){const p=$("#pkp");if(!p||p.classList.contains("go"))return;const T=$("#pkst");try{T&&T.scrollTo({left:0,behavior:"smooth"})}catch(e){}if(PKCUR!=="B"){const b=T&&T.querySelector('.tab[data-s="B"]');if(b)b.click()}else pkCarGo(0)}
 function goTab(t,direct){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B.classList.contains("sett"),dex=B.classList.contains("dex"),asl=B.classList.contains("asl"),stg=sett&&!dex&&!asl;
@@ -2790,17 +2800,19 @@ function goTab(t,direct){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B
   if(t==="d"){if(sett&&dex&&!op){fastTop();return}navSet($("#nvp"),"d",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("asl");B.classList.add("dex");setOpen(1);{const q=$("#set");if(q)q.scrollTop=0}navSync();requestAnimationFrame(()=>{const q=$("#set");if(q&&PKDQ.length)q.scrollTop=0});setTimeout(dxFillAnim,480)});return}
   if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
   if(t==="c"&&!direct){if(asl&&!op)return;if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
-  if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}navSync();if(m==="g")aqEnter()})}}
+  if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b)goTab(b.dataset.t)});
 function pkObs(pk){new MutationObserver(topRefresh).observe(pk,{attributes:true,attributeFilter:["hidden","class","style"]});const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
 {const x=$("#acx");if(x)x.onclick=aslOpen}
 (()=>{const vw=$("#vw");if(vw)new MutationObserver(()=>{if(vw.hidden)DXL=null}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 /* all'apertura: pagina principale Bustine */
-try{if(MODE!=="c")setMode("c");NAVB=0;navSync()}catch(e){}
-try{NAVB=1;document.body.classList.add("pkNv");setMode("g");pkScreen();navSync()}catch(e){}
+try{if(MODE!=="c")setMode("c");NAVB=0;navSync()}catch(e){errRep(e,"avvio 1")}
+try{NAVB=1;document.body.classList.add("pkNv");setMode("g");pkScreen();navSync()}catch(e){errRep(e,"avvio 2")}
 requestAnimationFrame(()=>{pkAlign();setTimeout(pkAlign,400)});
 try{if(sessionStorage.getItem("cdx_set")){sessionStorage.removeItem("cdx_set");goTab("s")}}catch(e){}
+setTimeout(()=>{if(bootOk())bootDone();else errRep("avvio incompleto: nessuna pagina disegnata","boot")},1800);
+if(SAFE)setTimeout(()=>{try{toast("Avvio sicuro: azzerate le animazioni in sospeso")}catch(e){}},900);
 (()=>{const vw=$("#vw"),m=document.querySelector("meta[name=theme-color]");if(!vw||!m)return;new MutationObserver(()=>{if(vw.hidden){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}document.documentElement.classList.toggle("vwo",!vw.hidden);topRefresh()}).observe(vw,{attributes:true,attributeFilter:["hidden"]})})();
 </script><script>
 /* auto-aggiornamento: confronta la versione online con questa e si ricarica da sola */
