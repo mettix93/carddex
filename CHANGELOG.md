@@ -517,3 +517,7 @@ Ripiego: v345
 ## v346
 - Effetto rarità/holo ancora più anticipato (primo pacchetto 500 ms, carte successive 130 ms).
 Ripiego: v345
+
+## v347
+- Rara/holo: effetto e suono partono nello stesso istante in cui partirebbe il verso su una carta normale (800 ms primo pacchetto, 190 ms poi), anche se la carta è nuova; poi il verso, poi "Nuova!".
+Ripiego: v346
