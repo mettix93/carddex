@@ -530,3 +530,8 @@ Ripiego: v347
 ## v349
 - Carta rara/holo aperta da Album o Pokédex: stessa animazione di rarità/holo dello sbusto (senza suono di rarità; c'è il verso del Pokémon). Lo sbusto resta invariato.
 Ripiego: v348
+
+## v350
+- Bacheche: tolti i fermacarte; di nuovo rotazione/tilt col dito (e luce col movimento del telefono, che nella v348 si era interrotta); si passa da una bacheca all'altra scorrendo in verticale.
+- Scelta carta: apre l'album scelto (bustine o la collezione della bacheca), tocchi la carta, conferma "Sì, mettila" e la mette; con bacheca doppia/tripla continua direttamente con gli slot vuoti. Barra "Scegli la carta…" con Annulla.
+Ripiego: v349

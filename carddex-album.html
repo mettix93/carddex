@@ -829,12 +829,11 @@ html.gml .bct{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 .bct.add .bmw .pl{width:56px;height:56px;border-radius:50%;border:2px solid #0a84ff;color:#0a84ff;display:flex;align-items:center;justify-content:center}.bct.add .pl svg{width:28px;height:28px}
 .bchd{position:relative}html body #set .bchd h2{padding-right:56px!important;margin-left:0!important}
 html body #set .bcb.bcx{position:absolute;right:0;top:50%;margin-top:-22px;width:44px;height:44px;z-index:2}
-.bcar{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x;margin:6px 0 0}.bcar::-webkit-scrollbar{display:none}
-.bcs{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 330px);box-sizing:border-box;padding:10px 0 34px;user-select:none;-webkit-user-select:none}
-.bstg2{perspective:900px;display:flex;justify-content:center}
+.bst{perspective:900px;touch-action:none;user-select:none;-webkit-user-select:none;min-height:calc(100vh - 330px);display:flex;justify-content:center;align-items:center;margin-top:6px;padding:10px 0 34px;position:relative}
+.bcs{display:flex;justify-content:center;align-items:center;will-change:transform,opacity}
 .bcaddb{display:flex;flex-direction:column;align-items:center;gap:8px;padding:34px 26px;border-radius:26px;border:2px dashed rgba(255,255,255,.3);background:rgba(255,255,255,.05);color:inherit;font:inherit}.bcaddb .pl{width:64px;height:64px;border-radius:50%;border:2px solid #0a84ff;color:#0a84ff;display:flex;align-items:center;justify-content:center}.bcaddb .pl svg{width:30px;height:30px}.bcaddb b{font:600 19px -apple-system,system-ui,sans-serif}.bcaddb .bs{font:500 14px -apple-system,system-ui,sans-serif;opacity:.6}
 .bcinf{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 16px;min-height:48px}.bcn{text-align:center;min-width:0}.bcn b{display:block;font:700 20px -apple-system,system-ui,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bcn span{display:block;font:500 13px -apple-system,system-ui,sans-serif;opacity:.65;margin-top:2px}
-.bcdt{display:flex;justify-content:center;gap:7px;margin-top:10px}.bcdt i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25;transition:opacity .2s,transform .2s}.bcdt i.on{opacity:.9;transform:scale(1.25)}
+.bcdt{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;justify-content:center;gap:8px;z-index:3}.bcdt i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25;transition:opacity .2s,transform .2s}.bcdt i.on{opacity:.9;transform:scale(1.25)}
 .bcase{--cw:min(56vw,250px);position:relative;transform-style:preserve-3d;will-change:transform;border-radius:14px}
 .bcase.n2{--cw:min(30vw,150px)}.bcase.n3{--cw:min(21.5vw,106px)}
 .bcase.mini{--cw:24px;pointer-events:none}.bcase.mini.n1{--cw:44px}.bcase.mini.n2{--cw:32px}.bcase.mini.n3{--cw:24px}
@@ -842,9 +841,8 @@ html body #set .bcb.bcx{position:absolute;right:0;top:50%;margin-top:-22px;width
 .bcase .bin{position:relative;display:flex;gap:calc(var(--cw)*.1);padding:calc(var(--cw)*.15) calc(var(--cw)*.14) calc(var(--cw)*.2);transform-style:preserve-3d;border-radius:inherit}
 .bsl{position:relative;width:var(--cw);aspect-ratio:63/88;border-radius:4.5%;transform:translateZ(16px)}
 .bsl.f{box-shadow:0 8px 14px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.15)}.bsl>img,.bsl>.ph{width:100%;height:100%;display:block;border-radius:inherit;object-fit:cover}
-.bsl.f::after{content:"";position:absolute;left:-7%;right:-7%;bottom:-6%;height:9%;border-radius:2px 2px 4px 4px;background:var(--lip,linear-gradient(#d9dde6,#7f8696));box-shadow:0 3px 5px rgba(0,0,0,.5);pointer-events:none}
 .bsl.e{border:2px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);background:rgba(255,255,255,.05)}.bsl.e svg{width:34%;height:auto}
-.bcase.mini .bsl.e{border-width:1px}.bcase.mini .bsl.f::after{display:none}
+.bcase.mini .bsl.e{border-width:1px}
 .bsh{position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:color-dodge;opacity:.55;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 25%),rgba(255,120,190,.25) calc(var(--gp,50%) - 8%),rgba(255,240,150,.4) var(--gp,50%),rgba(110,235,255,.25) calc(var(--gp,50%) + 8%),transparent calc(var(--gp,50%) + 25%))}
 .bgl{position:absolute;inset:0;border-radius:inherit;pointer-events:none;transform:translateZ(34px);mix-blend-mode:screen;opacity:.85;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 18%),rgba(255,255,255,.28) var(--gp,50%),transparent calc(var(--gp,50%) + 18%)),linear-gradient(160deg,rgba(255,255,255,.12),transparent 38%)}
 .bcase.mini .bgl{display:none}
@@ -861,6 +859,7 @@ html body #set .bcb.bcx{position:absolute;right:0;top:50%;margin-top:-22px;width
 .bcase.bsm_{padding:calc(var(--cw)*.11);border-radius:3px;background:linear-gradient(145deg,#1a1a20,#07070a);border:calc(var(--cw)*.014) solid #d6b25a;box-shadow:inset 0 0 0 calc(var(--cw)*.02) #000,inset 0 0 0 calc(var(--cw)*.03) rgba(214,178,90,.5),0 30px 46px -14px rgba(0,0,0,.7);--lip:linear-gradient(#e6c777,#8a6a22)}
 .bcase.bsm_ .bin{border-radius:1px;background:linear-gradient(#0c0c10,#16161c);box-shadow:inset 0 0 0 1px rgba(214,178,90,.45),inset 0 0 30px rgba(0,0,0,.8);overflow:hidden}
 .bcase.bsm_ .bin::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,240,200,.38),rgba(255,240,200,0) 78%);clip-path:polygon(32% 0,68% 0,100% 100%,0 100%);pointer-events:none}
+#bcpb{position:fixed;left:16px;right:16px;bottom:calc(var(--fbb,10px) + 64px + 14px);z-index:150;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 10px 16px;border-radius:999px;background:rgba(20,22,30,.92);color:#fff;font:600 14px -apple-system,system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}#bcpb span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#bcpb button{flex:none;border:0;border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.18);color:#fff;font:600 14px -apple-system,system-ui,sans-serif}
 .bcnm{text-align:center;margin-top:6px;font:600 15px -apple-system,system-ui,sans-serif;opacity:.75}
 .bcov{position:fixed;inset:0;z-index:56;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;flex-direction:column;color:#fff;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif}
 .bcov[hidden]{display:none}
@@ -1280,7 +1279,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v349";
+const APPV="v350";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1747,7 +1746,7 @@ $("#sri").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();$("#srok").click(
 let g=null,last={i:-1,t:0},tm;
 book.addEventListener("pointerdown",e=>{if(g||busy)return;const s=e.target.closest(".slot");
   g={i:s?+s.dataset.i:-1,x:e.clientX,y:e.clientY,lx:e.clientX,lt:Date.now(),v:0,lp:0,mv:0,drag:0};
-  if(s)g.t=setTimeout(()=>{if(g&&!g.mv){g.lp=1;if(navigator.vibrate)navigator.vibrate(15);menu(g.i)}},450);
+  if(s&&!BCK)g.t=setTimeout(()=>{if(g&&!g.mv){g.lp=1;if(navigator.vibrate)navigator.vibrate(15);menu(g.i)}},450);
   try{book.setPointerCapture(e.pointerId)}catch(x){}});
 book.addEventListener("pointermove",e=>{if(!g)return;const dx=e.clientX-g.x,dy=e.clientY-g.y;
   if(!g.mv&&(Math.abs(dx)>10||Math.abs(dy)>10)){g.mv=1;clearTimeout(g.t);
@@ -1757,7 +1756,7 @@ book.addEventListener("pointerup",e=>{if(!g)return;clearTimeout(g.t);const x=g;g
   if(x.drag)dragEnd(e.clientX-x.x,x.v);else if(!x.lp&&!x.mv&&x.i>=0)tap(x.i)});
 book.addEventListener("pointercancel",()=>{if(!g)return;clearTimeout(g.t);const d=g.drag;g=null;if(d)dragEnd(0,0)});
 book.addEventListener("contextmenu",e=>e.preventDefault());
-function tap(i){const n=Date.now();clearTimeout(tm);
+function tap(i){if(BCK){bcPkTap(i);return}const n=Date.now();clearTimeout(tm);
   if(last.i===i&&n-last.t<320){last={i:-1,t:0};toggle(i)}
   else{last={i,t:n};tm=setTimeout(()=>{const s=LIST()[i];if(s&&s.id&&s.o)openCard(i)},320)}}
 const twOf=s=>{const A=PCOLS.find(a=>st[a.k]&&st[a.k].includes(s));return !A||!A.full};
@@ -2682,34 +2681,45 @@ function bcSrc(b){const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{
 function bcCase(b,mini){let h=`<div class="bcase ${BCSC[b.st]||"bsg_"} n${b.sz}${mini?" mini":""}"><div class="bin">`;
   for(let i=0;i<b.sz;i++){const id=b.cards[i],c=id&&CARDS[id];h+=c?`<div class="bsl f" data-i="${i}">${face(c,1)}${c.h?'<i class="bsh"></i>':""}</div>`:`<div class="bsl e" data-i="${i}">${mini?"":BCPL}</div>`}
   return h+'</div><i class="bgl"></i></div>'}
-let BCI=0;
-function bcInfo(){const e=$("#set"),car=e.querySelector("#bcar");if(!car)return;const w=car.clientWidth||1,i=Math.max(0,Math.min(car.children.length-1,Math.round(car.scrollLeft/w))),b=BCH[i],inf=e.querySelector(".bcinf");BCI=i;
-  if(inf){inf.innerHTML=b?`<div class="bcn"><b>${esc(b.nm)}</b><span>${BCSN[b.st]} · ${BCZN[b.sz]} · ${b.cards.filter(Boolean).length}/${b.sz} carte · ${esc(bcOrg(b))}</span></div><button class="bcb bcmore" aria-label="Opzioni">${BCDT}</button>`:`<div class="bcn"><span>${BCH.length?"Crea una nuova bacheca":"Nessuna bacheca"}</span></div>`;
-    const m=inf.querySelector(".bcmore");if(m)m.onclick=()=>sheet([["Cambia nome e stile",()=>bcModal(b.id)],["Elimina bacheca",()=>confirmSheet("Eliminare questa bacheca? Le carte restano negli album.",()=>{BCH=BCH.filter(x=>x!==b);bcSave();BCI=Math.max(0,i-1);bcList()}),1]],b.nm)}
-  e.querySelectorAll(".bcdt i").forEach((d,j)=>d.classList.toggle("on",j===i))}
-function bcTilt(){const car=document.querySelector("#set #bcar");if(!car)return;const w=car.clientWidth||1;[...car.children].forEach((sl,j)=>{const c=sl.querySelector(".bcase");if(!c)return;const d=Math.max(-1.2,Math.min(1.2,(sl.offsetLeft-car.scrollLeft)/w));c.style.transform=`rotateY(${(d*-26).toFixed(1)}deg) scale(${(1-Math.abs(d)*.16).toFixed(3)})`;c.style.setProperty("--gp",(50+d*-60).toFixed(1)+"%");sl.style.opacity=(1-Math.min(1,Math.abs(d))*.55).toFixed(2)})}
-function bcList(){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=null;
-  let h='<div class="bchd"><h2>Bacheche</h2><button class="bcb bcx" data-a="back" aria-label="Chiudi">'+XI+'</button></div><div id="bcar" class="bcar">';
-  BCH.forEach(b=>{h+=`<div class="bcs" data-id="${b.id}"><div class="bstg2">${bcCase(b)}</div></div>`});
-  if(BCH.length<BCMAX)h+=`<div class="bcs add"><button class="bcaddb" data-a="new"><span class="pl">${BCPL}</span><b>${BCH.length?"Nuova bacheca":"Crea la tua prima bacheca"}</b><span class="bs">${BCH.length?"Puoi averne fino a "+BCMAX:"Metti in mostra le carte che ami"}</span></button></div>`;
-  h+='</div><div class="bcinf"></div><div class="bcdt">'+Array.from({length:BCH.length+(BCH.length<BCMAX?1:0)},()=>"<i></i>").join("")+"</div>";
-  e.innerHTML=h;
-  e.querySelector('[data-a=back]').onclick=drawAsl;
-  const car=e.querySelector("#bcar");BCI=Math.max(0,Math.min(BCI,car.children.length-1));car.scrollLeft=BCI*car.clientWidth;
-  let raf=0,sct=0;car.addEventListener("scroll",()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;bcTilt();bcInfo()})},{passive:true});
+let BCI=0,BCT={ax:0,ay:0},BCD=0;
+function bcApply(c){if(!c)return;c.style.transform=`rotateX(${BCT.ax}deg) rotateY(${BCT.ay}deg)`;c.style.setProperty("--gp",(50+BCT.ay*1.7-BCT.ax*.8).toFixed(1)+"%")}
+function bcGy(dx,dy){const c=document.querySelector("#set .bcase");if(!c||BCD)return;c.style.transition="none";BCT.ay=clamp(dx*.8,-24,24);BCT.ax=clamp(-dy*.6,-18,18);bcApply(c)}
+function bcInfo(){const e=$("#set"),inf=e.querySelector(".bcinf");if(!inf)return;const b=BCH[BCI];
+  inf.innerHTML=b?`<div class="bcn"><b>${esc(b.nm)}</b><span>${BCSN[b.st]} · ${BCZN[b.sz]} · ${b.cards.filter(Boolean).length}/${b.sz} carte · ${esc(bcOrg(b))}</span></div><button class="bcb bcmore" aria-label="Opzioni">${BCDT}</button>`:`<div class="bcn"><span>${BCH.length?"Crea una nuova bacheca":"Nessuna bacheca"}</span></div>`;
+  const m=inf.querySelector(".bcmore");if(m)m.onclick=()=>sheet([["Cambia nome e stile",()=>bcModal(b.id)],["Elimina bacheca",()=>confirmSheet("Eliminare questa bacheca? Le carte restano negli album.",()=>{BCH=BCH.filter(x=>x!==b);bcSave();BCI=Math.max(0,BCI-1);bcList()}),1]],b.nm)}
+function bcList(anim){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=null;const N=BCH.length+(BCH.length<BCMAX?1:0);BCI=Math.max(0,Math.min(BCI,N-1));BCT={ax:0,ay:0};
+  const b=BCH[BCI];
+  let h='<div class="bchd"><h2>Bacheche</h2><button class="bcb bcx" data-a="back" aria-label="Chiudi">'+XI+'</button></div><div class="bst"><div class="bcs">';
+  h+=b?bcCase(b):`<button class="bcaddb" data-a="new"><span class="pl">${BCPL}</span><b>${BCH.length?"Nuova bacheca":"Crea la tua prima bacheca"}</b><span class="bs">${BCH.length?"Puoi averne fino a "+BCMAX:"Metti in mostra le carte che ami"}</span></button>`;
+  h+='</div></div><div class="bcinf"></div><div class="bcdt">'+Array.from({length:N},(_,j)=>'<i class="'+(j===BCI?"on":"")+'"></i>').join("")+"</div>";
+  e.innerHTML=h;e.querySelector('[data-a=back]').onclick=()=>{bcPkEnd();drawAsl()};bcInfo();
   const add=e.querySelector("[data-a=new]");if(add)add.onclick=()=>bcModal();
+  const stg=e.querySelector(".bst"),sl=stg.querySelector(".bcs"),cs=stg.querySelector(".bcase");bcApply(cs);
+  if(anim&&sl.animate)sl.animate([{opacity:0,transform:`translateY(${anim*70}px) scale(.94)`},{opacity:1,transform:"none"}],{duration:300,easing:"cubic-bezier(.2,.8,.2,1)"});
   let q=null;
-  car.onpointerdown=ev=>{const sl=ev.target.closest(".bsl"),bs=ev.target.closest(".bcs[data-id]");if(!sl||!bs)return;const b=bcFind(bs.dataset.id),ix=+sl.dataset.i;q={x:ev.clientX,y:ev.clientY,b,ix,mv:0,lp:0,h:0};if(b.cards[ix])q.h=setTimeout(()=>{if(q&&!q.mv){q.lp=1;sheet([["Sostituisci carta",()=>bcPick(b,ix)],["Rimuovi dalla bacheca",()=>{b.cards[ix]=null;bcSave();bcList()},1]],"Carta in bacheca")}},520)};
-  car.onpointermove=ev=>{if(q&&!q.mv&&Math.hypot(ev.clientX-q.x,ev.clientY-q.y)>8){q.mv=1;clearTimeout(q.h)}};
-  car.onpointercancel=()=>{if(q)clearTimeout(q.h);q=null};
-  car.onpointerup=()=>{const t=q;q=null;if(!t)return;clearTimeout(t.h);if(t.mv||t.lp)return;const cid=t.b.cards[t.ix];if(cid&&CARDS[cid]){DXL=[{id:cid,o:1}];openCard(0)}else bcPick(t.b,t.ix)};
-  bcTilt();bcInfo()}
+  stg.onpointerdown=ev=>{BCD=1;const t=ev.target.closest(".bsl");q={x:ev.clientX,y:ev.clientY,a:BCT.ay,b:BCT.ax,mode:0,lp:0,h:0,i:t?+t.dataset.i:null};
+    if(cs&&t&&b&&b.cards[q.i])q.h=setTimeout(()=>{if(q&&!q.mode){q.lp=1;const ix=q.i;sheet([["Sostituisci carta",()=>bcPick(b,ix)],["Rimuovi dalla bacheca",()=>{b.cards[ix]=null;bcSave();bcList()},1]],"Carta in bacheca")}},520);
+    if(cs)cs.style.transition="none";try{stg.setPointerCapture(ev.pointerId)}catch(x){}};
+  stg.onpointermove=ev=>{if(!q)return;const dx=ev.clientX-q.x,dy=ev.clientY-q.y;
+    if(!q.mode&&Math.hypot(dx,dy)>8){clearTimeout(q.h);q.mode=Math.abs(dy)>Math.abs(dx)*1.3?2:1}
+    if(q.mode===1&&cs){BCT.ay=clamp(q.a+dx*.3,-38,38);BCT.ax=clamp(q.b-dy*.2,-26,26);bcApply(cs)}
+    else if(q.mode===2){sl.style.transition="none";sl.style.transform=`translateY(${dy*.55}px)`;sl.style.opacity=(1-Math.min(.5,Math.abs(dy)/300)).toFixed(2)}};
+  const up=ev=>{const t=q;q=null;BCD=0;if(!t)return;clearTimeout(t.h);
+    if(t.mode===2){const dy=ev.clientY-t.y,dir=dy<0?1:-1,nx=BCI+dir;if(Math.abs(dy)>55&&nx>=0&&nx<N){sl.style.transition="transform .18s ease-in,opacity .18s";sl.style.transform=`translateY(${-dir*80}px)`;sl.style.opacity=0;sfx("swipe");setTimeout(()=>{BCI=nx;bcList(dir)},170)}else{sl.style.transition="transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s";sl.style.transform="";sl.style.opacity=1}return}
+    if(cs){cs.style.transition="transform .7s cubic-bezier(.2,.8,.2,1)";BCT.ax=0;BCT.ay=0;bcApply(cs)}
+    if(t.mode||t.lp||t.i==null||!b)return;const cid=b.cards[t.i];if(cid&&CARDS[cid]){DXL=[{id:cid,o:1}];openCard(0)}else bcPick(b,t.i)};
+  stg.onpointerup=up;stg.onpointercancel=()=>{const t=q;q=null;BCD=0;if(t)clearTimeout(t.h);sl.style.transition="transform .3s,opacity .3s";sl.style.transform="";sl.style.opacity=1;if(cs){cs.style.transition="transform .7s";BCT.ax=0;BCT.ay=0;bcApply(cs)}}}
 function bcDetail(id){const i=BCH.findIndex(b=>b.id===id);BCI=i<0?0:i;bcList()}
-function bcPick(b,i){let o=$("#bcp");if(!o){o=document.createElement("div");o.id="bcp";o.className="bcov";document.body.appendChild(o)}
-  const L=bcSrc(b),used=new Set(b.cards.filter(Boolean));
-  o.innerHTML=`<div class="bcph"><b>Scegli una carta</b><button class="bcb" aria-label="Chiudi">${XI}</button></div><div class="bcpg">${L.length?L.map(c=>`<button class="bpc${used.has(c.id)&&b.cards[i]!==c.id?" u":""}" data-id="${c.id}">${face(c)}</button>`).join(""):'<div class="bpe">Nessuna carta ottenuta in '+esc(bcOrg(b))+'. Segna prima qualche carta come ottenuta</div>'}</div>`;
-  o.hidden=false;o.querySelector(".bcb").onclick=()=>{o.hidden=true};
-  o.querySelectorAll(".bpc").forEach(x=>x.onclick=()=>{b.cards[i]=x.dataset.id;bcSave();o.hidden=true;sfx("own");if($("#set .bcase"))bcDetail(b.id)})}
+let BCK=null;
+function bcPkBar(){let o=$("#bcpb");if(!BCK){if(o)o.remove();return}if(!o){o=document.createElement("div");o.id="bcpb";document.body.appendChild(o)}
+  const b=BCK.b,n=b.sz>1?" · slot "+(BCK.i+1)+"/"+b.sz:"";o.innerHTML='<span>Scegli la carta per «'+esc(b.nm)+'»'+n+'</span><button>Annulla</button>';o.querySelector("button").onclick=()=>{bcPkEnd();bcBack()}}
+function bcPkEnd(){BCK=null;bcPkBar()}
+function bcBack(){const go=()=>{bcList()};if(document.body.classList.contains("asl")&&$("#set .aslw")){go();return}aslOpen();let n=0;const w=()=>{if(document.body.classList.contains("asl")&&$("#set .aslw")||++n>30){go();return}setTimeout(w,80)};setTimeout(w,200)}
+function bcPick(b,i){BCK={b,i,chain:!b.cards[i]};const m=b.o==="g"?"g":"c";aslGo(m);
+  let n=0;const w=()=>{if(!BCK)return;if(MODE===m&&!document.body.classList.contains("asl")&&!document.body.classList.contains("sett")||++n>30){if(b.o==="c"&&COLS.some(c=>c.k===b.al)){cur=b.al;FLT="a";SR=[];SQ="";pg=0;sp=0;tabs();render()}bcPkBar();return}setTimeout(w,80)};setTimeout(w,250)}
+function bcPkTap(i){const s=LIST()[i];if(!s||!s.id){return}if(!s.o){toast("Non hai ancora questa carta");return}const g=BCK.b.o==="g";let c=CARDS[s.id];if(!c)return;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];if(!c)return;
+  const b=BCK.b,ix=BCK.i;if(b.cards.some((x,j)=>x===c.id&&j!==ix)){toast("È già in questa bacheca");return}
+  sheet([["Sì, mettila in bacheca",()=>{b.cards[ix]=c.id;bcSave();sfx("own");const nx=BCK.chain?b.cards.findIndex(x=>!x):-1;if(nx>=0){BCK.i=nx;bcPkBar()}else{bcPkEnd();BCI=Math.max(0,BCH.indexOf(b));bcBack()}},1]],"Mettere «"+c.name+"» nella bacheca «"+b.nm+"»?")}
 function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"g",al:null,st:"g",sz:1};
   let o=$("#bcm");if(!o){o=document.createElement("div");o.id="bcm";o.className="bcov";document.body.appendChild(o)}
   const seg=(k,arr)=>'<div class="bsg">'+arr.map(([v,t])=>`<button data-k="${k}" data-v="${v}" class="${String(M[k])===String(v)?"on":""}">${t}</button>`).join("")+"</div>";
@@ -2850,7 +2860,7 @@ function goTab(t,direct){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B
   if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
   if(t==="c"&&!direct){if(asl&&!op)return;if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
   if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
-document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b)goTab(b.dataset.t)});
+document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b){if(BCK)bcPkEnd();goTab(b.dataset.t)}});
 function pkObs(pk){new MutationObserver(topRefresh).observe(pk,{attributes:true,attributeFilter:["hidden","class","style"]});const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
 {const x=$("#acx");if(x)x.onclick=aslOpen}
