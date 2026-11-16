@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v355 — Verso carta aperta (album/Pokédex/bacheca): parte a istante fisso, a carta completamente aperta (330ms apertura, 240ms scorrimento); animazione rarità allineata. Sbustate invariate. Ripiego: v354
+
 ## 29 ottobre
 
 - **v245** · Preparazione (invisibile): album personali e album del gioco hanno definizioni separate; salvataggi invariati. Ripiego: v244.
