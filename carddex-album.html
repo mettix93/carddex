@@ -1623,7 +1623,7 @@ let LPT=0,LPD=0,LPX=0,LPK="";
   T.addEventListener("pointermove",e=>{if(LPT&&Math.abs(e.clientX-LPX)>8){clearTimeout(LPT);LPD=0}});
   T.addEventListener("pointercancel",()=>{clearTimeout(LPT);LPD=0});
   T.addEventListener("pointerup",()=>{clearTimeout(LPT);if(LPD){const k=LPK;setTimeout(()=>{albMenu(k)},60);setTimeout(()=>{LPD=0},400)}})})();
-$("#tabs").onclick=e=>{const b=e.target.closest(".tab"),k=b&&b.dataset.k;if(document.body.classList.contains("dex")){if(k!=null)dxGo(+k);return}if(LPD&&k){return}if(k==="+"){albNew();return}if(k&&k!==cur){cur=k;SR=[];SQ="";pg=0;sp=0;tabs();render();if(MODE==="g"&&!aqRun&&PKAQ.some(x=>x.k===k))setTimeout(()=>aqAnim(k),420)}};
+$("#tabs").onclick=e=>{const b=e.target.closest(".tab"),k=b&&b.dataset.k;if(document.body.classList.contains("dex")){if(k!=null)dxGo(+k);return}if(LPD&&k){return}if(k==="+"){albNew();return}if(k&&k!==cur){cur=k;SR=[];SQ="";pg=0;sp=0;tabs();render();if(MODE==="g"&&PKAQ.some(x=>x.k===k))setTimeout(()=>aqLater(k,8),420)}};
 function confirmSheet(t,f){sheet([["Sì, conferma",f,1]],t)}
 function doRestore(){if(MODE==="c"&&cur!=="?"&&FLT==="a"&&!HID()){const A=PCOLS.find(a=>a.k===cur);if(A){confirmSheet("Rimettere le carte nell’ordine «"+(A.base==="num"?"Numero":"Pokédex")+"»? Stato, note, varianti e foto restano; gli ordini custom salvati restano disponibili.",()=>albSet(A,A.base));return}}
   if(VIEW()){sheet([[cur==="?"?"Esci dalla ricerca":"Mostra l’intera collezione",()=>{if(cur==="?")exitSearch();FLT="a";tabs();render()}]],"Il ripristino vale solo sull’intera collezione");return}
@@ -2110,12 +2110,13 @@ function aqAlive(k){const B=document.body,p=$("#pk"),v=$("#vw");return MODE==="g
 function aqFirst(pref){const ks=new Set(PKAQ.map(e=>e.k));if(pref&&ks.has(pref))return pref;const c=COLS.find(c=>ks.has(c.k));return c?c.k:null}
 function aqEnter(pref){if(MODE!=="g"||!PKAQ.length||aqRun)return;aqClean();const k=aqFirst(pref);if(!k)return;
   cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim(k),560)}
+function aqLater(k,n){if(aqRun&&n>0)setTimeout(()=>aqLater(k,n-1),350);else aqAnim(k)}
 function aqAnim(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();if(!PKAQ.some(e=>e.k===k))return;
   if(FLT!=="a"){FLT="a";tabs();render()}
   const L=LIST(),pend=PKAQ.filter(e=>e.k===k).map(e=>({e,i:L.findIndex(x=>x.id===e.id)})).sort((a,b)=>a.i-b.i);
   const bad=pend.filter(o=>o.i<0);if(bad.length){PKAQ=PKAQ.filter(e=>!bad.some(o=>o.e===e));aqSave()}const Q=pend.filter(o=>o.i>=0);if(!Q.length){aqBadge();return}
   aqRun=1;aqSkip=0;
-  const tap=ev=>{if(ev.target.closest&&ev.target.closest(".nvp,#nvp"))return;aqSkip=1;aqSw=Date.now()+450;if(ev.type==="click"){ev.stopPropagation();ev.preventDefault()}};
+  const tap=ev=>{if(ev.target.closest&&ev.target.closest(".nvp,#nvp,#tabs"))return;aqSkip=1;aqSw=Date.now()+450;if(ev.type==="click"){ev.stopPropagation();ev.preventDefault()}};
   document.addEventListener("pointerdown",tap,true);document.addEventListener("click",tap,true);
   const fin=()=>{aqRun=0;document.removeEventListener("pointerdown",tap,true);setTimeout(()=>document.removeEventListener("click",tap,true),500);aqBadge()};
   const skipAll=()=>{PKAQ=PKAQ.filter(e=>e.k!==k);aqSave();try{render()}catch(x){}fin()};
