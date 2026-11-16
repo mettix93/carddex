@@ -539,3 +539,7 @@ Ripiego: v349
 ## v351
 - Bustine: con 0 bustine, toccare una bustina (sbiadita) apre lo stesso popup dell'icona bustina in alto (disponibili / prossima ricarica).
 Ripiego: v350
+
+## v352
+- Bacheche: si passa da una all'altra scorrendo in orizzontale (swipe lungo o veloce); un trascinamento breve ruota la bacheca. Pallini sotto.
+Ripiego: v351
