@@ -815,6 +815,50 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkcap{transform-origin:100% 10%;transform:rotate(calc(var(--cut,0)*3.5deg));transition:transform .12s linear}
 #pkw.rl .pkcap{transform-origin:0 10%;transform:rotate(calc(var(--cut,0)*-3.5deg))}
 #pkw>.pkct,#pkw>.pkcl{transform:translateZ(calc(var(--pw)*.04))}
+
+/* ===== Bacheche ===== */
+.bchd{display:flex;align-items:center;gap:6px;margin:0 6px 8px}.bchd h2{flex:1;margin:0!important;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bcb{flex:none;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:inherit;display:flex;align-items:center;justify-content:center}.bcb svg{width:20px;height:20px}
+html.gml .bcb{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75)}
+.bcl{display:flex;flex-direction:column;gap:14px;padding:4px 0 20px}
+.bct{display:flex;align-items:center;gap:16px;text-align:left;width:100%;padding:16px 18px;border-radius:26px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);color:inherit;font:inherit}
+html.gml .bct{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75);box-shadow:inset 0 1px 0 #fff,0 4px 14px rgba(40,70,120,.12)}
+.bct .bmw{flex:none;width:112px;display:flex;justify-content:center;align-items:center}
+.bct b{display:block;font:600 19px -apple-system,system-ui,sans-serif}.bct span.bs{display:block;font:500 14px -apple-system,system-ui,sans-serif;opacity:.6;margin-top:3px}
+.bct.add .bmw .pl{width:56px;height:56px;border-radius:50%;border:2px solid #0a84ff;color:#0a84ff;display:flex;align-items:center;justify-content:center}.bct.add .pl svg{width:28px;height:28px}
+.bstg{display:flex;justify-content:center;align-items:center;perspective:1000px;min-height:calc(100vh - 260px);touch-action:none;user-select:none;-webkit-user-select:none}
+.bcase{--cw:min(54vw,250px);position:relative;transform-style:preserve-3d;border-radius:22px;will-change:transform}
+.bcase.n2{--cw:min(34vw,160px)}.bcase.n3{--cw:min(24vw,112px)}
+.bcase.mini{--cw:24px;pointer-events:none;box-shadow:none}.bcase.mini.n1{--cw:44px}.bcase.mini.n2{--cw:32px}.bcase.mini.n3{--cw:24px}
+.bcase .bin{display:flex;gap:calc(var(--cw)*.09);padding:calc(var(--cw)*.14);transform-style:preserve-3d;border-radius:inherit}
+.bsl{position:relative;width:var(--cw);aspect-ratio:63/88;border-radius:4.5%;transform:translateZ(18px)}
+.bsl.f{box-shadow:0 6px 14px rgba(0,0,0,.45)}.bsl>img,.bsl>.ph{width:100%;height:100%;display:block;border-radius:inherit;object-fit:cover}
+.bsl.e{border:2px dashed rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);box-shadow:none}.bsl.e svg{width:34%;height:auto}
+.bcase.mini .bsl.e{border-width:1px}
+.bsh{position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:color-dodge;opacity:.55;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 25%),rgba(255,120,190,.25) calc(var(--gp,50%) - 8%),rgba(255,240,150,.4) var(--gp,50%),rgba(110,235,255,.25) calc(var(--gp,50%) + 8%),transparent calc(var(--gp,50%) + 25%))}
+.bgl{position:absolute;inset:0;border-radius:inherit;pointer-events:none;transform:translateZ(34px);mix-blend-mode:screen;opacity:.9;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 20%),rgba(255,255,255,.3) var(--gp,50%),transparent calc(var(--gp,50%) + 20%)),linear-gradient(160deg,rgba(255,255,255,.14),transparent 40%)}
+.bcase.mini .bgl{display:none}
+.bcase.bsg_{background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.07));border:1.5px solid rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 24px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.7)}
+.bcase.bsw_{padding:calc(var(--cw)*.1);border-radius:10px;background:repeating-linear-gradient(92deg,rgba(0,0,0,.1) 0 2px,rgba(255,255,255,.04) 2px 6px),linear-gradient(135deg,#8a5a34,#5a381d);box-shadow:0 24px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,220,170,.4)}
+.bcase.bsw_ .bin{border-radius:4px;background:radial-gradient(ellipse at 50% 0,#3b2c20,#1d1510);box-shadow:inset 0 0 20px rgba(0,0,0,.7)}
+.bcase.bsw_ .bgl{inset:calc(var(--cw)*.1);border-radius:4px}
+.bcase.bsm_{border-radius:6px;background:#09090c;border:2px solid #c8a24a;box-shadow:0 0 0 calc(var(--cw)*.05) #16161b,0 0 0 calc(var(--cw)*.05 + 1px) rgba(200,162,74,.55),0 26px 54px rgba(0,0,0,.55)}
+.bcase.bsm_ .bin{background:radial-gradient(ellipse at 50% -8%,rgba(255,235,170,.4),rgba(255,235,170,0) 62%),linear-gradient(#0b0b0f,#14141a)}
+.bcnm{text-align:center;margin-top:6px;font:600 15px -apple-system,system-ui,sans-serif;opacity:.75}
+.bcov{position:fixed;inset:0;z-index:56;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;flex-direction:column;color:#fff;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif}
+.bcov[hidden]{display:none}
+.bcph{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 10px}.bcph b{font:700 22px -apple-system,system-ui,sans-serif}
+.bcpg{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:6px 16px calc(24px + env(safe-area-inset-bottom,0px));align-content:start}
+.bpc{padding:0;border:0;background:none;aspect-ratio:63/88;border-radius:4.5%;overflow:hidden;position:relative;color:inherit}.bpc img,.bpc .ph{width:100%;height:100%;display:block;border-radius:inherit}
+.bpc.u{opacity:.3;pointer-events:none}.bpe{grid-column:1/-1;text-align:center;opacity:.7;padding:40px 10px;font:500 16px -apple-system,system-ui,sans-serif}
+.bcmd{margin:auto 14px;padding:18px;border-radius:26px;background:rgba(30,32,42,.92);border:1px solid rgba(255,255,255,.16);max-width:420px;align-self:center;width:calc(100% - 28px);max-height:88vh;overflow:auto}
+.bcmd h3{margin:0 0 12px;font:700 22px -apple-system,system-ui,sans-serif}
+.bcmd label{display:block;font:600 12px -apple-system,system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;opacity:.6;margin:14px 2px 6px}
+.bcmd input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font:500 17px -apple-system,system-ui,sans-serif}
+.bsg{display:flex;gap:6px}.bsg button{flex:1;padding:11px 6px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font:600 15px -apple-system,system-ui,sans-serif}
+.bsg button.on{background:#0a84ff;border-color:#0a84ff}
+.bcal{width:100%;margin-top:8px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;font:500 16px -apple-system,system-ui,sans-serif;text-align:left}
+.bcact{display:flex;gap:8px;margin-top:20px}.bcact button{flex:1;padding:13px;border-radius:16px;border:0;font:600 17px -apple-system,system-ui,sans-serif;background:rgba(255,255,255,.12);color:#fff}.bcact button.p{background:#0a84ff}.bcact button:disabled{opacity:.4}
 .pkfx{position:absolute;left:50%;top:calc(50% + 17px);pointer-events:none;z-index:0;will-change:transform,opacity;opacity:0}
 .pkfx.rg{width:min(66vw,340px);aspect-ratio:1;border-radius:50%;border:3px solid rgba(255,230,140,.95);box-shadow:0 0 26px rgba(255,214,10,.75),inset 0 0 26px rgba(255,214,10,.45)}
 .pkfx.rr{border-color:rgba(205,225,255,.95);box-shadow:0 0 20px rgba(160,200,255,.7),inset 0 0 20px rgba(160,200,255,.4)}
@@ -1910,7 +1954,7 @@ $("#fim").onchange=async()=>{const f=$("#fim").files[0];if(!f)return;try{const j
     if(C){W(CK("carddex2"),C);if(MODE!=="g")st=C}if(G){W(GK("carddex2g"),G);if(MODE==="g")st=G}
     if(j.pk&&typeof j.pk==="object")W(GK("carddex_pk"),j.pk);
     if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W(CK("carddex_pgc"),PGS);try{applyPgc()}catch(e){}}
-    if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
+    if(Array.isArray(j.bch)){BCH=j.bch.filter(b=>b&&b.id&&b.sz>=1&&b.sz<=3&&Array.isArray(b.cards)).slice(0,3);bcSave()}if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
     try{pkBadge()}catch(e){}}
   else{const s=cln(j.st);if(!s)throw 0;Object.assign(st,s)}
   fillSt();if(MODE==="c")albInit();save();FLT="a";cur=COLS[0].k;SR=[];pg=0;sp=0;tabs();render();sheet([],"Backup importato")}catch(e){sheet([],"File di backup non valido")}};
@@ -1934,7 +1978,7 @@ function mHandler(e){if(e.beta==null)return;mGot=1;if(!LUCE)return;
   if(a===90){tx=e.beta;ty=-e.gamma}else if(a===270||a===-90){tx=-e.beta;ty=e.gamma}else if(a===180){tx=-e.gamma;ty=-e.beta}else{const D=Math.PI/180,bt=e.beta*D,gm=e.gamma*D,ux=-Math.cos(bt)*Math.sin(gm),uz=Math.cos(bt)*Math.cos(gm);tx=-Math.asin(Math.max(-1,Math.min(1,ux)))/D;ty=-Math.asin(Math.max(-1,Math.min(1,uz)))/D}
   if(!mBase)mBase={x:tx,y:ty};if(!mSm)mSm={x:tx,y:ty};mSm.x+=(tx-mSm.x)*.22;mSm.y+=(ty-mSm.y)*.22;tx=mSm.x;ty=mSm.y;mBase.x+=(tx-mBase.x)*.004;mBase.y+=(ty-mBase.y)*.004;
   document.documentElement.classList.add("mv");const dx=Math.max(-35,Math.min(35,tx-mBase.x)),dy=Math.max(-35,Math.min(35,ty-mBase.y));
-  if(mRaf)return;mRaf=requestAnimationFrame(()=>{mRaf=0;const r=document.documentElement.style;r.setProperty("--mx",(50+dx*1.3).toFixed(1)+"%");r.setProperty("--my",(40+dy*1.3).toFixed(1)+"%");if(!$("#vw").hidden){TX=Math.max(-14,Math.min(14,dx*.55));TY=Math.max(-12,Math.min(12,dy*.45));ap()}})}
+  if(mRaf)return;mRaf=requestAnimationFrame(()=>{mRaf=0;const r=document.documentElement.style;r.setProperty("--mx",(50+dx*1.3).toFixed(1)+"%");r.setProperty("--my",(40+dy*1.3).toFixed(1)+"%");try{bcGy(dx,dy)}catch(x){}if(!$("#vw").hidden){TX=Math.max(-14,Math.min(14,dx*.55));TY=Math.max(-12,Math.min(12,dy*.45));ap()}})}
 function toast(t,w){let e=$("#tst");if(!e){e=document.createElement("div");e.id="tst";document.body.appendChild(e)}e.textContent=t;e.classList.toggle("warn",!!w);e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),3200)}
 function motionFail(t){LUCE=false;mAsked=0;document.documentElement.classList.remove("mv");toast(t)}
 function motionAttach(ann){if(!mOn){mOn=1;addEventListener("deviceorientation",mHandler)}if(ann){mGot=0;setTimeout(()=>{if(LUCE&&!mGot)toast("Nessun movimento rilevato: controlla Impostazioni › Safari › Movimento e orientamento")},1800)}}
@@ -2061,7 +2105,8 @@ $("#vfs").onclick=()=>setFs(!$("#vw").classList.contains("fs"));
 $("#vx").onclick=()=>{$("#vw").hidden=true;setFs(false);pinchReset();if(FAVH.size){FAVH=new Set();if(FLT==="p")try{render()}catch(e){}}};
 $("#hud").onclick=()=>document.body.classList.toggle("ui");
 document.addEventListener("pointerdown",e=>{if(document.body.classList.contains("ui")&&!e.target.closest("header,footer,#nv,#hud,#sh,#ne,#sr"))document.body.classList.remove("ui")},true);
-let aqRun=0,aqSkip=0,aqSw=0;let PKAQ=(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_aq")));return Array.isArray(a)?a.filter(e=>e&&e.k&&e.id):[]}catch(e){return[]}})();
+let aqRun=0,aqSkip=0,aqSw=0;
+let BCH=(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_bch")));return Array.isArray(a)?a.filter(b=>b&&b.id&&b.sz>=1&&b.sz<=3&&Array.isArray(b.cards)).slice(0,3):[]}catch(e){return[]}})();let PKAQ=(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_aq")));return Array.isArray(a)?a.filter(e=>e&&e.k&&e.id):[]}catch(e){return[]}})();
 const aqSave=()=>{try{localStorage.setItem(GK("carddex_aq"),JSON.stringify(PKAQ))}catch(e){}};
 const aqHas=(k,id)=>PKAQ.length>0&&PKAQ.some(e=>e.k===k&&e.id===id);
 tabs();render();requestAnimationFrame(render);loadImgs().then(()=>{render();applyBack()});
@@ -2561,14 +2606,65 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
-function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
+function bkExport(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry")},b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale di entrambi gli album (Collezione e Gioco) e delle bustine. I backup vecchi sostituiscono solo questo album.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
 function setLuce(){LUCE=!LUCE;if(LUCE){mAsked=0;motionOn(1)}else document.documentElement.classList.remove("mv")}
 function setTheme(v){THM=v;try{localStorage.setItem("carddex_theme",v)}catch(e){}const nl=v==="c"||(v!=="n"&&!matchMedia("(prefers-color-scheme: dark)").matches);applyMode()}
 function setOpen(o){const b=document.body;b.classList.toggle("sett",!!o);if(!o){b.classList.remove("dex");b.classList.remove("asl")}let e=$("#set");if(!e){e=document.createElement("div");e.id="set";e.hidden=true;document.body.appendChild(e)}
   if(o){b.classList.contains("dex")?drawDex():b.classList.contains("asl")?drawAsl():drawSet();e.hidden=false;if(b.classList.contains("dex"))dxSpy()}else e.hidden=true;if(!b.classList.contains("dex")){DXQ="";try{tabs();stat()}catch(x){}}navSync()}
-function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+PKI+'</span><div><b>Album bustine</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Collezione personale</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button></div>';e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>aslGo(b.dataset.m));aqBadge()}
+
+/* ===== Bacheche: teche con 1-3 carte (fino a 3 bacheche) ===== */
+const BCPL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V19M5 12H19"/></svg>',BCBK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12L15 6"/></svg>',BCDT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>',BCIC='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 17L4 22M15 17L20 22M12 2V4M12 22V17M5.2 17H18.8C19.9201 17 20.4802 17 20.908 16.782C21.2843 16.5903 21.5903 16.2843 21.782 15.908C22 15.4802 22 14.9201 22 13.8V7.2C22 6.07989 22 5.51984 21.782 5.09202C21.5903 4.71569 21.2843 4.40973 20.908 4.21799C20.4802 4 19.9201 4 18.8 4H5.2C4.07989 4 3.51984 4 3.09202 4.21799C2.71569 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.07989 2 7.2V13.8C2 14.9201 2 15.4802 2.21799 15.908C2.40973 16.2843 2.71569 16.5903 3.09202 16.782C3.51984 17 4.0799 17 5.2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const BCSN={g:"Vetro",w:"Legno",m:"Museo"},BCSC={g:"bsg_",w:"bsw_",m:"bsm_"},BCZN=["","Singola","Doppia","Tripla"];
+const bcSave=()=>{try{localStorage.setItem(GK("carddex_bch"),JSON.stringify(BCH))}catch(e){}};
+const bcFind=id=>BCH.find(b=>b.id===id);
+function bcOrg(b){return b.o==="g"?"Album bustine":"Collezione · "+(bcAlN(b.al)||"album")}
+function bcAlN(k){const a=COLS.concat(PCOLS).find(x=>x.k===k);return a?(a.nm?a.t:albName(a.s)):""}
+function bcSrc(b){const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}},g=b.o==="g",S=g?(MODE==="g"?st:rd(GK("carddex2g"))):(MODE==="c"?st:rd(CK("carddex2"))),keys=g?GCOLS.map(c=>c.k):[b.al],out=[],seen=new Set();
+  keys.forEach(k=>(S[k]||[]).forEach(s=>{if(!s||!s.id||!s.o)return;let c=CARDS[s.id];if(!c)return;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];if(c&&!seen.has(c.id)){seen.add(c.id);out.push(c)}}));return out}
+function bcCase(b,mini){let h=`<div class="bcase ${BCSC[b.st]||"bsg_"} n${b.sz}${mini?" mini":""}"><div class="bin">`;
+  for(let i=0;i<b.sz;i++){const id=b.cards[i],c=id&&CARDS[id];h+=c?`<div class="bsl f" data-i="${i}">${face(c,1)}${c.h?'<i class="bsh"></i>':""}</div>`:`<div class="bsl e" data-i="${i}">${mini?"":BCPL}</div>`}
+  return h+'</div><i class="bgl"></i></div>'}
+function bcList(){const e=$("#set");e.onclick=null;e.scrollTop=0;
+  let h='<div class="bchd"><button class="bcb" data-a="back" aria-label="Indietro">'+BCBK+'</button><h2>Bacheche</h2></div><div class="bcl">';
+  BCH.forEach(b=>{const n=b.cards.filter(Boolean).length;h+=`<button class="bct" data-id="${b.id}"><div class="bmw">${bcCase(b,1)}</div><div><b>${esc(b.nm)}</b><span class="bs">${BCSN[b.st]} · ${BCZN[b.sz]} · ${n}/${b.sz} carte</span></div></button>`});
+  if(BCH.length<3)h+=`<button class="bct add" data-a="new"><div class="bmw"><span class="pl">${BCPL}</span></div><div><b>${BCH.length?"Nuova bacheca":"Crea la tua prima bacheca"}</b><span class="bs">${BCH.length?"Puoi averne fino a 3":"Metti in mostra le tue carte preferite"}</span></div></button>`;
+  e.innerHTML=h+"</div>";
+  e.querySelectorAll(".bct,.bcb").forEach(b=>b.onclick=()=>{const a=b.dataset.a;if(a==="back")drawAsl();else if(a==="new")bcModal();else bcDetail(b.dataset.id)})}
+let BCT={ax:0,ay:0},BCP=null;
+function bcApply(c){if(!c)return;c.style.transform=`rotateX(${BCT.ax}deg) rotateY(${BCT.ay}deg)`;c.style.setProperty("--gp",(50+BCT.ay*1.7-BCT.ax*.8).toFixed(1)+"%")}
+function bcGy(dx,dy){const c=document.querySelector("#set .bcase:not(.mini)");if(!c||BCP)return;c.style.transition="none";BCT.ay=clamp(dx*.8,-24,24);BCT.ax=clamp(-dy*.6,-18,18);bcApply(c)}
+function bcDetail(id){const b=bcFind(id);if(!b){bcList();return}const e=$("#set");e.onclick=null;e.scrollTop=0;BCT={ax:0,ay:0};
+  e.innerHTML=`<div class="bchd"><button class="bcb" data-a="back" aria-label="Indietro">${BCBK}</button><h2>${esc(b.nm)}</h2><button class="bcb" data-a="more" aria-label="Opzioni">${BCDT}</button></div><div class="bstg">${bcCase(b)}</div><div class="bcnm">${BCSN[b.st]} · ${bcOrg(b)}</div>`;
+  e.querySelector('[data-a=back]').onclick=bcList;
+  e.querySelector('[data-a=more]').onclick=()=>sheet([["Cambia nome e stile",()=>bcModal(b.id)],["Elimina bacheca",()=>confirmSheet("Eliminare questa bacheca? Le carte restano negli album.",()=>{BCH=BCH.filter(x=>x!==b);bcSave();bcList()}),1]],b.nm);
+  const stg=e.querySelector(".bstg"),cs=stg.querySelector(".bcase");bcApply(cs);
+  stg.onpointerdown=ev=>{const q=BCP={x:ev.clientX,y:ev.clientY,a:BCT.ay,b:BCT.ax,mv:0,lp:0,i:null,h:0};const sl=ev.target.closest(".bsl");if(sl){const ix=+sl.dataset.i;q.i=ix;if(b.cards[ix])q.h=setTimeout(()=>{if(BCP===q&&!q.mv){q.lp=1;sheet([["Sostituisci carta",()=>bcPick(b,ix)],["Rimuovi dalla bacheca",()=>{b.cards[ix]=null;bcSave();bcDetail(b.id)},1]],"Carta in bacheca")}},520)}
+    cs.style.transition="none";try{stg.setPointerCapture(ev.pointerId)}catch(x){}};
+  stg.onpointermove=ev=>{if(!BCP)return;const dx=ev.clientX-BCP.x,dy=ev.clientY-BCP.y;if(!BCP.mv&&Math.hypot(dx,dy)>7){BCP.mv=1;clearTimeout(BCP.h)}if(BCP.mv){BCT.ay=clamp(BCP.a+dx*.3,-38,38);BCT.ax=clamp(BCP.b-dy*.2,-26,26);bcApply(cs)}};
+  const up=()=>{const q=BCP;BCP=null;if(!q)return;clearTimeout(q.h);cs.style.transition="transform .7s cubic-bezier(.2,.8,.2,1)";BCT.ax=0;BCT.ay=0;bcApply(cs);if(q.mv||q.lp||q.i==null)return;
+    const cid=b.cards[q.i];if(cid&&CARDS[cid]){DXL=[{id:cid,o:1}];openCard(0)}else bcPick(b,q.i)};
+  stg.onpointerup=up;stg.onpointercancel=()=>{const q=BCP;BCP=null;if(q)clearTimeout(q.h);cs.style.transition="transform .7s";BCT.ax=0;BCT.ay=0;bcApply(cs)}}
+function bcPick(b,i){let o=$("#bcp");if(!o){o=document.createElement("div");o.id="bcp";o.className="bcov";document.body.appendChild(o)}
+  const L=bcSrc(b),used=new Set(b.cards.filter(Boolean));
+  o.innerHTML=`<div class="bcph"><b>Scegli una carta</b><button class="bcb" aria-label="Chiudi">${XI}</button></div><div class="bcpg">${L.length?L.map(c=>`<button class="bpc${used.has(c.id)&&b.cards[i]!==c.id?" u":""}" data-id="${c.id}">${face(c)}</button>`).join(""):'<div class="bpe">Nessuna carta ottenuta in '+esc(bcOrg(b))+'. Segna prima qualche carta come ottenuta</div>'}</div>`;
+  o.hidden=false;o.querySelector(".bcb").onclick=()=>{o.hidden=true};
+  o.querySelectorAll(".bpc").forEach(x=>x.onclick=()=>{b.cards[i]=x.dataset.id;bcSave();o.hidden=true;sfx("own");if($("#set .bcase"))bcDetail(b.id)})}
+function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"g",al:null,st:"g",sz:1};
+  let o=$("#bcm");if(!o){o=document.createElement("div");o.id="bcm";o.className="bcov";document.body.appendChild(o)}
+  const seg=(k,arr)=>'<div class="bsg">'+arr.map(([v,t])=>`<button data-k="${k}" data-v="${v}" class="${String(M[k])===String(v)?"on":""}">${t}</button>`).join("")+"</div>";
+  const draw=()=>{const ok=ed||M.o==="g"||!!M.al;o.innerHTML=`<div class="bcmd"><h3>${ed?"Modifica bacheca":"Nuova bacheca"}</h3><label>Nome</label><input maxlength="22" value="${esc(M.nm)}">`+
+    (ed?"":`<label>Carte da</label>${seg("o",[["g","Album bustine"],["c","Collezione"]])}${M.o==="c"?`<button class="bcal">${M.al?"Album: "+esc(bcAlN(M.al)):"Scegli l’album…"} ›</button>`:""}<label>Dimensione</label>${seg("sz",[[1,"Singola"],[2,"Doppia"],[3,"Tripla"]])}`)+
+    `<label>Stile</label>${seg("st",[["g","Vetro"],["w","Legno"],["m","Museo"]])}<div class="bcact"><button class="c">Annulla</button><button class="p"${ok?"":" disabled"}>${ed?"Salva":"Crea"}</button></div></div>`;
+    const inp=o.querySelector("input");inp.oninput=()=>{M.nm=inp.value};
+    o.querySelectorAll(".bsg button").forEach(b=>b.onclick=()=>{M[b.dataset.k]=b.dataset.k==="sz"?+b.dataset.v:b.dataset.v;if(b.dataset.k==="o"&&M.o==="g")M.al=null;draw()});
+    const al=o.querySelector(".bcal");if(al)al.onclick=()=>{const A=PCOLS.filter(a=>a.s&&a.s.length);sheet(A.map(a=>[(a.nm?a.t:albName(a.s)),()=>{M.al=a.k;draw()}]),"Album della Collezione")};
+    o.querySelector(".c").onclick=()=>{o.hidden=true};
+    o.querySelector(".p").onclick=()=>{const nm=(M.nm||"").trim()||"Bacheca";if(ed){ed.nm=nm;ed.st=M.st;bcSave();o.hidden=true;bcDetail(ed.id);return}
+      if(BCH.length>=3)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
+  draw();o.hidden=false}
+function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+PKI+'</span><div><b>Album bustine</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Collezione personale</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche di vetro.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
 let ALAST=null;
 function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}
