@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v358 — Aptici: swipe carte aperte, sbusto, preferiti, conferma bacheca, carta in tasca (album/Pokédex), raggruppo carte dopo riepilogo + ingresso icona Album; interruttore Vibrazione in Impostazioni; Android vibrate, iPhone tick switch (da verificare). Ripiego: v357
+
 ## v357 — Carta holo aperta (album/Pokédex/bacheca): animazione identica allo sbusto (aggiunti alone e riflesso). Ripiego: v356
 
 ## v356 — Pokédex: in carta aperta si scorre al Pokémon successivo (una carta per Pokémon, non le altre dello stesso); all uscita il Pokédex si centra in verticale sull ultimo Pokémon visto. Ripiego: v355
