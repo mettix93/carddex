@@ -526,3 +526,7 @@ Ripiego: v346
 - Bacheche: titolo come le altre pagine con (x) a destra; bacheche a scorrimento orizzontale (come le bustine) con effetto rotazione, nome e opzioni sotto, pallini; massimo 10 (con slide "+" per crearne una nuova).
 - Stili ridisegnati: Vetro (acrilico spesso con fondo scuro e basamento), Legno (cornice in noce, feltro verde, targhetta in ottone), Museo (cornice nera con filetto oro e faro dall'alto); fermacarte sotto ogni carta e ombra a terra.
 Ripiego: v347
+
+## v349
+- Carta rara/holo aperta da Album o Pokédex: stessa animazione di rarità/holo dello sbusto (senza suono di rarità; c'è il verso del Pokémon). Lo sbusto resta invariato.
+Ripiego: v348
