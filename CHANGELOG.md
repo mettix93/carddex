@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v361 — Tolti aptici iOS (interruttore, prova, trucco switch): bloccato da iOS 26.5, non fattibile da web. Resta solo vibrate Android invisibile. Ripiego: v360
+
 ## v360 — Impostazioni: tasto "Prova vibrazione" con diagnostica (API vibrate / switch). Ripiego: v359
 
 ## v359 — Volumi: versi -30% (.8→.55); nuova, rara, holo, guadagno alzati (circa +80%) per avvicinarli ai versi; effetti secondari invariati. Ripiego: v358
