@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v362 — Missioni: cerchio blu con ! (stesso stile della V) per le missioni completate da riscattare. Ripiego: v361
+
 ## v361 — Tolti aptici iOS (interruttore, prova, trucco switch): bloccato da iOS 26.5, non fattibile da web. Resta solo vibrate Android invisibile. Ripiego: v360
 
 ## v360 — Impostazioni: tasto "Prova vibrazione" con diagnostica (API vibrate / switch). Ripiego: v359
