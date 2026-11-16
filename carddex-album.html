@@ -790,8 +790,8 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkgd img{width:100%;height:100%;object-fit:fill;display:block}
 #pkbdg{position:absolute;left:50%;transform:translateX(-50%);z-index:3;pointer-events:none;opacity:0}
 #pkbdg .pkbw{position:static!important;display:flex;justify-content:center;align-items:center;gap:6px;width:100%}
-#pkbdg .pkn{position:static;font-size:var(--bf,13px);padding:.4em .78em;border-radius:1.1em;white-space:nowrap;gap:.45em}
-#pkbdg .pkn svg{width:1.08em;height:1.08em}
+#pkbdg .pkn{position:static;font-size:var(--bf,14px);padding:.357em 1em;border-radius:1em;white-space:nowrap;gap:.43em}
+#pkbdg .pkn svg{width:1em;height:1em}
 #pkpl{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
 .pkhs{position:absolute;z-index:2;pointer-events:none;overflow:hidden;border-radius:4.5%}
 .pkhs i{will-change:transform;position:absolute;top:-10%;bottom:-10%;width:80%;left:-10%;background:linear-gradient(90deg,rgba(255,255,255,0) 0,rgba(255,120,190,.22) 22%,rgba(255,240,150,.42) 50%,rgba(110,235,255,.22) 78%,rgba(255,255,255,0) 100%)}
@@ -1264,7 +1264,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v344";
+const APPV="v345";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2199,10 +2199,16 @@ function aqEnter(pref){if(MODE!=="g"||!PKAQ.length||aqRun)return;aqClean();const
 function aqLater(k,n){if(aqRun&&n>0)setTimeout(()=>aqLater(k,n-1),350);else aqAnim(k)}
 function aqAnim(k){try{aqAnim0(k)}catch(x){aqRun=0;errRep(x,"animazione album")}}
 const aqEase=(()=>{const x1=.25,y1=.7,x2=.3,y2=1,f=(u,a,b)=>3*(1-u)*(1-u)*u*a+3*(1-u)*u*u*b+u*u*u;return t=>{let lo=0,hi=1,u=.5;for(let i=0;i<18;i++){u=(lo+hi)/2;if(f(u,x1,x2)<t)lo=u;else hi=u}return f(u,y1,y2)}})();
+function aqSwap(k,src){const sh=PG[k].sh,keep=document.createDocumentFragment();while(sh.firstChild)keep.appendChild(sh.firstChild);[...PG[src].sh.childNodes].forEach(n=>sh.appendChild(n.cloneNode(true)));
+  return()=>{while(sh.firstChild)sh.removeChild(sh.firstChild);sh.appendChild(keep)}}
 function aqTurn(want,cb){const c0=LS?sp:pg,jump=()=>{if(LS)sp=want;else pg=want;try{applyState()}catch(x){}cb()};if(c0===want||busy){jump();return}
   const fwd=want>c0;if(fwd?!canFwd():!canBack()){jump();return}
-  try{dragBegin(fwd);const k=D.k,dir=D.dir,tg=D.mode==="pb"?0:1;
-    animT(k,tOf(0),tg,dir,520,()=>{busy=0;jump()})}catch(x){busy=0;jump()}}
+  let rs=null;
+  try{
+    if(!LS){if(fwd){if(want!==c0+1&&PG[c0+1])rs=aqSwap(c0+1,want)}
+      else{if(want+1!==c0&&PG[want+1]){rs=aqSwap(want+1,c0);pg=want+1;applyState()}}}
+    dragBegin(fwd);const k=D.k,dir=D.dir,tg=D.mode==="pb"?0:1;
+    animT(k,tOf(0),tg,dir,520,()=>{busy=0;try{rs&&rs()}catch(x){}jump()})}catch(x){busy=0;try{rs&&rs()}catch(y){}jump()}}
 function aqAnim0(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();if(!PKAQ.some(e=>e.k===k))return;
   if(FLT!=="a"){FLT="a";tabs();render()}
   const L=LIST(),pend=PKAQ.filter(e=>e.k===k).map(e=>({e,i:L.findIndex(x=>x.id===e.id)})).sort((a,b)=>a.i-b.i);
@@ -2569,7 +2575,7 @@ function pkNewFx(){const d=$("#pkd"),b=$("#pkbdg");if(!d||d.hidden||!b)return;tr
     [0,140].forEach(dl=>{const g=pkFx("lb","left:"+cx+"px;top:"+cy+"px;width:"+r.width+"px;height:"+r.height+"px;margin:0",d);g.animate([{opacity:.95,transform:"translate(-50%,-50%) scale(.9)"},{opacity:0,transform:"translate(-50%,-50%) scale("+(dxp?1.9:1.7)+","+(dxp?2.8:2.6)+")"}],{duration:760,delay:dl,easing:"cubic-bezier(.15,.7,.3,1)",fill:"backwards"}).onfinish=()=>g.remove()});
     const n=dxp?14:10;for(let i=0;i<n;i++){const a=-Math.PI/2+(Math.random()-.5)*5.2,r0=r.height*.5,r1=r0+28+Math.random()*(dxp?70:48),x=pkFx("st","left:"+cx+"px;top:"+cy+"px",d);
       x.animate([{opacity:0,transform:`translate(${Math.cos(a)*r0}px,${Math.sin(a)*r0}px) scale(.3)`},{opacity:1,offset:.3,transform:`translate(${Math.cos(a)*(r0+r1)/2}px,${Math.sin(a)*(r0+r1)/2}px) scale(1)`},{opacity:0,transform:`translate(${Math.cos(a)*r1}px,${Math.sin(a)*r1}px) scale(.2)`}],{duration:650+Math.random()*400,delay:Math.random()*160,easing:"ease-out",fill:"backwards"}).onfinish=()=>x.remove()}})}catch(e){}}
-function pkBdgIn(x,dl){const b=$("#pkbdg");if(!b)return;const w=Math.min(innerWidth*.74,innerHeight*.6*63/88),h=w*88/63;b.innerHTML=pkBadgeH(x,1);b.style.width=w+"px";b.style.setProperty("--bf","13px");{const bw=b.querySelector(".pkbw");if(bw){b.style.opacity=0;let tot=0;bw.querySelectorAll(".pkn").forEach(n=>tot+=n.getBoundingClientRect().width);tot+=6*(bw.children.length-1);if(tot>w)b.style.setProperty("--bf",Math.max(8,13*(w-6)/tot).toFixed(2)+"px")}}pkLay();b.style.transition="none";b.style.opacity=0;const id=++pkBT;setTimeout(()=>{if(id!==pkBT)return;b.style.transition="opacity .3s";b.style.opacity=1},dl)}
+function pkBdgIn(x,dl){const b=$("#pkbdg");if(!b)return;const w=Math.min(innerWidth*.74,innerHeight*.6*63/88),h=w*88/63;b.innerHTML=pkBadgeH(x,1);b.style.width="";b.style.setProperty("--bf","14px");{const bw=b.querySelector(".pkbw");if(bw){b.style.width=w+"px";b.style.opacity=0;let tot=0;bw.querySelectorAll(".pkn").forEach(n=>tot+=n.getBoundingClientRect().width);tot+=6*(bw.children.length-1);if(tot>w)b.style.setProperty("--bf",Math.max(8,14*(w-6)/tot).toFixed(2)+"px")}}pkLay();b.style.transition="none";b.style.opacity=0;const id=++pkBT;setTimeout(()=>{if(id!==pkBT)return;b.style.transition="opacity .3s";b.style.opacity=1},dl)}
 
 function pkFx(cls,css,d){const x=document.createElement("div");x.className="pkfx "+cls;if(css)x.style.cssText=css;d.appendChild(x);return x}
 function pkRareFx(){const q=pkCur,d=$("#pkd");if(!q||!d)return;sfx("rare");try{navigator.vibrate&&navigator.vibrate(14)}catch(e){}
@@ -2594,7 +2600,7 @@ function pkHoloFx(){const q=pkCur,d=$("#pkd");if(!q||!d)return;sfx("holo");pkHol
   try{hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1000,easing:"ease-in-out",fill:"forwards"})}catch(e){}setTimeout(()=>hs.remove(),1000)}
 function pkShow(){const x=pkCards[pkIdx],p=$("#pk");if(!x)return;if(pkIdx===0&&CRYON){acUnlock();pkCards.forEach(y=>{const u=cryUrls(y.c);if(u&&!CB[u[0]])cryLoad(u)})}pkBdgIn(x,pkIdx===0?720:130);const ht=++pkHT,F0=pkIdx===0,ok=()=>ht===pkHT&&pkCards[pkIdx]===x&&!$("#pkd").hidden&&$("#pksum").hidden,tB=F0?720:130,hol=!!x.c.h,rr=!hol&&rarKind(((rdOf(x.c)||{}).r?RNAME[rdOf(x.c).r]:RARC[x.c.id]))==="r";
   let tc=F0?800:190;
-  if(hol||rr){const t0=Math.max(F0?1100:380,x.nw?tB+800:0);setTimeout(()=>{if(ok())(hol?pkHoloFx:pkRareFx)()},t0);tc=Math.max(tc,t0+(hol?850:600))}
+  if(hol||rr){const t0=Math.max(F0?800:260,x.nw?tB+800:0);setTimeout(()=>{if(ok())(hol?pkHoloFx:pkRareFx)()},t0);tc=Math.max(tc,t0+(hol?850:600))}
   setTimeout(()=>{if(!ok())return;cry(x.c);if(!x.nw)return;let dur=300;try{const u=CRYON&&cryUrls(x.c),bf=u&&CB[u[0]];if(u)dur=bf?Math.min(2500,bf.duration*1000)+150:1100}catch(e){}
     setTimeout(()=>{if(ok()){sfx("nuova");pkNewFx()}},dur)},tc);p.style.setProperty("--cc",cardCol(x.c));p.classList.toggle("holo",!!x.c.h);
   const last=pkIdx===pkCards.length-1;$("#pkg").classList.toggle("on",last);$("#pkc2").textContent=(pkIdx+1)+" / "+pkCards.length;pkLay();

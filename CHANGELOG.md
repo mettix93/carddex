@@ -504,3 +504,8 @@ Ripiego: v342
 - Alone dorato rettangolare (forma della carta) in Album e Pokédex.
 - Barra che si abbassava dopo la chiusura del riepilogo: riallineamento ripetuto dopo la chiusura (causa non riprodotta qui).
 Ripiego: v343
+
+## v345
+- Sbusto: pillola singola come prima; solo con "Nuova carta" + "Nuovo Pokémon" insieme si riducono per stare nella larghezza della carta. Effetto rarità/holo anticipato (~300 ms).
+- Album (inserimento carte): il giro di pagina ora mostra sotto direttamente la pagina di destinazione (prima si vedeva la pagina successiva e poi si saltava); vale anche all'indietro.
+Ripiego: v344
