@@ -486,3 +486,8 @@ Il più recente in alto. Ogni voce è un caricamento sul sito.
 - Sbustinare: effetto "Nuova!"/"NUOVO POKÉMON!" dalle scritte (pop, anelli, stelle) insieme al suono, poi il verso; per rare/holo prima effetto+suono, poi il verso.
 - Album bustine: set non ancora sbloccati non apribili, stesso messaggio di Bustine.
 Ripiego: v340
+
+## v342
+- Carta aperta: icone set e simbolo rarità (stella) allineati verticalmente al testo (erano ~1 px più in basso) su tutte le carte.
+- EX Deoxys bloccato come gli altri set EX finché non si completa Neo (album e bustine).
+Ripiego: v341

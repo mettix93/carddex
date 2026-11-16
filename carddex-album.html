@@ -1240,6 +1240,7 @@ html.gml .asc{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 .asc .aic{opacity:1!important;width:36px;height:36px;flex:none;border:2px solid #0a84ff;border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;color:#0a84ff}.asc .aic svg{width:24px;height:24px;flex:none}
 .asc b{display:block;font:600 19px -apple-system,system-ui,sans-serif}
 .asc span{display:block;font:500 14px -apple-system,system-ui,sans-serif;opacity:.6;margin-top:3px}
+html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div><div id="sn"></div></header>
@@ -1262,7 +1263,7 @@ html.gml .asc{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v341";
+const APPV="v342";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2278,7 +2279,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
   return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
-const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"],["H","I","K","M"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo"];
+const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"],["H","I","K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo"];
 const PKIDS={};let pkCvC=null;
 function pkCov(b){if(pkCvC&&pkCvC[b]!=null)return pkCvC[b];if(!PKIDS[b])PKIDS[b]=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));const ids=PKIDS[b];let o=0;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});const v=ids.size?o/ids.size:0;if(pkCvC)pkCvC[b]=v;return v}
 function pkLk(sid){if(PKDEV)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
