@@ -491,3 +491,9 @@ Ripiego: v340
 - Carta aperta: icone set e simbolo rarità (stella) allineati verticalmente al testo (erano ~1 px più in basso) su tutte le carte.
 - EX Deoxys bloccato come gli altri set EX finché non si completa Neo (album e bustine).
 Ripiego: v341
+
+## v343
+- Album: la carta in arrivo atterrava ~14 px più in basso della tasca (il livello fisso non coincideva con le coordinate): ora si corregge e la segue in tempo reale, quindi si ferma esattamente in posizione.
+- Album: durante l'inserimento si salta direttamente alla pagina con la carta nuova (un solo giro di pagina, senza passare dalle pagine intermedie).
+- Sbustinare: ordine effetto rara/holo → verso → "Nuova!" (animazione + suono) appena finito il verso.
+Ripiego: v342

@@ -1263,7 +1263,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v342";
+const APPV="v343";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2197,11 +2197,11 @@ function aqEnter(pref){if(MODE!=="g"||!PKAQ.length||aqRun)return;aqClean();const
   cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim(k),560)}
 function aqLater(k,n){if(aqRun&&n>0)setTimeout(()=>aqLater(k,n-1),350);else aqAnim(k)}
 function aqAnim(k){try{aqAnim0(k)}catch(x){aqRun=0;errRep(x,"animazione album")}}
-function aqTurn(want,cb){const c0=LS?sp:pg;if(c0===want||busy){if(c0!==want){if(LS)sp=want;else pg=want;applyState()}cb();return}
-  const fwd=want>c0;if(fwd?!canFwd():!canBack()){if(LS)sp=want;else pg=want;applyState();cb();return}
-  try{dragBegin(fwd);const k=D.k,mode=D.mode,dir=D.dir,tg=mode==="pb"?0:1;
-    animT(k,tOf(0),tg,dir,520,()=>{try{if(mode==="pf")pg++;else if(mode==="pb")pg--;else sp+=mode==="lf"?1:-1;busy=0;applyState()}catch(x){}setTimeout(()=>aqTurn(want,cb),70)})}
-  catch(x){busy=0;if(LS)sp=want;else pg=want;try{applyState()}catch(y){}cb()}}
+const aqEase=(()=>{const x1=.25,y1=.7,x2=.3,y2=1,f=(u,a,b)=>3*(1-u)*(1-u)*u*a+3*(1-u)*u*u*b+u*u*u;return t=>{let lo=0,hi=1,u=.5;for(let i=0;i<18;i++){u=(lo+hi)/2;if(f(u,x1,x2)<t)lo=u;else hi=u}return f(u,y1,y2)}})();
+function aqTurn(want,cb){const c0=LS?sp:pg,jump=()=>{if(LS)sp=want;else pg=want;try{applyState()}catch(x){}cb()};if(c0===want||busy){jump();return}
+  const fwd=want>c0;if(fwd?!canFwd():!canBack()){jump();return}
+  try{dragBegin(fwd);const k=D.k,dir=D.dir,tg=D.mode==="pb"?0:1;
+    animT(k,tOf(0),tg,dir,520,()=>{busy=0;jump()})}catch(x){busy=0;jump()}}
 function aqAnim0(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();if(!PKAQ.some(e=>e.k===k))return;
   if(FLT!=="a"){FLT="a";tabs();render()}
   const L=LIST(),pend=PKAQ.filter(e=>e.k===k).map(e=>({e,i:L.findIndex(x=>x.id===e.id)})).sort((a,b)=>a.i-b.i);
@@ -2217,7 +2217,9 @@ function aqAnim0(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();
       const el=PG[pgi]&&PG[pgi].sh.querySelector('.slot[data-i="'+i+'"]');if(!el){PKAQ=PKAQ.filter(x=>x!==e);aqSave();aqBadge();run(j+1);return}
       const r=el.getBoundingClientRect(),h=r.height,g=document.createElement("div");g.className="aqg";
       g.style.cssText="left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;height:"+h+"px;border-radius:"+getComputedStyle(el).borderRadius+";box-shadow:"+getComputedStyle(el).boxShadow;g.innerHTML=face(c).replace('loading="lazy" ','loading="eager" ')+(c.h?HOLO:"");document.body.appendChild(g);
-      const a=g.animate([{transform:"translateY("+(-h*.95)+"px)",opacity:0},{opacity:1,offset:.3},{transform:"translateY(0)",opacity:1}],{duration:800,easing:"cubic-bezier(.25,.7,.3,1)",fill:"backwards"});
+      const a={onfinish:null},t0=performance.now();g.style.opacity=0;g.style.left="0px";g.style.top="0px";const o0=g.getBoundingClientRect(),ox=o0.left,oy=o0.top;
+      (function fr(n){const u=Math.min(1,(n-t0)/800);if(!el.isConnected){g.remove();run(j+1);return}const q=el.getBoundingClientRect(),e=aqEase(u);g.style.left=(q.left-ox)+"px";g.style.top=(q.top-oy)+"px";g.style.width=q.width+"px";g.style.height=q.height+"px";g.style.transform="translateY("+(-q.height*.95*(1-e))+"px)";g.style.opacity=Math.min(1,u/.3);
+        if(u<1)requestAnimationFrame(fr);else a.onfinish&&a.onfinish()})(t0);
       a.onfinish=()=>{sfx("land");el.classList.add("on");PKAQ=PKAQ.filter(x=>x!==e);aqSave();aqBadge();
         try{const sh0=el.parentNode,gl=document.createElement("i");gl.className="aqgl";const d=el.offsetWidth*1.7;gl.style.cssText="left:"+(el.offsetLeft+el.offsetWidth/2)+"px;top:"+(el.offsetTop+el.offsetHeight/2)+"px;width:"+d+"px;height:"+d+"px";sh0.insertBefore(gl,sh0.firstChild);gl.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.45)"},{opacity:1,transform:"translate(-50%,-50%) scale(.95)",offset:.28},{opacity:0,transform:"translate(-50%,-50%) scale(1.3)"}],{duration:820,easing:"ease-out",delay:30}).onfinish=()=>gl.remove()}catch(x){}
         try{el.animate([{transform:"scale(1.045)"},{transform:"scale(1)"}],{duration:340,easing:"cubic-bezier(.2,.8,.3,1)"});const sh=document.createElement("i");sh.className="aqsh";el.appendChild(sh);sh.animate([{transform:"translateX(-130%) skewX(-18deg)",opacity:.9},{transform:"translateX(230%) skewX(-18deg)",opacity:.9}],{duration:760,easing:"ease-in-out",delay:60}).onfinish=()=>sh.remove()}catch(x){}
@@ -2589,10 +2591,11 @@ function pkHoloFx(){const q=pkCur,d=$("#pkd");if(!q||!d)return;sfx("holo");pkHol
   try{h.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.55)"},{opacity:1,transform:"translate(-50%,-50%) scale(1)",offset:.35},{opacity:0,transform:"translate(-50%,-50%) scale(1.25)"}],{duration:1500,easing:"ease-out"})}catch(e){}setTimeout(()=>h.remove(),1540);
   const ft=q._c.querySelector(".ft"),hs=document.createElement("div");hs.className="pkhs";hs.style.cssText="inset:0;border-radius:inherit";hs.innerHTML="<i></i>";ft.appendChild(hs);
   try{hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1000,easing:"ease-in-out",fill:"forwards"})}catch(e){}setTimeout(()=>hs.remove(),1000)}
-function pkShow(){const x=pkCards[pkIdx],p=$("#pk");if(!x)return;if(pkIdx===0&&CRYON){acUnlock();pkCards.forEach(y=>{const u=cryUrls(y.c);if(u&&!CB[u[0]])cryLoad(u)})}pkBdgIn(x,pkIdx===0?720:130);const ht=++pkHT,F0=pkIdx===0,ok=()=>ht===pkHT&&pkCards[pkIdx]===x&&!$("#pkd").hidden&&$("#pksum").hidden,tB=F0?720:130,hol=!!x.c.h,rr=!hol&&rarKind(((rdOf(x.c)||{}).r?RNAME[rdOf(x.c).r]:RARC[x.c.id]))==="r";
-  let tc=F0?800:190;if(x.nw)tc=tB+800;
+function pkShow(){const x=pkCards[pkIdx],p=$("#pk");if(!x)return;if(pkIdx===0&&CRYON){acUnlock();pkCards.forEach(y=>{const u=cryUrls(y.c);if(u&&!CB[u[0]])cryLoad(u)})}if(x.nw){pkBT++;const bb=$("#pkbdg");if(bb){bb.style.transition="none";bb.style.opacity=0}}else pkBdgIn(x,pkIdx===0?720:130);const ht=++pkHT,F0=pkIdx===0,ok=()=>ht===pkHT&&pkCards[pkIdx]===x&&!$("#pkd").hidden&&$("#pksum").hidden,tB=F0?720:130,hol=!!x.c.h,rr=!hol&&rarKind(((rdOf(x.c)||{}).r?RNAME[rdOf(x.c).r]:RARC[x.c.id]))==="r";
+  let tc=F0?800:190;
   if(hol||rr){const t0=Math.max(F0?1100:380,x.nw?tB+800:0);setTimeout(()=>{if(ok())(hol?pkHoloFx:pkRareFx)()},t0);tc=Math.max(tc,t0+(hol?850:600))}
-  setTimeout(()=>{if(ok())cry(x.c)},tc);p.style.setProperty("--cc",cardCol(x.c));p.classList.toggle("holo",!!x.c.h);
+  setTimeout(()=>{if(!ok())return;cry(x.c);if(!x.nw)return;let dur=300;try{const u=CRYON&&cryUrls(x.c),bf=u&&CB[u[0]];if(u)dur=bf?Math.min(2500,bf.duration*1000)+150:1100}catch(e){}
+    setTimeout(()=>{if(ok())pkBdgIn(x,0)},dur)},tc);p.style.setProperty("--cc",cardCol(x.c));p.classList.toggle("holo",!!x.c.h);
   const last=pkIdx===pkCards.length-1;$("#pkg").classList.toggle("on",last);$("#pkc2").textContent=(pkIdx+1)+" / "+pkCards.length;pkLay();
   $("#pkg").style.background=x.c.h?"radial-gradient(circle,rgba(255,214,10,.5) 0,rgba(255,45,149,.15) 38%,transparent 64%)":"radial-gradient(circle,rgba(190,210,255,.35) 0,rgba(190,210,255,.1) 35%,transparent 62%)"}
 function pkDeck(res){const d=$("#pkd");d.innerHTML='<div id="pkbdg"></div>';d.hidden=false;pkIdx=0;pkLock=0;pkRYc=0;pkRXc=0;
