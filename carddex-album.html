@@ -1194,7 +1194,7 @@ html:not(.gml) .pkci img{filter:brightness(1.4) saturate(1.06) drop-shadow(0 14p
 .pkset{position:absolute;left:0;right:0;top:calc(var(--pky) + var(--ph) + 30px);text-align:center;font:600 17px -apple-system,system-ui,sans-serif;color:#1b2a49;transition:opacity .22s}
 html:not(.gml) #pk.studio .pkset{color:#fff}
 #pkp.go{pointer-events:none}#pkp.go #pkst,#pkp.go #pknv{opacity:0;transition:opacity .25s}
-#pkp.none .pkcar{opacity:.45;pointer-events:none}
+#pkp.none .pkcar{opacity:.45}
 
 /* pillole set: cerchi per i set singoli */
 html body :is(.tabs,#pkst) .tab.tpl,html body :is(.tabs,#pkst) .tab:has(.si):not(:has(.tn)):not(:has(.si:nth-child(2))){flex:0 0 auto!important;width:auto!important;aspect-ratio:1/1;min-width:0!important;padding:0!important;border-radius:50%!important;display:grid!important;place-items:center;place-content:center}
@@ -1279,7 +1279,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v350";
+const APPV="v351";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2362,7 +2362,7 @@ function pkCarBuild(){const c=$("#pkcar");c.innerHTML=pkP().map((x,i)=>`<div cla
     if(x.mv<8){const el=x.el||(document.elementFromPoint(e.clientX,e.clientY)||{}).closest&&document.elementFromPoint(e.clientX,e.clientY).closest(".pkci");if(!el)return;const d=parseFloat(el.dataset.d);if(Math.abs(d)<.5)pkSelect(+el.dataset.i);else pkCarGo(Math.round(pkCPos+d));return}
     if(performance.now()-x.lt>90)x.v=0;if(Math.abs(x.v)>3.2){const vs=-x.v/pkCarStep()*1000,t=Math.round(pkCPos+Math.max(-16,Math.min(16,vs*.45)));pkCarGo(t,0,1);return}const dx=e.clientX-x.x,b0=Math.round(x.p);let t=b0;if(Math.abs(dx)>=22||Math.abs(x.v)>.2&&Math.abs(dx)>=8)t=b0+(dx<0?1:-1);pkCarGo(t)};
   c.addEventListener("pointerup",up);c.addEventListener("pointercancel",up)}
-function pkSelect(i){const p=$("#pkp");if(p.classList.contains("go")||pkAvail()<1&&!PKTEST)return;cancelAnimationFrame(pkCRaf);pkCMov=0;const c=$("#pkcar"),el=c.querySelector('.pkci[data-i="'+i+'"]'),im=el.querySelector("img"),rc=im.getBoundingClientRect(),st=pkCarStep();p.classList.add("go");el.classList.add("sel");im.style.visibility="hidden";
+function pkSelect(i){const p=$("#pkp");if(p.classList.contains("go"))return;if(pkAvail()<1&&!PKTEST){bkOpen();return}cancelAnimationFrame(pkCRaf);pkCMov=0;const c=$("#pkcar"),el=c.querySelector('.pkci[data-i="'+i+'"]'),im=el.querySelector("img"),rc=im.getBoundingClientRect(),st=pkCarStep();p.classList.add("go");el.classList.add("sel");im.style.visibility="hidden";
   c.querySelectorAll(".pkci").forEach(o=>{if(o===el)return;const d=parseFloat(o.dataset.d),sg=d<0?-1:1;o.style.transition="transform 1s cubic-bezier(.3,.6,.3,1),opacity .7s ease";o.style.transform="translateX("+(d*st+sg*innerWidth*.7).toFixed(1)+"px)";o.style.opacity="0"});
   pkStage(i,rc);
   setTimeout(()=>{p.hidden=true;p.classList.remove("go");el.classList.remove("sel");im.style.visibility="";c.querySelectorAll(".pkci").forEach(o=>{o.style.transition="none";o.style.opacity=""});pkCarPos(pkCPos);void c.offsetWidth;c.querySelectorAll(".pkci").forEach(o=>o.style.transition="")},1060)}

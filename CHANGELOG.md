@@ -535,3 +535,7 @@ Ripiego: v348
 - Bacheche: tolti i fermacarte; di nuovo rotazione/tilt col dito (e luce col movimento del telefono, che nella v348 si era interrotta); si passa da una bacheca all'altra scorrendo in verticale.
 - Scelta carta: apre l'album scelto (bustine o la collezione della bacheca), tocchi la carta, conferma "Sì, mettila" e la mette; con bacheca doppia/tripla continua direttamente con gli slot vuoti. Barra "Scegli la carta…" con Annulla.
 Ripiego: v349
+
+## v351
+- Bustine: con 0 bustine, toccare una bustina (sbiadita) apre lo stesso popup dell'icona bustina in alto (disponibili / prossima ricarica).
+Ripiego: v350
