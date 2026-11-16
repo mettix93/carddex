@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v360 — Impostazioni: tasto "Prova vibrazione" con diagnostica (API vibrate / switch). Ripiego: v359
+
 ## v359 — Volumi: versi -30% (.8→.55); nuova, rara, holo, guadagno alzati (circa +80%) per avvicinarli ai versi; effetti secondari invariati. Ripiego: v358
 
 ## v358 — Aptici: swipe carte aperte, sbusto, preferiti, conferma bacheca, carta in tasca (album/Pokédex), raggruppo carte dopo riepilogo + ingresso icona Album; interruttore Vibrazione in Impostazioni; Android vibrate, iPhone tick switch (da verificare). Ripiego: v357
