@@ -509,3 +509,7 @@ Ripiego: v343
 - Sbusto: pillola singola come prima; solo con "Nuova carta" + "Nuovo Pokémon" insieme si riducono per stare nella larghezza della carta. Effetto rarità/holo anticipato (~300 ms).
 - Album (inserimento carte): il giro di pagina ora mostra sotto direttamente la pagina di destinazione (prima si vedeva la pagina successiva e poi si saltava); vale anche all'indietro.
 Ripiego: v344
+
+## v346
+- Effetto rarità/holo ancora più anticipato (primo pacchetto 500 ms, carte successive 130 ms).
+Ripiego: v345
