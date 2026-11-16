@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v356 — Pokédex: in carta aperta si scorre al Pokémon successivo (una carta per Pokémon, non le altre dello stesso); all uscita il Pokédex si centra in verticale sull ultimo Pokémon visto. Ripiego: v355
+
 ## v355 — Verso carta aperta (album/Pokédex/bacheca): parte a istante fisso, a carta completamente aperta (330ms apertura, 240ms scorrimento); animazione rarità allineata. Sbustate invariate. Ripiego: v354
 
 ## 29 ottobre
