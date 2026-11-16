@@ -818,7 +818,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #pkw>.pkct,#pkw>.pkcl{transform:translateZ(calc(var(--pw)*.04))}
 
 /* ===== Bacheche ===== */
-.bchd{display:flex;align-items:center;gap:6px;margin:0 6px 8px}.bchd h2{flex:1;margin:0!important;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bchd{display:block;margin:0}.bchd h2{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bcb{flex:none;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:inherit;display:flex;align-items:center;justify-content:center}.bcb svg{width:20px;height:20px}
 html.gml .bcb{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75)}
 .bcl{display:flex;flex-direction:column;gap:14px;padding:4px 0 20px}
@@ -827,24 +827,40 @@ html.gml .bct{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 .bct .bmw{flex:none;width:112px;display:flex;justify-content:center;align-items:center}
 .bct b{display:block;font:600 19px -apple-system,system-ui,sans-serif}.bct span.bs{display:block;font:500 14px -apple-system,system-ui,sans-serif;opacity:.6;margin-top:3px}
 .bct.add .bmw .pl{width:56px;height:56px;border-radius:50%;border:2px solid #0a84ff;color:#0a84ff;display:flex;align-items:center;justify-content:center}.bct.add .pl svg{width:28px;height:28px}
-.bstg{display:flex;justify-content:center;align-items:center;perspective:1000px;min-height:calc(100vh - 260px);touch-action:none;user-select:none;-webkit-user-select:none}
-.bcase{--cw:min(54vw,250px);position:relative;transform-style:preserve-3d;border-radius:22px;will-change:transform}
-.bcase.n2{--cw:min(34vw,160px)}.bcase.n3{--cw:min(24vw,112px)}
-.bcase.mini{--cw:24px;pointer-events:none;box-shadow:none}.bcase.mini.n1{--cw:44px}.bcase.mini.n2{--cw:32px}.bcase.mini.n3{--cw:24px}
-.bcase .bin{display:flex;gap:calc(var(--cw)*.09);padding:calc(var(--cw)*.14);transform-style:preserve-3d;border-radius:inherit}
-.bsl{position:relative;width:var(--cw);aspect-ratio:63/88;border-radius:4.5%;transform:translateZ(18px)}
-.bsl.f{box-shadow:0 6px 14px rgba(0,0,0,.45)}.bsl>img,.bsl>.ph{width:100%;height:100%;display:block;border-radius:inherit;object-fit:cover}
-.bsl.e{border:2px dashed rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);box-shadow:none}.bsl.e svg{width:34%;height:auto}
-.bcase.mini .bsl.e{border-width:1px}
+.bchd{position:relative}html body #set .bchd h2{padding-right:56px!important;margin-left:0!important}
+html body #set .bcb.bcx{position:absolute;right:0;top:50%;margin-top:-22px;width:44px;height:44px;z-index:2}
+.bcar{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x;margin:6px 0 0}.bcar::-webkit-scrollbar{display:none}
+.bcs{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 330px);box-sizing:border-box;padding:10px 0 34px;user-select:none;-webkit-user-select:none}
+.bstg2{perspective:900px;display:flex;justify-content:center}
+.bcaddb{display:flex;flex-direction:column;align-items:center;gap:8px;padding:34px 26px;border-radius:26px;border:2px dashed rgba(255,255,255,.3);background:rgba(255,255,255,.05);color:inherit;font:inherit}.bcaddb .pl{width:64px;height:64px;border-radius:50%;border:2px solid #0a84ff;color:#0a84ff;display:flex;align-items:center;justify-content:center}.bcaddb .pl svg{width:30px;height:30px}.bcaddb b{font:600 19px -apple-system,system-ui,sans-serif}.bcaddb .bs{font:500 14px -apple-system,system-ui,sans-serif;opacity:.6}
+.bcinf{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 16px;min-height:48px}.bcn{text-align:center;min-width:0}.bcn b{display:block;font:700 20px -apple-system,system-ui,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bcn span{display:block;font:500 13px -apple-system,system-ui,sans-serif;opacity:.65;margin-top:2px}
+.bcdt{display:flex;justify-content:center;gap:7px;margin-top:10px}.bcdt i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25;transition:opacity .2s,transform .2s}.bcdt i.on{opacity:.9;transform:scale(1.25)}
+.bcase{--cw:min(56vw,250px);position:relative;transform-style:preserve-3d;will-change:transform;border-radius:14px}
+.bcase.n2{--cw:min(30vw,150px)}.bcase.n3{--cw:min(21.5vw,106px)}
+.bcase.mini{--cw:24px;pointer-events:none}.bcase.mini.n1{--cw:44px}.bcase.mini.n2{--cw:32px}.bcase.mini.n3{--cw:24px}
+.bcase::after{content:"";position:absolute;left:6%;right:6%;bottom:calc(var(--cw)*-.2);height:calc(var(--cw)*.16);background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.55),rgba(0,0,0,0) 70%);filter:blur(4px);transform:translateZ(-30px);pointer-events:none}
+.bcase .bin{position:relative;display:flex;gap:calc(var(--cw)*.1);padding:calc(var(--cw)*.15) calc(var(--cw)*.14) calc(var(--cw)*.2);transform-style:preserve-3d;border-radius:inherit}
+.bsl{position:relative;width:var(--cw);aspect-ratio:63/88;border-radius:4.5%;transform:translateZ(16px)}
+.bsl.f{box-shadow:0 8px 14px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.15)}.bsl>img,.bsl>.ph{width:100%;height:100%;display:block;border-radius:inherit;object-fit:cover}
+.bsl.f::after{content:"";position:absolute;left:-7%;right:-7%;bottom:-6%;height:9%;border-radius:2px 2px 4px 4px;background:var(--lip,linear-gradient(#d9dde6,#7f8696));box-shadow:0 3px 5px rgba(0,0,0,.5);pointer-events:none}
+.bsl.e{border:2px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);background:rgba(255,255,255,.05)}.bsl.e svg{width:34%;height:auto}
+.bcase.mini .bsl.e{border-width:1px}.bcase.mini .bsl.f::after{display:none}
 .bsh{position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:color-dodge;opacity:.55;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 25%),rgba(255,120,190,.25) calc(var(--gp,50%) - 8%),rgba(255,240,150,.4) var(--gp,50%),rgba(110,235,255,.25) calc(var(--gp,50%) + 8%),transparent calc(var(--gp,50%) + 25%))}
-.bgl{position:absolute;inset:0;border-radius:inherit;pointer-events:none;transform:translateZ(34px);mix-blend-mode:screen;opacity:.9;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 20%),rgba(255,255,255,.3) var(--gp,50%),transparent calc(var(--gp,50%) + 20%)),linear-gradient(160deg,rgba(255,255,255,.14),transparent 40%)}
+.bgl{position:absolute;inset:0;border-radius:inherit;pointer-events:none;transform:translateZ(34px);mix-blend-mode:screen;opacity:.85;background:linear-gradient(115deg,transparent calc(var(--gp,50%) - 18%),rgba(255,255,255,.28) var(--gp,50%),transparent calc(var(--gp,50%) + 18%)),linear-gradient(160deg,rgba(255,255,255,.12),transparent 38%)}
 .bcase.mini .bgl{display:none}
-.bcase.bsg_{background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.07));border:1.5px solid rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 24px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.7)}
-.bcase.bsw_{padding:calc(var(--cw)*.1);border-radius:10px;background:repeating-linear-gradient(92deg,rgba(0,0,0,.1) 0 2px,rgba(255,255,255,.04) 2px 6px),linear-gradient(135deg,#8a5a34,#5a381d);box-shadow:0 24px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,220,170,.4)}
-.bcase.bsw_ .bin{border-radius:4px;background:radial-gradient(ellipse at 50% 0,#3b2c20,#1d1510);box-shadow:inset 0 0 20px rgba(0,0,0,.7)}
-.bcase.bsw_ .bgl{inset:calc(var(--cw)*.1);border-radius:4px}
-.bcase.bsm_{border-radius:6px;background:#09090c;border:2px solid #c8a24a;box-shadow:0 0 0 calc(var(--cw)*.05) #16161b,0 0 0 calc(var(--cw)*.05 + 1px) rgba(200,162,74,.55),0 26px 54px rgba(0,0,0,.55)}
-.bcase.bsm_ .bin{background:radial-gradient(ellipse at 50% -8%,rgba(255,235,170,.4),rgba(255,235,170,0) 62%),linear-gradient(#0b0b0f,#14141a)}
+/* Vetro: teca in acrilico spesso con fondo scuro */
+.bcase.bsg_{padding:calc(var(--cw)*.07);border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(170,200,235,.35) 28%,rgba(255,255,255,.18) 55%,rgba(255,255,255,.6));border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),inset 0 3px 8px rgba(255,255,255,.8),inset 0 -12px 22px rgba(110,150,210,.35),0 30px 46px -14px rgba(0,0,0,.55);--lip:linear-gradient(#f4f7fb,#9aa6bd)}
+.bcase.bsg_ .bin{border-radius:9px;background:radial-gradient(ellipse at 50% 0,#2c3550,#0d1119 75%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 10px 26px rgba(0,0,0,.65)}
+.bcase.bsg_::before{content:"";position:absolute;left:8%;right:8%;bottom:calc(var(--cw)*-.06);height:calc(var(--cw)*.07);border-radius:0 0 10px 10px;background:linear-gradient(rgba(255,255,255,.65),rgba(150,175,215,.3));box-shadow:0 6px 10px rgba(0,0,0,.35)}
+/* Legno: cornice in noce con feltro verde e targhetta in ottone */
+.bcase.bsw_{padding:calc(var(--cw)*.12);border-radius:5px;background:repeating-linear-gradient(90deg,rgba(50,22,6,.22) 0 1px,transparent 1px 6px),repeating-linear-gradient(90deg,rgba(255,215,160,.07) 0 4px,transparent 4px 13px),linear-gradient(135deg,#b07440,#6e4121 55%,#94602f);box-shadow:inset 2px 2px 0 rgba(255,225,180,.4),inset -2px -2px 0 rgba(0,0,0,.45),inset 0 0 0 calc(var(--cw)*.045) rgba(0,0,0,.12),0 30px 46px -14px rgba(0,0,0,.65);--lip:linear-gradient(#e8c66c,#8d6a1d)}
+.bcase.bsw_ .bin{border-radius:2px;background:radial-gradient(ellipse at 50% 0,#35574a,#142219);box-shadow:inset 0 0 0 2px rgba(0,0,0,.55),inset 0 12px 24px rgba(0,0,0,.7),0 0 0 1px rgba(255,225,180,.3)}
+.bcase.bsw_ .bgl{inset:calc(var(--cw)*.12);border-radius:2px}
+.bcase.bsw_::before{content:"";position:absolute;left:50%;bottom:calc(var(--cw)*.028);width:24%;height:calc(var(--cw)*.06);transform:translateX(-50%) translateZ(2px);border-radius:2px;background:linear-gradient(#f6dd92,#b0842a);box-shadow:0 1px 2px rgba(0,0,0,.5)}
+/* Museo: cornice nera opaca con filetto oro e faro dall'alto */
+.bcase.bsm_{padding:calc(var(--cw)*.11);border-radius:3px;background:linear-gradient(145deg,#1a1a20,#07070a);border:calc(var(--cw)*.014) solid #d6b25a;box-shadow:inset 0 0 0 calc(var(--cw)*.02) #000,inset 0 0 0 calc(var(--cw)*.03) rgba(214,178,90,.5),0 30px 46px -14px rgba(0,0,0,.7);--lip:linear-gradient(#e6c777,#8a6a22)}
+.bcase.bsm_ .bin{border-radius:1px;background:linear-gradient(#0c0c10,#16161c);box-shadow:inset 0 0 0 1px rgba(214,178,90,.45),inset 0 0 30px rgba(0,0,0,.8);overflow:hidden}
+.bcase.bsm_ .bin::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,240,200,.38),rgba(255,240,200,0) 78%);clip-path:polygon(32% 0,68% 0,100% 100%,0 100%);pointer-events:none}
 .bcnm{text-align:center;margin-top:6px;font:600 15px -apple-system,system-ui,sans-serif;opacity:.75}
 .bcov{position:fixed;inset:0;z-index:56;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);display:flex;flex-direction:column;color:#fff;font-family:-apple-system,"SF Pro Text",system-ui,sans-serif}
 .bcov[hidden]{display:none}
@@ -1264,7 +1280,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v347";
+const APPV="v348";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2652,7 +2668,7 @@ function setOpen(o){const b=document.body;b.classList.toggle("sett",!!o);if(!o){
 
 /* ===== Bacheche: teche con 1-3 carte (fino a 3 bacheche) ===== */
 const BCPL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V19M5 12H19"/></svg>',BCBK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12L15 6"/></svg>',BCDT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>',BCIC='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 17L4 22M15 17L20 22M12 2V4M12 22V17M5.2 17H18.8C19.9201 17 20.4802 17 20.908 16.782C21.2843 16.5903 21.5903 16.2843 21.782 15.908C22 15.4802 22 14.9201 22 13.8V7.2C22 6.07989 22 5.51984 21.782 5.09202C21.5903 4.71569 21.2843 4.40973 20.908 4.21799C20.4802 4 19.9201 4 18.8 4H5.2C4.07989 4 3.51984 4 3.09202 4.21799C2.71569 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.07989 2 7.2V13.8C2 14.9201 2 15.4802 2.21799 15.908C2.40973 16.2843 2.71569 16.5903 3.09202 16.782C3.51984 17 4.0799 17 5.2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const BCSN={g:"Vetro",w:"Legno",m:"Museo"},BCSC={g:"bsg_",w:"bsw_",m:"bsm_"},BCZN=["","Singola","Doppia","Tripla"];
+const BCMAX=10,BCSN={g:"Vetro",w:"Legno",m:"Museo"},BCSC={g:"bsg_",w:"bsw_",m:"bsm_"},BCZN=["","Singola","Doppia","Tripla"];
 const bcSave=()=>{try{localStorage.setItem(GK("carddex_bch"),JSON.stringify(BCH))}catch(e){}};
 const bcFind=id=>BCH.find(b=>b.id===id);
 function bcOrg(b){return b.o==="g"?"Album bustine":"Collezione · "+(bcAlN(b.al)||"album")}
@@ -2662,26 +2678,29 @@ function bcSrc(b){const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{
 function bcCase(b,mini){let h=`<div class="bcase ${BCSC[b.st]||"bsg_"} n${b.sz}${mini?" mini":""}"><div class="bin">`;
   for(let i=0;i<b.sz;i++){const id=b.cards[i],c=id&&CARDS[id];h+=c?`<div class="bsl f" data-i="${i}">${face(c,1)}${c.h?'<i class="bsh"></i>':""}</div>`:`<div class="bsl e" data-i="${i}">${mini?"":BCPL}</div>`}
   return h+'</div><i class="bgl"></i></div>'}
-function bcList(){const e=$("#set");e.onclick=null;e.scrollTop=0;
-  let h='<div class="bchd"><button class="bcb" data-a="back" aria-label="Indietro">'+BCBK+'</button><h2>Bacheche</h2></div><div class="bcl">';
-  BCH.forEach(b=>{const n=b.cards.filter(Boolean).length;h+=`<button class="bct" data-id="${b.id}"><div class="bmw">${bcCase(b,1)}</div><div><b>${esc(b.nm)}</b><span class="bs">${BCSN[b.st]} · ${BCZN[b.sz]} · ${n}/${b.sz} carte</span></div></button>`});
-  if(BCH.length<3)h+=`<button class="bct add" data-a="new"><div class="bmw"><span class="pl">${BCPL}</span></div><div><b>${BCH.length?"Nuova bacheca":"Crea la tua prima bacheca"}</b><span class="bs">${BCH.length?"Puoi averne fino a 3":"Metti in mostra le tue carte preferite"}</span></div></button>`;
-  e.innerHTML=h+"</div>";
-  e.querySelectorAll(".bct,.bcb").forEach(b=>b.onclick=()=>{const a=b.dataset.a;if(a==="back")drawAsl();else if(a==="new")bcModal();else bcDetail(b.dataset.id)})}
-let BCT={ax:0,ay:0},BCP=null;
-function bcApply(c){if(!c)return;c.style.transform=`rotateX(${BCT.ax}deg) rotateY(${BCT.ay}deg)`;c.style.setProperty("--gp",(50+BCT.ay*1.7-BCT.ax*.8).toFixed(1)+"%")}
-function bcGy(dx,dy){const c=document.querySelector("#set .bcase:not(.mini)");if(!c||BCP)return;c.style.transition="none";BCT.ay=clamp(dx*.8,-24,24);BCT.ax=clamp(-dy*.6,-18,18);bcApply(c)}
-function bcDetail(id){const b=bcFind(id);if(!b){bcList();return}const e=$("#set");e.onclick=null;e.scrollTop=0;BCT={ax:0,ay:0};
-  e.innerHTML=`<div class="bchd"><button class="bcb" data-a="back" aria-label="Indietro">${BCBK}</button><h2>${esc(b.nm)}</h2><button class="bcb" data-a="more" aria-label="Opzioni">${BCDT}</button></div><div class="bstg">${bcCase(b)}</div><div class="bcnm">${BCSN[b.st]} · ${bcOrg(b)}</div>`;
-  e.querySelector('[data-a=back]').onclick=bcList;
-  e.querySelector('[data-a=more]').onclick=()=>sheet([["Cambia nome e stile",()=>bcModal(b.id)],["Elimina bacheca",()=>confirmSheet("Eliminare questa bacheca? Le carte restano negli album.",()=>{BCH=BCH.filter(x=>x!==b);bcSave();bcList()}),1]],b.nm);
-  const stg=e.querySelector(".bstg"),cs=stg.querySelector(".bcase");bcApply(cs);
-  stg.onpointerdown=ev=>{const q=BCP={x:ev.clientX,y:ev.clientY,a:BCT.ay,b:BCT.ax,mv:0,lp:0,i:null,h:0};const sl=ev.target.closest(".bsl");if(sl){const ix=+sl.dataset.i;q.i=ix;if(b.cards[ix])q.h=setTimeout(()=>{if(BCP===q&&!q.mv){q.lp=1;sheet([["Sostituisci carta",()=>bcPick(b,ix)],["Rimuovi dalla bacheca",()=>{b.cards[ix]=null;bcSave();bcDetail(b.id)},1]],"Carta in bacheca")}},520)}
-    cs.style.transition="none";try{stg.setPointerCapture(ev.pointerId)}catch(x){}};
-  stg.onpointermove=ev=>{if(!BCP)return;const dx=ev.clientX-BCP.x,dy=ev.clientY-BCP.y;if(!BCP.mv&&Math.hypot(dx,dy)>7){BCP.mv=1;clearTimeout(BCP.h)}if(BCP.mv){BCT.ay=clamp(BCP.a+dx*.3,-38,38);BCT.ax=clamp(BCP.b-dy*.2,-26,26);bcApply(cs)}};
-  const up=()=>{const q=BCP;BCP=null;if(!q)return;clearTimeout(q.h);cs.style.transition="transform .7s cubic-bezier(.2,.8,.2,1)";BCT.ax=0;BCT.ay=0;bcApply(cs);if(q.mv||q.lp||q.i==null)return;
-    const cid=b.cards[q.i];if(cid&&CARDS[cid]){DXL=[{id:cid,o:1}];openCard(0)}else bcPick(b,q.i)};
-  stg.onpointerup=up;stg.onpointercancel=()=>{const q=BCP;BCP=null;if(q)clearTimeout(q.h);cs.style.transition="transform .7s";BCT.ax=0;BCT.ay=0;bcApply(cs)}}
+let BCI=0;
+function bcInfo(){const e=$("#set"),car=e.querySelector("#bcar");if(!car)return;const w=car.clientWidth||1,i=Math.max(0,Math.min(car.children.length-1,Math.round(car.scrollLeft/w))),b=BCH[i],inf=e.querySelector(".bcinf");BCI=i;
+  if(inf){inf.innerHTML=b?`<div class="bcn"><b>${esc(b.nm)}</b><span>${BCSN[b.st]} · ${BCZN[b.sz]} · ${b.cards.filter(Boolean).length}/${b.sz} carte · ${esc(bcOrg(b))}</span></div><button class="bcb bcmore" aria-label="Opzioni">${BCDT}</button>`:`<div class="bcn"><span>${BCH.length?"Crea una nuova bacheca":"Nessuna bacheca"}</span></div>`;
+    const m=inf.querySelector(".bcmore");if(m)m.onclick=()=>sheet([["Cambia nome e stile",()=>bcModal(b.id)],["Elimina bacheca",()=>confirmSheet("Eliminare questa bacheca? Le carte restano negli album.",()=>{BCH=BCH.filter(x=>x!==b);bcSave();BCI=Math.max(0,i-1);bcList()}),1]],b.nm)}
+  e.querySelectorAll(".bcdt i").forEach((d,j)=>d.classList.toggle("on",j===i))}
+function bcTilt(){const car=document.querySelector("#set #bcar");if(!car)return;const w=car.clientWidth||1;[...car.children].forEach((sl,j)=>{const c=sl.querySelector(".bcase");if(!c)return;const d=Math.max(-1.2,Math.min(1.2,(sl.offsetLeft-car.scrollLeft)/w));c.style.transform=`rotateY(${(d*-26).toFixed(1)}deg) scale(${(1-Math.abs(d)*.16).toFixed(3)})`;c.style.setProperty("--gp",(50+d*-60).toFixed(1)+"%");sl.style.opacity=(1-Math.min(1,Math.abs(d))*.55).toFixed(2)})}
+function bcList(){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=null;
+  let h='<div class="bchd"><h2>Bacheche</h2><button class="bcb bcx" data-a="back" aria-label="Chiudi">'+XI+'</button></div><div id="bcar" class="bcar">';
+  BCH.forEach(b=>{h+=`<div class="bcs" data-id="${b.id}"><div class="bstg2">${bcCase(b)}</div></div>`});
+  if(BCH.length<BCMAX)h+=`<div class="bcs add"><button class="bcaddb" data-a="new"><span class="pl">${BCPL}</span><b>${BCH.length?"Nuova bacheca":"Crea la tua prima bacheca"}</b><span class="bs">${BCH.length?"Puoi averne fino a "+BCMAX:"Metti in mostra le carte che ami"}</span></button></div>`;
+  h+='</div><div class="bcinf"></div><div class="bcdt">'+Array.from({length:BCH.length+(BCH.length<BCMAX?1:0)},()=>"<i></i>").join("")+"</div>";
+  e.innerHTML=h;
+  e.querySelector('[data-a=back]').onclick=drawAsl;
+  const car=e.querySelector("#bcar");BCI=Math.max(0,Math.min(BCI,car.children.length-1));car.scrollLeft=BCI*car.clientWidth;
+  let raf=0,sct=0;car.addEventListener("scroll",()=>{if(raf)return;raf=requestAnimationFrame(()=>{raf=0;bcTilt();bcInfo()})},{passive:true});
+  const add=e.querySelector("[data-a=new]");if(add)add.onclick=()=>bcModal();
+  let q=null;
+  car.onpointerdown=ev=>{const sl=ev.target.closest(".bsl"),bs=ev.target.closest(".bcs[data-id]");if(!sl||!bs)return;const b=bcFind(bs.dataset.id),ix=+sl.dataset.i;q={x:ev.clientX,y:ev.clientY,b,ix,mv:0,lp:0,h:0};if(b.cards[ix])q.h=setTimeout(()=>{if(q&&!q.mv){q.lp=1;sheet([["Sostituisci carta",()=>bcPick(b,ix)],["Rimuovi dalla bacheca",()=>{b.cards[ix]=null;bcSave();bcList()},1]],"Carta in bacheca")}},520)};
+  car.onpointermove=ev=>{if(q&&!q.mv&&Math.hypot(ev.clientX-q.x,ev.clientY-q.y)>8){q.mv=1;clearTimeout(q.h)}};
+  car.onpointercancel=()=>{if(q)clearTimeout(q.h);q=null};
+  car.onpointerup=()=>{const t=q;q=null;if(!t)return;clearTimeout(t.h);if(t.mv||t.lp)return;const cid=t.b.cards[t.ix];if(cid&&CARDS[cid]){DXL=[{id:cid,o:1}];openCard(0)}else bcPick(t.b,t.ix)};
+  bcTilt();bcInfo()}
+function bcDetail(id){const i=BCH.findIndex(b=>b.id===id);BCI=i<0?0:i;bcList()}
 function bcPick(b,i){let o=$("#bcp");if(!o){o=document.createElement("div");o.id="bcp";o.className="bcov";document.body.appendChild(o)}
   const L=bcSrc(b),used=new Set(b.cards.filter(Boolean));
   o.innerHTML=`<div class="bcph"><b>Scegli una carta</b><button class="bcb" aria-label="Chiudi">${XI}</button></div><div class="bcpg">${L.length?L.map(c=>`<button class="bpc${used.has(c.id)&&b.cards[i]!==c.id?" u":""}" data-id="${c.id}">${face(c)}</button>`).join(""):'<div class="bpe">Nessuna carta ottenuta in '+esc(bcOrg(b))+'. Segna prima qualche carta come ottenuta</div>'}</div>`;
@@ -2698,9 +2717,9 @@ function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}
     const al=o.querySelector(".bcal");if(al)al.onclick=()=>{const A=PCOLS.filter(a=>a.s&&a.s.length);sheet(A.map(a=>[(a.nm?a.t:albName(a.s)),()=>{M.al=a.k;draw()}]),"Album della Collezione")};
     o.querySelector(".c").onclick=()=>{o.hidden=true};
     o.querySelector(".p").onclick=()=>{const nm=(M.nm||"").trim()||"Bacheca";if(ed){ed.nm=nm;ed.st=M.st;bcSave();o.hidden=true;bcDetail(ed.id);return}
-      if(BCH.length>=3)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
+      if(BCH.length>=BCMAX)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
   draw();o.hidden=false}
-function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+PKI+'</span><div><b>Album bustine</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Collezione personale</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche di vetro.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
+function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+PKI+'</span><div><b>Album bustine</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Collezione personale</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
 let ALAST=null;
 function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}

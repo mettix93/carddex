@@ -521,3 +521,8 @@ Ripiego: v345
 ## v347
 - Rara/holo: effetto e suono partono nello stesso istante in cui partirebbe il verso su una carta normale (800 ms primo pacchetto, 190 ms poi), anche se la carta è nuova; poi il verso, poi "Nuova!".
 Ripiego: v346
+
+## v348
+- Bacheche: titolo come le altre pagine con (x) a destra; bacheche a scorrimento orizzontale (come le bustine) con effetto rotazione, nome e opzioni sotto, pallini; massimo 10 (con slide "+" per crearne una nuova).
+- Stili ridisegnati: Vetro (acrilico spesso con fondo scuro e basamento), Legno (cornice in noce, feltro verde, targhetta in ottone), Museo (cornice nera con filetto oro e faro dall'alto); fermacarte sotto ogni carta e ombra a terra.
+Ripiego: v347
