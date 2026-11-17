@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v374 — Account: cerchi statistiche a contorno blu con numero blu (stile icone menu); avatar pieno blu con iniziale bianca. Ripiego: v373
+
 ## v373 — Account: statistiche in cerchi blu (stesso stile e dimensione dell avatar) con etichetta sotto; nuova statistica "Set completati". Ripiego: v372
 
 ## v372 — Account: tolto il titolone; ordine nome, statistiche, titolo "Account" (stesso stile di Impostazioni), azioni cloud, Impostazioni. Nome e numeri statistiche stessa dimensione dei titoli (22px). Ripiego: v371
