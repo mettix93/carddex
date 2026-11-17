@@ -1,3 +1,6 @@
+## v394
+- Suono 'carta che entra': chiusura più marcata (assestamento morbido a ~150ms), strusciata leggermente più corta. Ripiego: v393
+
 ## v393
 - Suono 'carta che entra': aggiunto pochissimo corpo morbido in coda. Ripiego: v392
 
