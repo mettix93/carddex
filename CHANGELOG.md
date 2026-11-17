@@ -1,3 +1,8 @@
+## v388
+- Riepilogo->icona album: ripristinata transizione originale (v386); un solo suono 'carta in tasca' all'arrivo nell'icona (non uno per carta).
+- Riflesso rara/holo ancora un po' prima (755/1190ms).
+- Pokédex: il ridisegno finale non taglia più bagliore/riflesso dell'ultima carta (attende la fine dell'animazione). Album: scatto non riproducibile in test. Ripiego: v387
+
 ## v387
 - Riepilogo: suono 'carta in tasca' a ogni carta che entra nell'icona album; a fine volo nessuna pausa/dissolvenza (titolo e bottoni spariscono subito, chiusura immediata).
 - Riflesso rara/holo leggermente prima (790/1230ms); verso nello sbusto resta insieme al riflesso.
