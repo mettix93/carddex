@@ -1,3 +1,9 @@
+## v387
+- Riepilogo: suono 'carta in tasca' a ogni carta che entra nell'icona album; a fine volo nessuna pausa/dissolvenza (titolo e bottoni spariscono subito, chiusura immediata).
+- Riflesso rara/holo leggermente prima (790/1230ms); verso nello sbusto resta insieme al riflesso.
+- Contatori statistiche: frazione sempre centrata (anche 463/1430), font ridotto se serve.
+- Account: casella nome con contorno blu 3px senza riempimento, nome in blu. Ripiego: v386
+
 ## v386
 - Suono carta che entra in tasca (album/Pokédex): da thud sintetico a 'scivolata + schiocco' di carta (rumore filtrato). Ripiego: v385
 
