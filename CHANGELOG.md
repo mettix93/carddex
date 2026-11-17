@@ -1,3 +1,6 @@
+## v384
+- Rara/Holo: il riflesso sulla carta parte dopo gli effetti circolari (rara 850ms, holo 1300ms) e il verso parte insieme al riflesso; vale per sbusto e visore. Ripiego: v383
+
 ## v383
 - Account: Carte uniche / Set completati come frazione: numero, linea, totale; linea larga come "429" in entrambi. Ripiego: v382
 
