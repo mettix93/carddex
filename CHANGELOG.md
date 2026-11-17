@@ -1,3 +1,7 @@
+## v396
+- Rara: bagliore circolare esteso come l'holo (alone 120vw/x1.25, anello fino a x2.1).
+- Passaggio App/Dev: doppio tap sull'icona Account del menu (se lo sviluppo è sbloccato); tolta la sezione Sviluppo dalle Impostazioni. Ripiego: v395
+
 ## v395
 - Audio sintetico: corretto un click iniziale in ogni strato dei suoni (guadagno di partenza 1 invece di ~0); tutti gli effetti sonori sintetici ora partono puliti. Ripiego: v394
 
