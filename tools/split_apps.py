@@ -30,7 +30,7 @@ const APPK="%s";
     if col:
         rep('<link rel="manifest" href="manifest.webmanifest">','<link rel="manifest" href="collezione.webmanifest">')
         rep('<title>CardDex</title>','<title>Collezione</title>')
-        s=s.replace('const APPV="v406";','const APPV="c1";')
+        s=s.replace('const APPV="v406";','const APPV="c2";')
         # solo modalità collezione, niente bustine
         rep('let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})()','let MODE="c"')
         rep('function setMode(m,keep){if(m===MODE)return;','function setMode(m,keep){if(m===MODE||(APPK==="col"&&m==="g"))return;')
@@ -47,6 +47,11 @@ const APPK="%s";
         rep('const SBU="https://umhfivxekjfqsydxgcni.supabase.co"','const ENVC=APPK==="col"?"col"+(ENV==="dev"?"_d":""):ENV,SBU="https://umhfivxekjfqsydxgcni.supabase.co"')
         rep('const u=await cuTok(),env=ENV,snap=cuSnap()','const u=await cuTok(),env=ENVC,snap=cuSnap()')
         rep('&env=eq."+ENV+"&select=data,updated_at,saved_at','&env=eq."+ENVC+"&select=data,updated_at,saved_at')
+        # primo accesso: se la riga cloud della Collezione è vuota, carica la collezione dalla riga di CardDex
+        rep('    if(!rm)await push();\n','''    if(APPK==="col"&&!mine&&(!rm||!/"o":1/.test(JSON.stringify([rm.data&&rm.data.coll])))){
+      const src=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data"),sd=src&&src[0]&&src[0].data;
+      if(sd&&/"o":1/.test(JSON.stringify(sd.coll||{}))){bkApplyObj({...sd,game:{},pk:undefined,ms:undefined,stats:undefined,bch:(sd.bch||[]).filter(b=>b&&b.o==="c")});toast("Collezione caricata da CardDex");cuBusy=0;return await cuSync(mode)}}
+    if(!rm)await push();\n''')
         # bacheche: solo carte della collezione
         rep('let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"g",al:null,st:"g",sz:1};','let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"c",al:null,st:"g",sz:1};')
         rep('<label>Carte da</label>${seg("o",[["g","Album bustine"],["c","Collezione"]])}${M.o==="c"?`<button class="bcal">','<label>Album</label>${M.o==="c"?`<button class="bcal">')

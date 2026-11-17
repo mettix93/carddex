@@ -706,3 +706,6 @@ Ripiego: v353
 - CardDex: tolta la Collezione personale (modalità, selettore Album, scelta nelle bacheche e nel Pokédex). I dati della collezione restano intatti nel telefono e nel cloud, solo non più visibili; le bacheche della collezione restano salvate ma nascoste.
 - Generati da `tools/split_apps.py` a partire dalla v406; test `tests/col.js`.
 - Ripiego: v406 (`/tmp/base_v406.html` = tag git v406)
+
+## Collezione c2
+- Dopo l'accesso col codice, se la riga cloud della Collezione è vuota carica da sola la collezione, il nome e le bacheche della collezione dalla riga di CardDex (utile quando Safari e l'app sulla Home non condividono i dati del telefono).

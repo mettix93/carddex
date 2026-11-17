@@ -1296,7 +1296,7 @@ const APPK="col";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="c1";
+const APPV="c2";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2843,6 +2843,9 @@ async function cuSync(mode){if(cuBusy)return;cuBusy=1;let msg="";
     const push=async()=>{const now=Date.now();await sbReq("/rest/v1/saves?on_conflict=user_id,env",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:u.uid,env,data:snap,updated_at:new Date(now).toISOString()}});fin(now,h)};
     const pull=()=>{bkApplyObj(rm.data);fin(Date.parse(rm.updated_at),cuH(cuSnap()));cuUi();toast("Dati caricati dal cloud")};
     const ch=h!==u.lh,rch=!!rm&&Date.parse(rm.updated_at)!==u.lr,mine=/"o":1/.test(JSON.stringify([snap.coll,snap.game]));
+    if(APPK==="col"&&!mine&&(!rm||!/"o":1/.test(JSON.stringify([rm.data&&rm.data.coll])))){
+      const src=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data"),sd=src&&src[0]&&src[0].data;
+      if(sd&&/"o":1/.test(JSON.stringify(sd.coll||{}))){bkApplyObj({...sd,game:{},pk:undefined,ms:undefined,stats:undefined,bch:(sd.bch||[]).filter(b=>b&&b.o==="c")});toast("Collezione caricata da CardDex");cuBusy=0;return await cuSync(mode)}}
     if(!rm)await push();
     else if(cuH(rm.data)===h)fin(Date.parse(rm.updated_at),h);
     else if(!ch&&!rch)fin(u.lr,u.lh);
