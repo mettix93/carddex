@@ -1,3 +1,8 @@
+## v391
+- Pokédex: le sagome grigie non vengono più ricreate a fine riempimento (dxPatch le lascia intatte).
+- Suono 'carta che entra' più leggero: solo fruscio/strusciata di carta, senza colpo grave.
+- Sbusto: precaricamento versi scaglionato (carta corrente+2 invece di tutte e 11 subito), niente doppio layout e niente ripittura dello sfondo se invariato, buffer rumore creato in anticipo. Ripiego: v390
+
 ## v390
 - Sfondi: il colore segue il tipo stampato sulla CARTA (dati per carta) invece del tipo del Pokémon; ripiego sul tipo del Pokémon dove manca il dato. Ripiego: v389
 
