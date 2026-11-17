@@ -1,3 +1,6 @@
+## v400
+- Suoni: taglio busta nuovo (S1, crepitii irregolari su fruscio di fondo); carta in tasca F1 (chiusura più marcata, volume un po' più alto). Ripiego: v399
+
 ## v399
 - Riscatto missione misteriosa: stessa sequenza della nota (carta girata, attesa, giro) + la carta girata trema (1.4s) prima di girarsi. Ripiego: v398
 

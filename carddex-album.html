@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v399";
+const APPV="v400";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2035,13 +2035,14 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden&&AC&&AC.st
 const SFXN=()=>{if(!AC)return null;if(!SFXN.b){const n=AC.sampleRate,b=AC.createBuffer(1,n,n),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()*2-1;SFXN.b=b}return SFXN.b};
 function sxT(t,f0,f1,d,ty,v,at){const o=AC.createOscillator(),g=AC.createGain();g.gain.value=.0001;o.type=ty||"sine";o.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.15,t+(at||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
 function sxN(t,d,f0,f1,v,ty,q,at){const b=SFXN();if(!b)return;const s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();g.gain.value=.0001;s.buffer=b;s.loop=true;f.type=ty||"bandpass";f.Q.value=q||1;f.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)f.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.1,t+Math.min(at||.03,d/3));g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t,Math.random()*.5);s.stop(t+d+.03)}
+function sxG(t,n,sp,v,f0,fr,q){const a=Array.from({length:n},()=>Math.pow(Math.random(),1.5)*sp).sort((x,y)=>x-y);a.forEach(o=>sxN(t+o,.008+Math.random()*.03,f0+Math.random()*fr,0,v*(.3+Math.random()*.9),"bandpass",(q||.6)+Math.random()*.6,.002))}
 const SFX={
- rip:t=>{sxN(t,.42,2200,600,.22,"bandpass",.8);for(let i=0;i<7;i++)sxN(t+i*.05+Math.random()*.02,.03,3500+Math.random()*2500,0,.12,"highpass",.5)},
+ rip:t=>{sxG(t,34,.5,.09,2000,6500,.6);sxN(t,.5,1800,4200,.03,"bandpass",.5,.12);sxG(t+.48,7,.14,.04,2500,4500)},
  swipe:t=>{sxN(t,.16,900,3200,.1,"bandpass",.7)},
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- land:t=>{sxN(t,.46,750,1700,.054,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.016,"bandpass",.35,.2);sxN(t+.3,.22,1300,500,.031,"lowpass",.4,.09)},
+ land:t=>{sxN(t,.46,750,1700,.062,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.019,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.05,"bandpass",.4,.07)},
  page:t=>{sxN(t,.12,2600,1400,.07,"bandpass",.6);sxN(t+.09,.08,3400,2000,.04,"bandpass",.6)},
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
