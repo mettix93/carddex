@@ -1,3 +1,6 @@
+## v390
+- Sfondi: il colore segue il tipo stampato sulla CARTA (dati per carta) invece del tipo del Pokémon; ripiego sul tipo del Pokémon dove manca il dato. Ripiego: v389
+
 ## v389
 - Pokédex: drawDex aggiorna la griglia sul posto (dxPatch) invece di ricrearla: niente flash all'inizio e alla fine del riempimento carte. Ripiego: v388
 

@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v389";
+const APPV="v390";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2070,7 +2070,7 @@ let navB=0;function navCard(d){if(navB)return;const L=LIST();for(let j=curI+d;j>
     try{stg.animate([{transform:"none",opacity:1},{transform:"translateX("+(-d*W)+"px)",opacity:0}],{duration:170,easing:"ease-in"}).onfinish=()=>{openCard(j,1);stg.animate([{transform:"translateX("+(d*W)+"px)",opacity:0},{transform:"none",opacity:1}],{duration:230,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=()=>{navB=0}}}catch(e){openCard(j,1);navB=0}return}}}
 const TYP="GGGRRRWWWGGGGGGCCCCCCCGGLLFFGGGGGGCCRRCCGGGGGGGGGFFCCWWFFRRWWWPPPFFFGGGWWFFFRRPPLLCCCWWGGWWPPPFPPWWLLGGFFFFCGGFFCGCWWWWWWPGPLRGCWWWCCWLRCWWFFFCWLRCCCPPGGGRRRWWWCCCCGGGGGWWLCCCCPPLLLGWWFWGGGCGGGWWPDDPPPPCGMCFMCCWMGGDCCRRWWWWWWWMDDWFFCCCFFPLRCCLRWFFDPRGGGGRRRWWWDDCCGGGGGWWWGGGCCWWPPPGGGGCCCGGGCCCFFCFCCDMMMMFFLLLLGGGGGWWWWRRRPPCFCCGGCCCGPFWWWWFFGGFFWWWCPPPPGPDPWWWWWWWWWWCCCMMPFWMCCWFCPP";
 const TCOL={G:"#27c24c",R:"#ff4a1c",W:"#1f86ff",L:"#ffd60a",P:"#b845e0",F:"#d2691e",C:"#d3d8e2",D:"#6a52a8",M:"#a7bad0",T:"#8d98ae"};
-function cardCol(c){if(c.id==="XT"||c.id==="XV")return TCOL.G;if(c.kd==="p"&&c.dex){const t=TYP[c.dex-1];return TCOL[t]||TCOL.C}
+function cardCol(c){if(c.id==="XT"||c.id==="XV")return TCOL.G;if(c.kd==="p"&&c.dex){const rt=(rdOf(c)||{}).t,t=TCOL[rt]?rt:TYP[c.dex-1];return TCOL[t]||TCOL.C}
   const n=(c.name||"").toLowerCase();if(c.kd==="e"){const m=[["fire","R"],["fuoco","R"],["water","W"],["acqua","W"],["grass","G"],["erba","G"],["lightning","L"],["lampo","L"],["elettr","L"],["psychic","P"],["psich","P"],["psico","P"],["fighting","F"],["combatt","F"],["lotta","F"],["darkness","D"],["oscur","D"],["metal","M"]].find(x=>n.includes(x[0]));return TCOL[m?m[1]:"C"]}
   return n.includes("fire")||n.includes("fuoco")?TCOL.R:n.includes("water")||n.includes("acqua")?TCOL.W:n.includes("grass")||n.includes("erba")?TCOL.G:n.includes("lightning")||n.includes("elettr")?TCOL.L:n.includes("psychic")||n.includes("psico")?TCOL.P:n.includes("fighting")||n.includes("lotta")?TCOL.F:n.includes("darkness")?TCOL.D:n.includes("metal")?TCOL.M:TCOL.T}
 
