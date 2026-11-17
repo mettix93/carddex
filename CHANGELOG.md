@@ -1,3 +1,6 @@
+## v386
+- Suono carta che entra in tasca (album/Pokédex): da thud sintetico a 'scivolata + schiocco' di carta (rumore filtrato). Ripiego: v385
+
 ## v385
 - Visore (album, Pokédex, bacheche): verso di nuovo ai tempi originali; il riflesso resta dopo l'effetto di luce. Nello sbusto verso e riflesso restano insieme dopo gli effetti. Ripiego: v384
 
