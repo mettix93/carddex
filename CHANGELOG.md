@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v380 — Account: nei contatori a frazione il numero raggiunto resta blu, sbarretta e totale in grigio. Ripiego: v379
+
 ## v379 — Account: numero, sbarretta e totale dei due contatori a frazione tutti della stessa dimensione (16px); contatori semplici invariati. Ripiego: v378
 
 ## v378 — Account: contatori di completamento scritti nel cerchio come "103/" a capo "429" (tolta la riga "su N"). Ripiego: v377
