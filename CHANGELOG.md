@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v370 — Utente: statistiche (Bustine aperte, Carte ottenute, Carte uniche). Migrazione: bustine già aperte x 11 carte; da ora conteggio reale; missioni vere contano, quelle di prova no. Incluse nel backup e nel cloud. Ripiego: v369
+
 ## v369 — Utente: azioni cloud come lista pulita (stile Impostazioni) invece di pulsanti; codice di accesso in riga con Copia e "L ho salvato". Ripiego: v368
 
 ## v368 — Cloud: cronologia versioni (ultime 12 sul server, 1 ogni 2h) con ripristino da Utente; promemoria "salva il codice" finché non confermato. Richiede carddex-supabase-2.sql. Ripiego: v367
