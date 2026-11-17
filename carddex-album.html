@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v400";
+const APPV="v401";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2042,7 +2042,7 @@ const SFX={
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- land:t=>{sxN(t,.46,750,1700,.062,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.019,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.05,"bandpass",.4,.07)},
+ land:t=>{sxN(t,.46,750,1700,.072,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.022,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.058,"bandpass",.4,.07)},
  page:t=>{sxN(t,.12,2600,1400,.07,"bandpass",.6);sxN(t+.09,.08,3400,2000,.04,"bandpass",.6)},
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
@@ -2256,7 +2256,7 @@ function aqAnim0(k){if(aqRun||MODE!=="g"||cur!==k||!aqAlive(k))return;aqClean();
       a.onfinish=()=>{sfx("land");hap(1);el.classList.add("on");PKAQ=PKAQ.filter(x=>x!==e);aqSave();aqBadge();
         try{const sh0=el.parentNode,gl=document.createElement("i");gl.className="aqgl";gl.style.cssText="left:"+(el.offsetLeft+el.offsetWidth/2)+"px;top:"+(el.offsetTop+el.offsetHeight/2)+"px;width:"+el.offsetWidth+"px;height:"+el.offsetHeight+"px";sh0.insertBefore(gl,sh0.firstChild);gl.animate([{opacity:0,transform:"translate(-50%,-50%) scale(.9)"},{opacity:1,transform:"translate(-50%,-50%) scale(1.04)",offset:.3},{opacity:0,transform:"translate(-50%,-50%) scale(1.14)"}],{duration:820,easing:"ease-out",delay:30}).onfinish=()=>gl.remove()}catch(x){}
         try{el.animate([{transform:"scale(1.045)"},{transform:"scale(1)"}],{duration:340,easing:"cubic-bezier(.2,.8,.3,1)"});const sh=document.createElement("i");sh.className="aqsh";el.appendChild(sh);sh.animate([{transform:"translateX(-130%) skewX(-18deg)",opacity:.9},{transform:"translateX(230%) skewX(-18deg)",opacity:.9}],{duration:760,easing:"ease-in-out",delay:60}).onfinish=()=>sh.remove()}catch(x){}
-        const im=el.querySelector("img"),fin=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{g.remove();setTimeout(()=>run(j+1),420)}));if(im&&!im.complete){let q2=0;const t=()=>{if(q2++)return;fin()};im.onload=t;im.onerror=t;setTimeout(t,600)}else fin()}};
+        const im=el.querySelector("img"),fin=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{g.remove();{const nx=Q[j+1],np=nx?Math.floor(nx.i/9):pgi;setTimeout(()=>run(j+1),640+(np!==pgi?320:0))}}));if(im&&!im.complete){let q2=0;const t=()=>{if(q2++)return;fin()};im.onload=t;im.onerror=t;setTimeout(t,600)}else fin()}};
     const go=()=>{const m=face(c).match(/src="([^"]+)"/);if(!m){place();return}const im=new Image();let q=0;const t=()=>{if(q++)return;place()};im.onload=im.onerror=t;im.src=m[1];setTimeout(t,2500);if(im.complete)t()};
     if((LS?sp:pg)!==want){aqTurn(want,go)}else go()};
   run(0)}

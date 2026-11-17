@@ -1,3 +1,6 @@
+## v401
+- Suono carta in tasca +16% volume. Album: pausa tra una carta e la successiva 640ms (era 420), +320ms se la prossima è su un'altra pagina (niente sovrapposizione col suono del giro pagina). Ripiego: v400
+
 ## v400
 - Suoni: taglio busta nuovo (S1, crepitii irregolari su fruscio di fondo); carta in tasca F1 (chiusura più marcata, volume un po' più alto). Ripiego: v399
 
