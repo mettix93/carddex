@@ -695,3 +695,7 @@ Ripiego: v353
 - Filtri album bustine: tolto «In arrivo».
 - Tolti ovunque «Cambia retro delle carte» e «Esporta carte per il widget».
 - Ripiego: v404
+
+## v406
+- Cloud: la scelta «telefono o cloud» ora spiega perché compare, mostra le carte di ciascun lato e la data del cloud, e indica quella consigliata (più carte).
+- Ripiego: v405
