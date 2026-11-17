@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v376 — Account: spaziature omogenee (titolo → etichetta → blocco identico per Account e Impostazioni; etichetta "Salvataggio"; 26px prima di ogni titolo). Ripiego: v375
+
 ## v375 — Account: contorno dei cerchi 3px (stesso spessore dei numeri). Ripiego: v374
 
 ## v374 — Account: cerchi statistiche a contorno blu con numero blu (stile icone menu); avatar pieno blu con iniziale bianca. Ripiego: v373
