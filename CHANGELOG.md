@@ -1,3 +1,6 @@
+## v397
+- Suono 'carta che entra': nuova versione E3 (struscio morbido che scende e si assesta, nessun tonfo). Ripiego: v396
+
 ## v396
 - Rara: bagliore circolare esteso come l'holo (alone 120vw/x1.25, anello fino a x2.1).
 - Passaggio App/Dev: doppio tap sull'icona Account del menu (se lo sviluppo è sbloccato); tolta la sezione Sviluppo dalle Impostazioni. Ripiego: v395
