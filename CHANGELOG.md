@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v378 — Account: contatori di completamento scritti nel cerchio come "103/" a capo "429" (tolta la riga "su N"). Ripiego: v377
+
 ## v377 — Account: Carte uniche e Set completati con anello di avanzamento e riga "su N" (totali dei soli set sbloccati); Bustine e Carte ottenute con anello pieno. Ripiego: v376
 
 ## v376 — Account: spaziature omogenee (titolo → etichetta → blocco identico per Account e Impostazioni; etichetta "Salvataggio"; 26px prima di ogni titolo). Ripiego: v375
