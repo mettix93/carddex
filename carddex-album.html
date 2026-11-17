@@ -1132,7 +1132,7 @@ html.gml #cvs .cvw>.sgt{background:#f2f2f7}
 #cvs .cvtb button.on{background:#fff;color:#1b2a49;box-shadow:0 1px 4px rgba(20,30,55,.18)}
 html:not(.gml) #cvs .cvtb{background:rgba(255,255,255,.12)}html:not(.gml) #cvs .cvtb button{color:rgba(235,235,245,.65)}html:not(.gml) #cvs .cvtb button.on{background:rgba(255,255,255,.27);color:#fff;box-shadow:none}
 #cvs .cvf2[hidden]{display:none}
-html body #cvs.tr .cvr{display:none!important}
+html body #cvs.tr .cvr{display:flex!important}html body .cvr .rcn circle{fill:#fff}html body .cvr .rcn g{fill:#1b2a49}
 #trf .cvn{align-items:flex-start;text-align:left;margin-right:auto}
 html body #cvs #trf #tro{background:#0a84ff!important;border:0!important;color:#fff!important}#trf #tro:disabled{opacity:.4}
 #cvs .trb{margin:0 16px 8px;padding:10px 12px 8px;border-radius:20px;background:rgba(10,132,255,.12);flex:none}
@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v402";
+const APPV="v403";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2494,7 +2494,10 @@ function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div")
   return e}
 function cvNum(el,v){if(!el)return;const o=el.textContent;el.textContent=v;if(el.id==="cvp")el.classList.toggle("z",!v);if(String(v)!==o&&el.dataset.i&&(el.id!=="cvp"||v>0)){try{el.animate([{transform:"scale(1)"},{transform:"scale(1.3)"},{transform:"scale(1)"}],{duration:280,easing:"ease-out"})}catch(e){}}el.dataset.i=1}
 function cvSync(){const L=cvList(),M={};L.forEach(x=>M[x.c.id]=x);const g=$("#cvs .cvg");document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x){b.remove();return}b.classList.remove("on");b.classList.toggle("z",x.sp<=0);const e=b.querySelector(".cvc b");if(e)e.innerHTML="0<em>/"+x.sp+"</em>"});document.querySelectorAll("#cvs .cvw").forEach(w=>{const t=w.querySelectorAll(".cvt");if(!t.length){w.remove();return}let n=0;t.forEach(b=>{const x=M[b.dataset.id];if(x)n+=x.sp});const e=w.querySelector(".sgt em");if(e)e.textContent=n});if(!L.length&&g)g.innerHTML='<p class="cve">Non hai carte doppie da convertire</p>';cvNum($("#cvp"),0);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=true}
-function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
+/* gettone come i Pokédollari ma col simbolo di rarità al posto della P (solo nello Scambio) */
+const RCI={C:'<path d="M12 2.7a9.3 9.3 0 1 0 0 18.6 9.3 9.3 0 1 0 0-18.6Z"/>',U:'<path d="M12 2.7 21.3 12 12 21.3 2.7 12Z"/>',R:'<path d="M12 2.2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.4l7.1-.6Z"/>',Rh:'<path d="M11 3.4l2.3 5.3 5.7.5-4.3 3.8 1.4 5.6L11 15.7l-5.1 2.9 1.4-5.6L3 9.2l5.7-.5Z"/><path d="M19.4 1.6l.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9Z"/>',E:'<path d="M13.5 2 5 13.4h5.4L9.5 22 19 9.8h-5.7Z"/>'};
+const RCOIN=k=>'<svg class="coin rcn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><g fill="currentColor" stroke="none" transform="translate(5.8 5.8) scale(.52)">'+(RCI[k]||RCI.C)+'</g></svg>';
+function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${TRM==="t"?RCOIN(trK(x.c)):COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0,h="",ci=-1;
   L.forEach(x=>{const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);if(x.ci!==ci){if(ci>=0)h+="</div></section>";ci=x.ci;const n=L.filter(y=>y.ci===ci).reduce((a,y)=>a+y.sp,0);h+=`<section class="cvw" data-ci="${ci}"><div class="sgt">${esc(x.co.t)}<em>${n}</em></div><div class="cvgg">`}h+=cvTile(x,k)});if(ci>=0)h+="</div></section>";
   g.innerHTML=h||'<p class="cve">'+(TRM==="t"?(TR.reply?"Non hai doppie delle rarità richieste":"Non hai doppie da scambiare"):"Non hai carte doppie da convertire")+'</p>';

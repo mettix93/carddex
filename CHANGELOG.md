@@ -677,3 +677,7 @@ Ripiego: v352
 - Bacheche: si cambia bacheca scorrendo orizzontalmente sulla zona in basso (scritte e pallini); il trascinamento sulla bacheca la ruota soltanto.
 - Rotazione più corretta: la bacheca ruota come un blocco unico (niente profondità interna che faceva muovere le carte l'una rispetto alle altre), prospettiva più morbida, angoli limitati.
 Ripiego: v353
+
+## v403
+- Scambio: sulle tessere il gettone dei Pokédollari mostra il simbolo di rarità (cerchio, rombo, stella, stella+scintilla, fulmine) al posto della P. Converti invariato (numero di monete).
+- Ripiego: v402
