@@ -1,3 +1,6 @@
+## v393
+- Suono 'carta che entra': aggiunto pochissimo corpo morbido in coda. Ripiego: v392
+
 ## v392
 - Suono 'carta che entra': solo strusciata di carta (attacco morbido, ~0.25s), senza colpo finale. Ripiego: v391
 
