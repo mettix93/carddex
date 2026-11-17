@@ -1282,7 +1282,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v380";
+const APPV="v381";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2839,7 +2839,7 @@ function stUniq(){const ids=new Set();try{const raw=dxRaw("g");GCOLS.forEach(c=>
 function stSets(){let n=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{const a=raw[c.k];if(Array.isArray(a)&&a.length&&a.every(x=>x&&x.o))n++})}catch(e){}return n}
 function stTot(){let sl=0,st=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(pkLkS(c.s[0]))return;const a=raw[c.k];if(Array.isArray(a)&&a.length){sl+=a.length;st++}})}catch(e){}return{sl,st}}
 function usrStats(){const o=stGet(),tt=stTot(),C=2*Math.PI*26.5,
-  T=(n,t,tot,sub)=>{const f=tot?Math.max(0,Math.min(1,n/tot)):1;return '<div><b'+((tot?String(n).length+String(tot).length>7:String(n).length>3)?' class="sm"':'')+'><svg viewBox="0 0 56 56" aria-hidden="true"><circle class="tk" cx="28" cy="28" r="26.5"/><circle class="pg" cx="28" cy="28" r="26.5" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-f)).toFixed(1)+'"/></svg><i'+(tot?' class="fr"':'')+'>'+(tot?'<u>'+n+'<s>/</s></u><u class="t">'+tot+'</u>':n)+'</i></b><span>'+t+'</span></div>'};
+  T=(n,t,tot,sub)=>{const f=tot?Math.max(0,Math.min(1,n/tot)):1;return '<div><b'+((tot?String(n).length+String(tot).length>7:String(n).length>3)?' class="sm"':'')+'><svg viewBox="0 0 56 56" aria-hidden="true"><circle class="tk" cx="28" cy="28" r="26.5"/><circle class="pg" cx="28" cy="28" r="26.5" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-f)).toFixed(1)+'"/></svg><i'+(tot?' class="fr"':'')+'>'+(tot?'<u>'+n+'</u><u class="t">/'+tot+'</u>':n)+'</i></b><span>'+t+'</span></div>'};
   return '<div class="stg">'+T(o.p||0,"Bustine aperte")+T(o.c||0,"Carte ottenute")+T(stUniq(),"Carte uniche",tt.sl)+T(stSets(),"Set completati",tt.st)+'</div>'}
 let USV="";
 function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
