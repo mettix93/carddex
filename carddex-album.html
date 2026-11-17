@@ -149,7 +149,7 @@ h1 small{font:600 13px -apple-system,"SF Pro Text","SF Pro Display",BlinkMacSyst
 html:root body.dex.sett #app footer{visibility:visible!important;position:relative;z-index:5}
 html body.dex #md,html body[data-m="c"] #md{display:none!important}
 html body.dex #app .tab.on{color:#0a84ff!important}
-html body.dex #mo,html body.dex #sty{display:none!important}
+html body.dex #mo,html body.dex #sty,html body.dex #so{display:none!important}html body:not([data-m=g]) #app #so{display:none!important}html body[data-m=g] #app #mo{display:none!important}
 html:root body.dex.sett #app header{visibility:visible!important}
 #set .dxw+.dxw{margin-top:6px}#set .dxw>.sgt{margin-top:14px!important}
 #set .dxs{position:absolute;left:5px;bottom:4px;max-width:calc(100% - 10px);z-index:2;display:flex;flex-wrap:wrap;gap:3px 6px;align-items:center;color:#000}
@@ -1267,7 +1267,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <div id="book"></div>
 <div id="slw"><span id="pn"></span><input id="sl" type="range" min="0" max="0" value="0" step="1" aria-label="Scorri le pagine"></div>
 <button id="hud" aria-label="Mostra comandi"></button>
-<footer><div id="md" class="nvp mdp"></div><div id="fi"><b id="ttl"></b><small id="stat"></small></div><div id="fg"><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"/><path d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"/><path d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"/></svg></button><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 17.5228 6.47715 22 12 22C13.6569 22 15 20.6569 15 19V18.5C15 18.0356 15 17.8034 15.0257 17.6084C15.2029 16.2622 16.2622 15.2029 17.6084 15.0257C17.8034 15 18.0356 15 18.5 15H19C20.6569 15 22 13.6569 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z"/><path d="M7 13C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13Z"/><path d="M16 9C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 8.55228 15.4477 9 16 9Z"/><path d="M10 8C10.5523 8 11 7.55228 11 7C11 6.44772 10.5523 6 10 6C9.44772 6 9 6.44772 9 7C9 7.55228 9.44772 8 10 8Z"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12H18M3 6H21M9 18H15"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"/></svg></button></div><button id="acx" aria-label="Chiudi e scegli modalità"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></footer>
+<footer><div id="md" class="nvp mdp"></div><div id="fi"><b id="ttl"></b><small id="stat"></small></div><div id="fg"><button id="mo" aria-label="Altre opzioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"/><path d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"/><path d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"/></svg></button><button id="sty" aria-label="Stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 17.5228 6.47715 22 12 22C13.6569 22 15 20.6569 15 19V18.5C15 18.0356 15 17.8034 15.0257 17.6084C15.2029 16.2622 16.2622 15.2029 17.6084 15.0257C17.8034 15 18.0356 15 18.5 15H19C20.6569 15 22 13.6569 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z"/><path d="M7 13C7.55228 13 8 12.5523 8 12C8 11.4477 7.55228 11 7 11C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13Z"/><path d="M16 9C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 8.55228 15.4477 9 16 9Z"/><path d="M10 8C10.5523 8 11 7.55228 11 7C11 6.44772 10.5523 6 10 6C9.44772 6 9 6.44772 9 7C9 7.55228 9.44772 8 10 8Z"/></svg></button><button id="so" aria-label="Ordine"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 4V20M17 20L13 16M17 20L21 16M7 20V4M7 4L3 8M7 4L11 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button id="ft" aria-label="Filtra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12H18M3 6H21M9 18H15"/></svg></button><button id="sq" aria-label="Cerca Pokémon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"/></svg></button></div><button id="acx" aria-label="Chiudi e scegli modalità"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></footer>
 <nav id="nv"><div id="nvp" class="nvp"></div></nav>
 </div>
 <div id="sh" hidden></div><div id="sh2" hidden></div>
@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v404";
+const APPV="v405";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1542,7 +1542,7 @@ let st={},cur="a",pg=0,np=1,SR=[],SQ="";
 let FLT="a";
 const BASE=()=>cur==="?"?SR.map(r=>st[r.c][r.i]):st[cur];
 let DXL=null;
-const LIST=()=>{if(DXL)return DXL;let b=BASE();if(HID())b=b.filter(HF);return FLT==="a"?b:b.filter(s=>s.id&&(FLT==="p"?(s.fav||FAVH.has(s)):FLT==="o"?s.o:FLT==="i"?(!s.o&&s.a):(!s.o&&!s.a)))};
+const LIST=()=>{if(DXL)return DXL;if(MODE==="g"&&FLT==="i")FLT="a";let b=BASE();if(HID())b=b.filter(HF);return FLT==="a"?b:b.filter(s=>s.id&&(FLT==="p"?(s.fav||FAVH.has(s)):FLT==="o"?s.o:FLT==="i"?(!s.o&&s.a):(!s.o&&!s.a)))};
 const VIEW=()=>cur==="?"||FLT!=="a"||HID();
 let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})(),SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS:PCOLS;
@@ -1820,7 +1820,7 @@ function menu(i,inV){if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("s
   const L=LIST(),s=L[i],c=s.id&&CARDS[s.id],it=[];
   if(s.id)it.push([s.o?"Segna come non ottenuta":"Segna come ottenuta",()=>toggle(i)]);
   if(s.id&&!s.o)it.push([s.a?"Togli da In arrivo":"In arrivo",()=>{s.a=s.a?0:1;done(i)}]);
-  if(s.id)it.push(["Carica foto",()=>sheet([["Fronte della carta",()=>frontMenu(i)],["Retro delle carte",backMenu]],"Carica foto")]);
+  if(s.id)it.push(["Carica foto",()=>frontMenu(i)]);
   it.push([s.id?"Dettagli e note":(s.n?"Modifica nota":"Aggiungi nota"),()=>noteEd(s,c?c.name:"Slot vuoto")]);
   if(!VIEW()){it.push(["Inserisci slot vuoto prima",()=>{L.splice(i,0,{id:null,o:0,n:""});save();render()}]);
   it.push(["Inserisci slot vuoto dopo",()=>{L.splice(i+1,0,{id:null,o:0,n:""});save();render()}]);
@@ -1828,15 +1828,22 @@ function menu(i,inV){if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("s
   it.push(["Elimina dalla collezione",()=>confirmSheet("Eliminare? Le carte successive scorrono indietro.",()=>{L.splice(i,1);save();render()}),1])}
   if(inV){const W=it.map(([t,f,d])=>[t,/note|Dettagli/i.test(t)?f:()=>{$("#vx").click();setTimeout(f,60)},d]);W.unshift(["Condividi",()=>sheet([["Immagine completa",()=>shareCard("scene")],["Solo carta",()=>shareCard("card")]],"Condividi")]);sheet(W,c?c.name:"Slot vuoto")}
   else sheet(it,c?c.name:"Slot vuoto")}
+/* album bustine: ordine Numero set / Pokédex */
+let GORD={};try{GORD=JSON.parse(localStorage.getItem("carddex_gord"))||{}}catch(e){}
+function gOrdSet(m){const col=COLS.find(c=>c.k===cur);if(!col)return;const idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
+  const key=x=>{if(m!=="dex")return 0;const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5};
+  const L=st[cur],C=L.filter(x=>x.id).map((x,j)=>[x,j]).sort((p,q)=>(key(p[0])-key(q[0]))||((idx[p[0].id]!==undefined?idx[p[0].id]:1e9)-(idx[q[0].id]!==undefined?idx[q[0].id]:1e9))||p[1]-q[1]).map(p=>p[0]);
+  st[cur]=[...C,...L.filter(x=>!x.id)];GORD[cur]=m;try{localStorage.setItem("carddex_gord",JSON.stringify(GORD))}catch(e){}save();pg=0;sp=0;render()}
+$("#so").onclick=()=>{if(cur==="?"){toast("Esci dalla ricerca per cambiare ordine");return}sheet([[(GORD[cur]!=="dex"?"✓  ":"")+"Numero set",()=>gOrdSet("num")],[(GORD[cur]==="dex"?"✓  ":"")+"Pokédex",()=>gOrdSet("dex")]],"Ordine")};
 /* filtro + menu altre opzioni */
-$("#ft").onclick=()=>{if(document.body.classList.contains("dex")){dxFilter();return}const o=[["a","Intera collezione"],["o","Ottenute"],["n","Mancanti"],["i","In arrivo"],["p","Preferite"]],it=o.map(([k,t])=>[(FLT===k?"✓  ":"")+t,()=>{FLT=k;pg=0;sp=0;tabs();render()}]);
+$("#ft").onclick=()=>{if(document.body.classList.contains("dex")){dxFilter();return}const o=[["a","Intera collezione"],["o","Ottenute"],["n","Mancanti"],...(MODE==="g"?[]:[["i","In arrivo"]]),["p","Preferite"]],it=o.map(([k,t])=>[(FLT===k?"✓  ":"")+t,()=>{FLT=k;pg=0;sp=0;tabs();render()}]);
   if(MODE==="c"&&cur!=="?")it.unshift(["Ordine e opzioni…",ordMenu]);sheet(it,"Mostra")};
 function widgetExport(){try{const seen=new Set(),L=[];COLS.forEach(co=>st[co.k].forEach(x=>{if(!x.id||!x.o)return;const c=eff(x);if(!c||c.kd!=="p"||c.sid==="S")return;
     let u=c.img||(c.sid==="S"?toppsU(c,true):TD[c.sid]?`https://assets.tcgdex.net/en/${SER[c.sid]}/${TD[c.sid]}/${c.num}/high.webp`:"");if(!u||/^(blob|data):/.test(u)||seen.has(u))return;seen.add(u);L.push({n:c.name,u,k:c.sid==="S"?"#4a5062":cardCol(c),h:c.h?1:0,t:c.sid==="S"?1:0})}));
     if(!L.length){toast("Non hai ancora carte Pokémon ottenute");return}
     const f=new File([JSON.stringify({v:2,c:L})],"carddex-widget.json",{type:"application/json"});
     if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{});else{const a=document.createElement("a");a.href=URL.createObjectURL(f);a.download=f.name;document.body.appendChild(a);a.click();a.remove()}}catch(e){toast("Esportazione non riuscita")}}
-$("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore],["Cambia retro delle carte",backMenu],["Esporta carte per il widget",widgetExport]];
+$("#mo").onclick=()=>{const it=[["Ripristina ordine",doRestore]];
   if(!VIEW()){it.push(["Rimuovi gli slot vuoti",()=>confirmSheet("Rimuovere tutti gli slot vuoti? Le carte scorrono per coprire gli spazi.",()=>{st[cur]=st[cur].filter(x=>x.id);save();render()})]);
     it.push(["Segna tutte come non ottenute",()=>confirmSheet("Segnare tutte le carte di questa collezione come mancanti? Foto e note restano.",()=>{st[cur].forEach(x=>{if(x.id){x.o=0;x.v="h"}});save();render()}),1])}
   sheet(it,"Opzioni")};

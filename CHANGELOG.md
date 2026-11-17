@@ -689,3 +689,9 @@ Ripiego: v353
 - Audio: al rientro nell'app il contesto audio viene riattivato (visibilitychange/pageshow/focus) e ricreato se resta sospeso.
 - Sbusto: la carta scorsa non ricompare più per un frame (fill forwards).
 - Ripiego: v403
+
+## v405
+- Album bustine: i tre puntini sono sostituiti da «Ordine» (icona frecce su/giù, dopo la tavolozza): Numero set / Pokédex, scelta ricordata per ogni set.
+- Filtri album bustine: tolto «In arrivo».
+- Tolti ovunque «Cambia retro delle carte» e «Esporta carte per il widget».
+- Ripiego: v404
