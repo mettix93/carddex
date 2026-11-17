@@ -681,3 +681,11 @@ Ripiego: v353
 ## v403
 - Scambio: sulle tessere il gettone dei Pokédollari mostra il simbolo di rarità (cerchio, rombo, stella, stella+scintilla, fulmine) al posto della P. Converti invariato (numero di monete).
 - Ripiego: v402
+
+## v404
+- Album: la carta che entra in tasca usa animazione a transform (come il Pokédex), niente più calcoli di layout a ogni frame.
+- Riepilogo→icona album: le copie delle carte partivano 14px più in basso (il body ha un transform e sposta i fixed): ora si allineano all'originale.
+- Luce d'ingresso in album/Pokédex: bianco caldo, meno giallo, più luminosa.
+- Audio: al rientro nell'app il contesto audio viene riattivato (visibilitychange/pageshow/focus) e ricreato se resta sospeso.
+- Sbusto: la carta scorsa non ricompare più per un frame (fill forwards).
+- Ripiego: v403
