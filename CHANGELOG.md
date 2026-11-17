@@ -1,3 +1,6 @@
+## v385
+- Visore (album, Pokédex, bacheche): verso di nuovo ai tempi originali; il riflesso resta dopo l'effetto di luce. Nello sbusto verso e riflesso restano insieme dopo gli effetti. Ripiego: v384
+
 ## v384
 - Rara/Holo: il riflesso sulla carta parte dopo gli effetti circolari (rara 850ms, holo 1300ms) e il verso parte insieme al riflesso; vale per sbusto e visore. Ripiego: v383
 
