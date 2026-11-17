@@ -1,3 +1,6 @@
+## v383
+- Account: Carte uniche / Set completati come frazione: numero, linea, totale; linea larga come "429" in entrambi. Ripiego: v382
+
 ## v382
 - Account: nei cerchi Carte uniche / Set completati il "/totale" è azzurrino (come l'anello non completato) e la sbarra è alta come le cifre. Ripiego: v381
 
