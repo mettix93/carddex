@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v372 — Account: tolto il titolone; ordine nome, statistiche, titolo "Account" (stesso stile di Impostazioni), azioni cloud, Impostazioni. Nome e numeri statistiche stessa dimensione dei titoli (22px). Ripiego: v371
+
 ## v371 — Scheda Utente rinominata Account; statistiche subito sotto il nome (senza titolo), poi azioni cloud, poi Impostazioni. Ripiego: v370
 
 ## v370 — Utente: statistiche (Bustine aperte, Carte ottenute, Carte uniche). Migrazione: bustine già aperte x 11 carte; da ora conteggio reale; missioni vere contano, quelle di prova no. Incluse nel backup e nel cloud. Ripiego: v369
