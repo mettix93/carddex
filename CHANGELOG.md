@@ -1,3 +1,6 @@
+## v389
+- Pokédex: drawDex aggiorna la griglia sul posto (dxPatch) invece di ricrearla: niente flash all'inizio e alla fine del riempimento carte. Ripiego: v388
+
 ## v388
 - Riepilogo->icona album: ripristinata transizione originale (v386); un solo suono 'carta in tasca' all'arrivo nell'icona (non uno per carta).
 - Riflesso rara/holo ancora un po' prima (755/1190ms).

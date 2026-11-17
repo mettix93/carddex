@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v388";
+const APPV="v389";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2908,6 +2908,11 @@ setTimeout(()=>{try{(window.requestIdleCallback||(f=>f()))(dxPre)}catch(e){}},25
 let dxET=0;function dxEager(){dxPre();if(dxET)return;dxET=setTimeout(()=>{dxET=0;dxEg()},120)}
 function dxEg(){try{const e=$("#set");if(!e||!document.body.classList.contains("dex"))return;const t=e.getBoundingClientRect(),a=t.top-1400,b=t.bottom+1400;e.querySelectorAll('.dxi img[loading="lazy"]').forEach(im=>{const r=im.getBoundingClientRect();if(r.bottom>=a&&r.top<=b)im.loading="eager"})}catch(x){}}
 document.addEventListener("scroll",ev=>{if(ev.target&&ev.target.id==="set")dxEager()},true);
+/* aggiorna la griglia Pokédex sul posto (senza ricrearla) se la struttura è uguale: niente flash di immagini/animazioni */
+function dxPatch(e,html){try{const t=document.createElement("template");t.innerHTML=html;const nw=[...t.content.querySelectorAll(".dxi")],old=[...e.querySelectorAll(".dxi")],N=h=>h.replace(/ loading="(?:lazy|eager)"/g,""),sk=x=>[...x.querySelectorAll(".dxw")].map(w=>w.dataset.g+":"+w.querySelectorAll(".dxi").length).join(",");
+  if(!old.length||nw.length!==old.length||sk(t.content)!==sk(e)||nw.some((x,i)=>x.dataset.d!==old[i].dataset.d))return false;
+  nw.forEach((x,i)=>{const o=old[i],a=x.querySelector("small"),b=o.querySelector("small"),c=x.querySelector(".dxc"),d=o.querySelector(".dxc");if(!a||!b||!c||!d)return;if(a.innerHTML!==b.innerHTML)b.innerHTML=a.innerHTML;if(c.className!==d.className||N(c.innerHTML)!==N(d.innerHTML)){d.className=c.className;d.innerHTML=c.innerHTML}});
+  const hn=[...t.content.querySelectorAll(".dxw>.sgt")],ho=[...e.querySelectorAll(".dxw>.sgt")];hn.forEach((x,i)=>{if(ho[i]&&ho[i].innerHTML!==x.innerHTML)ho[i].innerHTML=x.innerHTML});return true}catch(x){return false}}
 function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;let n=0;DXE=[];dxTabs();dxPos();
   const gs=DXQ?DXQ.split(/\s+(?:o|or|oppure)\s+/).map(srGroup).filter(g=>g.toks.length||g.ph.length):null;
   const secs=G.map(([t,a,b],gi)=>{let h="",all=0;
@@ -2918,7 +2923,7 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;l
       const own=new Set(o.map(x=>x.c.sid)),ss=[...new Set([...cand.map(x=>x.sid),...o.map(x=>x.c.sid)])].sort((p,q)=>RK.indexOf(p)-RK.indexOf(q));
       h+='<div class="dxi" data-d="'+d+'"><small>#'+pad(d)+' '+(has?nmH(nm):"???")+'</small><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+'</div></div>'}
     DXC[gi]=[all,tot];return h?'<section class="dxw" data-g="'+gi+'"><div class="sgt">'+t+'<em>'+all+' / '+tot+'</em></div><div class="dxg">'+h+'</div></section>':""}).join("");
-  dxTabs();e.innerHTML=secs||'<div class="sgt">Nessun Pokémon trovato</div>';e.scrollTop=y;e.onscroll=dxSpy;dxSpy();dxEager();
+  dxTabs();if(!(secs&&dxPatch(e,secs)))e.innerHTML=secs||'<div class="sgt">Nessun Pokémon trovato</div>';e.scrollTop=y;e.onscroll=dxSpy;dxSpy();dxEager();
   $("#stat").innerHTML=n+" / 386";$("#ft").classList.toggle("on",DXF!=="a"||DXS!=="t");$("#sq").classList.toggle("on",!!DXQ);$("#sq").innerHTML=DXQ?XI:LENS;$("#sq").setAttribute("aria-label",DXQ?"Chiudi ricerca":"Cerca Pokémon");
   e.onclick=null;
   e.onpointerdown=ev=>{const c=ev.target.closest&&ev.target.closest(".dxi");if(!c)return;const d=+c.dataset.d,n2=Date.now();
