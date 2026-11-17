@@ -1282,7 +1282,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v366";
+const APPV="v367";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2803,16 +2803,18 @@ const cuCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(16
   cuHash=t=>{let h=2166136261;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0).toString(36)+"."+t.length};
 function cuSess(j,code){if(!j||!j.access_token)return null;const p=cuGet()||{},o={at:j.access_token,rt:j.refresh_token,exp:Date.now()+(j.expires_in||3600)*1000-60000,uid:(j.user||{}).id||p.uid,code:code||p.code,lr:p.lr||null,lh:p.lh||null,ts:p.ts||0,er:""};cuSet(o);return o}
 async function cuTok(){let u=cuGet();if(!u)throw new Error("Non hai effettuato l’accesso");if(Date.now()>u.exp){const j=await sbReq("/auth/v1/token?grant_type=refresh_token",{m:"POST",auth:false,b:{refresh_token:u.rt}});u=cuSess(j)}return u}
+const cuCanon=v=>Array.isArray(v)?v.map(cuCanon):v&&typeof v==="object"?Object.keys(v).sort().reduce((a,k)=>(a[k]=cuCanon(v[k]),a),{}):v,cuH=o=>cuHash(JSON.stringify(cuCanon(o)));
 const cuSnap=()=>{const o=bkObj();o.usr=usrGet();return o};
 let cuBusy=0;
 async function cuSync(mode){if(cuBusy)return;cuBusy=1;let msg="";
-  try{const u=await cuTok(),env=ENV,snap=cuSnap(),js=JSON.stringify(snap),h=cuHash(js);
+  try{const u=await cuTok(),env=ENV,snap=cuSnap(),js=JSON.stringify(snap),h=cuH(snap);
     const rows=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+env+"&select=data,updated_at"),rm=rows&&rows[0];
     const fin=(lr,lh)=>{const c=cuGet();if(c){c.lr=lr;c.lh=lh;c.ts=Date.now();c.er="";cuSet(c)}};
     const push=async()=>{const now=Date.now();await sbReq("/rest/v1/saves?on_conflict=user_id,env",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:u.uid,env,data:snap,updated_at:new Date(now).toISOString()}});fin(now,h)};
-    const pull=()=>{bkApplyObj(rm.data);fin(Date.parse(rm.updated_at),cuHash(JSON.stringify(cuSnap())));cuUi();toast("Dati caricati dal cloud")};
+    const pull=()=>{bkApplyObj(rm.data);fin(Date.parse(rm.updated_at),cuH(cuSnap()));cuUi();toast("Dati caricati dal cloud")};
     const ch=h!==u.lh,rch=!!rm&&Date.parse(rm.updated_at)!==u.lr,mine=/"o":1/.test(JSON.stringify([snap.coll,snap.game]));
     if(!rm)await push();
+    else if(cuH(rm.data)===h)fin(Date.parse(rm.updated_at),h);
     else if(!ch&&!rch)fin(u.lr,u.lh);
     else if(ch&&!rch&&u.lr)await push();
     else if(mode==="push")msg="";
@@ -2849,7 +2851,7 @@ function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.quer
     }catch(x){busy(0);toast(x.message||"Errore")}}}
 function cuUi(){const e=document.querySelector("#set"),w=e&&e.querySelector(".ucw");if(!w)return;const t=document.createElement("div");t.innerHTML=usrCard();w.replaceWith(t.firstChild);usrBind(e)}
 setTimeout(()=>{if(cuGet())cuSync("full")},3500);
-setInterval(()=>{if(!cuGet()||document.hidden||!navigator.onLine||cuBusy)return;try{if(cuHash(JSON.stringify(cuSnap()))!==cuGet().lh)cuSync("push")}catch(e){}},25000);
+setInterval(()=>{if(!cuGet()||document.hidden||!navigator.onLine||cuBusy)return;try{if(cuH(cuSnap())!==cuGet().lh)cuSync("push")}catch(e){}},25000);
 document.addEventListener("visibilitychange",()=>{if(document.hidden&&cuGet()&&navigator.onLine)cuSync("push")});
 function drawSet(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;const sw=(id,on)=>'<button class="sw'+(on?" on":"")+'" data-a="'+id+'" role="switch" aria-checked="'+(!!on)+'"><i></i></button>';
   e.innerHTML='<h2>Utente</h2>'+usrCard()+'<div class="ush">Impostazioni</div><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(localStorage.getItem("carddex_err")?'<div class="sgt">Diagnostica</div><div class="sgr"><button class="row act" data-a="erc">Copia ultimo errore</button></div>':"")+(DEVOK?'<div class="sgt">Sviluppo</div><div class="sgr"><div class="seg">'+[["dev","Dev"],["app","App"]].map(([k,t])=>'<button data-a="env" data-v="'+k+'" class="'+(ENV===k?"on":"")+'">'+t+'</button>').join("")+'</div></div>':'');

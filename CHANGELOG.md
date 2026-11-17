@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v367 — Cloud: se telefono e cloud hanno gli stessi dati (dopo Esci e rientro) ricollega senza chiedere; confronto indipendente dall ordine delle chiavi. Ripiego: v366
+
 ## v366 — Cloud (Supabase): account con codice di accesso (16 caratteri), salvataggio automatico di collezione, bustine, missioni, bacheche; accesso da altro telefono; conflitti con scelta. Backup ora include missioni. SQL in carddex-supabase.sql. Ripiego: v365
 
 ## v365 — Scheda "Utente" al posto di Impostazioni (icona profilo): scheda con nome utente modificabile (locale) + Impostazioni dentro. Cloud/scambi: da fare. Ripiego: v364
