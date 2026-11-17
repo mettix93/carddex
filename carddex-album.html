@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v401";
+const APPV="v402";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2695,7 +2695,11 @@ function pkNext(dy,off){if(pkLock||!pkCur)return;pkLock=1;sfx("swipe");hap(1);do
 function pkSumBuild(){const s=$("#pksum"),n=pkAvail();
   s.innerHTML=`<h2>Carte ottenute</h2><div class="pkgd">${pkAll().map((x,j)=>`<div data-j="${j}" class="${x.c.h?"ho":""}">${face(x.c,1)}${pkBadgeH(x,0)}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
   s.hidden=true;$("#pks1").onclick=()=>{if(pkFlyB)return;pkDexOut(pkToAlbum)};const b=$("#pks2");if(b)b.onclick=()=>{if(pkFlyB)return;pkDexOut()};s.querySelectorAll(".pkgd>div").forEach(d=>d.onclick=()=>pkView(pkAll()[+d.dataset.j].c))}
-function pkSummary(){$("#pkg").classList.remove("on");$("#pkc2").textContent="";const s=$("#pksum");if(!s.firstChild)pkSumBuild();
+/* iOS: a fine sbusto la barra in basso può restare più in basso finché non si tocca un altro tasto: forza scroll a 0, nuovo calcolo del viewport e riallineamento, ripetuti */
+function pkKick(){const R=document.documentElement,f=()=>{try{if(window.scrollY||R.scrollTop||document.body.scrollTop){window.scrollTo(0,0);R.scrollTop=0;document.body.scrollTop=0}pkAlign()}catch(e){}};
+  f();try{R.style.height="calc(100% + 1px)";requestAnimationFrame(()=>requestAnimationFrame(()=>{R.style.height="";f()}))}catch(e){}
+  [90,260,620,1200,2200].forEach(ms=>setTimeout(f,ms));setTimeout(()=>{try{window.dispatchEvent(new Event("resize"))}catch(e){}},350)}
+function pkSummary(){$("#pkg").classList.remove("on");pkKick();$("#pkc2").textContent="";const s=$("#pksum");if(!s.firstChild)pkSumBuild();
   $("#pk").classList.add("studio");pkTheme(STC());s.hidden=false;
   {const g=s.querySelector(".pkgd"),rows=Math.ceil(Math.min(pkAll().length,pkCards.length||11)/3),av=g.clientHeight,cw=Math.max(60,Math.min(170,(innerWidth-40-16)/3,(av-(rows-1)*8-4)/rows*63/88));g.style.cssText=`grid-template-columns:repeat(3,${cw.toFixed(0)}px);grid-auto-rows:${(cw*88/63).toFixed(0)}px;justify-content:center`}
   try{s.animate([{opacity:0},{opacity:1}],{duration:520,easing:"ease-out"})}catch(e){}}
