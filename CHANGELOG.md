@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v365 — Scheda "Utente" al posto di Impostazioni (icona profilo): scheda con nome utente modificabile (locale) + Impostazioni dentro. Cloud/scambi: da fare. Ripiego: v364
+
 ## v364 — Riscatto: retro in attesa più a lungo (~0,95s), passaggio alla carta aperta in dissolvenza (560ms) senza stacco. DEV: seconda missione di prova "Venusaur holo" (set Base) segreta, con animazione. Ripiego: v363
 
 ## v363 — Missioni, riscatto: animazione ricompensa. Carte mostrate: retro che sale con raggi dorati, si gira, flash + effetti; carte segrete: sagoma sigillata con ? che trema ed esplode. Tocco per saltare. Poi si apre la carta come prima. Ripiego: v362
