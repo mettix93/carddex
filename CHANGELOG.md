@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v369 — Utente: azioni cloud come lista pulita (stile Impostazioni) invece di pulsanti; codice di accesso in riga con Copia e "L ho salvato". Ripiego: v368
+
 ## v368 — Cloud: cronologia versioni (ultime 12 sul server, 1 ogni 2h) con ripristino da Utente; promemoria "salva il codice" finché non confermato. Richiede carddex-supabase-2.sql. Ripiego: v367
 
 ## v367 — Cloud: se telefono e cloud hanno gli stessi dati (dopo Esci e rientro) ricollega senza chiedere; confronto indipendente dall ordine delle chiavi. Ripiego: v366
