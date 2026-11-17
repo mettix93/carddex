@@ -1,3 +1,6 @@
+## v382
+- Account: nei cerchi Carte uniche / Set completati il "/totale" è azzurrino (come l'anello non completato) e la sbarra è alta come le cifre. Ripiego: v381
+
 # CardDex – aggiornamenti
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
