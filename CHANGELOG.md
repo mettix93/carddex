@@ -2,6 +2,8 @@
 
 Il più recente in alto. Ogni voce è un caricamento sul sito.
 
+## v366 — Cloud (Supabase): account con codice di accesso (16 caratteri), salvataggio automatico di collezione, bustine, missioni, bacheche; accesso da altro telefono; conflitti con scelta. Backup ora include missioni. SQL in carddex-supabase.sql. Ripiego: v365
+
 ## v365 — Scheda "Utente" al posto di Impostazioni (icona profilo): scheda con nome utente modificabile (locale) + Impostazioni dentro. Cloud/scambi: da fare. Ripiego: v364
 
 ## v364 — Riscatto: retro in attesa più a lungo (~0,95s), passaggio alla carta aperta in dissolvenza (560ms) senza stacco. DEV: seconda missione di prova "Venusaur holo" (set Base) segreta, con animazione. Ripiego: v363
