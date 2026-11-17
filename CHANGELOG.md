@@ -699,3 +699,10 @@ Ripiego: v353
 ## v406
 - Cloud: la scelta «telefono o cloud» ora spiega perché compare, mostra le carte di ciascun lato e la data del cloud, e indica quella consigliata (più carte).
 - Ripiego: v405
+
+## v407 · Collezione c1 — divisione in due app
+- Nuova app **Collezione** (`collezione.html`, manifest e icona propri): solo album collezione, Pokédex e bacheche con carte della collezione. Niente bustine, missioni, scambi né scelta tra modalità. Statistiche: solo «Carte uniche» e «Set completati».
+- Collezione usa chiavi proprie (prefisso `col_`) e al primo avvio copia i dati già segnati da CardDex (carte, album personalizzati, ordini, nome, tema); non copia i dati del gioco né la sessione cloud (si rientra col codice di accesso). Cloud: riga separata (`env` = `col`).
+- CardDex: tolta la Collezione personale (modalità, selettore Album, scelta nelle bacheche e nel Pokédex). I dati della collezione restano intatti nel telefono e nel cloud, solo non più visibili; le bacheche della collezione restano salvate ma nascoste.
+- Generati da `tools/split_apps.py` a partire dalla v406; test `tests/col.js`.
+- Ripiego: v406 (`/tmp/base_v406.html` = tag git v406)
