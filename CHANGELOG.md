@@ -1,3 +1,6 @@
+## v395
+- Audio sintetico: corretto un click iniziale in ogni strato dei suoni (guadagno di partenza 1 invece di ~0); tutti gli effetti sonori sintetici ora partono puliti. Ripiego: v394
+
 ## v394
 - Suono 'carta che entra': chiusura più marcata (assestamento morbido a ~150ms), strusciata leggermente più corta. Ripiego: v393
 

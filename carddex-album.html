@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v394";
+const APPV="v395";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2033,8 +2033,8 @@ function acUnlock(){try{if(!AC){AC=new(window.AudioContext||window.webkitAudioCo
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&AC&&AC.state!=="running")try{AC.resume()}catch(e){}});
 /* effetti sonori sintetizzati (nessun file audio): seguono l'interruttore "Effetti sonori" e il silenzioso */
 const SFXN=()=>{if(!AC)return null;if(!SFXN.b){const n=AC.sampleRate,b=AC.createBuffer(1,n,n),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()*2-1;SFXN.b=b}return SFXN.b};
-function sxT(t,f0,f1,d,ty,v,at){const o=AC.createOscillator(),g=AC.createGain();o.type=ty||"sine";o.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.15,t+(at||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
-function sxN(t,d,f0,f1,v,ty,q,at){const b=SFXN();if(!b)return;const s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=b;s.loop=true;f.type=ty||"bandpass";f.Q.value=q||1;f.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)f.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.1,t+Math.min(at||.03,d/3));g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t,Math.random()*.5);s.stop(t+d+.03)}
+function sxT(t,f0,f1,d,ty,v,at){const o=AC.createOscillator(),g=AC.createGain();g.gain.value=.0001;o.type=ty||"sine";o.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.15,t+(at||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
+function sxN(t,d,f0,f1,v,ty,q,at){const b=SFXN();if(!b)return;const s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();g.gain.value=.0001;s.buffer=b;s.loop=true;f.type=ty||"bandpass";f.Q.value=q||1;f.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)f.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.1,t+Math.min(at||.03,d/3));g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(AC.destination);s.start(t,Math.random()*.5);s.stop(t+d+.03)}
 const SFX={
  rip:t=>{sxN(t,.42,2200,600,.22,"bandpass",.8);for(let i=0;i<7;i++)sxN(t+i*.05+Math.random()*.02,.03,3500+Math.random()*2500,0,.12,"highpass",.5)},
  swipe:t=>{sxN(t,.16,900,3200,.1,"bandpass",.7)},
