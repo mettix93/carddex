@@ -1,3 +1,6 @@
+## v398
+- Suono 'carta che entra': volume +20% circa. Ripiego: v397
+
 ## v397
 - Suono 'carta che entra': nuova versione E3 (struscio morbido che scende e si assesta, nessun tonfo). Ripiego: v396
 

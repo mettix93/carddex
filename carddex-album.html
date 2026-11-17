@@ -1283,7 +1283,7 @@ html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
 <input type="file" id="fim" accept=".json,application/json" hidden><input type="file" id="fi" accept="image/*" hidden><input type="file" id="fb" accept="image/*" hidden>
 <script>
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v397";
+const APPV="v398";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2041,7 +2041,7 @@ const SFX={
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- land:t=>{sxN(t,.46,750,1700,.045,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.013,"bandpass",.35,.2);sxN(t+.3,.22,1300,500,.026,"lowpass",.4,.09)},
+ land:t=>{sxN(t,.46,750,1700,.054,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.016,"bandpass",.35,.2);sxN(t+.3,.22,1300,500,.031,"lowpass",.4,.09)},
  page:t=>{sxN(t,.12,2600,1400,.07,"bandpass",.6);sxN(t+.09,.08,3400,2000,.04,"bandpass",.6)},
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
