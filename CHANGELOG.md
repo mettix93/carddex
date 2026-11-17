@@ -1,3 +1,6 @@
+## v392
+- Suono 'carta che entra': solo strusciata di carta (attacco morbido, ~0.25s), senza colpo finale. Ripiego: v391
+
 ## v391
 - Pokédex: le sagome grigie non vengono più ricreate a fine riempimento (dxPatch le lascia intatte).
 - Suono 'carta che entra' più leggero: solo fruscio/strusciata di carta, senza colpo grave.
