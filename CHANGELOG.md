@@ -1,3 +1,9 @@
+## v423
+- PullTime: Lucky Pack (1/20, garantita dopo 20 bustine senza) e God Pack (1/100). Lucky: penultima carta come slot raro, ultima olografica garantita. God: tutte rare (con la solita chance di olo), ultima olografica garantita, senza doppioni. Stesso numero di carte della bustina normale.
+- Al taglio: fascio d’argento (Lucky) o d’oro (God); nella God fondo oro luccicante durante lo sbusto e nel riepilogo.
+- DEV: prima del taglio compaiono Normale/Lucky/God; la bustina forzata è di prova e non salva nulla (né album, né Pokédex, né statistiche, né contatore).
+- Test: tests/lucky.js
+
 ## v422 / c16
 - PullTime: «Album bustine» diventa «Album» con l’icona del libro aperto (quella della collezione personale).
 - PullBinder: «Collezione personale» diventa «Album».
