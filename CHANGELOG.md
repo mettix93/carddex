@@ -1,3 +1,6 @@
+## v421
+- PullTime: nell’ingresso delle carte nella tasca (album e Pokédex) il suono di scivolamento parte con il movimento; all’arrivo, insieme a luce e riflesso, suona il campanello del Pokémon nuovo dello sbusto.
+
 ## v420 / c15
 - Icone dei set EX: ultime quattro rimesse nell’ordine giusto (Sandstorm, Dragon, Leggende Nascoste, Deoxys), prima erano invertite.
 - PullTime: tenendo premuta una carta nell’album non si apre più il menu opzioni.
