@@ -1,3 +1,7 @@
+## v420 / c15
+- Icone dei set EX: ultime quattro rimesse nell’ordine giusto (Sandstorm, Dragon, Leggende Nascoste, Deoxys), prima erano invertite.
+- PullTime: tenendo premuta una carta nell’album non si apre più il menu opzioni.
+
 ## v419 / c14
 - Icona del set Rubino e Zaffiro sostituita con quella giusta (ottagono); la gemma rettangolare resta a Smeraldo (non attivo). Ordine dei set EX invariato: R&S, Sandstorm, Dragon, Leggende Nascoste, Deoxys.
 
