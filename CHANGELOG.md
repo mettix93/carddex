@@ -1,3 +1,6 @@
+## v426
+- Lucky/God Pack: la scritta è esattamente a metà tra il nome del set e il badge «Nuova carta».
+
 ## v425
 - Lucky/God Pack: fascia in alto fissa (oro per la God, argento per la Lucky) invece del colore della carta, anche nel riepilogo; fondo oro più scuro con brillantini come nell’effetto olografico; la Lucky ha lo stesso fondo ma argento; scritta «Lucky Pack!» / «God Pack!» sotto il nome del set; fascio di luce più breve e prima carta con ingresso ritardato e più lento (solo in questi pack); riepilogo con lo stesso fondo.
 
