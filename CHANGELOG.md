@@ -1,6 +1,10 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v409 / c5 — Nuovi nomi
+- App 1 ora si chiama **PullTime**, App 2 **PullBinder** (titolo, nome sotto l’icona, manifest, testi che nominavano CardDex).
+- Invariati: indirizzi dei file, chiavi dei dati, cache: nessun dato toccato.
+
 ## v401
 - Suono carta in tasca +16% volume. Album: pausa tra una carta e la successiva 640ms (era 420), +320ms se la prossima è su un'altra pagina (niente sovrapposizione col suono del giro pagina). Ripiego: v400
 
