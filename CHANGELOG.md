@@ -1,3 +1,6 @@
+## v434
+- Lucky/God Pack: il colore della fascia in alto (sfondo di pagina e colore barra di stato) non cambia più al momento del taglio ma insieme alla dissolvenza dello sfondo da bianco a oro/argento; cambiate solo la classe che decide il colore (gband, aggiunta quando lo sfondo inizia a sfumare) e il ritardo del colore della barra di stato (0,3 s). Le altre fasi non cambiano.
+
 ## v432
 - Lucky/God Pack: la fascia in alto non diventa più oro di colpo mentre lo sfondo è ancora bianco; ora sfuma insieme allo sfondo (circa 0,6 s). Nel riepilogo resta dorata/argento. Cambiata solo una regola grafica, la logica della fascia è invariata.
 
