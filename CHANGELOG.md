@@ -1,3 +1,6 @@
+## v432
+- Lucky/God Pack: la fascia in alto non diventa più oro di colpo mentre lo sfondo è ancora bianco; ora sfuma insieme allo sfondo (circa 0,6 s). Nel riepilogo resta dorata/argento. Cambiata solo una regola grafica, la logica della fascia è invariata.
+
 ## v431
 - Lucky/God Pack: nuovo effetto al taglio al posto del fascio rigido: colonna di luce morbida che sale e svanisce in meno di 1 s, lampo al taglio e scintille che salgono (oro per la God, argento per la Lucky); tutto sparisce prima dell’arrivo della prima carta.
 
