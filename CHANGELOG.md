@@ -1,6 +1,9 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## c11
+- PullBinder: tolte le immagini delle bustine del gioco (non usate): da 3,9 MB a 1,2 MB. Copia di sicurezza: tag git pre-cleanup-v414.
+
 ## v414 / c10
 - Barra in basso (iOS): guardia generale che controlla ogni 1,5 s, a ogni tocco, al rientro e a ogni cambio di viewport; se la pagina è scivolata la riallinea (prima lo faceva solo a fine sbusto). Si ferma da sola se non serve (max 4 interventi in 15 s).
 
