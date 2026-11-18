@@ -799,7 +799,7 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 .pkhalo{will-change:transform,opacity;position:absolute;left:50%;top:calc(50% + 17px);width:min(120vw,640px);aspect-ratio:1;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(circle,rgba(255,214,10,.7) 0,rgba(255,120,200,.32) 34%,rgba(120,200,255,.18) 50%,rgba(0,0,0,0) 66%)}
 .pkgd>div{cursor:pointer}
 .pkgd .pkn{left:3px;top:3px;font-size:9px;padding:2px 5px}
-.pkfl{overflow:hidden;border-radius:5px;background:#222;box-shadow:0 4px 10px rgba(40,70,120,.28)}.pkfl img{width:100%;height:100%;object-fit:fill;display:block}.pkfl .pkn{left:3px;top:3px;font-size:9px;padding:2px 5px}.pkfl.ho{box-shadow:0 0 0 2px #ffd60a,0 0 14px rgba(255,214,10,.6)}.pkgd .ho{box-shadow:0 0 0 2px #ffd60a,0 0 14px rgba(255,214,10,.6)}
+.pkfl{overflow:hidden;border-radius:5px;background:#222;box-shadow:0 4px 10px rgba(40,70,120,.28)}.pkfl img{width:100%;height:100%;object-fit:fill;display:block}.pkfl .pkn{left:3px;top:3px;font-size:9px;padding:2px 5px}.pkgd .hs svg,.pkfl .hs svg{width:12px;height:12px}
 .pkgd>div{box-shadow:0 4px 10px rgba(40,70,120,.28)}
 .pkbt{position:absolute;left:16px;right:16px;bottom:var(--pkb,max(10px,calc(env(safe-area-inset-bottom,0px) - 20px)));height:52px;box-sizing:border-box;display:flex;gap:8px;padding:6px;border-radius:999px;background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.2),0 8px 24px rgba(40,70,120,.2)}
 .pkbt button{flex:1;height:38px;padding:0 12px;border-radius:999px;border:0;background:rgba(255,255,255,.55);color:#1b2a49;font:600 14px -apple-system,system-ui,sans-serif;white-space:nowrap}
@@ -1321,7 +1321,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v434";
+const APPV="v435";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2783,7 +2783,7 @@ function pkNext(dy,off){if(pkLock||!pkCur)return;pkLock=1;sfx("swipe");hap(1);do
     pkAp();pkShow();pkLock=0};
   if(a)a.onfinish=fin;else fin()}
 function pkSumBuild(){const s=$("#pksum"),n=pkAvail();
-  s.innerHTML=`<h2>Carte ottenute</h2><div class="pkgd">${pkAll().map((x,j)=>`<div data-j="${j}" class="${x.c.h?"ho":""}">${face(x.c,1)}${pkBadgeH(x,0)}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
+  s.innerHTML=`<h2>Carte ottenute</h2><div class="pkgd">${pkAll().map((x,j)=>`<div data-j="${j}" class="${x.c.h?"ho":""}">${face(x.c,1)}${x.c.h?HOLO:""}${pkBadgeH(x,0)}</div>`).join("")}</div><div class="pkbt"><button id="pks1">Vai all’album</button>${n>0?`<button class="p" id="pks2">Apri un’altra${PKTEST?"":" ("+n+")"}</button>`:""}</div>`;
   s.hidden=true;$("#pks1").onclick=()=>{if(pkFlyB)return;pkDexOut(pkToAlbum)};const b=$("#pks2");if(b)b.onclick=()=>{if(pkFlyB)return;pkDexOut()};s.querySelectorAll(".pkgd>div").forEach(d=>d.onclick=()=>pkView(pkAll()[+d.dataset.j].c))}
 /* iOS: a fine sbusto la barra in basso può restare più in basso finché non si tocca un altro tasto: forza scroll a 0, nuovo calcolo del viewport e riallineamento, ripetuti */
 function pkKick(){const R=document.documentElement,f=()=>{try{if(window.scrollY||R.scrollTop||document.body.scrollTop){window.scrollTo(0,0);R.scrollTop=0;document.body.scrollTop=0}pkAlign()}catch(e){}};

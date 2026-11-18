@@ -1,3 +1,6 @@
+## v435
+- PullTime: nel riepilogo della bustina le carte olografiche non hanno più il contorno giallo; hanno invece il simbolino olo in alto a destra, come nell’album.
+
 ## v434
 - Lucky/God Pack: il colore della fascia in alto (sfondo di pagina e colore barra di stato) non cambia più al momento del taglio ma insieme alla dissolvenza dello sfondo da bianco a oro/argento; cambiate solo la classe che decide il colore (gband, aggiunta quando lo sfondo inizia a sfumare) e il ritardo del colore della barra di stato (0,3 s). Le altre fasi non cambiano.
 
