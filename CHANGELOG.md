@@ -1,3 +1,6 @@
+## v441
+- Apertura bustina: il lampo bianco al taglio ora sfuma in ~0,2 s (prima ~0,6 s) e la fascia in alto cambia colore a metà di quella sfumatura (170 ms dopo il taglio): pagina e fascia cambiano insieme, come un taglio netto, invece di una fascia che scatta e una pagina che sfuma piano.
+
 ## v440
 - Apertura bustina: il lampo azzurro al taglio (#pkwash) ora è bianco/grigio chiaro come lo studio (scuro in tema scuro), quindi la transizione è solo bianco → oro/argento/colore della prima carta.
 - Fascia in alto: segue il lampo (non più la sola dissolvenza dello studio); il colore finale scatta a metà della dissolvenza della pagina (450 ms dopo il taglio) invece che prima.
