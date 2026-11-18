@@ -23,7 +23,7 @@ const s0=await keep();
 await p.evaluate(()=>pkZoom());await p.waitForTimeout(700);
 ok(await p.evaluate(()=>{const d=document.querySelector("#pkdv");return !!d&&!d.hidden&&d.offsetHeight>0}),"DEV: comandi Normale/Lucky/God visibili prima del taglio");
 await p.click('#pkdv button[data-k=g]');await p.evaluate(()=>pkOpen());await p.waitForTimeout(600);
-ok(await p.evaluate(()=>document.querySelector(".pkbeam")!==null),"fascio di luce al taglio");
+ok(await p.evaluate(()=>document.querySelector(".pkcol")!==null),"fascio di luce al taglio");
 ok(await p.evaluate(()=>document.querySelector("#pk").classList.contains("god")&&!!document.querySelector("#pkgold")),"fondo oro attivo durante lo sbusto");
 await p.waitForTimeout(2200);
 ok(await p.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor)==="rgb(160, 108, 18)","fascia in alto dorata (non del colore della carta)");

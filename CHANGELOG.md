@@ -1,3 +1,6 @@
+## v431
+- Lucky/God Pack: nuovo effetto al taglio al posto del fascio rigido: colonna di luce morbida che sale e svanisce in meno di 1 s, lampo al taglio e scintille che salgono (oro per la God, argento per la Lucky); tutto sparisce prima dell’arrivo della prima carta.
+
 ## v430
 - PullTime: corretto il lampo di luce che compariva lontano dalla carta all’inizio dell’alone d’oro quando una carta entra nella tasca (album e Pokédex): l’alone ora parte invisibile e già centrato sulla carta.
 
