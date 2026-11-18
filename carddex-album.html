@@ -1296,7 +1296,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v417";
+const APPV="v418";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2179,6 +2179,7 @@ function pkGen(pc,sc,t,nm,cn){const W=480,H=818,e=x=>String(x).replace(/&/g,"&am
   const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+pc+'"/><stop offset="1" stop-color="'+sc+'"/></linearGradient><linearGradient id="s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".45" stop-color="#fff" stop-opacity=".28"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="'+d+'" fill="url(#g)"/><path d="'+d+'" fill="url(#s)"/><path d="'+d+'" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/><g font-family="-apple-system,Helvetica,Arial,sans-serif" text-anchor="middle" font-weight="800"><text x="240" y="130" font-size="66" fill="#ffd60a" stroke="#1b2a49" stroke-width="9" paint-order="stroke" font-style="italic">Pokémon</text><text x="240" y="170" font-size="19" fill="#fff" letter-spacing="3">TRADING CARD GAME</text><text x="240" y="420" font-size="'+Math.min(78,Math.floor(430/(t.length*.66)))+'" fill="#fff" stroke="#1b2a49" stroke-width="10" paint-order="stroke">'+e(t)+'</text><text x="240" y="560" font-size="46" fill="#fff" stroke="#1b2a49" stroke-width="7" paint-order="stroke">'+e(nm)+'</text><text x="240" y="745" font-size="22" fill="#fff" letter-spacing="2">'+(cn||11)+' CARTE</text></g></svg>';
   return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)}
 const pkMk=(l,n,t,c1,c2,d,pc,cn)=>({n,c1,c2,cnt:cn||11,e:0,p:[1,2,3].map((i,x)=>({k:l+"_"+i,n:"Bustina "+i,c:pc[x],img:pkGen(pc[x],d,t,"Bustina "+i,cn)}))});
+const pkEX=(l,n,c1,c2,pp)=>({n,c1,c2,cnt:9,e:0,p:pp.map(([nm,c],i)=>({k:l+"_"+(i+1),n:nm,c,img:"packs/"+l+"_"+(i+1)+".jpg"}))});
 const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:PKP},
   J:{n:"Jungle",c1:"#1f7a3a",c2:"#9ad84a",cnt:11,e:0,p:[["Wigglytuff","#e58bc0"],["Scyther","#7cc242"],["Flareon","#e8641c"]].map(([n,c])=>({k:"j_"+n,n,c,img:pkGen(c,"#14502a","JUNGLE",n)}))},
   F:{n:"Fossil",c1:"#6a2f8f",c2:"#e0833a",cnt:11,e:0,p:[["Lapras","#2c7fd0"],["Aerodactyl","#9a6bb8"],["Zapdos","#e9b81a"]].map(([n,c])=>({k:"f_"+n,n,c,img:pkGen(c,"#3d1a5c","FOSSIL",n)}))},
@@ -2189,10 +2190,11 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:
   D:{n:"Neo Discovery",c1:"#5a3d99",c2:"#e8b84a",cnt:11,e:0,p:[["1","Xatu","#3a9a5a"],["2","Umbreon","#3a4a8a"],["3","Scizor","#d1453a"],["4","Smeargle","#c9a96a"]].map(([k,n,c])=>({k:"d_"+k,n,c}))},
   V:{n:"Neo Revelation",c1:"#b3262f",c2:"#f2a65a",cnt:11,e:0,p:[["1","Misdreavus","#4aa89a"],["2","Raikou","#e8b82b"],["3","Entei","#d1453a"],["4","Suicune","#2f8fd0"]].map(([k,n,c])=>({k:"v_"+k,n,c}))},
   T:{n:"Neo Destiny",c1:"#2b2d42",c2:"#8d99ae",cnt:11,e:0,p:[["1","Noctowl","#a8743a"],["2","Togetic","#8aa83a"],["3","Tyranitar","#6a8f4a"],["4","Celebi","#7a5cc2"]].map(([k,n,c])=>({k:"t_"+k,n,c}))},
-  H:pkMk("h","EX Rubino e Zaffiro","EX RUBINO E ZAFFIRO","#b3202a","#3a7bd5","#3a0d12",["#c8302f","#2f6fc2","#3a9a5a"],9),
-  I:pkMk("i","EX Tempesta di Sabbia","EX TEMPESTA DI SABBIA","#c98a2b","#f2d58a","#5c3a0c",["#d9992b","#8a5a2b","#2f8f9a"],9),
-  K:pkMk("k","EX Drago","EX DRAGO","#2f8f6a","#8ad8b8","#0f3d2c",["#2f9a6f","#3a6fc2","#c2452d"],9),
-  M:pkMk("m","EX Leggende Nascoste","EX LEGGENDE NASCOSTE","#5a3d99","#a8c8f0","#2d1d52",["#7a5cc2","#2f6fb8","#c28a2b"],9)};
+  H:pkEX("h","EX Rubino e Zaffiro","#b3202a","#3a7bd5",[["Sceptile","#3fae4a"],["Mightyena","#7a8394"],["Lairon","#5b7fc9"],["Manectric","#e8c22a"]]),
+  I:pkEX("i","EX Tempesta di Sabbia","#c98a2b","#f2d58a",[["Shiftry","#5aa83a"],["Zangoose","#c7384f"],["Seviper","#7a4fa8"],["Dusclops","#b0a58a"]]),
+  K:pkEX("k","EX Drago","#2f8f6a","#8ad8b8",[["Absol","#e0542a"],["Latias","#c8384a"],["Latios","#3a74c8"],["Rayquaza","#3ea84a"]]),
+  M:pkEX("m","EX Leggende Nascoste","#5a3d99","#a8c8f0",[["Metagross","#3fa8b8"],["Regirock","#c8742a"],["Regice","#4a8fd8"],["Registeel","#8a8f9c"]]),
+  N:pkEX("n","EX Deoxys","#2f9ac8","#c8e84a",[["Rayquaza","#c45aa8"],["Deoxys Normale","#b8c43a"],["Deoxys Attacco","#6bbf3a"],["Deoxys Difesa","#5aa0d8"]])};
 let PKCUR="B";try{const q=localStorage.getItem(GK("carddex_pks"));if(q&&PKSET[q])PKCUR=q}catch(e){}
 const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};

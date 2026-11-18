@@ -1,3 +1,6 @@
+## v418
+- PullTime: foto reali delle bustine EX (Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste, Deoxys), 4 per set, ordinate per numero di Pokédex del Pokémon raffigurato. Immagini in packs/.
+
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
