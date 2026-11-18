@@ -1,3 +1,6 @@
+## v437
+- Fascia Lucky/God: l'aggiornamento graduale del colore ora sostituisce il meta theme-color (come fa già il resto dell'app) invece di modificarlo, perché iOS ignorava le modifiche semplici.
+
 ## v436
 - PullTime: fascia in alto nei Lucky/God Pack: invece di restare bianca e poi scattare al colore finale, ora scorre gradualmente (bianco → argento/oro) insieme alla dissolvenza dello sfondo, aggiornando anche il colore della barra di stato a ogni frame.
 
