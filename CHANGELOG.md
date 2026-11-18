@@ -1,6 +1,9 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v412 / c8
+- Versi: fonte principale PokeAPI (con file locali, script `tools/scarica_versi_pokeapi.py`), Showdown come riserva. Finché lo script non è stato lanciato il suono resta quello di prima.
+
 ## v411 / c7
 - Versi dei Pokémon riportati esattamente come in v409/c5 (fonte Showdown, volume e filtri originali).
 
