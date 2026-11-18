@@ -1,3 +1,6 @@
+## v428
+- DEV: le carte dei Lucky/God Pack forzati entrano davvero nell’album e nel Pokédex (con le animazioni di ingresso) e spariscono quando, finite le animazioni, esci dalla pagina; se l’app viene chiusa o ricaricata prima, tornano subito come prima. Durante la prova il salvataggio nel cloud è sospeso.
+
 ## v427
 - PullTime: alone di luce quando una carta entra nella tasca (album e Pokédex) più dorato e un po’ più ampio; ora è un alone radiale uniforme che copre anche le carte vicine, senza il tratto che partiva da lontano.
 

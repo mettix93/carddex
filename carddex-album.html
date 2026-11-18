@@ -1319,13 +1319,14 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v427";
+const APPV="v428";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
 const ENV=(()=>{if(!DEVOK)return"app";try{return localStorage.getItem("carddex_env")==="app"?"app":"dev"}catch(e){return"dev"}})();
 const GK=k=>ENV==="dev"?k:k+"_a";
 const CK=k=>ENV==="dev"?k+"_d":k;
+try{const _t=localStorage.getItem("carddex_tsnap");if(_t){const o=JSON.parse(_t);for(const k in o){if(o[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,o[k])}localStorage.removeItem("carddex_tsnap")}}catch(e){}
 /* avvio protetto: se l'avvio precedente non è arrivato in fondo, questa volta si parte senza le code in sospeso (animazioni carte) */
 let SAFE=0;try{const t=+localStorage.getItem("carddex_boot");if(t&&Date.now()-t<864e5){SAFE=1;localStorage.removeItem(GK("carddex_aq"));localStorage.removeItem(GK("carddex_dxq"));try{localStorage.setItem("carddex_err",JSON.stringify({v:APPV,t:new Date().toISOString(),w:"avvio",m:"l'avvio precedente non si era completato: code in sospeso azzerate",s:""}))}catch(e){}}localStorage.setItem("carddex_boot",String(Date.now()))}catch(e){}
 const bootOk=()=>!!document.querySelector("#tabs .tab");
@@ -2634,6 +2635,12 @@ function pkZoom(){if(pkPh!=="show"||pkBusy)return;pkBusy=1;const w=$("#pkw");w.s
   setTimeout(()=>{$("#pk").classList.add("close");pkPh="close";$("#pkm").textContent="Scorri lungo la linea per tagliare la bustina";pkBusy=0;pkDvShow()},300)}
 function pkUnzoom(){if(pkPh!=="close"||$("#pk").classList.contains("chain"))return;pkDvHide();$("#pk").classList.remove("close");pkPh="show";$("#pkm").textContent=""}
 /* Lucky Pack (1/20, garantita alla 21ª) e God Pack (1/100) */
+/* DEV: le carte di un Lucky/God forzato entrano davvero (animazioni album e Pokédex) e poi spariscono quando esci dalla pagina */
+let pkTs=null;
+function pkTestBegin(){if(pkTs)return;const ks=[SKEY,GK("carddex_pk"),GK("carddex_ms"),GK("carddex_stats"),GK("carddex_dxq"),GK("carddex_aq")],o={};ks.forEach(k=>{try{o[k]=localStorage.getItem(k)}catch(e){o[k]=null}});pkTs={o,st:JSON.stringify(st),dq:JSON.stringify(PKDQ),aq:JSON.stringify(PKAQ)};try{localStorage.setItem("carddex_tsnap",JSON.stringify(o))}catch(e){}}
+function pkTestEnd(){if(!pkTs)return;const T=pkTs;pkTs=null;for(const k in T.o){try{if(T.o[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,T.o[k])}catch(e){}}try{localStorage.removeItem("carddex_tsnap")}catch(e){}
+  st=JSON.parse(T.st);PKDQ=JSON.parse(T.dq);PKAQ=JSON.parse(T.aq);try{fillSt()}catch(e){}try{if(!document.body.classList.contains("dex"))render()}catch(e){}try{tabs()}catch(e){}try{dxBadge();aqBadge();pkBadge()}catch(e){}}
+document.addEventListener("click",ev=>{if(!pkTs||!ev.target.closest||!ev.target.closest(".nvp,#nvp"))return;if(aqRun||dxFilling||PKAQ.length||PKDQ.length)return;setTimeout(()=>{if(pkTs&&!aqRun&&!dxFilling&&!PKAQ.length&&!PKDQ.length)pkTestEnd()},350)},true);
 let pkForce="";
 const PKLK={p:20,g:100};
 function pkRoll(){const t=pkForce;pkForce="";if(t)return{k:t,t:1};if(rndI(PKLK.g)===0)return{k:"g"};const o=pkSt();if((o.lk||0)>=PKLK.p||rndI(PKLK.p)===0)return{k:"l"};return{k:"n"}}
@@ -2656,8 +2663,8 @@ function pkLgFx(k){const p=$("#pk"),w=$("#pkw");if(!p||!w)return;const g=k==="g"
 function pkDvShow(){if(!PKDEV)return;let d=$("#pkdv");if(!d){d=document.createElement("div");d.id="pkdv";d.innerHTML='<button data-k="">Normale</button><button data-k="l">Lucky</button><button data-k="g">God</button>';$("#pk").appendChild(d);d.onclick=e=>{const b=e.target.closest("button");if(!b)return;e.stopPropagation();pkForce=b.dataset.k;pkDvSync()};d.addEventListener("pointerdown",e=>e.stopPropagation())}d.hidden=false;pkDvSync()}
 function pkDvSync(){const d=$("#pkdv");if(d)d.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.k===pkForce))}
 function pkDvHide(){const d=$("#pkdv");if(d)d.hidden=true}
-function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(!K.t){o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
-  const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=K.t?draw.map(c=>({c,dx:0,nw:pkNw(c),q:1})):draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));if(!K.t){res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
+function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
+  const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));{res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
   w.classList.remove("cutting");w.querySelectorAll(".pkct,.pkcl").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:140,fill:"forwards"})}catch(e){}setTimeout(()=>{f.style.display="none"},160)});
@@ -2900,7 +2907,7 @@ function cuMerge(L,R){const cn=o=>(JSON.stringify([o.coll,o.game]).match(/"o":1/
     const pos={},used={};bl.forEach(x=>{if(x&&x.id)(pos[x.id]=pos[x.id]||[]).push(x)});
     ol.forEach(x=>{if(!x||!x.id||!x.o)return;const i=used[x.id]||0;used[x.id]=i+1;const y=(pos[x.id]||[])[i];if(!y)return;if(!y.o)y.o=1;if((x.q||0)>(y.q||0))y.q=x.q;if(x.n&&!y.n)y.n=x.n;if(x.fav&&!y.fav)y.fav=1})})});return m}
 let cuBusy=0;
-async function cuSync(mode){if(cuBusy)return;cuBusy=1;let msg="";
+async function cuSync(mode){if(cuBusy||pkTs)return;cuBusy=1;let msg="";
   try{const u=await cuTok(),env=ENV;let snap=cuSnap(),h=cuH(snap);
     const rows=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+env+"&select=data,updated_at"),rm=rows&&rows[0];
     const fin=(lr,lh)=>{const c=cuGet();if(c){c.lr=lr;c.lh=lh;c.ts=Date.now();c.er="";cuSet(c)}};

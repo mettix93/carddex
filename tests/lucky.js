@@ -28,6 +28,23 @@ ok(await p.evaluate(()=>document.querySelector("#pk").classList.contains("god")&
 await p.waitForTimeout(2200);
 ok(await p.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor)==="rgb(160, 108, 18)","fascia in alto dorata (non del colore della carta)");
 ok(await p.evaluate(()=>document.querySelector("#pklg")&&document.querySelector("#pklg").textContent==="God Pack!"),"scritta God Pack! durante lo sbusto");
-ok(s0===await keep(),"pacchetto di prova DEV: nulla salvato (contatore, album, Pokédex)");
+const s1=JSON.parse(await keep()),s00=JSON.parse(s0);
+ok(s1.own>s00.own&&s1.aq>0,"DEV forzato: le carte entrano davvero (album "+s00.own+"→"+s1.own+", in coda "+s1.aq+")");
+await p.evaluate(()=>pkSummary());await p.waitForTimeout(800);
+await p.evaluate(()=>{const b=document.querySelector("#pk");b.hidden=true;try{pkClose&&0}catch(e){}});
+await p.click('#nvp button[data-t=c]').catch(()=>{});await p.waitForTimeout(600);
+await p.evaluate(()=>{const e=document.querySelector('.asc[data-m=g]');e&&e.click()});
+await p.waitForTimeout(500);
+await p.evaluate(()=>{const k=PKAQ[0]&&PKAQ[0].k;if(k)aqAnim0(k)});
+for(let i=0;i<60&&await p.evaluate(()=>aqRun);i++)await p.waitForTimeout(500);
+const mid=JSON.parse(await keep());
+ok(mid.own>s00.own,"dopo l'animazione le carte sono ancora lì finché resti nella pagina");
+await p.click('#nvp button[data-t=d]');await p.waitForTimeout(400);
+const mid2=JSON.parse(await keep());
+if(mid2.dq>0){for(let i=0;i<80&&await p.evaluate(()=>dxFilling||PKDQ.length);i++)await p.waitForTimeout(500);await p.click('#nvp button[data-t=c]');await p.waitForTimeout(900)}
+else{await p.click('#nvp button[data-t=c]');await p.waitForTimeout(900)}
+const e1=JSON.parse(await keep());
+ok(e1.own===s00.own&&e1.dq===0&&e1.aq===0&&e1.pk===s00.pk,"uscendo dalla pagina le carte spariscono e lo stato torna come prima");
+ok(await p.evaluate(()=>!localStorage.getItem("carddex_tsnap")),"istantanea di prova rimossa");
 ok(errs.length===0,"nessun errore JS "+errs.join("|"));
 await b.close()})()
