@@ -1,3 +1,6 @@
+## v430
+- PullTime: corretto il lampo di luce che compariva lontano dalla carta all’inizio dell’alone d’oro quando una carta entra nella tasca (album e Pokédex): l’alone ora parte invisibile e già centrato sulla carta.
+
 ## v429
 - DEV: aprendo una bustina normale mentre le carte di prova sono ancora attive, la prova viene chiusa prima (contatore Lucky e carte tornano com’erano) e la bustina normale conta e salva regolarmente.
 
