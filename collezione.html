@@ -1296,7 +1296,7 @@ const APPK="col";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="c3";
+const APPV="c4";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2835,9 +2835,14 @@ function cuSess(j,code){if(!j||!j.access_token)return null;const p=cuGet()||{},o
 async function cuTok(){let u=cuGet();if(!u)throw new Error("Non hai effettuato l’accesso");if(Date.now()>u.exp){const j=await sbReq("/auth/v1/token?grant_type=refresh_token",{m:"POST",auth:false,b:{refresh_token:u.rt}});u=cuSess(j)}return u}
 const cuCanon=v=>Array.isArray(v)?v.map(cuCanon):v&&typeof v==="object"?Object.keys(v).sort().reduce((a,k)=>(a[k]=cuCanon(v[k]),a),{}):v,cuH=o=>cuHash(JSON.stringify(cuCanon(o)));
 const cuSnap=()=>{const o=bkObj();o.usr=usrGet();return o};
+/* unione: parte dal lato con più carte e vi aggiunge le carte segnate (e le copie) dell'altro; non toglie mai carte */
+function cuMerge(L,R){const cn=o=>(JSON.stringify([o.coll,o.game]).match(/"o":1/g)||[]).length,[B,O]=cn(L)>=cn(R)?[L,R]:[R,L],m=JSON.parse(JSON.stringify(B));
+  ["coll","game"].forEach(t=>{const bo=m[t]||(m[t]={}),oo=O[t]||{};Object.keys(oo).forEach(k=>{const ol=oo[k];if(!Array.isArray(ol))return;const bl=bo[k];if(!Array.isArray(bl)){bo[k]=JSON.parse(JSON.stringify(ol));return}
+    const pos={},used={};bl.forEach(x=>{if(x&&x.id)(pos[x.id]=pos[x.id]||[]).push(x)});
+    ol.forEach(x=>{if(!x||!x.id||!x.o)return;const i=used[x.id]||0;used[x.id]=i+1;const y=(pos[x.id]||[])[i];if(!y)return;if(!y.o)y.o=1;if((x.q||0)>(y.q||0))y.q=x.q;if(x.n&&!y.n)y.n=x.n;if(x.fav&&!y.fav)y.fav=1})})});return m}
 let cuBusy=0;
 async function cuSync(mode){if(cuBusy)return;cuBusy=1;let msg="";
-  try{const u=await cuTok(),env=ENVC,snap=cuSnap(),js=JSON.stringify(snap),h=cuH(snap);
+  try{const u=await cuTok(),env=ENVC;let snap=cuSnap(),h=cuH(snap);
     const rows=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+env+"&select=data,updated_at"),rm=rows&&rows[0];
     const fin=(lr,lh)=>{const c=cuGet();if(c){c.lr=lr;c.lh=lh;c.ts=Date.now();c.er="";cuSet(c)}};
     const push=async()=>{const now=Date.now();await sbReq("/rest/v1/saves?on_conflict=user_id,env",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:u.uid,env,data:snap,updated_at:new Date(now).toISOString()}});fin(now,h)};
@@ -2853,18 +2858,21 @@ async function cuSync(mode){if(cuBusy)return;cuBusy=1;let msg="";
     else if(mode==="push")msg="";
     else if(!mine&&rch)pull();
     else if(!ch&&rch&&u.lr)pull();
-    else if(mode!=="push"){fin(u.lr,u.lh);const cn=o=>(JSON.stringify([o.coll,o.game]).match(/"o":1/g)||[]).length,n1=cn(snap),n2=cn(rm.data),d=new Date(rm.updated_at),dt=d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
-    sheet([["Tieni questo telefono · "+n1+" carte"+(n1>n2?" (consigliato)":""),async()=>{try{await push();cuUi();toast("Cloud aggiornato")}catch(e){toast(e.message)}}],["Usa il cloud · "+n2+" carte, salvato "+dt+(n2>n1?" (consigliato)":""),()=>{try{pull()}catch(e){toast("Errore: "+e.message)}}]],"Hai cambiato dati sia qui sia sul cloud (da un altro telefono o dalla versione web). Scegli quali tenere: l’altra copia viene sostituita. Se non sei sicuro, tieni quella con più carte.")}
+    else if(mode!=="push"){try{localStorage.setItem("carddex_prev",JSON.stringify({ts:Date.now(),data:snap}))}catch(e){}
+      bkApplyObj(cuMerge(snap,rm.data));snap=cuSnap();h=cuH(snap);await push();toast("Dati uniti: carte del telefono e del cloud insieme")}
   }catch(e){msg=e.message||"errore";const c=cuGet();if(c){c.er=msg;cuSet(c)}}
   cuBusy=0;cuUi();return msg}
 async function cuCreate(name){const code=cuCode(),j=await sbReq("/auth/v1/signup",{m:"POST",auth:false,b:{email:cuMail(code),password:code,data:{name}}});
   if(!j||!j.access_token)throw new Error("Account creato ma serve disattivare «Confirm email» in Supabase");cuSet(null);cuSess(j,code);const e=await cuSync("full");if(e)throw new Error(e);return code}
 async function cuLogin(raw){const code=cuNorm(raw);if(code.length!==16)throw new Error("Il codice ha 16 caratteri");let j;try{j=await sbReq("/auth/v1/token?grant_type=password",{m:"POST",auth:false,b:{email:cuMail(code),password:code}})}catch(e){throw new Error(/invalid/i.test(e.message)?"Codice non valido":e.message)}
   cuSet(null);cuSess(j,code);const e=await cuSync("full");if(e)throw new Error(e)}
-async function cuHist(){const u=await cuTok(),r=await sbReq("/rest/v1/saves_hist?user_id=eq."+u.uid+"&env=eq."+ENVC+"&select=data,updated_at,saved_at&order=saved_at.desc&limit=12");
-  if(!r||!r.length){toast("Nessuna versione precedente ancora");return}
-  const f=t=>new Date(t).toLocaleString("it-IT",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
-  sheet(r.map(x=>["Versione del "+f(x.updated_at),()=>confirmSheet("Ripristinare la versione del "+f(x.updated_at)+"? Sostituisce i dati attuali di questo telefono e del cloud.",async()=>{try{bkApplyObj(x.data);const m=await cuSync("push");toast(m?"Errore: "+m:"Versione ripristinata")}catch(e){toast("Errore: "+(e.message||"ripristino"))}})]),"Versioni salvate nel cloud")}
+async function cuHist(){const u=await cuTok(),f=t=>new Date(t).toLocaleString("it-IT",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+  let r=[];try{r=await sbReq("/rest/v1/saves_hist?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data,updated_at,saved_at&order=saved_at.desc&limit=12")||[]}catch(e){}
+  const it=[["Salva ora",async()=>{const m=await cuSync("full");toast(m?"Errore: "+m:"Salvato nel cloud")}]];
+  let pv=null;try{pv=JSON.parse(localStorage.getItem("carddex_prev"))}catch(e){}
+  if(pv&&pv.data)it.push(["Dati di questo telefono prima dell’ultima unione ("+f(pv.ts)+")",()=>confirmSheet("Ripristinare i dati che avevi su questo telefono prima dell’ultima unione? Sostituisce i dati attuali di questo telefono e del cloud.",async()=>{try{bkApplyObj(pv.data);const m=await cuSync("push");toast(m?"Errore: "+m:"Dati ripristinati")}catch(e){toast("Errore: "+(e.message||"ripristino"))}})]);
+  r.forEach(x=>it.push(["Versione del "+f(x.updated_at),()=>confirmSheet("Ripristinare la versione del "+f(x.updated_at)+"? Sostituisce i dati attuali di questo telefono e del cloud.",async()=>{try{bkApplyObj(x.data);const m=await cuSync("push");toast(m?"Errore: "+m:"Versione ripristinata")}catch(e){toast("Errore: "+(e.message||"ripristino"))}})]));
+  sheet(it,"Cronologia e salvataggio")}
 const stKey=()=>GK("carddex_stats");
 function stGet(){let o=null;try{o=JSON.parse(localStorage.getItem(stKey()))}catch(e){}
   if(!o||typeof o!=="object"){const n=Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0);o={p:n,c:n*11};try{localStorage.setItem(stKey(),JSON.stringify(o))}catch(e){}}return o}
@@ -2880,11 +2888,11 @@ let USV="";
 function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
   const av=n?esc(n[0].toUpperCase()):'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>';
   let sub,rows="";const R=(k,t)=>'<button class="row act" data-u="'+k+'">'+t+'</button>';
-  if(c){const t=c.ts?new Date(c.ts).toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"}):"";sub=c.er?'Non sincronizzato: '+esc(c.er):!c.ack?'Salva il tuo codice di accesso, serve per ritrovare i dati':(t?'Salvato nel cloud · '+t:'Collegato al cloud');
-    rows=R("sy","Sincronizza ora")+R("co","Codice di accesso");
+  if(c){sub=c.er?'Non salvato: '+esc(c.er)+' · riprovo da solo':!c.ack?'Salva il tuo codice di accesso, serve per ritrovare i dati':'Tutto salvato nel cloud';
+    rows=R("co","Codice di accesso");
     if(USV==="code")rows+='<div class="row ucp"><b>'+esc(cuFmt(c.code||""))+'</b><button class="ucl" data-u="cp">Copia</button><button class="ucl" data-u="ok">L’ho salvato</button></div><div class="ucn">Conservalo: serve per ritrovare i tuoi dati se cambi telefono. Non darlo a nessuno.</div>';
-    rows+=R("hi","Versioni salvate")+R("ex","Esci")}
-  else{sub="Crea un account per salvare la collezione nel cloud e ritrovarla su un altro telefono";
+    rows+=R("hi","Cronologia e salvataggio")+R("ex","Esci")}
+  else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
   return '<div class="ucw"><div class="ucd"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div></div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div></div>'}

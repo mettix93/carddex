@@ -718,3 +718,9 @@ Ripiego: v353
 - `sw.js`: se esiste `img/index.json`, immagini e versi esterni vengono serviti dalla copia locale `img/` (con cache); se manca o fallisce, ripiego identico a prima. Senza `img/` non cambia nulla.
 - `tools/make_manifest.js` genera `tools/assets_manifest.json` (4190 voci); `tools/archivia_immagini.py` scarica tutto (riprende, gentile coi siti).
 - Verificato: con immagini bloccate restano i segnaposto (nome, numero, tipo); con copia locale le carte si vedono anche senza rete esterna.
+
+## v408 · Collezione c4 — cloud semplificato
+- Se telefono e cloud hanno dati diversi, niente più domande: l'app li unisce da sola (parte dal lato con più carte e aggiunge le carte segnate dell'altro; non toglie mai carte) e salva. Prima dell'unione tiene una copia dei dati del telefono, recuperabile da Account › Cronologia e salvataggio.
+- Account: tolti «Sincronizza ora» e l'orario; stato «Tutto salvato nel cloud». «Versioni salvate» diventa «Cronologia e salvataggio» (con «Salva ora» per le emergenze). Testi più semplici da non collegato.
+- Test: `tests/cloud.js` (unione, storico, bottone assente).
+- Ripiego: v407 / c3
