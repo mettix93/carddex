@@ -1,3 +1,6 @@
+## v436
+- PullTime: fascia in alto nei Lucky/God Pack: invece di restare bianca e poi scattare al colore finale, ora scorre gradualmente (bianco → argento/oro) insieme alla dissolvenza dello sfondo, aggiornando anche il colore della barra di stato a ogni frame.
+
 ## v435
 - PullTime: nel riepilogo della bustina le carte olografiche non hanno più il contorno giallo; hanno invece il simbolino olo in alto a destra, come nell’album.
 
