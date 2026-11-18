@@ -1,3 +1,6 @@
+## v438
+- Fascia Lucky/God: la pagina passa a oro/argento in 0,16 s (prima ~1 s) e la fascia cambia colore nello stesso momento, così lo scatto di iOS non si nota più.
+
 ## v437
 - Fascia Lucky/God: l'aggiornamento graduale del colore ora sostituisce il meta theme-color (come fa già il resto dell'app) invece di modificarlo, perché iOS ignorava le modifiche semplici.
 
