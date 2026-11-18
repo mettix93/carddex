@@ -1,3 +1,6 @@
+## v424
+- PullTime: set EX Deoxys corretto: Pokémon Hoenn, allenatori ed energie erano finiti per errore tra le carte escluse; ora la bustina dà 9 carte (23 comuni, 17 non comuni, 36 rare tra cui le ex) e l’album ha 87 carte ottenibili. Restano escluse solo le carte Kanto/Johto.
+
 ## v423
 - PullTime: Lucky Pack (1/20, garantita dopo 20 bustine senza) e God Pack (1/100). Lucky: penultima carta come slot raro, ultima olografica garantita. God: tutte rare (con la solita chance di olo), ultima olografica garantita, senza doppioni. Stesso numero di carte della bustina normale.
 - Al taglio: fascio d’argento (Lucky) o d’oro (God); nella God fondo oro luccicante durante lo sbusto e nel riepilogo.
