@@ -1,3 +1,6 @@
+## v429
+- DEV: aprendo una bustina normale mentre le carte di prova sono ancora attive, la prova viene chiusa prima (contatore Lucky e carte tornano com’erano) e la bustina normale conta e salva regolarmente.
+
 ## v428
 - DEV: le carte dei Lucky/God Pack forzati entrano davvero nell’album e nel Pokédex (con le animazioni di ingresso) e spariscono quando, finite le animazioni, esci dalla pagina; se l’app viene chiusa o ricaricata prima, tornano subito come prima. Durante la prova il salvataggio nel cloud è sospeso.
 

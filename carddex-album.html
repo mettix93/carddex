@@ -1319,7 +1319,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v428";
+const APPV="v429";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2663,7 +2663,7 @@ function pkLgFx(k){const p=$("#pk"),w=$("#pkw");if(!p||!w)return;const g=k==="g"
 function pkDvShow(){if(!PKDEV)return;let d=$("#pkdv");if(!d){d=document.createElement("div");d.id="pkdv";d.innerHTML='<button data-k="">Normale</button><button data-k="l">Lucky</button><button data-k="g">God</button>';$("#pk").appendChild(d);d.onclick=e=>{const b=e.target.closest("button");if(!b)return;e.stopPropagation();pkForce=b.dataset.k;pkDvSync()};d.addEventListener("pointerdown",e=>e.stopPropagation())}d.hidden=false;pkDvSync()}
 function pkDvSync(){const d=$("#pkdv");if(d)d.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.k===pkForce))}
 function pkDvHide(){const d=$("#pkdv");if(d)d.hidden=true}
-function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
+function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");if(pkTs&&!pkForce)pkTestEnd();const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
   const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));{res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
