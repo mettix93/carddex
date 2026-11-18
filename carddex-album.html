@@ -1296,7 +1296,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v421";
+const APPV="v422";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2759,7 +2759,7 @@ const BCPL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 const BCMAX=10,BCSN={g:"Vetro",w:"Legno",m:"Museo"},BCSC={g:"bsg_",w:"bsw_",m:"bsm_"},BCZN=["","Singola","Doppia","Tripla"];
 const bcSave=()=>{try{localStorage.setItem(GK("carddex_bch"),JSON.stringify(BCH.concat(BCHX)))}catch(e){}};
 const bcFind=id=>BCH.find(b=>b.id===id);
-function bcOrg(b){return b.o==="g"?"Album bustine":"Collezione · "+(bcAlN(b.al)||"album")}
+function bcOrg(b){return b.o==="g"?"Album":"Collezione · "+(bcAlN(b.al)||"album")}
 function bcAlN(k){const a=COLS.concat(PCOLS).find(x=>x.k===k);return a?(a.nm?a.t:albName(a.s)):""}
 function bcSrc(b){const rd=k=>{try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}},g=b.o==="g",S=g?(MODE==="g"?st:rd(GK("carddex2g"))):(MODE==="c"?st:rd(CK("carddex2"))),keys=g?GCOLS.map(c=>c.k):[b.al],out=[],seen=new Set();
   keys.forEach(k=>(S[k]||[]).forEach(s=>{if(!s||!s.id||!s.o)return;let c=CARDS[s.id];if(!c)return;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];if(c&&!seen.has(c.id)){seen.add(c.id);out.push(c)}}));return out}
@@ -2826,7 +2826,7 @@ function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}
     o.querySelector(".p").onclick=()=>{const nm=(M.nm||"").trim()||"Bacheca";if(ed){ed.nm=nm;ed.st=M.st;bcSave();o.hidden=true;bcDetail(ed.id);return}
       if(BCH.length>=BCMAX)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
   draw();o.hidden=false}
-function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+PKI+'</span><div><b>Album bustine</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
+function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+ALI+'</span><div><b>Album</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
 let ALAST=null;
 function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}

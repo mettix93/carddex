@@ -1,3 +1,7 @@
+## v422 / c16
+- PullTime: «Album bustine» diventa «Album» con l’icona del libro aperto (quella della collezione personale).
+- PullBinder: «Collezione personale» diventa «Album».
+
 ## v421
 - PullTime: nell’ingresso delle carte nella tasca (album e Pokédex) il suono di scivolamento parte con il movimento; all’arrivo, insieme a luce e riflesso, suona il campanello del Pokémon nuovo dello sbusto.
 
