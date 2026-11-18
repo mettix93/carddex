@@ -1,6 +1,11 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v410 / c6
+- Statistica «Carte uniche» → «Carte scoperte» (entrambe le app).
+- Versi: volume livellato su ogni verso (quelli bassi vengono alzati, senza distorsione), leggero schiarimento degli alti; sorgente principale ora PokeAPI (qualità migliore), Showdown come riserva.
+- PullTime: la ricerca nell’album non mostra più carte non ottenute di set ancora bloccati.
+
 ## v409 / c5 — Nuovi nomi
 - App 1 ora si chiama **PullTime**, App 2 **PullBinder** (titolo, nome sotto l’icona, manifest, testi che nominavano CardDex).
 - Invariati: indirizzi dei file, chiavi dei dati, cache: nessun dato toccato.
