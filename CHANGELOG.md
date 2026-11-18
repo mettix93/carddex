@@ -1,6 +1,10 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v415
+- Pokédex: pausa tra una carta e l’altra come nell’album (640 ms invece di 420).
+- README con i nomi nuovi.
+
 ## c11
 - PullBinder: tolte le immagini delle bustine del gioco (non usate): da 3,9 MB a 1,2 MB. Copia di sicurezza: tag git pre-cleanup-v414.
 
