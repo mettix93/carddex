@@ -1,6 +1,9 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v417 / c13
+- Icone: cerchio della sveglia e copertina dell’album centrati al pixel nell’icona.
+
 ## v416
 - PullTime: nuova icona (sveglia blu con tre carte, piedini blu). Per vederla sulla Home: rimuovere e riaggiungere l’app.
 
