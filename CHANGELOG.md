@@ -1,3 +1,7 @@
+## v440
+- Apertura bustina: il lampo azzurro al taglio (#pkwash) ora è bianco/grigio chiaro come lo studio (scuro in tema scuro), quindi la transizione è solo bianco → oro/argento/colore della prima carta.
+- Fascia in alto: segue il lampo (non più la sola dissolvenza dello studio); il colore finale scatta a metà della dissolvenza della pagina (450 ms dopo il taglio) invece che prima.
+
 ## v439
 - Fascia in alto (tutte le bustine): tolto il rimbalzo di colore a fine transizione (la rampa continuava dopo il colore finale); il colore finale arriva dopo la dissolvenza. Aggiunto tests/band_meta.js.
 

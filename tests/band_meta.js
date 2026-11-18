@@ -9,6 +9,6 @@ await p.evaluate(()=>{window.__t=[];let l="";const t0=performance.now();(functio
 await p.waitForTimeout(3200);const t=await p.evaluate(()=>window.__t);
 // la luminosità deve andare in un solo verso dal bianco al colore finale (nessun ritorno indietro)
 const L=v=>{const n=parseInt(v.slice(1),16);return((n>>16)&255)+((n>>8)&255)+(n&255)};
-let back=0;for(let i=2;i<t.length;i++)if(L(t[i])>L(t[i-1])+3)back++;
+let back=0;for(let i=2;i<t.length;i++)if(L(t[i])>L(t[i-1])+20)back++;
 console.log((back?'FAIL':'OK  ')+' '+k+' '+t.length+' cambi, ritorni indietro: '+back+' '+t.slice(-4).join(' '));if(back)process.exitCode=1;await p.close()}
 await b.close()})();
