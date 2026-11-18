@@ -1,3 +1,6 @@
+## v419 / c14
+- Icona del set Rubino e Zaffiro sostituita con quella giusta (ottagono); la gemma rettangolare resta a Smeraldo (non attivo). Ordine dei set EX invariato: R&S, Sandstorm, Dragon, Leggende Nascoste, Deoxys.
+
 ## v418
 - PullTime: foto reali delle bustine EX (Rubino e Zaffiro, Tempesta di Sabbia, Drago, Leggende Nascoste, Deoxys), 4 per set, ordinate per numero di Pokédex del Pokémon raffigurato. Immagini in packs/.
 
