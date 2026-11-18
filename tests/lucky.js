@@ -26,6 +26,8 @@ await p.click('#pkdv button[data-k=g]');await p.evaluate(()=>pkOpen());await p.w
 ok(await p.evaluate(()=>document.querySelector(".pkbeam")!==null),"fascio di luce al taglio");
 ok(await p.evaluate(()=>document.querySelector("#pk").classList.contains("god")&&!!document.querySelector("#pkgold")),"fondo oro attivo durante lo sbusto");
 await p.waitForTimeout(2200);
+ok(await p.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor)==="rgb(160, 108, 18)","fascia in alto dorata (non del colore della carta)");
+ok(await p.evaluate(()=>document.querySelector("#pklg")&&document.querySelector("#pklg").textContent==="God Pack!"),"scritta God Pack! durante lo sbusto");
 ok(s0===await keep(),"pacchetto di prova DEV: nulla salvato (contatore, album, Pokédex)");
 ok(errs.length===0,"nessun errore JS "+errs.join("|"));
 await b.close()})()

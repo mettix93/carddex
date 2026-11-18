@@ -1,3 +1,6 @@
+## v425
+- Lucky/God Pack: fascia in alto fissa (oro per la God, argento per la Lucky) invece del colore della carta, anche nel riepilogo; fondo oro più scuro con brillantini come nell’effetto olografico; la Lucky ha lo stesso fondo ma argento; scritta «Lucky Pack!» / «God Pack!» sotto il nome del set; fascio di luce più breve e prima carta con ingresso ritardato e più lento (solo in questi pack); riepilogo con lo stesso fondo.
+
 ## v424
 - PullTime: set EX Deoxys corretto: Pokémon Hoenn, allenatori ed energie erano finiti per errore tra le carte escluse; ora la bustina dà 9 carte (23 comuni, 17 non comuni, 36 rare tra cui le ex) e l’album ha 87 carte ottenibili. Restano escluse solo le carte Kanto/Johto.
 
