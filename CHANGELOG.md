@@ -1,3 +1,6 @@
+## v439
+- Fascia in alto (tutte le bustine): tolto il rimbalzo di colore a fine transizione (la rampa continuava dopo il colore finale); il colore finale arriva dopo la dissolvenza. Aggiunto tests/band_meta.js.
+
 ## v438
 - Fascia Lucky/God: la pagina passa a oro/argento in 0,16 s (prima ~1 s) e la fascia cambia colore nello stesso momento, così lo scatto di iOS non si nota più.
 
