@@ -30,7 +30,7 @@ const APPK="%s";
     if col:
         rep('<link rel="manifest" href="manifest.webmanifest">','<link rel="manifest" href="collezione.webmanifest">')
         rep('<title>CardDex</title>','<title>Collezione</title>')
-        s=s.replace('const APPV="v406";','const APPV="c2";')
+        s=s.replace('const APPV="v406";','const APPV="c3";')
         # solo modalità collezione, niente bustine
         rep('let MODE=(()=>{try{return sessionStorage.getItem("cdmode")||localStorage.getItem("carddex_last")||"c"}catch(e){return"c"}})()','let MODE="c"')
         rep('function setMode(m,keep){if(m===MODE)return;','function setMode(m,keep){if(m===MODE||(APPK==="col"&&m==="g"))return;')
@@ -52,6 +52,16 @@ const APPK="%s";
       const src=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data"),sd=src&&src[0]&&src[0].data;
       if(sd&&/"o":1/.test(JSON.stringify(sd.coll||{}))){bkApplyObj({...sd,game:{},pk:undefined,ms:undefined,stats:undefined,bch:(sd.bch||[]).filter(b=>b&&b.o==="c")});toast("Collezione caricata da CardDex");cuBusy=0;return await cuSync(mode)}}
     if(!rm)await push();\n''')
+        # import manuale dal cloud di CardDex (mostra quante carte ci sono) e bacheche solo della collezione
+        rep('<button class="row act" data-a="bke">Esporta backup</button>','<button class="row act" data-a="cdi">Carica da CardDex (cloud)</button><button class="row act" data-a="bke">Esporta backup</button>')
+        rep('else if(a==="bke")bkExport();','else if(a==="cdi")cdImport();else if(a==="bke")bkExport();')
+        rep('if(Array.isArray(j.bch)){BCH=j.bch.filter(b=>b&&b.id&&b.sz>=1&&b.sz<=3&&Array.isArray(b.cards)).slice(0,3);bcSave()}','if(Array.isArray(j.bch)){BCH=j.bch.filter(b=>b&&b.id&&b.sz>=1&&b.sz<=3&&Array.isArray(b.cards)&&b.o!=="g").slice(0,3);bcSave()}')
+        rep('function cuUi(){','''async function cdImport(){try{const u=await cuTok(),src=await sbReq("/rest/v1/saves?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data,updated_at"),r=src&&src[0];
+  if(!r){toast("Nel cloud di CardDex non c’è nulla per questo account");return}
+  const sd=r.data||{},cnt=o=>(JSON.stringify(o||{}).match(/"o":1/g)||[]).length,n=cnt(sd.coll),m=cnt(dxRaw("c")),d=new Date(r.updated_at),dt=d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
+  if(!n){sheet([],"Nel cloud di CardDex non ci sono carte della collezione (ultimo salvataggio "+dt+"). Usa «Esporta backup» da CardDex e «Importa backup» qui.");return}
+  confirmSheet("Nel cloud di CardDex ci sono "+n+" carte segnate (salvate il "+dt+"). Qui ne hai "+m+". Caricare quelle di CardDex al posto di queste?",()=>{try{bkApplyObj({...sd,game:{},pk:undefined,ms:undefined,stats:undefined});toast("Caricate "+n+" carte");cuSync("push")}catch(e){toast("Errore nel caricamento")}})}catch(e){toast(e.message||"Errore")}}
+function cuUi(){''')
         # bacheche: solo carte della collezione
         rep('let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"g",al:null,st:"g",sz:1};','let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"c",al:null,st:"g",sz:1};')
         rep('<label>Carte da</label>${seg("o",[["g","Album bustine"],["c","Collezione"]])}${M.o==="c"?`<button class="bcal">','<label>Album</label>${M.o==="c"?`<button class="bcal">')

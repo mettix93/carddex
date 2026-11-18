@@ -709,3 +709,7 @@ Ripiego: v353
 
 ## Collezione c2
 - Dopo l'accesso col codice, se la riga cloud della Collezione è vuota carica da sola la collezione, il nome e le bacheche della collezione dalla riga di CardDex (utile quando Safari e l'app sulla Home non condividono i dati del telefono).
+
+## Collezione c3
+- Account › Dati: «Carica da CardDex (cloud)» mostra quante carte segnate ci sono nel cloud di CardDex e le carica su richiesta; se non ce ne sono, indica di usare il backup.
+- Importando un backup le bacheche del gioco non entrano più.
