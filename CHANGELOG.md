@@ -1,9 +1,12 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## v411 / c7
+- Versi dei Pokémon riportati esattamente come in v409/c5 (fonte Showdown, volume e filtri originali).
+
 ## v410 / c6
 - Statistica «Carte uniche» → «Carte scoperte» (entrambe le app).
-- Versi: volume livellato su ogni verso (quelli bassi vengono alzati, senza distorsione), leggero schiarimento degli alti; sorgente principale ora PokeAPI (qualità migliore), Showdown come riserva.
+- Versi: tentata una modifica (livellamento, fonte), annullata in v411/c7.
 - PullTime: la ricerca nell’album non mostra più carte non ottenute di set ancora bloccati.
 
 ## v409 / c5 — Nuovi nomi
