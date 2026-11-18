@@ -1,6 +1,9 @@
 ## v402
 - Riepilogo sbusto: pkKick (scroll a 0, ricalcolo viewport con +1px su html, riallineamento ripetuto, evento resize) per evitare la barra in basso abbassata su iOS. Non riproducibile in Chromium: da verificare su iPhone. Ripiego: v401
 
+## c12
+- PullBinder: nuova icona (raccoglitore con tre carte e pokéball); manifest con le icone nuove. Per vederla sulla Home: rimuovere e riaggiungere l’app.
+
 ## v415
 - Pokédex: pausa tra una carta e l’altra come nell’album (640 ms invece di 420).
 - README con i nomi nuovi.
