@@ -713,3 +713,8 @@ Ripiego: v353
 ## Collezione c3
 - Account › Dati: «Carica da CardDex (cloud)» mostra quante carte segnate ci sono nel cloud di CardDex e le carica su richiesta; se non ce ne sono, indica di usare il backup.
 - Importando un backup le bacheche del gioco non entrano più.
+
+## Archivio immagini (sw.js, tools)
+- `sw.js`: se esiste `img/index.json`, immagini e versi esterni vengono serviti dalla copia locale `img/` (con cache); se manca o fallisce, ripiego identico a prima. Senza `img/` non cambia nulla.
+- `tools/make_manifest.js` genera `tools/assets_manifest.json` (4190 voci); `tools/archivia_immagini.py` scarica tutto (riprende, gentile coi siti).
+- Verificato: con immagini bloccate restano i segnaposto (nome, numero, tipo); con copia locale le carte si vedono anche senza rete esterna.
