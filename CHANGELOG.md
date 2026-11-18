@@ -1,3 +1,6 @@
+## v427
+- PullTime: alone di luce quando una carta entra nella tasca (album e Pokédex) più dorato e un po’ più ampio; ora è un alone radiale uniforme che copre anche le carte vicine, senza il tratto che partiva da lontano.
+
 ## v426
 - Lucky/God Pack: la scritta è esattamente a metà tra il nome del set e il badge «Nuova carta».
 
