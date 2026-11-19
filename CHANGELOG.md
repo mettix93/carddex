@@ -1,3 +1,8 @@
+## v443 (PullTime) / c18 (PullBinder)
+- Album: carte trascinabili. Tieni premuto ~0,35 s per sollevare la carta, trascinala: una linea blu verticale indica il punto di inserimento tra due carte; dopo una breve pausa le carte slittano in anteprima; rilasciando la carta si inserisce lì (le altre scorrono di una). Vicino ai bordi dello schermo (40 px) la pagina si gira dopo 0,6 s e il trascinamento continua. Disattivato con ricerca/filtri attivi e nel Pokédex.
+- Il primo spostamento crea l'ordine «Personalizzato» (PullBinder: «Custom», già gestito da albWatch; PullTime: nuova voce nel menu Ordine, si ritrova quando lo si riseleziona). Toast «tocca per annullare».
+- PullBinder: rilasciando una carta sollevata senza spostarla si apre il menu come prima. Test: tests/drag.js.
+
 ## c17 (PullBinder)
 - Carte Allenatore olografiche: effetto holo e riflesso allineati all'illustrazione (come PullTime v442).
 
