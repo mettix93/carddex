@@ -1,3 +1,8 @@
+## v448 (PullTime)
+- Amici e scambi nel cloud. Nuovo tasto «Amici» accanto a Converti/Scambia: codice amico di 6 caratteri (diverso dal codice di accesso), aggiungi amico con il suo codice (richiesta → accetta), pagina amico con le sue doppie che ti mancano e le tue che gli mancano, sua collezione intera per set, proposta di scambio (stessa regola di rarità di prima), Posta con ricevute/inviate/chiuse, accetta/rifiuta/annulla, scadenza 24 h, pallino rosso sul tasto per le novità.
+- Le carte offerte in una proposta in attesa sono riservate (non convertibili né offribili altrove). Lo scambio accettato si applica subito a chi accetta e alla prima apertura a chi ha proposto, una volta sola: gli id applicati stanno anche nel backup e nel cloud.
+- Serve eseguire una volta carddex-supabase-3.sql in Supabase (tabelle profiles, collections, friendships, trades con regole di sicurezza). Prova: tests/friends.js con tests/lib_sb.js (finto Supabase con le stesse regole).
+
 ## v447 (PullTime)
 - Ultima carta → riepilogo (bustine normali): stesso velo dell'apertura. Prima la fascia diventava bianca subito, con le carte scure ancora sotto, e passava per un grigio-azzurro intermedio. Ora una sola variazione, a velo pieno. Il riepilogo di Lucky/God resta com'era.
 - Con il velo attivo la fascia non segue più le sfumature intermedie (rampa): cambiava troppo presto. Test tests/wash_summary.js.
