@@ -1,8 +1,8 @@
 /* CardDex: funziona anche senza rete. Pagina sempre aggiornata se c'è rete, altrimenti l'ultima copia; immagini conservate dopo la prima vista. */
-const V="carddex-v1",IMG="carddex-img";
+const V="carddex-v2",IMG="carddex-img";
 /* Copia locale delle immagini/suoni (cartella img/, creata da tools/archivia_immagini.py): se esiste e l'indirizzo è nell'indice, si usa quella; se manca o fallisce, si va in rete come prima. */
 let MIR={};fetch(new URL("img/index.json",self.registration.scope),{cache:"no-cache"}).then(x=>x.ok?x.json():{}).then(j=>{if(j&&typeof j==="object")MIR=j}).catch(()=>{});
-self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(V).then(c=>c.addAll(["./carddex-album.html","./collezione.html","./manifest.webmanifest","./collezione.webmanifest","./icon-192.png"])).catch(()=>{}))});
+self.addEventListener("install",e=>{self.skipWaiting();e.waitUntil(caches.open(V).then(c=>Promise.all(["./carddex-album.html","./collezione.html","./manifest.webmanifest","./collezione.webmanifest","./icon-192.png","./icon-512.png","./icon-binder-192.png","./icon-binder-512.png","./apple-touch-icon.png","./apple-touch-icon-binder.png","./img/index.json"].map(u=>c.add(u).catch(()=>{})))).catch(()=>{}))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V&&k!==IMG&&k!=="carddex-topps").map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;const u=new URL(r.url);
   if(u.origin===location.origin){
@@ -12,3 +12,11 @@ self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;c
   if(lp){const lu=new URL(lp,self.registration.scope).href;e.respondWith(caches.open(IMG).then(h=>h.match(lu).then(m=>m||fetch(lu).then(x=>{if(!x.ok)throw 0;h.put(lu,x.clone());return x}))).catch(rem));return}
   if(r.destination==="image"&&r.mode==="no-cors")e.respondWith(rem())
 });
+
+/* Uso offline: su richiesta della pagina (solo Wi-Fi) scarica in anticipo le immagini/suoni piccoli dell'archivio locale (loghi, icone, versi, sprite). Le carte (tcgdex, ~150 MB) restano a "dopo la prima vista". */
+self.addEventListener("message",e=>{if(!e.data||e.data.t!=="warm")return;e.waitUntil((async()=>{try{
+  const j=await fetch(new URL("img/index.json",self.registration.scope)).then(x=>x.json());MIR=j;
+  const h=await caches.open(IMG),L=Object.values(j).filter(p=>!/^img\/assets\.tcgdex\.net\//.test(p)).map(p=>new URL(p,self.registration.scope).href);
+  let i=0,n=0;const w=async()=>{while(i<L.length){const u=L[i++];try{if(await h.match(u))continue;const x=await fetch(u);if(x.ok){await h.put(u,x);n++}}catch(_){}}};
+  await Promise.all([w(),w(),w(),w()]);
+  const cs=await self.clients.matchAll();cs.forEach(c=>c.postMessage({t:"warmed",n,tot:L.length}))}catch(_){}})())});

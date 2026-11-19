@@ -1,3 +1,7 @@
+## v444 (PullTime) / c19 (PullBinder)
+- PullBinder alleggerito: tolto il codice del gioco bustine (missioni, conversione, scambi, riepiloghi: ~100 KB, 1,21 → 1,12 MB). Mantenute le funzioni generali (tema, barra alta, guardia barra in basso, backup, cry) e messi segnaposto neutri per i pochi richiami condivisi. Nessun dato salvato toccato. PullTime resta com'è (il gioco serve, e il codice collezione è poco).
+- Uso offline: sw.js v2 (pagine, icone e manifest in anticipo; copia di sicurezza per ogni file) e, una volta, solo con Wi-Fi, scarica in background loghi, sprite e versi (~12 MB, 1158 file). Le carte restano "dopo la prima vista". Test tests/offline.js.
+
 ## v443 (PullTime) / c18 (PullBinder)
 - Album: carte trascinabili. Tieni premuto ~0,35 s per sollevare la carta, trascinala: una linea blu verticale indica il punto di inserimento tra due carte; dopo una breve pausa le carte slittano in anteprima; rilasciando la carta si inserisce lì (le altre scorrono di una). Vicino ai bordi dello schermo (40 px) la pagina si gira dopo 0,6 s e il trascinamento continua. Disattivato con ricerca/filtri attivi e nel Pokédex.
 - Il primo spostamento crea l'ordine «Personalizzato» (PullBinder: «Custom», già gestito da albWatch; PullTime: nuova voce nel menu Ordine, si ritrova quando lo si riseleziona). Toast «tocca per annullare».
