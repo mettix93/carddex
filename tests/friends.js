@@ -51,8 +51,9 @@ ok(await A.evaluate(()=>FR.n)===1,'A: pallino proposte = 1');
 ok(await A.evaluate(()=>!!document.querySelector('#pkbc .fdt')||!!document.querySelector('.nvp button[data-t=b] .fdt')),'A: pallino blu sulle icone Converti/Bustine');
 await A.evaluate(()=>{FR.v="mail";frDraw()});
 const q0=await Promise.all([qOf(A,aIds[0]),qOf(A,bIds[0]),qOf(B,bIds[0]),qOf(B,aIds[0])]);
-await A.click('#frm [data-a=acc]');await A.waitForTimeout(1200);
+await A.evaluate(()=>{FR.tr.forEach(t=>FR.ex.add(t.id));frDraw()});await A.click('#frm [data-a=acc]');await A.waitForTimeout(1200);
 ok(DB.trades[0].status==='accepted','A: proposta accettata');
+ok(await A.evaluate(()=>FR.v==='anim'&&document.querySelectorAll('#frm .anst .anc').length>=2),'A: parte l\'animazione di scambio');await A.click('#frm .anst');await A.waitForTimeout(400);
 ok(await A.evaluate(()=>FR.v==='done'&&/Scambio concluso/i.test(document.querySelector('#frm').innerText)&&document.querySelectorAll('#frm .frdr .frdc').length===2),'A: schermata scambio concluso con le 2 carte ricevute');
 ok(await A.evaluate(()=>PKAQ.length>=1&&document.querySelectorAll('#frm .frtg').length>=1),'A: carte nuove segnate per l\'album ('+await A.evaluate(()=>PKAQ.length)+')');
 const qa=await Promise.all([qOf(A,aIds[0]),qOf(A,aIds[1]),qOf(A,bIds[0]),qOf(A,bIds[1])]);
@@ -72,7 +73,7 @@ const code=await B.evaluate(()=>cuGet().code);await B.evaluate(()=>cuSync("push"
 // annullamento
 await B.evaluate(([g,t])=>{FR.u=FR.fs[0].addressee===FR.me.uid?FR.fs[0].requester:FR.fs[0].addressee;FR.gv={[g[2]]:1};FR.gt={[t[2]]:1};return frSend(FR.u,[g[2]],[t[2]])},[bIds,aIds]);
 ok(DB.trades.length===2&&DB.trades[1].status==='pending','B: seconda proposta');
-await B.evaluate(()=>{FR.v="mail";frDraw()});await B.click('#frm [data-a=can]');await B.waitForTimeout(800);
+await B.evaluate(()=>{FR.v="mail";frDraw()});await B.evaluate(()=>{FR.tr.forEach(t=>FR.ex.add(t.id));frDraw()});await B.click('#frm [data-a=can]');await B.waitForTimeout(800);
 ok(DB.trades[1].status==='cancelled','B: proposta annullata');
 await A.evaluate(()=>frLoad());await A.waitForTimeout(400);
 ok(await A.evaluate(()=>FR.tr.filter(t=>t.status==='pending'&&t.to_user===FR.me.uid).length)===0,'A: la proposta annullata non compare');

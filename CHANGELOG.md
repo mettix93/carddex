@@ -1,3 +1,13 @@
+## v459 (PullTime) · c22 (PullBinder)
+- Preferiti rifatto con il motore vero dell'album: pagine, tasche, sfoglio, drag delle carte (identico), titolo «Preferiti», ordine Numero/Pokédex/Personalizzato, nessun tab dei set e niente filtro/ricerca. L'ordine personalizzato e gli slot vuoti si ricordano; nessuna copia delle carte viene salvata. Nuova voce nella pagina Album con il cuore (stesse misure e spessori delle altre icone).
+- Colore pagine: aggiunti Notte, Oceano, Bosco, Rubino, Oro, Chiaro dopo quelli esistenti.
+- Carta preferita nell'album: cuoricino in un cerchio, stessa dimensione del simbolo holo.
+- Dalla pagina Bacheche o Preferiti, toccando Album nel menu in basso si torna alla scelta della modalità.
+- PullTime, Account: icona Amici con il nuovo disegno e spessore uguale al bordo del riquadro utente e ai cerchi delle statistiche.
+- PullTime, Scambia: doppio selettore e X nelle stesse posizioni di Converti.
+- PullTime, Posta: ogni proposta (ricevuta, inviata, chiusa) è chiusa di default; toccandola si espande e mostra le carte (nelle completate: cosa hai dato e ricevuto).
+- PullTime, animazione di scambio: quando accetti, o quando chi ha proposto tocca «Vedi», i due mazzetti (rara in cima) partono uno dal basso e uno dall'alto, si incrociano in un fascio di luce e arrivano dall'altra parte girati nel verso giusto; poi il riepilogo con carte date/ricevute e i pallini nuovi in album e Pokédex. Tocca per saltare.
+
 ## v458 (PullTime) · c21 (PullBinder)
 - Nuovo album «Preferiti» (icona cuore nel cerchio) nella pagina Album, tra Album e Bacheche: pagine da 9 carte con solo le carte preferite; se ne aggiungi altre nasce una nuova pagina (scorri di lato). Tieni premuta una carta e trascinala per cambiare ordine (anche tra pagine, portandola al bordo); menu ⋯ per scegliere lo sfondo (Notte, Oceano, Bosco, Rubino, Oro, Chiaro) e ripristinare l'ordine. Ordine e sfondo entrano nel backup. Tocca una carta per ingrandirla.
 - Amici (solo PullTime): «Vedi i suoi preferiti» mostra solo i preferiti dell'amico (pallino blu sulle carte che non hai). I preferiti vengono pubblicati insieme alla collezione.

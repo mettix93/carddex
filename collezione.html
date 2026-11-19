@@ -701,7 +701,8 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 #vsh{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:108px;z-index:3;width:40px;height:40px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:var(--gl);-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 8px 24px rgba(0,0,0,.35)}
 #vsh svg{width:17px;height:17px}
 #vsh.fv{color:#fff}#vsh.fv svg path{fill:currentColor}
-.slot .fvb{position:absolute;left:4px;top:4px;z-index:2;width:18px;height:18px;color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));pointer-events:none}.slot .fvb svg{width:100%;height:100%;display:block}.slot .fvb svg path{fill:currentColor}
+.slot .fvb{position:absolute;left:4px;top:4px;z-index:2;width:20px;height:20px;border-radius:50%;background:#000b;color:#fff;border:1px solid #ffffff55;display:flex;align-items:center;justify-content:center;pointer-events:none}.slot .fvb svg{width:12px;height:12px;display:block}.slot .fvb svg path{fill:currentColor}
+body.pfm #ft,body.pfm #sq{display:none!important}
 .vt{padding-right:156px!important}
 .vt em:empty{display:none}
 .vt em#vd{margin-top:6px;font-size:13px;color:var(--sec,#b8c0d4)}
@@ -820,18 +821,6 @@ p,#pkm,.pkpt,.pkt1 small{text-wrap:balance}
 #pkw.rl .pkcap{transform-origin:0 10%;transform:rotate(calc(var(--cut,0)*-3.5deg))}
 #pkw>.pkct,#pkw>.pkcl{transform:translateZ(calc(var(--pw)*.04))}
 
-/* Preferiti */
-.pfw{margin:14px 0 0;border-radius:24px;padding:14px 0;background:linear-gradient(160deg,var(--p1),var(--p2));overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
-.pfp{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}.pfp::-webkit-scrollbar{display:none}.pfp.drag{overflow:hidden}
-.pfg{flex:0 0 100%;box-sizing:border-box;scroll-snap-align:center;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0 14px;align-content:start}
-.pfs{aspect-ratio:63/88;border-radius:6px;position:relative;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
-.pfs.e{border:2px dashed rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center}
-.pfw.lt .pfs.e{border-color:rgba(27,42,73,.2)}
-.pfh{color:rgba(255,255,255,.4)}.pfh svg{width:34px;height:34px}.pfw.lt .pfh{color:rgba(27,42,73,.35)}
-.pfc{position:absolute;inset:0;border-radius:6px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,.35)}.pfc>*{width:100%}
-.pfs.pfdr{opacity:.25}.pfgh{transform:scale(1.08);filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}.pfgh .pfc{box-shadow:none}
-.pfdt{display:flex;justify-content:center;gap:7px;margin-top:12px}.pfdt i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25}.pfdt i.on{opacity:.9;transform:scale(1.25)}
-#set .pfmore{position:absolute;right:56px;top:50%;margin-top:-22px;width:44px;height:44px}
 /* ===== Bacheche ===== */
 .bchd{display:block;margin:0}.bchd h2{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bcb{flex:none;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);color:inherit;display:flex;align-items:center;justify-content:center}.bcb svg{width:20px;height:20px}
@@ -1310,7 +1299,7 @@ const APPK="col";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="c21";
+const APPV="c22";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1574,7 +1563,8 @@ const VIEW=()=>cur==="?"||FLT!=="a"||HID();
 let MODE="c",SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS:PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
-const save=()=>{try{localStorage.setItem(SKEY,JSON.stringify(st))}catch(e){}try{albWatch()}catch(e){}};
+let PFM=0,PFGO=0;
+const save=()=>{try{if(PFM&&st.gF)pfSync();const o=st.gF?{...st,gF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}};
 function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));COLS.forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
@@ -1640,7 +1630,7 @@ function build(){const L=LIST();np=Math.max(1,Math.ceil(L.length/9));pg=Math.min
     h+=`<div class="pg" data-k="${k}"><div class="pb"><div class="cs"></div><div class="sh">${inner}</div><div class="flp"><div class="fg"></div></div></div></div>`}
   book.innerHTML=h;
   PG=[...book.children].map(e=>({e,pb:e.firstChild,cs:e.querySelector(".cs"),sh:e.querySelector(".sh"),fl:e.querySelector(".flp"),fg:e.querySelector(".fg"),W:0,H:0}))}
-function render(){build();layoutPages()}
+function render(){if(PFM)try{pfRefresh()}catch(e){}build();layoutPages()}
 function layoutPages(again){document.body.classList.remove("pv");if(!again)document.body.classList.remove("cp");document.documentElement.style.removeProperty("--G");let BW=book.clientWidth,BH=book.clientHeight;const was=LS;LS=BW>BH&&BW>=520;document.body.classList.toggle("ls",LS);
   if(!again&&!LS&&BW<BH&&!matchMedia("(orientation:landscape) and (max-height:700px)").matches){const nd=((BW-32-20-16)/3)*88/63*3+16+20+12;if(nd>BH){document.body.classList.add("cp");BH=book.clientHeight}}
   if(LS&&!was)sp=pg?Math.ceil(pg/2):0;if(!LS&&was)pg=sp?2*sp-1:0;
@@ -1725,7 +1715,7 @@ let PREV=COLS[0].k;
 function exitSearch(){cur=PREV||"a";SR=[];SQ="";pg=0;sp=0;tabs();render()}
 const tgH=g=>{const i=g.indexOf(" ");return i<0?esc(g):esc(g.slice(0,i))+"<br>"+esc(g.slice(i+1))};
 const pkLkS=sid=>{try{return pkLk(sid)}catch(e){return 0}};
-function tabs(){try{applyPgc()}catch(e){}try{toppsPre()}catch(e){}$("#ft").classList.toggle("on",FLT!=="a");$("#sq").classList.toggle("on",cur==="?");$("#sq").innerHTML=cur==="?"?XI:LENS;$("#sq").setAttribute("aria-label",cur==="?"?"Chiudi ricerca":"Cerca Pokémon");const TB=$("#tabs"),tsl=TB.scrollLeft,H=(g0=>COLS.map(c=>{const l=c.g&&c.g!==g0?((MODE==="g"&&g0?'<i class="dv"></i>':"")+(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`)):"";return l+`<button class="tab ${c.k===cur?"on":""}${MODE==="g"&&pkLkS(c.s[0])?" lk":""}" data-k="${c.k}" aria-label="${esc(c.t)}">${(c.lg||MODE==="g"?c.s:c.s.slice(0,4)).map(sicon).join("")}</button>`}).join(""))("")+(MODE==="c"?`<button class="tab tpl" data-k="+" aria-label="Nuovo album"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>`:"");TB.innerHTML=H;TABW=0;TB.scrollLeft=tsl;tabSee(TABK!==cur&&TABK!==null);TABK=cur;try{aqBadge()}catch(x){}}
+function tabs(){try{applyPgc()}catch(e){}try{toppsPre()}catch(e){}$("#ft").classList.toggle("on",FLT!=="a");$("#sq").classList.toggle("on",cur==="?");$("#sq").innerHTML=cur==="?"?XI:LENS;$("#sq").setAttribute("aria-label",cur==="?"?"Chiudi ricerca":"Cerca Pokémon");const TB=$("#tabs"),tsl=TB.scrollLeft,H=PFM?"":(g0=>COLS.map(c=>{const l=c.g&&c.g!==g0?((MODE==="g"&&g0?'<i class="dv"></i>':"")+(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`)):"";return l+`<button class="tab ${c.k===cur?"on":""}${MODE==="g"&&pkLkS(c.s[0])?" lk":""}" data-k="${c.k}" aria-label="${esc(c.t)}">${(c.lg||MODE==="g"?c.s:c.s.slice(0,4)).map(sicon).join("")}</button>`}).join(""))("")+(MODE==="c"?`<button class="tab tpl" data-k="+" aria-label="Nuovo album"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>`:"");TB.innerHTML=H;TABW=0;TB.scrollLeft=tsl;tabSee(TABK!==cur&&TABK!==null);TABK=cur;try{aqBadge()}catch(x){}}
 let TABK=null,TABW=0,TABL=0,TABS=0,TABT=0;
 function tabNorm(){const TB=$("#tabs");if(!TB||!TABW||TABS)return;const x=TB.scrollLeft;if(x<1.5*TABW)TB.scrollLeft=x+TABW*Math.ceil((1.5*TABW-x)/TABW);else if(x>=2.5*TABW)TB.scrollLeft=x-TABW*Math.ceil((x-2.5*TABW+1)/TABW)}
 function tabSee(sm){try{const TB=$("#tabs");if(TB.scrollWidth<=TB.clientWidth+1)return;const a=TB.getBoundingClientRect(),mid=a.left+a.width/2;let b=null,bd=1e9;TB.querySelectorAll(".tab.on").forEach(e=>{const r=e.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;b=e}});if(!b)return;const r=b.getBoundingClientRect(),m=16;let d=0;if(r.left<a.left+m)d=r.left-a.left-m;else if(r.right>a.right-m)d=r.right-a.right+m;if(d){if(sm){TABS=1;clearTimeout(TABT);TABT=setTimeout(()=>{TABS=0;tabNorm()},650)}TB.scrollTo({left:TB.scrollLeft+d,behavior:sm?"smooth":"auto"})}}catch(e){}}
@@ -1737,7 +1727,8 @@ let LPT=0,LPD=0,LPX=0,LPK="";
   T.addEventListener("pointerup",()=>{clearTimeout(LPT);if(LPD){const k=LPK;setTimeout(()=>{albMenu(k)},60);setTimeout(()=>{LPD=0},400)}})})();
 $("#tabs").onclick=e=>{const b=e.target.closest(".tab"),k=b&&b.dataset.k;if(document.body.classList.contains("dex")){if(k!=null)dxGo(+k);return}if(LPD&&k){return}if(k==="+"){albNew();return}if(k&&k!==cur&&MODE==="g"){const cc=COLS.find(c=>c.k===k),lk=cc?pkLkS(cc.s[0]):0;if(lk){toast("Set bloccato: completa l’80% di "+(PKBN[lk-1]||"quelli precedenti")+" per sbloccarlo (ora "+Math.floor(pkCov(lk-1)*100)+"%)",1);return}}if(k&&k!==cur){cur=k;SR=[];SQ="";pg=0;sp=0;tabs();render();if(MODE==="g"&&PKAQ.some(x=>x.k===k))setTimeout(()=>aqLater(k,8),420)}};
 function confirmSheet(t,f){sheet([["Sì, conferma",f,1]],t)}
-function doRestore(){if(MODE==="c"&&cur!=="?"&&FLT==="a"&&!HID()){const A=PCOLS.find(a=>a.k===cur);if(A){confirmSheet("Rimettere le carte nell’ordine «"+(A.base==="num"?"Numero":"Pokédex")+"»? Stato, note, varianti e foto restano; gli ordini custom salvati restano disponibili.",()=>albSet(A,A.base));return}}
+function doRestore(){if(PFM){confirmSheet("Rimettere i preferiti nell’ordine originale? Stato, note e foto restano.",()=>{delete GORD.gF;delete GCU.gF;pfPers();st.gF=pfList(st);pg=0;sp=0;render();toast("Ordine ripristinato")});return}
+  if(MODE==="c"&&cur!=="?"&&FLT==="a"&&!HID()){const A=PCOLS.find(a=>a.k===cur);if(A){confirmSheet("Rimettere le carte nell’ordine «"+(A.base==="num"?"Numero":"Pokédex")+"»? Stato, note, varianti e foto restano; gli ordini custom salvati restano disponibili.",()=>albSet(A,A.base));return}}
   if(VIEW()){sheet([[cur==="?"?"Esci dalla ricerca":"Mostra l’intera collezione",()=>{if(cur==="?")exitSearch();FLT="a";tabs();render()}]],"Il ripristino vale solo sull’intera collezione");return}
   confirmSheet("Rimettere le carte nell’ordine originale? Stato, note, varianti e foto restano.",()=>{const col=COLS.find(c=>c.k===cur),idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
     const L=st[cur],C=L.filter(x=>x.id).map((x,j)=>[x,j]).sort((p,q)=>((idx[p[0].id]!==undefined?idx[p[0].id]:1e9)-(idx[q[0].id]!==undefined?idx[q[0].id]:1e9))||p[1]-q[1]).map(p=>p[0]);
@@ -1823,10 +1814,10 @@ let DGU=null;
 function dgCommit(from,ins){const L=st[cur],A=MODE==="c"?PCOLS.find(a=>a.k===cur):null;
   DGU={k:cur,l:L.slice(),gord:GORD[cur],gcu:GCU[cur],cu:A?JSON.parse(JSON.stringify(A.cu)):null,ord:A&&A.ord,sig:A&&A.sig};
   const j=ins>from?ins-1:ins,[m]=L.splice(from,1);L.splice(j,0,m);
-  if(MODE==="g"){GORD[cur]="cu";GCU[cur]=L.map(s=>s.id||"");try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
+  if(MODE==="g"||PFM){GORD[cur]="cu";GCU[cur]=L.map(s=>s.id||"");try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
   save();render();busy=0;toast("Carta spostata · tocca per annullare");const t=$("#tst");t.classList.add("dgu");t.onclick=dgUndo}
 function dgUndo(){const u=DGU;DGU=null;const t=$("#tst");t.onclick=null;t.classList.remove("on","dgu");if(!u||u.k!==cur)return;
-  st[cur]=u.l;if(MODE==="g"){if(u.gord===undefined)delete GORD[cur];else GORD[cur]=u.gord;if(u.gcu===undefined)delete GCU[cur];else GCU[cur]=u.gcu;try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
+  st[cur]=u.l;if(MODE==="g"||PFM){if(u.gord===undefined)delete GORD[cur];else GORD[cur]=u.gord;if(u.gcu===undefined)delete GCU[cur];else GCU[cur]=u.gcu;try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
   else{const A=PCOLS.find(a=>a.k===cur);if(A&&u.cu){A.cu=u.cu;A.ord=u.ord;A.sig=albSig(cur);albSave()}}
   save();render();toast("Spostamento annullato")}
 function dgEnd(x,e,cancel){clearTimeout(x.pt);clearTimeout(x.ft);const gh=x.gh,from=x.i,ins=cancel?null:x.ins;
@@ -1911,11 +1902,12 @@ function menu(i,inV){if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("s
   else sheet(it,c?c.name:"Slot vuoto")}
 /* album bustine: ordine Numero set / Pokédex */
 let GORD={},GCU={};try{GORD=JSON.parse(localStorage.getItem("carddex_gord"))||{}}catch(e){}try{GCU=JSON.parse(localStorage.getItem("carddex_gcu"))||{}}catch(e){}
-function gOrdSet(m){const col=COLS.find(c=>c.k===cur);if(!col)return;const idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
+function gOrdSet(m){if(PFM&&m!=="cu"){GORD.gF=m;pfPers();st.gF=pfList(st);pg=0;sp=0;render();return}
+  const col=COLS.find(c=>c.k===cur);if(!col)return;const idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
   const key=x=>{if(m!=="dex")return 0;const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5};
   const L=st[cur],C=L.filter(x=>x.id).map((x,j)=>[x,j]).sort((p,q)=>(key(p[0])-key(q[0]))||((idx[p[0].id]!==undefined?idx[p[0].id]:1e9)-(idx[q[0].id]!==undefined?idx[q[0].id]:1e9))||p[1]-q[1]).map(p=>p[0]);
   st[cur]=[...C,...L.filter(x=>!x.id)];GORD[cur]=m;try{localStorage.setItem("carddex_gord",JSON.stringify(GORD))}catch(e){}save();pg=0;sp=0;render()}
-$("#so").onclick=()=>{if(cur==="?"){toast("Esci dalla ricerca per cambiare ordine");return}sheet([[(GORD[cur]!=="dex"?"✓  ":"")+"Numero set",()=>gOrdSet("num")],[(GORD[cur]==="dex"?"✓  ":"")+"Pokédex",()=>gOrdSet("dex")]],"Ordine")};
+$("#so").onclick=()=>{if(cur==="?"){toast("Esci dalla ricerca per cambiare ordine");return}sheet([[(GORD[cur]!=="dex"&&GORD[cur]!=="cu"?"✓  ":"")+"Numero set",()=>gOrdSet("num")],[(GORD[cur]==="dex"?"✓  ":"")+"Pokédex",()=>gOrdSet("dex")],...(PFM&&GCU[cur]?[[(GORD[cur]==="cu"?"✓  ":"")+"Personalizzato",()=>gOrdSet("cu")]]:[])],"Ordine")};
 /* filtro + menu altre opzioni */
 $("#ft").onclick=()=>{if(document.body.classList.contains("dex")){dxFilter();return}const o=[["a","Intera collezione"],["o","Ottenute"],["n","Mancanti"],...(MODE==="g"?[]:[["i","In arrivo"]]),["p","Preferite"]],it=o.map(([k,t])=>[(FLT===k?"✓  ":"")+t,()=>{FLT=k;pg=0;sp=0;tabs();render()}]);
   if(MODE==="c"&&cur!=="?")it.unshift(["Ordine e opzioni…",ordMenu]);sheet(it,"Mostra")};
@@ -2055,7 +2047,7 @@ $("#vsh").onclick=()=>{if(DXL)return;const sl=LIST()[curI];if(!sl||!sl.id)return
 /* alone dalle carte stesse (stile trasparente) */
 document.addEventListener("load",e=>{const i=e.target;if(i.tagName==="IMG"){const sl=i.closest&&i.closest(".slot");if(sl&&i.currentSrc)sl.style.setProperty("--gi","url(\""+i.currentSrc+"\")")}},true);
 /* stile: colore pagine per collezione */
-const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null,"rgba(255,255,255,.06)","rgba(255,255,255,.13)"],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"]};
+const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null,"rgba(255,255,255,.06)","rgba(255,255,255,.13)"],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"],notte:["Notte","#171c2c","#ffffff1f","#ffffff12","#2b3550","#56648a"],oceano:["Oceano","#12517f","#ffffff26","#ffffff14","#2c4f6e","#5f8fb4"],bosco:["Bosco","#1b5d42","#ffffff26","#ffffff14","#2f5a46","#62907a"],rubino:["Rubino","#7a1f3a","#ffffff26","#ffffff14","#5e3340","#9a6574"],oro:["Oro","#8a6a14","#ffffff30","#ffffff18","#625326","#a8934f"],chiaro:["Chiaro","#dfe5f0","#00000024","#00000012","#b0b8c9","#8b94a8"]};
 let PGS={};try{PGS=JSON.parse(localStorage.getItem(CK("carddex_pgc"))||"{}")||{}}catch(e){}
 function pgKey(){return (MODE==="g"?"g:":"")+(cur==="?"?(typeof PREV!=="undefined"&&PREV)||"a":cur)}
 function applyPgc(){const k=PGS[pgKey()]||"trasp2",d=PGC[k]||PGC.trasp2,r=document.documentElement;r.style.setProperty("--pgbg",d[1]);["--pk1","--pk2"].forEach((n,x)=>d[4+x]?r.style.setProperty(n,d[4+x]):r.style.removeProperty(n));r.style.setProperty("--pgbf",d[6]||"none");
@@ -2230,7 +2222,7 @@ const EXPI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 function setFs(on){const vw=$("#vw");vw.classList.toggle("fs",on);$("#vfs").innerHTML=on?CMPI:EXPI;$("#vfs").setAttribute("aria-label",on?"Esci da schermo intero":"Schermo intero");pinchReset();{const m=((ry%360)+360)%360;card.style.transition="none";ry=m;rx=0;ap();void card.offsetWidth}ry=rx=0;card.style.transition="transform .3s";ap()}
 $("#vfs").onclick=()=>setFs(!$("#vw").classList.contains("fs"));
 (()=>{let t=null,x0=0,y0=0;const stop=()=>{clearTimeout(t);t=null};stg.addEventListener("pointerdown",e=>{stop();if(!e.isPrimary||PTS.size>1)return;x0=e.clientX;y0=e.clientY;t=setTimeout(()=>{t=null;if(pz||pzl||PTS.size>1)return;if(navigator.vibrate)navigator.vibrate(15);menu(curI,1)},500)},true);stg.addEventListener("pointermove",e=>{if(t&&Math.hypot(e.clientX-x0,e.clientY-y0)>10)stop()},true);["pointerup","pointercancel"].forEach(n=>stg.addEventListener(n,stop,true))})();
-$("#vx").onclick=()=>{$("#vw").hidden=true;setFs(false);pinchReset();if(FAVH.size){FAVH=new Set();if(FLT==="p")try{render()}catch(e){}}};
+$("#vx").onclick=()=>{$("#vw").hidden=true;setFs(false);pinchReset();if(FAVH.size){FAVH=new Set();if(FLT==="p"||PFM)try{render()}catch(e){}}};
 $("#hud").onclick=()=>document.body.classList.toggle("ui");
 document.addEventListener("pointerdown",e=>{if(document.body.classList.contains("ui")&&!e.target.closest("header,footer,#nv,#hud,#sh,#ne,#sr"))document.body.classList.remove("ui")},true);
 let aqRun=0,aqSkip=0,aqSw=0;
@@ -2317,7 +2309,7 @@ addEventListener("focus",()=>setTimeout(()=>navGuard(),250));
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)[250,900].forEach(ms=>setTimeout(()=>navGuard(),ms))});
 try{visualViewport.addEventListener("resize",()=>navGuard());visualViewport.addEventListener("scroll",()=>navGuard())}catch(e){}
 setInterval(()=>{if(!document.hidden)navGuard()},1500);
-function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null)};return o}
+function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);delete gm.gF;delete cl.gF;const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null)};return o}
 function bkExport(){const o=bkObj(),b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale della collezione.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
@@ -2325,35 +2317,22 @@ function setLuce(){LUCE=!LUCE;if(LUCE){mAsked=0;motionOn(1)}else document.docume
 function setTheme(v){THM=v;try{localStorage.setItem("carddex_theme",v)}catch(e){}const nl=v==="c"||(v!=="n"&&!matchMedia("(prefers-color-scheme: dark)").matches);applyMode()}
 function setOpen(o){const b=document.body;b.classList.toggle("sett",!!o);if(!o){b.classList.remove("dex");b.classList.remove("asl")}let e=$("#set");if(!e){e=document.createElement("div");e.id="set";e.hidden=true;document.body.appendChild(e)}
   if(o){b.classList.contains("dex")?drawDex():b.classList.contains("asl")?drawAsl():drawSet();e.hidden=false;if(b.classList.contains("dex"))dxSpy()}else e.hidden=true;if(!b.classList.contains("dex")){DXQ="";try{tabs();stat()}catch(x){}}navSync()}
-/* ===== Preferiti: album delle carte preferite, a pagine ===== */
-const PFIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17.4s-4.7-2.9-4.7-6.3a2.6 2.6 0 014.7-1.5 2.6 2.6 0 014.7 1.5c0 3.4-4.7 6.3-4.7 6.3z"/></svg>';
-const PFBG={n:["Notte","#10131c","#222b42"],o:["Oceano","#0b2a4a","#1a6aa6"],b:["Bosco","#0e2b1f","#2a7a55"],r:["Rubino","#3a0f1c","#9a2a4c"],g:["Oro","#3a2a08","#a8801c"],c:["Chiaro","#dfe5f0","#ffffff"]};
-const pfRd=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
-const pfSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
-function pfFavs(){const out=[],seen=new Set();try{const raw=dxRaw(MODE==="g"?"g":"c");(MODE==="g"?GCOLS:COLS).forEach(c=>(raw[c.k]||[]).forEach(x=>{if(!x||!x.fav||!x.o||!x.id)return;let d=CARDS[x.id];if(!d)return;if(d.opts)d=CARDS[d.opts.includes(x.v)?x.v:d.opts[0]];else if(d.alt&&MODE!=="g"&&x.v==="n")d=CARDS[d.alt];if(d&&!seen.has(d.id)){seen.add(d.id);out.push(d.id)}}))}catch(e){}return out}
-function pfIds(){const f=pfFavs(),fs=new Set(f),o=pfRd(GK("carddex_pfo"),[]).filter(i=>fs.has(i)),os=new Set(o);return o.concat(f.filter(i=>!os.has(i)))}
-let PFP=0,PFD=null;
-function pfList(){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=null;const ids=pfIds(),P=9,np=Math.max(1,Math.ceil(ids.length/P)),S=pfRd(GK("carddex_pfs"),{}),bg=PFBG[S.bg]||PFBG.n;PFP=Math.max(0,Math.min(PFP,np-1));
-  let h='<div class="bchd"><h2>Preferiti</h2><button class="bcb pfmore" aria-label="Opzioni">'+BCDT+'</button><button class="bcb bcx" data-a="back" aria-label="Chiudi">'+XI+'</button></div><div class="pfw'+(S.bg==="c"?" lt":"")+'" style="--p1:'+bg[1]+';--p2:'+bg[2]+'"><div class="pfp">';
-  for(let p=0;p<np;p++){h+='<div class="pfg">';for(let k=0;k<P;k++){const i=p*P+k,id=ids[i],c=id&&CARDS[id];h+=c?'<div class="pfs f" data-i="'+i+'"><div class="pfc">'+bcFace(c,1)+"</div></div>":'<div class="pfs e" data-i="'+i+'">'+(!ids.length&&k===4?'<span class="pfh">'+PFIC+"</span>":"")+"</div>"}h+="</div>"}
-  h+='</div></div><div class="pfdt">'+Array.from({length:np},(_,j)=>'<i class="'+(j===PFP?"on":"")+'"></i>').join("")+'</div><div class="bchint">'+(ids.length?"tieni premuta una carta per spostarla":"tocca il cuore su una carta per aggiungerla")+"</div>";
-  e.innerHTML=h;e.querySelector("[data-a=back]").onclick=()=>drawAsl();
-  e.querySelector(".pfmore").onclick=()=>sheet([["Sfondo…",()=>sheet(Object.keys(PFBG).map(k=>[(S.bg===k||(!S.bg&&k==="n")?"✓  ":"")+PFBG[k][0],()=>{S.bg=k;pfSet(GK("carddex_pfs"),S);pfList()}]),"Sfondo")],["Ripristina ordine",()=>{pfSet(GK("carddex_pfo"),[]);pfList()}]],"Preferiti");
-  const sc=e.querySelector(".pfp"),dots=e.querySelectorAll(".pfdt i");sc.scrollLeft=PFP*sc.clientWidth;
-  sc.onscroll=()=>{const j=Math.round(sc.scrollLeft/Math.max(1,sc.clientWidth));if(j!==PFP){PFP=j;dots.forEach((d,x)=>d.classList.toggle("on",x===j))}};
-  let q=null;const W=e.querySelector(".pfw");
-  const stop=ev=>{if(PFD)ev.preventDefault()};e.addEventListener("touchmove",stop,{passive:false});
-  sc.onpointerdown=ev=>{const t=ev.target.closest(".pfs.f");if(!t)return;q={x:ev.clientX,y:ev.clientY,i:+t.dataset.i,el:t,mv:0,drag:0};q.h=setTimeout(()=>{if(!q||q.mv)return;q.drag=1;PFD=q;try{hap(1)}catch(x){}
-      const r=t.getBoundingClientRect(),g=t.cloneNode(true);g.className="pfgh";g.style.cssText="position:fixed;z-index:200;pointer-events:none;width:"+r.width+"px;left:"+r.left+"px;top:"+r.top+"px";document.body.appendChild(g);q.g=g;q.ox=ev.clientX-r.left;q.oy=ev.clientY-r.top;t.classList.add("pfdr");sc.classList.add("drag")},380)};
-  sc.onpointermove=ev=>{if(!q)return;if(!q.drag){if(Math.hypot(ev.clientX-q.x,ev.clientY-q.y)>8){q.mv=1;clearTimeout(q.h)}return}
-    q.g.style.left=(ev.clientX-q.ox)+"px";q.g.style.top=(ev.clientY-q.oy)+"px";const r=sc.getBoundingClientRect(),n=Date.now();
-    if(ev.clientX<r.left+34||ev.clientX>r.right-34){if(!q.ed||n-q.ed>600){q.ed=n;sc.scrollBy({left:(ev.clientX<r.left+34?-1:1)*r.width,behavior:"smooth"})}}else q.ed=0};
-  const up=ev=>{const t=q;q=null;if(!t)return;clearTimeout(t.h);
-    if(t.drag){PFD=null;t.g.remove();t.el.classList.remove("pfdr");sc.classList.remove("drag");const o=document.elementFromPoint(ev.clientX,ev.clientY),s=o&&o.closest&&o.closest(".pfs");
-      if(s&&s.parentElement.parentElement===sc){const j=Math.min(+s.dataset.i,ids.length-1);if(j!==t.i){const a=ids.slice(),m=a.splice(t.i,1)[0];a.splice(j,0,m);pfSet(GK("carddex_pfo"),a);sfx("own")}}
-      pfList();return}
-    if(t.mv)return;const id=ids[t.i];if(id&&CARDS[id]){DXL=[{id,o:1}];openCard(0)}};
-  sc.onpointerup=up;sc.onpointercancel=()=>{const t=q;q=null;if(t){clearTimeout(t.h);if(t.drag){PFD=null;t.g&&t.g.remove();pfList()}}}}
+
+/* ===== Preferiti: album virtuale con il motore dell'album (pagine, tasche, drag, colori) ===== */
+const PFIC='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.9932 5.13581C9.9938 2.7984 6.65975 2.16964 4.15469 4.31001C1.64964 6.45038 1.29697 10.029 3.2642 12.5604C4.89982 14.6651 9.84977 19.1041 11.4721 20.5408C11.6536 20.7016 11.7444 20.7819 11.8502 20.8135C11.9426 20.8411 12.0437 20.8411 12.1361 20.8135C12.2419 20.7819 12.3327 20.7016 12.5142 20.5408C14.1365 19.1041 19.0865 14.6651 20.7221 12.5604C22.6893 10.029 22.3797 6.42787 19.8316 4.31001C17.2835 2.19216 13.9925 2.7984 11.9932 5.13581Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const PFCOL={k:"gF",t:"Preferiti",s:[],g:""};
+function pfList(S){const cols=MODE==="g"?GCOLS:PCOLS,seen=new Set(),nat=[];
+  cols.forEach(c=>(S[c.k]||[]).forEach(x=>{if(x&&x.id&&x.fav&&CARDS[x.id]&&!seen.has(x.id)){seen.add(x.id);nat.push(x)}}));
+  const md=GORD.gF;
+  if(md==="dex"){const key=x=>{const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5},ix=new Map(nat.map((x,i)=>[x,i]));return nat.slice().sort((a,b)=>key(a)-key(b)||ix.get(a)-ix.get(b))}
+  if(md==="cu"&&GCU.gF){const B={},out=[];nat.forEach(x=>(B[x.id]=B[x.id]||[]).push(x));GCU.gF.forEach(id=>{if(!id){out.push({id:null,o:0,n:""});return}const q=B[id];if(q&&q.length)out.push(q.shift())});Object.values(B).forEach(q=>out.push(...q));return out}
+  return nat}
+function pfPub(){try{return pfList(dxRaw(MODE==="g"?"g":"c")).filter(x=>x.id&&x.o).map(x=>x.id)}catch(e){return[]}}
+function pfPers(){try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
+function pfSync(){const ids=st.gF.map(x=>x.id||"");let ch=JSON.stringify(GCU.gF)!==JSON.stringify(ids);GCU.gF=ids;if(GORD.gF!=="dex"&&GORD.gF!=="cu"&&st.gF.some(x=>!x.id)){GORD.gF="cu";ch=1}if(ch)pfPers()}
+function pfRefresh(){const fresh=pfList(st),fs=new Set(fresh),keep=(st.gF||[]).filter(x=>!x.id||fs.has(x)),ks=new Set(keep);fresh.forEach(x=>{if(!ks.has(x))keep.push(x)});st.gF=keep}
+function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.gF=pfList(st);cur="gF";PREV="gF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
+function pfOff(){if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.gF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
 /* ===== Bacheche: teche con 1-3 carte (fino a 3 bacheche) ===== */
 const BCPL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5V19M5 12H19"/></svg>',BCBK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12L15 6"/></svg>',BCDT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>',BCIC='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 17L4 22M15 17L20 22M12 2V4M12 22V17M5.2 17H18.8C19.9201 17 20.4802 17 20.908 16.782C21.2843 16.5903 21.5903 16.2843 21.782 15.908C22 15.4802 22 14.9201 22 13.8V7.2C22 6.07989 22 5.51984 21.782 5.09202C21.5903 4.71569 21.2843 4.40973 20.908 4.21799C20.4802 4 19.9201 4 18.8 4H5.2C4.07989 4 3.51984 4 3.09202 4.21799C2.71569 4.40973 2.40973 4.71569 2.21799 5.09202C2 5.51984 2 6.07989 2 7.2V13.8C2 14.9201 2 15.4802 2.21799 15.908C2.40973 16.2843 2.71569 16.5903 3.09202 16.782C3.51984 17 4.0799 17 5.2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const BCMAX=10,BCSN={g:"Vetro",w:"Legno",m:"Museo"},BCSC={g:"bsg_",w:"bsw_",m:"bsm_"},BCZN=["","Singola","Doppia","Tripla"];
@@ -2426,7 +2405,7 @@ function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}
     o.querySelector(".p").onclick=()=>{const nm=(M.nm||"").trim()||"Bacheca";if(ed){ed.nm=nm;ed.st=M.st;bcSave();o.hidden=true;bcDetail(ed.id);return}
       if(BCH.length>=BCMAX)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
   draw();o.hidden=false}
-function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Album</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button><button class="asc" data-m="f"><span class="aic">'+PFIC+'</span><div><b>Preferiti</b><span>Il tuo album con le carte preferite, in pagine tutte tue.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else if(b.dataset.m==="f")pfList();else aslGo(b.dataset.m)});aqBadge()}
+function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="c"><span class="aic">'+ALI+'</span><div><b>Album</b><span>Le tue carte reali: segna quelle che possiedi.</span></div></button><button class="asc" data-m="f"><span class="aic">'+PFIC+'</span><div><b>Preferiti</b><span>Il tuo album con le carte preferite, in pagine tutte tue.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else if(b.dataset.m==="f"){PFGO=1;aslGo(MODE)}else aslGo(b.dataset.m)});aqBadge()}
 let ALAST=null;
 function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}
@@ -2632,7 +2611,7 @@ function navSet(r,on,anim){if(!r)return;let tg=null;r.querySelectorAll("button[d
   if(anim&&l.dataset.p){r.classList.add("mv");clearTimeout(r._t);r._t=setTimeout(()=>r.classList.remove("mv"),420)}else{l.style.transition="none";void l.offsetWidth;requestAnimationFrame(()=>{l.style.transition=""})}l.dataset.p="1"}
 let NAVB=0;
 function navOn(){const B=document.body;return B.classList.contains("sett")?(B.classList.contains("dex")?"d":B.classList.contains("asl")?"c":"s"):NAVB?"b":"c"}
-function navSync(){try{const t=$("#ttl"),B=document.body;if(t)t.textContent=B.classList.contains("dex")&&B.classList.contains("sett")?"Pokédex":MODE==="g"?"Album":"Collezione"}catch(e){}const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH("a");try{pkBadge()}catch(e){}}navSet(n,navOn(),1);mdSync();dxBadge()}
+function navSync(){try{const t=$("#ttl"),B=document.body;if(t)t.textContent=B.classList.contains("dex")&&B.classList.contains("sett")?"Pokédex":PFM?"Preferiti":MODE==="g"?"Album":"Collezione"}catch(e){}const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH("a");try{pkBadge()}catch(e){}}navSet(n,navOn(),1);mdSync();dxBadge()}
 function mdLook(m,anim){const e=$("#md");if(!e)return;if(!e.firstChild)e.innerHTML='<i class="lens"></i><button data-t="b" aria-label="Bustine">'+PKI+'</button>';e.classList.add("off");e.style.visibility=m==="g"?"":"hidden"}
 function mdSync(anim){mdLook(MODE,anim===undefined?1:anim)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,navOn(),0);mdSync(0)})
@@ -2650,13 +2629,13 @@ function vt(fn){const B=document.body;let o=$("#xo");if(!o){o=document.createEle
   vt.p=fn;vt.t1=setTimeout(()=>{const q=vt.p;vt.p=null;try{if(q)q()}catch(x){errRep(x,"transizione")}requestAnimationFrame(()=>requestAnimationFrame(()=>{o.classList.remove("on");vt.t2=setTimeout(()=>B.classList.remove("xf"),200)}))},135);clearTimeout(vt.t3);vt.t3=setTimeout(()=>{o.classList.remove("on");B.classList.remove("xf")},2200)}
 function fastTop(){const e=$("#set");if(!e||e.scrollTop<2)return;const y0=e.scrollTop,t0=performance.now(),D=Math.min(520,220+y0/14);(function f(t){const k=Math.min(1,(t-t0)/D),q=1-Math.pow(1-k,3);e.scrollTop=y0*(1-q);if(k<1)requestAnimationFrame(f)})(t0)}
 function pkReset(){const p=$("#pkp");if(!p||p.classList.contains("go"))return;const T=$("#pkst");try{T&&T.scrollTo({left:0,behavior:"smooth"})}catch(e){}if(PKCUR!=="B"){const b=T&&T.querySelector('.tab[data-s="B"]');if(b)b.click()}else pkCarGo(0)}
-function goTab(t,direct){const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B.classList.contains("sett"),dex=B.classList.contains("dex"),asl=B.classList.contains("asl"),stg=sett&&!dex&&!asl;
+function goTab(t,direct){try{if(PFM&&!(PFGO&&direct===2))pfOff()}catch(e){}const p=$("#pk"),op=p&&!p.hidden,B=document.body,sett=B.classList.contains("sett"),dex=B.classList.contains("dex"),asl=B.classList.contains("asl"),stg=sett&&!dex&&!asl;
   if(t==="m"||t==="a")t=t==="a"?MODE:"b";if(t==="b")return;
   if(t==="s"){{const now=Date.now();if(DEVOK&&now-(goTab.ls||0)<450){goTab.ls=0;const nv=ENV==="dev"?"app":"dev";try{localStorage.setItem("carddex_env",nv)}catch(x){}try{sessionStorage.setItem("cdx_set","1")}catch(x){}toast(nv==="dev"?"Modalità Dev":"Modalità App");fadeTo(()=>location.reload());return}goTab.ls=now}if(stg&&!op)return;navSet($("#nvp"),"s",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.remove("asl");setOpen(1);navSync()});return}
   if(t==="d"){if(sett&&dex&&!op){fastTop();return}navSet($("#nvp"),"d",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("asl");B.classList.add("dex");setOpen(1);{const q=$("#set");if(q)q.scrollTop=0}navSync();requestAnimationFrame(()=>{const q=$("#set");if(q&&PKDQ.length)q.scrollTop=0});setTimeout(dxFillAnim,480)});return}
   if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
-  if(t==="c"&&!direct){if(asl&&!op)return;if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
-  if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
+  if(t==="c"&&!direct){if(asl&&!op){if(!$("#set .aslw")){try{bcPkEnd()}catch(e){}drawAsl()}return}if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
+  if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){if(PFGO){PFGO=0;pfOn()}else{cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b){if(BCK)bcPkEnd();goTab(b.dataset.t)}});
 function pkObs(pk){new MutationObserver(topRefresh).observe(pk,{attributes:true,attributeFilter:["hidden","class","style"]});const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
