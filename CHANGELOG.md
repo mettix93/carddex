@@ -1,3 +1,6 @@
+## c17 (PullBinder)
+- Carte Allenatore olografiche: effetto holo e riflesso allineati all'illustrazione (come PullTime v442).
+
 ## v442
 - Carte Allenatore olografiche: effetto holo e riflesso ora allineati all'illustrazione (che è più bassa e più bassa di altezza rispetto ai Pokémon): viewer, bustine e riepilogo. Test tests/trainer_holo.js.
 
