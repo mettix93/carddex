@@ -1,3 +1,8 @@
+## v457 (PullTime)
+- Pagine Amici/Scambia: titolo grande a sinistra come Bustine/Pokédex; bottoni «Copia» e «Aggiungi» della stessa larghezza.
+- Icona Amici sostituita (persona con «+» dentro un cerchio, il corpo tocca il cerchio come l'icona Account, stessi spessori); icona Posta nuova.
+- Pagina amico: prima i suoi dati (scoperte, doppie), poi «Doppie di X che mancano a te» / «Tue doppie che mancano a X» in lista, niente più tastoni coi numeri giganti.
+
 ## v456 (PullTime)
 - Account: «Gestione amici» tolta dalle righe; nel riquadro utente c'è l'icona «Amici» (cuore con stretta di mano, disegnata da me) allineata al cerchio «Set completati». Pallino blu sull'icona e sull'icona Account del menu quando arriva una richiesta di amicizia.
 - Amici e Scambia ora sono pagine a tutta pagina come Converti: fondo pieno (fascia in alto dello stesso colore), freccia indietro a sinistra e X a destra stesse misure/posizioni delle altre pagine. Codice, campo «Aggiungi» e righe amico hanno stessa altezza, bottoni e testi; toccando un amico si apre la stessa pagina amico di Scambia.
