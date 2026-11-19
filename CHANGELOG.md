@@ -1,3 +1,6 @@
+## v442
+- Carte Allenatore olografiche: effetto holo e riflesso ora allineati all'illustrazione (che è più bassa e più bassa di altezza rispetto ai Pokémon): viewer, bustine e riepilogo. Test tests/trainer_holo.js.
+
 ## v441
 - Apertura bustina: il lampo bianco al taglio ora sfuma in ~0,2 s (prima ~0,6 s) e la fascia in alto cambia colore a metà di quella sfumatura (170 ms dopo il taglio): pagina e fascia cambiano insieme, come un taglio netto, invece di una fascia che scatta e una pagina che sfuma piano.
 
