@@ -17,7 +17,7 @@ await A.evaluate(()=>cuSync("push"));await B.evaluate(()=>cuSync("push"));
 await A.evaluate(()=>{$("#cvs")||cvBuild();return frOpen()});await A.waitForTimeout(1500);
 const codeA=await A.evaluate(()=>FR.me&&FR.me.code);ok(/^[A-Z2-9]{6}$/.test(codeA||''),'A: codice amico '+codeA);
 ok(Object.keys(DB.collections).length>=1,'profilo e collezione pubblicati');
-await B.evaluate(()=>frOpen());await B.waitForTimeout(1500);
+await B.evaluate(()=>frOpen("a"));await B.waitForTimeout(1500);
 // B aggiunge A col codice, dall'interfaccia
 await B.fill('#frin',codeA.toLowerCase());await B.click('#frm [data-a=add]');await B.waitForTimeout(900);
 ok(DB.friendships.length===1&&DB.friendships[0].status==='pending','B: richiesta inviata ('+DB.friendships.length+')');
@@ -29,9 +29,9 @@ ok(await A.evaluate(()=>FR.n)===1,'A: pallino richieste = 1');
 await A.evaluate(()=>frDraw());await A.click('#frm [data-a=ok]');await A.waitForTimeout(900);
 ok(DB.friendships[0].status==='accepted','A: amicizia accettata');
 // B apre la pagina di A
-await B.evaluate(()=>frLoad());await B.waitForTimeout(600);await B.evaluate(()=>frDraw());await B.click('#frm [data-a=op]');await B.waitForTimeout(1000);
+await B.evaluate(()=>frLoad());await B.waitForTimeout(600);await B.evaluate(()=>{FR.md="t";FR.v="home";frDraw()});await B.click('#frm [data-a=op]');await B.waitForTimeout(1000);
 const fv=await B.evaluate(()=>({n:Object.keys(FR.co[FR.u]||{}).length,txt:document.querySelector('#frm').innerText}));
-ok(fv.n>=3&&/Anna/.test(fv.txt)&&/Ti interessano \(3\)/i.test(fv.txt),'B: vede la collezione di A e 3 doppie che gli mancano '+fv.n+' '+fv.txt.replace(/\n/g,'|').slice(0,200));
+ok(fv.n>=3&&/Anna/.test(fv.txt)&&/Mancano a te\s*3/i.test(fv.txt),'B: vede la collezione di A e 3 doppie che gli mancano '+fv.n+' '+fv.txt.replace(/\n/g,'|').slice(0,200));
 // B propone: dà 2 delle sue, chiede 2 di A (stessa rarità C)
 await B.click('#frm [data-a=prop]');await B.waitForTimeout(300);
 await B.evaluate(([g,t])=>{FR.gv={[g[0]]:1,[g[1]]:1};FR.gt={[t[0]]:1,[t[1]]:1};frDraw()},[bIds,aIds]);
@@ -48,14 +48,19 @@ ok(rv.sp===undefined&&rv.spareTwo===false&&rv.spareOne===true,'B: carte offerte 
 // A: riceve, vede il pallino, accetta
 await A.evaluate(()=>frLoad());await A.waitForTimeout(600);
 ok(await A.evaluate(()=>FR.n)===1,'A: pallino proposte = 1');
+ok(await A.evaluate(()=>!!document.querySelector('#pkbc .fdt')||!!document.querySelector('.nvp button[data-t=b] .fdt')),'A: pallino blu sulle icone Converti/Bustine');
 await A.evaluate(()=>{FR.v="mail";frDraw()});
 const q0=await Promise.all([qOf(A,aIds[0]),qOf(A,bIds[0]),qOf(B,bIds[0]),qOf(B,aIds[0])]);
 await A.click('#frm [data-a=acc]');await A.waitForTimeout(1200);
 ok(DB.trades[0].status==='accepted','A: proposta accettata');
+ok(await A.evaluate(()=>FR.v==='done'&&/Scambio concluso/i.test(document.querySelector('#frm').innerText)&&document.querySelectorAll('#frm .frdr .frdc').length===2),'A: schermata scambio concluso con le 2 carte ricevute');
+ok(await A.evaluate(()=>PKAQ.length>=1&&document.querySelectorAll('#frm .frtg').length>=1),'A: carte nuove segnate per l\'album ('+await A.evaluate(()=>PKAQ.length)+')');
 const qa=await Promise.all([qOf(A,aIds[0]),qOf(A,aIds[1]),qOf(A,bIds[0]),qOf(A,bIds[1])]);
 ok(qa[0]===1&&qa[1]===1&&qa[2]===1&&qa[3]===1,'A: ha dato 2 e ricevuto 2 ('+qa+')');
 // B: applica da solo, una volta sola
 await B.evaluate(()=>frLoad());await B.waitForTimeout(800);
+ok(await B.evaluate(()=>(FR.dn&&FR.dn.get.length===2)||FR.dq.some(x=>x.get.length===2)),'B: scambio concluso riconosciuto');
+ok(await B.evaluate(()=>PKAQ.length>=1),'B: carte nuove segnate per l\'album');
 const qb=await Promise.all([qOf(B,bIds[0]),qOf(B,bIds[1]),qOf(B,aIds[0]),qOf(B,aIds[1])]);
 ok(qb[0]===1&&qb[1]===1&&qb[2]===1&&qb[3]===1,'B: scambio applicato ('+qb+')');
 await B.evaluate(()=>frLoad());await B.waitForTimeout(500);await B.evaluate(()=>frLoad());await B.waitForTimeout(500);

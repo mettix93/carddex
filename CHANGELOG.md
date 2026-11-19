@@ -1,3 +1,11 @@
+## v454 (PullTime)
+- Pallino blu sull'icona Converti/Scambia e sull'icona Bustine del menu in basso quando c'è una richiesta di amicizia o una proposta in arrivo. Controllo novità ogni 40 s (e quando riapri l'app).
+- Gestione amici in Impostazioni › Account › «Gestione amici»: tuo codice, aggiungi amico, richieste, elenco con «Rimuovi», richieste inviate. Il tasto Scambia ora apre solo: Posta, richieste in arrivo, lista amici (tocchi un amico e parte lo scambio) e «Scambio con codice».
+- Pagina amico più sintetica: carte scoperte, doppie, quante ne mancano a te e quante mancano a lui; poi Proponi uno scambio / Vedi la sua collezione / Rimuovi amico.
+- Schermata scambio a tutto schermo, in stile Converti: set separati, carte a file di 3, simbolo di rarità e contatori −/+. Tabella per rarità con scelte/disponibili (tue e dell'amico), messaggio che dice quante carte di quale rarità puoi ancora chiedere, pallino blu sulle carte nuove per l'altro. Si può chiedere solo la stessa quantità per rarità di quella che dai.
+- Scambio concluso: schermata con animazione (le tue carte escono, quelle ricevute arrivano) con le etichette NUOVA / POKÉDEX; le carte nuove entrano nelle code di album e Pokédex (pallini e animazioni di ingresso come per le bustine). Vale sia per chi accetta sia per chi ha proposto (appena riapre l'app).
+- Corretto un possibile doppio codice amico creato all'avvio (richieste in parallelo). Le carte nuove da scambio ora hanno la quantità 1 esplicita. Test tests/friends.js e tests/scambia_tab.js aggiornati.
+
 ## v453 (PullTime) / c20 (PullBinder)
 - Corretto il «rate limit exceeded» di GitHub: il precaricamento per l'uso offline scaricava ~1150 file in pochi secondi a ogni telefono nuovo e GitHub bloccava l'indirizzo. Ora va piano (un file alla volta, massimo 120 per apertura, parte dopo 25 s e si ferma al primo rifiuto) e finisce nel giro di qualche apertura.
 - Se GitHub risponde con un errore (limite, 5xx) l'app si apre comunque dall'ultima copia salvata invece di mostrare la pagina d'errore.

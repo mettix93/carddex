@@ -1147,8 +1147,6 @@ html.gml body #pkst .tab.on{background:#fff!important}
 #pkp.go #pkst{opacity:0;pointer-events:none}
 /* v262 doppie: pagina unica per set con titolo fisso, indicatore quantita nell'Album */
 .cvg{display:block!important}
-#cvs .cvgg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-#cvs .cvw+.cvw{margin-top:6px}
 #cvs .cvw>.sgt{position:static;z-index:4;display:flex;align-items:baseline;gap:10px;margin:0 -16px 6px!important;padding:12px 16px 8px!important;background:#fff;font:600 17px/1.2 -apple-system,"SF Pro Text",system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#8e8e93}
 html:not(.gml) #cvs .cvw>.sgt{background:#000}
 html.gml #cvs .cvw>.sgt{background:#f2f2f7}
@@ -1317,6 +1315,52 @@ html body #set .dxi{gap:10px}
 html body #set .dxw>.sgt{position:static;background:transparent!important;text-shadow:none;padding-left:0!important}
 html:root body.dex #app #tabs{z-index:6;overflow:visible!important}
 html:root body #app .tab[data-k="gQ"] .si{height:23px!important;transform:translateY(-2px)}
+.fdt{position:absolute;top:5px;right:calc(50% - 21px);width:11px;height:11px;border-radius:50%;background:#0a84ff;box-shadow:0 0 0 2px var(--fdb,#fff);pointer-events:none;z-index:3}
+#pkbc .fdt{top:4px;right:4px}
+html:not(.gml) .fdt{--fdb:#1c1c1e}
+.row.act .frb{margin-left:8px;background:#0a84ff}
+:is(#cvs,#frm) .cvgg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+:is(#cvs,#frm) .cvw+.cvw{margin-top:6px}
+#frm .cvw>.sgt{display:flex;align-items:baseline;gap:10px;margin:8px 0 6px;font:600 17px/1.2 -apple-system,"SF Pro Text",system-ui,sans-serif;text-transform:none;letter-spacing:0;color:#8e8e93;text-align:left}
+#frm .cvw>.sgt em{font:600 14px -apple-system,system-ui,sans-serif;font-style:normal;color:#8e8e93}
+#frm .cvt{position:relative}
+#frm.frfull{align-items:stretch;justify-content:stretch;background:transparent}
+#frm.frfull .frp{width:100%;max-width:none;height:100%;max-height:none;border-radius:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 14px calc(env(safe-area-inset-bottom,0px) + 12px)}
+#frm.frfull .frbody{display:flex;flex-direction:column;max-height:none;flex:1;min-height:0;overflow:hidden}
+#frm .frscr{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+#frm .frtbl{margin:10px 0 0;border-radius:14px;background:rgba(27,42,73,.07);padding:4px 10px}
+#frm .frlg2{margin:5px 2px 0;font-size:11px;color:#8e8e93;text-align:left}
+#frm .frrw span small{font:500 12px -apple-system,system-ui,sans-serif;color:#8e8e93}
+#frm .frrw{display:grid;grid-template-columns:1fr 62px 62px;align-items:center;gap:6px;min-height:34px;font:600 14px -apple-system,system-ui,sans-serif;text-align:center}
+#frm .frrw.hd{min-height:26px;font:600 11px -apple-system,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8e8e93}
+#frm .frrw .frrn{display:flex;align-items:center;gap:6px;text-align:left;min-width:0;flex-wrap:wrap}
+#frm .frrw .frrn svg{width:20px;height:20px;flex:none;color:#4e5d7c}
+#frm .frrw.ok{color:#1f9d4d}#frm .frrw.bad{color:#d98200}
+#frm .frmsg{margin:8px 0 0;font-size:13px;color:#4e5d7c;text-align:left;line-height:1.35}
+#frm .frmsg.ok{color:#1f9d4d;font-weight:600}
+#frm .frlg{margin:8px 0 4px;font-size:12px;color:#8e8e93;text-align:left;display:flex;align-items:center;gap:6px}
+.frnw{position:absolute;left:5px;top:5px;width:10px;height:10px;border-radius:50%;background:#0a84ff;box-shadow:0 0 0 2px #fff;z-index:2;pointer-events:none}.frnw.s{position:static;display:inline-block;flex:none}
+#frm .frft{display:flex;align-items:center;gap:10px;padding-top:10px}
+#frm .frft span{flex:1;font:600 14px -apple-system,system-ui,sans-serif;text-align:left}
+#frm .frft .frb2{width:auto;margin:0;flex:none;padding:0 20px}
+#frm .frst{margin:10px 0 2px;border-radius:16px;background:rgba(27,42,73,.07);padding:2px 14px}
+#frm .frst div{display:flex;align-items:center;justify-content:space-between;min-height:42px;font:500 15px -apple-system,system-ui,sans-serif}
+#frm .frst div+div{border-top:1px solid rgba(27,42,73,.1)}
+#frm .frst b{font:700 17px -apple-system,system-ui,sans-serif}
+#frm .frdg,#frm .frdr{display:grid;gap:8px;margin:8px 0}
+#frm .frdg{grid-template-columns:repeat(6,minmax(0,1fr))}#frm .frdr{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#frm .frdc{position:relative;min-width:0}
+#frm .frdc .cvf{position:relative;inset:auto;aspect-ratio:63/88;border-radius:5px;overflow:hidden}
+#frm .frtg{position:absolute;left:4px;right:4px;bottom:4px;display:flex;flex-direction:column;gap:3px;align-items:center}
+#frm .frtg b{display:block;padding:2px 7px;border-radius:9px;font:800 9.5px/1.2 -apple-system,system-ui,sans-serif;letter-spacing:.04em;color:#fff;background:linear-gradient(180deg,#f7c948,#e08a00)}
+#frm .frtg b.d{background:linear-gradient(180deg,#3d9bff,#0a64d6)}
+#frm .frdn2{color:#d70015}
+html:not(.gml) #frm .frdn2{color:#ff6961}
+html:not(.gml) #frm .frtbl,html:not(.gml) #frm .frst{background:rgba(255,255,255,.08)}
+html:not(.gml) #frm .frst div+div{border-top-color:rgba(255,255,255,.12)}
+html:not(.gml) #frm .frmsg,html:not(.gml) #frm .frrw .frrn svg{color:rgba(235,235,245,.7)}
+html:not(.gml) #frm .frrw.ok,html:not(.gml) #frm .frmsg.ok{color:#5ee08a}html:not(.gml) #frm .frrw.bad{color:#ffb340}
+html:not(.gml) .frnw{box-shadow:0 0 0 2px #1c1c1e}
 .tab[data-pr]{position:relative}.tab[data-pr]::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(#0a84ff calc(var(--pr)*1%),rgba(10,132,255,.2) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px))}
 html:root:root body :is(#tabs,#pkst) .tab.gd{position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 10px rgba(255,200,70,.5)!important}
 .tab.gd::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;pointer-events:none;background:conic-gradient(from 200deg,#ffe58a,#f2b632,#fff4c2,#e9a21c,#ffe58a);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
@@ -1388,7 +1432,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v453";
+const APPV="v454";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1804,7 +1848,7 @@ let PREV=COLS[0].k;
 function exitSearch(){cur=PREV||"a";SR=[];SQ="";pg=0;sp=0;tabs();render()}
 const tgH=g=>{const i=g.indexOf(" ");return i<0?esc(g):esc(g.slice(0,i))+"<br>"+esc(g.slice(i+1))};
 const pkLkS=sid=>{try{return pkLk(sid)}catch(e){return 0}};
-function tabs(){try{applyPgc()}catch(e){}try{toppsPre()}catch(e){}$("#ft").classList.toggle("on",FLT!=="a");$("#sq").classList.toggle("on",cur==="?");$("#sq").innerHTML=cur==="?"?XI:LENS;$("#sq").setAttribute("aria-label",cur==="?"?"Chiudi ricerca":"Cerca Pokémon");const TB=$("#tabs"),tsl=TB.scrollLeft,H=(g0=>COLS.map(c=>{const l=c.g&&c.g!==g0?((MODE==="g"&&g0?'<i class="dv"></i>':"")+(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`)):"";return l+`<button class="tab ${c.k===cur?"on":""}${MODE==="g"&&pkLkS(c.s[0])?" lk":""}${MODE==="g"?sdCls(c.k,c.k===cur,pkLkS(c.s[0])):""}" data-k="${c.k}"${MODE==="g"?sdAt(c.k,c.k===cur,pkLkS(c.s[0])):""} aria-label="${esc(c.t)}">${(c.lg||MODE==="g"?c.s:c.s.slice(0,4)).map(sicon).join("")}</button>`}).join(""))("")+(MODE==="c"?`<button class="tab tpl" data-k="+" aria-label="Nuovo album"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>`:"");TB.innerHTML=H;TABW=0;TB.scrollLeft=tsl;tabSee(TABK!==cur&&TABK!==null);TABK=cur;try{aqBadge()}catch(x){}try{sdSoon()}catch(x){}}
+function tabs(){try{applyPgc()}catch(e){}try{toppsPre()}catch(e){}$("#ft").classList.toggle("on",FLT!=="a");$("#sq").classList.toggle("on",cur==="?");$("#sq").innerHTML=cur==="?"?XI:LENS;$("#sq").setAttribute("aria-label",cur==="?"?"Chiudi ricerca":"Cerca Pokémon");const TB=$("#tabs"),tsl=TB.scrollLeft,H=(g0=>COLS.map(c=>{const l=c.g&&c.g!==g0?((MODE==="g"&&g0?'<i class="dv"></i>':"")+(g0=c.g,`<span class="tg">${tgH(c.g)}</span>`)):"";return l+`<button class="tab ${c.k===cur?"on":""}${MODE==="g"&&pkLkS(c.s[0])?" lk":""}${MODE==="g"?sdCls(c.k,c.k===cur,pkLkS(c.s[0])):""}" data-k="${c.k}"${MODE==="g"?sdAt(c.k,c.k===cur,pkLkS(c.s[0])):""} aria-label="${esc(c.t)}">${(c.lg||MODE==="g"?c.s:c.s.slice(0,4)).map(sicon).join("")}</button>`}).join(""))("")+(MODE==="c"?`<button class="tab tpl" data-k="+" aria-label="Nuovo album"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>`:"");TB.innerHTML=H;TABW=0;TB.scrollLeft=tsl;tabSee(TABK!==cur&&TABK!==null);TABK=cur;try{aqBadge()}catch(x){}try{sdSoon()}catch(x){}try{frDots(FR.n)}catch(x){}}
 let TABK=null,TABW=0,TABL=0,TABS=0,TABT=0;
 function tabNorm(){const TB=$("#tabs");if(!TB||!TABW||TABS)return;const x=TB.scrollLeft;if(x<1.5*TABW)TB.scrollLeft=x+TABW*Math.ceil((1.5*TABW-x)/TABW);else if(x>=2.5*TABW)TB.scrollLeft=x-TABW*Math.ceil((x-2.5*TABW+1)/TABW)}
 function tabSee(sm){try{const TB=$("#tabs");if(TB.scrollWidth<=TB.clientWidth+1)return;const a=TB.getBoundingClientRect(),mid=a.left+a.width/2;let b=null,bd=1e9;TB.querySelectorAll(".tab.on").forEach(e=>{const r=e.getBoundingClientRect(),d=Math.abs(r.left+r.width/2-mid);if(d<bd){bd=d;b=e}});if(!b)return;const r=b.getBoundingClientRect(),m=16;let d=0;if(r.left<a.left+m)d=r.left-a.left-m;else if(r.right>a.right-m)d=r.right-a.right+m;if(d){if(sm){TABS=1;clearTimeout(TABT);TABT=setTimeout(()=>{TABS=0;tabNorm()},650)}TB.scrollTo({left:TB.scrollLeft+d,behavior:sm?"smooth":"auto"})}}catch(e){}}
@@ -2467,7 +2511,7 @@ function dxFillAnim(){if(dxFilling||!PKDQ.length||!document.body.classList.conta
     const go=()=>{if(!alive()){dxFilling=0;return}const {o}=dxScope(D,d),pf=DXPF[d]&&o.find(x=>x.c.id===DXPF[d]),c=pf?pf.c:o[0].c,m=face(c).match(/src="([^"]+)"/);if(!m){go1();return}const im=new Image();let k=0;const t=()=>{if(k++)return;go1()};im.onload=im.onerror=t;im.src=m[1];setTimeout(t,2500);if(im.complete)t()};
     if(vis())go();else{const top=slot.getBoundingClientRect().top-e.getBoundingClientRect().top+e.scrollTop,h=slot.getBoundingClientRect().height,band=lo-pt;dxScr(e,Math.max(0,top-pt-(band-h)/2));let last=-1,n=0;const w=()=>{if(!alive()){dxFilling=0;return}if(Math.abs(e.scrollTop-last)<.5||++n>60){setTimeout(go,120)}else{last=e.scrollTop;setTimeout(w,80)}};setTimeout(w,150)}};
   setTimeout(()=>run(0),150)}
-function pkAdd(c){for(const co of COLS){const s=st[co.k].find(x=>x.id===c.id)||st[co.k].find(x=>{const g=CARDS[x.id];return g&&g.opts&&g.opts.includes(c.id)});if(s&&!s.o&&CARDS[s.id]&&CARDS[s.id].opts)s.v=c.id;if(s){if(s.o){s.q=(s.q>1?s.q:1)+1;return{nw:0,q:s.q}}s.o=1;s.a=0;return{nw:1,q:1,k:co.k}}}return{nw:1,q:1}}
+function pkAdd(c){for(const co of COLS){const s=st[co.k].find(x=>x.id===c.id)||st[co.k].find(x=>{const g=CARDS[x.id];return g&&g.opts&&g.opts.includes(c.id)});if(s&&!s.o&&CARDS[s.id]&&CARDS[s.id].opts)s.v=c.id;if(s){if(s.o){s.q=(s.q>1?s.q:1)+1;return{nw:0,q:s.q}}s.o=1;s.a=0;s.q=1;return{nw:1,q:1,k:co.k}}}return{nw:1,q:1}}
 function pkLeft(){const d=new Date(),m=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1),s=Math.max(0,Math.round((m-d)/6e4)),h=Math.floor(s/60);return h+" h "+(s%60)+" min"}
 /* copia le regole grafiche della carta aperta (effetto holo) anche per le carte delle bustine */
 let pkCss=0;function pkCloneCss(){if(pkCss)return;pkCss=1;
@@ -2632,7 +2676,9 @@ const trSt=()=>{try{const o=JSON.parse(localStorage.getItem(GK("carddex_tr"))||"
 const trSv=o=>{try{localStorage.setItem(GK("carddex_tr"),JSON.stringify(o))}catch(e){}};
 function trSlot(id){for(const co of COLS){const s=st[co.k].find(x=>x.id===id);if(s)return s}return null}
 function trSpare(ids){const n={},rv=frResv();ids.forEach(i=>{n[i]=(n[i]||0)+1});return Object.keys(n).every(i=>{const s=trSlot(i);return s&&s.o&&s.q>1&&s.q-1-(rv[i]||0)>=n[i]})}
-function trApply(give,get){give.forEach(i=>{const s=trSlot(i);if(s)s.q-=1});get.forEach(i=>{const s=trSlot(i);if(!s)return;if(s.o)s.q=(s.q>1?s.q:1)+1;else{s.o=1;s.a=0;s.q=1}});save();try{render()}catch(e){}}
+function trApply(give,get){const R={nw:[],dx:[]};give.forEach(i=>{const s=trSlot(i);if(s)s.q-=1});let dxs;try{dxs=pkDxSeen()}catch(e){dxs=new Set()}
+  get.forEach(i=>{const c=trCard(i);if(!c)return;const dn=pkDxNew(c,dxs),r=pkAdd(c);if(dn&&!PKDQ.includes(c.dex)){PKDQ.push(c.dex);R.dx.push(i)}if(r.nw){R.nw.push(i);if(r.k&&!aqHas(r.k,c.id))PKAQ.push({k:r.k,id:c.id})}});
+  try{dxQSave();aqSave()}catch(e){}save();try{render()}catch(e){}try{aqBadge();dxBadge();pkBadge()}catch(e){}return R}
 function trFaces(ids){return'<div class="trr">'+ids.map(i=>{const c=trCard(i);return'<div class="trfc"><div class="cvf">'+face(c,0)+"</div></div>"}).join("")+"</div>"}
 function trSheet(o){let e=$("#trm");if(!e){e=document.createElement("div");e.id="trm";e.hidden=true;document.body.appendChild(e);e.onclick=ev=>{if(ev.target===e)e.hidden=true}}
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="trt">'+o.t+"</div>"+(o.n?'<p class="trn">'+o.n+"</p>":"")+(o.h||"")+"</div>";
@@ -2661,7 +2707,7 @@ function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div")
   e.innerHTML='<div class="cvhd"><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="f">Scambia<i class="frd"></i></button></div><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><p class="cvds"><span id="cvdt"></span><button id="cvq" aria-label="Informazioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></svg></button></p><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Ricevi</button><button id="tro" disabled>Offri</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
   $("#cvq").onclick=()=>cvInfo(TRM);
-  e.querySelector(".cvtb").onclick=ev=>{const b=ev.target.closest("button");if(!b)return;if(b.dataset.m==="f"){frOpen();return}trTab(b.dataset.m)};
+  e.querySelector(".cvtb").onclick=ev=>{const b=ev.target.closest("button");if(!b)return;if(b.dataset.m==="f"){frOpen("t");return}trTab(b.dataset.m)};
   $("#trp").onclick=trPaste;$("#tro").onclick=trGo;
   $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt();o.pts=(o.pts||0)+tot;pkSv(o);{const M=msSt();M.earn=(M.earn||0)+tot;msSv(M)}cvSel={};cvSync();pkBarUpd();toast("+"+tot+(tot===1?" Pokédollaro":" Pokédollari")+" ("+n+(n===1?" carta":" carte")+")!")};
   e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(!m)return;if(m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(cvRoom(x,k)>0)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
@@ -2722,7 +2768,7 @@ function pkBadge(){const n=pkAvail(),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkToAlbum(){const sid=PKCUR,k="g"+sid;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(e){}pkClose();if(MODE!=="g")setMode("g");if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync();try{aqEnter(k)}catch(x){errRep(x,"aqEnter")}}
-function pkScreen(){try{sdPkTabs()}catch(e){}const e=pkBuild();e.classList.remove("pkfo");pkChoose()}
+function pkScreen(){try{sdPkTabs()}catch(e){}const e=pkBuild();try{frDots(FR.n)}catch(x){}e.classList.remove("pkfo");pkChoose()}
 function pkChoose(){requestAnimationFrame(pkTtl);setTimeout(pkTtl,120);setTimeout(pkTtl,450);pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
   e.classList.remove("holo","close","god","lucky","sm","gband");e.classList.add("studio");pkTheme(STC());e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
@@ -3090,12 +3136,13 @@ function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
-  return '<div class="ucw"><div class="ucd"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div></div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div></div>'}
+  return '<div class="ucw"><div class="ucd"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div></div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+(c?'<div class="sgt">Amici</div><div class="sgr ucg">'+R("fr","Gestione amici"+(FR.n>0?'<em class="frb">'+FR.n+"</em>":""))+"</div>":"")+'</div>'}
 function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.querySelector("#unm");
   if(un)un.onchange=()=>{const v=un.value.trim().slice(0,16);try{const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u))}catch(x){}const a=w.querySelector(".uav");if(a)a.textContent=v?v[0].toUpperCase():"?";toast(v?"Nome salvato":"Nome rimosso")};
   w.onclick=async ev=>{const b=ev.target.closest("button[data-u]");if(!b)return;const k=b.dataset.u,busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
     try{if(k==="cr"){const v=(un&&un.value.trim()||"").slice(0,16);if(!v){toast("Scrivi prima il tuo nome");if(un)un.focus();return}const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);USV="code";toast("Account creato: salva il tuo codice");cuUi()}
       else if(k==="lg"){USV=USV==="login"?"":"login";cuUi()}
+      else if(k==="fr"){frOpen("a")}
       else if(k==="go"){const i=w.querySelector("#ulc");busy(1);await cuLogin(i&&i.value);USV="";toast("Accesso eseguito");cuUi()}
       else if(k==="sy"){busy(1);const m=await cuSync("full");toast(m?"Errore: "+m:"Sincronizzato")}
       else if(k==="co"){USV=USV==="code"?"":"code";cuUi()}
@@ -3142,7 +3189,7 @@ function sdCeleD(i){sdBusy=1;const e=$("#set");let n=0;const go=()=>{const b=doc
   if(e&&e.scrollTop>4){try{dxScr(e,0)}catch(x){e.scrollTop=0}let last=-1;const w=()=>{if(!document.body.classList.contains("dex")){sdBusy=0;return}if(Math.abs(e.scrollTop-last)<.5||++n>40)setTimeout(go,150);else{last=e.scrollTop;setTimeout(w,80)}};setTimeout(w,150)}else setTimeout(go,150)}
 function frapGet(){try{const a=JSON.parse(localStorage.getItem(GK("carddex_frap")));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function frapAdd(id){const a=frapGet();if(!a.includes(id)){a.push(id);try{localStorage.setItem(GK("carddex_frap"),JSON.stringify(a.slice(-300)))}catch(e){}}}
-const FR={me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
+const FR={dq:[],dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
 const frCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(6);crypto.getRandomValues(r);return Array.from(r,x=>A[x%32]).join("")};
 const frExp=t=>Date.parse(t.expires_at)<=Date.now();
 const frNm=u=>(FR.pr[u]&&FR.pr[u].name)||"Un amico";
@@ -3151,7 +3198,8 @@ function frResv(){const n={};if(!FR.me)return n;FR.tr.forEach(t=>{if(t.from_user
 function frSpareOf(co,rv){const o={};Object.keys(co||{}).forEach(i=>{const k=(co[i]||0)-1-((rv||{})[i]||0);if(k>0&&CARDS[i])o[i]=k});return o}
 let FRO=null;function frOrd(){if(!FRO){FRO={};let n=0;GCOLS.forEach(co=>(st[co.k]||[]).forEach(s=>{if(s&&s.id&&FRO[s.id]==null)FRO[s.id]=n++}))}return FRO}
 const frSort=a=>{const O=frOrd();return a.slice().sort((x,y)=>(O[x]??1e9)-(O[y]??1e9)||(x<y?-1:1))};
-async function frEnsure(){const u=await cuTok();if(FR.me&&FR.me.uid===u.uid)return FR.me;
+function frEnsure(){if(FR.ep)return FR.ep;FR.ep=frEnsure0();FR.ep.then(()=>{FR.ep=null},()=>{FR.ep=null});return FR.ep}
+async function frEnsure0(){const u=await cuTok();if(FR.me&&FR.me.uid===u.uid)return FR.me;
   let r=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name");
   if(!r||!r[0]){for(let i=0;i<6;i++){const code=frCode();try{await sbReq("/rest/v1/profiles",{m:"POST",h:{Prefer:"return=minimal"},b:{user_id:u.uid,name:(usrGet().n||"").slice(0,16),code}});r=[{code,name:usrGet().n||""}];break}catch(e){if(!/duplicate|unique/i.test(e.message))throw e}}}
   if(!r||!r[0])throw new Error("Codice amico non creato");FR.me={uid:u.uid,code:r[0].code,name:r[0].name||""};return FR.me}
@@ -3167,10 +3215,11 @@ async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
 function frApplyDone(){const me=FR.me;if(!me)return;let ch=0;
   FR.tr.forEach(t=>{if(t.status!=="accepted"||t.from_user!==me.uid||frapGet().includes(t.id))return;
     if(!trSpare(t.give)){frapAdd(t.id);toast("Scambio con "+frNm(t.to_user)+": le tue carte non erano più disponibili",1);return}
-    trApply(t.give,t.get);frapAdd(t.id);ch=1;toast("Scambio con "+frNm(t.to_user)+" completato!")});
-  if(ch){try{cuSync("push")}catch(e){}}}
+    const R=trApply(t.give,t.get);frapAdd(t.id);ch=1;FR.dq.push({who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx})});
+  if(ch){try{cuSync("push")}catch(e){}}try{frDoneShow()}catch(e){}}
 function frCount(){const me=FR.me&&FR.me.uid;if(!me)return 0;return FR.fs.filter(f=>f.status==="pending"&&f.addressee===me).length+FR.tr.filter(t=>t.status==="pending"&&t.to_user===me&&!frExp(t)).length}
-function frBadge(){const n=FR.n=frCount();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));
+function frDots(n){document.querySelectorAll("#pkbc,.nvp button[data-t=b]").forEach(b=>{let d=b.querySelector(":scope>.fdt");if(n>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
+function frBadge(){const n=FR.n=frCount();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));try{frDots(n)}catch(e){}
   if(n>0&&n>FR.nn)toast(FR.nn<0?"Hai "+n+(n===1?" novità":" novità")+" negli scambi con gli amici":"Nuova richiesta dagli amici");FR.nn=n;frDraw()}
 async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");FR.co[u]=r&&r[0]?r[0].data:{}}catch(e){if(!FR.co[u])FR.co[u]={}}}
 async function frAskFriend(code){const r=await sbReq("/rest/v1/rpc/friend_request",{m:"POST",b:{p_code:String(code||"").trim().toUpperCase()}});return r}
@@ -3180,7 +3229,7 @@ async function frAnswer(t,st2){const r=await sbReq("/rest/v1/trades?id=eq."+t.id
 async function frAccept(t){if(frExp(t)){toast("Proposta scaduta");return}if(!trSpare(t.get)){toast("Non hai più le carte richieste");return}
   let r;try{r=await frAnswer(t,"accepted")}catch(e){toast(e.message||"Errore");return}
   if(!r){toast("Proposta non più valida");return}
-  trApply(t.get,t.give);frapAdd(t.id);toast("Scambio concluso!");try{cuSync("push")}catch(e){}frDraw()}
+  const R=trApply(t.get,t.give);frapAdd(t.id);FR.dn={who:frNm(t.from_user),give:t.get.slice(),get:t.give.slice(),nw:R.nw,dx:R.dx};FR.v="done";try{cuSync("push")}catch(e){}frDraw()}
 /* ---- schermate ---- */
 const frX='<button class="cvx" data-a="x" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button>';
 const frAv=n=>'<span class="fra">'+esc((n||"?")[0].toUpperCase())+"</span>";
@@ -3188,44 +3237,71 @@ function frFaces(ids,max){ids=ids.slice(0,max||12);return'<div class="trr">'+ids
 function frTile(id,mx,k){const c=trCard(id);if(!c)return"";return'<button class="frt'+(k?" on":"")+'" data-a="tg" data-i="'+id+'" data-m="'+mx+'"><div class="cvf">'+face(c,0)+"</div>"+(mx>1||k?'<b class="frn">'+(k?k+"/":"×")+mx+"</b>":"")+"</button>"}
 function frLeft(t){const m=Math.max(0,Date.parse(t.expires_at)-Date.now()),h=Math.floor(m/36e5);return h>=1?"scade tra "+h+" h":"scade tra "+Math.max(1,Math.round(m/6e4))+" min"}
 function frList(){const me=FR.me&&FR.me.uid;return FR.fs.map(f=>{const u=f.requester===me?f.addressee:f.requester;return{f,u,p:FR.pr[u]||{name:"?"},acc:f.status==="accepted",inc:f.status==="pending"&&f.addressee===me}})}
+function frCtx(){const u=FR.u,co=FR.co[u]||{},my=frSpareOf(frColl(),frResv()),fs=frSpareOf(co),G=FR.gv,T=FR.gt;
+  const tl=o=>{const a=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)a.push(i)});return a},ga=tl(G),ta=tl(T),av=q=>{const n={};Object.keys(q).forEach(i=>{const c=trCard(i);if(c){const k=trK(c);n[k]=(n[k]||0)+q[i]}});return n};
+  return{u,co,my,fs,G,T,ga,ta,tg:trTally(ga),tt:trTally(ta),am:av(my),af:av(fs),mc:frColl(),same:!!ga.length&&trSame(ga,ta)}}
+function frRoom(id,X){X=X||frCtx();const give=FR.tab==="give",c=trCard(id);if(!c)return 0;let r=((give?X.my:X.fs)[id]||0)-((give?X.G:X.T)[id]||0);if(!give){const k=trK(c);r=Math.min(r,(X.tg[k]||0)-(X.tt[k]||0))}return r}
+function frSets(ids){const m={};GCOLS.forEach((co,ci)=>(st[co.k]||[]).forEach(s=>{if(s&&s.id)m[s.id]=ci}));const RKk={R:0,U:1,C:2},rr=c=>{const d=rdOf(c);return RKk[d&&d.r]??2},g={};
+  ids.forEach(i=>{const ci=m[i]??99;(g[ci]=g[ci]||[]).push(i)});
+  return Object.keys(g).map(Number).sort((a,b)=>a-b).map(ci=>({ci,ids:g[ci].sort((a,b)=>{const x=trCard(a),y=trCard(b);return rr(x)-rr(y)||(x.num||0)-(y.num||0)})}))}
+function frCvt(id,sp,k,room,nw){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+RCOIN(trK(c))+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
+function frDoneShow(){if(!FR.dq.length||document.hidden)return;const p=$("#pk"),busy=(p&&!p.hidden&&(p.classList.contains("opening")||p.classList.contains("sm")||p.classList.contains("go")))||(typeof aqRun!=="undefined"&&aqRun)||dxFilling,e=frEl();if(busy||(!e.hidden&&FR.v!=="done"))return;if(!e.hidden&&FR.dn&&FR.dn!==FR.dnA)return;
+  FR.dn=FR.dq.shift();FR.v="done";FR.dnA=null;e.hidden=false;frDraw()}
+function frAnim(){const e=$("#frm");if(!e||!e.animate||FR.v!=="done")return;const g=[...e.querySelectorAll(".frdg .frdc")],r=[...e.querySelectorAll(".frdr .frdc")];
+  g.forEach((x,i)=>x.animate([{transform:"translateY(0) scale(1)",opacity:1},{transform:"translate(0,0) scale(.92)",opacity:.35}],{duration:650,delay:250+i*80,easing:"ease-in",fill:"forwards"}));
+  r.forEach((x,i)=>{const d=1000+i*240;x.animate([{transform:"translateY(-44px) scale(.7)",opacity:0},{transform:"translateY(0) scale(1.07)",opacity:1,offset:.72},{transform:"translateY(0) scale(1)",opacity:1}],{duration:700,delay:d,easing:"cubic-bezier(.2,.8,.3,1)",fill:"backwards"});setTimeout(()=>{try{sfx("land",.1)}catch(q){}},d+120)});
+  setTimeout(()=>{try{sfx("nuova");hap(2)}catch(q){}},1000+r.length*240+450)}
 function frView(){const me=FR.me,v=FR.v,u=FR.u;
   const bk=(t,to)=>'<div class="frh"><button class="frbk" data-a="bk" data-v="'+to+'" aria-label="Indietro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5L8 12L15 19"/></svg></button><b>'+t+"</b></div>";
   if(v==="need")return'<div class="frh"><b>Amici</b></div><p class="trn">'+(!cuGet()?"Per scambiare con gli amici serve l’account nel cloud: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli amici ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>';
   if(!me)return'<div class="frh"><b>Amici</b></div><p class="trn">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>";
-  if(v==="home"){const L=frList(),inc=L.filter(x=>x.inc),fr=L.filter(x=>x.acc),out=L.filter(x=>!x.acc&&!x.inc),nm=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)).length;
-    let h='<div class="frh"><b>Amici</b></div><div class="frcode"><small>Il tuo codice amico</small><b>'+esc(me.code)+'</b><button class="frb2" data-a="cc">Copia</button></div>';
-    h+='<div class="fradd"><input id="frin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Codice di un amico"><button class="frb2 p" data-a="add">Aggiungi</button></div>';
-    h+='<button class="frb2 frmail" data-a="mail">Posta'+(nm?'<em class="frb">'+nm+"</em>":"")+"</button>";h+='<button class="frb2" data-a="cod">Scambio con codice</button>';
-    if(inc.length)h+='<div class="trl">Richieste</div>'+inc.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>vuole aggiungerti</small></span><button class="frs p" data-a="ok" data-f="'+x.f.id+'">Accetta</button><button class="frs" data-a="no" data-f="'+x.f.id+'">Rifiuta</button></div>').join("");
-    h+='<div class="trl">Amici</div>'+(fr.length?fr.map(x=>'<button class="frr" data-a="op" data-u="'+x.u+'">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+"</span><i>›</i></button>").join(""):'<p class="trn">Ancora nessun amico. Scambiatevi i codici amico.</p>');
-    if(out.length)h+='<div class="trl">In attesa</div>'+out.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>richiesta inviata</small></span><button class="frs" data-a="no" data-f="'+x.f.id+'">Annulla</button></div>').join("");
-    return h}
+  if(v==="home"){const L=frList(),inc=L.filter(x=>x.inc),fr=L.filter(x=>x.acc),out=L.filter(x=>!x.acc&&!x.inc),nm=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)).length,A=FR.md==="a";
+    const reqs=inc.length?'<div class="trl">Richieste di amicizia</div>'+inc.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>vuole aggiungerti</small></span><button class="frs p" data-a="ok" data-f="'+x.f.id+'">Accetta</button><button class="frs" data-a="no" data-f="'+x.f.id+'">Rifiuta</button></div>').join(""):"";
+    if(A){let h='<div class="frh"><b>Amici</b></div><div class="frcode"><small>Il tuo codice amico</small><b>'+esc(me.code)+'</b><button class="frb2" data-a="cc">Copia</button></div>';
+      h+='<div class="fradd"><input id="frin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Codice di un amico"><button class="frb2 p" data-a="add">Aggiungi</button></div>';
+      h+=reqs+'<div class="trl">I tuoi amici</div>'+(fr.length?fr.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'</span><button class="frs frdn2" data-a="rm" data-u="'+x.u+'">Rimuovi</button></div>').join(""):'<p class="trn">Ancora nessun amico. Scambiatevi i codici amico.</p>');
+      if(out.length)h+='<div class="trl">In attesa</div>'+out.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>richiesta inviata</small></span><button class="frs" data-a="no" data-f="'+x.f.id+'">Annulla</button></div>').join("");
+      return h}
+    let h='<div class="frh"><b>Scambia</b></div><button class="frb2 frmail" data-a="mail">Posta'+(nm?'<em class="frb">'+nm+"</em>":"")+"</button>"+reqs;
+    h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(x=>{const k=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&t.from_user===x.u&&!frExp(t)).length;return'<button class="frr" data-a="op" data-u="'+x.u+'">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+"</span>"+(k?'<em class="frb">'+k+"</em>":"")+"<i>›</i></button>"}).join(""):'<p class="trn">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
+    h+='<button class="frb2" data-a="cod">Scambio con codice</button>';return h}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u];let h=bk(esc(p.name),"home");
     if(!co)return h+'<p class="trn">Carico…</p>';
-    const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),tot=Object.keys(co).length,dbl=Object.keys(fs).reduce((a,i)=>a+fs[i],0),need=Object.keys(fs).filter(i=>!my[i]),gv=Object.keys(ms).filter(i=>!co[i]);
-    h+='<p class="trn">'+tot+" carte diverse · "+dbl+(dbl===1?" doppia":" doppie")+"</p>";
-    h+='<div class="trl">Ti interessano ('+need.length+")</div>"+(need.length?frFaces(frSort(need),10):'<p class="trn">Nessuna sua doppia ti manca.</p>');
-    h+='<div class="trl">Potresti dargli ('+gv.length+")</div>"+(gv.length?frFaces(frSort(gv),10):'<p class="trn">Nessuna tua doppia gli manca.</p>');
-    h+='<button class="frb2 p" data-a="prop">Proponi uno scambio</button><button class="frb2" data-a="coll">Vedi la sua collezione</button><button class="frb2 frdn" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return h}
+    const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
+    h+='<div class="frst"><div><span>Carte scoperte</span><b>'+tot+'</b></div><div><span>Carte doppie</span><b>'+dbl+'</b></div><div><span>Mancano a te</span><b>'+need+'</b></div><div><span>Mancano a '+esc(p.name)+'</span><b>'+gv+'</b></div></div>';
+    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi la sua collezione</button><button class="frb2 frdn" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return h}
   if(v==="co"){const co=FR.co[u]||{};let h=bk("Collezione di "+esc(frNm(u)),"fr");
     GCOLS.forEach(c=>{const ids=(st[c.k]||[]).map(s=>s.id).filter(Boolean);if(!ids.length)return;const n=ids.filter(i=>co[i]).length;h+='<button class="frr" data-a="set" data-k="'+esc(c.k)+'"><span class="frn1">'+esc(c.t)+"<small>"+n+" / "+ids.length+'</small></span><i>›</i></button>'});return h}
   if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];let h=bk(c?esc(c.t):"Set","co");
     h+='<div class="frg">'+ids.map(i=>{const cd=trCard(i),q=co[i]||0;return cd?'<div class="frt'+(q?"":" z")+'"><div class="cvf">'+(q?face(cd,0):"")+"</div>"+(q>1?'<b class="frn">×'+q+"</b>":"")+"</div>":""}).join("")+"</div>";return h}
-  if(v==="pr"){const co=FR.co[u]||{},my=frSpareOf(frColl(),frResv()),fs=frSpareOf(co),G=FR.gv,T=FR.gt,tl=o=>{const a=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)a.push(i)});return a},ga=tl(G),ta=tl(T),same=ga.length&&trSame(ga,ta);
-    let h=bk("Scambio con "+esc(frNm(u)),"fr");
-    h+='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(FR.tab==="give"?"on":"")+'">Tu dai ('+ga.length+')</button><button data-a="tab" data-t="get" class="'+(FR.tab==="get"?"on":"")+'">Chiedi ('+ta.length+")</button></div>";
-    const src=FR.tab==="give"?my:fs,sel=FR.tab==="give"?G:T,ids=frSort(Object.keys(src));
-    h+=ids.length?'<div class="frg">'+ids.map(i=>frTile(i,src[i],sel[i]||0)).join("")+"</div>":'<p class="trn">'+(FR.tab==="give"?"Non hai doppie da dare.":"Non ha doppie da darti.")+"</p>";
-    h+='<p class="frsum'+(same?" ok":"")+'">Dai: '+trTxt(ga)+"<br>Chiedi: "+trTxt(ta)+"<br><small>"+(same?"Le rarità coincidono":"Servono le stesse rarità da entrambe le parti")+"</small></p>";
-    h+='<button class="frb2 p" data-a="send"'+(same?"":" disabled")+">Invia proposta (vale 24 ore)</button>";return h}
+  if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";
+    let h=bk("Scambio con "+nm,"fr");
+    h+='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+")</button></div>";
+    const rows=TRO.filter(k=>X.am[k]||X.af[k]||X.tg[k]||X.tt[k]);
+    h+='<div class="frtbl"><div class="frrw hd"><span class="frrn">Rarità</span><span>Dai</span><span>Chiedi</span></div>'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="frrw'+(g||t?(g===t?" ok":" bad"):"")+'"><span class="frrn">'+RCOIN(k)+'<b>'+cap(TRN[k][1])+'</b></span><span>'+g+'<small>/'+(X.am[k]||0)+'</small></span><span>'+t+'<small>/'+(X.af[k]||0)+"</small></span></div>"}).join("")+"</div>";
+    const df=rows.map(k=>[k,(X.tg[k]||0)-(X.tt[k]||0)]).filter(x=>x[1]);let msg,ok="";
+    if(!X.ga.length&&!X.ta.length)msg="Prima scegli cosa dai in «Tu dai», poi in «Chiedi» prendi lo stesso numero di carte per ogni rarità.";
+    else if(X.same){msg="Pronto: "+X.ga.length+(X.ga.length===1?" carta":" carte")+" per "+X.ta.length+". Le rarità coincidono.";ok=" ok"}
+    else msg=df.map(([k,d])=>d>0?"Puoi ancora chiedere "+d+" "+TRN[k][d===1?0:1]:"Hai chiesto "+(-d)+" "+TRN[k][-d===1?0:1]+" in più: dai altre carte di questa rarità o toglile").join(" · ");
+    h+='<p class="frlg2">Scelte su disponibili: tue / di '+nm+"</p>"+'<p class="frmsg'+ok+'">'+msg+"</p>";
+    const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
+    h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
+    h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
+    h+='<div class="frft"><span>Dai '+X.ga.length+" · Chiedi "+X.ta.length+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia (vale 24 h)</button></div>";return h}
+  if(v==="done"){const D=FR.dn;if(!D)return"";const f=(i,t)=>{const c=trCard(i);if(!c)return"";const nw=D.nw.includes(i),dx=D.dx.includes(i);return'<div class="frdc"><div class="cvf">'+face(c,0)+"</div>"+(t&&(nw||dx)?'<div class="frtg">'+(nw?"<b>NUOVA</b>":"")+(dx?'<b class="d">POKÉDEX</b>':"")+"</div>":"")+"</div>"};
+    let h='<div class="frh"><b>Scambio concluso!</b></div><p class="trn">Con '+esc(D.who)+'</p><div class="trl">Hai dato</div><div class="frdg">'+D.give.map(i=>f(i,0)).join("")+'</div><div class="trl">Hai ricevuto</div><div class="frdr">'+D.get.map(i=>f(i,1)).join("")+"</div>";
+    if(D.nw.length||D.dx.length)h+='<p class="trn">Le carte nuove ti aspettano nell’album'+(D.dx.length?" e nel Pokédex":"")+": cerca il pallino blu.</p>";
+    return h+'<button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button>"}
   if(v==="mail"){let h=bk("Posta","home");const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)).slice(0,8);
     h+='<div class="trl">Ricevute</div>'+(rc.length?rc.map(t=>{const okk=trSpare(t.get);return'<div class="frc"><b>'+esc(frNm(t.from_user))+'</b><small>'+frLeft(t)+'</small><div class="trl">Ti offre</div>'+frFaces(t.give)+'<div class="trl">Chiede</div>'+frFaces(t.get)+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button></div></div>'}).join(""):'<p class="trn">Nessuna proposta ricevuta.</p>');
     h+='<div class="trl">Inviate</div>'+(sn.length?sn.map(t=>'<div class="frc"><b>A '+esc(frNm(t.to_user))+'</b><small>'+frLeft(t)+'</small><div class="trl">Offri</div>'+frFaces(t.give)+'<div class="trl">Chiedi</div>'+frFaces(t.get)+'<div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div></div>').join(""):'<p class="trn">Nessuna proposta in attesa.</p>');
     if(cl.length)h+='<div class="trl">Chiuse</div>'+cl.map(t=>{const m=t.from_user===me.uid,who=frNm(m?t.to_user:t.from_user),s=t.status==="pending"?"scaduta":t.status==="accepted"?"completato":t.status==="declined"?"rifiutata":"annullata";return'<p class="frcl">'+(m?"A ":"Da ")+esc(who)+" · "+s+"</p>"}).join("");return h}
   return""}
-function frDraw(){const e=$("#frm");if(!e||e.hidden)return;const b=e.querySelector(".frbody"),y=b?b.scrollTop:0,i=e.querySelector("#frin"),iv=i?i.value:"";
-  e.innerHTML='<div class="ptc frp">'+frX+'<div class="frbody">'+frView()+"</div></div>";const b2=e.querySelector(".frbody");if(b2)b2.scrollTop=y;const i2=e.querySelector("#frin");if(i2&&iv)i2.value=iv}
-async function frOpen(){let e=$("#frm");
+function frDraw(){const e=$("#frm");if(!e||e.hidden)return;const b=e.querySelector(".frbody"),y=b?b.scrollTop:0,sc=e.querySelector(".frscr"),y2=sc?sc.scrollTop:0,i=e.querySelector("#frin"),iv=i?i.value:"";
+  e.classList.toggle("frfull",FR.v==="pr");
+  e.innerHTML='<div class="ptc frp">'+frX+'<div class="frbody">'+frView()+"</div></div>";const b2=e.querySelector(".frbody");if(b2)b2.scrollTop=y;const s2=e.querySelector(".frscr");if(s2)s2.scrollTop=y2;const i2=e.querySelector("#frin");if(i2&&iv)i2.value=iv;
+  if(FR.v==="done"&&FR.dn&&FR.dn!==FR.dnA){FR.dnA=FR.dn;setTimeout(frAnim,60)}}
+function frEl(){let e=$("#frm");
   if(!e){e=document.createElement("div");e.id="frm";e.hidden=true;document.body.appendChild(e);
     e.onclick=async ev=>{if(ev.target===e){e.hidden=true;return}const b=ev.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,d=b.dataset;
       try{if(a==="x")e.hidden=true;
@@ -3241,17 +3317,22 @@ async function frOpen(){let e=$("#frm");
       else if(a==="rm"){const f=FR.fs.find(x=>x.requester===d.u||x.addressee===d.u);if(f)confirmSheet("Togliere "+frNm(d.u)+" dagli amici? Non vedrà più la tua collezione.",async()=>{try{await sbReq("/rest/v1/friendships?id=eq."+f.id,{m:"DELETE",h:{Prefer:"return=minimal"}});FR.v="home";await frLoad();frDraw()}catch(x){toast(x.message||"Errore")}})}
       else if(a==="prop"){FR.gv={};FR.gt={};FR.tab="give";FR.v="pr";frDraw()}
       else if(a==="tab"){FR.tab=d.t;frDraw()}
-      else if(a==="tg"){const o=FR.tab==="give"?FR.gv:FR.gt,k=((o[d.i]||0)+1)>+d.m?0:(o[d.i]||0)+1;if(k)o[d.i]=k;else delete o[d.i];frDraw()}
+      else if(a==="tg"){const m=ev.target.closest(".cvm");if(!m)return;const o=FR.tab==="give"?FR.gv:FR.gt,id=d.i,k0=o[id]||0,dir=m.dataset.d==="-1"?-1:1;let k=k0+dir;
+        if(dir>0&&frRoom(id)<=0){const c=trCard(id),q=c?trK(c):"C",X=frCtx();if(FR.tab==="get"&&!(X.tg[q]||0))toast("Per chiedere "+(TRN[q]?TRN[q][0]:"questa carta")+" devi darne una");else if(FR.tab==="get"&&(X.tt[q]||0)>=(X.tg[q]||0))toast("Hai già chiesto tutte le "+TRN[q][1]+" che dai");else toast("Non hai altre copie doppie");return}
+        if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
+      else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq.shift();FR.v="done";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
       else if(a==="send"){const tl=o=>{const r=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)r.push(i)});return r};b.disabled=true;try{await frSend(FR.u,tl(FR.gv),tl(FR.gt));toast("Proposta inviata: vale 24 ore");FR.v="mail"}catch(x){toast(x.message||"Errore")}frDraw()}
       else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
       else if(a==="acc"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;await frAccept(t)}}
       else if(a==="dec"||a==="can"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;try{await frAnswer(t,a==="dec"?"declined":"cancelled")}catch(x){toast(x.message||"Errore")}frDraw()}}
       }catch(x){toast(x.message||"Errore");frDraw()}}}
+  return e}
+async function frOpen(md){const e=frEl();FR.md=md||"t";
   FR.v=!cuGet()||!(usrGet().n||"").trim()?"need":"home";FR.ld=1;e.hidden=false;frDraw();
   if(FR.v==="need")return;
   await frPub(1);await frLoad();FR.ld=0;frDraw()}
-setTimeout(()=>{if(cuGet()){frPub();frLoad()}},5200);
-setInterval(()=>{if(cuGet()&&!document.hidden&&navigator.onLine){frPub();frLoad()}},60000);
+setTimeout(()=>{if(cuGet()){frPub();frLoad()}},3500);
+setInterval(()=>{if(cuGet()&&!document.hidden&&navigator.onLine){frPub();frLoad()}},40000);setInterval(()=>{try{frDoneShow()}catch(e){}},12000);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&cuGet())frLoad()});
 function drawSet(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;const sw=(id,on)=>'<button class="sw'+(on?" on":"")+'" data-a="'+id+'" role="switch" aria-checked="'+(!!on)+'"><i></i></button>';
   e.innerHTML=usrCard()+'<div class="ush">Impostazioni</div><div class="sgt">Aspetto</div><div class="sgr"><div class="seg">'+[["n","Notte"],["c","Classica"],["a","Auto"]].map(([k,t])=>'<button data-a="th" data-v="'+k+'" class="'+(THM===k?"on":"")+'">'+t+'</button>').join("")+'</div></div><div class="sgt">Preferenze</div><div class="sgr"><div class="row"><span>Effetti sonori<small>Versi dei Pokémon e suoni</small></span>'+sw("cry",CRYON)+'</div><div class="row"><span>Effetti di luce<small>Luce che segue il movimento</small></span>'+sw("luce",LUCE)+'</div></div><div class="sgt">Dati</div><div class="sgr"><button class="row act" data-a="bke">Esporta backup</button><button class="row act" data-a="bki">Importa backup</button></div>'+(localStorage.getItem("carddex_err")?'<div class="sgt">Diagnostica</div><div class="sgr"><button class="row act" data-a="erc">Copia ultimo errore</button></div>':"");
