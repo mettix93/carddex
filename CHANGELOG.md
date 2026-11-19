@@ -1,3 +1,6 @@
+## v445 (PullTime)
+- Backup e cloud: ora includono anche l'ordine «Personalizzato» delle carte (trascinamento di v443), prima non veniva salvato né nel file né nel cloud. Test tests/backup.js (esporta → cancella tutto → importa → stesso ordine, stesse carte e possessi).
+
 ## v444 (PullTime) / c19 (PullBinder)
 - PullBinder alleggerito: tolto il codice del gioco bustine (missioni, conversione, scambi, riepiloghi: ~100 KB, 1,21 → 1,12 MB). Mantenute le funzioni generali (tema, barra alta, guardia barra in basso, backup, cry) e messi segnaposto neutri per i pochi richiami condivisi. Nessun dato salvato toccato. PullTime resta com'è (il gioco serve, e il codice collezione è poco).
 - Uso offline: sw.js v2 (pagine, icone e manifest in anticipo; copia di sicurezza per ogni file) e, una volta, solo con Wi-Fi, scarica in background loghi, sprite e versi (~12 MB, 1158 file). Le carte restano "dopo la prima vista". Test tests/offline.js.
