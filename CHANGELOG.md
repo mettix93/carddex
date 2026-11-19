@@ -1,3 +1,6 @@
+## v450 (PullTime)
+- Statistiche: «Carte scoperte» e «Set completati» (e i totali) contano solo i set attualmente sbloccati e lasciano fuori le carte Promo delle missioni (set Promo e carte extra). Sbloccando un set, le sue carte entrano nel conteggio. Test tests/stats.js.
+
 ## v449 (PullTime)
 - Schermata Converti/Scambia: la scheda «Scambia» ora apre direttamente Amici (niente più tasto separato). Lo scambio a codici resta come «Scambio con codice» dentro Amici, per chi non ha il cloud. Test tests/scambia_tab.js.
 
