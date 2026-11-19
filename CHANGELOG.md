@@ -1,3 +1,6 @@
+## v449 (PullTime)
+- Schermata Converti/Scambia: la scheda «Scambia» ora apre direttamente Amici (niente più tasto separato). Lo scambio a codici resta come «Scambio con codice» dentro Amici, per chi non ha il cloud. Test tests/scambia_tab.js.
+
 ## v448 (PullTime)
 - Amici e scambi nel cloud. Nuovo tasto «Amici» accanto a Converti/Scambia: codice amico di 6 caratteri (diverso dal codice di accesso), aggiungi amico con il suo codice (richiesta → accetta), pagina amico con le sue doppie che ti mancano e le tue che gli mancano, sua collezione intera per set, proposta di scambio (stessa regola di rarità di prima), Posta con ricevute/inviate/chiuse, accetta/rifiuta/annulla, scadenza 24 h, pallino rosso sul tasto per le novità.
 - Le carte offerte in una proposta in attesa sono riservate (non convertibili né offribili altrove). Lo scambio accettato si applica subito a chi accetta e alla prima apertura a chi ha proposto, una volta sola: gli id applicati stanno anche nel backup e nel cloud.
