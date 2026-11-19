@@ -1,3 +1,7 @@
+## v447 (PullTime)
+- Ultima carta → riepilogo (bustine normali): stesso velo dell'apertura. Prima la fascia diventava bianca subito, con le carte scure ancora sotto, e passava per un grigio-azzurro intermedio. Ora una sola variazione, a velo pieno. Il riepilogo di Lucky/God resta com'era.
+- Con il velo attivo la fascia non segue più le sfumature intermedie (rampa): cambiava troppo presto. Test tests/wash_summary.js.
+
 ## v446 (PullTime)
 - Apertura bustina → prima carta (normali, Lucky, God): dal video la fascia in alto cambiava quando il velo bianco era ancora trasparente (si vedeva fascia scura su pagina chiara). Ora il velo diventa opaco in ~130 ms, resta pieno fino a ~440 ms e svanisce entro ~790 ms; la fascia cambia al centro della fase piena, agganciata al tempo del velo (non a un timer fisso), e nello stesso istante il velo prende il colore nuovo della fascia, quindi velo, fascia e sfondo coincidono. Test tests/wash_sync.js (velo ≥0,95 e colore uguale alla fascia al cambio, per bustina normale, Lucky e God).
 
