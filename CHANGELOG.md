@@ -1,3 +1,7 @@
+## v453 (PullTime) / c20 (PullBinder)
+- Corretto il «rate limit exceeded» di GitHub: il precaricamento per l'uso offline scaricava ~1150 file in pochi secondi a ogni telefono nuovo e GitHub bloccava l'indirizzo. Ora va piano (un file alla volta, massimo 120 per apertura, parte dopo 25 s e si ferma al primo rifiuto) e finisce nel giro di qualche apertura.
+- Se GitHub risponde con un errore (limite, 5xx) l'app si apre comunque dall'ultima copia salvata invece di mostrare la pagina d'errore.
+
 ## v452 (PullTime)
 - Set e Pokédex completati. Icone dei set (album e bustine): contorno oro fisso sui set finiti; sull'icona selezionata un anello blu di avanzamento (nessun anello sulle altre, nessuna soglia 80%). Pillole delle regioni del Pokédex: contorno oro a regione finita.
 - Effetto una sola volta: appena l'ultima carta è entrata nell'album (o nel Pokédex, che prima risale in cima) l'icona fa un lampo oro con scintille e il banner «Set completato / Pokédex completato». I flag (set e regioni già celebrati) stanno nel backup e nel cloud; nessuna ripetizione. Chi ha già un set completo lo vede la prima volta che apre quel set.
