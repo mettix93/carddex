@@ -1361,6 +1361,15 @@ html:not(.gml) #frm .frst div+div{border-top-color:rgba(255,255,255,.12)}
 html:not(.gml) #frm .frmsg,html:not(.gml) #frm .frrw .frrn svg{color:rgba(235,235,245,.7)}
 html:not(.gml) #frm .frrw.ok,html:not(.gml) #frm .frmsg.ok{color:#5ee08a}html:not(.gml) #frm .frrw.bad{color:#ffb340}
 html:not(.gml) .frnw{box-shadow:0 0 0 2px #1c1c1e}
+#frm .frbx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 0}
+#frm .frbx>div{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:14px;background:rgba(10,132,255,.1);text-align:center}
+#frm .frbx .frbs{display:flex;gap:2px}#frm .frbx .coin{width:18px;height:18px;color:#1b2a49}
+html:not(.gml) #frm .frbx .coin{color:#fff}
+#frm .frbx em{font-style:normal;font-size:12px;opacity:.75}
+#frm .frbx b{font:700 13px -apple-system,system-ui,sans-serif}
+#frm .frbx small{font-size:10.5px;color:#8e8e93}
+#frm .frbx .ok{background:rgba(52,199,89,.18)}#frm .frbx .bad{background:rgba(255,159,10,.18)}
+html body .cvr .rcn+.rcn{margin-left:2px!important}
 .tab[data-pr]{position:relative}.tab[data-pr]::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(#0a84ff calc(var(--pr)*1%),rgba(10,132,255,.2) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px))}
 html:root:root body :is(#tabs,#pkst) .tab.gd{position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 10px rgba(255,200,70,.5)!important}
 .tab.gd::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;pointer-events:none;background:conic-gradient(from 200deg,#ffe58a,#f2b632,#fff4c2,#e9a21c,#ffe58a);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
@@ -1432,7 +1441,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v454";
+const APPV="v455";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2661,9 +2670,10 @@ function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail()<1,t=
 
 /* ===== scambio doppie con codici (solo carte delle bustine) ===== */
 let TRM="c",TR={reply:null};
-const TRN={C:["comune","comuni"],U:["non comune","non comuni"],R:["rara","rare"],Rh:["rara olografica","rare olografiche"],E:["energia","energie"]},TRO=["C","U","R","Rh","E"];
+const TRN={C:["comune","comuni"],U:["non comune","non comuni"],R:["rara","rare"]},TRO=["C","U","R"];
 const TRURL="https://mettix93.github.io/carddex/carddex-album.html";
-function trK(c){if(c.kd==="e")return"E";const d=rdOf(c),r=d&&d.r||"C";return r==="R"&&c.h?"Rh":r}
+function trK(c){if(c.kd==="e")return"C";const d=rdOf(c),r=d&&d.r||"C";return TRN[r]?r:"C"}
+function trHolo(c){return c.kd!=="e"&&trK(c)==="R"&&!!c.h}
 let TRC=null;function trCard(id){if(!TRC){TRC={};Object.values(CARDS).forEach(c=>{TRC[c.id]=c})}return TRC[id]||null}
 function trTally(ids){const n={};ids.forEach(i=>{const c=trCard(i);const k=c?trK(c):"?";n[k]=(n[k]||0)+1});return n}
 function trTxt(ids){const n=trTally(ids),o=[];TRO.forEach(k=>{if(n[k])o.push(n[k]+" "+TRN[k][n[k]===1?0:1])});return o.join(" · ")||"nessuna carta"}
@@ -2716,8 +2726,10 @@ function cvNum(el,v){if(!el)return;const o=el.textContent;el.textContent=v;if(el
 function cvSync(){const L=cvList(),M={};L.forEach(x=>M[x.c.id]=x);const g=$("#cvs .cvg");document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x){b.remove();return}b.classList.remove("on");b.classList.toggle("z",x.sp<=0);const e=b.querySelector(".cvc b");if(e)e.innerHTML="0<em>/"+x.sp+"</em>"});document.querySelectorAll("#cvs .cvw").forEach(w=>{const t=w.querySelectorAll(".cvt");if(!t.length){w.remove();return}let n=0;t.forEach(b=>{const x=M[b.dataset.id];if(x)n+=x.sp});const e=w.querySelector(".sgt em");if(e)e.textContent=n});if(!L.length&&g)g.innerHTML='<p class="cve">Non hai carte doppie da convertire</p>';cvNum($("#cvp"),0);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=true}
 /* gettone come i Pokédollari ma col simbolo di rarità al posto della P (solo nello Scambio) */
 const RCI={C:'<path d="M12 2.7a9.3 9.3 0 1 0 0 18.6 9.3 9.3 0 1 0 0-18.6Z"/>',U:'<path d="M12 2.7 21.3 12 12 21.3 2.7 12Z"/>',R:'<path d="M12 2.2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.4l7.1-.6Z"/>',Rh:'<path d="M11 3.4l2.3 5.3 5.7.5-4.3 3.8 1.4 5.6L11 15.7l-5.1 2.9 1.4-5.6L3 9.2l5.7-.5Z"/><path d="M19.4 1.6l.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9Z"/>',E:'<path d="M13.5 2 5 13.4h5.4L9.5 22 19 9.8h-5.7Z"/>'};
-const RCOIN=k=>'<svg class="coin rcn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><g fill="currentColor" stroke="none" transform="translate(5.8 5.8) scale(.52)">'+(RCI[k]||RCI.C)+'</g></svg>';
-function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${TRM==="t"?RCOIN(trK(x.c)):COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
+const RCH='<svg class="coin rcn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><g transform="translate(6 6) scale(.5)"><path fill="none" stroke="currentColor" stroke-width="2.6" d="M4.5 22V17M4.5 7V2M2 4.5H7M2 19.5H7M13 3L11.2658 7.50886C10.9838 8.24209 10.8428 8.60871 10.6235 8.91709C10.4292 9.1904 10.1904 9.42919 9.91709 9.62353C9.60871 9.84281 9.24209 9.98381 8.50886 10.2658L4 12L8.50886 13.7342C9.24209 14.0162 9.60871 14.1572 9.91709 14.3765C10.1904 14.5708 10.4292 14.8096 10.6235 15.0829C10.8428 15.3913 10.9838 15.7579 11.2658 16.4911L13 21L14.7342 16.4911C15.0162 15.7579 15.1572 15.3913 15.3765 15.0829C15.5708 14.8096 15.8096 14.5708 16.0829 14.3765C16.3913 14.1572 16.7579 14.0162 17.4911 13.7342L22 12L17.4911 10.2658C16.7579 9.98381 16.3913 9.8428 16.0829 9.62353C15.8096 9.42919 15.5708 9.1904 15.3765 8.91709C15.1572 8.60871 15.0162 8.24209 14.7342 7.50886L13 3Z"/></g></svg>';
+const RCOIN=k=>k==="H"?RCH:'<svg class="coin rcn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><g fill="currentColor" stroke="none" transform="translate(5.8 5.8) scale(.52)">'+(RCI[k]||RCI.C)+'</g></svg>';
+function trSym(c){return RCOIN(trK(c))+(trHolo(c)?RCOIN("H"):"")}
+function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${TRM==="t"?trSym(x.c):COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0,h="",ci=-1;
   L.forEach(x=>{const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);if(x.ci!==ci){if(ci>=0)h+="</div></section>";ci=x.ci;const n=L.filter(y=>y.ci===ci).reduce((a,y)=>a+y.sp,0);h+=`<section class="cvw" data-ci="${ci}"><div class="sgt">${esc(x.co.t)}<em>${n}</em></div><div class="cvgg">`}h+=cvTile(x,k)});if(ci>=0)h+="</div></section>";
   g.innerHTML=h||'<p class="cve">'+(TRM==="t"?(TR.reply?"Non hai doppie delle rarità richieste":"Non hai doppie da scambiare"):"Non hai carte doppie da convertire")+'</p>';
@@ -3244,7 +3256,7 @@ function frRoom(id,X){X=X||frCtx();const give=FR.tab==="give",c=trCard(id);if(!c
 function frSets(ids){const m={};GCOLS.forEach((co,ci)=>(st[co.k]||[]).forEach(s=>{if(s&&s.id)m[s.id]=ci}));const RKk={R:0,U:1,C:2},rr=c=>{const d=rdOf(c);return RKk[d&&d.r]??2},g={};
   ids.forEach(i=>{const ci=m[i]??99;(g[ci]=g[ci]||[]).push(i)});
   return Object.keys(g).map(Number).sort((a,b)=>a-b).map(ci=>({ci,ids:g[ci].sort((a,b)=>{const x=trCard(a),y=trCard(b);return rr(x)-rr(y)||(x.num||0)-(y.num||0)})}))}
-function frCvt(id,sp,k,room,nw){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+RCOIN(trK(c))+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
+function frCvt(id,sp,k,room,nw){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+trSym(c)+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
 function frDoneShow(){if(!FR.dq.length||document.hidden)return;const p=$("#pk"),busy=(p&&!p.hidden&&(p.classList.contains("opening")||p.classList.contains("sm")||p.classList.contains("go")))||(typeof aqRun!=="undefined"&&aqRun)||dxFilling,e=frEl();if(busy||(!e.hidden&&FR.v!=="done"))return;if(!e.hidden&&FR.dn&&FR.dn!==FR.dnA)return;
   FR.dn=FR.dq.shift();FR.v="done";FR.dnA=null;e.hidden=false;frDraw()}
 function frAnim(){const e=$("#frm");if(!e||!e.animate||FR.v!=="done")return;const g=[...e.querySelectorAll(".frdg .frdc")],r=[...e.querySelectorAll(".frdr .frdc")];
@@ -3277,17 +3289,15 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";
     let h=bk("Scambio con "+nm,"fr");
     h+='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+")</button></div>";
-    const rows=TRO.filter(k=>X.am[k]||X.af[k]||X.tg[k]||X.tt[k]);
-    h+='<div class="frtbl"><div class="frrw hd"><span class="frrn">Rarità</span><span>Dai</span><span>Chiedi</span></div>'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="frrw'+(g||t?(g===t?" ok":" bad"):"")+'"><span class="frrn">'+RCOIN(k)+'<b>'+cap(TRN[k][1])+'</b></span><span>'+g+'<small>/'+(X.am[k]||0)+'</small></span><span>'+t+'<small>/'+(X.af[k]||0)+"</small></span></div>"}).join("")+"</div>";
-    const df=rows.map(k=>[k,(X.tg[k]||0)-(X.tt[k]||0)]).filter(x=>x[1]);let msg,ok="";
+    const rows=TRO,df=rows.map(k=>[k,(X.tg[k]||0)-(X.tt[k]||0)]).filter(x=>x[1]);let msg,ok="";
     if(!X.ga.length&&!X.ta.length)msg="Prima scegli cosa dai in «Tu dai», poi in «Chiedi» prendi lo stesso numero di carte per ogni rarità.";
     else if(X.same){msg="Pronto: "+X.ga.length+(X.ga.length===1?" carta":" carte")+" per "+X.ta.length+". Le rarità coincidono.";ok=" ok"}
     else msg=df.map(([k,d])=>d>0?"Puoi ancora chiedere "+d+" "+TRN[k][d===1?0:1]:"Hai chiesto "+(-d)+" "+TRN[k][-d===1?0:1]+" in più: dai altre carte di questa rarità o toglile").join(" · ");
-    h+='<p class="frlg2">Scelte su disponibili: tue / di '+nm+"</p>"+'<p class="frmsg'+ok+'">'+msg+"</p>";
+    const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Dai "+g+" · Chiedi "+t+"</b><small>tue "+(X.am[k]||0)+" · sue "+(X.af[k]||0)+"</small></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
     h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
     h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
-    h+='<div class="frft"><span>Dai '+X.ga.length+" · Chiedi "+X.ta.length+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia (vale 24 h)</button></div>";return h}
+    h+=bx+'<p class="frmsg'+ok+'">'+msg+"</p>"+'<div class="frft"><span>Dai '+X.ga.length+" · Chiedi "+X.ta.length+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia (vale 24 h)</button></div>";return h}
   if(v==="done"){const D=FR.dn;if(!D)return"";const f=(i,t)=>{const c=trCard(i);if(!c)return"";const nw=D.nw.includes(i),dx=D.dx.includes(i);return'<div class="frdc"><div class="cvf">'+face(c,0)+"</div>"+(t&&(nw||dx)?'<div class="frtg">'+(nw?"<b>NUOVA</b>":"")+(dx?'<b class="d">POKÉDEX</b>':"")+"</div>":"")+"</div>"};
     let h='<div class="frh"><b>Scambio concluso!</b></div><p class="trn">Con '+esc(D.who)+'</p><div class="trl">Hai dato</div><div class="frdg">'+D.give.map(i=>f(i,0)).join("")+'</div><div class="trl">Hai ricevuto</div><div class="frdr">'+D.get.map(i=>f(i,1)).join("")+"</div>";
     if(D.nw.length||D.dx.length)h+='<p class="trn">Le carte nuove ti aspettano nell’album'+(D.dx.length?" e nel Pokédex":"")+": cerca il pallino blu.</p>";

@@ -1,3 +1,7 @@
+## v455 (PullTime)
+- Scambi, rarità: le energie contano come comuni; le rare olografiche contano come rare (la differenza resta solo nel simbolino: stella + secondo cerchio con l'icona holo degli album). Solo tre rarità: comuni, non comuni, rare.
+- Schermata scambio: la tabella è diventata tre riquadri (Comuni / Non comuni / Rare) con «Dai · Chiedi» e disponibilità tue e dell'amico, spostati in fondo come riepilogo, sopra il messaggio e il tasto Invia.
+
 ## v454 (PullTime)
 - Pallino blu sull'icona Converti/Scambia e sull'icona Bustine del menu in basso quando c'è una richiesta di amicizia o una proposta in arrivo. Controllo novità ogni 40 s (e quando riapri l'app).
 - Gestione amici in Impostazioni › Account › «Gestione amici»: tuo codice, aggiungi amico, richieste, elenco con «Rimuovi», richieste inviate. Il tasto Scambia ora apre solo: Posta, richieste in arrivo, lista amici (tocchi un amico e parte lo scambio) e «Scambio con codice».
