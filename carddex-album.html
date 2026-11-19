@@ -1384,7 +1384,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v450";
+const APPV="v451";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1647,10 +1647,10 @@ let DXL=null;
 const LIST=()=>{if(DXL)return DXL;if(MODE==="g"&&FLT==="i")FLT="a";let b=BASE();if(HID())b=b.filter(HF);return FLT==="a"?b:b.filter(s=>s.id&&(FLT==="p"?(s.fav||FAVH.has(s)):FLT==="o"?s.o:FLT==="i"?(!s.o&&s.a):(!s.o&&!s.a)))};
 const VIEW=()=>cur==="?"||FLT!=="a"||HID();
 let MODE="g",SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
-let COLS=MODE==="g"?GCOLS:PCOLS;
+let COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 const save=()=>{try{localStorage.setItem(SKEY,JSON.stringify(st))}catch(e){}try{albWatch()}catch(e){}};
-function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));COLS.forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
+function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
 Object.values(CARDS).forEach(c=>{if(c.twin)ALT[c.id]=c.twin});
@@ -3068,7 +3068,7 @@ function stGet(){let o=null;try{o=JSON.parse(localStorage.getItem(stKey()))}catc
   if(!o||typeof o!=="object"){const n=Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0);o={p:n,c:n*11};try{localStorage.setItem(stKey(),JSON.stringify(o))}catch(e){}}return o}
 function stBump(p,c){const o=stGet();o.p=(o.p||0)+p;o.c=(o.c||0)+c;try{localStorage.setItem(stKey(),JSON.stringify(o))}catch(e){}}
 /* statistiche: solo i set sbloccati e senza le carte extra (Promo delle missioni) */
-const stOk=c=>c.s[0]!=="Q"&&c.s[0]!=="X"&&!pkLkS(c.s[0]);
+const stOk=c=>c.s[0]!=="Q"&&c.s[0]!=="X"&&c.s[0]!=="S"&&!pkLkS(c.s[0]);
 function stUniq(){const ids=new Set();try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(!stOk(c))return;(raw[c.k]||[]).forEach(x=>{const cd=x&&x.id&&CARDS[x.id];if(x&&x.o&&cd&&cd.sid!=="X"&&cd.sid!=="Q")ids.add(x.id)})})}catch(e){}return ids.size}
 function stSets(){let n=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(!stOk(c))return;const a=raw[c.k];if(Array.isArray(a)&&a.length&&a.every(x=>x&&x.o))n++})}catch(e){}return n}
 function stTot(){let sl=0,st=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(!stOk(c))return;const a=raw[c.k];if(Array.isArray(a)&&a.length){sl+=a.length;st++}})}catch(e){}return{sl,st}}
@@ -3326,7 +3326,7 @@ function mdLook(m,anim){const e=$("#md");if(!e)return;if(!e.firstChild)e.innerHT
 function mdSync(anim){mdLook(MODE,anim===undefined?1:anim)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,navOn(),0);mdSync(0)})
 const MS={};
-function setMode(m,keep){if(m===MODE||m==="c")return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS:PCOLS;SKEY=m==="g"?GK("carddex2g"):CK("carddex2");try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
+function setMode(m,keep){if(m===MODE||m==="c")return;MS[MODE]={cur,pg,sp,FLT,PREV};MODE=m;COLS=m==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;SKEY=m==="g"?GK("carddex2g"):CK("carddex2");try{localStorage.setItem("carddex_last",m);sessionStorage.setItem("cdmode",m)}catch(e){}
   st={};try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}fillSt();if(m==="c")albInit();
   const k0=COLS[0].k,mp=keep?(m==="g"?(PCOLS.find(c=>c.k===cur)||{}).gm:(()=>{const g=GCOLS.find(c=>c.k===cur);return g&&(PCOLS.find(a=>a.s.includes(g.s[0]))||{}).k})()):null,r=keep?{cur:mp||k0,pg:mp?0:pg,sp:mp?0:sp,FLT,PREV:mp||k0}:MS[m]||{cur:k0,pg:0,sp:0,FLT:"a",PREV:k0};cur=r.cur==="?"?k0:r.cur;if(!COLS.some(c=>c.k===cur))cur=k0;pg=r.pg;sp=r.sp;FLT=r.FLT;PREV=COLS.some(c=>c.k===r.PREV)?r.PREV:k0;SR=[];SQ="";
   applyMode();navSync();tabs();render()}

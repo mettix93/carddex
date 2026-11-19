@@ -6,7 +6,7 @@ await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(
 const S=()=>p.evaluate(()=>({u:stUniq(),s:stSets(),t:stTot()}));
 const s0=await S();ok(s0.u===0&&s0.s===0,'partenza: 0 scoperte, 0 set '+JSON.stringify(s0));
 // il totale non include il set Promo né i set bloccati
-const tot=await p.evaluate(()=>{let n=0;GCOLS.forEach(c=>{if(c.s[0]!=="Q"&&c.s[0]!=="X"&&!pkLkS(c.s[0]))n+=(st[c.k]||[]).length});return n});
+const tot=await p.evaluate(()=>{let n=0;GCOLS.forEach(c=>{if(c.s[0]!=="Q"&&c.s[0]!=="X"&&c.s[0]!=="S"&&!pkLkS(c.s[0]))n+=(st[c.k]||[]).length});return n});
 ok(s0.t.sl===tot,'totale carte = solo set sbloccati senza Promo ('+s0.t.sl+')');
 // possiedo tutte le carte Promo + Mew antico: non contano
 await p.evaluate(()=>{GCOLS.filter(c=>c.s[0]==="Q").forEach(c=>st[c.k].forEach(s=>{if(s.id){s.o=1;s.q=1}}));save()});

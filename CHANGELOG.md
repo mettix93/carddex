@@ -1,3 +1,6 @@
+## v451 (PullTime)
+- Topps fuori da PullTime: non compare più nell'album né nelle statistiche (il totale «carte scoperte» scende di 151, quindi parte da 228 coi set sbloccati). I dati Topps restano nel codice, in stand-by. Test tests/topps_hidden.js.
+
 ## v450 (PullTime)
 - Statistiche: «Carte scoperte» e «Set completati» (e i totali) contano solo i set attualmente sbloccati e lasciano fuori le carte Promo delle missioni (set Promo e carte extra). Sbloccando un set, le sue carte entrano nel conteggio. Test tests/stats.js.
 
