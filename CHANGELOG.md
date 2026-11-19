@@ -1,3 +1,11 @@
+## v456 (PullTime)
+- Account: «Gestione amici» tolta dalle righe; nel riquadro utente c'è l'icona «Amici» (cuore con stretta di mano, disegnata da me) allineata al cerchio «Set completati». Pallino blu sull'icona e sull'icona Account del menu quando arriva una richiesta di amicizia.
+- Amici e Scambia ora sono pagine a tutta pagina come Converti: fondo pieno (fascia in alto dello stesso colore), freccia indietro a sinistra e X a destra stesse misure/posizioni delle altre pagine. Codice, campo «Aggiungi» e righe amico hanno stessa altezza, bottoni e testi; toccando un amico si apre la stessa pagina amico di Scambia.
+- Pagina amico: «Mancano a te» (evidenziato) e «Mancano a lui» grandi in alto, carte scoperte/doppie in piccolo, poi i bottoni.
+- Proposta: tolto il testo piccolo nei tre riquadri e la frase lunga; in basso una barra come il resto dell'app con un breve stato e «Invia».
+- Posta rifatta: schede per proposta con carte offerte/richieste, sezioni «Da rispondere», «In attesa», «Chiuse» e stato vuoto.
+- Ricevuta dello scambio: la coda delle conferme ora si salva sul telefono (prima, se l'app veniva chiusa prima di mostrarla, andava persa) e compare anche un avviso «Scambio con … completato!».
+
 ## v455 (PullTime)
 - Scambi, rarità: le energie contano come comuni; le rare olografiche contano come rare (la differenza resta solo nel simbolino: stella + secondo cerchio con l'icona holo degli album). Solo tre rarità: comuni, non comuni, rare.
 - Schermata scambio: la tabella è diventata tre riquadri (Comuni / Non comuni / Rare) con «Dai · Chiedi» e disponibilità tue e dell'amico, spostati in fondo come riepilogo, sopra il messaggio e il tasto Invia.

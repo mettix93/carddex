@@ -1369,6 +1369,71 @@ html:not(.gml) #frm .frbx .coin{color:#fff}
 #frm .frbx b{font:700 13px -apple-system,system-ui,sans-serif}
 #frm .frbx small{font-size:10.5px;color:#8e8e93}
 #frm .frbx .ok{background:rgba(52,199,89,.18)}#frm .frbx .bad{background:rgba(255,159,10,.18)}
+/* v456: pagine amici a tutta pagina */
+html body #frm{position:fixed;inset:0;z-index:91;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#f2f2f7;color:#1b2a49;animation:cdFd .28s ease-out}
+html:not(.gml) body #frm{background:#000;color:#fff}
+html body #frm[hidden]{display:none}
+html body #frm .cvhd{flex:none;position:relative;display:flex;align-items:center;justify-content:center;padding:var(--hbt,62px) 64px 6px!important;min-height:0}
+html body #frm .cvhd b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #frm .cvhd .cvx{position:absolute;right:var(--hbr,16px);top:var(--hbt,8px)}
+html body #frm .cvhd .cvbk{left:var(--hbr,16px);right:auto}
+html body #frm .frbody{flex:1;min-height:0;max-height:none;overflow:auto;-webkit-overflow-scrolling:touch;padding:6px 16px calc(var(--fbb,20px) + 24px);display:block;text-align:left}
+html body #frm .frbody.frpr{display:flex;flex-direction:column;overflow:hidden;padding-bottom:8px}
+html body #frm .frr{min-height:60px;padding:8px 12px;border-radius:18px;margin-top:8px;gap:12px}
+html body #frm .frr input{flex:1;min-width:0;height:40px;border:0;outline:0;background:none;color:inherit;font:600 16px ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;padding:0}
+html body #frm .frr input::placeholder{font:500 15px -apple-system,system-ui,sans-serif;letter-spacing:0;text-transform:none;opacity:.5}
+html body #frm .frr .frs{height:36px;padding:0 16px;border-radius:18px;flex:none}
+html body #frm .frmono{display:block;font:700 19px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:inherit}
+html body #frm .frn1 small{display:block}
+html body #frm .frpi{width:36px;height:36px;border-radius:50%;background:#0a84ff;color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+html body #frm .frpi.g{background:rgba(120,120,128,.28)}
+html body #frm .frpi svg{width:20px;height:20px}
+html body #frm .trl{margin:18px 4px 0}
+html body #frm .frem{margin:14px 4px;text-align:center;color:#8e8e93;font-size:14px}
+html body #frm .frem2{display:flex;flex-direction:column;align-items:center;gap:6px;margin:70px 20px 0;text-align:center;color:#8e8e93}
+html body #frm .frem2 svg{width:46px;height:46px;opacity:.55;margin-bottom:6px}
+html body #frm .frem2 b{font:700 18px -apple-system,system-ui,sans-serif;color:inherit;opacity:.9}
+html body #frm .frem2 span{font-size:14px;line-height:1.35}
+html body #frm .frb2{height:52px;border-radius:26px;margin-top:10px;font-size:16px}
+html body #frm .frb2.frlk{background:none;height:44px;font-size:15px;margin-top:6px}
+html body #frm .frhero{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 0}
+html body #frm .frhero>div{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:22px 8px 18px;border-radius:24px;background:rgba(10,132,255,.14);text-align:center}
+html body #frm .frhero b{font:800 52px/1 -apple-system,"SF Pro Display",system-ui,sans-serif;letter-spacing:-.03em;color:#0a84ff}
+html body #frm .frhero span{font:600 14px/1.25 -apple-system,system-ui,sans-serif;color:#4e5d7c;min-height:35px;display:flex;align-items:center}
+html body #frm .frhero .a{background:#0a84ff;box-shadow:0 8px 22px rgba(10,132,255,.35)}
+html body #frm .frhero .a b,html body #frm .frhero .a span{color:#fff}
+html:not(.gml) body #frm .frhero span{color:rgba(235,235,245,.7)}
+html body #frm .frmini{display:flex;gap:8px;margin:10px 0 14px}
+html body #frm .frmini span{flex:1;display:flex;align-items:center;justify-content:space-between;padding:0 14px;height:40px;border-radius:14px;background:rgba(120,120,128,.12);font-size:13px;color:#8e8e93}
+html body #frm .frmini b{font:700 15px -apple-system,system-ui,sans-serif;color:inherit}
+html.gml body #frm .frmini b{color:#1b2a49}
+html body #frm .frft{flex:none;margin:6px 16px var(--fbb,20px);height:64px;border-radius:32px;padding:0 7px 0 22px;display:flex;align-items:center;gap:10px;background:var(--gbg);border:1px solid var(--gbd);box-shadow:inset 0 1px 0 var(--ghi),var(--gsh);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);color:var(--gtx);box-sizing:border-box}
+html body #frm .frft span{flex:1;font:600 14px -apple-system,system-ui,sans-serif;text-align:left}
+html body #frm .frft span.ok{color:#1f9d4d}html:not(.gml) body #frm .frft span.ok{color:#5ee08a}
+html body #frm .frft .frb2{width:auto;height:50px;margin:0;padding:0 26px;border-radius:25px;flex:1}
+html body #frm .frft span+.frb2{flex:none}
+html body #frm .frbx{margin:8px 0 0;gap:8px}
+html body #frm .frbx>div{padding:8px 4px}
+html body #frm .frc{margin-top:10px;padding:12px;border-radius:20px}
+html body #frm .frch{display:flex;align-items:center;gap:10px}
+html body #frm .frcs{margin-top:10px}
+html body #frm .frcs em{display:block;font:600 11px -apple-system,system-ui,sans-serif;font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:#8e8e93}
+html body #frm .frcs .trr{justify-content:flex-start;margin:6px 0 0}
+html body #frm .frc .frbr .frs{height:40px;padding:0 20px;border-radius:20px;flex:1}
+html body #frm .frcl2{min-height:50px}
+html body #frm .frch small{margin-left:0}html body #frm .frcs .trfc{width:calc((100% - 25px)/6)}
+html body #frm .frpl{font-style:normal;font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;background:rgba(120,120,128,.18);color:#8e8e93}
+html body #frm .frpl.ok{background:rgba(52,199,89,.18);color:#1f9d4d}
+html.gml body #frm .frr,html.gml body #frm .frc{background:#fff}
+html:not(.gml) body #frm .frmini span{background:rgba(255,255,255,.08)}
+/* icona Amici nel riquadro utente */
+.ucd{position:relative}
+.ucd.hasf .uin{margin-right:60px}
+.ufr{position:absolute;top:50%;right:calc((100% - 6px)/8 - 31px);transform:translateY(-50%);width:56px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;border:0;background:none;color:var(--ac,#0a84ff);font:600 11px/1 -apple-system,system-ui,sans-serif}
+.ufr i{width:44px;height:44px;border-radius:50%;border:2px solid var(--ac,#0a84ff);display:flex;align-items:center;justify-content:center}
+.ufr svg{width:26px;height:26px}
+.ufr .fdt{top:0;right:3px}
+
 html body .cvr .rcn+.rcn{margin-left:2px!important}
 .tab[data-pr]{position:relative}.tab[data-pr]::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(#0a84ff calc(var(--pr)*1%),rgba(10,132,255,.2) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px))}
 html:root:root body :is(#tabs,#pkst) .tab.gd{position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 10px rgba(255,200,70,.5)!important}
@@ -1441,7 +1506,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v455";
+const APPV="v456";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3148,7 +3213,7 @@ function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
-  return '<div class="ucw"><div class="ucd"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div></div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+(c?'<div class="sgt">Amici</div><div class="sgr ucg">'+R("fr","Gestione amici"+(FR.n>0?'<em class="frb">'+FR.n+"</em>":""))+"</div>":"")+'</div>'}
+  return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Amici"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-8-4.9-8-10.7A4.6 4.6 0 0112 7.2a4.6 4.6 0 018 2.6c0 5.8-8 10.7-8 10.7z"/><path d="M8.2 12.3l2.1 2.1a1.1 1.1 0 001.6 0l.5-.5M10.4 10.4l1.6-1.1a1.3 1.3 0 011.6.1l1.8 1.5M8.2 12.3l1.5-1.5M15.8 11.8l.6.7"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Amici</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
 function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.querySelector("#unm");
   if(un)un.onchange=()=>{const v=un.value.trim().slice(0,16);try{const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u))}catch(x){}const a=w.querySelector(".uav");if(a)a.textContent=v?v[0].toUpperCase():"?";toast(v?"Nome salvato":"Nome rimosso")};
   w.onclick=async ev=>{const b=ev.target.closest("button[data-u]");if(!b)return;const k=b.dataset.u,busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
@@ -3199,9 +3264,10 @@ function sdCele(k){sdBusy=1;const c=GCOLS.find(x=>x.k===k);sdAdd("s:"+k);try{tab
 function sdCeleD(i){sdBusy=1;const e=$("#set");let n=0;const go=()=>{const b=document.querySelector('#tabs .tab[data-k="'+i+'"]');if(!b||!document.body.classList.contains("dex")){sdBusy=0;return}
     sdAdd("d:"+i);try{dxTabs()}catch(x){}const b2=document.querySelector('#tabs .tab[data-k="'+i+'"]')||b;sdBurst(b2,"Pokédex completato",DXR[i][0]);setTimeout(()=>{sdBusy=0;sdReward("d:"+i);sdSoon()},2800)};
   if(e&&e.scrollTop>4){try{dxScr(e,0)}catch(x){e.scrollTop=0}let last=-1;const w=()=>{if(!document.body.classList.contains("dex")){sdBusy=0;return}if(Math.abs(e.scrollTop-last)<.5||++n>40)setTimeout(go,150);else{last=e.scrollTop;setTimeout(w,80)}};setTimeout(w,150)}else setTimeout(go,150)}
+function frDqSave(){try{localStorage.setItem(GK("carddex_frdq"),JSON.stringify(FR.dq.slice(-20)))}catch(e){}}
 function frapGet(){try{const a=JSON.parse(localStorage.getItem(GK("carddex_frap")));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function frapAdd(id){const a=frapGet();if(!a.includes(id)){a.push(id);try{localStorage.setItem(GK("carddex_frap"),JSON.stringify(a.slice(-300)))}catch(e){}}}
-const FR={dq:[],dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
+const FR={dq:(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_frdq")));return Array.isArray(a)?a:[]}catch(e){return[]}})(),fq:0,dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
 const frCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(6);crypto.getRandomValues(r);return Array.from(r,x=>A[x%32]).join("")};
 const frExp=t=>Date.parse(t.expires_at)<=Date.now();
 const frNm=u=>(FR.pr[u]&&FR.pr[u].name)||"Un amico";
@@ -3227,10 +3293,11 @@ async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
 function frApplyDone(){const me=FR.me;if(!me)return;let ch=0;
   FR.tr.forEach(t=>{if(t.status!=="accepted"||t.from_user!==me.uid||frapGet().includes(t.id))return;
     if(!trSpare(t.give)){frapAdd(t.id);toast("Scambio con "+frNm(t.to_user)+": le tue carte non erano più disponibili",1);return}
-    const R=trApply(t.give,t.get);frapAdd(t.id);ch=1;FR.dq.push({who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx})});
-  if(ch){try{cuSync("push")}catch(e){}}try{frDoneShow()}catch(e){}}
+    const R=trApply(t.give,t.get);frapAdd(t.id);ch=1;FR.dq.push({who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx});toast("Scambio con "+frNm(t.to_user)+" completato!")});
+  if(ch){frDqSave();try{cuSync("push")}catch(e){}}try{frDoneShow()}catch(e){}}
 function frCount(){const me=FR.me&&FR.me.uid;if(!me)return 0;return FR.fs.filter(f=>f.status==="pending"&&f.addressee===me).length+FR.tr.filter(t=>t.status==="pending"&&t.to_user===me&&!frExp(t)).length}
-function frDots(n){document.querySelectorAll("#pkbc,.nvp button[data-t=b]").forEach(b=>{let d=b.querySelector(":scope>.fdt");if(n>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
+function frReq(){const me=FR.me&&FR.me.uid;return me?FR.fs.filter(f=>f.status==="pending"&&f.addressee===me).length:0}
+function frDots(n){const r=frReq();document.querySelectorAll("#pkbc,.nvp button[data-t=b],.nvp button[data-t=s],.ufr").forEach(b=>{const q=b.matches(".ufr,[data-t=s]")?r:n;let d=b.querySelector(":scope>.fdt");if(q>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
 function frBadge(){const n=FR.n=frCount();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));try{frDots(n)}catch(e){}
   if(n>0&&n>FR.nn)toast(FR.nn<0?"Hai "+n+(n===1?" novità":" novità")+" negli scambi con gli amici":"Nuova richiesta dagli amici");FR.nn=n;frDraw()}
 async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");FR.co[u]=r&&r[0]?r[0].data:{}}catch(e){if(!FR.co[u])FR.co[u]={}}}
@@ -3258,62 +3325,67 @@ function frSets(ids){const m={};GCOLS.forEach((co,ci)=>(st[co.k]||[]).forEach(s=
   return Object.keys(g).map(Number).sort((a,b)=>a-b).map(ci=>({ci,ids:g[ci].sort((a,b)=>{const x=trCard(a),y=trCard(b);return rr(x)-rr(y)||(x.num||0)-(y.num||0)})}))}
 function frCvt(id,sp,k,room,nw){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+trSym(c)+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
 function frDoneShow(){if(!FR.dq.length||document.hidden)return;const p=$("#pk"),busy=(p&&!p.hidden&&(p.classList.contains("opening")||p.classList.contains("sm")||p.classList.contains("go")))||(typeof aqRun!=="undefined"&&aqRun)||dxFilling,e=frEl();if(busy||(!e.hidden&&FR.v!=="done"))return;if(!e.hidden&&FR.dn&&FR.dn!==FR.dnA)return;
-  FR.dn=FR.dq.shift();FR.v="done";FR.dnA=null;e.hidden=false;frDraw()}
+  FR.dn=FR.dq.shift();frDqSave();FR.v="done";FR.dnA=null;e.hidden=false;frDraw()}
 function frAnim(){const e=$("#frm");if(!e||!e.animate||FR.v!=="done")return;const g=[...e.querySelectorAll(".frdg .frdc")],r=[...e.querySelectorAll(".frdr .frdc")];
   g.forEach((x,i)=>x.animate([{transform:"translateY(0) scale(1)",opacity:1},{transform:"translate(0,0) scale(.92)",opacity:.35}],{duration:650,delay:250+i*80,easing:"ease-in",fill:"forwards"}));
   r.forEach((x,i)=>{const d=1000+i*240;x.animate([{transform:"translateY(-44px) scale(.7)",opacity:0},{transform:"translateY(0) scale(1.07)",opacity:1,offset:.72},{transform:"translateY(0) scale(1)",opacity:1}],{duration:700,delay:d,easing:"cubic-bezier(.2,.8,.3,1)",fill:"backwards"});setTimeout(()=>{try{sfx("land",.1)}catch(q){}},d+120)});
   setTimeout(()=>{try{sfx("nuova");hap(2)}catch(q){}},1000+r.length*240+450)}
 function frView(){const me=FR.me,v=FR.v,u=FR.u;
-  const bk=(t,to)=>'<div class="frh"><button class="frbk" data-a="bk" data-v="'+to+'" aria-label="Indietro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5L8 12L15 19"/></svg></button><b>'+t+"</b></div>";
-  if(v==="need")return'<div class="frh"><b>Amici</b></div><p class="trn">'+(!cuGet()?"Per scambiare con gli amici serve l’account nel cloud: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli amici ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>';
-  if(!me)return'<div class="frh"><b>Amici</b></div><p class="trn">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>";
+  const IC=(d,w)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+d+"</svg>";
+  const HD=(t,to)=>'<div class="cvhd frhd">'+(to?'<button class="cvx cvbk" data-a="bk" data-v="'+to+'" aria-label="Indietro">'+IC('<path d="M15 5L8 12L15 19"/>')+"</button>":"")+"<b>"+t+"</b>"+frX+"</div>";
+  const W=(t,to,b,f,cl)=>HD(t,to)+'<div class="frbody'+(cl?" "+cl:"")+'">'+b+"</div>"+(f||"");
+  const CH='<i>›</i>',ENV=IC('<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5L12 13l8.5-5.5"/>');
+  if(v==="need")return W("Amici","",'<p class="trn frem">'+(!cuGet()?"Per scambiare con gli amici serve l’account nel cloud: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli amici ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>');
+  if(!me)return W("Amici","",'<p class="trn frem">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>");
   if(v==="home"){const L=frList(),inc=L.filter(x=>x.inc),fr=L.filter(x=>x.acc),out=L.filter(x=>!x.acc&&!x.inc),nm=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)).length,A=FR.md==="a";
     const reqs=inc.length?'<div class="trl">Richieste di amicizia</div>'+inc.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>vuole aggiungerti</small></span><button class="frs p" data-a="ok" data-f="'+x.f.id+'">Accetta</button><button class="frs" data-a="no" data-f="'+x.f.id+'">Rifiuta</button></div>').join(""):"";
-    if(A){let h='<div class="frh"><b>Amici</b></div><div class="frcode"><small>Il tuo codice amico</small><b>'+esc(me.code)+'</b><button class="frb2" data-a="cc">Copia</button></div>';
-      h+='<div class="fradd"><input id="frin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Codice di un amico"><button class="frb2 p" data-a="add">Aggiungi</button></div>';
-      h+=reqs+'<div class="trl">I tuoi amici</div>'+(fr.length?fr.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'</span><button class="frs frdn2" data-a="rm" data-u="'+x.u+'">Rimuovi</button></div>').join(""):'<p class="trn">Ancora nessun amico. Scambiatevi i codici amico.</p>');
+    const rowF=x=>{const k=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&t.from_user===x.u&&!frExp(t)).length;return'<button class="frr" data-a="op" data-u="'+x.u+'">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+"</span>"+(k&&!A?'<em class="frb">'+k+"</em>":"")+CH+"</button>"};
+    if(A){let h='<div class="frr"><span class="frn1"><small>Il tuo codice amico</small><b class="frmono">'+esc(me.code)+'</b></span><button class="frs" data-a="cc">Copia</button></div>';
+      h+='<div class="frr"><input id="frin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Codice di un amico"><button class="frs p" data-a="add">Aggiungi</button></div>';
+      h+=reqs+'<div class="trl">I tuoi amici</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Ancora nessun amico. Scambiatevi i codici amico.</p>');
       if(out.length)h+='<div class="trl">In attesa</div>'+out.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>richiesta inviata</small></span><button class="frs" data-a="no" data-f="'+x.f.id+'">Annulla</button></div>').join("");
-      return h}
-    let h='<div class="frh"><b>Scambia</b></div><button class="frb2 frmail" data-a="mail">Posta'+(nm?'<em class="frb">'+nm+"</em>":"")+"</button>"+reqs;
-    h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(x=>{const k=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&t.from_user===x.u&&!frExp(t)).length;return'<button class="frr" data-a="op" data-u="'+x.u+'">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+"</span>"+(k?'<em class="frb">'+k+"</em>":"")+"<i>›</i></button>"}).join(""):'<p class="trn">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
-    h+='<button class="frb2" data-a="cod">Scambio con codice</button>';return h}
-  if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u];let h=bk(esc(p.name),"home");
-    if(!co)return h+'<p class="trn">Carico…</p>';
+      return W("Amici","",h)}
+    let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
+    h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
+    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return W("Scambia","",h)}
+  if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
+    if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
-    h+='<div class="frst"><div><span>Carte scoperte</span><b>'+tot+'</b></div><div><span>Carte doppie</span><b>'+dbl+'</b></div><div><span>Mancano a te</span><b>'+need+'</b></div><div><span>Mancano a '+esc(p.name)+'</span><b>'+gv+'</b></div></div>';
-    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi la sua collezione</button><button class="frb2 frdn" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return h}
-  if(v==="co"){const co=FR.co[u]||{};let h=bk("Collezione di "+esc(frNm(u)),"fr");
-    GCOLS.forEach(c=>{const ids=(st[c.k]||[]).map(s=>s.id).filter(Boolean);if(!ids.length)return;const n=ids.filter(i=>co[i]).length;h+='<button class="frr" data-a="set" data-k="'+esc(c.k)+'"><span class="frn1">'+esc(c.t)+"<small>"+n+" / "+ids.length+'</small></span><i>›</i></button>'});return h}
-  if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];let h=bk(c?esc(c.t):"Set","co");
-    h+='<div class="frg">'+ids.map(i=>{const cd=trCard(i),q=co[i]||0;return cd?'<div class="frt'+(q?"":" z")+'"><div class="cvf">'+(q?face(cd,0):"")+"</div>"+(q>1?'<b class="frn">×'+q+"</b>":"")+"</div>":""}).join("")+"</div>";return h}
+    let h='<div class="frhero"><div class="a"><b>'+need+'</b><span>Mancano a te</span></div><div><b>'+gv+'</b><span>Mancano a '+nm+'</span></div></div>';
+    h+='<div class="frmini"><span>Carte scoperte<b>'+tot+'</b></span><span>Carte doppie<b>'+dbl+'</b></span></div>';
+    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn frem">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi la sua collezione</button><button class="frb2 frdn frlk" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return W(nm,"home",h)}
+  if(v==="co"){const co=FR.co[u]||{};let h="";
+    GCOLS.forEach(c=>{const ids=(st[c.k]||[]).map(s=>s.id).filter(Boolean);if(!ids.length)return;const n=ids.filter(i=>co[i]).length;h+='<button class="frr" data-a="set" data-k="'+esc(c.k)+'"><span class="frn1">'+esc(c.t)+"<small>"+n+" / "+ids.length+"</small></span>"+CH+"</button>"});return W("Collezione","fr",h)}
+  if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];
+    return W(c?esc(c.t):"Set","co",'<div class="frg">'+ids.map(i=>{const cd=trCard(i),q=co[i]||0;return cd?'<div class="frt'+(q?"":" z")+'"><div class="cvf">'+(q?face(cd,0):"")+"</div>"+(q>1?'<b class="frn">×'+q+"</b>":"")+"</div>":""}).join("")+"</div>")}
   if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";
-    let h=bk("Scambio con "+nm,"fr");
-    h+='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+")</button></div>";
-    const rows=TRO,df=rows.map(k=>[k,(X.tg[k]||0)-(X.tt[k]||0)]).filter(x=>x[1]);let msg,ok="";
-    if(!X.ga.length&&!X.ta.length)msg="Prima scegli cosa dai in «Tu dai», poi in «Chiedi» prendi lo stesso numero di carte per ogni rarità.";
-    else if(X.same){msg="Pronto: "+X.ga.length+(X.ga.length===1?" carta":" carte")+" per "+X.ta.length+". Le rarità coincidono.";ok=" ok"}
-    else msg=df.map(([k,d])=>d>0?"Puoi ancora chiedere "+d+" "+TRN[k][d===1?0:1]:"Hai chiesto "+(-d)+" "+TRN[k][-d===1?0:1]+" in più: dai altre carte di questa rarità o toglile").join(" · ");
-    const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Dai "+g+" · Chiedi "+t+"</b><small>tue "+(X.am[k]||0)+" · sue "+(X.af[k]||0)+"</small></div>"}).join("")+"</div>";
+    let h='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+")</button></div>";
+    const rows=TRO;let hint;
+    if(!X.ga.length&&!X.ta.length)hint="Scegli cosa dai e cosa chiedi";else if(X.same)hint="Pronto: "+X.ga.length+" per "+X.ta.length;else hint="Servono le stesse rarità";
+    const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Dai "+g+" · Chiedi "+t+"</b></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
     h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
-    h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
-    h+=bx+'<p class="frmsg'+ok+'">'+msg+"</p>"+'<div class="frft"><span>Dai '+X.ga.length+" · Chiedi "+X.ta.length+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia (vale 24 h)</button></div>";return h}
+    h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
+    h+=bx;
+    return W("Scambio con "+nm,"fr",h,'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div>","frpr")}
   if(v==="done"){const D=FR.dn;if(!D)return"";const f=(i,t)=>{const c=trCard(i);if(!c)return"";const nw=D.nw.includes(i),dx=D.dx.includes(i);return'<div class="frdc"><div class="cvf">'+face(c,0)+"</div>"+(t&&(nw||dx)?'<div class="frtg">'+(nw?"<b>NUOVA</b>":"")+(dx?'<b class="d">POKÉDEX</b>':"")+"</div>":"")+"</div>"};
-    let h='<div class="frh"><b>Scambio concluso!</b></div><p class="trn">Con '+esc(D.who)+'</p><div class="trl">Hai dato</div><div class="frdg">'+D.give.map(i=>f(i,0)).join("")+'</div><div class="trl">Hai ricevuto</div><div class="frdr">'+D.get.map(i=>f(i,1)).join("")+"</div>";
-    if(D.nw.length||D.dx.length)h+='<p class="trn">Le carte nuove ti aspettano nell’album'+(D.dx.length?" e nel Pokédex":"")+": cerca il pallino blu.</p>";
-    return h+'<button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button>"}
-  if(v==="mail"){let h=bk("Posta","home");const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)).slice(0,8);
-    h+='<div class="trl">Ricevute</div>'+(rc.length?rc.map(t=>{const okk=trSpare(t.get);return'<div class="frc"><b>'+esc(frNm(t.from_user))+'</b><small>'+frLeft(t)+'</small><div class="trl">Ti offre</div>'+frFaces(t.give)+'<div class="trl">Chiede</div>'+frFaces(t.get)+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button></div></div>'}).join(""):'<p class="trn">Nessuna proposta ricevuta.</p>');
-    h+='<div class="trl">Inviate</div>'+(sn.length?sn.map(t=>'<div class="frc"><b>A '+esc(frNm(t.to_user))+'</b><small>'+frLeft(t)+'</small><div class="trl">Offri</div>'+frFaces(t.give)+'<div class="trl">Chiedi</div>'+frFaces(t.get)+'<div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div></div>').join(""):'<p class="trn">Nessuna proposta in attesa.</p>');
-    if(cl.length)h+='<div class="trl">Chiuse</div>'+cl.map(t=>{const m=t.from_user===me.uid,who=frNm(m?t.to_user:t.from_user),s=t.status==="pending"?"scaduta":t.status==="accepted"?"completato":t.status==="declined"?"rifiutata":"annullata";return'<p class="frcl">'+(m?"A ":"Da ")+esc(who)+" · "+s+"</p>"}).join("");return h}
+    let h='<p class="trn frem">Con '+esc(D.who)+'</p><div class="trl">Hai dato</div><div class="frdg">'+D.give.map(i=>f(i,0)).join("")+'</div><div class="trl">Hai ricevuto</div><div class="frdr">'+D.get.map(i=>f(i,1)).join("")+"</div>";
+    if(D.nw.length||D.dx.length)h+='<p class="trn frem">Le carte nuove ti aspettano nell’album'+(D.dx.length?" e nel Pokédex":"")+": cerca il pallino blu.</p>";
+    return W("Scambio concluso!","",h,'<div class="frft"><button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button></div>")}
+  if(v==="mail"){const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)).slice(0,8);let h="";
+    const crd=(t,r)=>{const who=frNm(r?t.from_user:t.to_user),okk=r?trSpare(t.get):1;return'<div class="frc"><div class="frch">'+frAv(who)+'<span class="frn1">'+esc(who)+"<small>"+frLeft(t)+'</small></span></div><div class="frcs"><em>'+(r?"Ti offre":"Offri")+"</em>"+frFaces(t.give)+'</div><div class="frcs"><em>Chiede</em>'+frFaces(t.get)+"</div>"+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(r?(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button>':'<button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button>')+"</div></div>"};
+    if(rc.length)h+='<div class="trl">Da rispondere ('+rc.length+")</div>"+rc.map(t=>crd(t,1)).join("");
+    if(sn.length)h+='<div class="trl">In attesa di risposta ('+sn.length+")</div>"+sn.map(t=>crd(t,0)).join("");
+    if(cl.length)h+='<div class="trl">Chiuse</div>'+cl.map(t=>{const m=t.from_user===me.uid,who=frNm(m?t.to_user:t.from_user),s=t.status==="pending"?"scaduta":t.status==="accepted"?"completato":t.status==="declined"?"rifiutata":"annullata";return'<div class="frr frcl2">'+frAv(who)+'<span class="frn1">'+(m?"A ":"Da ")+esc(who)+'</span><em class="frpl'+(t.status==="accepted"?" ok":"")+'">'+s+"</em></div>"}).join("");
+    if(!h)h='<div class="frem2">'+ENV+'<b>Nessuna proposta</b><span>Le proposte di scambio ricevute e inviate compaiono qui.</span></div>';
+    return W("Posta","home",h)}
   return""}
 function frDraw(){const e=$("#frm");if(!e||e.hidden)return;const b=e.querySelector(".frbody"),y=b?b.scrollTop:0,sc=e.querySelector(".frscr"),y2=sc?sc.scrollTop:0,i=e.querySelector("#frin"),iv=i?i.value:"";
-  e.classList.toggle("frfull",FR.v==="pr");
-  e.innerHTML='<div class="ptc frp">'+frX+'<div class="frbody">'+frView()+"</div></div>";const b2=e.querySelector(".frbody");if(b2)b2.scrollTop=y;const s2=e.querySelector(".frscr");if(s2)s2.scrollTop=y2;const i2=e.querySelector("#frin");if(i2&&iv)i2.value=iv;
+  e.innerHTML=frView();const b2=e.querySelector(".frbody");if(b2)b2.scrollTop=y;const s2=e.querySelector(".frscr");if(s2)s2.scrollTop=y2;const i2=e.querySelector("#frin");if(i2&&iv)i2.value=iv;
   if(FR.v==="done"&&FR.dn&&FR.dn!==FR.dnA){FR.dnA=FR.dn;setTimeout(frAnim,60)}}
 function frEl(){let e=$("#frm");
   if(!e){e=document.createElement("div");e.id="frm";e.hidden=true;document.body.appendChild(e);
-    e.onclick=async ev=>{if(ev.target===e){e.hidden=true;return}const b=ev.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,d=b.dataset;
+    e.onclick=async ev=>{const b=ev.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,d=b.dataset;
       try{if(a==="x")e.hidden=true;
       else if(a==="bk"){FR.v=d.v;frDraw()}
       else if(a==="gs"){e.hidden=true;const c=$("#cvs");if(c)c.hidden=true;try{pkBarUpd()}catch(x){}goTab("s")}
@@ -3330,7 +3402,7 @@ function frEl(){let e=$("#frm");
       else if(a==="tg"){const m=ev.target.closest(".cvm");if(!m)return;const o=FR.tab==="give"?FR.gv:FR.gt,id=d.i,k0=o[id]||0,dir=m.dataset.d==="-1"?-1:1;let k=k0+dir;
         if(dir>0&&frRoom(id)<=0){const c=trCard(id),q=c?trK(c):"C",X=frCtx();if(FR.tab==="get"&&!(X.tg[q]||0))toast("Per chiedere "+(TRN[q]?TRN[q][0]:"questa carta")+" devi darne una");else if(FR.tab==="get"&&(X.tt[q]||0)>=(X.tg[q]||0))toast("Hai già chiesto tutte le "+TRN[q][1]+" che dai");else toast("Non hai altre copie doppie");return}
         if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
-      else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq.shift();FR.v="done";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
+      else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq.shift();frDqSave();FR.v="done";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
       else if(a==="send"){const tl=o=>{const r=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)r.push(i)});return r};b.disabled=true;try{await frSend(FR.u,tl(FR.gv),tl(FR.gt));toast("Proposta inviata: vale 24 ore");FR.v="mail"}catch(x){toast(x.message||"Errore")}frDraw()}
       else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
       else if(a==="acc"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;await frAccept(t)}}
@@ -3419,7 +3491,7 @@ function dxPick(d){window.SHLK=Date.now()+600;const D=dxData(),{o,cand}=dxScope(
 function dxFilter(){const F=[["a","Tutti i Pokémon"],["o","Ottenuti"],["n","Mancanti"]],S=[];
   sheet([...F.map(([k,t])=>[(DXF===k?"✓  ":"")+t,()=>{DXF=k;drawDex(1)}]),...S.map(([k,t])=>[(DXS===k?"✓  ":"")+"Carte: "+t,()=>{DXS=k;try{localStorage.setItem("carddex_dxs2",DXS)}catch(x){}drawDex(1)}])],"Mostra")}
 const SETI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.0005 15C13.6573 15 15.0005 13.6569 15.0005 12C15.0005 10.3431 13.6573 9 12.0005 9C10.3436 9 9.00049 10.3431 9.00049 12C9.00049 13.6569 10.3436 15 12.0005 15Z"/><path d="M9.28957 19.3711L9.87402 20.6856C10.0478 21.0768 10.3313 21.4093 10.6902 21.6426C11.0492 21.8759 11.4681 22.0001 11.8962 22C12.3244 22.0001 12.7433 21.8759 13.1022 21.6426C13.4612 21.4093 13.7447 21.0768 13.9185 20.6856L14.5029 19.3711C14.711 18.9047 15.0609 18.5159 15.5029 18.26C15.9477 18.0034 16.4622 17.8941 16.9729 17.9478L18.4029 18.1C18.8286 18.145 19.2582 18.0656 19.6396 17.8713C20.021 17.6771 20.3379 17.3763 20.5518 17.0056C20.766 16.635 20.868 16.2103 20.8455 15.7829C20.823 15.3555 20.677 14.9438 20.4251 14.5978L19.5785 13.4344C19.277 13.0171 19.1159 12.5148 19.1185 12C19.1184 11.4866 19.281 10.9864 19.5829 10.5711L20.4296 9.40778C20.6814 9.06175 20.8275 8.65007 20.85 8.22267C20.8725 7.79528 20.7704 7.37054 20.5562 7C20.3423 6.62923 20.0255 6.32849 19.644 6.13423C19.2626 5.93997 18.833 5.86053 18.4074 5.90556L16.9774 6.05778C16.4667 6.11141 15.9521 6.00212 15.5074 5.74556C15.0645 5.48825 14.7144 5.09736 14.5074 4.62889L13.9185 3.31444C13.7447 2.92317 13.4612 2.59072 13.1022 2.3574C12.7433 2.12408 12.3244 1.99993 11.8962 2C11.4681 1.99993 11.0492 2.12408 10.6902 2.3574C10.3313 2.59072 10.0478 2.92317 9.87402 3.31444L9.28957 4.62889C9.0825 5.09736 8.73245 5.48825 8.28957 5.74556C7.84479 6.00212 7.33024 6.11141 6.81957 6.05778L5.38513 5.90556C4.95946 5.86053 4.52987 5.93997 4.14844 6.13423C3.76702 6.32849 3.45014 6.62923 3.23624 7C3.02206 7.37054 2.92002 7.79528 2.94251 8.22267C2.96499 8.65007 3.11103 9.06175 3.36291 9.40778L4.20957 10.5711C4.51151 10.9864 4.67411 11.4866 4.67402 12C4.67411 12.5134 4.51151 13.0137 4.20957 13.4289L3.36291 14.5922C3.11103 14.9382 2.96499 15.3499 2.94251 15.7773C2.92002 16.2047 3.02206 16.6295 3.23624 17C3.45036 17.3706 3.76727 17.6712 4.14864 17.8654C4.53001 18.0596 4.95949 18.1392 5.38513 18.0944L6.81513 17.9422C7.3258 17.8886 7.84034 17.9979 8.28513 18.2544C8.72966 18.511 9.08134 18.902 9.28957 19.3711Z"/></svg>';
-function NAVH(on){const B=(t,n,ic,x)=>'<button data-t="'+t+'" class="'+(on===t?"on":"")+'" aria-label="'+n+'">'+ic+'<span>'+n+'</span>'+(x||"")+'</button>',S='<b class="sep"></b>';return '<i class="lens"></i>'+B("b","Bustine",PKI0,"")+S+B("c","Album",ALI)+S+B("d","Pokédex",DXI)+S+B("s","Account",PERI)}
+function NAVH(on){const B=(t,n,ic,x)=>'<button data-t="'+t+'" class="'+(on===t?"on":"")+'" aria-label="'+n+'">'+ic+'<span>'+n+'</span>'+(x||"")+'</button>',S='<b class="sep"></b>';return '<i class="lens"></i>'+B("b","Bustine",PKI0,"")+S+B("c","Album",ALI)+S+B("d","Pokédex",DXI)+S+B("s","Account",PERI,(()=>{try{return frReq()>0?'<span class="fdt"></span>':""}catch(e){return""}})())}
 const ALI0='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21L11.8999 20.8499C11.2053 19.808 10.858 19.287 10.3991 18.9098C9.99286 18.5759 9.52476 18.3254 9.02161 18.1726C8.45325 18 7.82711 18 6.57482 18H5.2C4.07989 18 3.51984 18 3.09202 17.782C2.71569 17.5903 2.40973 17.2843 2.21799 16.908C2 16.4802 2 15.9201 2 14.8V6.2C2 5.07989 2 4.51984 2.21799 4.09202C2.40973 3.71569 2.71569 3.40973 3.09202 3.21799C3.51984 3 4.07989 3 5.2 3H5.6C7.84021 3 8.96031 3 9.81596 3.43597C10.5686 3.81947 11.1805 4.43139 11.564 5.18404C12 6.03968 12 7.15979 12 9.4M12 21V9.4M12 21L12.1001 20.8499C12.7947 19.808 13.142 19.287 13.6009 18.9098C14.0071 18.5759 14.4752 18.3254 14.9784 18.1726C15.5467 18 16.1729 18 17.4252 18H18.8C19.9201 18 20.4802 18 20.908 17.782C21.2843 17.5903 21.5903 17.2843 21.782 16.908C22 16.4802 22 15.9201 22 14.8V6.2C22 5.07989 22 4.51984 21.782 4.09202C21.5903 3.71569 21.2843 3.40973 20.908 3.21799C20.4802 3 19.9201 3 18.8 3H18.4C16.1598 3 15.0397 3 14.184 3.43597C13.4314 3.81947 12.8195 4.43139 12.436 5.18404C12 6.03968 12 7.15979 12 9.4"/></svg>',PKI0='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2.5H19V5.2L17.5 6.5V17.5L19 18.8V21.5H5V18.8L6.5 17.5V6.5L5 5.2Z"/></svg>';
 const GIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21L11.8999 20.8499C11.2053 19.808 10.858 19.287 10.3991 18.9098C9.99286 18.5759 9.52476 18.3254 9.02161 18.1726C8.45325 18 7.82711 18 6.57482 18H5.2C4.07989 18 3.51984 18 3.09202 17.782C2.71569 17.5903 2.40973 17.2843 2.21799 16.908C2 16.4802 2 15.9201 2 14.8V6.2C2 5.07989 2 4.51984 2.21799 4.09202C2.40973 3.71569 2.71569 3.40973 3.09202 3.21799C3.51984 3 4.07989 3 5.2 3H5.6C7.84021 3 8.96031 3 9.81596 3.43597C10.5686 3.81947 11.1805 4.43139 11.564 5.18404C12 6.03968 12 7.15979 12 9.4M12 21V9.4M12 21L12.1001 20.8499C12.7947 19.808 13.142 19.287 13.6009 18.9098C14.0071 18.5759 14.4752 18.3254 14.9784 18.1726C15.5467 18 16.1729 18 17.4252 18H18.8C19.9201 18 20.4802 18 20.908 17.782C21.2843 17.5903 21.5903 17.2843 21.782 16.908C22 16.4802 22 15.9201 22 14.8V6.2C22 5.07989 22 4.51984 21.782 4.09202C21.5903 3.71569 21.2843 3.40973 20.908 3.21799C20.4802 3 19.9201 3 18.8 3H18.4C16.1598 3 15.0397 3 14.184 3.43597C13.4314 3.81947 12.8195 4.43139 12.436 5.18404C12 6.03968 12 7.15979 12 9.4"/><g transform="translate(12.95 6.35) scale(.34)"><path stroke-width="3.8" d="M20 10.5V6.8C20 5.11984 20 4.27976 19.673 3.63803C19.3854 3.07354 18.9265 2.6146 18.362 2.32698C17.7202 2 16.8802 2 15.2 2H8.8C7.11984 2 6.27976 2 5.63803 2.32698C5.07354 2.6146 4.6146 3.07354 4.32698 3.63803C4 4.27976 4 5.11984 4 6.8V17.2C4 18.8802 4 19.7202 4.32698 20.362C4.6146 20.9265 5.07354 21.3854 5.63803 21.673C6.27976 22 7.11984 22 8.8 22H12M18 21V15M15 18H21"/></g></svg>';
 const HMI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg>';
