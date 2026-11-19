@@ -1426,6 +1426,19 @@ html body #frm .frpl{font-style:normal;font-size:12px;font-weight:600;padding:4p
 html body #frm .frpl.ok{background:rgba(52,199,89,.18);color:#1f9d4d}
 html.gml body #frm .frr,html.gml body #frm .frc{background:#fff}
 html:not(.gml) body #frm .frmini span{background:rgba(255,255,255,.08)}
+.pfw{margin:14px 0 0;border-radius:24px;padding:14px 0;background:linear-gradient(160deg,var(--p1),var(--p2));overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.pfp{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}.pfp::-webkit-scrollbar{display:none}.pfp.drag{overflow:hidden}
+.pfg{flex:0 0 100%;box-sizing:border-box;scroll-snap-align:center;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0 14px;align-content:start}
+.pfs{aspect-ratio:63/88;border-radius:6px;position:relative;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.pfs.e{border:2px dashed rgba(255,255,255,.2);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.pfw.lt .pfs.e{border-color:rgba(27,42,73,.2)}
+.pfh{color:rgba(255,255,255,.4)}.pfh svg{width:34px;height:34px}.pfw.lt .pfh{color:rgba(27,42,73,.35)}
+.pfc{position:absolute;inset:0;border-radius:6px;overflow:hidden;box-shadow:0 6px 14px rgba(0,0,0,.35)}.pfc>*{width:100%}
+.pfs.pfdr{opacity:.25}.pfgh{transform:scale(1.08);filter:drop-shadow(0 12px 18px rgba(0,0,0,.5))}.pfgh .pfc{box-shadow:none}
+.pfdt{display:flex;justify-content:center;gap:7px;margin-top:12px}.pfdt i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.25}.pfdt i.on{opacity:.9;transform:scale(1.25)}
+#set .pfmore{position:absolute;right:56px;top:50%;margin-top:-22px;width:44px;height:44px}
+#frm .frg3{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#frm .frt{position:relative}#frm .frt .frnw{position:absolute;left:5px;top:5px}
 /* icona Amici nel riquadro utente */
 .ucd{position:relative}
 .ucd.hasf .uin{margin-right:60px}
@@ -1517,7 +1530,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v457";
+const APPV="v458";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2284,7 +2297,7 @@ function bkApplyObj(j){if(!j||typeof j!=="object")throw 0;
     if(j.pk&&typeof j.pk==="object")W(GK("carddex_pk"),j.pk);
     if(j.pgc&&typeof j.pgc==="object"){PGS=j.pgc;W(CK("carddex_pgc"),PGS);try{applyPgc()}catch(e){}}
     if(Array.isArray(j.bch)){BCH=j.bch.filter(b=>b&&b.id&&b.sz>=1&&b.sz<=3&&Array.isArray(b.cards)).slice(0,3);bcSave()}if(j.cry==="0"||j.cry==="1"){try{localStorage.setItem("carddex_cry",j.cry)}catch(e){}CRYON=j.cry!=="0"}
-    if(j.ord&&j.ord.o&&typeof j.ord.o==="object"){GORD=j.ord.o;GCU=(j.ord.u&&typeof j.ord.u==="object")?j.ord.u:{};try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}if(Array.isArray(j.frap))j.frap.forEach(i=>{if(typeof i==="string")frapAdd(i)});if(Array.isArray(j.sd))j.sd.forEach(i=>{if(typeof i==="string")sdAdd(i)});if(j.ms&&typeof j.ms==="object")W(GK("carddex_ms"),j.ms);if(j.stats&&typeof j.stats==="object")W(GK("carddex_stats"),j.stats);if(j.usr&&typeof j.usr==="object")W("carddex_user",j.usr);
+    if(j.ord&&j.ord.o&&typeof j.ord.o==="object"){GORD=j.ord.o;GCU=(j.ord.u&&typeof j.ord.u==="object")?j.ord.u:{};try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}if(Array.isArray(j.frap))j.frap.forEach(i=>{if(typeof i==="string")frapAdd(i)});if(Array.isArray(j.sd))j.sd.forEach(i=>{if(typeof i==="string")sdAdd(i)});if(Array.isArray(j.pfo))pfSet(GK("carddex_pfo"),j.pfo);if(j.pfs&&typeof j.pfs==="object")pfSet(GK("carddex_pfs"),j.pfs);if(j.ms&&typeof j.ms==="object")W(GK("carddex_ms"),j.ms);if(j.stats&&typeof j.stats==="object")W(GK("carddex_stats"),j.stats);if(j.usr&&typeof j.usr==="object")W("carddex_user",j.usr);
     try{pkBadge()}catch(e){}}
   else{const s=cln(j.st);if(!s)throw 0;Object.assign(st,s)}
   fillSt();if(MODE==="c")albInit();save();FLT="a";cur=COLS[0].k;SR=[];pg=0;sp=0;tabs();render()}
@@ -3065,7 +3078,7 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
-function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null),ord:{o:GORD,u:GCU},frap:frapGet(),sd:sdGet()};return o}
+function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null),ord:{o:GORD,u:GCU},frap:frapGet(),sd:sdGet(),pfo:pfRd(GK("carddex_pfo"),[]),pfs:pfRd(GK("carddex_pfs"),{})};return o}
 function bkExport(){const o=bkObj(),b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale dell’album e delle bustine.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
@@ -3146,7 +3159,7 @@ function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}
     o.querySelector(".p").onclick=()=>{const nm=(M.nm||"").trim()||"Bacheca";if(ed){ed.nm=nm;ed.st=M.st;bcSave();o.hidden=true;bcDetail(ed.id);return}
       if(BCH.length>=BCMAX)return;const b={id:"b"+Date.now().toString(36),nm,st:M.st,sz:M.sz,o:M.o,al:M.o==="c"?M.al:null,cards:Array(M.sz).fill(null)};BCH.push(b);bcSave();o.hidden=true;bcDetail(b.id)}};
   draw();o.hidden=false}
-function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+ALI+'</span><div><b>Album</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else aslGo(b.dataset.m)});aqBadge()}
+function drawAsl(){const e=$("#set");e.style.removeProperty("top");e.style.removeProperty("padding-top");e.onscroll=null;e.innerHTML='<h2>Album</h2><div class="aslw"><button class="asc" data-m="g"><span class="aic">'+ALI+'</span><div><b>Album</b><span>Le carte che ottieni aprendo le bustine, set per set.</span></div></button><button class="asc" data-m="f"><span class="aic">'+PFIC+'</span><div><b>Preferiti</b><span>Il tuo album con le carte preferite, in pagine tutte tue.</span></div></button><button class="asc" data-m="b"><span class="aic">'+BCIC+'</span><div><b>Bacheche</b><span>Le carte che ami in mostra, in teche personalizzate.</span></div></button></div>';e.onclick=null;e.querySelectorAll(".asc").forEach(b=>b.onclick=()=>{if(b.dataset.m==="b")bcList();else if(b.dataset.m==="f")pfList();else aslGo(b.dataset.m)});aqBadge()}
 let ALAST=null;
 function aslGo(m){goTab(m,2)}
 function aslOpen(){const B=document.body,p=$("#pk"),op=p&&!p.hidden;ALAST="asl";navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.add("asl");setOpen(1);navSync()})}
@@ -3275,10 +3288,39 @@ function sdCele(k){sdBusy=1;const c=GCOLS.find(x=>x.k===k);sdAdd("s:"+k);try{tab
 function sdCeleD(i){sdBusy=1;const e=$("#set");let n=0;const go=()=>{const b=document.querySelector('#tabs .tab[data-k="'+i+'"]');if(!b||!document.body.classList.contains("dex")){sdBusy=0;return}
     sdAdd("d:"+i);try{dxTabs()}catch(x){}const b2=document.querySelector('#tabs .tab[data-k="'+i+'"]')||b;sdBurst(b2,"Pokédex completato",DXR[i][0]);setTimeout(()=>{sdBusy=0;sdReward("d:"+i);sdSoon()},2800)};
   if(e&&e.scrollTop>4){try{dxScr(e,0)}catch(x){e.scrollTop=0}let last=-1;const w=()=>{if(!document.body.classList.contains("dex")){sdBusy=0;return}if(Math.abs(e.scrollTop-last)<.5||++n>40)setTimeout(go,150);else{last=e.scrollTop;setTimeout(w,80)}};setTimeout(w,150)}else setTimeout(go,150)}
+/* ===== Preferiti: album delle carte preferite, a pagine ===== */
+const PFIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17.4s-4.7-2.9-4.7-6.3a2.6 2.6 0 014.7-1.5 2.6 2.6 0 014.7 1.5c0 3.4-4.7 6.3-4.7 6.3z"/></svg>';
+const PFBG={n:["Notte","#10131c","#222b42"],o:["Oceano","#0b2a4a","#1a6aa6"],b:["Bosco","#0e2b1f","#2a7a55"],r:["Rubino","#3a0f1c","#9a2a4c"],g:["Oro","#3a2a08","#a8801c"],c:["Chiaro","#dfe5f0","#ffffff"]};
+const pfRd=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+const pfSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+function pfFavs(){const out=[],seen=new Set();try{const raw=dxRaw(MODE==="g"?"g":"c");(MODE==="g"?GCOLS:COLS).forEach(c=>(raw[c.k]||[]).forEach(x=>{if(!x||!x.fav||!x.o||!x.id)return;let d=CARDS[x.id];if(!d)return;if(d.opts)d=CARDS[d.opts.includes(x.v)?x.v:d.opts[0]];else if(d.alt&&MODE!=="g"&&x.v==="n")d=CARDS[d.alt];if(d&&!seen.has(d.id)){seen.add(d.id);out.push(d.id)}}))}catch(e){}return out}
+function pfIds(){const f=pfFavs(),fs=new Set(f),o=pfRd(GK("carddex_pfo"),[]).filter(i=>fs.has(i)),os=new Set(o);return o.concat(f.filter(i=>!os.has(i)))}
+let PFP=0,PFD=null;
+function pfList(){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=null;const ids=pfIds(),P=9,np=Math.max(1,Math.ceil(ids.length/P)),S=pfRd(GK("carddex_pfs"),{}),bg=PFBG[S.bg]||PFBG.n;PFP=Math.max(0,Math.min(PFP,np-1));
+  let h='<div class="bchd"><h2>Preferiti</h2><button class="bcb pfmore" aria-label="Opzioni">'+BCDT+'</button><button class="bcb bcx" data-a="back" aria-label="Chiudi">'+XI+'</button></div><div class="pfw'+(S.bg==="c"?" lt":"")+'" style="--p1:'+bg[1]+';--p2:'+bg[2]+'"><div class="pfp">';
+  for(let p=0;p<np;p++){h+='<div class="pfg">';for(let k=0;k<P;k++){const i=p*P+k,id=ids[i],c=id&&CARDS[id];h+=c?'<div class="pfs f" data-i="'+i+'"><div class="pfc">'+bcFace(c,1)+"</div></div>":'<div class="pfs e" data-i="'+i+'">'+(!ids.length&&k===4?'<span class="pfh">'+PFIC+"</span>":"")+"</div>"}h+="</div>"}
+  h+='</div></div><div class="pfdt">'+Array.from({length:np},(_,j)=>'<i class="'+(j===PFP?"on":"")+'"></i>').join("")+'</div><div class="bchint">'+(ids.length?"tieni premuta una carta per spostarla":"tocca il cuore su una carta per aggiungerla")+"</div>";
+  e.innerHTML=h;e.querySelector("[data-a=back]").onclick=()=>drawAsl();
+  e.querySelector(".pfmore").onclick=()=>sheet([["Sfondo…",()=>sheet(Object.keys(PFBG).map(k=>[(S.bg===k||(!S.bg&&k==="n")?"✓  ":"")+PFBG[k][0],()=>{S.bg=k;pfSet(GK("carddex_pfs"),S);pfList()}]),"Sfondo")],["Ripristina ordine",()=>{pfSet(GK("carddex_pfo"),[]);pfList()}]],"Preferiti");
+  const sc=e.querySelector(".pfp"),dots=e.querySelectorAll(".pfdt i");sc.scrollLeft=PFP*sc.clientWidth;
+  sc.onscroll=()=>{const j=Math.round(sc.scrollLeft/Math.max(1,sc.clientWidth));if(j!==PFP){PFP=j;dots.forEach((d,x)=>d.classList.toggle("on",x===j))}};
+  let q=null;const W=e.querySelector(".pfw");
+  const stop=ev=>{if(PFD)ev.preventDefault()};e.addEventListener("touchmove",stop,{passive:false});
+  sc.onpointerdown=ev=>{const t=ev.target.closest(".pfs.f");if(!t)return;q={x:ev.clientX,y:ev.clientY,i:+t.dataset.i,el:t,mv:0,drag:0};q.h=setTimeout(()=>{if(!q||q.mv)return;q.drag=1;PFD=q;try{hap(1)}catch(x){}
+      const r=t.getBoundingClientRect(),g=t.cloneNode(true);g.className="pfgh";g.style.cssText="position:fixed;z-index:200;pointer-events:none;width:"+r.width+"px;left:"+r.left+"px;top:"+r.top+"px";document.body.appendChild(g);q.g=g;q.ox=ev.clientX-r.left;q.oy=ev.clientY-r.top;t.classList.add("pfdr");sc.classList.add("drag")},380)};
+  sc.onpointermove=ev=>{if(!q)return;if(!q.drag){if(Math.hypot(ev.clientX-q.x,ev.clientY-q.y)>8){q.mv=1;clearTimeout(q.h)}return}
+    q.g.style.left=(ev.clientX-q.ox)+"px";q.g.style.top=(ev.clientY-q.oy)+"px";const r=sc.getBoundingClientRect(),n=Date.now();
+    if(ev.clientX<r.left+34||ev.clientX>r.right-34){if(!q.ed||n-q.ed>600){q.ed=n;sc.scrollBy({left:(ev.clientX<r.left+34?-1:1)*r.width,behavior:"smooth"})}}else q.ed=0};
+  const up=ev=>{const t=q;q=null;if(!t)return;clearTimeout(t.h);
+    if(t.drag){PFD=null;t.g.remove();t.el.classList.remove("pfdr");sc.classList.remove("drag");const o=document.elementFromPoint(ev.clientX,ev.clientY),s=o&&o.closest&&o.closest(".pfs");
+      if(s&&s.parentElement.parentElement===sc){const j=Math.min(+s.dataset.i,ids.length-1);if(j!==t.i){const a=ids.slice(),m=a.splice(t.i,1)[0];a.splice(j,0,m);pfSet(GK("carddex_pfo"),a);sfx("own")}}
+      pfList();return}
+    if(t.mv)return;const id=ids[t.i];if(id&&CARDS[id]){DXL=[{id,o:1}];openCard(0)}};
+  sc.onpointerup=up;sc.onpointercancel=()=>{const t=q;q=null;if(t){clearTimeout(t.h);if(t.drag){PFD=null;t.g&&t.g.remove();pfList()}}}}
 function frDqSave(){try{localStorage.setItem(GK("carddex_frdq"),JSON.stringify(FR.dq.slice(-20)))}catch(e){}}
 function frapGet(){try{const a=JSON.parse(localStorage.getItem(GK("carddex_frap")));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function frapAdd(id){const a=frapGet();if(!a.includes(id)){a.push(id);try{localStorage.setItem(GK("carddex_frap"),JSON.stringify(a.slice(-300)))}catch(e){}}}
-const FR={dq:(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_frdq")));return Array.isArray(a)?a:[]}catch(e){return[]}})(),fq:0,dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
+const FR={cf:{},dq:(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_frdq")));return Array.isArray(a)?a:[]}catch(e){return[]}})(),fq:0,dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
 const frCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(6);crypto.getRandomValues(r);return Array.from(r,x=>A[x%32]).join("")};
 const frExp=t=>Date.parse(t.expires_at)<=Date.now();
 const frNm=u=>(FR.pr[u]&&FR.pr[u].name)||"Un amico";
@@ -3292,9 +3334,9 @@ async function frEnsure0(){const u=await cuTok();if(FR.me&&FR.me.uid===u.uid)ret
   let r=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name");
   if(!r||!r[0]){for(let i=0;i<6;i++){const code=frCode();try{await sbReq("/rest/v1/profiles",{m:"POST",h:{Prefer:"return=minimal"},b:{user_id:u.uid,name:(usrGet().n||"").slice(0,16),code}});r=[{code,name:usrGet().n||""}];break}catch(e){if(!/duplicate|unique/i.test(e.message))throw e}}}
   if(!r||!r[0])throw new Error("Codice amico non creato");FR.me={uid:u.uid,code:r[0].code,name:r[0].name||""};return FR.me}
-async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),nm=(usrGet().n||"").trim().slice(0,16),h=nm+"|"+JSON.stringify(co);if(!force&&h===FR.ph)return;
+async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),pf=pfIds(),nm=(usrGet().n||"").trim().slice(0,16),h=nm+"|"+JSON.stringify(co)+"|"+pf.join(",");if(!force&&h===FR.ph)return;
   try{const me=await frEnsure();if(nm&&me.name!==nm){await sbReq("/rest/v1/profiles?user_id=eq."+me.uid,{m:"PATCH",h:{Prefer:"return=minimal"},b:{name:nm,updated_at:new Date().toISOString()}});me.name=nm}
-    await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:co,updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
+    await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:{...co,_f:pf},updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
 async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
   try{const me=await frEnsure();const a=await Promise.all([sbReq("/rest/v1/friendships?select=id,requester,addressee,status"),sbReq("/rest/v1/trades?select=*&order=created_at.desc&limit=60")]);
     FR.fs=a[0]||[];FR.tr=a[1]||[];const ids=[...new Set(FR.fs.map(f=>f.requester===me.uid?f.addressee:f.requester))];
@@ -3311,7 +3353,7 @@ function frReq(){const me=FR.me&&FR.me.uid;return me?FR.fs.filter(f=>f.status===
 function frDots(n){const r=frReq();document.querySelectorAll("#pkbc,.nvp button[data-t=b],.nvp button[data-t=s],.ufr").forEach(b=>{const q=b.matches(".ufr,[data-t=s]")?r:n;let d=b.querySelector(":scope>.fdt");if(q>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
 function frBadge(){const n=FR.n=frCount();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));try{frDots(n)}catch(e){}
   if(n>0&&n>FR.nn)toast(FR.nn<0?"Hai "+n+(n===1?" novità":" novità")+" negli scambi con gli amici":"Nuova richiesta dagli amici");FR.nn=n;frDraw()}
-async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");FR.co[u]=r&&r[0]?r[0].data:{}}catch(e){if(!FR.co[u])FR.co[u]={}}}
+async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");const d=r&&r[0]&&r[0].data?r[0].data:{};FR.cf[u]=Array.isArray(d._f)?d._f:[];delete d._f;FR.co[u]=d}catch(e){if(!FR.co[u])FR.co[u]={}}}
 async function frAskFriend(code){const r=await sbReq("/rest/v1/rpc/friend_request",{m:"POST",b:{p_code:String(code||"").trim().toUpperCase()}});return r}
 async function frSend(to,give,get){if(!trSame(give,get)||!give.length)throw new Error("Le rarità non coincidono");if(!trSpare(give))throw new Error("Non hai più quelle doppie");
   await sbReq("/rest/v1/trades",{m:"POST",h:{Prefer:"return=minimal"},b:{from_user:FR.me.uid,to_user:to,give,get}});await frLoad()}
@@ -3365,9 +3407,9 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
     let h='<div class="frst"><div><span>Carte scoperte</span><b>'+tot+'</b></div><div><span>Carte doppie</span><b>'+dbl+'</b></div></div>';
     h+='<div class="frst frst2"><div><span>Doppie di '+nm+' che mancano a te</span><b>'+need+'</b></div><div><span>Tue doppie che mancano a '+nm+'</span><b>'+gv+'</b></div></div>';
-    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn frem">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi la sua collezione</button><button class="frb2 frdn frlk" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return W(nm,"home",h)}
-  if(v==="co"){const co=FR.co[u]||{};let h="";
-    GCOLS.forEach(c=>{const ids=(st[c.k]||[]).map(s=>s.id).filter(Boolean);if(!ids.length)return;const n=ids.filter(i=>co[i]).length;h+='<button class="frr" data-a="set" data-k="'+esc(c.k)+'"><span class="frn1">'+esc(c.t)+"<small>"+n+" / "+ids.length+"</small></span>"+CH+"</button>"});return W("Collezione","fr",h)}
+    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn frem">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi i suoi preferiti</button><button class="frb2 frdn frlk" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return W(nm,"home",h)}
+  if(v==="co"){const f=(FR.cf[u]||[]).filter(i=>CARDS[i]),my=frColl(),nm=esc(frNm(u));
+    return W("Preferiti di "+nm,"fr",f.length?'<p class="frlg"><i class="frnw s"></i>nuova per te</p><div class="frg frg3">'+f.map(i=>{const cd=trCard(i);return cd?'<div class="frt"><div class="cvf">'+face(cd,0)+"</div>"+(my[i]?"":'<i class="frnw"></i>')+"</div>":""}).join("")+"</div>":'<p class="trn frem">'+nm+" non ha ancora carte preferite.</p>")}
   if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];
     return W(c?esc(c.t):"Set","co",'<div class="frg">'+ids.map(i=>{const cd=trCard(i),q=co[i]||0;return cd?'<div class="frt'+(q?"":" z")+'"><div class="cvf">'+(q?face(cd,0):"")+"</div>"+(q>1?'<b class="frn">×'+q+"</b>":"")+"</div>":""}).join("")+"</div>")}
   if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";

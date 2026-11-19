@@ -1,3 +1,7 @@
+## v458 (PullTime) · c21 (PullBinder)
+- Nuovo album «Preferiti» (icona cuore nel cerchio) nella pagina Album, tra Album e Bacheche: pagine da 9 carte con solo le carte preferite; se ne aggiungi altre nasce una nuova pagina (scorri di lato). Tieni premuta una carta e trascinala per cambiare ordine (anche tra pagine, portandola al bordo); menu ⋯ per scegliere lo sfondo (Notte, Oceano, Bosco, Rubino, Oro, Chiaro) e ripristinare l'ordine. Ordine e sfondo entrano nel backup. Tocca una carta per ingrandirla.
+- Amici (solo PullTime): «Vedi i suoi preferiti» mostra solo i preferiti dell'amico (pallino blu sulle carte che non hai). I preferiti vengono pubblicati insieme alla collezione.
+
 ## v457 (PullTime)
 - Pagine Amici/Scambia: titolo grande a sinistra come Bustine/Pokédex; bottoni «Copia» e «Aggiungi» della stessa larghezza.
 - Icona Amici sostituita (persona con «+» dentro un cerchio, il corpo tocca il cerchio come l'icona Account, stessi spessori); icona Posta nuova.
