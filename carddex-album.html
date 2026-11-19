@@ -1435,6 +1435,7 @@ html:not(.gml) body #frm .frmini span{background:rgba(255,255,255,.08)}
 .ufr .fdt{top:0;right:5px}
 html body #frm .cvhd{justify-content:flex-start;padding-left:16px!important}
 html body #frm .cvhd b{font:700 32px/44px -apple-system,"SF Pro Display",system-ui,sans-serif;letter-spacing:-.02em;flex:1;min-width:0;text-align:left}
+html body #frm .cvhd.tabs{justify-content:center}html body #frm .cvhd.tabs .cvtb{margin:0;padding:3px;height:44px;box-sizing:border-box;align-self:center}html body #frm .cvhd.tabs .cvtb button{height:38px;padding:0 20px;font-size:14px}
 html body #frm .cvhd.sub b{font-size:26px;margin-left:10px}
 html body #frm .cvhd .cvx.cvbk{position:static;flex:none;margin:0}
 html body #frm .cvhd .cvx{position:absolute}
@@ -3344,6 +3345,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   const IC=(d,w)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+d+"</svg>";
   const HD=(t,to)=>'<div class="cvhd frhd'+(to?" sub":"")+'">'+(to?'<button class="cvx cvbk" data-a="bk" data-v="'+to+'" aria-label="Indietro">'+IC('<path d="M15 5L8 12L15 19"/>')+"</button>":"")+"<b>"+t+"</b>"+frX+"</div>";
   const W=(t,to,b,f,cl)=>HD(t,to)+'<div class="frbody'+(cl?" "+cl:"")+'">'+b+"</div>"+(f||"");
+  const HD2=()=>'<div class="cvhd frhd tabs"><div class="cvtb frtb"><button data-a="cvc">Converti</button><button class="on" data-a="tabs">Scambia<i class="frd"></i></button></div>'+frX+"</div>";
   const CH='<i>›</i>',ENV=IC('<path d="M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z"/>');
   if(v==="need")return W("Amici","",'<p class="trn frem">'+(!cuGet()?"Per scambiare con gli amici serve l’account nel cloud: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli amici ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>');
   if(!me)return W("Amici","",'<p class="trn frem">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>");
@@ -3357,7 +3359,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       return W("Amici","",h)}
     let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
     h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
-    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return W("Scambia","",h)}
+    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return HD2()+'<div class="frbody">'+h+"</div>"}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
     if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
@@ -3414,7 +3416,7 @@ function frEl(){let e=$("#frm");
         if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
       else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq.shift();frDqSave();FR.v="done";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
       else if(a==="send"){const tl=o=>{const r=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)r.push(i)});return r};b.disabled=true;try{await frSend(FR.u,tl(FR.gv),tl(FR.gt));toast("Proposta inviata: vale 24 ore");FR.v="mail"}catch(x){toast(x.message||"Errore")}frDraw()}
-      else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
+      else if(a==="cvc"){e.hidden=true;trTab("c")}else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
       else if(a==="acc"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;await frAccept(t)}}
       else if(a==="dec"||a==="can"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;try{await frAnswer(t,a==="dec"?"declined":"cancelled")}catch(x){toast(x.message||"Errore")}frDraw()}}
       }catch(x){toast(x.message||"Errore");frDraw()}}}

@@ -1,6 +1,7 @@
 ## v457 (PullTime)
 - Pagine Amici/Scambia: titolo grande a sinistra come Bustine/Pokédex; bottoni «Copia» e «Aggiungi» della stessa larghezza.
 - Icona Amici sostituita (persona con «+» dentro un cerchio, il corpo tocca il cerchio come l'icona Account, stessi spessori); icona Posta nuova.
+- Scambia: in alto il doppio selettore Converti|Scambia come in Converti (al posto del titolo).
 - Pagina amico: prima i suoi dati (scoperte, doppie), poi «Doppie di X che mancano a te» / «Tue doppie che mancano a X» in lista, niente più tastoni coi numeri giganti.
 
 ## v456 (PullTime)
