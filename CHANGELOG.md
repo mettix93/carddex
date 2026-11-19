@@ -1,3 +1,6 @@
+## v446 (PullTime)
+- Apertura bustina → prima carta (normali, Lucky, God): dal video la fascia in alto cambiava quando il velo bianco era ancora trasparente (si vedeva fascia scura su pagina chiara). Ora il velo diventa opaco in ~130 ms, resta pieno fino a ~440 ms e svanisce entro ~790 ms; la fascia cambia al centro della fase piena, agganciata al tempo del velo (non a un timer fisso), e nello stesso istante il velo prende il colore nuovo della fascia, quindi velo, fascia e sfondo coincidono. Test tests/wash_sync.js (velo ≥0,95 e colore uguale alla fascia al cambio, per bustina normale, Lucky e God).
+
 ## v445 (PullTime)
 - Backup e cloud: ora includono anche l'ordine «Personalizzato» delle carte (trascinamento di v443), prima non veniva salvato né nel file né nel cloud. Test tests/backup.js (esporta → cancella tutto → importa → stesso ordine, stesse carte e possessi).
 
