@@ -1,3 +1,8 @@
+## v452 (PullTime)
+- Set e Pokédex completati. Icone dei set (album e bustine): contorno oro fisso sui set finiti; sull'icona selezionata un anello blu di avanzamento (nessun anello sulle altre, nessuna soglia 80%). Pillole delle regioni del Pokédex: contorno oro a regione finita.
+- Effetto una sola volta: appena l'ultima carta è entrata nell'album (o nel Pokédex, che prima risale in cima) l'icona fa un lampo oro con scintille e il banner «Set completato / Pokédex completato». I flag (set e regioni già celebrati) stanno nel backup e nel cloud; nessuna ripetizione. Chi ha già un set completo lo vede la prima volta che apre quel set.
+- Aggancio pronto per la carta promo di premio (SDPROMO, vuoto finché non arrivano le carte). Test tests/setdone.js.
+
 ## v451 (PullTime)
 - Topps fuori da PullTime: non compare più nell'album né nelle statistiche (il totale «carte scoperte» scende di 151, quindi parte da 228 coi set sbloccati). I dati Topps restano nel codice, in stand-by. Test tests/topps_hidden.js.
 
