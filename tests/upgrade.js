@@ -1,4 +1,4 @@
-const {chromium}=require('playwright');(async()=>{let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
+const {chromium}=require('playwright');const cp=require('child_process'),fs=require('fs');(async()=>{cp.execSync('git show 7748af0:carddex-album.html > old_album.html');process.on('exit',()=>{try{fs.unlinkSync('old_album.html')}catch(e){}});let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
 const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'});const p=await ctx.newPage();const e=[];p.on('pageerror',x=>{if(!/decode audio/.test(x.message))e.push(x.message)});
 await p.route(/^https?:\/\/(?!localhost)/,r=>r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==','base64')}));
 await p.addInitScript(()=>{if(!localStorage.getItem('carddex_env'))localStorage.setItem('carddex_env','app')});
