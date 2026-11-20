@@ -600,6 +600,9 @@ html.mv .slot.on::after{opacity:1}
 
 /* stile pagine / sfondo carta / holo glitter */
 html body .sheet,html body .flp{background-color:var(--pgbg,#08080a)!important;background-image:var(--pgimg,none)!important}
+html:is([data-pg="notte"],[data-pg="oceano"],[data-pg="bosco"],[data-pg="rubino"],[data-pg="oro"],[data-pg="chiaro"]) body .sheet{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important}
+html[data-pg="chiaro"] .gh{border-color:rgba(0,0,0,.2);background:rgba(0,0,0,.03);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+html[data-pg="chiaro"] .slot:not(.on) img,html[data-pg="chiaro"] .slot:not(.on) .ph{filter:grayscale(1) contrast(.8) brightness(1.3)!important}
 html[data-pg="trasp"] body .sheet,html[data-pg="trasp2"] body .sheet{box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important}
 html[data-pg="bianco"] .gh{border-color:rgba(0,0,0,.2);background:rgba(0,0,0,.03);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
 .slot:not(.on) img,.slot:not(.on) .ph{filter:grayscale(1) contrast(.85) brightness(.62)!important}
@@ -702,7 +705,7 @@ html[data-pg="trasp"] .fg{opacity:.5!important}
 #vsh svg{width:17px;height:17px}
 #vsh.fv{color:#fff}#vsh.fv svg path{fill:currentColor}
 .slot .fvb{position:absolute;left:4px;top:4px;z-index:2;width:20px;height:20px;border-radius:50%;background:#000b;color:#fff;border:1px solid #ffffff55;display:flex;align-items:center;justify-content:center;pointer-events:none}.slot .fvb svg{width:12px;height:12px;display:block}.slot .fvb svg path{fill:currentColor}
-body.pfm #ft,body.pfm #sq{display:none!important}
+body.pfm #ft{display:none!important}
 .vt{padding-right:156px!important}
 .vt em:empty{display:none}
 .vt em#vd{margin-top:6px;font-size:13px;color:var(--sec,#b8c0d4)}
@@ -1498,6 +1501,19 @@ html.gml .asc{background:rgba(255,255,255,.72);border-color:rgba(255,255,255,.75
 .asc b{display:block;font:600 19px -apple-system,system-ui,sans-serif}
 .asc span{display:block;font:500 14px -apple-system,system-ui,sans-serif;opacity:.6;margin-top:3px}
 html body .vt small .si,html body #vs .rs{vertical-align:-.12em!important}
+
+/* v461: pagina ancorata alla finestra (iOS): la barra in basso non può più scivolare */
+html{position:fixed!important;top:0;left:0;right:0;bottom:0;width:100%;height:auto!important;overflow:hidden!important;overscroll-behavior:none}
+body{overscroll-behavior:none}
+
+/* v461: pagina scambio con amico: carte sotto riepilogo e barra, come Converti */
+html body #frm .frbody.frpr{position:relative;display:flex;flex-direction:column;overflow:hidden;padding:0 16px}
+html body #frm .frpr .frscr{flex:1;min-height:0;padding-bottom:calc(var(--fbb,20px) + 150px)}
+html body #frm .frdock{position:absolute;left:0;right:0;bottom:0;padding:70px 16px 0;pointer-events:none;background:linear-gradient(180deg,rgba(242,242,247,0),rgba(242,242,247,.92) 62%,#f2f2f7)}
+html:not(.gml) body #frm .frdock{background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.92) 62%,#000)}
+html body #frm .frdock>*{pointer-events:auto}
+html body #frm .frdock .frbx{margin:0}
+html body #frm .frdock .frft{margin:8px 0 var(--fbb,20px)}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div><div id="sn"></div></header>
@@ -1533,7 +1549,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v460";
+const APPV="v461";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2021,7 +2037,7 @@ function dgPages(){return(!LS?[pg]:[Lof(sp),Rof(sp)]).filter(k=>k>=0&&k<np&&PG[k
 function dgRects(){const m={};dgPages().forEach(k=>PG[k].e.querySelectorAll(".slot[data-i]").forEach(e=>{m[+e.dataset.i]={e,r:e.getBoundingClientRect()}}));return m}
 function dgLine(x,r){let l=document.getElementById("dgl");if(x==null){if(l)l.style.opacity=0;return}
   if(!l){l=document.createElement("div");l.id="dgl";document.body.appendChild(l)}
-  l.style.cssText="position:fixed;z-index:10000;width:4px;border-radius:2px;background:#0a84ff;box-shadow:0 0 8px 1px rgba(10,132,255,.85);pointer-events:none;transition:opacity .12s;left:"+(x-2)+"px;top:"+(r.top-3)+"px;height:"+(r.height+6)+"px;opacity:1"}
+  l.style.cssText="position:fixed;z-index:10000;width:4px;border-radius:2px;background:#0a84ff;box-shadow:0 0 8px 1px rgba(10,132,255,.85);pointer-events:none;transition:opacity .12s;left:"+(x-2)+"px;top:"+(r.top-3)+"px;height:"+(r.height+6)+"px;opacity:1";try{const q=l.getBoundingClientRect(),dy=(r.top-3)-q.top,dx=(x-2)-q.left;if(Math.abs(dy)>.5||Math.abs(dx)>.5){l.style.top=(r.top-3+dy)+"px";l.style.left=(x-2+dx)+"px"}}catch(e){}}
 function dgPrev(ins){const rc=g&&g.rc||DGR||{};for(const k in rc){const e=rc[k].e;if(e.style.transform){e.style.transform=""}}
   if(ins==null||!g)return;const f=g.i,j=ins>f?ins-1:ins;
   for(const ks in rc){const k=+ks;let n;if(k===f)n=j;else{const p=k<f?k:k-1;n=p>=j?p+1:p}if(n===k)continue;const t=rc[n];if(!t)continue;const a=rc[k].r,b=t.r;rc[k].e.style.transition="transform .22s ease";rc[k].e.style.transform="translate("+(b.left-a.left)+"px,"+(b.top-a.top)+"px)"}}
@@ -2283,14 +2299,14 @@ $("#vsh").onclick=()=>{if(DXL)return;const sl=LIST()[curI];if(!sl||!sl.id)return
 /* alone dalle carte stesse (stile trasparente) */
 document.addEventListener("load",e=>{const i=e.target;if(i.tagName==="IMG"){const sl=i.closest&&i.closest(".slot");if(sl&&i.currentSrc)sl.style.setProperty("--gi","url(\""+i.currentSrc+"\")")}},true);
 /* stile: colore pagine per collezione */
-const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null,"rgba(255,255,255,.06)","rgba(255,255,255,.13)"],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"],notte:["Notte","#171c2c","#ffffff1f","#ffffff12","#2b3550","#56648a"],oceano:["Oceano","#12517f","#ffffff26","#ffffff14","#2c4f6e","#5f8fb4"],bosco:["Bosco","#1b5d42","#ffffff26","#ffffff14","#2f5a46","#62907a"],rubino:["Rubino","#7a1f3a","#ffffff26","#ffffff14","#5e3340","#9a6574"],oro:["Oro","#8a6a14","#ffffff30","#ffffff18","#625326","#a8934f"],chiaro:["Chiaro","#dfe5f0","#00000024","#00000012","#b0b8c9","#8b94a8"]};
+const PGC={trasp2:["Trasparente scuro","rgba(30,32,44,.55)",null,null,"rgba(255,255,255,.06)","rgba(255,255,255,.13)"],trasp:["Trasparente","rgba(255,255,255,.12)",null,null,"rgba(255,255,255,.08)","rgba(255,255,255,.2)","none"],nero:["Nero","#08080a","#ffffff24","#ffffff14"],bianco:["Bianco","#eceef3","#00000024","#00000012","#b5b8c2","#8e919c"],rosso:["Rosso","#6e1420","#ffffff26","#ffffff14","#5a3238","#94626b"],blu:["Blu","#12306b","#ffffff26","#ffffff14","#2f3d5c","#62779e"],giallo:["Giallo","#b8921c","#ffffff30","#ffffff18","#6b5c30","#b09c5f"],verde:["Verde","#17502f","#ffffff26","#ffffff14","#2f4a3a","#5f8a72"],notte:["Notte","#10131c",null,null,"#2b3550","#56648a","none","linear-gradient(160deg,#10131c,#222b42)"],oceano:["Oceano","#0b2a4a",null,null,"#2c4f6e","#5f8fb4","none","linear-gradient(160deg,#0b2a4a,#1a6aa6)"],bosco:["Bosco","#0e2b1f",null,null,"#2f5a46","#62907a","none","linear-gradient(160deg,#0e2b1f,#2a7a55)"],rubino:["Rubino","#3a0f1c",null,null,"#5e3340","#9a6574","none","linear-gradient(160deg,#3a0f1c,#9a2a4c)"],oro:["Oro","#3a2a08",null,null,"#625326","#a8934f","none","linear-gradient(160deg,#3a2a08,#a8801c)"],chiaro:["Chiaro","#dfe5f0",null,null,"#b0b8c9","#8b94a8","none","linear-gradient(160deg,#dfe5f0,#ffffff)"]};
 let PGS={};try{PGS=JSON.parse(localStorage.getItem(CK("carddex_pgc"))||"{}")||{}}catch(e){}
 function pgKey(){return (MODE==="g"?"g:":"")+(cur==="?"?(typeof PREV!=="undefined"&&PREV)||"a":cur)}
 function applyPgc(){const k=PGS[pgKey()]||"trasp2",d=PGC[k]||PGC.trasp2,r=document.documentElement;r.style.setProperty("--pgbg",d[1]);["--pk1","--pk2"].forEach((n,x)=>d[4+x]?r.style.setProperty(n,d[4+x]):r.style.removeProperty(n));r.style.setProperty("--pgbf",d[6]||"none");
-  r.style.setProperty("--pgimg",d[2]?`radial-gradient(circle at 1.5px 1.5px,${d[2]} 0,${d[2]} 1px,transparent 1.5px),radial-gradient(circle at 4.5px 4.5px,${d[3]} 0,${d[3]} 1px,transparent 1.5px)`:"none");r.dataset.pg=k}
+  r.style.setProperty("--pgimg",d[7]?d[7]:d[2]?`radial-gradient(circle at 1.5px 1.5px,${d[2]} 0,${d[2]} 1px,transparent 1.5px),radial-gradient(circle at 4.5px 4.5px,${d[3]} 0,${d[3]} 1px,transparent 1.5px)`:"none");r.dataset.pg=k}
 function pgMenu(){let el=$("#pgp");if(!el){el=document.createElement("div");el.id="pgp";document.body.appendChild(el)}
   const NO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.3 17.7L17.7 6.3"/></svg>';
-  const draw=()=>{const cu=PGS[pgKey()]||"trasp2";el.innerHTML='<div class="pgt">Colore pagine</div><div class="pgg">'+Object.entries(PGC).map(([k,d])=>`<button data-k="${k}" aria-label="${d[0]}" class="${k===cu?"on":""}"><i style="background:${k==="trasp"?"rgba(255,255,255,.42)":k==="trasp2"?"rgba(14,15,22,.92)":d[1]}">${k==="trasp"||k==="trasp2"?NO:""}</i></button>`).join("")+'</div><button class="pgo">Fine</button>'};
+  const draw=()=>{const cu=PGS[pgKey()]||"trasp2";el.innerHTML='<div class="pgt">Colore pagine</div><div class="pgg">'+Object.entries(PGC).map(([k,d])=>`<button data-k="${k}" aria-label="${d[0]}" class="${k===cu?"on":""}"><i style="background:${k==="trasp"?"rgba(255,255,255,.42)":k==="trasp2"?"rgba(14,15,22,.92)":d[7]||d[1]}">${k==="trasp"||k==="trasp2"?NO:""}</i></button>`).join("")+'</div><button class="pgo">Fine</button>'};
   draw();el.hidden=false;
   el.onclick=e=>{const b=e.target.closest("button");if(!b)return;if(b.classList.contains("pgo")){el.hidden=true;return}PGS[pgKey()]=b.dataset.k;try{localStorage.setItem(CK("carddex_pgc"),JSON.stringify(PGS))}catch(x){}applyPgc();draw()}}
 $("#sty").onclick=pgMenu;
@@ -2834,9 +2850,9 @@ function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x)
 const RSY={C:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.3"/></svg>',U:'<svg viewBox="0 0 24 24"><path d="M12 2.7 21.3 12 12 21.3 2.7 12Z"/></svg>',R:'<svg viewBox="0 0 24 24"><path d="M12 2.2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.4l7.1-.6Z"/></svg>'};
 function cvInfo(m){let e=$("#cvi2");if(!e){e=document.createElement("div");e.id="cvi2";e.hidden=true;document.body.appendChild(e);e.onclick=ev=>{if(ev.target===e||ev.target.closest(".cvx"))e.hidden=true}}
   const X='<button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button>',AR='<svg class="cva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg>';
-  if(m==="t")e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Scambio doppie</b><ol class="cvst"><li><i>1</i><span>Scegli le tue doppie e premi <b>Offri</b>: ottieni un codice da mandare al tuo amico.</span></li><li><i>2</i><span>Lui sceglie altrettante doppie e ti risponde con il suo codice.</span></li><li><i>3</i><span>Confermi la sua risposta e gli mandi la ricevuta: scambio fatto!</span></li></ol><p class="cvnt">Si scambia carta per carta con la <b>stessa rarità</b>. Solo <b>doppie</b>.</p></div>';
+  if(m==="t")e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Scambio doppie</b><ol class="cvst"><li><i>1</i><span>Aggiungi i tuoi amici con il loro <b>codice</b> e scegli un amico.</span></li><li><i>2</i><span>Premi <b>Proponi</b>, scegli cosa <b>dai</b> e cosa <b>chiedi</b>, poi <b>Invia</b>.</span></li><li><i>3</i><span>Lui riceve la proposta in <b>Posta</b> e può accettarla o rifiutarla: se accetta, lo scambio è fatto!</span></li></ol><p class="cvnt">Si scambia carta per carta con la <b>stessa rarità</b>. Solo <b>doppie</b>.</p></div>';
   else e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Converti doppie</b><div class="cvrt"><div><span class="rs">'+RSY.C+'</span><em>Comune</em><b>1 '+COINL+'</b></div><div><span class="rs">'+RSY.U+'</span><em>Non comune</em><b>2 '+COINL+'</b></div><div><span class="rs">'+RSY.R+'</span><em>Rara</em><b>3 '+COINL+'</b></div></div><div class="cvfl"><b>20</b>'+COINL+AR+'<b>+1</b>'+PKI+'</div><p class="cvnt">Si convertono solo le <b>doppie</b>: una per carta resta sempre nell’album. Energie e carte senza rarità valgono 1.</p></div>';
-  e.hidden=false}
+  e.style.zIndex="95";e.hidden=false}
 function cvOpen(){pkAlign();const e=cvBuild();cvSel={};TR.reply=null;trTab("c",1);e.hidden=false}
 
 let bkT=0;
@@ -3416,7 +3432,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       return W("Amici","",h)}
     let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
     h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
-    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return HD2()+'<div class="frbody">'+h+"</div>"}
+    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return HD2()+'<p class="cvds"><span>Scambia doppie con i tuoi amici!</span><button data-a="inf" aria-label="Informazioni">'+IC('<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/>')+'</button></p><div class="frbody">'+h+"</div>"}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
     if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
@@ -3428,15 +3444,15 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];
     return W(c?esc(c.t):"Set","co",'<div class="frg">'+ids.map(i=>{const cd=trCard(i),q=co[i]||0;return cd?'<div class="frt'+(q?"":" z")+'"><div class="cvf">'+(q?face(cd,0):"")+"</div>"+(q>1?'<b class="frn">×'+q+"</b>":"")+"</div>":""}).join("")+"</div>")}
   if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";
-    let h='<div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+")</button></div>";
+    const hdr='<div class="cvhd frhd hdt"><div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Tu dai ('+X.ga.length+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+')</button></div><button class="cvx" data-a="bk" data-v="fr" aria-label="Indietro">'+IC('<path d="M18 6L6 18M6 6L18 18"/>')+"</button></div>";let h="";
     const rows=TRO;let hint;
     if(!X.ga.length&&!X.ta.length)hint="Scegli cosa dai e cosa chiedi";else if(X.same)hint="Pronto: "+X.ga.length+" per "+X.ta.length;else hint="Servono le stesse rarità";
     const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Dai "+g+" · Chiedi "+t+"</b></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
     h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
     h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
-    h+=bx;
-    return W("Scambio con "+nm,"fr",h,'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div>","frpr")}
+    h+='<div class="frdock">'+bx+'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div></div>";
+    return hdr+'<div class="frbody frpr">'+h+"</div>"}
   if(v==="ann"){const D=FR.dn;if(!D)return"";return W("Scambio concluso","",'<div class="frem2 frann">'+IC('<path d="M7 7h12l-3-3M17 17H5l3 3"/>',2)+"<b>Scambio con "+esc(D.who)+'</b><span>La tua proposta è stata accettata: '+D.give.length+(D.give.length===1?" carta data":" carte date")+" · "+D.get.length+(D.get.length===1?" ricevuta":" ricevute")+".</span></div>",'<div class="frft"><button class="frb2 p" data-a="see">Vedi</button></div>')}
   if(v==="anim"){const D=FR.dn;if(!D)return"";const rk=i=>{const c=trCard(i);return c?TRO.indexOf(trK(c))*2+(trHolo(c)?1:0):0},stk=(ids,cl)=>{const L=ids.slice().sort((a,b)=>rk(a)-rk(b)).slice(-8),n=L.length;return'<div class="anS '+cl+'">'+L.map((i,x)=>{const c=trCard(i);if(!c)return"";const k=x-(n-1)/2;return'<div class="anc" data-t="translate('+(k*2.2).toFixed(1)+"px,"+(-x*3)+"px) rotate("+((x%3-1)*1.6)+'deg)"><div class="cvf">'+face(c,0)+"</div></div>"}).join("")+"</div>"};
     return'<div class="anst" data-a="skip">'+stk(D.get,"anTheirs")+stk(D.give,"anMine")+'<div class="anbm"></div><div class="anfl"></div><p class="anhint">Scambio con '+esc(D.who)+" · tocca per saltare</p></div>"}
@@ -3481,7 +3497,7 @@ function frEl(){let e=$("#frm");
         if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
       else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
       else if(a==="send"){const tl=o=>{const r=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)r.push(i)});return r};b.disabled=true;try{await frSend(FR.u,tl(FR.gv),tl(FR.gt));toast("Proposta inviata: vale 24 ore");FR.v="mail"}catch(x){toast(x.message||"Errore")}frDraw()}
-      else if(a==="see"){if(FR.dq[0]===FR.dn)FR.dq.shift();frDqSave();FR.v="anim";FR.dnA=null;frDraw()}else if(a==="skip"){frSkip()}else if(a==="ex"){if(FR.ex.has(d.t))FR.ex.delete(d.t);else FR.ex.add(d.t);frDraw()}else if(a==="cvc"){e.hidden=true;trTab("c")}else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
+      else if(a==="see"){if(FR.dq[0]===FR.dn)FR.dq.shift();frDqSave();FR.v="anim";FR.dnA=null;frDraw()}else if(a==="skip"){frSkip()}else if(a==="ex"){if(FR.ex.has(d.t))FR.ex.delete(d.t);else FR.ex.add(d.t);frDraw()}else if(a==="cvc"){e.hidden=true;trTab("c")}else if(a==="inf"){cvInfo("t")}else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
       else if(a==="acc"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;await frAccept(t)}}
       else if(a==="dec"||a==="can"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;try{await frAnswer(t,a==="dec"?"declined":"cancelled")}catch(x){toast(x.message||"Errore")}frDraw()}}
       }catch(x){toast(x.message||"Errore");frDraw()}}}

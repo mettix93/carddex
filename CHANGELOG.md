@@ -1,3 +1,11 @@
+## v461 (PullTime) · c24 (PullBinder)
+- Colori pagina Notte, Oceano, Bosco, Rubino, Oro, Chiaro: tornati identici a quelli dei vecchi Preferiti (sfumatura 160°, stessi colori, bordo sottile, nessun puntinato).
+- Preferiti: il tasto cerca è tornato e cerca solo tra i preferiti (stesse modalità dell'album).
+- Barra in basso: la pagina è ora ancorata alla finestra (non può più scivolare/cadere su iPhone).
+- Linea blu del drag: centrata esattamente sulla carta anche quando la pagina ha uno scostamento.
+- PullTime · Scambia: ripristinato il testo con la (i) e il popup «Come funziona», aggiornato al nuovo flusso amici.
+- PullTime · Scambio con amico: via il titolone, «Tu dai / Chiedi» all'altezza della X come in Converti; carte che scorrono sotto riepilogo e barra con dissolvenza.
+
 ## v460 (PullTime) · c23 (PullBinder)
 - CORREZIONE GRAVE: nella v459 i Preferiti usavano la stessa chiave interna dei Fossil («gF») e salvando cancellavano i dati dell'album Fossil dal telefono (e dal cloud). Ora i Preferiti hanno una chiave tutta loro. Se il cloud ha una versione precedente con carte Fossil, all'avvio vengono ripristinate in automatico (una volta sola); altrimenti si può usare Account › Cronologia e salvataggio.
 - Nuovo test «smoke» che apre ogni set/album, Pokédex, Bacheche e Preferiti in entrambe le app e controlla gli errori; test Fossil dedicato.

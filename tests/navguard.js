@@ -7,6 +7,6 @@ await p.goto('http://localhost:8765/'+url);await p.waitForTimeout(1500);
 const idle=await p.evaluate(()=>new Promise(r=>{const n0=ngN;setTimeout(()=>r(ngN-n0),5000)}));
 ok(idle===0,url+': a riposo nessun riallineamento inutile ('+idle+')');
 const r=await p.evaluate(()=>new Promise(res=>{document.documentElement.style.overflow='auto';document.documentElement.style.height='calc(100% + 40px)';document.documentElement.scrollTop=30;const n0=ngN;setTimeout(()=>{document.documentElement.style.overflow='';document.documentElement.style.height='';res({kicks:ngN-n0,st:document.documentElement.scrollTop})},2500)}));
-ok(r.kicks>=1&&r.st===0,url+': pagina scivolata → riportata a 0 '+JSON.stringify(r));
+ok(r.st===0,url+': pagina ancorata, non può scivolare (kicks '+r.kicks+')');
 ok(!e.length,url+': nessun errore JS '+e.join('|'));await b.close()}
 process.exit(bad?1:0)})()
