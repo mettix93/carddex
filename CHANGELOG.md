@@ -1,3 +1,6 @@
+## v487 (PullTime)
+- Bug Album → Pokédex: a volte nella barra del Pokédex comparivano le icone dei set finché non si cambiava pagina. Causa: un aggiornamento ritardato della barra dell'album sovrascriveva quella del Pokédex; ora nel Pokédex la barra resta sempre quella del Pokédex.
+
 ## v486 (PullTime)
 - Movimenti automatici (tocco sulla carta e tasto Auto) un po' più lenti: volo 0,95 s e pausa più lunga tra una carta e l'altra.
 

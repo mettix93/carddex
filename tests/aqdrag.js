@@ -22,7 +22,7 @@ ok(await p.evaluate(()=>!document.querySelector('.slot.aqt')),'slot sbagliato no
 await p.mouse.up();await p.waitForTimeout(700);
 ok(await p.evaluate(()=>PKAQ.length===4&&!document.querySelector('.aqg.aqf')&&document.querySelectorAll('#aqp .aqc').length===4&&getComputedStyle(document.querySelector('#aqp .aqc')).opacity==='1'),'carta tornata nel mazzetto');
 // Metti tutte
-await p.click('#aqp .aqpa');await p.waitForTimeout(800);
+await p.click('#aqp .aqpa');await p.waitForTimeout(1300);
 ok(await p.evaluate(()=>aqpOn===1&&PKAQ.length<4&&!!document.querySelector('.aqg.aqf, #aqp.auto')),'Auto: le carte partono dalle miniature una ad una');
 await p.waitForTimeout(15000);
 console.log(await p.evaluate(()=>JSON.stringify({run:aqRun,q:PKAQ.length,pg})));
