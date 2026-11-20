@@ -1,3 +1,8 @@
+## v468 (PullTime)
+- Icona sotto il tuo nome: ora c'è scritto «Community».
+- Info (i) dello scambio: punto 1 «Scegli un amico della community», punto 2 con «offri / chiedi».
+- Posta: le proposte in attesa hanno il segnalino «in attesa» (contorno blu), stesso formato degli altri; quando l'altro accetta compare «Vedi» in blu pieno.
+
 ## v467 (PullTime)
 - Community (al posto di Amici): chi usa l'app deve far parte della community. Senza account compare una porta d'ingresso (nome + «Chiedi di entrare»); finché l'admin non approva, resta «In attesa». Il codice di accesso va salvato subito.
 - L'admin vede le richieste in Account › Community (pallino blu sull'icona) e può Accettare o Rifiutare; può anche rimuovere un membro. I membri approvati sono amici fra loro in automatico: niente più codici amico.
