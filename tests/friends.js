@@ -58,14 +58,21 @@ ok(await A.evaluate(()=>FR.v==='done'&&/Scambio concluso/i.test(document.querySe
 ok(await A.evaluate(()=>PKAQ.length>=1&&document.querySelectorAll('#frm .frtg').length>=1),'A: carte nuove segnate per l\'album ('+await A.evaluate(()=>PKAQ.length)+')');
 const qa=await Promise.all([qOf(A,aIds[0]),qOf(A,aIds[1]),qOf(A,bIds[0]),qOf(A,bIds[1])]);
 ok(qa[0]===1&&qa[1]===1&&qa[2]===1&&qa[3]===1,'A: ha dato 2 e ricevuto 2 ('+qa+')');
-// B: applica da solo, una volta sola
+// B: la notifica arriva subito, lo scambio si applica solo premendo Vedi
 await B.evaluate(()=>frLoad());await B.waitForTimeout(800);
-ok(await B.evaluate(()=>(FR.dn&&FR.dn.get.length===2)||FR.dq.some(x=>x.get.length===2)),'B: scambio concluso riconosciuto');
-ok(await B.evaluate(()=>PKAQ.length>=1),'B: carte nuove segnate per l\'album');
+const qb0=await Promise.all([qOf(B,bIds[0]),qOf(B,aIds[0])]);ok(qb0[0]===2&&qb0[1]===0,'B: prima di Vedi nulla è cambiato ('+qb0+')');
+ok(await B.evaluate(()=>FR.n>=1&&!!document.querySelector('.nvp button[data-t=b] .fdt')),'B: pallino sull\'icona Bustine nel menu');
+ok(await B.evaluate(()=>PKAQ.length===0),'B: nessuna carta nuova in album prima di Vedi');
+await B.evaluate(()=>{FR.v="mail";document.querySelector('#frm').hidden=false;frDraw()});
+ok(await B.evaluate(()=>!!document.querySelector('#frm [data-a=vt]')),'B: in Posta compare Vedi');
+await B.click('#frm [data-a=vt]');await B.waitForTimeout(900);
+ok(await B.evaluate(()=>FR.v==='anim'&&FR.dn&&FR.dn.get.length===2),'B: Vedi avvia l\'animazione');
+ok(await B.evaluate(()=>PKAQ.length>=1),'B: ora le carte nuove sono segnate per l\'album');
 const qb=await Promise.all([qOf(B,bIds[0]),qOf(B,bIds[1]),qOf(B,aIds[0]),qOf(B,aIds[1])]);
 ok(qb[0]===1&&qb[1]===1&&qb[2]===1&&qb[3]===1,'B: scambio applicato ('+qb+')');
 await B.evaluate(()=>frLoad());await B.waitForTimeout(500);await B.evaluate(()=>frLoad());await B.waitForTimeout(500);
 const qb2=await Promise.all([qOf(B,bIds[0]),qOf(B,aIds[0])]);ok(qb2[0]===1&&qb2[1]===1,'B: ricaricando non si applica due volte');
+ok(await B.evaluate(()=>FR.n===0),'B: pallino spento dopo Vedi');
 // riserva rilasciata dopo l'accettazione
 ok(await B.evaluate(()=>Object.keys(frResv()).length)===0,'B: nessuna carta più riservata');
 // il secondo telefono di B (stesso account) non applica di nuovo

@@ -1,3 +1,10 @@
+## v463 (PullTime)
+- Alone luminoso quando la carta entra nella tasca (album e Pokédex): non più un ovale ma una forma a carta, stessa dimensione.
+- Scambi: notifiche rapide (controllo ogni 4 secondi, a ogni ritorno nell'app e quando torna la rete). Pallino su Bustine nel menu, su Converti/Scambia in Bustine e in Posta, sia per una proposta ricevuta sia per una accettata dall'altro.
+- Lo scambio accettato dall'altro non viene più applicato da solo: compare in Posta con «Vedi». Solo premendo Vedi parte l'animazione, le carte entrano e compaiono i numerini in album e Pokédex.
+- Animazione scambio molto più spettacolare: raggi di luce rotanti, pile che lampeggiano in bianco come l'evoluzione, anelli d'urto, flash, scintille, scossa dello schermo e bagliore finale.
+- Suoni 8-bit (onda quadra stile Game Boy): jingle di avvio, arpeggio ascendente tipo evoluzione, esplosione e fanfara finale.
+
 ## v462 (PullTime) · c25 (PullBinder)
 - Colori pagina nuovi: tolta la texture a quadratini (la sfumatura veniva ripetuta a tessere da 6 px); ora sono lisci con la sfumatura, come nei vecchi Preferiti.
 - Palette colori: sotto i cerchi compare il nome del colore selezionato (stile «Colore pagine»), sopra Fine.
