@@ -6,7 +6,7 @@ await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);PKAQ=[];[L[1],L[
 ok(await p.evaluate(()=>!!document.querySelector('#aqh')&&document.querySelector('#aqp').classList.contains('hint')),'suggerimento e saltello visibili');
 await p.screenshot({path:'/tmp/h1.png'});
 const c=await p.evaluate(()=>{const r=document.querySelector('#aqp .aqc').getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]});
-await p.mouse.move(...c);await p.mouse.down();await p.waitForTimeout(400);
+await p.mouse.move(...c);await p.mouse.down();await p.waitForTimeout(800);
 ok(await p.evaluate(()=>!document.querySelector('#aqh')&&!document.querySelector('#aqp.hint')),'sparisce al primo contatto');
 await p.mouse.up();await p.waitForTimeout(800);
 ok(!errs.length,'nessun errore '+errs.join('|'));await b.close();process.exit(bad?1:0)})();

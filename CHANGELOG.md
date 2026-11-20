@@ -1,3 +1,6 @@
+## v483 (PullTime)
+- Album, carte nuove: etichetta «n.X · p.Y» su una riga; numerini delle tasche tondi in basso a destra (come gli altri simboli); la miniatura che torna al posto non scatta più (dissolvenza incrociata); il messaggio «Trascina ogni carta…» resta finché non inizi a trascinare o toccare una carta; «Metti tutte» diventa il tasto «Auto» (icona di salto animazione, sovrapposto al mazzetto: le carte gli scorrono dietro); la tasca di destinazione ora ha un anello luminoso pulsante vero (prima l'ombra era coperta da una regola della tavolozza).
+
 ## v482 (PullTime)
 - Album, carte nuove: etichetta sotto le carte «n.2 · p.1» (numero e pagina, senza totale); la carta si trascina tenendo il dito al centro del bordo inferiore (non nasconde la carta); appena la afferri la sua tasca pulsa lentamente di luce. Test: tests/aqguide.js.
 

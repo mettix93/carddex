@@ -6,11 +6,11 @@ await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);PKAQ=[];[L[1],L[
 ok(await p.evaluate(()=>document.querySelector('#aqp .aqc s').textContent==='n.2 · p.1'),'etichetta «n.2 · p.1»');
 const c=await p.evaluate(()=>{const r=document.querySelector('#aqp .aqc').getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]});
 await p.mouse.move(...c);await p.mouse.down();await p.mouse.move(c[0]+10,c[1]+80,{steps:5});await p.mouse.move(200,500,{steps:8});await p.waitForTimeout(500);
-const o=await p.evaluate(()=>{const g=document.querySelector('.aqg.aqf').getBoundingClientRect();return{gx:g.left+g.width/2,gb:g.bottom,hl:[...document.querySelectorAll('.slot.aqhl')].map(e=>e.dataset.i)}});
+const o=await p.evaluate(()=>{const g=document.querySelector('.aqg.aqf').getBoundingClientRect();return{gx:g.left+g.width/2,gb:g.bottom,hl:[...document.querySelectorAll('.aqring')].map(e=>e.parentNode.dataset.i)}});
 console.log(JSON.stringify(o));
 ok(Math.abs(o.gx-200)<2&&Math.abs(o.gb-500)<2,'dito al centro del bordo inferiore');
 ok(o.hl.join()==='1','tasca di destinazione pulsa');
 await p.screenshot({path:'/tmp/p3.png'});
 await p.mouse.up();await p.waitForTimeout(900);
-ok(await p.evaluate(()=>!document.querySelector('.slot.aqhl')),'pulsazione tolta a fine trascinamento');
+ok(await p.evaluate(()=>!document.querySelector('.aqring')),'pulsazione tolta a fine trascinamento');
 ok(!errs.length,'nessun errore '+errs.join('|'));await b.close();process.exit(bad?1:0)})();
