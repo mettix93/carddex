@@ -1,3 +1,8 @@
+## v460 (PullTime) · c23 (PullBinder)
+- CORREZIONE GRAVE: nella v459 i Preferiti usavano la stessa chiave interna dei Fossil («gF») e salvando cancellavano i dati dell'album Fossil dal telefono (e dal cloud). Ora i Preferiti hanno una chiave tutta loro. Se il cloud ha una versione precedente con carte Fossil, all'avvio vengono ripristinate in automatico (una volta sola); altrimenti si può usare Account › Cronologia e salvataggio.
+- Nuovo test «smoke» che apre ogni set/album, Pokédex, Bacheche e Preferiti in entrambe le app e controlla gli errori; test Fossil dedicato.
+- Icona Amici in Account: ora dentro un cerchio con lo stesso spessore (3 px) del bordo del riquadro e dei cerchi delle statistiche.
+
 ## v459 (PullTime) · c22 (PullBinder)
 - Preferiti rifatto con il motore vero dell'album: pagine, tasche, sfoglio, drag delle carte (identico), titolo «Preferiti», ordine Numero/Pokédex/Personalizzato, nessun tab dei set e niente filtro/ricerca. L'ordine personalizzato e gli slot vuoti si ricordano; nessuna copia delle carte viene salvata. Nuova voce nella pagina Album con il cuore (stesse misure e spessori delle altre icone).
 - Colore pagine: aggiunti Notte, Oceano, Bosco, Rubino, Oro, Chiaro dopo quelli esistenti.

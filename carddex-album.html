@@ -1446,8 +1446,8 @@ html:not(.gml) body #frm .frmini span{background:rgba(255,255,255,.08)}
 .ucd{position:relative}
 .ucd.hasf .uin{margin-right:60px}
 .ufr{position:absolute;top:50%;right:calc((100% - 6px)/8 - 31px);transform:translateY(-50%);width:56px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;border:0;background:none;color:var(--ac,#0a84ff);font:600 11px/1 -apple-system,system-ui,sans-serif}
-.ufr i{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
-.ufr svg{width:40px;height:40px}
+.ufr i{width:52px;height:52px;border:3px solid var(--ac,#0a84ff);border-radius:50%;box-sizing:border-box;display:flex;align-items:center;justify-content:center}
+.ufr svg{width:28px;height:28px}
 .ufr .fdt{top:0;right:5px}
 html body #frm .cvhd{justify-content:flex-start;padding-left:16px!important}
 html body #frm .cvhd b{font:700 32px/44px -apple-system,"SF Pro Display",system-ui,sans-serif;letter-spacing:-.02em;flex:1;min-width:0;text-align:left}
@@ -1533,7 +1533,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v459";
+const APPV="v460";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1799,7 +1799,7 @@ let MODE="g",SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 let PFM=0,PFGO=0;
-const save=()=>{try{if(PFM&&st.gF)pfSync();const o=st.gF?{...st,gF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}};
+const save=()=>{try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}};
 function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
@@ -1962,7 +1962,7 @@ let LPT=0,LPD=0,LPX=0,LPK="";
   T.addEventListener("pointerup",()=>{clearTimeout(LPT);if(LPD){const k=LPK;setTimeout(()=>{albMenu(k)},60);setTimeout(()=>{LPD=0},400)}})})();
 $("#tabs").onclick=e=>{const b=e.target.closest(".tab"),k=b&&b.dataset.k;if(document.body.classList.contains("dex")){if(k!=null)dxGo(+k);return}if(LPD&&k){return}if(k==="+"){albNew();return}if(k&&k!==cur&&MODE==="g"){const cc=COLS.find(c=>c.k===k),lk=cc?pkLkS(cc.s[0]):0;if(lk){toast("Set bloccato: completa l’80% di "+(PKBN[lk-1]||"quelli precedenti")+" per sbloccarlo (ora "+Math.floor(pkCov(lk-1)*100)+"%)",1);return}}if(k&&k!==cur){cur=k;SR=[];SQ="";pg=0;sp=0;tabs();render();if(MODE==="g"&&PKAQ.some(x=>x.k===k))setTimeout(()=>aqLater(k,8),420)}};
 function confirmSheet(t,f){sheet([["Sì, conferma",f,1]],t)}
-function doRestore(){if(PFM){confirmSheet("Rimettere i preferiti nell’ordine originale? Stato, note e foto restano.",()=>{delete GORD.gF;delete GCU.gF;pfPers();st.gF=pfList(st);pg=0;sp=0;render();toast("Ordine ripristinato")});return}
+function doRestore(){if(PFM){confirmSheet("Rimettere i preferiti nell’ordine originale? Stato, note e foto restano.",()=>{delete GORD.zPF;delete GCU.zPF;pfPers();st.zPF=pfList(st);pg=0;sp=0;render();toast("Ordine ripristinato")});return}
   if(MODE==="c"&&cur!=="?"&&FLT==="a"&&!HID()){const A=PCOLS.find(a=>a.k===cur);if(A){confirmSheet("Rimettere le carte nell’ordine «"+(A.base==="num"?"Numero":"Pokédex")+"»? Stato, note, varianti e foto restano; gli ordini custom salvati restano disponibili.",()=>albSet(A,A.base));return}}
   if(VIEW()){sheet([[cur==="?"?"Esci dalla ricerca":"Mostra l’intera collezione",()=>{if(cur==="?")exitSearch();FLT="a";tabs();render()}]],"Il ripristino vale solo sull’intera collezione");return}
   confirmSheet("Rimettere le carte nell’ordine originale? Stato, note, varianti e foto restano.",()=>{const col=COLS.find(c=>c.k===cur),idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
@@ -2137,7 +2137,7 @@ function menu(i,inV){if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("s
   else sheet(it,c?c.name:"Slot vuoto")}
 /* album bustine: ordine Numero set / Pokédex */
 let GORD={},GCU={};try{GORD=JSON.parse(localStorage.getItem("carddex_gord"))||{}}catch(e){}try{GCU=JSON.parse(localStorage.getItem("carddex_gcu"))||{}}catch(e){}
-function gOrdSet(m){if(PFM&&m!=="cu"){GORD.gF=m;pfPers();st.gF=pfList(st);pg=0;sp=0;render();return}
+function gOrdSet(m){if(PFM&&m!=="cu"){GORD.zPF=m;pfPers();st.zPF=pfList(st);pg=0;sp=0;render();return}
   if(m==="cu"){const ids=GCU[cur];if(!ids)return;const L=st[cur],B={},bl=[],out=[];L.forEach(s=>{if(s.id)(B[s.id]=B[s.id]||[]).push(s);else bl.push(s)});ids.forEach(id=>{if(!id){if(bl.length)out.push(bl.shift());return}const q=B[id];if(q&&q.length)out.push(q.shift())});Object.values(B).forEach(q=>out.push(...q));out.push(...bl);st[cur]=out;GORD[cur]="cu";try{localStorage.setItem("carddex_gord",JSON.stringify(GORD))}catch(e){}save();pg=0;sp=0;render();return}
   const col=COLS.find(c=>c.k===cur);if(!col)return;const idx={};order(col).forEach((x,i)=>{if(!(x.id in idx))idx[x.id]=i});
   const key=x=>{if(m!=="dex")return 0;const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5};
@@ -3084,7 +3084,7 @@ function pkView(c){let k=null;for(const co of COLS){if(st[co.k].some(x=>x.id===c
   if(!vw._mo){vw._mo=1;new MutationObserver(()=>{if(vw.hidden)vw.style.zIndex=""}).observe(vw,{attributes:true,attributeFilter:["hidden"]})}
   openCard(i)}
 /* modalità: Collezione (album vero) o Gioco (album separato, carte dalle bustine) */
-function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);delete gm.gF;delete cl.gF;const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null),ord:{o:GORD,u:GCU},frap:frapGet(),sd:sdGet()};return o}
+function bkObj(){const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},cl=rd(CK("carddex2"),{}),gm=rd(GK("carddex2g"),{});if(MODE==="g")Object.assign(gm,st);else Object.assign(cl,st);delete gm.zPF;delete cl.zPF;const o={app:"carddex",v:3,coll:cl,game:gm,alb:rd(ALK,null),pk:rd(GK("carddex_pk"),{}),pgc:rd(CK("carddex_pgc"),{}),bch:BCH,cry:localStorage.getItem("carddex_cry"),ms:rd(GK("carddex_ms"),{}),stats:rd(GK("carddex_stats"),null),ord:{o:GORD,u:GCU},frap:frapGet(),sd:sdGet()};return o}
 function bkExport(){const o=bkObj(),b=new Blob([JSON.stringify(o)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="carddex-backup-completo.json";document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(a.href)},2000)}
 function bkImport(){confirmSheet("Importare un backup sostituisce lo stato attuale dell’album e delle bustine.",()=>{$("#fim").value="";$("#fim").click()})}
 function setCry(){CRYON=!CRYON;try{localStorage.setItem("carddex_cry",CRYON?"1":"0")}catch(e){}if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}}}
@@ -3243,7 +3243,7 @@ function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
-  return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Amici"><i><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 21V19C22 17.1362 20.7252 15.5701 19 15.126M15.5 3.29076C16.9659 3.88415 18 5.32131 18 7C18 8.67869 16.9659 10.1159 15.5 10.7092M17 21C17 19.1362 17 18.2044 16.6955 17.4693C16.2895 16.4892 15.5108 15.7105 14.5307 15.3045C13.7956 15 12.8638 15 11 15H8C6.13623 15 5.20435 15 4.46927 15.3045C3.48915 15.7105 2.71046 16.4892 2.30448 17.4693C2 18.2044 2 19.1362 2 21M13.5 7C13.5 9.20914 11.7091 11 9.5 11C7.29086 11 5.5 9.20914 5.5 7C5.5 4.79086 7.29086 3 9.5 3C11.7091 3 13.5 4.79086 13.5 7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Amici</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
+  return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Amici"><i><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 21V19C22 17.1362 20.7252 15.5701 19 15.126M15.5 3.29076C16.9659 3.88415 18 5.32131 18 7C18 8.67869 16.9659 10.1159 15.5 10.7092M17 21C17 19.1362 17 18.2044 16.6955 17.4693C16.2895 16.4892 15.5108 15.7105 14.5307 15.3045C13.7956 15 12.8638 15 11 15H8C6.13623 15 5.20435 15 4.46927 15.3045C3.48915 15.7105 2.71046 16.4892 2.30448 17.4693C2 18.2044 2 19.1362 2 21M13.5 7C13.5 9.20914 11.7091 11 9.5 11C7.29086 11 5.5 9.20914 5.5 7C5.5 4.79086 7.29086 3 9.5 3C11.7091 3 13.5 4.79086 13.5 7Z" stroke="currentColor" stroke-width="2.57" stroke-linecap="round" stroke-linejoin="round"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Amici</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
 function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.querySelector("#unm");
   if(un)un.onchange=()=>{const v=un.value.trim().slice(0,16);try{const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u))}catch(x){}const a=w.querySelector(".uav");if(a)a.textContent=v?v[0].toUpperCase():"?";toast(v?"Nome salvato":"Nome rimosso")};
   w.onclick=async ev=>{const b=ev.target.closest("button[data-u]");if(!b)return;const k=b.dataset.u,busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
@@ -3296,19 +3296,19 @@ function sdCeleD(i){sdBusy=1;const e=$("#set");let n=0;const go=()=>{const b=doc
   if(e&&e.scrollTop>4){try{dxScr(e,0)}catch(x){e.scrollTop=0}let last=-1;const w=()=>{if(!document.body.classList.contains("dex")){sdBusy=0;return}if(Math.abs(e.scrollTop-last)<.5||++n>40)setTimeout(go,150);else{last=e.scrollTop;setTimeout(w,80)}};setTimeout(w,150)}else setTimeout(go,150)}
 /* ===== Preferiti: album virtuale con il motore dell'album (pagine, tasche, drag, colori) ===== */
 const PFIC='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.9932 5.13581C9.9938 2.7984 6.65975 2.16964 4.15469 4.31001C1.64964 6.45038 1.29697 10.029 3.2642 12.5604C4.89982 14.6651 9.84977 19.1041 11.4721 20.5408C11.6536 20.7016 11.7444 20.7819 11.8502 20.8135C11.9426 20.8411 12.0437 20.8411 12.1361 20.8135C12.2419 20.7819 12.3327 20.7016 12.5142 20.5408C14.1365 19.1041 19.0865 14.6651 20.7221 12.5604C22.6893 10.029 22.3797 6.42787 19.8316 4.31001C17.2835 2.19216 13.9925 2.7984 11.9932 5.13581Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const PFCOL={k:"gF",t:"Preferiti",s:[],g:""};
+const PFCOL={k:"zPF",t:"Preferiti",s:[],g:""};
 function pfList(S){const cols=MODE==="g"?GCOLS:PCOLS,seen=new Set(),nat=[];
   cols.forEach(c=>(S[c.k]||[]).forEach(x=>{if(x&&x.id&&x.fav&&CARDS[x.id]&&!seen.has(x.id)){seen.add(x.id);nat.push(x)}}));
-  const md=GORD.gF;
+  const md=GORD.zPF;
   if(md==="dex"){const key=x=>{const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5},ix=new Map(nat.map((x,i)=>[x,i]));return nat.slice().sort((a,b)=>key(a)-key(b)||ix.get(a)-ix.get(b))}
-  if(md==="cu"&&GCU.gF){const B={},out=[];nat.forEach(x=>(B[x.id]=B[x.id]||[]).push(x));GCU.gF.forEach(id=>{if(!id){out.push({id:null,o:0,n:""});return}const q=B[id];if(q&&q.length)out.push(q.shift())});Object.values(B).forEach(q=>out.push(...q));return out}
+  if(md==="cu"&&GCU.zPF){const B={},out=[];nat.forEach(x=>(B[x.id]=B[x.id]||[]).push(x));GCU.zPF.forEach(id=>{if(!id){out.push({id:null,o:0,n:""});return}const q=B[id];if(q&&q.length)out.push(q.shift())});Object.values(B).forEach(q=>out.push(...q));return out}
   return nat}
 function pfPub(){try{return pfList(dxRaw(MODE==="g"?"g":"c")).filter(x=>x.id&&x.o).map(x=>x.id)}catch(e){return[]}}
 function pfPers(){try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
-function pfSync(){const ids=st.gF.map(x=>x.id||"");let ch=JSON.stringify(GCU.gF)!==JSON.stringify(ids);GCU.gF=ids;if(GORD.gF!=="dex"&&GORD.gF!=="cu"&&st.gF.some(x=>!x.id)){GORD.gF="cu";ch=1}if(ch)pfPers()}
-function pfRefresh(){const fresh=pfList(st),fs=new Set(fresh),keep=(st.gF||[]).filter(x=>!x.id||fs.has(x)),ks=new Set(keep);fresh.forEach(x=>{if(!ks.has(x))keep.push(x)});st.gF=keep}
-function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.gF=pfList(st);cur="gF";PREV="gF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
-function pfOff(){if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.gF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
+function pfSync(){const ids=st.zPF.map(x=>x.id||"");let ch=JSON.stringify(GCU.zPF)!==JSON.stringify(ids);GCU.zPF=ids;if(GORD.zPF!=="dex"&&GORD.zPF!=="cu"&&st.zPF.some(x=>!x.id)){GORD.zPF="cu";ch=1}if(ch)pfPers()}
+function pfRefresh(){const fresh=pfList(st),fs=new Set(fresh),keep=(st.zPF||[]).filter(x=>!x.id||fs.has(x)),ks=new Set(keep);fresh.forEach(x=>{if(!ks.has(x))keep.push(x)});st.zPF=keep}
+function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.zPF=pfList(st);cur="zPF";PREV="zPF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
+function pfOff(){if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.zPF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
 function frSkip(q){FR.anT.forEach(clearTimeout);FR.anT=[];FR.anA.forEach(a=>{try{a.cancel()}catch(x){}});FR.anA=[];if(FR.v!=="anim")return;FR.v="done";FR.dnA=null;if(!q)frDraw();else{FR.v="home"}}
 function frStage(){const e=$("#frm"),sc=e&&e.querySelector(".anst");if(!sc||FR.v!=="anim"||!sc.animate){if(FR.v==="anim"){FR.v="done";FR.dnA=null;frDraw()}return}
   const my=sc.querySelector(".anMine"),th=sc.querySelector(".anTheirs"),bm=sc.querySelector(".anbm"),fl=sc.querySelector(".anfl"),A=FR.anA=[],T=FR.anT=[],run=(el,kf,o)=>{const a=el.animate(kf,o);A.push(a);return a},n=Math.max(my.children.length,th.children.length);
@@ -3321,6 +3321,17 @@ function frStage(){const e=$("#frm"),sc=e&&e.querySelector(".anst");if(!sc||FR.v
   run(my,[{opacity:1},{opacity:0}],{duration:450,delay:T0+M,fill:"forwards"});
   run(th,[{filter:"brightness(1)"},{filter:"brightness(1.5)",offset:.4},{filter:"brightness(1)"}],{duration:800,delay:T0+M,fill:"both"});
   T.push(setTimeout(()=>{try{sfx("swipe")}catch(x){}},T0-100),setTimeout(()=>{try{sfx("own");hap(1)}catch(x){}},T0+M*.5),setTimeout(()=>{if(FR.v==="anim")frSkip()},T0+M+1000))}
+
+/* recupero Fossil: la v459 usava per sbaglio la stessa chiave dei Fossil per i Preferiti */
+(function(){try{if(localStorage.getItem("carddex_pfmig")!=="1"){let c=0;if("gF" in GORD){delete GORD.gF;c=1}if("gF" in GCU){delete GCU.gF;c=1}if(c)localStorage.setItem("carddex_gord",JSON.stringify(GORD)),localStorage.setItem("carddex_gcu",JSON.stringify(GCU));localStorage.setItem("carddex_pfmig","1")}}catch(e){}})();
+async function fosRecover(){if(MODE!=="g"||!cuGet()||localStorage.getItem("carddex_fosfix")==="1")return;
+  try{const own=a=>Array.isArray(a)&&a.some(x=>x&&x.o&&x.id);if(own(st.gF)){localStorage.setItem("carddex_fosfix","1");return}
+    const u=await cuTok(),r=await sbReq("/rest/v1/saves_hist?user_id=eq."+u.uid+"&env=eq."+ENV+"&select=data,updated_at&order=saved_at.desc&limit=80")||[];
+    let pv=null;try{pv=JSON.parse(localStorage.getItem("carddex_prev"))}catch(e){}
+    const L=[...(pv&&pv.data?[{data:pv.data}]:[]),...r];const h=L.find(x=>x.data&&x.data.game&&own(x.data.game.gF));
+    if(h){st.gF=h.data.game.gF.filter(x=>!x.id||CARDS[x.id]);save();try{cuSync("push")}catch(e){}try{tabs();render()}catch(e){}toast("Ho ripristinato le carte dell’album Fossil")}
+    localStorage.setItem("carddex_fosfix","1")}catch(e){}}
+setTimeout(()=>{try{fosRecover()}catch(e){}},6000);
 function frDqSave(){try{localStorage.setItem(GK("carddex_frdq"),JSON.stringify(FR.dq.slice(-20)))}catch(e){}}
 function frapGet(){try{const a=JSON.parse(localStorage.getItem(GK("carddex_frap")));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function frapAdd(id){const a=frapGet();if(!a.includes(id)){a.push(id);try{localStorage.setItem(GK("carddex_frap"),JSON.stringify(a.slice(-300)))}catch(e){}}}
