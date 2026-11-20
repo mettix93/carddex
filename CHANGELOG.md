@@ -1,3 +1,9 @@
+## v462 (PullTime) · c25 (PullBinder)
+- Colori pagina nuovi: tolta la texture a quadratini (la sfumatura veniva ripetuta a tessere da 6 px); ora sono lisci con la sfumatura, come nei vecchi Preferiti.
+- Palette colori: sotto i cerchi compare il nome del colore selezionato (stile «Colore pagine»), sopra Fine.
+- PullTime · Scambio con amico: i tre riquadri rarità sono bianchi (vetro) come la barra; verde/arancio solo come bordo.
+- Barra in basso: l'altezza della pagina viene allineata di continuo alla finestra visibile (visualViewport) e l'area sicura inferiore è memorizzata, così non resta più "scesa" dopo i cambi di schermata.
+
 ## v461 (PullTime) · c24 (PullBinder)
 - Colori pagina Notte, Oceano, Bosco, Rubino, Oro, Chiaro: tornati identici a quelli dei vecchi Preferiti (sfumatura 160°, stessi colori, bordo sottile, nessun puntinato).
 - Preferiti: il tasto cerca è tornato e cerca solo tra i preferiti (stesse modalità dell'album).
