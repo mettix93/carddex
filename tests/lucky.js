@@ -35,7 +35,7 @@ await p.evaluate(()=>{const b=document.querySelector("#pk");b.hidden=true;try{pk
 await p.click('#nvp button[data-t=c]').catch(()=>{});await p.waitForTimeout(600);
 await p.evaluate(()=>{const e=document.querySelector('.asc[data-m=g]');e&&e.click()});
 await p.waitForTimeout(500);
-await p.evaluate(()=>{const k=PKAQ[0]&&PKAQ[0].k;if(k)aqAnim0(k)});
+await p.evaluate(()=>{const k=PKAQ[0]&&PKAQ[0].k;if(k)aqAuto0(k)});
 for(let i=0;i<60&&await p.evaluate(()=>aqRun);i++)await p.waitForTimeout(500);
 const mid=JSON.parse(await keep());
 ok(mid.own>s00.own,"dopo l'animazione le carte sono ancora lì finché resti nella pagina");

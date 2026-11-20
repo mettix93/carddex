@@ -7,7 +7,7 @@ await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(
 // ALBUM: 3 carte nuove sparse su pagine diverse
 const info=await p.evaluate(()=>{aslOpen();return 1});await p.waitForTimeout(500);
 await p.evaluate(()=>{aslGo("g")});await p.waitForTimeout(900);
-const r=await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);const picks=[L[1],L[12],L[30]].filter(Boolean);PKAQ=[];picks.forEach(s=>{s.o=1;s.q=1;PKAQ.push({k,id:s.id})});aqSave();cur=k;pg=0;sp=0;render();setTimeout(()=>aqAnim0(k),50);return{k,idx:picks.map(s=>st[k].indexOf(s))}});
+const r=await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);const picks=[L[1],L[12],L[30]].filter(Boolean);PKAQ=[];picks.forEach(s=>{s.o=1;s.q=1;PKAQ.push({k,id:s.id})});aqSave();cur=k;pg=0;sp=0;render();setTimeout(()=>aqAuto0(k),50);return{k,idx:picks.map(s=>st[k].indexOf(s))}});
 await p.waitForTimeout(1400);
 ok(await p.evaluate(()=>aqRun===1&&!!document.querySelector('.sksp')),'ALBUM: animazione in corso con icona salta');
 await p.mouse.click(200,400);await p.waitForTimeout(500);

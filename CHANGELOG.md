@@ -1,3 +1,6 @@
+## v479 (PullTime)
+- Album: le carte nuove le metti tu. Toccando il pallino del set, al posto di set e strumenti compare in alto il mazzetto delle carte nuove (nell'ordine dell'album, con il numero dello slot). Tieni premuta o trascina una carta: suono di scivolamento come prima; ogni carta entra solo nel suo spazio (si illumina quando ne tocchi anche solo un pezzo). Rilasciandola dentro prende posto con luce, riflesso e campanello come prima; fuori, torna al mazzetto. Ai bordi dello schermo la pagina si gira. «Metti tutte» avvia l'animazione automatica di prima (saltabile con un tocco). Finite le carte tornano set e strumenti. Test: tests/aqdrag.js, aqdrag2.js.
+
 ## v478 (PullTime)
 - Pokédex: suono della scansione in stile Pokédex/Game Boy (bip 8-bit crescenti) e barra luminosa più lenta (1,35 s).
 
