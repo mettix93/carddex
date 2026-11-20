@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v484";
+const APPV="v485";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2651,9 +2651,8 @@ function aqpStart(k){if(aqpOn)return;if(FLT!=="a"){FLT="a";tabs();render()}
   el.querySelector(".aqpl").addEventListener("pointerdown",aqpDown);el.querySelector(".aqpl").addEventListener("scroll",aqpEdge,{passive:true});
   try{el.animate([{opacity:0,transform:"translateY(-10px)"},{opacity:1,transform:"none"}],{duration:300,easing:"ease-out"})}catch(x){}
   aqpLay();aqpDraw();aqpHint(1);[250,600,1200].forEach(t=>setTimeout(()=>{if(aqpOn){aqpLay()}},t));clearInterval(aqpW);aqpW=setInterval(()=>{if(!aqpOn){clearInterval(aqpW);return}if(!aqpAlive()||!PKAQ.some(e=>e.k===aqpK))aqpOff()},400)}
-function aqpHint(on){let n=0;try{n=+localStorage.getItem("cd_aqh")||0}catch(x){}
+function aqpHint(on){
   if(!on){const b=$("#aqh");if(b){try{b.animate([{opacity:1},{opacity:0}],{duration:240}).onfinish=()=>b.remove()}catch(x){b.remove()}setTimeout(()=>b.remove(),300)}const a=$("#aqp");if(a)a.classList.remove("hint");return}
-  if(n>=5)return;try{localStorage.setItem("cd_aqh",String(n+1))}catch(x){}
   const a=$("#aqp");if(a)a.classList.add("hint");
   setTimeout(()=>{if(!aqpOn||!$("#aqp.hint")||$("#aqh"))return;const bk=$("#book"),br=bk.getBoundingClientRect(),bo=document.body.getBoundingClientRect(),b=document.createElement("div");b.id="aqh";
     b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"/></svg><div><b>Trascina ogni carta nel suo spazio</b><small>oppure toccala: va da sola</small></div>';

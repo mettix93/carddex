@@ -1,3 +1,6 @@
+## v485 (PullTime)
+- Il messaggio «Trascina ogni carta nel suo spazio» compare sempre, ad ogni primo accesso all'album dopo aver ottenuto carte (tolto il limite di 5 volte).
+
 ## v484 (PullTime)
 - Carte nuove: il cambio pagina durante il trascinamento (bordo schermo) e nel riordino usa l'animazione della pagina che gira; tasto Auto dopo l'ultima miniatura (al massimo a destra) e fa volare le carte dalle miniature alla tasca una ad una, poi tornano le grafiche normali; sotto le miniature solo «n.X»; anello della tasca giallo; barra di luce del Pokédex gialla.
 
