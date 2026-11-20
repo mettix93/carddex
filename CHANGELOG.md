@@ -1,3 +1,6 @@
+## v486 (PullTime)
+- Movimenti automatici (tocco sulla carta e tasto Auto) un po' più lenti: volo 0,95 s e pausa più lunga tra una carta e l'altra.
+
 ## v485 (PullTime)
 - Il messaggio «Trascina ogni carta nel suo spazio» compare sempre, ad ogni primo accesso all'album dopo aver ottenuto carte (tolto il limite di 5 volte).
 
