@@ -3,7 +3,7 @@ const {chromium}=require('playwright');let bad=0;const ok=(c,m)=>{console.log((c
 await p.addInitScript(()=>{localStorage.setItem('carddex_env','app');sessionStorage.setItem('cdmode','g')});await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1500);
 await p.evaluate(()=>{aslOpen()});await p.waitForTimeout(500);await p.evaluate(()=>{aslGo("g")});await p.waitForTimeout(900);
 await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);PKAQ=[];[L[1],L[3]].forEach(s=>{s.o=1;s.q=1;PKAQ.push({k,id:s.id})});aqSave();cur=k;pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim0(k),50)});await p.waitForTimeout(1200);
-ok(await p.evaluate(()=>document.querySelector('#aqp .aqc s').textContent==='n.2 · p.1'),'etichetta «n.2 · p.1»');
+ok(await p.evaluate(()=>document.querySelector('#aqp .aqc s').textContent==='n.2'),'etichetta «n.2»');
 const c=await p.evaluate(()=>{const r=document.querySelector('#aqp .aqc').getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]});
 await p.mouse.move(...c);await p.mouse.down();await p.mouse.move(c[0]+10,c[1]+80,{steps:5});await p.mouse.move(200,500,{steps:8});await p.waitForTimeout(500);
 const o=await p.evaluate(()=>{const g=document.querySelector('.aqg.aqf').getBoundingClientRect();return{gx:g.left+g.width/2,gb:g.bottom,hl:[...document.querySelectorAll('.aqring')].map(e=>e.parentNode.dataset.i)}});

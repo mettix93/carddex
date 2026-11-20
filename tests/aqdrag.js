@@ -23,8 +23,8 @@ await p.mouse.up();await p.waitForTimeout(700);
 ok(await p.evaluate(()=>PKAQ.length===4&&!document.querySelector('.aqg.aqf')&&document.querySelectorAll('#aqp .aqc').length===4&&getComputedStyle(document.querySelector('#aqp .aqc')).opacity==='1'),'carta tornata nel mazzetto');
 // Metti tutte
 await p.click('#aqp .aqpa');await p.waitForTimeout(800);
-ok(await p.evaluate(()=>aqpOn===0&&aqRun===1&&!document.querySelector('#aqp')),'Metti tutte avvia animazione automatica');
+ok(await p.evaluate(()=>aqpOn===1&&PKAQ.length<4&&!!document.querySelector('.aqg.aqf, #aqp.auto')),'Auto: le carte partono dalle miniature una ad una');
 await p.waitForTimeout(15000);
 console.log(await p.evaluate(()=>JSON.stringify({run:aqRun,q:PKAQ.length,pg})));
-ok(await p.evaluate(()=>PKAQ.length===0),'tutte inserite');
+ok(await p.evaluate(()=>PKAQ.length===0&&!aqpOn&&!document.querySelector('#aqp')&&!document.body.classList.contains('aqpm')),'tutte inserite, grafiche normali tornate');
 ok(!errs.length,'nessun errore JS '+errs.join('|'));await b.close();process.exit(bad?1:0)})();

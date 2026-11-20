@@ -1,3 +1,6 @@
+## v484 (PullTime)
+- Carte nuove: il cambio pagina durante il trascinamento (bordo schermo) e nel riordino usa l'animazione della pagina che gira; tasto Auto dopo l'ultima miniatura (al massimo a destra) e fa volare le carte dalle miniature alla tasca una ad una, poi tornano le grafiche normali; sotto le miniature solo «n.X»; anello della tasca giallo; barra di luce del Pokédex gialla.
+
 ## v483 (PullTime)
 - Album, carte nuove: etichetta «n.X · p.Y» su una riga; numerini delle tasche tondi in basso a destra (come gli altri simboli); la miniatura che torna al posto non scatta più (dissolvenza incrociata); il messaggio «Trascina ogni carta…» resta finché non inizi a trascinare o toccare una carta; «Metti tutte» diventa il tasto «Auto» (icona di salto animazione, sovrapposto al mazzetto: le carte gli scorrono dietro); la tasca di destinazione ora ha un anello luminoso pulsante vero (prima l'ombra era coperta da una regola della tavolozza).
 
