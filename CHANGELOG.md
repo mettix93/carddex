@@ -1,3 +1,7 @@
+## v470 (PullTime)
+- Posta: «Da rispondere» ha il segnalino «Vedi» (si apre la proposta e si accetta); il vecchio «Vedi» dello scambio accettato dall'altro ora è «Concludi».
+- Rifiutate, annullate e scadute stanno in «Scambi completati» con segnalino grigio («rifiutata», «annullata», «scaduta»). Niente più «Chiuse».
+
 ## v469 (PullTime)
 - Scambio: le carte di un set non ancora sbloccato (da te o dall'amico) restano visibili ma ingrigite e non selezionabili, con un avviso al tocco. Ogni profilo pubblica l'elenco dei set bloccati.
 - Posta: «Scambi in corso» (con «in attesa» o «Vedi»), «Scambi completati» (con «completato»); rifiutate, annullate e scadute restano in «Chiuse».

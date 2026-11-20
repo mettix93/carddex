@@ -58,7 +58,8 @@ const qb0=await Promise.all([qOf(B,bIds[0]),qOf(B,aIds[0])]);ok(qb0[0]===2&&qb0[
 ok(await B.evaluate(()=>FR.n>=1&&!!document.querySelector('.nvp button[data-t=b] .fdt')),'B: pallino sull\'icona Bustine nel menu');
 ok(await B.evaluate(()=>PKAQ.length===0),'B: nessuna carta nuova in album prima di Vedi');
 await B.evaluate(()=>{FR.v="mail";document.querySelector('#frm').hidden=false;frDraw()});
-ok(await B.evaluate(()=>!!document.querySelector('#frm [data-a=vt]')),'B: in Posta compare Vedi');
+ok(await B.evaluate(()=>!!document.querySelector('#frm [data-a=vt]')),'B: in Posta compare Concludi');
+// Concludi
 await B.click('#frm [data-a=vt]');await B.waitForTimeout(900);
 ok(await B.evaluate(()=>FR.v==='anim'&&FR.dn&&FR.dn.get.length===2),'B: Vedi avvia l\'animazione');
 ok(await B.evaluate(()=>PKAQ.length>=1),'B: ora le carte nuove sono segnate per l\'album');

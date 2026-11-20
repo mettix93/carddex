@@ -1453,6 +1453,7 @@ html body #frm .frx .frpl{margin-right:4px}
 html body #frm .frch small{margin-left:0}html body #frm .frcs .trfc{width:calc((100% - 25px)/6)}
 html body #frm .frpl{font-style:normal;font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;background:rgba(120,120,128,.18);color:#8e8e93}
 html body #frm .frpl{display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:17px;font-size:13px;box-sizing:border-box}
+html body #frm .frpl.go{background:#0a84ff;color:#fff}
 html body #frm .frpl.wt{background:transparent;color:#0a84ff;box-shadow:inset 0 0 0 1.5px #0a84ff}
 html body #frm .frpl.ok{background:rgba(52,199,89,.18);color:#1f9d4d}
 html.gml body #frm .frr,html.gml body #frm .frc{background:#fff}
@@ -1585,7 +1586,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v469";
+const APPV="v470";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3549,12 +3550,11 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       else if(k==="sn"){sub="Offri "+t.give.length+" · Chiedi "+t.get.length+" · "+String(frLeft(t)).replace("scade tra ","");body='<div class="frcs"><em>Offri</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiedi</em>'+frFaces(t.get)+'</div><div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div>'}
       else{const s2=t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata",gv=m?t.give:t.get,gt=m?t.get:t.give;sub=(m?"Inviata":"Ricevuta")+" · "+s2;
         body='<div class="frcs"><em>'+(ac?"Hai dato":m?"Offrivi":"Ti offriva")+"</em>"+frFaces(m?t.give:t.get)+'</div><div class="frcs"><em>'+(ac?"Hai ricevuto":m?"Chiedevi":"Chiedeva")+"</em>"+frFaces(m?t.get:t.give)+"</div>"}
-      return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
+      return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':k==="rc"?'<em class="frpl go">Vedi</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
     const ok=cl.filter(t=>t.status==="accepted"),ot=cl.filter(t=>t.status!=="accepted"),cn=sn.length+fn.length;
     if(rc.length)h+='<div class="trl">Da rispondere ('+rc.length+")</div>"+rc.map(t=>row(t,"rc")).join("");
-    if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Vedi</button></div>').join("")+sn.map(t=>row(t,"sn")).join("");
-    if(ok.length)h+='<div class="trl">Scambi completati</div>'+ok.map(t=>row(t,"cl")).join("");
-    if(ot.length)h+='<div class="trl">Chiuse</div>'+ot.map(t=>row(t,"cl")).join("");
+    if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Concludi</button></div>').join("")+sn.map(t=>row(t,"sn")).join("");
+    if(cl.length)h+='<div class="trl">Scambi completati</div>'+cl.map(t=>row(t,"cl")).join("");
     if(!h)h='<div class="frem2">'+ENV+'<b>Nessuna proposta</b><span>Le proposte di scambio ricevute e inviate compaiono qui.</span></div>';
     return W("Posta","home",h)}
   return""}
