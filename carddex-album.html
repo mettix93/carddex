@@ -1373,6 +1373,17 @@ html:not(.gml) #frm .frbx .coin{color:#fff}
 #frm .frbx b{font:700 13px -apple-system,system-ui,sans-serif}
 #frm .frbx small{font-size:10.5px;color:#8e8e93}
 #frm .frbx .ok{background:rgba(52,199,89,.18)}#frm .frbx .bad{background:rgba(255,159,10,.18)}
+
+#gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(160deg,#0b1226,#1b2a49);color:#fff;font-family:-apple-system,"SF Pro Display",system-ui,sans-serif;overflow:auto}
+#gate .gtc{width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;text-align:center}
+#gate .gtl{font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+#gate h2{margin:0;font-size:26px;font-weight:700}
+#gate p{margin:0;font-size:15px;line-height:1.4;opacity:.8}
+#gate input{font:inherit;font-size:17px;padding:13px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;text-align:center;outline:0;width:100%;box-sizing:border-box}
+#gate .gtb{font:inherit;font-size:16px;font-weight:600;padding:13px;border-radius:14px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff}
+#gate .gtb.p{background:#3b82f6;border-color:#3b82f6}
+#gate .gtk{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.08)}
+#gate .gtk small{opacity:.7;font-size:12px}#gate .gtk b{font:600 17px ui-monospace,Menlo,monospace;letter-spacing:.04em}
 /* v456: pagine amici a tutta pagina */
 html body #frm{position:fixed;inset:0;z-index:91;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#f2f2f7;color:#1b2a49;animation:cdFd .28s ease-out}
 html:not(.gml) body #frm{background:#000;color:#fff}
@@ -1571,7 +1582,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v466";
+const APPV="v467";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3305,7 +3316,7 @@ function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
-  return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Amici"><i><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 21V19C22 17.1362 20.7252 15.5701 19 15.126M15.5 3.29076C16.9659 3.88415 18 5.32131 18 7C18 8.67869 16.9659 10.1159 15.5 10.7092M17 21C17 19.1362 17 18.2044 16.6955 17.4693C16.2895 16.4892 15.5108 15.7105 14.5307 15.3045C13.7956 15 12.8638 15 11 15H8C6.13623 15 5.20435 15 4.46927 15.3045C3.48915 15.7105 2.71046 16.4892 2.30448 17.4693C2 18.2044 2 19.1362 2 21M13.5 7C13.5 9.20914 11.7091 11 9.5 11C7.29086 11 5.5 9.20914 5.5 7C5.5 4.79086 7.29086 3 9.5 3C11.7091 3 13.5 4.79086 13.5 7Z" stroke="currentColor" stroke-width="2.57" stroke-linecap="round" stroke-linejoin="round"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Amici</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
+  return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Community"><i><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 21V19C22 17.1362 20.7252 15.5701 19 15.126M15.5 3.29076C16.9659 3.88415 18 5.32131 18 7C18 8.67869 16.9659 10.1159 15.5 10.7092M17 21C17 19.1362 17 18.2044 16.6955 17.4693C16.2895 16.4892 15.5108 15.7105 14.5307 15.3045C13.7956 15 12.8638 15 11 15H8C6.13623 15 5.20435 15 4.46927 15.3045C3.48915 15.7105 2.71046 16.4892 2.30448 17.4693C2 18.2044 2 19.1362 2 21M13.5 7C13.5 9.20914 11.7091 11 9.5 11C7.29086 11 5.5 9.20914 5.5 7C5.5 4.79086 7.29086 3 9.5 3C11.7091 3 13.5 4.79086 13.5 7Z" stroke="currentColor" stroke-width="2.57" stroke-linecap="round" stroke-linejoin="round"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Amici</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
 function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.querySelector("#unm");
   if(un)un.onchange=()=>{const v=un.value.trim().slice(0,16);try{const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u))}catch(x){}const a=w.querySelector(".uav");if(a)a.textContent=v?v[0].toUpperCase():"?";toast(v?"Nome salvato":"Nome rimosso")};
   w.onclick=async ev=>{const b=ev.target.closest("button[data-u]");if(!b)return;const k=b.dataset.u,busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
@@ -3425,15 +3436,17 @@ let FRO=null;function frOrd(){if(!FRO){FRO={};let n=0;GCOLS.forEach(co=>(st[co.k
 const frSort=a=>{const O=frOrd();return a.slice().sort((x,y)=>(O[x]??1e9)-(O[y]??1e9)||(x<y?-1:1))};
 function frEnsure(){if(FR.ep)return FR.ep;FR.ep=frEnsure0();FR.ep.then(()=>{FR.ep=null},()=>{FR.ep=null});return FR.ep}
 async function frEnsure0(){const u=await cuTok();if(FR.me&&FR.me.uid===u.uid)return FR.me;
-  let r=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name");
-  if(!r||!r[0]){for(let i=0;i<6;i++){const code=frCode();try{await sbReq("/rest/v1/profiles",{m:"POST",h:{Prefer:"return=minimal"},b:{user_id:u.uid,name:(usrGet().n||"").slice(0,16),code}});r=[{code,name:usrGet().n||""}];break}catch(e){if(!/duplicate|unique/i.test(e.message))throw e}}}
-  if(!r||!r[0])throw new Error("Codice amico non creato");FR.me={uid:u.uid,code:r[0].code,name:r[0].name||""};return FR.me}
+  let r=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name,status,is_admin");
+  if(!r||!r[0]){for(let i=0;i<6;i++){const code=frCode();try{await sbReq("/rest/v1/profiles",{m:"POST",h:{Prefer:"return=minimal"},b:{user_id:u.uid,name:(usrGet().n||"").slice(0,16),code}});r=[{code,name:usrGet().n||"",status:"pending",is_admin:false}];break}catch(e){if(!/duplicate|unique/i.test(e.message))throw e}}}
+  if(r&&r[0]&&r[0].status==="pending"){try{const r2=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name,status,is_admin");if(r2&&r2[0])r=r2}catch(e){}}
+  if(!r||!r[0])throw new Error("Codice amico non creato");FR.me={uid:u.uid,code:r[0].code,name:r[0].name||"",st:r[0].status||"approved",ad:!!r[0].is_admin};gtSet(FR.me.st);return FR.me}
 async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),pf=pfPub(),nm=(usrGet().n||"").trim().slice(0,16),h=nm+"|"+JSON.stringify(co)+"|"+pf.join(",");if(!force&&h===FR.ph)return;
   try{const me=await frEnsure();if(nm&&me.name!==nm){await sbReq("/rest/v1/profiles?user_id=eq."+me.uid,{m:"PATCH",h:{Prefer:"return=minimal"},b:{name:nm,updated_at:new Date().toISOString()}});me.name=nm}
     await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:{...co,_f:pf},updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
 async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
-  try{const me=await frEnsure();const a=await Promise.all([sbReq("/rest/v1/friendships?select=id,requester,addressee,status"),sbReq("/rest/v1/trades?select=*&order=created_at.desc&limit=60")]);
-    FR.fs=a[0]||[];FR.tr=a[1]||[];const ids=[...new Set(FR.fs.map(f=>f.requester===me.uid?f.addressee:f.requester))];
+  try{const me=await frEnsure();const a=await Promise.all([sbReq("/rest/v1/friendships?select=id,requester,addressee,status"),sbReq("/rest/v1/trades?select=*&order=created_at.desc&limit=60"),sbReq("/rest/v1/profiles?user_id=eq."+me.uid+"&select=status,is_admin")]);
+    FR.fs=a[0]||[];FR.tr=a[1]||[];if(a[2]&&a[2][0]){me.st=a[2][0].status||me.st;me.ad=!!a[2][0].is_admin;gtSet(me.st)}
+    FR.pd=me.ad&&me.st==="approved"?(await sbReq("/rest/v1/profiles?status=eq.pending&select=user_id,name,code")||[]):[];const ids=[...new Set(FR.fs.map(f=>f.requester===me.uid?f.addressee:f.requester))];
     if(ids.length){const ps=await sbReq("/rest/v1/profiles?user_id=in.("+ids.join(",")+")&select=user_id,name,code");(ps||[]).forEach(p=>FR.pr[p.user_id]=p)}
     FR.ts=Date.now();ok=true}catch(e){}
   FR.bz=0;if(ok){frApplyDone();frBadge()}return ok}
@@ -3442,14 +3455,14 @@ function frApplyDone(){try{frDoneShow()}catch(e){}}
 /* v463: lo scambio accettato dall'altro si applica solo quando si preme Vedi in Posta */
 async function frSee(t){if(!t)return;if(!trSpare(t.give)){frapAdd(t.id);toast("Le tue carte per questo scambio non sono più disponibili",1);frBadge();return}
   const R=trApply(t.give,t.get);frapAdd(t.id);FR.dn={who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx};FR.v="anim";FR.dnA=null;try{cuSync("push")}catch(e){}frBadge(1);frDraw()}
-function frCount(){const me=FR.me&&FR.me.uid;if(!me)return 0;return FR.fs.filter(f=>f.status==="pending"&&f.addressee===me).length+FR.tr.filter(t=>t.status==="pending"&&t.to_user===me&&!frExp(t)).length+FR.tr.filter(frNew).length}
-function frReq(){const me=FR.me&&FR.me.uid;return me?FR.fs.filter(f=>f.status==="pending"&&f.addressee===me).length:0}
+function frCount(){const me=FR.me&&FR.me.uid;if(!me)return 0;return (FR.pd||[]).length+FR.tr.filter(t=>t.status==="pending"&&t.to_user===me&&!frExp(t)).length+FR.tr.filter(frNew).length}
+function frReq(){return (FR.pd||[]).length}
 function frDots(n){const r=frReq();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));document.querySelectorAll("#pkbc,.nvp button[data-t=b],.nvp button[data-t=s],.ufr").forEach(b=>{const q=b.matches(".ufr,[data-t=s]")?r:n;let d=b.querySelector(":scope>.fdt");if(q>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
 let frSig="",frNt=new Set(),frNf=1;
 function frBadge(force){const n=FR.n=frCount();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));try{frDots(n)}catch(e){}
   const me=FR.me&&FR.me.uid;if(me){const nw=[];FR.tr.forEach(t=>{const k=t.id+":"+t.status;if(frNt.has(k))return;frNt.add(k);if(t.status==="pending"&&t.to_user===me&&!frExp(t))nw.push("Proposta di scambio da "+frNm(t.from_user));else if(frNew(t))nw.push(frNm(t.to_user)+" ha accettato il tuo scambio!")});
     if(nw.length&&!frNf){toast(nw[0]);try{sfx("nuova");hap(1)}catch(e){}}else if(nw.length&&frNf&&n>0)toast("Hai "+n+" novità negli scambi con gli amici");frNf=0}
-  FR.nn=n;const sg=JSON.stringify([FR.fs.map(f=>f.id+f.status),FR.tr.map(t=>t.id+t.status)]);if(force||sg!==frSig){frSig=sg;frDraw()}}
+  (FR.pd||[]).forEach(x=>{const k="p:"+x.user_id;if(frNt.has(k))return;frNt.add(k);if(!frNf){toast((x.name||"Qualcuno")+" vuole entrare nella community");try{sfx("nuova");hap(1)}catch(q){}}});FR.nn=n;const sg=JSON.stringify([FR.fs.map(f=>f.id+f.status),FR.tr.map(t=>t.id+t.status),(FR.pd||[]).map(x=>x.user_id)]);if(force||sg!==frSig){frSig=sg;frDraw()}}
 async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");const d=r&&r[0]&&r[0].data?r[0].data:{};FR.cf[u]=Array.isArray(d._f)?d._f:[];delete d._f;FR.co[u]=d}catch(e){if(!FR.co[u])FR.co[u]={}}}
 async function frAskFriend(code){const r=await sbReq("/rest/v1/rpc/friend_request",{m:"POST",b:{p_code:String(code||"").trim().toUpperCase()}});return r}
 async function frSend(to,give,get){if(!trSame(give,get)||!give.length)throw new Error("Le rarità non coincidono");if(!trSpare(give))throw new Error("Non hai più quelle doppie");
@@ -3486,25 +3499,24 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   const W=(t,to,b,f,cl)=>HD(t,to)+'<div class="frbody'+(cl?" "+cl:"")+'">'+b+"</div>"+(f||"");
   const HD2=()=>'<div class="cvhd frhd hdt"><div class="cvtb frtb"><button data-a="cvc">Converti</button><button class="on" data-a="tabs">Scambia<i class="frd"></i></button></div>'+frX+"</div>";
   const CH='<i>›</i>',ENV=IC('<path d="M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z"/>');
-  if(v==="need")return W("Amici","",'<p class="trn frem">'+(!cuGet()?"Per scambiare con gli amici serve l’account nel cloud: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli amici ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>');
-  if(!me)return W("Amici","",'<p class="trn frem">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>");
+  if(v==="need")return W("Community","",'<p class="trn frem">'+(!cuGet()?"Serve l’account della community: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli altri ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>');
+  if(!me)return W("Community","",'<p class="trn frem">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>");
   if(v==="home"){const L=frList(),inc=L.filter(x=>x.inc),fr=L.filter(x=>x.acc),out=L.filter(x=>!x.acc&&!x.inc),nm=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)).length+FR.tr.filter(frNew).length,A=FR.md==="a";
     const reqs=inc.length?'<div class="trl">Richieste di amicizia</div>'+inc.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>vuole aggiungerti</small></span><button class="frs p" data-a="ok" data-f="'+x.f.id+'">Accetta</button><button class="frs" data-a="no" data-f="'+x.f.id+'">Rifiuta</button></div>').join(""):"";
     const rowF=x=>{const k=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&t.from_user===x.u&&!frExp(t)).length;return'<button class="frr" data-a="op" data-u="'+x.u+'">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+"</span>"+(k&&!A?'<em class="frb">'+k+"</em>":"")+CH+"</button>"};
-    if(A){let h='<div class="frr"><span class="frn1"><small>Il tuo codice amico</small><b class="frmono">'+esc(me.code)+'</b></span><button class="frs" data-a="cc">Copia</button></div>';
-      h+='<div class="frr"><input id="frin" maxlength="8" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Codice di un amico"><button class="frs p" data-a="add">Aggiungi</button></div>';
-      h+=reqs+'<div class="trl">I tuoi amici</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Ancora nessun amico. Scambiatevi i codici amico.</p>');
-      if(out.length)h+='<div class="trl">In attesa</div>'+out.map(x=>'<div class="frr">'+frAv(x.p.name)+'<span class="frn1">'+esc(x.p.name)+'<small>richiesta inviata</small></span><button class="frs" data-a="no" data-f="'+x.f.id+'">Annulla</button></div>').join("");
-      return W("Amici","",h)}
+    if(A){const ad=me.ad,pd=FR.pd||[];let h='<div class="frr"><span class="frn1"><small>'+(ad?"Sei l’admin della community":"La tua community")+'</small><b>'+(fr.length+1)+' membri</b></span></div>';
+      if(ad&&pd.length)h+='<div class="trl">Vogliono entrare</div>'+pd.map(x=>'<div class="frr">'+frAv(x.name)+'<span class="frn1">'+esc(x.name||"?")+'<small>chiede di entrare</small></span><button class="frs p" data-a="cok" data-u="'+x.user_id+'">Accetta</button><button class="frs" data-a="cno" data-u="'+x.user_id+'">Rifiuta</button></div>').join("");
+      h+='<div class="trl">Membri</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Per ora ci sei solo tu.</p>');
+      return W("Community","",h)}
     let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
-    h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Non hai ancora amici. Aggiungili da Impostazioni › Account › Amici.</p>');
+    h+='<div class="trl">Scegli un membro</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Nella community ci sei solo tu, per ora.</p>');
     h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return HD2()+'<p class="cvds"><span>Scambia doppie con i tuoi amici!</span><button data-a="inf" aria-label="Informazioni">'+IC('<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/>')+'</button></p><div class="frbody">'+h+"</div>"}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
     if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
     let h='<div class="frst"><div><span>Carte scoperte</span><b>'+tot+'</b></div><div><span>Carte doppie</span><b>'+dbl+'</b></div></div>';
     h+='<div class="frst frst2"><div><span>Doppie di '+nm+' che mancano a te</span><b>'+need+'</b></div><div><span>Tue doppie che mancano a '+nm+'</span><b>'+gv+'</b></div></div>';
-    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn frem">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi i suoi preferiti</button><button class="frb2 frdn frlk" data-a="rm" data-u="'+u+'">Rimuovi amico</button>';return W(nm,"home",h)}
+    h+='<button class="frb2 p" data-a="prop"'+(can?"":" disabled")+'>Proponi uno scambio</button>'+(can?"":'<p class="trn frem">Per scambiare servono doppie da entrambe le parti.</p>')+'<button class="frb2" data-a="coll">Vedi i suoi preferiti</button>'+(me.ad?'<button class="frb2 frdn frlk" data-a="rm" data-u="'+u+'">Rimuovi dalla community</button>':"")+'';return W(nm,"home",h)}
   if(v==="co"){const f=(FR.cf[u]||[]).filter(i=>CARDS[i]),my=frColl(),nm=esc(frNm(u));
     return W("Preferiti di "+nm,"fr",f.length?'<p class="frlg"><i class="frnw s"></i>nuova per te</p><div class="frg frg3">'+f.map(i=>{const cd=trCard(i);return cd?'<div class="frt"><div class="cvf">'+face(cd,0)+"</div>"+(my[i]?"":'<i class="frnw"></i>')+"</div>":""}).join("")+"</div>":'<p class="trn frem">'+nm+" non ha ancora carte preferite.</p>")}
   if(v==="cs"){const co=FR.co[u]||{},c=GCOLS.find(x=>x.k===FR.sk),ids=c?(st[c.k]||[]).map(s=>s.id).filter(Boolean):[];
@@ -3552,11 +3564,10 @@ function frEl(){let e=$("#frm");
       else if(a==="set"){FR.sk=d.k;FR.v="cs";frDraw()}
       else if(a==="cc"){try{await navigator.clipboard.writeText(FR.me.code);toast("Codice amico copiato")}catch(x){toast("Il tuo codice: "+FR.me.code)}}
       else if(a==="add"){const v=(e.querySelector("#frin").value||"").trim();if(!v){toast("Scrivi il codice del tuo amico");return}b.disabled=true;try{const r=await frAskFriend(v);toast(r.state==="sent"?"Richiesta inviata a "+r.name:r.state==="accepted"?"Ora sei amico di "+r.name:r.state==="already"?"Siete già amici":"Richiesta già inviata");e.querySelector("#frin").value=""}catch(x){toast(x.message||"Errore")}b.disabled=false;await frLoad();frDraw()}
-      else if(a==="ok"){await sbReq("/rest/v1/friendships?id=eq."+d.f,{m:"PATCH",h:{Prefer:"return=minimal"},b:{status:"accepted"}});await frLoad();frDraw()}
-      else if(a==="no"){await sbReq("/rest/v1/friendships?id=eq."+d.f,{m:"DELETE",h:{Prefer:"return=minimal"}});await frLoad();frDraw()}
+      else if(a==="cok"||a==="cno"){b.disabled=true;try{await sbReq("/rest/v1/rpc/community_decide",{m:"POST",b:{p_user:d.u,p_ok:a==="cok"}});toast(a==="cok"?"Nuovo membro accettato":"Richiesta rifiutata")}catch(x){toast(x.message||"Errore")}await frLoad();frDraw()}
       else if(a==="op"){FR.u=d.u;FR.v="fr";frDraw();await frCo(d.u);frDraw()}
       else if(a==="coll"){FR.v="co";frDraw()}
-      else if(a==="rm"){const f=FR.fs.find(x=>x.requester===d.u||x.addressee===d.u);if(f)confirmSheet("Togliere "+frNm(d.u)+" dagli amici? Non vedrà più la tua collezione.",async()=>{try{await sbReq("/rest/v1/friendships?id=eq."+f.id,{m:"DELETE",h:{Prefer:"return=minimal"}});FR.v="home";await frLoad();frDraw()}catch(x){toast(x.message||"Errore")}})}
+      else if(a==="rm"){confirmSheet("Rimuovere "+frNm(d.u)+" dalla community? Non potrà più giocare né scambiare.",async()=>{try{await sbReq("/rest/v1/rpc/community_decide",{m:"POST",b:{p_user:d.u,p_ok:false}});FR.v="home";await frLoad();frDraw()}catch(x){toast(x.message||"Errore")}})}
       else if(a==="prop"){FR.gv={};FR.gt={};FR.tab="give";FR.v="pr";frDraw()}
       else if(a==="tab"){FR.tab=d.t;frDraw()}
       else if(a==="tg"){const m=ev.target.closest(".cvm");if(!m)return;const o=FR.tab==="give"?FR.gv:FR.gt,id=d.i,k0=o[id]||0,dir=m.dataset.d==="-1"?-1:1;let k=k0+dir;
@@ -3574,6 +3585,34 @@ async function frOpen(md){const e=frEl();FR.md=md||"t";
   FR.v=!cuGet()||!(usrGet().n||"").trim()?"need":"home";FR.ld=1;e.hidden=false;frDraw();
   if(FR.v==="need")return;
   await frPub(1);await frLoad();FR.ld=0;frDraw()}
+
+/* ===== v467 Community: senza account approvato dall'admin non si gioca ===== */
+const gtOn=()=>{try{return localStorage.getItem("cd_gate")==="on"||!navigator.webdriver}catch(e){return true}};
+function gtGet(){const c=cuGet();if(!c)return"none";try{const o=JSON.parse(localStorage.getItem("cd_cst"));return o&&o.k===c.code?o.s:"unknown"}catch(e){return"unknown"}}
+function gtSet(st){const c=cuGet();if(!c||!st)return;try{localStorage.setItem("cd_cst",JSON.stringify({k:c.code,s:st}))}catch(e){}gtDraw()}
+let gtV="",gtBz=0;
+const gtEsc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+function gtDraw(){if(!gtOn())return;const st=gtGet();let e=document.querySelector("#gate");
+  if(st==="approved"){if(e){e.remove();toast("Benvenuto nella community!")}return}
+  if(st==="unknown"&&cuGet()){gtCheck();if(!e)return}
+  if(!e){e=document.createElement("div");e.id="gate";document.body.appendChild(e);e.onclick=gtClick}
+  const c=cuGet(),u=usrGet(),n=(u.n||"").trim();let h='<div class="gtc"><div class="gtl">PullTime</div>';
+  if(!c){h+='<h2>Community privata</h2><p>Per giocare devi far parte della community. Scegli il tuo nome e chiedi di entrare: l’admin deve approvarti.</p><input id="gtn" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Il tuo nome" value="'+gtEsc(n)+'"><button class="gtb p" data-g="cr">Chiedi di entrare</button>'+
+    '<button class="gtb" data-g="lg">Ho già un codice</button>'+(gtV==="login"?'<input id="gtc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="gtb p" data-g="go">Accedi</button>':"")}
+  else if(st==="rejected"){h+='<h2>Accesso non approvato</h2><p>L’admin non ti ha accettato nella community.</p><button class="gtb" data-g="ex">Esci</button>'}
+  else{h+='<h2>In attesa di approvazione</h2><p>L’admin deve accettare il tuo ingresso. Questa schermata si aggiorna da sola.</p>'+(!c.ack?'<div class="gtk"><small>Il tuo codice di accesso: salvalo, serve se cambi telefono</small><b>'+gtEsc(cuFmt(c.code||""))+'</b><button class="gtb" data-g="cp">Copia e salva</button></div>':"")+'<button class="gtb" data-g="ex">Esci</button>'}
+  const k=e.querySelector("input");const kv=k&&k.value,kid=k&&k.id,foc=document.activeElement===k;e.innerHTML=h+"</div>";
+  if(kid){const k2=e.querySelector("#"+kid);if(k2&&kv&&!k2.value)k2.value=kv}}
+async function gtCheck(){if(gtBz||!cuGet()||!navigator.onLine)return;gtBz=1;try{const me=await frEnsure0();const r=await sbReq("/rest/v1/profiles?user_id=eq."+me.uid+"&select=status,is_admin");if(r&&r[0]){me.st=r[0].status;me.ad=!!r[0].is_admin;gtSet(me.st);if(me.st==="approved")frLoad()}}catch(e){}gtBz=0}
+async function gtClick(ev){const b=ev.target.closest("button[data-g]");if(!b)return;const k=b.dataset.g,e=document.querySelector("#gate"),busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
+  try{if(k==="cr"){const v=(e.querySelector("#gtn").value||"").trim().slice(0,16);if(!v){toast("Scrivi prima il tuo nome");return}const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);await frEnsure0();gtSet(FR.me.st);gtDraw()}
+    else if(k==="lg"){gtV=gtV==="login"?"":"login";gtDraw()}
+    else if(k==="go"){busy(1);await cuLogin(e.querySelector("#gtc").value);gtV="";FR.me=null;FR.pr={};try{cuUi()}catch(x){}await frEnsure0();gtSet(FR.me.st);gtDraw()}
+    else if(k==="cp"){const c=cuGet();try{await navigator.clipboard.writeText(cuFmt(c.code))}catch(x){}c.ack=1;cuSet(c);toast("Codice copiato: conservalo bene");gtDraw()}
+    else if(k==="ex"){cuSet(null);FR.me=null;gtV="";gtDraw()}
+  }catch(x){busy(0);toast(x.message||"Errore")}}
+setInterval(()=>{if(!gtOn()||document.hidden||!navigator.onLine||!cuGet())return;if(gtGet()!=="approved")gtCheck()},3000);
+setTimeout(()=>{try{gtDraw()}catch(e){}},300);
 setTimeout(()=>{if(cuGet()){frPub();frLoad()}},3500);
 /* i pallini restano anche quando le barre vengono ridisegnate */
 {let fdT=0;try{new MutationObserver(()=>{if(fdT||!(FR.n>0||FR.nn>0))return;fdT=setTimeout(()=>{fdT=0;try{frDots(FR.n)}catch(e){}},200)}).observe(document.body,{childList:true,subtree:true})}catch(e){}}

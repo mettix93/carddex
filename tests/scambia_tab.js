@@ -7,17 +7,17 @@ await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(
 await p.evaluate(()=>cvOpen());await p.waitForTimeout(500);
 const tabs=await p.evaluate(()=>[...document.querySelectorAll('#cvs .cvtb button')].map(b=>b.textContent.trim()));ok(tabs.join()==='Converti,Scambia','schede: '+tabs);
 await p.click('#cvs .cvtb button[data-m=f]');await p.waitForTimeout(500);
-ok(await p.evaluate(()=>!document.querySelector('#frm').hidden&&/account nel cloud/.test(document.querySelector('#frm').innerText)),'senza account: Amici chiede di creare l\'account');
+ok(await p.evaluate(()=>!document.querySelector('#frm').hidden&&/account della community/.test(document.querySelector('#frm').innerText)),'senza account: Amici chiede di creare l\'account');
 // con account
 await p.evaluate(()=>document.querySelector('#frm').hidden=true);
 await p.evaluate(()=>{document.querySelector('#cvs').hidden=true;document.querySelector('#nvp button[data-t=s]').click()});await p.waitForTimeout(800);
 await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);
 await p.evaluate(()=>cvOpen());await p.waitForTimeout(400);await p.click('#cvs .cvtb button[data-m=f]');await p.waitForTimeout(1500);
-ok(await p.evaluate(()=>/Posta/.test(document.querySelector('#frm').innerText)&&/Scegli un amico/i.test(document.querySelector('#frm').innerText)&&!/Il tuo codice amico/.test(document.querySelector('#frm').innerText)),'Scambia: Posta e lista amici (la gestione è in Account)');
+ok(await p.evaluate(()=>/Posta/.test(document.querySelector('#frm').innerText)&&/Scegli un membro/i.test(document.querySelector('#frm').innerText)&&!/Il tuo codice amico/.test(document.querySelector('#frm').innerText)),'Scambia: Posta e lista amici (la gestione è in Account)');
 await p.click('#frm [data-a=cod]');await p.waitForTimeout(500);
 ok(await p.evaluate(()=>document.querySelector('#frm').hidden&&document.querySelector('#cvs').classList.contains('tr')&&document.querySelector('#cvs .cvtb button[data-m=f]').classList.contains('on')),'«Scambio con codice»: vecchia schermata, scheda Scambia evidenziata');
 await p.evaluate(()=>{document.querySelector('#cvs').hidden=true;document.querySelector('#nvp button[data-t=s]').click()});await p.waitForTimeout(800);await p.click('button[data-u=fr]');await p.waitForTimeout(1200);
-ok(await p.evaluate(()=>/Il tuo codice amico/.test(document.querySelector('#frm').innerText)&&/I tuoi amici/i.test(document.querySelector('#frm').innerText)),'Account › Gestione amici: codice, aggiungi, elenco');
+ok(await p.evaluate(()=>/La tua community/.test(document.querySelector('#frm').innerText)&&/Membri/i.test(document.querySelector('#frm').innerText)),'Account › Community: membri');
 await p.evaluate(()=>{document.querySelector('#frm').hidden=true;cvOpen()});await p.waitForTimeout(400);await p.click('#cvs .cvtb button[data-m=c]');await p.waitForTimeout(400);
 ok(await p.evaluate(()=>!document.querySelector('#cvs').classList.contains('tr')),'si torna a Converti');
 ok(!er.length,'nessun errore JS '+er.join('|'));

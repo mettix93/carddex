@@ -1,5 +1,5 @@
 // finto Supabase in memoria (auth + saves + profili, collezioni, amicizie, proposte) con le stesse regole di carddex-supabase-3.sql
-const DB={users:{},saves:{},profiles:{},collections:{},friendships:[],trades:[],fid:0};let N=0;
+const DB={comm:false,users:{},saves:{},profiles:{},collections:{},friendships:[],trades:[],fid:0};let N=0;
 const uuid=()=>"uid"+(++N);
 const isFriend=(a,b)=>DB.friendships.some(f=>f.status==="accepted"&&((f.requester===a&&f.addressee===b)||(f.requester===b&&f.addressee===a)));
 const hasLink=(a,b)=>DB.friendships.some(f=>(f.requester===a&&f.addressee===b)||(f.requester===b&&f.addressee===a));
@@ -23,12 +23,15 @@ function mock(p,opt){opt=opt||{};return p.route(/supabase\.co/,async r=>{const q
     if(m==="POST"){if(b.user_id!==me)return J({message:"rls"},403);DB.saves[b.user_id+"|"+b.env]={data:b.data,updated_at:b.updated_at};return J([])}}
   // profili
   if(P==="/rest/v1/profiles"){
-    if(m==="GET"){let rows=Object.values(DB.profiles).filter(x=>x.user_id===me||hasLink(me,x.user_id));rows=filt(rows,u,["select","order","limit"]);return J(rows)}
-    if(m==="POST"){if(b.user_id!==me)return J({message:"rls"},403);if(Object.values(DB.profiles).some(x=>x.code===b.code&&x.user_id!==me))return J({message:'duplicate key value violates unique constraint "profiles_code_key"',code:"23505"},409);DB.profiles[me]={updated_at:new Date().toISOString(),...b};return ret([DB.profiles[me]])}
-    if(m==="PATCH"){if(!DB.profiles[me])return J([]);Object.assign(DB.profiles[me],b);return ret([DB.profiles[me]])}}
+    if(m==="GET"){const ad=DB.profiles[me]&&DB.profiles[me].is_admin&&DB.profiles[me].status==="approved";rows=Object.values(DB.profiles).filter(x=>x.user_id===me||hasLink(me,x.user_id)||ad);rows=filt(rows,u,["select","order","limit"]);return J(rows)}
+    if(m==="POST"){if(b.user_id!==me)return J({message:"rls"},403);if(Object.values(DB.profiles).some(x=>x.code===b.code&&x.user_id!==me))return J({message:'duplicate key value violates unique constraint "profiles_code_key"',code:"23505"},409);{const any=Object.values(DB.profiles).some(x=>x.is_admin);const nb={updated_at:new Date().toISOString(),user_id:b.user_id,name:b.name,code:b.code};if(DB.comm)Object.assign(nb,any?{status:"pending",is_admin:false}:{status:"approved",is_admin:true});else Object.assign(nb,{status:"approved",is_admin:false});DB.profiles[me]=nb}return ret([DB.profiles[me]])}
+    if(m==="PATCH"){if(!DB.profiles[me])return J([]);{const nb={};if("name" in b)nb.name=b.name;nb.updated_at=b.updated_at;Object.assign(DB.profiles[me],nb)}return ret([DB.profiles[me]])}}
   if(P==="/rest/v1/collections"){
     if(m==="GET"){let rows=Object.values(DB.collections).filter(x=>x.user_id===me||isFriend(me,x.user_id));rows=filt(rows,u,["select","order","limit"]);return J(rows)}
     if(m==="POST"){if(b.user_id!==me)return J({message:"rls"},403);DB.collections[me]=b;return ret([b])}}
+  if(P==="/rest/v1/rpc/community_decide"){const a=DB.profiles[me];if(!a||!a.is_admin||a.status!=="approved")return J({message:"solo l'admin"},400);const t=DB.profiles[b.p_user];if(!t)return J({message:"?"},400);
+    if(b.p_ok){t.status="approved";Object.values(DB.profiles).forEach(o=>{if(o.status==="approved"&&o.user_id!==t.user_id&&!hasLink(o.user_id,t.user_id))DB.friendships.push({id:++DB.fid,requester:t.user_id,addressee:o.user_id,status:"accepted",created_at:new Date().toISOString()})})}
+    else{t.status="rejected";DB.friendships=DB.friendships.filter(f=>f.requester!==t.user_id&&f.addressee!==t.user_id);DB.trades.forEach(x=>{if(x.status==="pending"&&(x.from_user===t.user_id||x.to_user===t.user_id))x.status="cancelled"})}return r.fulfill({status:204,headers:{"access-control-allow-origin":"*"}})}
   if(P==="/rest/v1/rpc/friend_request"){const code=String(b.p_code||"").trim().toUpperCase();const o=Object.values(DB.profiles).find(x=>x.code===code);if(!o)return J({message:"Codice amico non trovato"},400);if(o.user_id===me)return J({message:"È il tuo codice"},400);
     const ex=DB.friendships.find(f=>(f.requester===me&&f.addressee===o.user_id)||(f.requester===o.user_id&&f.addressee===me));
     if(ex){if(ex.status==="accepted")return J({state:"already",name:o.name});if(ex.requester===o.user_id){ex.status="accepted";return J({state:"accepted",name:o.name})}return J({state:"waiting",name:o.name})}

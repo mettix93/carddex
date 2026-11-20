@@ -1,3 +1,8 @@
+## v467 (PullTime)
+- Community (al posto di Amici): chi usa l'app deve far parte della community. Senza account compare una porta d'ingresso (nome + «Chiedi di entrare»); finché l'admin non approva, resta «In attesa». Il codice di accesso va salvato subito.
+- L'admin vede le richieste in Account › Community (pallino blu sull'icona) e può Accettare o Rifiutare; può anche rimuovere un membro. I membri approvati sono amici fra loro in automatico: niente più codici amico.
+- Serve eseguire carddex-supabase-4.sql in Supabase (dopo il 3). Chi c'è già diventa membro; il primo profilo creato è l'admin.
+
 ## v466 (PullTime)
 - Scambio: «Tu dai» diventa «Offri» (offri / chiedi), testi aggiornati.
 - Pallini blu: compaiono subito sulle icone (Bustine, Converti/Scambia, Account) senza dover entrare in Scambia, e restano dopo i cambi di pagina.

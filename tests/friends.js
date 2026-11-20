@@ -18,16 +18,10 @@ await A.evaluate(()=>{$("#cvs")||cvBuild();return frOpen()});await A.waitForTime
 const codeA=await A.evaluate(()=>FR.me&&FR.me.code);ok(/^[A-Z2-9]{6}$/.test(codeA||''),'A: codice amico '+codeA);
 ok(Object.keys(DB.collections).length>=1,'profilo e collezione pubblicati');
 await B.evaluate(()=>frOpen("a"));await B.waitForTimeout(1500);
-// B aggiunge A col codice, dall'interfaccia
-await B.fill('#frin',codeA.toLowerCase());await B.click('#frm [data-a=add]');await B.waitForTimeout(900);
-ok(DB.friendships.length===1&&DB.friendships[0].status==='pending','B: richiesta inviata ('+DB.friendships.length+')');
-// B non vede ancora la collezione di A
-const pre=await B.evaluate(async()=>{await frCo(FR.fs[0].addressee);return Object.keys(FR.co[FR.fs[0].addressee]).length});ok(pre===0,'prima dell\'amicizia la collezione di A è privata');
-// A vede la richiesta e accetta
-await A.evaluate(()=>frLoad());await A.waitForTimeout(600);
-ok(await A.evaluate(()=>FR.n)===1,'A: pallino richieste = 1');
-await A.evaluate(()=>frDraw());await A.click('#frm [data-a=ok]');await A.waitForTimeout(900);
-ok(DB.friendships[0].status==='accepted','A: amicizia accettata');
+// i membri sono amici in automatico (come fa community_decide)
+await B.evaluate(()=>frLoad());await B.waitForTimeout(300);
+const ia=Object.keys(DB.profiles);DB.friendships.push({id:++DB.fid,requester:ia[1],addressee:ia[0],status:'accepted',created_at:new Date().toISOString()});
+await A.evaluate(()=>frLoad());await B.evaluate(()=>frLoad());await B.waitForTimeout(800);
 // B apre la pagina di A
 await B.evaluate(()=>frLoad());await B.waitForTimeout(600);await B.evaluate(()=>{FR.md="t";FR.v="home";frDraw()});await B.click('#frm [data-a=op]');await B.waitForTimeout(1000);
 const fv=await B.evaluate(()=>({n:Object.keys(FR.co[FR.u]||{}).length,txt:document.querySelector('#frm').innerText}));
