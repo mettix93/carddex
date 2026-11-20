@@ -1,3 +1,6 @@
+## v476 (PullTime) / c29 (PullBinder)
+- Barra in alto: tolto `html{position:fixed;height:var(--vh)}` introdotto in v461 (ancoraggio barra), che impediva a iOS di colorare la barra di stato come carta/bustina. Geometria identica a v460.
+
 ## v475 (PullTime) / c28 (PullBinder)
 - Barra/fascia in alto: tolta la fascia fissa di v473 (compariva bianca) e ripristinata la geometria di v463 (altezza del corpo e sincronizzazione altezza di v464 rimosse), che funzionava bene.
 
