@@ -1,3 +1,8 @@
+## v466 (PullTime)
+- Scambio: «Tu dai» diventa «Offri» (offri / chiedi), testi aggiornati.
+- Pallini blu: compaiono subito sulle icone (Bustine, Converti/Scambia, Account) senza dover entrare in Scambia, e restano dopo i cambi di pagina.
+- Scambio concluso: le etichette Nuova / Pokédex sulle carte ricevute usano lo stesso stile delle altre e stanno sul bordo alto della carta.
+
 ## v465 (PullTime)
 - Animazioni di ingresso delle carte nelle tasche (Album e Pokédex): si possono saltare toccando in un punto qualsiasi dello schermo. Le carte restano tutte inserite e si arriva subito alla pagina (Album) o alla posizione (Pokédex) dell'ultima inserita, senza altre animazioni. Durante l'animazione compare in basso a destra l'icona «salta».
 

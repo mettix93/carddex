@@ -55,7 +55,7 @@ await A.evaluate(()=>{FR.tr.forEach(t=>FR.ex.add(t.id));frDraw()});await A.click
 ok(DB.trades[0].status==='accepted','A: proposta accettata');
 ok(await A.evaluate(()=>FR.v==='anim'&&document.querySelectorAll('#frm .anst .anc').length>=2),'A: parte l\'animazione di scambio');await A.click('#frm .anst');await A.waitForTimeout(400);
 ok(await A.evaluate(()=>FR.v==='done'&&/Scambio concluso/i.test(document.querySelector('#frm').innerText)&&document.querySelectorAll('#frm .frdr .frdc').length===2),'A: schermata scambio concluso con le 2 carte ricevute');
-ok(await A.evaluate(()=>PKAQ.length>=1&&document.querySelectorAll('#frm .frtg').length>=1),'A: carte nuove segnate per l\'album ('+await A.evaluate(()=>PKAQ.length)+')');
+ok(await A.evaluate(()=>PKAQ.length>=1&&document.querySelectorAll('#frm .frdc .pkn,#frm .frdc .pkbw').length>=1),'A: carte nuove segnate per l\'album ('+await A.evaluate(()=>PKAQ.length)+')');
 const qa=await Promise.all([qOf(A,aIds[0]),qOf(A,aIds[1]),qOf(A,bIds[0]),qOf(A,bIds[1])]);
 ok(qa[0]===1&&qa[1]===1&&qa[2]===1&&qa[3]===1,'A: ha dato 2 e ricevuto 2 ('+qa+')');
 // B: la notifica arriva subito, lo scambio si applica solo premendo Vedi
