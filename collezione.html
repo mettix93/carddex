@@ -1275,7 +1275,6 @@ body{overscroll-behavior:none}
 html body #frm .frbx>div{background:var(--gbg);border:1px solid var(--gbd);box-shadow:inset 0 1px 0 var(--ghi),var(--gsh);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);color:var(--gtx);box-sizing:border-box}
 html body #frm .frbx>div.ok{border-color:#34c759;box-shadow:inset 0 0 0 1px #34c759,var(--gsh)}
 html body #frm .frbx>div.bad{border-color:#ff9f0a;box-shadow:inset 0 0 0 1px #ff9f0a,var(--gsh)}
-@media (orientation:portrait){html:root body{bottom:auto!important;height:calc(var(--vh,100%) - 14px)!important}}
 </style></head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div><div id="sn"></div></header>
@@ -1311,7 +1310,7 @@ const APPK="col";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="c27";
+const APPV="c28";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();

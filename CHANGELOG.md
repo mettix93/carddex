@@ -1,3 +1,6 @@
+## v475 (PullTime) / c28 (PullBinder)
+- Barra/fascia in alto: tolta la fascia fissa di v473 (compariva bianca) e ripristinata la geometria di v463 (altezza del corpo e sincronizzazione altezza di v464 rimosse), che funzionava bene.
+
 ## v474 (PullTime) / c27 (PullBinder)
 - Colore pagine: nuovo ordine e nomi (Trasparente scuro/chiaro, Nero, Bianco, Verde, Rosso, Blu, Giallo, Notte, Chiaro, Argento, Oro, Rubino, Zaffiro, Smeraldo, Pokémon).
 - Nuove: Argento (metallo grigio) e Pokémon (sfumatura rosso-viola-blu con Poké Ball).
