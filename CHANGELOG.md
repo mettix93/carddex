@@ -1,3 +1,7 @@
+## v474 (PullTime) / c27 (PullBinder)
+- Colore pagine: nuovo ordine e nomi (Trasparente scuro/chiaro, Nero, Bianco, Verde, Rosso, Blu, Giallo, Notte, Chiaro, Argento, Oro, Rubino, Zaffiro, Smeraldo, Pokémon).
+- Nuove: Argento (metallo grigio) e Pokémon (sfumatura rosso-viola-blu con Poké Ball).
+
 ## v473 (PullTime)
 - Posta: segnalini e tasti delle righe (Vedi, Concludi, in attesa, completato…) tutti 96×36; sotto il nome «3 carte · scade tra 23 h 4 min»; «Vedi» diventa solo contorno quando la proposta è aperta (così risalta Accetta).
 - «Scambi completati» → «Scambi conclusi». In Scambia: «Scegli un amico».
