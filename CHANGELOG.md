@@ -1,3 +1,7 @@
+## v469 (PullTime)
+- Scambio: le carte di un set non ancora sbloccato (da te o dall'amico) restano visibili ma ingrigite e non selezionabili, con un avviso al tocco. Ogni profilo pubblica l'elenco dei set bloccati.
+- Posta: «Scambi in corso» (con «in attesa» o «Vedi»), «Scambi completati» (con «completato»); rifiutate, annullate e scadute restano in «Chiuse».
+
 ## v468 (PullTime)
 - Icona sotto il tuo nome: ora c'è scritto «Community».
 - Info (i) dello scambio: punto 1 «Scegli un amico della community», punto 2 con «offri / chiedi».

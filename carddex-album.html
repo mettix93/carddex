@@ -1384,6 +1384,7 @@ html:not(.gml) #frm .frbx .coin{color:#fff}
 #gate .gtb.p{background:#3b82f6;border-color:#3b82f6}
 #gate .gtk{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.08)}
 #gate .gtk small{opacity:.7;font-size:12px}#gate .gtk b{font:600 17px ui-monospace,Menlo,monospace;letter-spacing:.04em}
+#frm .cvt.lkd{filter:grayscale(1);opacity:.4}
 /* v456: pagine amici a tutta pagina */
 html body #frm{position:fixed;inset:0;z-index:91;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#f2f2f7;color:#1b2a49;animation:cdFd .28s ease-out}
 html:not(.gml) body #frm{background:#000;color:#fff}
@@ -1584,7 +1585,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v468";
+const APPV="v469";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3378,6 +3379,7 @@ function pfList(S){const cols=MODE==="g"?GCOLS:PCOLS,seen=new Set(),nat=[];
   if(md==="dex"){const key=x=>{const c=CARDS[x.id];return c&&c.kd==="p"&&c.dex?c.dex:1e5},ix=new Map(nat.map((x,i)=>[x,i]));return nat.slice().sort((a,b)=>key(a)-key(b)||ix.get(a)-ix.get(b))}
   if(md==="cu"&&GCU.zPF){const B={},out=[];nat.forEach(x=>(B[x.id]=B[x.id]||[]).push(x));GCU.zPF.forEach(id=>{if(!id){out.push({id:null,o:0,n:""});return}const q=B[id];if(q&&q.length)out.push(q.shift())});Object.values(B).forEach(q=>out.push(...q));return out}
   return nat}
+function frLk(){try{const m={};Object.values(CARDS).forEach(c=>{if(c&&c.sid&&!(c.sid in m))m[c.sid]=pkLkS(c.sid)?1:0});return Object.keys(m).filter(k=>m[k])}catch(e){return[]}}
 function pfPub(){try{return pfList(dxRaw(MODE==="g"?"g":"c")).filter(x=>x.id&&x.o).map(x=>x.id)}catch(e){return[]}}
 function pfPers(){try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
 function pfSync(){const ids=st.zPF.map(x=>x.id||"");let ch=JSON.stringify(GCU.zPF)!==JSON.stringify(ids);GCU.zPF=ids;if(GORD.zPF!=="dex"&&GORD.zPF!=="cu"&&st.zPF.some(x=>!x.id)){GORD.zPF="cu";ch=1}if(ch)pfPers()}
@@ -3427,7 +3429,7 @@ setTimeout(()=>{try{fosRecover()}catch(e){}},6000);
 function frDqSave(){try{localStorage.setItem(GK("carddex_frdq"),JSON.stringify(FR.dq.slice(-20)))}catch(e){}}
 function frapGet(){try{const a=JSON.parse(localStorage.getItem(GK("carddex_frap")));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function frapAdd(id){const a=frapGet();if(!a.includes(id)){a.push(id);try{localStorage.setItem(GK("carddex_frap"),JSON.stringify(a.slice(-300)))}catch(e){}}}
-const FR={ex:new Set(),hold:0,anV:null,anT:[],anA:[],cf:{},dq:(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_frdq")));return Array.isArray(a)?a:[]}catch(e){return[]}})(),fq:0,dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
+const FR={ex:new Set(),hold:0,anV:null,anT:[],anA:[],cf:{},dq:(()=>{try{const a=JSON.parse(localStorage.getItem(GK("carddex_frdq")));return Array.isArray(a)?a:[]}catch(e){return[]}})(),fq:0,dn:null,dnA:null,md:"t",me:null,fs:[],tr:[],pr:{},co:{},cl:{},ts:0,bz:0,v:"home",u:null,sk:null,tab:"give",ph:"",gv:{},gt:{},n:0,nn:-1,ld:0};
 const frCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(6);crypto.getRandomValues(r);return Array.from(r,x=>A[x%32]).join("")};
 const frExp=t=>Date.parse(t.expires_at)<=Date.now();
 const frNm=u=>(FR.pr[u]&&FR.pr[u].name)||"Un amico";
@@ -3442,9 +3444,9 @@ async function frEnsure0(){const u=await cuTok();if(FR.me&&FR.me.uid===u.uid)ret
   if(!r||!r[0]){for(let i=0;i<6;i++){const code=frCode();try{await sbReq("/rest/v1/profiles",{m:"POST",h:{Prefer:"return=minimal"},b:{user_id:u.uid,name:(usrGet().n||"").slice(0,16),code}});r=[{code,name:usrGet().n||"",status:"pending",is_admin:false}];break}catch(e){if(!/duplicate|unique/i.test(e.message))throw e}}}
   if(r&&r[0]&&r[0].status==="pending"){try{const r2=await sbReq("/rest/v1/profiles?user_id=eq."+u.uid+"&select=code,name,status,is_admin");if(r2&&r2[0])r=r2}catch(e){}}
   if(!r||!r[0])throw new Error("Codice amico non creato");FR.me={uid:u.uid,code:r[0].code,name:r[0].name||"",st:r[0].status||"approved",ad:!!r[0].is_admin};gtSet(FR.me.st);return FR.me}
-async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),pf=pfPub(),nm=(usrGet().n||"").trim().slice(0,16),h=nm+"|"+JSON.stringify(co)+"|"+pf.join(",");if(!force&&h===FR.ph)return;
+async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),pf=pfPub(),nm=(usrGet().n||"").trim().slice(0,16),h=nm+"|"+JSON.stringify(co)+"|"+pf.join(",")+"|"+frLk().join(",");if(!force&&h===FR.ph)return;
   try{const me=await frEnsure();if(nm&&me.name!==nm){await sbReq("/rest/v1/profiles?user_id=eq."+me.uid,{m:"PATCH",h:{Prefer:"return=minimal"},b:{name:nm,updated_at:new Date().toISOString()}});me.name=nm}
-    await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:{...co,_f:pf},updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
+    await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:{...co,_f:pf,_l:frLk()},updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
 async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
   try{const me=await frEnsure();const a=await Promise.all([sbReq("/rest/v1/friendships?select=id,requester,addressee,status"),sbReq("/rest/v1/trades?select=*&order=created_at.desc&limit=60"),sbReq("/rest/v1/profiles?user_id=eq."+me.uid+"&select=status,is_admin")]);
     FR.fs=a[0]||[];FR.tr=a[1]||[];if(a[2]&&a[2][0]){me.st=a[2][0].status||me.st;me.ad=!!a[2][0].is_admin;gtSet(me.st)}
@@ -3465,7 +3467,7 @@ function frBadge(force){const n=FR.n=frCount();document.querySelectorAll(".cvtb 
   const me=FR.me&&FR.me.uid;if(me){const nw=[];FR.tr.forEach(t=>{const k=t.id+":"+t.status;if(frNt.has(k))return;frNt.add(k);if(t.status==="pending"&&t.to_user===me&&!frExp(t))nw.push("Proposta di scambio da "+frNm(t.from_user));else if(frNew(t))nw.push(frNm(t.to_user)+" ha accettato il tuo scambio!")});
     if(nw.length&&!frNf){toast(nw[0]);try{sfx("nuova");hap(1)}catch(e){}}else if(nw.length&&frNf&&n>0)toast("Hai "+n+" novità negli scambi con gli amici");frNf=0}
   (FR.pd||[]).forEach(x=>{const k="p:"+x.user_id;if(frNt.has(k))return;frNt.add(k);if(!frNf){toast((x.name||"Qualcuno")+" vuole entrare nella community");try{sfx("nuova");hap(1)}catch(q){}}});FR.nn=n;const sg=JSON.stringify([FR.fs.map(f=>f.id+f.status),FR.tr.map(t=>t.id+t.status),(FR.pd||[]).map(x=>x.user_id)]);if(force||sg!==frSig){frSig=sg;frDraw()}}
-async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");const d=r&&r[0]&&r[0].data?r[0].data:{};FR.cf[u]=Array.isArray(d._f)?d._f:[];delete d._f;FR.co[u]=d}catch(e){if(!FR.co[u])FR.co[u]={}}}
+async function frCo(u){try{const r=await sbReq("/rest/v1/collections?user_id=eq."+u+"&select=data,updated_at");const d=r&&r[0]&&r[0].data?r[0].data:{};FR.cf[u]=Array.isArray(d._f)?d._f:[];delete d._f;FR.cl[u]=Array.isArray(d._l)?d._l:[];delete d._l;FR.co[u]=d}catch(e){if(!FR.co[u])FR.co[u]={}}}
 async function frAskFriend(code){const r=await sbReq("/rest/v1/rpc/friend_request",{m:"POST",b:{p_code:String(code||"").trim().toUpperCase()}});return r}
 async function frSend(to,give,get){if(!trSame(give,get)||!give.length)throw new Error("Le rarità non coincidono");if(!trSpare(give))throw new Error("Non hai più quelle doppie");
   await sbReq("/rest/v1/trades",{m:"POST",h:{Prefer:"return=minimal"},b:{from_user:FR.me.uid,to_user:to,give,get}});await frLoad()}
@@ -3484,11 +3486,12 @@ function frList(){const me=FR.me&&FR.me.uid;return FR.fs.map(f=>{const u=f.reque
 function frCtx(){const u=FR.u,co=FR.co[u]||{},my=frSpareOf(frColl(),frResv()),fs=frSpareOf(co),G=FR.gv,T=FR.gt;
   const tl=o=>{const a=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)a.push(i)});return a},ga=tl(G),ta=tl(T),av=q=>{const n={};Object.keys(q).forEach(i=>{const c=trCard(i);if(c){const k=trK(c);n[k]=(n[k]||0)+q[i]}});return n};
   return{u,co,my,fs,G,T,ga,ta,tg:trTally(ga),tt:trTally(ta),am:av(my),af:av(fs),mc:frColl(),same:!!ga.length&&trSame(ga,ta)}}
-function frRoom(id,X){X=X||frCtx();const give=FR.tab==="give",c=trCard(id);if(!c)return 0;let r=((give?X.my:X.fs)[id]||0)-((give?X.G:X.T)[id]||0);if(!give){const k=trK(c);r=Math.min(r,(X.tg[k]||0)-(X.tt[k]||0))}return r}
+function frLkd(id,give){const c=trCard(id);if(!c||!c.sid)return 0;return give?((FR.cl[FR.u]||[]).includes(c.sid)?1:0):(pkLkS(c.sid)?1:0)}
+function frRoom(id,X){X=X||frCtx();const give=FR.tab==="give",c=trCard(id);if(!c)return 0;if(frLkd(id,give))return 0;let r=((give?X.my:X.fs)[id]||0)-((give?X.G:X.T)[id]||0);if(!give){const k=trK(c);r=Math.min(r,(X.tg[k]||0)-(X.tt[k]||0))}return r}
 function frSets(ids){const m={};GCOLS.forEach((co,ci)=>(st[co.k]||[]).forEach(s=>{if(s&&s.id)m[s.id]=ci}));const RKk={R:0,U:1,C:2},rr=c=>{const d=rdOf(c);return RKk[d&&d.r]??2},g={};
   ids.forEach(i=>{const ci=m[i]??99;(g[ci]=g[ci]||[]).push(i)});
   return Object.keys(g).map(Number).sort((a,b)=>a-b).map(ci=>({ci,ids:g[ci].sort((a,b)=>{const x=trCard(a),y=trCard(b);return rr(x)-rr(y)||(x.num||0)-(y.num||0)})}))}
-function frCvt(id,sp,k,room,nw){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+trSym(c)+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
+function frCvt(id,sp,k,room,nw,lk){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+(lk?" lkd":"")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+trSym(c)+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
 function frDoneShow(){if(!FR.dq.length||document.hidden)return;const p=$("#pk"),busy=(p&&!p.hidden&&(p.classList.contains("opening")||p.classList.contains("sm")||p.classList.contains("go")))||(typeof aqRun!=="undefined"&&aqRun)||dxFilling,e=frEl();if(busy||(!e.hidden&&FR.v!=="done"))return;if(!e.hidden&&FR.dn&&FR.dn!==FR.dnA)return;
   if(FR.hold)return;FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;e.hidden=false;frDraw()}
 function frAnim(){const e=$("#frm");if(!e||!e.animate||FR.v!=="done")return;const g=[...e.querySelectorAll(".frdg .frdc")],r=[...e.querySelectorAll(".frdr .frdc")];
@@ -3530,7 +3533,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
     const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Offri "+g+" · Chiedi "+t+"</b></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
     h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
-    h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i])).join("")+"</div></section>"}).join(""):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
+    h+='<div class="frscr">'+(ids.length?frSets(ids).map(S=>{const co=GCOLS[S.ci],n=S.ids.reduce((a,i)=>a+(src[i]||0),0);return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+"<em>"+n+'</em></div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i],frLkd(i,give))).join("")+"</div></section>"}).join(""):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
     h+='<div class="frdock">'+bx+'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div></div>";
     return hdr+'<div class="frbody frpr">'+h+"</div>"}
   if(v==="ann"){const D=FR.dn;if(!D)return"";return W("Scambio concluso","",'<div class="frem2 frann">'+IC('<path d="M7 7h12l-3-3M17 17H5l3 3"/>',2)+"<b>Scambio con "+esc(D.who)+'</b><span>La tua proposta è stata accettata: '+D.give.length+(D.give.length===1?" carta data":" carte date")+" · "+D.get.length+(D.get.length===1?" ricevuta":" ricevute")+".</span></div>",'<div class="frft"><button class="frb2 p" data-a="see">Vedi</button></div>')}
@@ -3547,10 +3550,11 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       else{const s2=t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata",gv=m?t.give:t.get,gt=m?t.get:t.give;sub=(m?"Inviata":"Ricevuta")+" · "+s2;
         body='<div class="frcs"><em>'+(ac?"Hai dato":m?"Offrivi":"Ti offriva")+"</em>"+frFaces(m?t.give:t.get)+'</div><div class="frcs"><em>'+(ac?"Hai ricevuto":m?"Chiedevi":"Chiedeva")+"</em>"+frFaces(m?t.get:t.give)+"</div>"}
       return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
-    if(fn.length)h+='<div class="trl">Scambi accettati ('+fn.length+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Vedi</button></div>').join("");
+    const ok=cl.filter(t=>t.status==="accepted"),ot=cl.filter(t=>t.status!=="accepted"),cn=sn.length+fn.length;
     if(rc.length)h+='<div class="trl">Da rispondere ('+rc.length+")</div>"+rc.map(t=>row(t,"rc")).join("");
-    if(sn.length)h+='<div class="trl">In attesa di risposta ('+sn.length+")</div>"+sn.map(t=>row(t,"sn")).join("");
-    if(cl.length)h+='<div class="trl">Chiuse</div>'+cl.map(t=>row(t,"cl")).join("");
+    if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Vedi</button></div>').join("")+sn.map(t=>row(t,"sn")).join("");
+    if(ok.length)h+='<div class="trl">Scambi completati</div>'+ok.map(t=>row(t,"cl")).join("");
+    if(ot.length)h+='<div class="trl">Chiuse</div>'+ot.map(t=>row(t,"cl")).join("");
     if(!h)h='<div class="frem2">'+ENV+'<b>Nessuna proposta</b><span>Le proposte di scambio ricevute e inviate compaiono qui.</span></div>';
     return W("Posta","home",h)}
   return""}
@@ -3573,6 +3577,7 @@ function frEl(){let e=$("#frm");
       else if(a==="prop"){FR.gv={};FR.gt={};FR.tab="give";FR.v="pr";frDraw()}
       else if(a==="tab"){FR.tab=d.t;frDraw()}
       else if(a==="tg"){const m=ev.target.closest(".cvm");if(!m)return;const o=FR.tab==="give"?FR.gv:FR.gt,id=d.i,k0=o[id]||0,dir=m.dataset.d==="-1"?-1:1;let k=k0+dir;
+        if(dir>0&&frLkd(id,FR.tab==="give")){toast(FR.tab==="give"?frNm(FR.u)+" non ha ancora sbloccato questo set":"Non hai ancora sbloccato questo set");return}
         if(dir>0&&frRoom(id)<=0){const c=trCard(id),q=c?trK(c):"C",X=frCtx();if(FR.tab==="get"&&!(X.tg[q]||0))toast("Per chiedere "+(TRN[q]?TRN[q][0]:"questa carta")+" devi darne una");else if(FR.tab==="get"&&(X.tt[q]||0)>=(X.tg[q]||0))toast("Hai già chiesto tutte le "+TRN[q][1]+" che dai");else toast("Non hai altre copie doppie");return}
         if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
       else if(a==="dn"){if(FR.dq.length){FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
