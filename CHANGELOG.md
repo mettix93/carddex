@@ -1,3 +1,6 @@
+## v477 (PullTime)
+- Pokédex: le carte nuove non entrano più in tasca ma si rivelano con una scansione: una barra di luce scende sulla carta nascosta e la scopre dall'alto verso il basso. Nuovo suono «scan» (sweep crescente) e poi campanello e luce finale come prima. Il salto con tocco funziona come sempre. L'album resta invariato.
+
 ## v476 (PullTime) / c29 (PullBinder)
 - Barra in alto: tolto `html{position:fixed;height:var(--vh)}` introdotto in v461 (ancoraggio barra), che impediva a iOS di colorare la barra di stato come carta/bustina. Geometria identica a v460.
 
