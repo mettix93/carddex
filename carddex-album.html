@@ -1206,7 +1206,7 @@ html:not(.gml) #trm textarea{background:rgba(255,255,255,.1);color:#fff;border-c
 #frm .frb2:disabled{opacity:.4}
 #frm .frdn{color:#d70015}
 #frm .frmail{display:flex;align-items:center;justify-content:center;gap:8px}
-#frm .frb{font-style:normal;min-width:20px;height:20px;border-radius:10px;background:#ff3b30;color:#fff;font-size:12px;line-height:20px;text-align:center;padding:0 6px}
+#frm .frb{font-style:normal;min-width:20px;height:20px;border-radius:10px;background:#0a84ff;color:#fff;font-size:12px;line-height:20px;text-align:center;padding:0 6px}
 #frm .frr{display:flex;align-items:center;gap:10px;width:100%;margin-top:6px;padding:8px 10px;border:0;border-radius:16px;background:rgba(27,42,73,.07);color:inherit;text-align:left;font:inherit;box-sizing:border-box}
 #frm .frr i{font-style:normal;font-size:22px;opacity:.4}
 #frm .fra{width:34px;height:34px;border-radius:50%;background:#0a84ff;color:#fff;display:flex;align-items:center;justify-content:center;font:700 16px -apple-system,system-ui,sans-serif;flex:none}
@@ -1235,7 +1235,7 @@ html:not(.gml) #frm .frtb button.on{background:rgba(255,255,255,.27);color:#fff;
 #frm .frc small{margin-left:8px;color:#4e5d7c;font-size:12px}
 #frm .frbr{display:flex;gap:8px;margin-top:8px;justify-content:flex-end}
 #frm .frcl{margin:4px 0;font-size:13px;color:#4e5d7c}
-.cvtb button .frd{display:none;width:8px;height:8px;border-radius:50%;background:#ff3b30;margin-left:6px;vertical-align:middle}
+.cvtb button .frd{display:none;width:8px;height:8px;border-radius:50%;background:#0a84ff;margin-left:6px;vertical-align:middle}
 .cvtb button.dot .frd{display:inline-block}
 html:not(.gml) #frm .frp,html:not(.gml) #frm .frh b{color:#fff}
 html:not(.gml) #frm .trn,html:not(.gml) #frm .frn1 small,html:not(.gml) #frm .frcode small,html:not(.gml) #frm .frsum small,html:not(.gml) #frm .frc small,html:not(.gml) #frm .frcl{color:rgba(235,235,245,.65)}
@@ -1385,6 +1385,12 @@ html:not(.gml) #frm .frbx .coin{color:#fff}
 #gate .gtk{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:16px;background:rgba(255,255,255,.08)}
 #gate .gtk small{opacity:.7;font-size:12px}#gate .gtk b{font:600 17px ui-monospace,Menlo,monospace;letter-spacing:.04em}
 #frm .cvt.lkd{filter:grayscale(1);opacity:.4}
+html body #frm .frr .frs,html body #frm .frr .frpl{box-sizing:border-box;flex:none;width:96px;min-width:96px;height:36px;padding:0;border-radius:18px;display:inline-flex;align-items:center;justify-content:center;font:600 13px -apple-system,system-ui,sans-serif;white-space:nowrap}
+html body #frm .frr .frs.p{background:#0a84ff;color:#fff}
+html body #frm .frr .frpl.go{background:#0a84ff;color:#fff;box-shadow:none}
+html body #frm .frr .frn1 small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+/* v473: striscia in alto sempre del colore della pagina (anche per iOS) */
+html::before{content:"";position:fixed;top:0;left:0;right:0;height:14px;background:var(--ttc,#000);z-index:2147483000;pointer-events:none}
 /* v456: pagine amici a tutta pagina */
 html body #frm{position:fixed;inset:0;z-index:91;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;background:#f2f2f7;color:#1b2a49;animation:cdFd .28s ease-out}
 html:not(.gml) body #frm{background:#000;color:#fff}
@@ -1586,7 +1592,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v472";
+const APPV="v473";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3483,7 +3489,7 @@ const frX='<button class="cvx" data-a="x" aria-label="Chiudi"><svg viewBox="0 0 
 const frAv=n=>'<span class="fra">'+esc((n||"?")[0].toUpperCase())+"</span>";
 function frFaces(ids,max){ids=ids.slice(0,max||12);return'<div class="trr">'+ids.map(i=>{const c=trCard(i);return c?'<div class="trfc"><div class="cvf">'+face(c,0)+"</div></div>":""}).join("")+"</div>"}
 function frTile(id,mx,k){const c=trCard(id);if(!c)return"";return'<button class="frt'+(k?" on":"")+'" data-a="tg" data-i="'+id+'" data-m="'+mx+'"><div class="cvf">'+face(c,0)+"</div>"+(mx>1||k?'<b class="frn">'+(k?k+"/":"×")+mx+"</b>":"")+"</button>"}
-function frLeft(t){const m=Math.max(0,Date.parse(t.expires_at)-Date.now()),h=Math.floor(m/36e5);return h>=1?"scade tra "+h+" h":"scade tra "+Math.max(1,Math.round(m/6e4))+" min"}
+function frLeft(t){const m=Math.max(0,Date.parse(t.expires_at)-Date.now()),h=Math.floor(m/36e5);const mm=Math.max(1,Math.ceil(m/6e4)%60||(h>=1?0:1));return h>=1?"scade tra "+h+" h"+(mm?" "+mm+" min":""):"scade tra "+Math.max(1,Math.ceil(m/6e4))+" min"}
 function frList(){const me=FR.me&&FR.me.uid;return FR.fs.map(f=>{const u=f.requester===me?f.addressee:f.requester;return{f,u,p:FR.pr[u]||{name:"?"},acc:f.status==="accepted",inc:f.status==="pending"&&f.addressee===me}})}
 function frCtx(){const u=FR.u,co=FR.co[u]||{},my=frSpareOf(frColl(),frResv()),fs=frSpareOf(co),G=FR.gv,T=FR.gt;
   const tl=o=>{const a=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)a.push(i)});return a},ga=tl(G),ta=tl(T),av=q=>{const n={};Object.keys(q).forEach(i=>{const c=trCard(i);if(c){const k=trK(c);n[k]=(n[k]||0)+q[i]}});return n};
@@ -3516,7 +3522,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       h+='<div class="trl">Membri</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Per ora ci sei solo tu.</p>');
       return W("Community","",h)}
     let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
-    h+='<div class="trl">Scegli un membro</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Nella community ci sei solo tu, per ora.</p>');
+    h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Nella community ci sei solo tu, per ora.</p>');
     h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>";return HD2()+'<p class="cvds"><span>Scambia doppie con i tuoi amici!</span><button data-a="inf" aria-label="Informazioni">'+IC('<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/>')+'</button></p><div class="frbody">'+h+"</div>"}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
     if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
@@ -3547,15 +3553,15 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
     return W("Scambio concluso!","",h,'<div class="frft"><button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button></div>")}
   if(v==="mail"){const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),fn=FR.tr.filter(frNew),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)&&!fn.includes(t)).slice(0,15);let h="";
     const row=(t,k)=>{const m=t.from_user===me.uid,who=frNm(m?t.to_user:t.from_user),op=FR.ex.has(t.id),ac=t.status==="accepted";let sub,body="";
-      if(k==="rc"){sub="Ti offre "+t.give.length+" · Chiede "+t.get.length+" · "+frLeft(t);const okk=trSpare(t.get);body='<div class="frcs"><em>Ti offre</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiede</em>'+frFaces(t.get)+"</div>"+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button></div>'}
-      else if(k==="sn"){sub="Offri "+t.give.length+" · Chiedi "+t.get.length+" · "+String(frLeft(t)).replace("scade tra ","");body='<div class="frcs"><em>Offri</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiedi</em>'+frFaces(t.get)+'</div><div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div>'}
+      if(k==="rc"){sub=t.give.length+(t.give.length===1?" carta":" carte")+" · "+frLeft(t);const okk=trSpare(t.get);body='<div class="frcs"><em>Ti offre</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiede</em>'+frFaces(t.get)+"</div>"+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button></div>'}
+      else if(k==="sn"){sub=t.give.length+(t.give.length===1?" carta":" carte")+" · "+frLeft(t);body='<div class="frcs"><em>Offri</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiedi</em>'+frFaces(t.get)+'</div><div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div>'}
       else{const s2=t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata",gv=m?t.give:t.get,gt=m?t.get:t.give;sub=(m?"Inviata":"Ricevuta")+" · "+s2;
         body='<div class="frcs"><em>'+(ac?"Hai dato":m?"Offrivi":"Ti offriva")+"</em>"+frFaces(m?t.give:t.get)+'</div><div class="frcs"><em>'+(ac?"Hai ricevuto":m?"Chiedevi":"Chiedeva")+"</em>"+frFaces(m?t.get:t.give)+"</div>"}
-      return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':k==="rc"?'<em class="frpl go">Vedi</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
+      return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':k==="rc"?'<em class="frpl '+(op?"wt":"go")+'">Vedi</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
     const ok=cl.filter(t=>t.status==="accepted"),ot=cl.filter(t=>t.status!=="accepted"),cn=sn.length+fn.length;
     if(rc.length)h+='<div class="trl">Da rispondere ('+rc.length+")</div>"+rc.map(t=>row(t,"rc")).join("");
     if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Concludi</button></div>').join("")+sn.map(t=>row(t,"sn")).join("");
-    if(cl.length)h+='<div class="trl">Scambi completati</div>'+cl.map(t=>row(t,"cl")).join("");
+    if(cl.length)h+='<div class="trl">Scambi conclusi</div>'+cl.map(t=>row(t,"cl")).join("");
     if(!h)h='<div class="frem2">'+ENV+'<b>Nessuna proposta</b><span>Le proposte di scambio ricevute e inviate compaiono qui.</span></div>';
     return W("Posta","home",h)}
   return""}

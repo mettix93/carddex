@@ -1,3 +1,9 @@
+## v473 (PullTime)
+- Posta: segnalini e tasti delle righe (Vedi, Concludi, in attesa, completato…) tutti 96×36; sotto il nome «3 carte · scade tra 23 h 4 min»; «Vedi» diventa solo contorno quando la proposta è aperta (così risalta Accetta).
+- «Scambi completati» → «Scambi conclusi». In Scambia: «Scegli un amico».
+- Pallini e contatori sempre blu (mai rossi).
+- Striscia in alto: aggiunta una fascia fissa di 14px che ha sempre il colore della pagina (per iOS, nella carta aperta).
+
 ## v472 (PullTime)
 - Notifiche spostate in Impostazioni › Preferenze, in cima sopra «Effetti sonori», con lo stesso interruttore.
 

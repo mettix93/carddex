@@ -13,7 +13,7 @@ await p.evaluate(()=>document.querySelector('#frm').hidden=true);
 await p.evaluate(()=>{document.querySelector('#cvs').hidden=true;document.querySelector('#nvp button[data-t=s]').click()});await p.waitForTimeout(800);
 await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);
 await p.evaluate(()=>cvOpen());await p.waitForTimeout(400);await p.click('#cvs .cvtb button[data-m=f]');await p.waitForTimeout(1500);
-ok(await p.evaluate(()=>/Posta/.test(document.querySelector('#frm').innerText)&&/Scegli un membro/i.test(document.querySelector('#frm').innerText)&&!/Il tuo codice amico/.test(document.querySelector('#frm').innerText)),'Scambia: Posta e lista amici (la gestione è in Account)');
+ok(await p.evaluate(()=>/Posta/.test(document.querySelector('#frm').innerText)&&/Scegli un amico/i.test(document.querySelector('#frm').innerText)&&!/Il tuo codice amico/.test(document.querySelector('#frm').innerText)),'Scambia: Posta e lista amici (la gestione è in Account)');
 await p.click('#frm [data-a=cod]');await p.waitForTimeout(500);
 ok(await p.evaluate(()=>document.querySelector('#frm').hidden&&document.querySelector('#cvs').classList.contains('tr')&&document.querySelector('#cvs .cvtb button[data-m=f]').classList.contains('on')),'«Scambio con codice»: vecchia schermata, scheda Scambia evidenziata');
 await p.evaluate(()=>{document.querySelector('#cvs').hidden=true;document.querySelector('#nvp button[data-t=s]').click()});await p.waitForTimeout(800);await p.click('button[data-u=fr]');await p.waitForTimeout(1200);
