@@ -1,3 +1,6 @@
+## v464 (PullTime) · c26 (PullBinder)
+- Barra in basso (causa trovata dal video): il corpo dell'app è ancorato al fondo della finestra di iOS, che a volte risulta più alta dello schermo (barra tagliata sotto). Ora l'altezza è fissata a quella realmente visibile (minimo tra finestra, viewport visivo e schermo) e ricontrollata a ogni cambio di schermata, tocco e ogni secondo.
+
 ## v463 (PullTime)
 - Alone luminoso quando la carta entra nella tasca (album e Pokédex): non più un ovale ma una forma a carta, stessa dimensione.
 - Scambi: notifiche rapide (controllo ogni 4 secondi, a ogni ritorno nell'app e quando torna la rete). Pallino su Bustine nel menu, su Converti/Scambia in Bustine e in Posta, sia per una proposta ricevuta sia per una accettata dall'altro.
