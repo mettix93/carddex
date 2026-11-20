@@ -1,0 +1,12 @@
+const {chromium}=require('playwright');let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
+(async()=>{const b=await chromium.launch(),p=await(await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.route(/^https?:\/\/(?!localhost)/,r=>r.abort());
+await p.addInitScript(()=>{localStorage.setItem('carddex_env','app');sessionStorage.setItem('cdmode','g')});await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1500);
+await p.evaluate(()=>{aslOpen()});await p.waitForTimeout(500);await p.evaluate(()=>{aslGo("g")});await p.waitForTimeout(900);
+await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);PKAQ=[];[L[1],L[3],L[12]].forEach(s=>{s.o=1;s.q=1;PKAQ.push({k,id:s.id})});aqSave();cur=k;pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim0(k),50)});await p.waitForTimeout(1500);
+ok(await p.evaluate(()=>!!document.querySelector('#aqh')&&document.querySelector('#aqp').classList.contains('hint')),'suggerimento e saltello visibili');
+await p.screenshot({path:'/tmp/h1.png'});
+const c=await p.evaluate(()=>{const r=document.querySelector('#aqp .aqc').getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2]});
+await p.mouse.move(...c);await p.mouse.down();await p.waitForTimeout(400);
+ok(await p.evaluate(()=>!document.querySelector('#aqh')&&!document.querySelector('#aqp.hint')),'sparisce al primo contatto');
+await p.mouse.up();await p.waitForTimeout(800);
+ok(!errs.length,'nessun errore '+errs.join('|'));await b.close();process.exit(bad?1:0)})();

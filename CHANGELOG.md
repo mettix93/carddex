@@ -1,3 +1,7 @@
+## v481 (PullTime)
+- Album, carte nuove: toccando una carta del mazzetto va da sola nella sua tasca (l'album gira alla pagina giusta, poi la carta vola dentro con gli stessi effetti). Sotto ogni carta anche il numero di pagina («4/102 · p.1»).
+- Suggerimento: entrando nella modalità compare «Trascina ogni carta nel suo spazio / oppure toccala: va da sola» con freccia animata, e la prima carta fa un saltello verso il basso finché non la tocchi. Si vede le prime 5 volte, poi non più. Test: tests/aqtap.js, aqhint.js.
+
 ## v480 (PullTime)
 - Album, carte nuove da trascinare: mazzetto centrato tra titolo e pagine (numero dello slot sotto ogni carta); numerino anche sulle carte/tasche dell'album in questa modalità, e niente altri simboli (holo, preferiti, note, copie) finché finisci; poi tutto torna normale.
 - Carta afferrabile subito in qualsiasi direzione (se il mazzetto scorre, il trascinamento orizzontale lo scorre).

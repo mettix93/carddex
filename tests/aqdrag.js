@@ -17,7 +17,7 @@ ok(await p.evaluate(()=>document.querySelector('.slot[data-i="1"]').classList.co
 // drag next card to a wrong place -> returns
 const c1=await p.evaluate(()=>{const r=document.querySelector('#aqp .aqc').getBoundingClientRect();return[r.left+r.width/2,r.top+r.height/2,document.querySelector('#aqp .aqc').dataset.i]});
 const wrong=await p.evaluate(()=>{const e=document.querySelector('.slot[data-i="8"]').getBoundingClientRect();return[e.left+e.width/2,e.top+e.height/2]});
-await p.mouse.move(c1[0],c1[1]);await p.mouse.down();await p.waitForTimeout(250);await p.mouse.move(wrong[0],wrong[1],{steps:12});await p.waitForTimeout(150);
+await p.mouse.move(c1[0],c1[1]);await p.mouse.down();await p.waitForTimeout(250);await p.mouse.move(wrong[0],wrong[1],{steps:12});await p.waitForTimeout(350);
 ok(await p.evaluate(()=>!document.querySelector('.slot.aqt')),'slot sbagliato non evidenziato');
 await p.mouse.up();await p.waitForTimeout(700);
 ok(await p.evaluate(()=>PKAQ.length===4&&!document.querySelector('.aqg.aqf')&&document.querySelectorAll('#aqp .aqc').length===4&&getComputedStyle(document.querySelector('#aqp .aqc')).opacity==='1'),'carta tornata nel mazzetto');
