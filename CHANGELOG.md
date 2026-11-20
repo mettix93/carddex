@@ -1,3 +1,6 @@
+## v478 (PullTime)
+- Pokédex: suono della scansione in stile Pokédex/Game Boy (bip 8-bit crescenti) e barra luminosa più lenta (1,35 s).
+
 ## v477 (PullTime)
 - Pokédex: le carte nuove non entrano più in tasca ma si rivelano con una scansione: una barra di luce scende sulla carta nascosta e la scopre dall'alto verso il basso. Nuovo suono «scan» (sweep crescente) e poi campanello e luce finale come prima. Il salto con tocco funziona come sempre. L'album resta invariato.
 
