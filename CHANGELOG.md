@@ -1,3 +1,6 @@
+## v465 (PullTime)
+- Animazioni di ingresso delle carte nelle tasche (Album e Pokédex): si possono saltare toccando in un punto qualsiasi dello schermo. Le carte restano tutte inserite e si arriva subito alla pagina (Album) o alla posizione (Pokédex) dell'ultima inserita, senza altre animazioni. Durante l'animazione compare in basso a destra l'icona «salta».
+
 ## v464 (PullTime) · c26 (PullBinder)
 - Barra in basso (causa trovata dal video): il corpo dell'app è ancorato al fondo della finestra di iOS, che a volte risulta più alta dello schermo (barra tagliata sotto). Ora l'altezza è fissata a quella realmente visibile (minimo tra finestra, viewport visivo e schermo) e ricontrollata a ogni cambio di schermata, tocco e ogni secondo.
 
