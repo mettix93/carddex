@@ -1,3 +1,9 @@
+## v480 (PullTime)
+- Album, carte nuove da trascinare: mazzetto centrato tra titolo e pagine (numero dello slot sotto ogni carta); numerino anche sulle carte/tasche dell'album in questa modalità, e niente altri simboli (holo, preferiti, note, copie) finché finisci; poi tutto torna normale.
+- Carta afferrabile subito in qualsiasi direzione (se il mazzetto scorre, il trascinamento orizzontale lo scorre).
+- Atterraggio nello slot più lento (0,42 s) e preciso: tolto il «saltino» in giù (la carta in volo era sfalsata di 14 px per l'ancoraggio del corpo).
+- «Metti tutte» in forma di pillola come gli altri pulsanti; sfumatura ai bordi del mazzetto quando continua (niente più ultima carta tagliata a metà).
+
 ## v479 (PullTime)
 - Album: le carte nuove le metti tu. Toccando il pallino del set, al posto di set e strumenti compare in alto il mazzetto delle carte nuove (nell'ordine dell'album, con il numero dello slot). Tieni premuta o trascina una carta: suono di scivolamento come prima; ogni carta entra solo nel suo spazio (si illumina quando ne tocchi anche solo un pezzo). Rilasciandola dentro prende posto con luce, riflesso e campanello come prima; fuori, torna al mazzetto. Ai bordi dello schermo la pagina si gira. «Metti tutte» avvia l'animazione automatica di prima (saltabile con un tocco). Finite le carte tornano set e strumenti. Test: tests/aqdrag.js, aqdrag2.js.
 
