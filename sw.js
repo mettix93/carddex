@@ -21,3 +21,9 @@ self.addEventListener("message",e=>{if(!e.data||e.data.t!=="warm")return;e.waitU
   if(!stop){let miss=0;for(const u of L){if(!(await h.match(u))){miss++;break}}done=miss?0:1}
  }catch(_){}
   const cs=await self.clients.matchAll();cs.forEach(c=>c.postMessage({t:"warmed",n,tot,done}))})())});
+
+/* v471: notifiche push (PullTime) */
+self.addEventListener("push",e=>{let d={};try{d=e.data?e.data.json():{}}catch(_){}
+  e.waitUntil(self.registration.showNotification(d.title||"PullTime",{body:d.body||"",icon:"icon-192.png",badge:"icon-192.png",tag:d.tag||undefined,data:{url:d.url||"carddex-album.html"}}))});
+self.addEventListener("notificationclick",e=>{e.notification.close();const u=new URL((e.notification.data&&e.notification.data.url)||"carddex-album.html",self.registration.scope).href;
+  e.waitUntil(self.clients.matchAll({type:"window",includeUncontrolled:true}).then(cs=>{const c=cs.find(x=>x.url.startsWith(u.split("#")[0]))||cs[0];if(c&&c.focus)return c.focus();return self.clients.openWindow(u)}))});

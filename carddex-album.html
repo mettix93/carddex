@@ -1586,7 +1586,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v470";
+const APPV="v471";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3309,14 +3309,14 @@ function stTot(){let sl=0,st=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(!st
 function usrStats(){const o=stGet(),tt=stTot(),C=2*Math.PI*26.5,
   T=(n,t,tot,sub)=>{const f=tot?Math.max(0,Math.min(1,n/tot)):1;return '<div><b'+((tot?Math.max(String(n).length,String(tot).length)>3:String(n).length>3)?' class="sm"':'')+'><svg viewBox="0 0 56 56" aria-hidden="true"><circle class="tk" cx="28" cy="28" r="26.5"/><circle class="pg" cx="28" cy="28" r="26.5" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-f)).toFixed(1)+'"/></svg><i'+(tot?' class="fr"':'')+'>'+(tot?'<u>'+n+'</u><u class="t">'+tot+'</u>':n)+'</i></b><span>'+t+'</span></div>'};
   return '<div class="stg">'+T(o.p||0,"Bustine aperte")+T(o.c||0,"Carte ottenute")+T(stUniq(),"Carte scoperte",tt.sl)+T(stSets(),"Set completati",tt.st)+'</div>'}
-let USV="";
+let USV="",PNS="na";
 function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
   const av=n?esc(n[0].toUpperCase()):'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>';
   let sub,rows="";const R=(k,t)=>'<button class="row act" data-u="'+k+'">'+t+'</button>';
   if(c){sub=c.er?'Non salvato: '+esc(c.er)+' · riprovo da solo':!c.ack?'Salva il tuo codice di accesso, serve per ritrovare i dati':'Tutto salvato nel cloud';
     rows=R("co","Codice di accesso");
     if(USV==="code")rows+='<div class="row ucp"><b>'+esc(cuFmt(c.code||""))+'</b><button class="ucl" data-u="cp">Copia</button><button class="ucl" data-u="ok">L’ho salvato</button></div><div class="ucn">Conservalo: serve per ritrovare i tuoi dati se cambi telefono. Non darlo a nessuno.</div>';
-    rows+=R("hi","Cronologia e salvataggio")+R("ex","Esci")}
+    rows+=R("hi","Cronologia e salvataggio");if(PNS!=="na")rows+=R("pn","Notifiche: "+(PNS==="on"?"attive":"disattivate"));rows+=R("ex","Esci")}
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
     rows=R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
@@ -3332,6 +3332,7 @@ function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.quer
       else if(k==="co"){USV=USV==="code"?"":"code";cuUi()}
       else if(k==="cp"){const c=cuGet();try{await navigator.clipboard.writeText(cuFmt(c.code));c.ack=1;cuSet(c);toast("Codice copiato")}catch(x){toast("Tieni premuto sul codice per copiarlo")}}
       else if(k==="ok"){const c=cuGet();c.ack=1;cuSet(c);USV="";cuUi();toast("Perfetto, conservalo bene")}
+      else if(k==="pn"){busy(1);await pnToggle();busy(0);cuUi()}
       else if(k==="hi"){busy(1);await cuHist();busy(0)}
       else if(k==="ex"){confirmSheet("Uscendo, i dati restano su questo telefono ma non vengono più salvati nel cloud. Potrai rientrare con il tuo codice.",()=>{cuSet(null);USV="";cuUi();toast("Disconnesso")})}
     }catch(x){busy(0);toast(x.message||"Errore")}}}
@@ -3620,6 +3621,21 @@ async function gtClick(ev){const b=ev.target.closest("button[data-g]");if(!b)ret
   }catch(x){busy(0);toast(x.message||"Errore")}}
 setInterval(()=>{if(!gtOn()||document.hidden||!navigator.onLine||!cuGet())return;if(gtGet()!=="approved")gtCheck()},3000);
 setTimeout(()=>{try{gtDraw()}catch(e){}},300);
+
+/* ===== v471 notifiche push: proposte, scambi accettati, nuovi membri, nuove bustine a mezzanotte ===== */
+const PNK="BABTYmfkzZUtxkN2DMTZpPh_yO5Ldx-_lNCNq7Jw5IjFwqxQ1R6romCp-m9ythjNRlZRChjY1EjCJ6VAPQg9UYc";
+const pnOk=()=>"serviceWorker" in navigator&&"PushManager" in window&&"Notification" in window&&/^https?:/.test(location.protocol);
+const pnStd=()=>{try{return navigator.standalone===true||matchMedia("(display-mode: standalone)").matches}catch(e){return false}};
+const pnKey=k=>{const p="=".repeat((4-k.length%4)%4),b=atob((k+p).replace(/-/g,"+").replace(/_/g,"/"));return Uint8Array.from(b,c=>c.charCodeAt(0))};
+async function pnSync(sub){const u=await cuTok(),j=sub.toJSON();await sbReq("/rest/v1/push_subs?on_conflict=endpoint",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{endpoint:j.endpoint,user_id:u.uid,p256dh:j.keys.p256dh,auth:j.keys.auth}})}
+async function pnRefresh(){let st="na";try{if(pnOk()){st="off";if(Notification.permission==="granted"){const r=await navigator.serviceWorker.ready,sub=await r.pushManager.getSubscription();if(sub){st="on";pnSync(sub).catch(()=>{})}}}}catch(e){}if(st!==PNS){PNS=st;try{cuUi()}catch(e){}}}
+async function pnToggle(){if(!pnOk()){toast("Questo dispositivo non supporta le notifiche");return}
+  const r=await navigator.serviceWorker.ready;let sub=await r.pushManager.getSubscription();
+  if(PNS==="on"&&sub){try{const j=sub.toJSON();await sub.unsubscribe();await sbReq("/rest/v1/push_subs?endpoint=eq."+encodeURIComponent(j.endpoint),{m:"DELETE",h:{Prefer:"return=minimal"}})}catch(e){}PNS="off";toast("Notifiche disattivate");return}
+  if(!pnStd()){toast("Per le notifiche aggiungi prima PullTime alla schermata Home (Condividi › Aggiungi alla schermata Home)",1);return}
+  const perm=await Notification.requestPermission();if(perm!=="granted"){toast("Notifiche non consentite: puoi cambiarlo da Impostazioni di iPhone");return}
+  sub=sub||await r.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:pnKey(PNK)});await pnSync(sub);PNS="on";toast("Notifiche attive")}
+setTimeout(()=>{if(cuGet())pnRefresh()},4500);
 setTimeout(()=>{if(cuGet()){frPub();frLoad()}},3500);
 /* i pallini restano anche quando le barre vengono ridisegnate */
 {let fdT=0;try{new MutationObserver(()=>{if(fdT||!(FR.n>0||FR.nn>0))return;fdT=setTimeout(()=>{fdT=0;try{frDots(FR.n)}catch(e){}},200)}).observe(document.body,{childList:true,subtree:true})}catch(e){}}
