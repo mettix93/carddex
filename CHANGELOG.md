@@ -1,3 +1,6 @@
+## v472 (PullTime)
+- Notifiche spostate in Impostazioni › Preferenze, in cima sopra «Effetti sonori», con lo stesso interruttore.
+
 ## v471 (PullTime)
 - Notifiche push (iPhone con l'app in Home): proposta di scambio ricevuta, scambio accettato o rifiutato, nuova richiesta di ingresso (all'admin), nuovo membro nella community, nuove bustine a mezzanotte (ora italiana). Si attivano da Account › Notifiche.
 - Servono carddex-supabase-5.sql e la funzione supabase/push-function.ts (istruzioni nel README).

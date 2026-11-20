@@ -10,9 +10,9 @@ await p.addInitScript(()=>{sessionStorage.cdmode='g';localStorage.setItem('cardd
 await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1200);
 await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(600);await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1500);
 await p.evaluate(()=>pnRefresh());await p.waitForTimeout(500);
-ok(await p.evaluate(()=>/Notifiche: disattivate/.test(document.querySelector('#set').innerText)),'riga Notifiche: disattivate');
-await p.click('button[data-u=pn]');await p.waitForTimeout(800);
-ok(await p.evaluate(()=>/Notifiche: attive/.test(document.querySelector('#set').innerText)),'attivate');ok(rows.some(x=>/^POST .*abc/.test(x)),'iscrizione salvata');
-await p.click('button[data-u=pn]');await p.waitForTimeout(800);
-ok(await p.evaluate(()=>/Notifiche: disattivate/.test(document.querySelector('#set').innerText))&&rows.some(x=>/^DELETE/.test(x)),'disattivate e rimosse');
+ok(await p.evaluate(()=>/Notifiche/.test(document.querySelector('#set').innerText)&&document.querySelector('#set .sw[data-a=pn]').getAttribute('aria-checked')==='false'),'riga Notifiche: disattivate');
+await p.click('#set .sw[data-a=pn]');await p.waitForTimeout(800);
+ok(await p.evaluate(()=>document.querySelector('#set .sw[data-a=pn]').getAttribute('aria-checked')==='true'),'attivate');ok(rows.some(x=>/^POST .*abc/.test(x)),'iscrizione salvata');
+await p.click('#set .sw[data-a=pn]');await p.waitForTimeout(800);
+ok(await p.evaluate(()=>document.querySelector('#set .sw[data-a=pn]').getAttribute('aria-checked')==='false')&&rows.some(x=>/^DELETE/.test(x)),'disattivate e rimosse');
 ok(p.errs.length===0,'nessun errore JS '+p.errs.join('|'));console.log(bad?bad+' FALLITI':'TUTTO OK');await b.close()})();
