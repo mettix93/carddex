@@ -1,3 +1,6 @@
+## c32 (PullBinder)
+- Suono della barra luminosa nel Pokédex: mancava una funzione audio (sxC) nel codice di PullBinder, per questo restava muto. Ora c'è.
+
 ## c31 (PullBinder)
 - Lampo di luce della carta inserita che esce dalla pagina in tutte le direzioni; audio sbloccato a ogni tocco (suoni del Pokédex); se tolgo una carta dal raccoglitore sparisce anche il numerino sul Pokédex (se non ci sono altre carte di quel Pokémon).
 
