@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v487";
+const APPV="v488";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2697,14 +2697,20 @@ function aqpUp(e,cancel){const T=aqpT;if(!T||(e&&e.pointerId!==T.pid))return;cle
     fl.onfinish=()=>aqpLand(T,el,gh)}
   else{clearTimeout(T.tm);const r=T.c.getBoundingClientRect(),g0=gh.getBoundingClientRect();gh.style.transition="none";document.querySelectorAll(".slot.aqt").forEach(x=>x.classList.remove("aqt"));
     gh.animate([{left:(g0.left-T.bx)+"px",top:(g0.top-T.by)+"px",width:g0.width+"px",height:g0.height+"px"},{left:(r.left-T.bx)+"px",top:(r.top-T.by)+"px",width:r.width+"px",height:r.height+"px"}],{duration:300,easing:"cubic-bezier(.3,.6,.25,1)",fill:"forwards"}).onfinish=()=>{gh.remove();aqpT=null;aqpBusy=0};setTimeout(()=>{T.c.style.transition="opacity .18s";T.c.style.opacity=""},110);setTimeout(()=>{T.c.style.transition=""},500)}}
-function aqpLand(T,el,gh){el.classList.remove("aqt");const ent=PKAQ.find(x=>x.k===aqpK&&x.id===T.id);aqpFx(el,ent);gh.remove();aqpT=null;
+function aqpLand(T,el,gh){if(!aqpOn){gh.remove();aqpBusy=0;aqpT=null;return}el.classList.remove("aqt");const ent=PKAQ.find(x=>x.k===aqpK&&x.id===T.id);aqpFx(el,ent);gh.remove();aqpT=null;
   T.c.classList.add("out");setTimeout(()=>{T.c.remove();aqpBusy=0;if(!aqpList(aqpK).length){setTimeout(aqpOff,700)}else aqpDraw()},260)}
 let aqpAutoOn=0;
-function aqpAuto(){if(aqpAutoOn||!aqpOn)return;aqpAutoOn=1;aqpHint(0);const el=$("#aqp");if(el)el.classList.add("auto");
-  const stop=ev=>{if(ev.target.closest&&ev.target.closest("#nvp,.nvp,#tabs"))return;aqpAutoOn=0};document.addEventListener("pointerdown",stop,true);
-  const step=()=>{if(!aqpAutoOn||!aqpOn){aqpAutoOn=0;document.removeEventListener("pointerdown",stop,true);const e2=$("#aqp");if(e2)e2.classList.remove("auto");return}
+function aqpAuto(){if(aqpAutoOn||!aqpOn)return;aqpAutoOn=1;aqpHint(0);const el=$("#aqp");if(el)el.classList.add("auto");const icoOff=skIcon(),k=aqpK;
+  const cl=ev=>{ev.stopPropagation();ev.preventDefault()};
+  const end=()=>{aqpAutoOn=0;try{icoOff()}catch(x){}document.removeEventListener("pointerdown",stop,true);const e2=$("#aqp");if(e2)e2.classList.remove("auto")};
+  const stop=ev=>{if(ev.target.closest&&ev.target.closest("#nvp,.nvp,#tabs"))return;
+    const Q=aqpList(k),last=Q.length?Q[Q.length-1].i:-1;end();document.addEventListener("click",cl,true);setTimeout(()=>document.removeEventListener("click",cl,true),500);
+    document.querySelectorAll(".aqg").forEach(x=>x.remove());PKAQ=PKAQ.filter(e=>e.k!==k);aqSave();aqpOff();
+    const fin2=n=>{if((busy||aqpTurning)&&n<40){setTimeout(()=>fin2(n+1),80);return}try{if(last>=0){const lp=Math.floor(last/9),w=LS?Math.ceil(lp/2):lp;if(LS)sp=w;else pg=w}}catch(x){}try{render()}catch(x){}try{aqBadge()}catch(x){}};fin2(0)};
+  document.addEventListener("pointerdown",stop,true);
+  const step=()=>{if(!aqpAutoOn)return;if(!aqpOn){end();return}
     if(aqpBusy||aqpT||aqpTurning){setTimeout(step,80);return}
-    const c=document.querySelector("#aqp .aqc");if(!c){aqpAutoOn=0;step();return}
+    const c=document.querySelector("#aqp .aqc");if(!c){end();return}
     aqpTap({c,i:+c.dataset.i,id:c.dataset.id});setTimeout(step,900)};
   step()}
 function aqpTap(T){if(aqpBusy||aqpT)return;aqpBusy=1;aqpHint(0);const pgi=Math.floor(T.i/9),want=LS?Math.ceil(pgi/2):pgi;

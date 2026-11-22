@@ -1,0 +1,11 @@
+const {chromium}=require('playwright');let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
+(async()=>{const b=await chromium.launch(),p=await(await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.route(/^https?:\/\/(?!localhost)/,r=>r.abort());
+await p.addInitScript(()=>{localStorage.setItem('carddex_env','app');sessionStorage.setItem('cdmode','g')});await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1500);
+await p.evaluate(()=>{aslOpen()});await p.waitForTimeout(500);await p.evaluate(()=>{aslGo("g")});await p.waitForTimeout(900);
+await p.evaluate(()=>{const k=COLS[0].k,L=st[k].filter(s=>s.id);const picks=[L[2],L[12],L[30]];PKAQ=[];picks.forEach(s=>{s.o=1;s.q=1;PKAQ.push({k,id:s.id})});aqSave();cur=k;pg=0;sp=0;tabs();render();setTimeout(()=>aqAnim0(k),50)});await p.waitForTimeout(900);
+await p.click('#aqp .aqpa');await p.waitForTimeout(1500);
+ok(await p.evaluate(()=>!!document.querySelector('.sksp')),'icona salto visibile durante Auto');
+await p.mouse.click(200,300);await p.waitForTimeout(900);
+const r=await p.evaluate(()=>({q:PKAQ.length,on:aqpOn,ap:aqpAutoOn,pg,sk:!!document.querySelector('.sksp'),aq:!!document.querySelector('#aqp,.aqg')}));console.log(JSON.stringify(r));
+ok(r.q===0&&!r.on&&!r.ap&&!r.sk&&!r.aq,'tocco: tutte inserite, nessun residuo');ok(r.pg===3,'inquadra la pagina dell\'ultima carta inserita');
+ok(!errs.length,'nessun errore JS '+errs.join('|'));await b.close();process.exit(bad?1:0)})();

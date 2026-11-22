@@ -1,3 +1,6 @@
+## v488 (PullTime)
+- Tasto Auto: toccando lo schermo durante l'Auto (c'è l'icona di salto) tutte le carte rimaste entrano subito e si inquadra la pagina dell'ultima carta inserita. Test tests/aqskip.js.
+
 ## c30 (PullBinder)
 - Carta inserita col doppio tocco: luce dorata dietro, riflesso e suonino come in PullTime (al posto del vecchio suono). Se è un Pokémon nuovo per il Pokédex compare il numerino sull'icona Pokédex; al tocco partono le stesse animazioni di PullTime (barra di luce gialla che scopre il Pokémon, salto con tocco, ecc.). Nel trascinamento/riordino delle carte il cambio pagina dal bordo usa l'animazione della pagina che gira. Test tests/bn_new.js.
 
