@@ -30,7 +30,7 @@ await p.mouse.move(a.x,a.y);await p.mouse.down();await p.waitForTimeout(500);awa
 ok(await ids()===before,tag+': rilascio senza spostamento non cambia nulla');
 await p.evaluate(()=>{const s=document.querySelector('#sheet,.sheetx');});await p.mouse.click(200,40);await p.waitForTimeout(500);
 // cambio pagina dal bordo
-const pg0=await p.evaluate(()=>pg);await p.mouse.move(a.x,a.y);await p.mouse.down();await p.waitForTimeout(500);await p.mouse.move(398,a.y,{steps:6});await p.waitForTimeout(1000);
+const pg0=await p.evaluate(()=>pg);await p.mouse.move(a.x,a.y);await p.mouse.down();await p.waitForTimeout(500);await p.mouse.move(398,a.y,{steps:6});await p.waitForTimeout(1600);
 const pg1=await p.evaluate(()=>pg);ok(pg1===pg0+1,tag+': bordo destro cambia pagina ('+pg0+'→'+pg1+')');
 await p.mouse.move(200,300,{steps:5});
 const lineEdge=await p.evaluate(()=>{const l=document.getElementById('dgl');return !!l&&getComputedStyle(l).opacity==='1'});

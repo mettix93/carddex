@@ -1,3 +1,6 @@
+## c30 (PullBinder)
+- Carta inserita col doppio tocco: luce dorata dietro, riflesso e suonino come in PullTime (al posto del vecchio suono). Se è un Pokémon nuovo per il Pokédex compare il numerino sull'icona Pokédex; al tocco partono le stesse animazioni di PullTime (barra di luce gialla che scopre il Pokémon, salto con tocco, ecc.). Nel trascinamento/riordino delle carte il cambio pagina dal bordo usa l'animazione della pagina che gira. Test tests/bn_new.js.
+
 ## v487 (PullTime)
 - Bug Album → Pokédex: a volte nella barra del Pokédex comparivano le icone dei set finché non si cambiava pagina. Causa: un aggiornamento ritardato della barra dell'album sovrascriveva quella del Pokédex; ora nel Pokédex la barra resta sempre quella del Pokédex.
 
