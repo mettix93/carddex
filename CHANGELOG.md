@@ -1,3 +1,6 @@
+## v490 (PullTime)
+- Il tasto «Missioni» spariva quando non c'erano bustine da aprire (schermata «Nuove bustine tra…»): ora resta sempre visibile e cliccabile. Test tests/pkms_none.js (fallisce senza la correzione).
+
 ## c33 (PullBinder)
 - Passando da una carta aperta all'altra la fascia in alto ora segue il colore dello sfondo di ogni carta (restava quello della prima): mancava l'osservatore del visualizzatore. Test tests/bn_top.js (fallisce senza la correzione).
 
