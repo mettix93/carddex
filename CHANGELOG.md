@@ -1,3 +1,9 @@
+## c31 (PullBinder)
+- Lampo di luce della carta inserita che esce dalla pagina in tutte le direzioni; audio sbloccato a ogni tocco (suoni del Pokédex); se tolgo una carta dal raccoglitore sparisce anche il numerino sul Pokédex (se non ci sono altre carte di quel Pokémon).
+
+## v489 (PullTime)
+- Lampo di luce della carta inserita: ora esce dalla pagina del raccoglitore in tutte le direzioni (prima in basso/in alto si fermava al bordo della pagina). Audio: sblocco a ogni tocco, così i suoni non restano muti.
+
 ## v488 (PullTime)
 - Tasto Auto: toccando lo schermo durante l'Auto (c'è l'icona di salto) tutte le carte rimaste entrano subito e si inquadra la pagina dell'ultima carta inserita. Test tests/aqskip.js.
 
