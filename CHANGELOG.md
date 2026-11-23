@@ -1,3 +1,12 @@
+## v503
+- Missioni: bordino blu sulle missioni da riscattare.
+- Rivelazione carta segreta: tolto il primo "bip"; la carta continua a tremare a serie con pause finché non la giri col dito (scritta guida); un tap non salta più la rivelazione.
+- Rivelazione: sfondo del velo opaco (la pagina Missioni non traspare più) e fascia alta che sfuma dal nero al colore della carta in sincrono con la dissolvenza.
+- Pop-up "Missione completata": la sagoma della carta misteriosa ha di nuovo gli angoli corretti.
+- Collezionista e L’incantesimo degli Unown: il contatore mostra il set più avanzato ("Base · 30 / 102").
+- Community: tu compari in cima ai Membri con "(Tu)" in grigio, non espandibile.
+- Bustine: tic sonoro girando il carosello (prova, variante A; B e C pronte in PKTICK).
+
 ## v502
 - Lucky Pack: sfondo argento più brillante (centro bianco, bordi argento chiaro) e fascia alta in tinta, stesso colore usato da meta/html.
 
