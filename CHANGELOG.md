@@ -1,3 +1,6 @@
+## v506
+- Converti: accanto al numero di doppie di ogni set, tra parentesi, il valore complessivo in Pokédollari con la monetina attaccata al numero e della sua stessa altezza.
+
 ## v505
 - Tic bustine: scelta la variante C (bolla, nota che scende).
 
