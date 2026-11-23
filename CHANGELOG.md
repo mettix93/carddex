@@ -1,3 +1,6 @@
+## v511
+- Promo holo: la cornice diventa un "led" nascosto dietro il contorno della carta: si vede solo la luce che si irradia dai bordi (alone esterno + leggero chiarore sul bordo interno), niente linea; resta come bagliore tenue.
+
 ## v510
 - Bustine: il tic del carosello non suona più cambiando set o tornando alla prima bustina da codice, solo quando muovi tu le bustine.
 
