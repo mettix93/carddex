@@ -1,3 +1,6 @@
+## v515
+- Album Promo completo: 55 carte (Mew antico + Promo 1–54), aggiunte Promo 54 (Articuno, Moltres e Zapdos, jumbo con la tua immagine) e missione 54 riattivata.
+
 ## v514
 - Effetto luce promo: ora su TUTTE le carte promo (holo e non holo), anche nella rivelazione da missione.
 - Alone uniforme: tolta l ombra nera che la carta proiettava sotto (12px in giù) e che deformava l alone in basso in un ovale; finché l effetto è attivo la luce ha la stessa forma su tutti i lati.
