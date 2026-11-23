@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v520";
+const APPV="v521";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2541,7 +2541,7 @@ function openCard(i,na){if(na){const w0=document.getElementById("vw");if(w0){w0.
   $("#vh").innerHTML=(c.kd==="p"&&c.dex?"#"+pad(c.dex)+" ":"")+nmH(c.name);
   setVs(c);rarGet(c);
   window.__vc=c;$("#vn").textContent=s.n||"";$("#vd").textContent=dtl(s).join(" · ");$("#fr").innerHTML=face(c,1);$("#fr").style.background=c.sid==="S"?"url(\""+tpu(toppsU(c,0))+"\") center/100% 100% no-repeat":"";
-  curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("trh",TRH(c));card.querySelector(".ft .gl").classList.toggle("trg",TRH(c));const ev=!!(c.h&&c.kd==="p"&&!c.full&&!c.hz&&EVO.has(c.dex));hl.classList.toggle("evo",ev);card.classList.toggle("evoc",ev);hl.classList.toggle("neo","GDVT".includes(c.sid));curEX=c.h?exOf(c):null;card.classList.toggle("exc",!!curEX);if(c.hz){hl.classList.remove("evo");card.classList.remove("evoc");card.classList.add("exc");card.style.setProperty("--hm",HZM);card.style.setProperty("--gm",HZM)}else if(curEX){hl.classList.remove("evo");card.classList.remove("evoc");card.style.setProperty("--hm",exMask(curEX,0));card.style.setProperty("--gm",exMask(curEX,1))}else{card.style.removeProperty("--hm");card.style.removeProperty("--gm")}const cdl=na?240:(!$("#vw").hidden?0:330);cry(c,cdl);{const vc=c;setTimeout(()=>{if(window.__vc===vc)vwFx(vc)},cdl+40)}applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",c.sid==="S"?"#4a5062":cardCol(c));vw.style.setProperty("--tx","none");vw.style.setProperty("--tu","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
+  curH=!!c.h;card.classList.toggle("tpc",c.sid==="S");card.classList.toggle("hol",!!c.h);card.classList.toggle("ntc","GDVT".includes(c.sid));card.classList.toggle("hfull",!!(c.h&&c.full));hl.classList.toggle("full",!!c.full);hl.classList.toggle("trh",TRH(c));card.querySelector(".ft .gl").classList.toggle("trg",TRH(c));const ev=!!(c.h&&c.kd==="p"&&!c.full&&!c.hz&&EVO.has(c.dex));hl.classList.toggle("evo",ev);card.classList.toggle("evoc",ev);hl.classList.toggle("neo","GDVT".includes(c.sid));curEX=c.h?exOf(c):null;card.classList.toggle("exc",!!curEX);if(c.hz){hl.classList.remove("evo");card.classList.remove("evoc");card.classList.add("exc");card.style.setProperty("--hm",HZM);card.style.setProperty("--gm",HZM)}else if(curEX){hl.classList.remove("evo");card.classList.remove("evoc");card.style.setProperty("--hm",exMask(curEX,0));card.style.setProperty("--gm",exMask(curEX,1))}else{card.style.removeProperty("--hm");card.style.removeProperty("--gm")}vwFxClr();const cdl=na?240:(!$("#vw").hidden?0:330);cry(c,cdl);{const vc=c;setTimeout(()=>{if(window.__vc===vc)vwFx(vc)},cdl+40)}applyBack(c);ry=rx=0;card.style.transition="";ap();const vw=$("#vw");vw.style.setProperty("--cc",c.sid==="S"?"#4a5062":cardCol(c));vw.style.setProperty("--tx","none");vw.style.setProperty("--tu","none");if(c.sid==="S")toppsSample(c);vw.classList.toggle("holo",!!c.h);const was=vw.hidden;vw.hidden=false;
   if(!na&&was){try{stg.animate([{transform:"scale(.82) translateY(30px)",opacity:0},{transform:"none",opacity:1}],{duration:320,easing:"cubic-bezier(.2,.9,.25,1.05)"});vw.animate([{opacity:0},{opacity:1}],{duration:220})}catch(e){}}}
 /* spessore reale della carta aperta (bordi in percentuale, seguono la dimensione) */
 (()=>{const R=.028,H=88/63,D=Math.PI/180;let o="";
@@ -2882,7 +2882,7 @@ const MSB=(()=>{
 const mk=(num,ph,t,d,n,N,o)=>Object.assign({id:"m"+num,num,ph,t,d,n,N,r:num?"Q"+num:"X1",sec:1},o||{});
 const ok1="aggiunto all’album Promo";
 const tr1=dx=>()=>((msSt().trd||{})[dx]?1:0);
-const lead=(L)=>()=>L.reduce((a,r)=>a+Math.min(3,msD(msRe(r))),0);
+const lead=(L)=>()=>L.reduce((a,r)=>a+Math.min(5,msD(c=>c.kd==="p"&&msRe(r)(c))),0);
 const L=[
 mk(0,1,"Un Pokémon misterioso","Completa il Pokédex di Kanto: registra tutti i 150 Pokémon.",msKanto,()=>150,{id:"mew",ok:"Mew Antico aggiunto: lo trovi nel Pokédex e nell’album Promo"}),
 mk(1,1,"Mascotte","Ottieni 25 carte Pikachu, di qualunque set.",()=>msN(c=>c.kd==="p"&&c.dex===25),()=>25),
@@ -2925,8 +2925,8 @@ mk(37,3,"Maestro del dojo karate","Registra Hitmonchan, Hitmonlee, Tyrogue e Hit
 mk(38,3,"Un alfabeto antico","Completa l’alfabeto Unown: tutte le lettere disponibili.",()=>msUw().n,()=>msUw().N),
 mk(39,3,"Pokémon dall’oltretomba","Completa tutte le carte dei Pokémon spettro di prima generazione.",()=>msE(["B","J","F","R","Y","Z"],c=>c.kd==="p"&&[92,93,94].includes(c.dex)).n,()=>msE(["B","J","F","R","Y","Z"],c=>c.kd==="p"&&[92,93,94].includes(c.dex)).N),
 mk(40,2,"Pokémon Center","Completa 50 carte Addestramento diverse.",()=>Math.min(50,msD(c=>c.kd==="t")),()=>50),
-mk(41,2,"Arena degli eroi","Completa 3 carte ciascuno di Brock, Misty, Lt. Surge ed Erika.",lead([/Brock/,/Misty/,/Lt\. Surge/,/Erika/]),()=>12),
-mk(42,2,"Torre delle sfide","Completa 3 carte ciascuno di Koga, Sabrina, Blaine e Giovanni.",lead([/Koga/,/Sabrina/,/Blaine/,/Giovanni/]),()=>12),
+mk(41,2,"Arena degli eroi","Completa 5 carte Pokémon ciascuno di Brock, Misty, Lt. Surge ed Erika.",lead([/Brock/,/Misty/,/Lt\. Surge/,/Erika/]),()=>20),
+mk(42,2,"Torre delle sfide","Completa 5 carte Pokémon ciascuno di Koga, Sabrina, Blaine e Giovanni.",lead([/Koga/,/Sabrina/,/Blaine/,/Giovanni/]),()=>20),
 mk(43,2,"Evoluzione tramite scambio","Dai o ricevi un Machoke qualunque tramite scambio.",tr1(67),()=>1),
 mk(44,2,"Scambio a tre #1","Dai o ricevi un Electabuzz qualunque tramite scambio.",tr1(125),()=>1),
 mk(45,2,"Scambio a tre #2","Dai o ricevi un Magmar qualunque tramite scambio.",tr1(126),()=>1),
@@ -3375,16 +3375,18 @@ function pkHoloWow(d,tg){try{
     x.animate([{opacity:0,transform:`translate(${Math.cos(a)*r0}px,${Math.sin(a)*r0}px) scale(.2)`},{opacity:1,offset:.25,transform:`translate(${Math.cos(a)*r1*.55}px,${Math.sin(a)*r1*.55}px) scale(${sc})`},{opacity:0,transform:`translate(${Math.cos(a)*r1}px,${Math.sin(a)*r1+g}px) scale(.15)`}],{duration:900+Math.random()*900,delay:Math.random()*260,easing:"cubic-bezier(.2,.7,.3,1)",fill:"backwards"}).onfinish=()=>x.remove()}
   const pc=tg||pkCur;if(pc)pc.animate([{transform:"scale(1)"},{transform:"scale(1.07)",offset:.3},{transform:"scale(1)"}],{duration:650,easing:"ease-out"})}catch(e){}}
 /* v509/v511: promo holo, effetto in più all'apertura: "led" nascosto dietro il contorno (solo la luce irradiata dai bordi, niente linea) + seconda scia di luce dorata */
-function promoFx(ft,d1,d2,host,bk){try{if(!ft)return;host=host||ft;
-  setTimeout(()=>{try{if(!ft.isConnected)return;
+let PFXT=0;
+function vwFxClr(){PFXT++;document.querySelectorAll("#vw .vwfx").forEach(e=>e.remove());try{document.querySelectorAll("#card .pkpf,#card .pkhs").forEach(e=>e.remove());const k=document.getElementById("card");if(k)k.classList.remove("pkpm")}catch(e){}}
+function promoFx(ft,d1,d2,host,bk){try{if(!ft)return;host=host||ft;const tk=PFXT;
+  setTimeout(()=>{try{if(!ft.isConnected||tk!==PFXT)return;
     /* solo opacità/transform (compositor): niente ridisegno dell'ombra a ogni frame, quindi il respiro è fluido */
     const mk=(par,css,bf)=>{const e=document.createElement("div");e.className="vwfx pkpf";e.style.cssText="position:absolute;inset:0;border-radius:inherit;pointer-events:none;will-change:opacity,transform;"+css;if(bf){e.style.backfaceVisibility="visible";e.style.webkitBackfaceVisibility="visible"}par.appendChild(e);return e};
     const br=(e,sc)=>{try{e.animate([{opacity:0,transform:"scale("+sc+")"},{opacity:1,transform:"scale(1)"}],{duration:1100,easing:"cubic-bezier(.2,.7,.3,1)",fill:"forwards"}).onfinish=()=>{try{e.animate([{opacity:1},{opacity:.45}],{duration:2600,direction:"alternate",iterations:Infinity,easing:"ease-in-out"})}catch(x){}}}catch(x){}};
     host.classList.add("pkpm");const gl=mk(host,"z-index:-1;box-shadow:0 0 26px 8px rgba(255,205,60,.95),0 0 76px 24px rgba(255,190,30,.5)",1);br(gl,.88);
     const IN="z-index:3;box-shadow:inset 0 0 22px 4px rgba(255,214,10,.55)";br(mk(ft,IN),1);if(bk)br(mk(bk,IN),1)}catch(e){}},d1);
-  setTimeout(()=>{try{if(!ft.isConnected)return;const hs=document.createElement("div");hs.className="pkhs vwfx";hs.style.cssText="inset:0;border-radius:inherit;z-index:3";hs.innerHTML="<i></i>";hs.firstChild.style.background="linear-gradient(90deg,rgba(255,214,10,0) 0,rgba(255,214,10,.28) 30%,rgba(255,240,170,.62) 50%,rgba(255,214,10,.28) 70%,rgba(255,214,10,0) 100%)";ft.appendChild(hs);
+  setTimeout(()=>{try{if(!ft.isConnected||tk!==PFXT)return;const hs=document.createElement("div");hs.className="pkhs vwfx";hs.style.cssText="inset:0;border-radius:inherit;z-index:3";hs.innerHTML="<i></i>";hs.firstChild.style.background="linear-gradient(90deg,rgba(255,214,10,0) 0,rgba(255,214,10,.28) 30%,rgba(255,240,170,.62) 50%,rgba(255,214,10,.28) 70%,rgba(255,214,10,0) 100%)";ft.appendChild(hs);
     hs.firstChild.animate([{transform:"translateX(-110%) skewX(-16deg)"},{transform:"translateX(150%) skewX(-16deg)"}],{duration:1500,easing:"ease-in-out",fill:"forwards"});setTimeout(()=>hs.remove(),1550)}catch(e){}},d2)}catch(e){}}
-function vwFx(c){document.querySelectorAll("#vw .vwfx").forEach(e=>e.remove());try{const k=document.getElementById("card");if(k)k.classList.remove("pkpm")}catch(e){}const vw=$("#vw"),cd=$("#card");if(!vw||vw.hidden||!cd||!c)return;
+function vwFx(c){vwFxClr();const vw=$("#vw"),cd=$("#card");if(!vw||vw.hidden||!cd||!c)return;
   const hol=!!c.h,rr=!hol&&rarKind(((rdOf(c)||{}).r?RNAME[rdOf(c).r]:RARC[c.id]))==="r";if(msPr(c))promoFx(cd.querySelector(".ft")||cd,FXH-150,FXH+1050,cd,cd.querySelector(".bk"));if(!hol&&!rr)return;
   const r=cd.getBoundingClientRect(),w=document.createElement("div");w.className="vwfx";w.style.cssText="position:fixed;z-index:2;pointer-events:none;width:0;height:0;margin-top:-17px;left:"+(r.left+r.width/2)+"px;top:"+(r.top+r.height/2)+"px";vw.appendChild(w);
   try{if(hol){pkHoloWow(w,cd);const h=document.createElement("div");h.className="pkhalo";h.style.top="17px";h.style.left="0";w.insertBefore(h,w.firstChild);
@@ -3975,7 +3977,7 @@ function dxData(){const eP=s=>{const c=CARDS[s.id];if(!c)return null;if(c.opts)r
   return{own,sets,all,rk}}
 function dxName(d,all){const L=all[d];if(L&&L.length)return L[0].name.replace(/ ex$/i,"").replace(/ \[.\]$/,"");return d<=151?DEXN[d-1]:d<=251?DEXG2[d-152]:DEXG3[d-252]}
 function dxScope(D,d){const S=DXS;const o=S==="t"?[...(D.own.c[d]||[]),...(D.own.g[d]||[])]:(D.own[S][d]||[]);o.sort((a,b)=>D.rk(a.c,b.c));
-  const cand=(D.all[d]||[]).filter(c=>S==="t"?(D.sets.c.has(c.sid)||D.sets.g.has(c.sid)):D.sets[S].has(c.sid));return{o,cand}}
+  const cand=(D.all[d]||[]).filter(c=>(S==="t"?(D.sets.c.has(c.sid)||D.sets.g.has(c.sid)):D.sets[S].has(c.sid))&&!pkLkS(c.sid));return{o,cand}}
 let DXPF={};try{DXPF=JSON.parse(localStorage.getItem(GK("carddex_dxp")))||{}}catch(e){}
 let DXQ="",DXE=[],DXLT={d:0,t:0},DXP=null,DXTM=0;
 function dxMatch(D,d,gs){const {o,cand}=dxScope(D,d),cards=[...cand];o.forEach(x=>{if(!cards.some(c=>c.id===x.c.id))cards.push(x.c)});

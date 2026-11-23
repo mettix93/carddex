@@ -1,3 +1,8 @@
+## v521
+- Missioni 41 «Arena degli eroi» e 42 «Torre delle sfide»: ora 5 carte Pokémon per ciascun capopalestra (obiettivo 20), contano solo le carte Pokémon (niente Allenatore/Energia). Aggiornato anche il documento «Missioni promo PullTime».
+- Pokédex: le miniature delle alternative della stessa carta mostrano solo i set giocabili (set bloccati o non pubblicati restano nascosti finché non si sbloccano).
+- Fix: cambiando carta in modalità aperta (da una promo a un'altra carta) l'alone promo non compare più per un istante sulla carta nuova; i timer dell'alone della carta precedente vengono annullati.
+
 ## v520
 - Pop-up di sblocco: «Più tardi» al posto di «Non ora»; bustine e carte misteriose sovrapposte a ventaglio ma allineate (solo le esterne inclinate), stessa grandezza e spaziatura nei due pop-up; titolo «Missioni sbloccate!» e testo «X nuove missioni ti aspettano».
 - Rivelazione carta missione: il fascio di luce dietro continua a ruotare finché non giri la carta; la carta ruota nel verso del dito; angoli arrotondati anche durante e dopo il giro (raggio circolare + clip Safari).
