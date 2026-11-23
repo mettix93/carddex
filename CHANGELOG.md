@@ -1,3 +1,7 @@
+## v520
+- Pop-up di sblocco: «Più tardi» al posto di «Non ora»; bustine e carte misteriose sovrapposte a ventaglio ma allineate (solo le esterne inclinate), stessa grandezza e spaziatura nei due pop-up; titolo «Missioni sbloccate!» e testo «X nuove missioni ti aspettano».
+- Rivelazione carta missione: il fascio di luce dietro continua a ruotare finché non giri la carta; la carta ruota nel verso del dito; angoli arrotondati anche durante e dopo il giro (raggio circolare + clip Safari).
+
 ## v519
 - Pagine Offri/Chiedi della proposta di scambio: titolo «Doppie totali» in cima con il numero; i set singoli senza numero.
 

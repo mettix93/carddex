@@ -17,11 +17,12 @@ ok(await p.evaluate(()=>!!document.querySelector('.msrv')),'tap non salta la riv
 // continua a tremare dopo un po' (serie con pause)
 let shakes=0;for(let i=0;i<14;i++){await p.waitForTimeout(250);const a=await p.evaluate(()=>document.querySelector('.msrv .mrw').getAnimations().length);if(a>0)shakes++}
 ok(shakes>3&&shakes<14,'trema a serie con pause ('+shakes+'/14 campioni con animazione)');
+ok(await p.evaluate(()=>{const i=document.querySelector('.msrv .mry img');return !!i&&i.getAnimations().some(a=>a.effect.getComputedTiming().iterations===Infinity&&a.playState==='running')}),'il fascio di luce continua a girare dopo 6 s (animazione infinita)');
 // trascino col dito
 await p.mouse.move(120,430);await p.mouse.down();for(let x=120;x<=300;x+=15){await p.mouse.move(x,430);await p.waitForTimeout(16)}
 const mid=await p.evaluate(()=>document.querySelector('.msrv .mrw').style.transform);
 await p.mouse.up();
-ok(/rotateY/.test(mid),'la carta ruota col dito: '+mid);
+ok(/rotateY\((2[0-9]\d|3\d\d)/.test(mid),'trascinando a destra l\'angolo cresce oltre 180° (verso del dito): '+mid);
 const cols=[];for(let i=0;i<30;i++){await p.waitForTimeout(100);cols.push(await p.evaluate(()=>({o:!!document.querySelector('.msrv'),h:getComputedStyle(document.documentElement).backgroundColor,vw:!document.getElementById('vw').hidden})))}
 console.log(JSON.stringify(cols.filter((_,i)=>i%3===0).map(c=>c.h+(c.o?'*':'')+(c.vw?'v':''))));
 ok(await p.evaluate(()=>!document.querySelector('.msrv')),'overlay rimosso dopo la rivelazione');

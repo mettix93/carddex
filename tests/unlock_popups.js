@@ -12,14 +12,14 @@ r=await p.evaluate(()=>{const ids=[...PKIDS[0]||new Set(Object.values(CARDS).fil
   PKBLK[0].forEach(sid=>{const L=st["g"+sid];let n=0;const tot=L.filter(x=>x.id).length;L.forEach(x=>{if(x.id&&n<tot){x.o=1;n++}})});save();ulCheck();return {ph:relPh(),ms:msAll().length,lk:pkLk("R"),U:JSON.stringify(ulGet())}});
 console.log(JSON.stringify(r));ok(r.ph===2&&r.ms===37&&r.lk===0,'Dopo 80%: sbloccati Rocket+Gym, fase 2 (37 missioni)');
 await p.evaluate(()=>{msPop=0;msCheck()});await p.waitForTimeout(900);
-let t=await p.evaluate(()=>{const e=document.getElementById("trm");return e&&!e.hidden?e.querySelector(".trt").textContent+"|"+e.querySelector(".trn").textContent+"|"+e.querySelectorAll(".ulp img").length:""});
+let t=await p.evaluate(()=>{const e=document.getElementById("trm");return e&&!e.hidden?e.querySelector(".trt").textContent+"|"+e.querySelector(".trn").textContent+"|"+e.querySelectorAll(".ulf img").length:""});
 console.log(t);ok(/Nuovi set sbloccati!\|Team Rocket, Gym Heroes e Gym Challenge\|3/.test(t),'Pop-up 1: set sbloccati con 3 bustine');
 await p.screenshot({path:'/tmp/ul1.png'});
-await p.evaluate(()=>[...document.querySelectorAll("#trm .trbtn")].find(x=>x.textContent==="Non ora").click());await p.waitForTimeout(1000);
-t=await p.evaluate(()=>{const e=document.getElementById("trm");return e&&!e.hidden?e.querySelector(".trt").textContent+"|"+e.querySelector(".trn").textContent+"|"+e.querySelectorAll(".ulm .msmy").length:""});
-console.log(t);ok(/Nuove missioni sbloccate!\|18 nuove missioni.*\|3/.test(t),'Pop-up 2: missioni, 3 carte misteriose');
+await p.evaluate(()=>[...document.querySelectorAll("#trm .trbtn")].find(x=>x.textContent==="Più tardi").click());await p.waitForTimeout(1000);
+t=await p.evaluate(()=>{const e=document.getElementById("trm");return e&&!e.hidden?e.querySelector(".trt").textContent+"|"+e.querySelector(".trn").textContent+"|"+e.querySelectorAll(".ulf .msmy").length:""});
+console.log(t);ok(/Missioni sbloccate!\|18 nuove missioni ti aspettano\|3/.test(t),'Pop-up 2: missioni, 3 carte misteriose');
 await p.screenshot({path:'/tmp/ul2.png'});
-await p.evaluate(()=>[...document.querySelectorAll("#trm .trbtn")].find(x=>x.textContent==="Non ora").click());await p.waitForTimeout(700);
+await p.evaluate(()=>[...document.querySelectorAll("#trm .trbtn")].find(x=>x.textContent==="Più tardi").click());await p.waitForTimeout(700);
 r=await p.evaluate(()=>({pend:ulPend(),U:ulGet()[1],pop:msPop}));console.log(JSON.stringify(r));ok(!r.pend&&r.U.s===1&&r.U.m===1&&!r.pop,'Pop-up visti: non si ripetono');
 // persistenza dopo ricarica
 await p.reload();await p.waitForTimeout(1500);r=await p.evaluate(()=>({ph:relPh(),pend:ulPend()}));ok(r.ph===2&&!r.pend,'Dopo ricarica: fase 2 resta, nessun pop-up');
@@ -36,7 +36,7 @@ r=await p.evaluate(()=>({ms:msAll().length,gQ:st.gQ.length}));console.log(JSON.s
 await p.evaluate(()=>{msBuild()});await p.waitForTimeout(500);
 ok(await p.evaluate(()=>document.querySelectorAll(".msdvb button").length===2),'Dev: due bottoni di prova pop-up');
 await p.evaluate(()=>document.querySelector('.msdvb button[data-u="1"]').click());await p.waitForTimeout(800);await p.screenshot({path:'/tmp/ul_dev.png'});
-ok(await p.evaluate(()=>document.querySelectorAll("#trm .ulp img").length===3),'Dev: pop-up di prova mostra 3 bustine');
+ok(await p.evaluate(()=>document.querySelectorAll("#trm .ulf img").length===3),'Dev: pop-up di prova mostra 3 bustine');
 ok(!p.errs.length,'Dev: nessun errore JS '+p.errs.join('|'));await p.close();
 // 5) album Promo: salvataggio vecchio (49 + carta di prova in mezzo) -> 55 slot, prova in fondo
 const old={gQ:[{id:"X1",o:1,n:""},...Array.from({length:49},(_,i)=>({id:"Q"+(i+1),o:i===4?1:0,n:""})).slice(0,20),{id:"XT",o:1,n:""},...Array.from({length:49},(_,i)=>({id:"Q"+(i+1),o:0,n:""})).slice(20)]};
