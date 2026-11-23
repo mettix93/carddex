@@ -1,6 +1,3 @@
-## v494
-- Barra in basso nella scheda Bustine: l'altezza ora si riallinea da sola ogni 1,5 s (prima poteva restare più bassa di circa 19 px dopo uno spostamento della finestra o un cambio di area sicura)
-
 ## v493
 - Solo Dev: nuova missione di prova 3 con Charizard holo del Set Base (carta segreta). Si completa toccando 3 volte la scheda Pokédex da qualsiasi schermata: compare il pop-up «Missione completata» con numerino blu su Missioni e pallino blu su Bustine; si riscatta con l'animazione della carta segreta
 
