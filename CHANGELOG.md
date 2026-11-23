@@ -1,3 +1,9 @@
+## v523
+- Fix: i contatori delle missioni sui set non ancora pubblicati (Neo, Unown) ora mostrano il totale reale anche in App, senza progressi falsi.
+
+## v522
+- Android: tasto/gesto Indietro chiude popup e schermate (poi torna ad Album, poi «Premi ancora per uscire»); colore barra di stato che segue il tema; blocco del menu su pressione lunga; test in emulazione Pixel 7 e 360x640 senza errori né overflow.
+
 ## v521
 - Missioni 41 «Arena degli eroi» e 42 «Torre delle sfide»: ora 5 carte Pokémon per ciascun capopalestra (obiettivo 20), contano solo le carte Pokémon (niente Allenatore/Energia). Aggiornato anche il documento «Missioni promo PullTime».
 - Pokédex: le miniature delle alternative della stessa carta mostrano solo i set giocabili (set bloccati o non pubblicati restano nascosti finché non si sbloccano).

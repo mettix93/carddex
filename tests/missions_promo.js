@@ -33,7 +33,7 @@ await p.evaluate(()=>{const t=document.getElementById('trm');if(t)t.hidden=true}
 const NB=await p.evaluate(()=>({acc:!!cuGet(),sel:!!document.querySelector('#ubdd')}));ok(!NB.acc&&NB.sel,'senza compleanno l\'account non si crea');
 // fasi 2 e 3: visibili solo in Dev, bloccate in App
 const DV=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),q=await DV.newPage();await q.route(/^https?:\/\/(?!localhost)/,r=>r.abort());await q.addInitScript(()=>{localStorage.setItem('carddex_env','dev')});await q.goto('http://localhost:8765/carddex-album.html');await q.waitForTimeout(2200);
-const dv=await q.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(dv.n===54&&dv.ph==='1,2,3','Dev: tutte le fasi visibili ('+JSON.stringify(dv)+')');
+const dv=await q.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(dv.n===55&&dv.ph==='1,2,3','Dev: tutte le fasi visibili ('+JSON.stringify(dv)+')');
 const ap=await p.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(ap.n===19&&ap.ph==='1','App: solo Fase 1 ('+JSON.stringify(ap)+')');
 // missione di prova 3 (Dev): 3 tocchi sulla scheda Pokédex da fuori Missioni -> pop-up + indicatori blu
 for(let i=0;i<3;i++){await q.evaluate(()=>{const bt=document.querySelector('.nvp button[data-t="d"]');bt.click()});await q.waitForTimeout(500)}

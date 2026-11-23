@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v521";
+const APPV="v523";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2869,13 +2869,15 @@ const msPr=c=>c.sid==="Q"||c.sid==="X";
 const msTy=c=>{if(!c||c.kd!=="p")return"";const o=rdOf(c);return(o&&o.t)||(c.dex?TYP[c.dex-1]||"":"")};
 const msN=(f,pr)=>msOwn().reduce((a,x)=>a+((pr||!msPr(x.c))&&f(x.c)?x.q:0),0);
 const msD=(f,pr)=>{const u=new Set();msOwn().forEach(x=>{if((pr||!msPr(x.c))&&f(x.c))u.add(x.c.id)});return u.size};
-const msE=(sids,f)=>{let n=0,N=0;sids.forEach(sd=>(st["g"+sd]||[]).forEach(x=>{if(!x||!x.id)return;const c=CARDS[x.id];if(c&&f(c)){N++;if(x.o)n++}}));return{n,N}};
+/* set non ancora pubblicati (nascosti in App): il totale resta quello vero, così una missione "tutte le carte di…" non si completa in anticipo */
+const msGh={};const msGhL=sd=>{if(!msGh[sd]){const k0=new Set(Object.keys(CARDS));let L=[];try{L=parse(sd).map(c=>({...c}))}catch(e){}Object.keys(CARDS).forEach(k=>{if(!k0.has(k))delete CARDS[k]});msGh[sd]=L}return msGh[sd]};
+const msE=(sids,f)=>{let n=0,N=0;sids.forEach(sd=>{const a=st["g"+sd];if(!Array.isArray(a)){msGhL(sd).forEach(c=>{if(f(c))N++});return}a.forEach(x=>{if(!x||!x.id)return;const c=CARDS[x.id];if(c&&f(c)){N++;if(x.o)n++}})});return{n,N}};
 const msBest=sids=>{let b=null;sids.forEach(sd=>{const e=msE([sd],()=>true);e.s=sd;if(!b||(e.N&&e.n/e.N>b.n/b.N))b=e});return b||{n:0,N:1}};
 let msDxC=null,msDxT=0;const msDxD=()=>{const t=Date.now();if(!msDxC||t-msDxT>400){msDxC=dxData();msDxT=t}return msDxC};
 const msDx=l=>{let D;try{D=msDxD()}catch(e){return 0}return l.filter(d=>(D.own.g[d]||[]).length).length};
 const msRg=(a,b)=>{const r=[];for(let i=a;i<=b;i++)r.push(i);return r};
 const msRe=r=>c=>r.test(c.name||"");
-const msUw=()=>{const L={};["G","D","V","T","H","I","K","L","M","N","O"].forEach(sd=>(st["g"+sd]||[]).forEach(x=>{const c=x&&x.id&&CARDS[x.id];if(c&&c.dex===201){const m=(c.name||"").match(/\[(.)\]/);if(m)L[m[1]]=!!L[m[1]]||!!x.o}}));const k=Object.keys(L);return{n:k.filter(a=>L[a]).length,N:k.length}};
+const msUw=()=>{const L={};["G","D","V","T","H","I","K","L","M","N","O"].forEach(sd=>{const a=st["g"+sd];if(Array.isArray(a))a.forEach(x=>{const c=x&&x.id&&CARDS[x.id];if(c&&c.dex===201){const m=(c.name||"").match(/\[(.)\]/);if(m)L[m[1]]=!!L[m[1]]||!!x.o}});else msGhL(sd).forEach(c=>{if(c.dex===201){const m=(c.name||"").match(/\[(.)\]/);if(m)L[m[1]]=!!L[m[1]]}})});const k=Object.keys(L);return{n:k.filter(a=>L[a]).length,N:k.length}};
 function msBd(){const M=msSt();if(M.bdok)return 1;try{const u=usrGet();if(!u.bd||!u.bs)return 0;const t=new Date(),mm=+u.bd.slice(0,2),dd=+u.bd.slice(3,5);let y=t.getFullYear(),c=new Date(y,mm-1,dd);const t0=new Date(t.getFullYear(),t.getMonth(),t.getDate());if(c>t0)c=new Date(y-1,mm-1,dd);const iso=c.getFullYear()+"-"+String(c.getMonth()+1).padStart(2,"0")+"-"+String(c.getDate()).padStart(2,"0");if(iso>=u.bs){M.bdok=1;msSv(M);return 1}}catch(e){}return 0}
 const msSc=sd=>msE(sd,()=>true);
 const MSB=(()=>{
@@ -4146,5 +4148,32 @@ await st("16 Torno all'album",()=>goTab("c"),3000);
 try{setTheme(th0)}catch(e){}
 lab.style.cssText+=";bottom:auto;top:60%;left:8px;right:8px;transform:none;text-align:left;font:11px/1.3 ui-monospace,Menlo,monospace;font-weight:400;background:rgba(0,0,0,.85);color:#9f9;white-space:pre-wrap";lab.textContent="FINE TEST - fai uno screenshot di questo riquadro e fermi la registrazione\n"+R.join("\n");lab.style.pointerEvents="auto";lab.onclick=()=>{lab.remove();window.__tst=0}})()}
 if(/[?&]dbg/.test(location.search))setTimeout(show,500)})();
+</script>
+<script>
+/* ===== Android: tasto/gesto indietro, colore barra, pressione lunga, ritocchi (iPhone invariato) ===== */
+(function(){try{if(!/Android/i.test(navigator.userAgent))return;
+  const H=document.documentElement;H.classList.add("andr");
+  const c=document.createElement("style");c.textContent="html.andr,html.andr body{overscroll-behavior:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}html.andr body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}html.andr input,html.andr textarea,html.andr [contenteditable]{-webkit-user-select:text;user-select:text}html.andr img{-webkit-user-drag:none}";document.head.appendChild(c);
+  /* pressione lunga: niente menu "scarica immagine" / selezione sulle carte */
+  document.addEventListener("contextmenu",e=>{const t=e.target;if(t&&t.closest&&t.closest("input,textarea,[contenteditable]"))return;e.preventDefault()},true);
+  /* indietro: chiude lo strato in primo piano, poi torna alle Bustine, poi "premi ancora per uscire" */
+  let last=0;const push=()=>{try{history.pushState({cd:1},"")}catch(e){}};
+  try{history.replaceState({cd:0},"");push()}catch(e){}
+  const topClose=()=>{const L=[...document.querySelectorAll('[aria-label="Chiudi"],#vx,.cvx,.pkx')].filter(e=>{try{const r=e.getBoundingClientRect();if(!r.width||!r.height)return false;const cs=getComputedStyle(e);if(cs.visibility==="hidden"||cs.display==="none")return false;const t=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return!!t&&(t===e||e.contains(t))}catch(x){return false}});return L.length?L[L.length-1]:null};
+  window.addEventListener("popstate",ev=>{try{
+    if(ev.state&&ev.state.cd===1)return;
+    if(document.querySelector(".msrv")||(typeof pkBusy!=="undefined"&&pkBusy)){push();return}
+    const cl=topClose();if(cl){push();cl.click();return}
+    const on=document.querySelector("footer button.on,#nvp button.on,.nvp button.on"),t=on&&on.dataset.t;
+    if(t&&t!=="b"&&typeof goTab==="function"){push();goTab("b");return}
+    const now=Date.now();
+    if(now-last<2200){last=0;history.back();return}
+    last=now;push();try{toast("Premi ancora indietro per uscire")}catch(x){}
+  }catch(e){}});
+  /* barra di stato: segue il colore della striscia in alto (su iPhone lo fa già la pagina) */
+  let m=document.querySelector('meta[name="theme-color"]');if(!m){m=document.createElement("meta");m.name="theme-color";document.head.appendChild(m)}
+  let lc="";const tc=()=>{try{if(document.hidden)return;const v=getComputedStyle(H).backgroundColor;if(v&&v!==lc&&!/rgba\(0, 0, 0, 0\)/.test(v)){lc=v;m.setAttribute("content",v)}}catch(e){}};
+  setInterval(tc,300);tc();
+}catch(e){}})();
 </script>
 </body></html>
