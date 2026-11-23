@@ -15,7 +15,7 @@ await p.evaluate(()=>{document.getElementById('msp').hidden=true;pkCarGo(pkCPos+
 const s=await p.evaluate(()=>window.__s);console.log(s.length,'tick');const tk=s.filter(x=>/^tick/.test(x));ok(tk.length>=2&&tk.every(x=>x==="tickC"),'tick durante la rotazione del carosello');
 // cambio set: nessun tic
 await p.evaluate(()=>{window.__s=[];const b=document.querySelector('#pkst .tab[data-s="J"]');if(b)b.click()});await p.waitForTimeout(1800);
-const tk2=(await p.evaluate(()=>window.__s)).filter(x=>/^tick/.test(x));ok(tk2.length===0,'cambio set senza tic ('+tk2.length+')');
+const tk2=(await p.evaluate(()=>window.__s)).filter(x=>/^tick/.test(x));ok(await p.evaluate(()=>PKCUR)==='J'&&tk2.length===0,'cambio set senza tic ('+tk2.length+')');
 await p.evaluate(()=>{window.__s=[];pkCarGo(2,null,0,1)});await p.waitForTimeout(900);
 ok((await p.evaluate(()=>window.__s)).filter(x=>/^tick/.test(x)).length===0,'spostamento da codice (quiet) senza tic');
 ok(!errs.length,'nessun errore JS '+errs.join('|'));await b.close()})();
