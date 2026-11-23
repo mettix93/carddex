@@ -1,3 +1,6 @@
+## v499
+- Fascia alta: chiudendo una carta aperta da Missioni (con le bustine visibili sotto) lo sfondo di html restava del colore della carta (striscia rossa su Missioni) mentre la meta tornava chiara. Ora il ramo bustine riallinea anche html con pkTheme, come le altre chiusure. Test tests/card_close_band.js.
+
 ## v498
 - Fascia alta durante l'animazione di riscatto missione: ora diventa scura insieme all'overlay (a metà dissolvenza) e torna chiara all'uscita, con la logica centrale topRefresh. Nessuna transizione CSS su html. Nuovo test tests/msreveal_band.js.
 
