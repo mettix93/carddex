@@ -1,3 +1,9 @@
+## v517
+- Album Promo: i salvataggi vecchi ora si completano con tutte le 55 carte (mancavano Promo 50–54); le carte di prova (Dev) vanno sempre in fondo; Mew antico resta primo. Dati conservati.
+- Missioni a fasi per giocatore (App): la fase 2 appare solo quando il giocatore sblocca Rocket+Gym (80% di Base/Jungle/Fossil), la fase 3 quando sblocca i primi Neo. Lo sblocco resta registrato (sincronizzato con carddex_ms.ul).
+- Due pop-up separati allo sblocco: 1) «Nuovi set sbloccati!» con le bustine in miniatura [Vai alle bustine / Non ora / X]; 2) «Nuove missioni sbloccate!» con 3 carte misteriose [Vai alle missioni / Non ora / X]. Si mostrano una volta sola; aspettano se c'è un'apertura in corso.
+- Dev: tutte le missioni e promo sempre visibili; due bottoni in fondo alle Missioni per provare i pop-up (Rocket+Gym, Neo).
+
 ## v516
 - Uscite a fasi in App: elenco `REL_ON` dei set pubblicati (ora Base, Jungle, Fossil, Rocket, Gym). Neo e Hoenn spariscono da album, bustine, Pokédex (tab Johto/Hoenn, totale) e statistiche finché non vengono aggiunti; in Dev resta tutto aperto. Dati salvati intatti.
 - Fasi delle missioni promo automatiche: fase 1 = base/Jungle/Fossil, fase 2 = con Rocket e Gym, fase 3 = con i primi Neo (Neo Genesis).

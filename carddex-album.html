@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v516";
+const APPV="v517";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1736,11 +1736,14 @@ const PCOLS=[];
 /* album del gioco: un set completo per pillola, in ordine di uscita, raggruppati per serie; Topps a parte in fondo */
 const GPM={B:"a",J:"a",F:"a",R:"r",Y:"",Z:"",Q:"",G:"n",D:"n",V:"n",T:"n",H:"h",I:"h",K:"h",M:"h",N:"h",S:"t"};
 /* ===== uscite a fasi (solo App; in Dev è tutto aperto) =====
-   REL_ON = set pubblicati: aggiungere qui le sigle quando escono. Le fasi delle missioni promo seguono da sole:
-   fase 1 = base/Jungle/Fossil, fase 2 = con Rocket e Gym, fase 3 = con i primi Neo. */
+   REL_ON = set pubblicati: aggiungere qui le sigle quando escono. Le missioni promo escono per giocatore, quando sblocca:
+   fase 1 = subito, fase 2 = quando sblocca Rocket+Gym, fase 3 = quando sblocca i primi Neo (stato in carddex_ms.ul). */
 const REL_ON=["B","J","F","R","Y","Z"];
 const relOk=sid=>ENV==="dev"||"QXS".includes(sid)||REL_ON.includes(sid);
-const relPh=()=>ENV==="dev"?9:relOk("G")?3:relOk("R")?2:1;
+let ulRaw=null,ulV={};
+const ulGet=()=>{try{const r=localStorage.getItem(GK("carddex_ms"))||"{}";if(r!==ulRaw){ulRaw=r;ulV=(JSON.parse(r)||{}).ul||{}}}catch(e){}return ulV};
+const ulSet=o=>{const M=msSt();M.ul=o;msSv(M);ulRaw=null};
+const relPh=()=>{if(ENV==="dev")return 9;const U=ulGet();return U[2]?3:U[1]?2:1};
 const GCOLS=[["B","Serie originale"],["J","Serie originale"],["F","Serie originale"],["R","Serie originale"],["Y","Serie originale"],["Z","Serie originale"],["G","Serie Neo"],["D","Serie Neo"],["V","Serie Neo"],["T","Serie Neo"],["H","Serie EX"],["I","Serie EX"],["K","Serie EX"],["M","Serie EX"],["N","Serie EX"],["Q","Promo"],["S","Topps"]].map(([x,g])=>({k:"g"+x,t:x==="S"?"Topps":SETS[x].n,s:[x],g,set:x==="S"?0:1,p:GPM[x]})).filter(c=>relOk(c.s[0]));
 const CARDS={};
 const SO={B:0,J:1,F:2,X:3,R:0,Y:1,Z:2,Q:0,G:0,D:1,V:2,T:3,S:0,H:0,I:1,K:2,L:3,M:4,N:5,O:6};
@@ -1889,7 +1892,7 @@ let COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 let PFM=0,PFGO=0;
 const save=()=>{try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}try{msSoon()}catch(e){}};
-function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
+function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ,gc=GCOLS.find(c=>c.k==="gQ");if(q&&gc){const want=orderSet(gc),have=new Map(),ids=new Set(want.map(x=>x.id));q.forEach(x=>{if(x&&x.id&&!have.has(x.id))have.set(x.id,x)});st.gQ=[...want.map(w=>have.get(w.id)||w),...q.filter(x=>!(x&&x.id&&ids.has(x.id)))]}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
 Object.values(CARDS).forEach(c=>{if(c.twin)ALT[c.id]=c.twin});
@@ -2847,7 +2850,7 @@ function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"><
 const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D"],["V","T"],["H","I"],["K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo Genesis e Neo Discovery","Neo Revelation e Neo Destiny","EX Rubino e Zaffiro e EX Tempesta di Sabbia"];
 const PKIDS={};let pkCvC=null;
 function pkCov(b){if(pkCvC&&pkCvC[b]!=null)return pkCvC[b];if(!PKIDS[b])PKIDS[b]=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));const ids=PKIDS[b];let o=0;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});const v=ids.size?o/ids.size:0;if(pkCvC)pkCvC[b]=v;return v}
-function pkLk(sid){if(PKDEV)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
+function pkLk(sid){if(PKDEV)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&!ulGet()[b]&&pkCov(b-1)<PKTH?b:0}
 let pkCI=0,pkCPos=0,pkCRaf=0;
 function pkTtl(){try{const p=$("#pkp"),t=p&&p.querySelector(".pkpt"),st=$("#pkst"),l=p&&p.querySelector(".pkcnm");if(!t||!st||!l||p.hidden)return;const a=st.getBoundingClientRect(),pb=Math.min(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().top)),pe=Math.max(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().bottom)),lt=l.getBoundingClientRect().top,h=t.getBoundingClientRect().height;if(!isFinite(pe)||!lt)return;const op=t.offsetParent?t.offsetParent.getBoundingClientRect().top:0;t.style.top=((pe+lt)/2-h/2-op).toFixed(1)+"px"}catch(e){}}
 addEventListener("resize",()=>pkTtl());
@@ -3005,6 +3008,7 @@ function msStamp(L){try{const M=msSt();let ch=0;L.forEach(x=>{if(!M["rt_"+x.id])
 function msOrd(a){try{const rd=a.filter(x=>x.n()>=x.N());msStamp(rd);const M=msSt(),r=rd.map((x,i)=>({x,i,t:M["rt_"+x.id]||0})).sort((p,q)=>q.t-p.t||p.i-q.i).map(o=>o.x);return r.concat(a.filter(x=>!r.includes(x)))}catch(e){return a}}
 function msBuild(){const sy0=(()=>{const w=document.querySelector("#msp .msw2");return w?w.scrollTop:0})();msBuild0();const w=document.querySelector("#msp .msw2");if(w)w.scrollTop=sy0;try{msBadge(msReady().length)}catch(e){}}
 function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createElement("div");m.id="msp";m.hidden=true;e.appendChild(m);m.addEventListener("click",ev=>{if(ev.target.closest("#msx")||ev.target===m){m.hidden=true;return}
+    {const u=ev.target.closest(".msdvb button");if(u){ulDemo(+u.dataset.u);return}}
     const b=ev.target.closest(".msc");if(b){const mm=msAll().find(x=>x.id===b.dataset.m);if(msClaim(b.dataset.m)){msBuild();const cc=CARDS[mm.r],n0=cryN;try{acUnlock();const u=cryUrls(cc);if(u)cryLoad(u)}catch(x){}msReveal(cc,!!mm.sec,()=>{try{pkView(cc)}catch(x){}setTimeout(()=>{try{if(cryN===n0&&!$("#vw").hidden)cry(cc)}catch(x){}},1100);setTimeout(()=>toast(mm.ok),500)})}return}
     const d=ev.target.closest(".msi.dv");if(d&&PKDEV){const M=msSt(),x=msAll().find(y=>y.id===d.dataset.x)||MSD,k=x.dk||"";if(msDone(x)){M["tr"+k]=(M["tr"+k]||0)+1;msSv(M);if(M["tr"+k]>=3){msRegen(x);toast("Missione di prova rigenerata")}msBuild()}else if(!x.ext&&(M["tp"+k]||0)<3){M["tp"+k]=(M["tp"+k]||0)+1;msSv(M);msBuild()}}})}
   const L=msAll(),act=msOrd(L.filter(x=>!msDone(x))),dn=L.filter(msDone).sort((a,b)=>(msSt()["t_"+a.id]||0)-(msSt()["t_"+b.id]||0));
@@ -3013,7 +3017,7 @@ function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createEle
     pr=done&&x.dev?Math.min(3,msSt()["tr"+(x.dk||"")]||0):n,PR=done&&x.dev?3:N;
     const cmp=done;
     const cl=!done&&ok;return '<div class="msi'+dv+(cmp?" dn":"")+(cl?" cl":"")+'" data-x="'+x.id+'"><div class="msr">'+th+'<div class="msx"><b>'+x.t+'</b><span>'+x.d+'</span><span class="msw">'+msTitle(x)+'</span></div></div>'+(cmp?'<s class="msk" aria-label="Completata"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5l4.2 4.2L18.5 7.8"/></svg></s>'+(x.dev?'<em>Tocca 3 volte per rigenerarla: '+pr+' / 3</em>':''):(cl?'<s class="msk" aria-label="Da riscattare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v7.5"/><path d="M12 18v.01"/></svg></s>':'')+'<i><u style="width:'+Math.round(100*pr/PR)+'%"></u></i><em>'+(done&&x.dev?"Completata · tocca 3 volte per rigenerarla: "+pr+" / 3":(x.lb&&!done?(x.lb()?x.lb()+" · ":""):"")+pr+" / "+PR)+'</em>')+(done?'':ok?'<button class="msb on msc" data-m="'+x.id+'">Riscatta la ricompensa</button>':'')+'</div>'};
-  m.innerHTML='<i class="mhd"></i><button class="pkx" id="msx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><h2>Missioni</h2><div class="msw2"><div class="msl">'+act.map(card).join("")+(dn.length?'<p class="msn" style="margin:14px 0 8px">Completate</p>'+dn.map(card).join(""):"")+'</div><p class="msn">Altre missioni in arrivo.</p></div>';m.hidden=false}
+  m.innerHTML='<i class="mhd"></i><button class="pkx" id="msx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><h2>Missioni</h2><div class="msw2"><div class="msl">'+act.map(card).join("")+(dn.length?'<p class="msn" style="margin:14px 0 8px">Completate</p>'+dn.map(card).join(""):"")+'</div><p class="msn">Altre missioni in arrivo.</p>'+(PKDEV?'<div class="msdvb"><button data-u="1">Prova pop-up Rocket e Gym</button><button data-u="2">Prova pop-up Neo</button></div>':"")+'</div>';m.hidden=false}
 
 /* ===== v491: contatori scambi, giorni, avviso di missione completata ===== */
 function msTrade(give,get,id){const M=msSt();M.tid=M.tid||{};M.trd=M.trd||{};if(id&&M.tid[id])return;if(id)M.tid[id]=1;M.tn=(M.tn||0)+1;M.tc=(M.tc||0)+(give||[]).length;[...(give||[]),...(get||[])].forEach(i=>{const c=CARDS[i];if(c&&c.dex)M.trd[c.dex]=1});msSv(M);msSoon()}
@@ -3033,7 +3037,28 @@ function msReady(){try{return msAll().filter(x=>!msDone(x)&&x.n()>=x.N())}catch(
 function msBadge(n){try{const b=document.getElementById("pkms");if(b){let e=b.querySelector(".msbn");if(!n){if(e)e.remove()}else{if(!e){e=document.createElement("em");e.className="msbn";b.appendChild(e)}e.textContent=n}}
   document.querySelectorAll("button[data-t=b]").forEach(T=>{let d=T.querySelector(".msd");const has=T.querySelector(".fdt:not(.msd)");if(!n||has){if(d)d.remove();return}if(!d){d=document.createElement("span");d.className="fdt msd";T.appendChild(d)}})}catch(e){}}
 function msBusy(){const hid=id=>{const e=document.getElementById(id);return!e||e.hidden};return document.hidden||(typeof pkBusy!=="undefined"&&pkBusy)||document.querySelector(".msrv")||!hid("trm")||!hid("cvs")||document.getElementById("gate")||!hid("vw")}
-function msCheck(){try{msDay();const L=msReady(),M=msSt();msStamp(L);msBadge(L.length);const nw=L.filter(x=>!M["nt_"+x.id]);if(!nw.length||msPop)return;
+const UL_PH={1:2,2:3};
+function ulCheck(){if(PKDEV)return;const U=ulGet();let ch=0;for(let b=1;b<PKBLK.length;b++){if(U[b])continue;if(!PKBLK[b].some(relOk))break;if(pkCov(b-1)>=PKTH){U[b]={t:Date.now(),s:0,m:0};ch=1}else break}if(ch)ulSet(U)}
+function ulPend(){const U=ulGet();return Object.keys(U).map(Number).sort((a,c)=>a-c).some(b=>!U[b].s||(UL_PH[b]&&!U[b].m))}
+function ulPop(){const U=ulGet();for(const b of Object.keys(U).map(Number).sort((a,c)=>a-c)){if(!U[b].s){ulShow(b,"s");return}if(UL_PH[b]&&!U[b].m){ulShow(b,"m");return}}}
+(function(){const c=document.createElement("style");c.textContent=".ulp{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin:6px 0 16px}.ulp figure{margin:0;width:76px;text-align:center}.ulp img{display:block;width:100%;aspect-ratio:480/818;object-fit:fill;transform:rotate(var(--r,0deg));filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))}.ulp figcaption{font:600 11px/1.2 -apple-system,system-ui,sans-serif;margin-top:8px;opacity:.7}.ulm{display:flex;justify-content:center;margin:8px 0 18px}.ulm .msmy{margin:0 -9px;transform:rotate(var(--r,0deg));filter:drop-shadow(0 6px 8px rgba(0,0,0,.3))}.msdvb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 4px}.msdvb button{font:600 12px -apple-system,system-ui,sans-serif;padding:7px 11px;border-radius:12px;border:1px solid rgba(255,159,10,.6);background:rgba(255,159,10,.14);color:#ff9f0a}";document.head.appendChild(c)})();
+function ulShow(b,k,demo){msPop=1;let fin=0;const sets=PKBLK[b].filter(relOk),ph=UL_PH[b];
+  const done=nx=>{if(fin)return;fin=1;msPop=0;if(!demo){const U=ulGet();U[b]=U[b]||{};U[b][k]=1;ulSet(U)}if(nx)setTimeout(()=>{if(k==="s"&&ph)ulShow(b,"m",demo);else if(!demo)ulPop()},450);else if(!demo)msSoon()};
+  let o;
+  if(k==="s"){const rot=sets.length===3?[-7,0,7]:sets.length===2?[-5,5]:[0],nm=sets.map(x=>PKSET[x]?PKSET[x].n:x);
+    o={t:sets.length>1?"Nuovi set sbloccati!":"Nuovo set sbloccato!",n:nm.length>1?nm.slice(0,-1).join(", ")+" e "+nm[nm.length-1]:nm[0],
+      h:'<div class="ulp">'+sets.map((x,i)=>{const p=PKSET[x]&&PKSET[x].p[0];return p?'<figure style="--r:'+rot[i]+'deg"><img alt="" src="'+pkImg(p)+'"><figcaption>'+esc(PKSET[x].n)+"</figcaption></figure>":""}).join("")+"</div>",
+      b:[{t:"Vai alle bustine",p:1,f:()=>{done(0);try{PKCUR=sets[0];localStorage.setItem(GK("carddex_pks"),sets[0])}catch(e){}const p=document.getElementById("pk"),open=p&&!p.hidden&&!p.classList.contains("pkfo");if(!open){try{goTab("b")}catch(e){}}setTimeout(()=>{try{pkRender()}catch(e){}},open?0:1000)}},{t:"Non ora",f:()=>done(1)}]}}
+  else{const L=MSB.filter(m=>m.ph===ph&&!m.off),rot=[-9,0,9];
+    o={t:"Nuove missioni sbloccate!",n:L.length+" nuove missioni promo ti aspettano",h:'<div class="ulm">'+rot.map(r=>'<div class="msmy" style="--r:'+r+'deg">'+MYS+"</div>").join("")+"</div>",
+      b:[{t:"Vai alle missioni",p:1,f:()=>{done(0);msGo(L[0].id)}},{t:"Non ora",f:()=>done(1)}]}}
+  const e=trSheet(o),x=e.querySelector(".cvx");if(x){const f=x.onclick;x.onclick=()=>{done(1);f&&f()}}
+  e.addEventListener("click",ev=>{if(ev.target===e)done(1)},{once:true});try{sfx("nuova")}catch(x2){}}
+function ulDemo(b){if(!msPop)ulShow(b,"s",1)}
+function msCheck(){try{ulCheck()}catch(e){}
+  if(!PKDEV&&!msPop&&ulPend()){if(!msBusy()){ulPop();return}clearTimeout(msTm);msTm=setTimeout(msCheck,2000)}
+  msCheck0()}
+function msCheck0(){try{msDay();const L=msReady(),M=msSt();msStamp(L);msBadge(L.length);const nw=L.filter(x=>!M["nt_"+x.id]);if(!nw.length||msPop)return;
   if(msBusy()){clearTimeout(msTm);msTm=setTimeout(msCheck,2000);return}
   nw.forEach(x=>{M["nt_"+x.id]=1});msSv(M);
   const m=document.getElementById("msp");if(m&&!m.hidden){msBuild();return}
