@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v504";
+const APPV="v505";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2844,7 +2844,7 @@ let pkCI=0,pkCPos=0,pkCRaf=0;
 function pkTtl(){try{const p=$("#pkp"),t=p&&p.querySelector(".pkpt"),st=$("#pkst"),l=p&&p.querySelector(".pkcnm");if(!t||!st||!l||p.hidden)return;const a=st.getBoundingClientRect(),pb=Math.min(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().top)),pe=Math.max(...[...st.querySelectorAll(".tab")].map(x=>x.getBoundingClientRect().bottom)),lt=l.getBoundingClientRect().top,h=t.getBoundingClientRect().height;if(!isFinite(pe)||!lt)return;const op=t.offsetParent?t.offsetParent.getBoundingClientRect().top:0;t.style.top=((pe+lt)/2-h/2-op).toFixed(1)+"px"}catch(e){}}
 addEventListener("resize",()=>pkTtl());
 function pkCarStep(){const c=$("#pkcar");return ((c&&c.clientWidth)||innerWidth)/2}
-const N5=m=>440*Math.pow(2,(m-69)/12),PKTICK="tickA";let pkCLast=null,pkTkI=0;function pkCarPos(pos){pkCPos=pos;{const r=Math.round(pos);if(pkCLast===null)pkCLast=r;else if(r!==pkCLast){pkTkI=(pkTkI+(r>pkCLast?1:-1)+600)%600;pkCLast=r;try{if(!pkBusy)sfx(PKTICK)}catch(e){}}}const c=$("#pkcar"),N=pkP().length,st=pkCarStep();c.querySelectorAll(".pkci").forEach(el=>{const i=+el.dataset.i;let d=i-pos;d=((d+N/2)%N+N)%N-N/2;el.style.transform="translateX("+(d*st).toFixed(1)+"px)";el.dataset.d=d.toFixed(2)})}
+const N5=m=>440*Math.pow(2,(m-69)/12),PKTICK="tickC";let pkCLast=null,pkTkI=0;function pkCarPos(pos){pkCPos=pos;{const r=Math.round(pos);if(pkCLast===null)pkCLast=r;else if(r!==pkCLast){pkTkI=(pkTkI+(r>pkCLast?1:-1)+600)%600;pkCLast=r;try{if(!pkBusy)sfx(PKTICK)}catch(e){}}}const c=$("#pkcar"),N=pkP().length,st=pkCarStep();c.querySelectorAll(".pkci").forEach(el=>{const i=+el.dataset.i;let d=i-pos;d=((d+N/2)%N+N)%N-N/2;el.style.transform="translateX("+(d*st).toFixed(1)+"px)";el.dataset.d=d.toFixed(2)})}
 let pkCMov=0;function pkCarGo(t,fn,fl){cancelAnimationFrame(pkCRaf);const a=pkCPos,t0=performance.now(),D=fl?Math.min(1900,420+Math.abs(t-a)*130):Math.min(380,160+Math.abs(t-a)*120),P=fl?4:3;pkCMov=1;const f=now=>{const k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,P);pkCarPos(a+(t-a)*e);if(k<1)pkCRaf=requestAnimationFrame(f);else{pkCarPos(t);pkCMov=0;if(fn)fn()}};pkCRaf=requestAnimationFrame(f)}
 const msSt=()=>{try{return JSON.parse(localStorage.getItem(GK("carddex_ms"))||"{}")||{}}catch(e){return{}}};
 const msSv=M=>{try{localStorage.setItem(GK("carddex_ms"),JSON.stringify(M))}catch(e){}};

@@ -1,3 +1,6 @@
+## v505
+- Tic bustine: scelta la variante C (bolla, nota che scende).
+
 ## v504
 - Tic bustine: suono nello stile dei suoni v2 (triangolo morbido + ottava, pentatonica) e nessun limite artificiale di velocità: un tic per ogni bustina che passa, quindi segue la velocità del dito. Varianti A/B/C in PKTICK (tools/suoni/gen_tick.py).
 

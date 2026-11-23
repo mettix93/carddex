@@ -12,5 +12,5 @@ const bd=await p.evaluate(()=>{msDev3();msDev3();msDev3();msBuild();const e=docu
 ok(bd==='rgb(10, 132, 255)','bordo blu su missione da riscattare: '+bd);
 await p.evaluate(()=>{window.__s=[];const o=window.sfx;window.sfx=function(n,d){window.__s.push(n);return o.apply(this,arguments)}});
 await p.evaluate(()=>{document.getElementById('msp').hidden=true;pkCarGo(pkCPos+3,null,1)});await p.waitForTimeout(2200);
-const s=await p.evaluate(()=>window.__s);console.log(s.length,'tick');const tk=s.filter(x=>/^tick/.test(x));ok(tk.length>=2&&tk.every(x=>x==="tickA"),'tick durante la rotazione del carosello');
+const s=await p.evaluate(()=>window.__s);console.log(s.length,'tick');const tk=s.filter(x=>/^tick/.test(x));ok(tk.length>=2&&tk.every(x=>x==="tickC"),'tick durante la rotazione del carosello');
 ok(!errs.length,'nessun errore JS '+errs.join('|'));await b.close()})();
