@@ -1,3 +1,7 @@
+## v509
+- Missioni da riscattare: in cima la più nuova, in fondo la più vecchia.
+- Carte promo holo: all apertura (carta aperta ovunque e rivelazione da missione) cornice dorata che si accende e resta come filo sottile, più una seconda scia di luce dorata dopo quella già esistente. Solo promo holo.
+
 ## v508
 - Missioni: quelle completate e da riscattare salgono in cima, dalla più vecchia alla più recente (si salva il momento in cui diventano pronte).
 

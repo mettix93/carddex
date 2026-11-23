@@ -12,5 +12,5 @@ await p.evaluate(()=>{msDev3();msDev3();msDev3()}); // dev3 pronta dopo
 await p.waitForTimeout(600);a=await f();
 const cl=a.filter(x=>x.cl).map(x=>x.id);console.log(JSON.stringify(a.slice(0,4)));
 ok(cl.length>=2&&a.slice(0,cl.length).every(x=>x.cl),'le da riscattare sono in cima: '+cl.join(','));
-ok(cl[0]==='m15','la più vecchia (m15) per prima, poi '+cl.slice(1).join(','));
+ok(cl[0]==="dev3",'la più nuova (dev3) per prima, poi '+cl.slice(1).join(','));
 ok(!errs.length,'nessun errore JS '+errs.join('|'));await b.close()})();
