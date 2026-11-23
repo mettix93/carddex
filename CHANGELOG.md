@@ -1,3 +1,6 @@
+## v512
+- Promo holo: il contorno di luce resta vivo: dopo il massimo iniziale respira lentamente tra massimo e minimo (ciclo di circa 5 s), con un secondo alone più largo dietro la carta sfasato e un chiarore interno sul bordo.
+
 ## v511
 - Promo holo: la cornice diventa un "led" nascosto dietro il contorno della carta: si vede solo la luce che si irradia dai bordi (alone esterno + leggero chiarore sul bordo interno), niente linea; resta come bagliore tenue.
 
