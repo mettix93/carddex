@@ -1,3 +1,6 @@
+## v518
+- Converti: in cima il titolo «Doppie totali» con numero carte e valore in Pokédollari; i set singoli non mostrano più numero e valore.
+
 ## v517
 - Album Promo: i salvataggi vecchi ora si completano con tutte le 55 carte (mancavano Promo 50–54); le carte di prova (Dev) vanno sempre in fondo; Mew antico resta primo. Dati conservati.
 - Missioni a fasi per giocatore (App): la fase 2 appare solo quando il giocatore sblocca Rocket+Gym (80% di Base/Jungle/Fossil), la fase 3 quando sblocca i primi Neo. Lo sblocco resta registrato (sincronizzato con carddex_ms.ul).

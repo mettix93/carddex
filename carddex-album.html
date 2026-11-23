@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v517";
+const APPV="v518";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3185,7 +3185,8 @@ const RCOIN=k=>k==="H"?RCH:'<svg class="coin rcn" viewBox="0 0 24 24" fill="none
 function trSym(c){return RCOIN(trK(c))+(trHolo(c)?RCOIN("H"):"")}
 function cvTile(x,k,tot){const rem=cvRoom(x,k);return `<button class="cvt${k?" on":""}${rem?"":" z"}" data-id="${x.c.id}"><div class="cvf">${face(x.c,0)}</div><span class="cvr">${TRM==="t"?trSym(x.c):COINS(cvPt(x.c))}</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>${k}<em>/${x.sp}</em></b><span class="cvm" data-d="1">+</span></div></button>`}
 function cvDraw(){const L=cvList(),g=$("#cvs .cvg");let tot=0,h="",ci=-1;
-  L.forEach(x=>{const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);if(x.ci!==ci){if(ci>=0)h+="</div></section>";ci=x.ci;const n=L.filter(y=>y.ci===ci).reduce((a,y)=>a+y.sp,0);h+=`<section class="cvw" data-ci="${ci}"><div class="sgt">${esc(x.co.t)}<em>${n}</em>${TRM==="c"?`<em class="sgv">(${L.filter(y=>y.ci===ci).reduce((q,y)=>q+y.sp*cvPt(y.c),0)}${COINL})</em>`:""}</div><div class="cvgg">`}h+=cvTile(x,k)});if(ci>=0)h+="</div></section>";
+  if(L.length)h+=`<section class="cvw cvtot"><div class="sgt">Doppie totali<em>${L.reduce((a,y)=>a+y.sp,0)}</em>${TRM==="c"?`<em class="sgv">(${L.reduce((q,y)=>q+y.sp*cvPt(y.c),0)}${COINL})</em>`:""}</div></section>`;
+  L.forEach(x=>{const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);if(x.ci!==ci){if(ci>=0)h+="</div></section>";ci=x.ci;const n=L.filter(y=>y.ci===ci).reduce((a,y)=>a+y.sp,0);h+=`<section class="cvw" data-ci="${ci}"><div class="sgt">${esc(x.co.t)}</div><div class="cvgg">`}h+=cvTile(x,k)});if(ci>=0)h+="</div></section>";
   g.innerHTML=h||'<p class="cve">'+(TRM==="t"?(TR.reply?"Non hai doppie delle rarità richieste":"Non hai doppie da scambiare"):"Non hai carte doppie da convertire")+'</p>';
   cvNum($("#cvp"),tot);cvNum($("#cvh"),pkSt().pts||0);$("#cvok").disabled=!tot;if(TRM==="t")trUpd()}
 function cvUpd(){const L=cvList();let tot=0;const M={};L.forEach(x=>M[x.c.id]=x);document.querySelectorAll("#cvs .cvt").forEach(b=>{const x=M[b.dataset.id];if(!x)return;const k=cvSel[x.c.id]||0;tot+=k*cvPt(x.c);b.classList.toggle("on",k>0);b.classList.toggle("z",cvRoom(x,k)<=0);b.querySelector(".cvc b").firstChild.nodeValue=k});
