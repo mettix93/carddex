@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v515";
+const APPV="v516";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1735,7 +1735,13 @@ const PCOLS=[];
 /* album del gioco e album personali hanno ora definizioni separate (oggi uguali): le prossime versioni le cambieranno indipendentemente */
 /* album del gioco: un set completo per pillola, in ordine di uscita, raggruppati per serie; Topps a parte in fondo */
 const GPM={B:"a",J:"a",F:"a",R:"r",Y:"",Z:"",Q:"",G:"n",D:"n",V:"n",T:"n",H:"h",I:"h",K:"h",M:"h",N:"h",S:"t"};
-const GCOLS=[["B","Serie originale"],["J","Serie originale"],["F","Serie originale"],["R","Serie originale"],["Y","Serie originale"],["Z","Serie originale"],["G","Serie Neo"],["D","Serie Neo"],["V","Serie Neo"],["T","Serie Neo"],["H","Serie EX"],["I","Serie EX"],["K","Serie EX"],["M","Serie EX"],["N","Serie EX"],["Q","Promo"],["S","Topps"]].map(([x,g])=>({k:"g"+x,t:x==="S"?"Topps":SETS[x].n,s:[x],g,set:x==="S"?0:1,p:GPM[x]}));
+/* ===== uscite a fasi (solo App; in Dev è tutto aperto) =====
+   REL_ON = set pubblicati: aggiungere qui le sigle quando escono. Le fasi delle missioni promo seguono da sole:
+   fase 1 = base/Jungle/Fossil, fase 2 = con Rocket e Gym, fase 3 = con i primi Neo. */
+const REL_ON=["B","J","F","R","Y","Z"];
+const relOk=sid=>ENV==="dev"||"QXS".includes(sid)||REL_ON.includes(sid);
+const relPh=()=>ENV==="dev"?9:relOk("G")?3:relOk("R")?2:1;
+const GCOLS=[["B","Serie originale"],["J","Serie originale"],["F","Serie originale"],["R","Serie originale"],["Y","Serie originale"],["Z","Serie originale"],["G","Serie Neo"],["D","Serie Neo"],["V","Serie Neo"],["T","Serie Neo"],["H","Serie EX"],["I","Serie EX"],["K","Serie EX"],["M","Serie EX"],["N","Serie EX"],["Q","Promo"],["S","Topps"]].map(([x,g])=>({k:"g"+x,t:x==="S"?"Topps":SETS[x].n,s:[x],g,set:x==="S"?0:1,p:GPM[x]})).filter(c=>relOk(c.s[0]));
 const CARDS={};
 const SO={B:0,J:1,F:2,X:3,R:0,Y:1,Z:2,Q:0,G:0,D:1,V:2,T:3,S:0,H:0,I:1,K:2,L:3,M:4,N:5,O:6};
 const IT={"Mr. Fuji": "Mr. Fuji", "Energy Search": "Ricerca di Energia", "Gambler": "Gioco d’Azzardo", "Recycle": "Riciclo", "Mysterious Fossil": "Fossile Misterioso", "Here Comes Team Rocket!": "Arriva il Team Rocket!", "Rocket’s Sneak Attack": "Attacco a Sorpresa del Team Rocket", "The Boss’s Way": "Alla Maniera del Capo", "Challenge!": "Sfida!", "Digger": "Scavatrappole", "Imposter Oak’s Revenge": "La Vendetta del Professor Oak, l’Impostore", "Nightly Garbage Run": "Raccolta Notturna della Spazzatura", "Goop Gas Attack": "Gas stupidifero", "Sleep!": "Dormi!", "Rainbow Energy": "Energia Arcobaleno", "Full Heal Energy": "Energia Recupero Totale", "Potion Energy": "Energia Pozione Magica", "Metal Energy": "Energia Metallo", "Arcade Game": "Gioco Arcade", "Ecogym": "Ecopalestra", "Energy Charge": "Carica Energia", "Focus Band": "Bandana", "Mary": "Lori", "PokéGear": "PokéGear", "Super Energy Retrieval": "Super Recupero di Energia", "Time Capsule": "Capsula del Tempo", "Bill’s Teleporter": "Teletrasporto di Bill", "Card-Flip Game": "Gioco Scopri-Carta", "Gold Berry": "Bacca Oro", "Miracle Berry": "Bacca Mirac.", "New Pokédex": "Nuovo Pokédex", "Professor Elm": "Professor Elm", "Sprout Tower": "Torre Sprout", "Super Scoop Up": "Super Recupero", "Berry": "Bacca", "Double Gust": "Doppia Folata", "Moo-Moo Milk": "Latte Mumu", "Pokémon March": "Marcia Pokémon", "Super Rod": "Super Amo", "Darkness Energy": "Energia Oscurità", "Recycle Energy": "Energia Riciclo", "Fossil Egg": "Uovo Fossile", "Hyper Devolution Spray": "Iper Getto d’Involuzione", "Ruin Wall": "Muro Pericolante", "Energy Ark": "Energia dell’Arca", "Balloon Berry": "Bacca Pallone", "Healing Field": "Campo di Cura", "Pokémon Breeder Fields": "Campi di Allevamento Pokémon", "Rocket’s Hideout": "Rifugio Rocket", "Old Rod": "Amo Vecchio", "Miracle Energy": "Energia Miracolosa", "Broken Ground Gym": "Palestra di Terra Spaccata", "EXP.ALL": "Distribuzione di Esperienza", "Impostor Professor Oak’s Invention": "Invenzione del Professor Oak, l’Impostore", "Radio Tower": "Torre Radio", "Thought Wave Machine (Rocket’s Secret Machine)": "Congegno Onda di Pensiero", "Counterattack Claws": "Artigli Contrattaccanti", "Energy Amplifier": "Amplifica Energia", "Energy Stadium": "Stadio Energia", "Lucky Stadium": "Stadio Fortuna", "Magnifier": "Ingrandimento", "Pokémon Personality Test": "Test di Personalità Pokémon", "Team Rocket’s Evil Deeds": "Azioni diaboliche del Team Rocket", "Heal Powder": "Polvocura", "Mail from Bill": "Posta da Bill", "Lightning Energy": "Energia Lampo", "Professor Oak": "Professore Oak", "Pokédex": "Pokédex", "Psychic Energy": "Energia Psiche", "Potion": "Pozione Magica", "Maintenance": "Manutenzione", "Double Colorless Energy": "Energia Incolore Doppia", "Super Potion": "Super Pozione Magica", "Gust of Wind": "Ventata", "Grass Energy": "Energia Erba", "Pokémon Trader": "Scambio di Pokémon", "Bill": "Bill", "Defender": "Difensore", "PlusPower": "PlusPotenza", "Impostor Professor Oak": "Professor Oak, l'impostore", "Energy Removal": "Distruzione di Energia", "Switch": "Scambio", "Pokémon Center": "Centro Pokémon", "Fighting Energy": "Energia Combattimento", "Pokémon Flute": "Poké Flauto", "Devolution Spray": "Getto di Involuzione", "Scoop Up": "Recupero", "Full Heal": "Recupero Totale", "Item Finder": "Oggetti Smarriti", "Clefairy Doll": "Clefairy Doll", "Energy Retrieval": "Recupero di Energia", "Computer Search": "Ricerca Computerizzata", "Revive": "Revitalizzazione", "Fire Energy": "Energia Fuoco", "Pokémon Breeder": "Allevatore di Pokémon", "Water Energy": "Energia Acqua", "Lass": "Pupa", "Super Energy Removal": "Super-Rimozione di Energia", "Poké Ball": "Poké Ball"};
@@ -2588,6 +2594,7 @@ const PKSET={B:{n:"Set Base",l:"SET<br>BASE",c1:"#d4301d",c2:"#ffb23a",cnt:11,p:
   K:pkEX("k","EX Drago","#2f8f6a","#8ad8b8",[["Absol","#e0542a"],["Latias","#c8384a"],["Latios","#3a74c8"],["Rayquaza","#3ea84a"]]),
   M:pkEX("m","EX Leggende Nascoste","#5a3d99","#a8c8f0",[["Metagross","#3fa8b8"],["Regirock","#c8742a"],["Regice","#4a8fd8"],["Registeel","#8a8f9c"]]),
   N:pkEX("n","EX Deoxys","#2f9ac8","#c8e84a",[["Rayquaza","#c45aa8"],["Deoxys Normale","#b8c43a"],["Deoxys Attacco","#6bbf3a"],["Deoxys Difesa","#5aa0d8"]])};
+Object.keys(PKSET).forEach(k=>{if(!relOk(k))delete PKSET[k]});
 let PKCUR="B";try{const q=localStorage.getItem(GK("carddex_pks"));if(q&&PKSET[q])PKCUR=q}catch(e){}
 const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
@@ -2837,7 +2844,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
   return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
-const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D","V","T"],["H","I","K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo"];
+const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D"],["V","T"],["H","I"],["K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo Genesis e Neo Discovery","Neo Revelation e Neo Destiny","EX Rubino e Zaffiro e EX Tempesta di Sabbia"];
 const PKIDS={};let pkCvC=null;
 function pkCov(b){if(pkCvC&&pkCvC[b]!=null)return pkCvC[b];if(!PKIDS[b])PKIDS[b]=new Set(Object.values(CARDS).filter(c=>PKBLK[b].includes(c.sid)&&!c.go).map(c=>c.id));const ids=PKIDS[b];let o=0;PKBLK[b].forEach(sid=>{(st["g"+sid]||[]).forEach(x=>{if(x.o&&ids.has(x.id))o++})});const v=ids.size?o/ids.size:0;if(pkCvC)pkCvC[b]=v;return v}
 function pkLk(sid){if(PKDEV)return 0;const b=PKBLK.findIndex(a=>a.includes(sid));return b>0&&pkCov(b-1)<PKTH?b:0}
@@ -2854,7 +2861,6 @@ const msOp=()=>Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0),
 msArtL=()=>["B","J","F"].flatMap(x=>PKSET[x].p.map(p=>p.k)),
 msArtN=()=>{const A=msSt().art||{};return msArtL().filter(k=>A[k]).length};
 /* ===== v491: 55 missioni promo, tutte segrete, pubblicate a fasi ===== */
-const MSPH=1;
 const msOwn=()=>{const o=[];Object.keys(st).forEach(k=>{if(!/^g[A-Z]$/.test(k)||!Array.isArray(st[k]))return;st[k].forEach(x=>{if(x&&x.id&&x.o){const c=CARDS[x.id];if(c)o.push({c,q:Math.max(1,x.q||1)})}})});return o};
 const msPr=c=>c.sid==="Q"||c.sid==="X";
 const msTy=c=>{if(!c||c.kd!=="p")return"";const o=rdOf(c);return(o&&o.t)||(c.dex?TYP[c.dex-1]||"":"")};
@@ -2936,7 +2942,7 @@ return L.sort((a,b)=>a.ph-b.ph||a.num-b.num)})(),
 MSD={id:"dev",t:"Missione di prova",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp||0),N:()=>3,r:"XT",dev:1,ok:"Bulbasaur di prova aggiunto all’album Promo"},
 MSD2={id:"dev2",t:"Missione di prova 2",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp2||0),N:()=>3,r:"XV",sec:1,dev:1,dk:"2",ok:"Venusaur holo di prova aggiunto all’album Promo"},
 MSD3={id:"dev3",t:"Missione di prova 3",d:"Solo Dev: tocca la scheda Pokédex 3 volte, anche da fuori da questa pagina.",n:()=>Math.min(3,msSt().tp3||0),N:()=>3,r:"XC",sec:1,dev:1,ext:1,dk:"3",ok:"Charizard holo di prova aggiunto all’album Promo"},
-msAll=()=>PKDEV?[...MSB.filter(x=>!x.off),MSD,MSD2,MSD3]:MSB.filter(x=>x.ph<=MSPH&&!x.off),
+msAll=()=>PKDEV?[...MSB.filter(x=>!x.off),MSD,MSD2,MSD3]:MSB.filter(x=>x.ph<=relPh()&&!x.off),
 msDone=m=>!!msSt()[m.id==="mew"?"mew":"c_"+m.id],
 msTitle=m=>{const c=CARDS[m.r];if(m.sec&&!msDone(m))return "Carta segreta – Promo "+(c?c.num:0);if(!c)return "";return c.name+" – Promo "+(m.dev?"prova":c.num)};
 function msClaim(id){const m=msAll().find(x=>x.id===id),M=msSt();if(!m||msDone(m)||m.n()<m.N())return false;
@@ -3973,7 +3979,7 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;l
       h+='<div class="dxi" data-d="'+d+'"><small>#'+pad(d)+' '+(has?nmH(nm):"???")+'</small><div class="dxc '+(has?"on":"")+'">'+fc+(has&&c.h?HOLO:"")+'</div></div>'}
     DXC[gi]=[all,tot];return h?'<section class="dxw" data-g="'+gi+'"><div class="sgt">'+t+'<em>'+all+' / '+tot+'</em></div><div class="dxg">'+h+'</div></section>':""}).join("");
   dxTabs();if(!(secs&&dxPatch(e,secs)))e.innerHTML=secs||'<div class="sgt">Nessun Pokémon trovato</div>';e.scrollTop=y;e.onscroll=dxSpy;dxSpy();dxEager();
-  $("#stat").innerHTML=n+" / 386";$("#ft").classList.toggle("on",DXF!=="a");$("#sq").classList.toggle("on",!!DXQ);$("#sq").innerHTML=DXQ?XI:LENS;$("#sq").setAttribute("aria-label",DXQ?"Chiudi ricerca":"Cerca Pokémon");
+  $("#stat").innerHTML=n+" / "+G.reduce((a,r)=>a+r[2]-r[1]+1,0);$("#ft").classList.toggle("on",DXF!=="a");$("#sq").classList.toggle("on",!!DXQ);$("#sq").innerHTML=DXQ?XI:LENS;$("#sq").setAttribute("aria-label",DXQ?"Chiudi ricerca":"Cerca Pokémon");
   e.onclick=null;
   e.onpointerdown=ev=>{const c=ev.target.closest&&ev.target.closest(".dxi");if(!c)return;const d=+c.dataset.d,n2=Date.now();
     DXP={d,x:ev.clientX,y:ev.clientY,dbl:DXLT.d===d&&n2-DXLT.t<380,hold:0,mv:0};
@@ -3983,7 +3989,7 @@ function drawDex(keep){const e=$("#set"),y=keep?e.scrollTop:0,D=dxData(),G=DXR;l
   e.onpointerup=()=>{const p=DXP;DXP=null;if(!p)return;clearTimeout(p.h);if(p.mv||p.hold){DXLT={d:0,t:0};return}if(p.dbl){DXLT={d:0,t:0};dxPick(p.d);return}
     DXLT={d:p.d,t:Date.now()};clearTimeout(DXTM);DXTM=setTimeout(()=>{DXLT={d:0,t:0};dxOpen(p.d)},380)};
   e.oncontextmenu=ev=>{if(ev.target.closest&&ev.target.closest(".dxi"))ev.preventDefault()}}
-const DXR=[["Kanto",1,151],["Johto",152,251],["Hoenn",252,386]];
+const DXR=[["Kanto",1,151],["Johto",152,251],["Hoenn",252,386]].filter((r,i)=>["BJFRYZ","GDVT","HIKMN"][i].split("").some(relOk));
 let DXC=[],DXGD=[];function dxTabs(){const sd=sdGet();$("#tabs").innerHTML=DXR.map(([t],i)=>'<button class="tab'+(DXGD[i]&&sd.includes("d:"+i)?" gd":"")+'" data-k="'+i+'">'+t+(DXC[i]?' <em class="tcn">'+DXC[i][0]+"/"+DXC[i][1]+"</em>":"")+'</button>').join("")}
 function dxPos(){const e=$("#set"),h=$("#app header");if(!e||!h)return;try{const f=$("#fi"),st=document.documentElement.style;st.setProperty("--dxs","0px");const r=$("#stat").getBoundingClientRect();if(r.width)st.setProperty("--dxs",Math.round(innerWidth/2-(r.left+r.right)/2)+"px")}catch(x){}const fb=Math.round(($("#fi")||h).getBoundingClientRect().bottom),hb=Math.round(h.getBoundingClientRect().bottom),P=Math.max(0,hb-fb);e.style.setProperty("top","0px","important");e.style.setProperty("padding-top",(fb+P)+"px","important");e.style.setProperty("--dxp",(fb+P)+"px");try{const t=document.querySelector("#tabs .tab");const pt=t?Math.round(t.getBoundingClientRect().top):fb;const pb=t?Math.round(t.getBoundingClientRect().bottom):pt,a=Math.max(0,fb-2),z=Math.max(a+8,pb),g=[[0,0],[.15,.02],[.3,.1],[.45,.25],[.6,.5],[.75,.78],[.9,.95],[1,1]].map(([k,v])=>"rgba(0,0,0,"+v+") "+(a+(z-a)*k).toFixed(1)+"px").join(",");e.style.setProperty("--dxg","linear-gradient(180deg,rgba(0,0,0,0) 0,"+g+")")}catch(x){}}
 function dxGo(i){const e=$("#set");let g=null;for(let j=i;j<DXR.length&&!g;j++)g=e.querySelector('.dxw[data-g="'+j+'"]');if(!g)return;e.scrollTop=Math.max(0,g.offsetTop-(parseFloat(e.style.paddingTop)||0))}

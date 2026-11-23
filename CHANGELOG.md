@@ -1,3 +1,8 @@
+## v516
+- Uscite a fasi in App: elenco `REL_ON` dei set pubblicati (ora Base, Jungle, Fossil, Rocket, Gym). Neo e Hoenn spariscono da album, bustine, Pokédex (tab Johto/Hoenn, totale) e statistiche finché non vengono aggiunti; in Dev resta tutto aperto. Dati salvati intatti.
+- Fasi delle missioni promo automatiche: fase 1 = base/Jungle/Fossil, fase 2 = con Rocket e Gym, fase 3 = con i primi Neo (Neo Genesis).
+- Sblocchi a catena all'80%: Rocket/Gym ← base; Neo Genesis+Discovery ← Rocket/Gym; Neo Revelation+Destiny ← Neo 1; Hoenn in due gruppi (Rubino/Tempesta di Sabbia, poi Drago/Leggende/Deoxys).
+
 ## v515
 - Album Promo completo: 55 carte (Mew antico + Promo 1–54), aggiunte Promo 54 (Articuno, Moltres e Zapdos, jumbo con la tua immagine) e missione 54 riattivata.
 
