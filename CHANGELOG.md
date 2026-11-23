@@ -1,3 +1,6 @@
+## v497
+- Barra in basso su Bustine: quando si apre la scheda l'allineamento viene rieseguito (subito e dopo 350 ms). Con la v496 il valore era già giusto (20 px) ma la barra restava 8 px sotto lo schermo perché nessuno lo riapplicava alla scheda.
+
 ## v496
 - Barra in basso nella scheda Bustine: la posizione non si calcola più misurando la barra mentre è già nella scheda (rimaneva ferma 8 px sotto lo schermo); usa l'ultima misura buona presa dalle altre schede (salvata anche per il primo avvio). Misure lette dal simulatore: Account `nvB20`, Bustine `nvB-8`. Fascia in alto non toccata.
 

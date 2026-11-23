@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v496";
+const APPV="v497";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -4012,7 +4012,7 @@ function goTab(t,direct){try{if(PFM&&!(PFGO&&direct===2))pfOff()}catch(e){}const
   if(t==="m"||t==="a")t=t==="a"?MODE:"b";
   if(t==="s"){{const now=Date.now();if(DEVOK&&now-(goTab.ls||0)<450){goTab.ls=0;const nv=ENV==="dev"?"app":"dev";try{localStorage.setItem("carddex_env",nv)}catch(x){}try{sessionStorage.setItem("cdx_set","1")}catch(x){}toast(nv==="dev"?"Modalità Dev":"Modalità App");fadeTo(()=>location.reload());return}goTab.ls=now}if(stg&&!op)return;navSet($("#nvp"),"s",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("dex");B.classList.remove("asl");setOpen(1);navSync()});return}
   if(t==="d"){if(sett&&dex&&!op){fastTop();return}navSet($("#nvp"),"d",1);vt(()=>{NAVB=0;if(op)pkHide();B.classList.remove("asl");B.classList.add("dex");setOpen(1);{const q=$("#set");if(q)q.scrollTop=0}navSync();requestAnimationFrame(()=>{const q=$("#set");if(q&&PKDQ.length)q.scrollTop=0});setTimeout(dxFillAnim,480)});return}
-  if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
+  if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync();requestAnimationFrame(()=>{try{pkAlign()}catch(e){}});setTimeout(()=>{try{pkAlign()}catch(e){}},350)});return}
   if(t==="c"&&!direct){if(asl&&!op){if(!$("#set .aslw")){try{bcPkEnd()}catch(e){}drawAsl()}return}if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
   if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){if(PFGO){PFGO=0;pfOn()}else{cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
 document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b){if(BCK)bcPkEnd();if(b.dataset.t==="d")msDev3();goTab(b.dataset.t)}});
