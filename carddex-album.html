@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v495";
+const APPV="v496";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3058,11 +3058,11 @@ function cvList0(){const M={},rv=frResv();Object.values(CARDS).forEach(c=>{M[c.i
 function cvList(){const L=cvList0();if(TRM==="t"&&TR.reply){const nd=TR.reply.need;return L.filter(x=>nd[trK(x.c)])}return L}
 function cvRoom(x,k){let r=x.sp-k;if(TRM==="t"&&TR.reply){const key=trK(x.c),nd=TR.reply.need[key]||0;let u=0;for(const y of cvList())if(trK(y.c)===key)u+=cvSel[y.c.id]||0;r=Math.min(r,nd-u)}return r}
 const cvPt=c=>{const d=rdOf(c);return PKPT[d&&d.r]||1};
-function pkAlign(){try{const R=document.documentElement.style,f0=document.querySelector("#app footer"),h=document.querySelector("#app .tabs"),pt=innerHeight>innerWidth;{const e=pt?f0:h;if(e){const a=e.getBoundingClientRect();if(a.height){R.setProperty("--hbt",(a.top-document.body.getBoundingClientRect().top)+"px");R.setProperty("--hbl",a.left+"px");R.setProperty("--hbr",(innerWidth-a.right)+"px")}}}
+let PKG=0;function pkAlign(){try{const R=document.documentElement.style,f0=document.querySelector("#app footer"),h=document.querySelector("#app .tabs"),pt=innerHeight>innerWidth;{const e=pt?f0:h;if(e){const a=e.getBoundingClientRect();if(a.height){R.setProperty("--hbt",(a.top-document.body.getBoundingClientRect().top)+"px");R.setProperty("--hbl",a.left+"px");R.setProperty("--hbr",(innerWidth-a.right)+"px")}}}
   if(h&&pt){const q=(h.querySelector(".tab")||h).getBoundingClientRect();if(q.height)R.setProperty("--tbp",(q.top-document.body.getBoundingClientRect().top)+"px")}else R.removeProperty("--tbp");
   const ft=document.querySelector("#app footer");if(ft&&innerHeight>innerWidth){const q=ft.getBoundingClientRect();if(q.height)R.setProperty("--tbt",(q.top-document.body.getBoundingClientRect().top)+"px")}else R.removeProperty("--tbt");
-  const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;const v=Math.max(0,innerHeight-a.bottom);R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
-  const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-a.bottom);if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
+  const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;let v=Math.max(0,innerHeight-a.bottom);{const on=document.body.classList.contains("pkNv");if(!on){if(v>=9){PKG=v;try{localStorage.setItem("cd_pkg",String(v))}catch(x){}}}else{if(!PKG){try{PKG=+localStorage.getItem("cd_pkg")||0}catch(x){}}if(PKG)v=PKG}}R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
+  const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-(innerHeight-v));if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
 function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL}if(b)b.textContent=PKTEST?"∞":pkAvail();if(MODE==="g")try{tabs()}catch(e){}pkNone();requestAnimationFrame(pkTtl)}
 function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail()<1,t=p.querySelector(".pkpt");p.classList.toggle("none",z);if(t){if(z)t.textContent="Prossima bustina tra "+pkLeft();else pkSetTtl()}}

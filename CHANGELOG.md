@@ -1,3 +1,6 @@
+## v496
+- Barra in basso nella scheda Bustine: la posizione non si calcola più misurando la barra mentre è già nella scheda (rimaneva ferma 8 px sotto lo schermo); usa l'ultima misura buona presa dalle altre schede (salvata anche per il primo avvio). Misure lette dal simulatore: Account `nvB20`, Bustine `nvB-8`. Fascia in alto non toccata.
+
 ## v495
 - Solo Dev: riga di diagnostica minuscola in basso a sinistra (versione e misure della barra in basso) per trovare la causa della barra che scende. Nessuna modifica per App.
 
