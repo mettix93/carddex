@@ -1,3 +1,6 @@
+## v507
+- Conversione: una bustina costa 40 Pokédollari (prima 20; costante PKCOST). Missione "Giorno di paga": 5 bustine invece di 3; "Piccolo sgraffignatore": 200 Pokédollari invece di 60.
+
 ## v506
 - Converti: accanto al numero di doppie di ogni set, tra parentesi, il valore complessivo in Pokédollari con la monetina attaccata al numero e della sua stessa altezza.
 
