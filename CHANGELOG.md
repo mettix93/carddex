@@ -1,3 +1,6 @@
+## v519
+- Pagine Offri/Chiedi della proposta di scambio: titolo «Doppie totali» in cima con il numero; i set singoli senza numero.
+
 ## v518
 - Converti: in cima il titolo «Doppie totali» con numero carte e valore in Pokédollari; i set singoli non mostrano più numero e valore.
 
