@@ -1,3 +1,6 @@
+## v513
+- Promo holo: la luce si vede anche col retro della carta (alone esterno + chiarore del bordo interno sul retro); tolto l alone largo sfasato; il respiro ora usa solo opacità/transform (compositor) e non più box-shadow animata, quindi è fluido e non va a scatti.
+
 ## v512
 - Promo holo: il contorno di luce resta vivo: dopo il massimo iniziale respira lentamente tra massimo e minimo (ciclo di circa 5 s), con un secondo alone più largo dietro la carta sfasato e un chiarore interno sul bordo.
 
