@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v493";
+const APPV="v494";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3384,7 +3384,7 @@ function sabSync(){try{const R=document.documentElement;if(innerHeight<=innerWid
   if(!sabP){sabP=document.createElement("div");sabP.style.cssText="position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom,0px);visibility:hidden;pointer-events:none";document.body.appendChild(sabP)}
   const h=Math.round(sabP.getBoundingClientRect().height);let o=0;try{o=+localStorage.getItem("cd_sab")||0}catch(e){}
   if(h>0&&h!==o){try{localStorage.setItem("cd_sab",String(h))}catch(e){}o=h}
-  const cur=R.style.getPropertyValue("--sab");if(o>0&&cur!==o+"px"){R.style.setProperty("--sab",o+"px");try{pkAlign()}catch(e){}}}catch(e){}}
+  const cur=R.style.getPropertyValue("--sab");if(o>0&&cur!==o+"px"){R.style.setProperty("--sab",o+"px");try{pkAlign()}catch(e){}}else{try{pkAlign()}catch(e){}}}catch(e){}}
 ["resize","pageshow","focus","orientationchange"].forEach(t=>addEventListener(t,()=>{sabSync();setTimeout(sabSync,300)}));document.addEventListener("visibilitychange",()=>{if(!document.hidden)sabSync()});setInterval(sabSync,1500);setTimeout(sabSync,50);["resize","pageshow","focus","orientationchange","scroll"].forEach(t=>addEventListener(t,()=>{vhSync();setTimeout(vhSync,250)}));try{visualViewport.addEventListener("resize",vhSync);visualViewport.addEventListener("scroll",vhSync)}catch(e){}document.addEventListener("visibilitychange",()=>{if(!document.hidden){vhSync();setTimeout(vhSync,400)}});document.addEventListener("pointerup",()=>setTimeout(vhSync,150),true);setInterval(vhSync,1000);setTimeout(vhSync,30);
 function pkWash(){const wa=document.createElement("div");wa.className="pkwash";$("#pk").appendChild(wa);try{wa.animate([{opacity:0,easing:"ease-out"},{opacity:1,offset:.14},{opacity:1,offset:.46,easing:"ease-in"},{opacity:0,offset:.82}],{duration:960})}catch(e){}setTimeout(()=>wa.remove(),1000);return wa}
 function pkSummary(){$("#pk").classList.add("sm");$("#pkg").classList.remove("on");pkKick();$("#pkc2").textContent="";const s=$("#pksum");if(!s.firstChild)pkSumBuild();
