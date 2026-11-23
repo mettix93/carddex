@@ -1,3 +1,11 @@
+## v491 (PullTime)
+- Missioni promo: 55 missioni (carte promo 0–54), tutte segrete (carta sigillata, nessuna anteprima), pubblicate a fasi: per ora solo la Fase 1 (19 missioni), ordinate per fase e numero di carta. Le 5 missioni già esistenti sono state rinominate e mantengono il progresso.
+- Nuove promo 50–53 (Celebi, Rapidash, Ho-Oh, Suicune). La 54 (carta jumbo) è pronta ma disattivata finché non c'è l'immagine.
+- Avviso «Missione completata!» con «Vai alla missione» (apre Missioni e inquadra la missione al centro, con lampeggio), numerino rosso sul tasto Missioni e pallino blu su Bustine.
+- Contatori nuovi: scambi (anche storico dal cloud), serie di bustine senza holo, giorni in cui si apre il gioco, compleanno.
+- Compleanno: si sceglie alla creazione dell'account e non si cambia più (gli account esistenti lo impostano una volta dalla scheda Account).
+- Test tests/missions_promo.js; i test che creano un account ora scelgono anche il compleanno.
+
 ## v490 (PullTime)
 - Il tasto «Missioni» spariva quando non c'erano bustine da aprire (schermata «Nuove bustine tra…»): ora resta sempre visibile e cliccabile. Test tests/pkms_none.js (fallisce senza la correzione).
 

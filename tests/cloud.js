@@ -14,7 +14,7 @@ async function ctx(b){const c=await b.newContext({viewport:{width:402,height:874
  // owned card on A
  await A.evaluate(()=>{const raw=Object.values(st)[0];raw.slice(0,3).forEach(x=>{if(x&&x.id)x.o=1});save()});
  await A.fill('#unm','Matteo');await A.dispatchEvent('#unm','change');
- await A.click('button[data-u=cr]');await A.waitForTimeout(1200);
+ await A.selectOption('#ubdd','15');await A.selectOption('#ubdm','6');await A.click('button[data-u=cr]');await A.waitForTimeout(1200);
  const code=await A.evaluate(()=>cuGet().code);
  console.log('A creato',await A.evaluate(()=>({code:cuGet().code,er:cuGet().er,ts:!!cuGet().ts,shown:!!document.querySelector('.ucc b')})),Object.keys(DB.saves));
  // A: esci e rientra con gli stessi dati: nessun dialogo

@@ -8,7 +8,7 @@ await p.addInitScript(()=>{sessionStorage.cdmode='g';localStorage.setItem('cardd
   window.PushManager=function(){};window.Notification={permission:'default',requestPermission:async()=>{window.Notification.permission='granted';return 'granted'}};
   Object.defineProperty(navigator,'standalone',{value:true,configurable:true})});
 await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1200);
-await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(600);await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1500);
+await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(600);await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.selectOption('#ubdd','15');await p.selectOption('#ubdm','6');await p.click('button[data-u=cr]');await p.waitForTimeout(1500);
 await p.evaluate(()=>pnRefresh());await p.waitForTimeout(500);
 ok(await p.evaluate(()=>/Notifiche/.test(document.querySelector('#set').innerText)&&document.querySelector('#set .sw[data-a=pn]').getAttribute('aria-checked')==='false'),'riga Notifiche: disattivate');
 await p.click('#set .sw[data-a=pn]');await p.waitForTimeout(800);

@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v490";
+const APPV="v491";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1656,7 +1656,7 @@ P:`1 Blaine's Arcanine*@59;2 Blaine's Charizard*@6;3 Brock's Ninetales*@38;4 Eri
 T:`17 Blaine*;18 Giovanni*;19 Koga*;20 Sabrina*;100 Blaine;101 Brock's Protection;102 Chaos Gym;103 Erika's Kindness;104 Giovanni;105 Giovanni's Last Resort;106 Koga;107 Lt. Surge's Secret Plan;108 Misty's Wish;109 Resistance Gym;110 Sabrina;111 Blaine's Quiz #2;112 Blaine's Quiz #3;113 Cinnabar City Gym;114 Fuchsia City Gym;115 Koga's Ninja Trick;116 Master Ball;117 Max Revive;118 Misty's Tears;119 Rocket's Minefield Gym;120 Rocket's Secret Experiment;121 Sabrina's Psychic Control;122 Saffron City Gym;123 Viridian City Gym;124 Fervor;125 Transparent Walls;126 Warp Point`,
 E:`127 Fighting Energy;128 Fire Energy;129 Grass Energy;130 Lightning Energy;131 Psychic Energy;132 Water Energy`},
 Q:{n:"Promo",t:0,
-P:`1 Pikachu@25;2 Electabuzz@125;3 Mewtwo@150;4 Pikachu@25;5 Dragonite@149;6 Arcanine@59;7 Jigglypuff@39;8 Mew@151;9 Mew*@151;10 Meowth*@52;11 Eevee*@133;12 Mewtwo@150;13 Venusaur*@3;14 Mewtwo@150;15 Cool Porygon*@137;17 Dark Persian*@53;18 Team Rocket's Meowth@52;19 Sabrina's Abra@63;20 Psyduck@54;21 Moltres@146;22 Articuno@144;23 Zapdos@145;24 _____'s Pikachu*@25;25 Flying Pikachu@25;26 Pikachu@25;27 Pikachu@25;28 Surfing Pikachu@25;29 Marill@183;30 Togepi@175;31 Cleffa@173;32 Smeargle@235;33 Scizor@212;34 Entei**@244;35 Pichu**@172;36 Igglybuff@174;37 Hitmontop@237;38 Unown [J]@201;39 Misdreavus@200;43 Machamp@68;44 Magmar@126;45 Scyther@123;46 Electabuzz@125;47 Mew@151;48 Articuno@144;49 Snorlax@143`,
+P:`1 Pikachu@25;2 Electabuzz@125;3 Mewtwo@150;4 Pikachu@25;5 Dragonite@149;6 Arcanine@59;7 Jigglypuff@39;8 Mew@151;9 Mew*@151;10 Meowth*@52;11 Eevee*@133;12 Mewtwo@150;13 Venusaur*@3;14 Mewtwo@150;15 Cool Porygon*@137;17 Dark Persian*@53;18 Team Rocket's Meowth@52;19 Sabrina's Abra@63;20 Psyduck@54;21 Moltres@146;22 Articuno@144;23 Zapdos@145;24 _____'s Pikachu*@25;25 Flying Pikachu@25;26 Pikachu@25;27 Pikachu@25;28 Surfing Pikachu@25;29 Marill@183;30 Togepi@175;31 Cleffa@173;32 Smeargle@235;33 Scizor@212;34 Entei**@244;35 Pichu**@172;36 Igglybuff@174;37 Hitmontop@237;38 Unown [J]@201;39 Misdreavus@200;43 Machamp@68;44 Magmar@126;45 Scyther@123;46 Electabuzz@125;47 Mew@151;48 Articuno@144;49 Snorlax@143;50 Celebi@251;51 Rapidash@78;52 Ho-Oh@250;53 Suicune@245`,
 T:`16 Computer Error;40 Pokémon Center;41 Lucky Stadium;42 Pokémon Tower`,E:``},
 G:{n:"Neo Genesis",t:111,
 P:`1 Ampharos*@181;2 Azumarill*@184;3 Bellossom*@182;4 Feraligatr*@160;5 Feraligatr*@160;6 Heracross*@214;7 Jumpluff*@189;8 Kingdra*@230;9 Lugia*@249;10 Meganium*@154;11 Meganium*@154;12 Pichu*@172;13 Skarmory*@227;14 Slowking*@199;15 Steelix*@208;16 Togetic*@176;17 Typhlosion*@157;18 Typhlosion*@157;20 Cleffa@173;21 Donphan@232;22 Elekid@239;23 Magby@240;24 Murkrow@198;25 Sneasel@215;26 Aipom@190;27 Ariados@168;28 Bayleef@153;29 Bayleef@153;31 Croconaw@159;32 Croconaw@159;34 Flaaffy@180;35 Furret@162;37 Granbull@210;38 Lanturn@171;39 Ledian@166;41 Miltank@241;42 Noctowl@164;43 Phanpy@231;44 Piloswine@221;45 Quagsire@195;46 Quilava@156;47 Quilava@156;49 Skiploom@188;50 Sunflora@192;51 Togepi@175;52 Xatu@178;53 Chikorita@152;54 Chikorita@152;55 Chinchou@170;56 Cyndaquil@155;57 Cyndaquil@155;58 Girafarig@203;59 Gligar@207;60 Hoothoot@163;61 Hoppip@187;63 Ledyba@165;64 Mantine@226;65 Mareep@179;66 Marill@183;67 Natu@177;71 Sentret@161;72 Shuckle@213;74 Snubbull@209;75 Spinarak@167;76 Stantler@234;77 Sudowoodo@185;78 Sunkern@191;79 Swinub@220;80 Totodile@158;81 Totodile@158;82 Wooper@194`,
@@ -1881,7 +1881,7 @@ let MODE="g",SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
 let PFM=0,PFGO=0;
-const save=()=>{try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}};
+const save=()=>{try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}try{msSoon()}catch(e){}};
 function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ;if(q){const i=q.findIndex(x=>x&&x.id==="X1");if(i<0)q.unshift({id:"X1",o:0,n:""});else if(i>0)q.unshift(q.splice(i,1)[0])}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
@@ -2588,7 +2588,7 @@ let PKCUR="B";try{const q=localStorage.getItem(GK("carddex_pks"));if(q&&PKSET[q]
 const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
 const pkSt=()=>{let o={};try{o=JSON.parse(localStorage.getItem(GK("carddex_pk"))||"{}")||{}}catch(e){}if(ENV==="dev"&&!((o.pts||0)>=1000))o.pts=1000;return o};
-const pkSv=o=>{try{localStorage.setItem(GK("carddex_pk"),JSON.stringify(o))}catch(e){}};
+const pkSv=o=>{try{localStorage.setItem(GK("carddex_pk"),JSON.stringify(o))}catch(e){}try{msSoon()}catch(e){}};
 const PKTEST=false,PKDEV=ENV==="dev",PKDAILY=3;
 const PKCAP=6;
 function pkSync(o){const d=pkDay();let ch=0;if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;ch=1}
@@ -2849,15 +2849,89 @@ function msKanto(){const D=dxData();let n=0;for(let d=1;d<=150;d++)if((D.own.g[d
 const msOp=()=>Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0),
 msArtL=()=>["B","J","F"].flatMap(x=>PKSET[x].p.map(p=>p.k)),
 msArtN=()=>{const A=msSt().art||{};return msArtL().filter(k=>A[k]).length};
-const MSB=[
-{id:"mew",t:"Maestro di Kanto",d:"Registra nel Pokédex delle bustine i 150 Pokémon di Kanto.",n:msKanto,N:()=>150,r:"X1",sec:1,ok:"Mew Antico aggiunto: lo trovi nel Pokédex e nell’album Promo"},
-{id:"art",t:"Tutte le bustine",d:"Apri ogni illustrazione di bustina di Base, Jungle e Fossil.",n:msArtN,N:()=>msArtL().length,r:"Q7",ok:"Jigglypuff aggiunto all’album Promo"},
-{id:"op10",t:"Dieci giorni",d:"Apri almeno una bustina in 10 giorni diversi.",n:()=>Math.min(10,Object.keys(msSt().days||{}).length),N:()=>10,r:"Q10",ok:"Meowth aggiunto all’album Promo"},
-{id:"earn",t:"Piccolo risparmiatore",d:"Guadagna 60 Pokédollari convertendo carte doppie.",n:()=>Math.min(60,msSt().earn||0),N:()=>60,r:"Q18",ok:"Meowth del Team Rocket aggiunto all’album Promo"},
-{id:"conv",t:"Scambio equo",d:"Ottieni 3 bustine scambiando i Pokédollari.",n:()=>Math.min(3,msSt().conv||0),N:()=>3,r:"Q17",ok:"Dark Persian aggiunto all’album Promo"}],
+/* ===== v491: 55 missioni promo, tutte segrete, pubblicate a fasi ===== */
+const MSPH=1;
+const msOwn=()=>{const o=[];Object.keys(st).forEach(k=>{if(!/^g[A-Z]$/.test(k)||!Array.isArray(st[k]))return;st[k].forEach(x=>{if(x&&x.id&&x.o){const c=CARDS[x.id];if(c)o.push({c,q:Math.max(1,x.q||1)})}})});return o};
+const msPr=c=>c.sid==="Q"||c.sid==="X";
+const msTy=c=>{if(!c||c.kd!=="p")return"";const o=rdOf(c);return(o&&o.t)||(c.dex?TYP[c.dex-1]||"":"")};
+const msN=(f,pr)=>msOwn().reduce((a,x)=>a+((pr||!msPr(x.c))&&f(x.c)?x.q:0),0);
+const msD=(f,pr)=>{const u=new Set();msOwn().forEach(x=>{if((pr||!msPr(x.c))&&f(x.c))u.add(x.c.id)});return u.size};
+const msE=(sids,f)=>{let n=0,N=0;sids.forEach(sd=>(st["g"+sd]||[]).forEach(x=>{if(!x||!x.id)return;const c=CARDS[x.id];if(c&&f(c)){N++;if(x.o)n++}}));return{n,N}};
+const msBest=sids=>{let b=null;sids.forEach(sd=>{const e=msE([sd],()=>true);if(!b||(e.N&&e.n/e.N>b.n/b.N))b=e});return b||{n:0,N:1}};
+let msDxC=null,msDxT=0;const msDxD=()=>{const t=Date.now();if(!msDxC||t-msDxT>400){msDxC=dxData();msDxT=t}return msDxC};
+const msDx=l=>{let D;try{D=msDxD()}catch(e){return 0}return l.filter(d=>(D.own.g[d]||[]).length).length};
+const msRg=(a,b)=>{const r=[];for(let i=a;i<=b;i++)r.push(i);return r};
+const msRe=r=>c=>r.test(c.name||"");
+const msUw=()=>{const L={};["G","D","V","T","H","I","K","L","M","N","O"].forEach(sd=>(st["g"+sd]||[]).forEach(x=>{const c=x&&x.id&&CARDS[x.id];if(c&&c.dex===201){const m=(c.name||"").match(/\[(.)\]/);if(m)L[m[1]]=!!L[m[1]]||!!x.o}}));const k=Object.keys(L);return{n:k.filter(a=>L[a]).length,N:k.length}};
+function msBd(){const M=msSt();if(M.bdok)return 1;try{const u=usrGet();if(!u.bd||!u.bs)return 0;const t=new Date(),mm=+u.bd.slice(0,2),dd=+u.bd.slice(3,5);let y=t.getFullYear(),c=new Date(y,mm-1,dd);const t0=new Date(t.getFullYear(),t.getMonth(),t.getDate());if(c>t0)c=new Date(y-1,mm-1,dd);const iso=c.getFullYear()+"-"+String(c.getMonth()+1).padStart(2,"0")+"-"+String(c.getDate()).padStart(2,"0");if(iso>=u.bs){M.bdok=1;msSv(M);return 1}}catch(e){}return 0}
+const msSc=sd=>msE(sd,()=>true);
+const MSB=(()=>{
+const mk=(num,ph,t,d,n,N,o)=>Object.assign({id:"m"+num,num,ph,t,d,n,N,r:num?"Q"+num:"X1",sec:1},o||{});
+const ok1="aggiunto all’album Promo";
+const tr1=dx=>()=>((msSt().trd||{})[dx]?1:0);
+const lead=(L)=>()=>L.reduce((a,r)=>a+Math.min(3,msD(msRe(r))),0);
+const L=[
+mk(0,1,"Un Pokémon misterioso","Completa il Pokédex di Kanto: registra tutti i 150 Pokémon.",msKanto,()=>150,{id:"mew",ok:"Mew Antico aggiunto: lo trovi nel Pokédex e nell’album Promo"}),
+mk(1,1,"Mascotte","Ottieni 25 carte Pikachu, di qualunque set.",()=>msN(c=>c.kd==="p"&&c.dex===25),()=>25),
+mk(2,1,"Sottocarica","Ottieni 10 carte Energia Elettro, di qualunque set.",()=>msN(c=>c.kd==="e"&&/elettro|lightning/i.test(c.name||"")),()=>10),
+mk(3,2,"Il Pokémon clone","Ottieni 15 carte promo.",()=>msN(c=>msPr(c),1),()=>15),
+mk(4,2,"Pietratuono","Ottieni 5 carte Raichu, di qualunque set.",()=>msN(c=>c.kd==="p"&&c.dex===26),()=>5),
+mk(5,2,"Posta extra rapida","Scambia 50 carte.",()=>msSt().tc||0,()=>50),
+mk(6,1,"Il Pokémon leggenda","Ottieni 5 carte Growlithe, di qualunque set.",()=>msN(c=>c.kd==="p"&&c.dex===58),()=>5),
+mk(7,1,"VIP di copertina","Apri ogni illustrazione di bustina di Base, Jungle e Fossil.",msArtN,()=>msArtL().length,{id:"art",ok:"Jigglypuff "+ok1}),
+mk(8,1,"Collezionista","Completa uno dei set Base, Jungle o Fossil.",()=>msBest(["B","J","F"]).n,()=>msBest(["B","J","F"]).N),
+mk(9,1,"Perfezionista","Completa i set Base, Jungle e Fossil.",()=>msSc(["B","J","F"]).n,()=>msSc(["B","J","F"]).N),
+mk(10,1,"La costanza... ripaga","Apri almeno una bustina in 10 giorni diversi.",()=>Math.min(10,Object.keys(msSt().days||{}).length),()=>10,{id:"op10",ok:"Meowth "+ok1}),
+mk(11,3,"Eeveelution","Registra nel Pokédex Eevee, Vaporeon, Jolteon, Flareon, Espeon e Umbreon.",()=>msDx([133,134,135,136,196,197]),()=>6),
+mk(12,2,"Dr. Fuji","Completa il set Team Rocket.",()=>msSc(["R"]).n,()=>msSc(["R"]).N),
+mk(13,1,"Starter","Completa le 9 carte starter del set Base.",()=>msE(["B"],c=>c.kd==="p"&&c.dex>=1&&c.dex<=9).n,()=>9),
+mk(14,2,"Mewtwo contro Mew","Ottieni una carta promo Mewtwo e una Mew.",()=>{const o=msOwn().filter(x=>msPr(x.c));return(o.some(x=>x.c.dex===150&&x.c.id!=="Q14")?1:0)+(o.some(x=>x.c.dex===151)?1:0)},()=>2),
+mk(15,1,"Baratto cibernetico","Effettua il tuo primo scambio.",()=>(msSt().tn||0)>0?1:0,()=>1),
+mk(16,1,"Che sfortuna!","Apri 6 bustine di fila senza trovare nessuna carta holo.",()=>Math.min(6,Math.max(msSt().hm||0,msSt().hs||0)),()=>6),
+mk(17,1,"Giorno di paga","Ottieni 3 bustine scambiando i Pokédollari.",()=>Math.min(3,msSt().conv||0),()=>3,{id:"conv",ok:"Dark Persian "+ok1}),
+mk(18,1,"Piccolo sgraffignatore","Guadagna 60 Pokédollari convertendo carte doppie.",()=>Math.min(60,msSt().earn||0),()=>60,{id:"earn",ok:"Meowth del Team Rocket "+ok1}),
+mk(19,2,"Medium di Zafferanopoli","Ottieni 50 carte di Sabrina (tra Pokémon e Addestramento).",()=>msN(msRe(/Sabrina/)),()=>50),
+mk(20,2,"Nuotatrice di Celestopoli","Ottieni 50 carte di Misty (tra Pokémon e Addestramento).",()=>msN(msRe(/Misty/)),()=>50),
+mk(21,1,"Fuoco leggendario","Completa tutte le carte Moltres di Base, Jungle e Fossil.",()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===146).n,()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===146).N),
+mk(22,1,"Gelo leggendario","Completa tutte le carte Articuno di Base, Jungle e Fossil.",()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===144).n,()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===144).N),
+mk(23,1,"Fulmine leggendario","Completa tutte le carte Zapdos di Base, Jungle e Fossil.",()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===145).n,()=>msE(["B","J","F"],c=>c.kd==="p"&&c.dex===145).N),
+mk(24,1,"Buon compleanno!","Accedi al gioco il giorno del tuo compleanno.",()=>msBd()?1:0,()=>1),
+mk(25,2,"Prendi il volo","Apri 100 bustine.",()=>Math.min(100,msOp()),()=>100),
+mk(26,1,"Tuonoshock","Ottieni 25 carte Pokémon di tipo Elettro.",()=>msN(c=>c.kd==="p"&&msTy(c)==="L"),()=>25),
+mk(27,1,"Bosco Smeraldo","Registra i primi 25 Pokémon del Pokédex di Kanto.",()=>msDx(msRg(1,25)),()=>25),
+mk(28,2,"Cavalca l’onda","Apri 200 bustine.",()=>Math.min(200,msOp()),()=>200),
+mk(29,3,"Una nuova generazione","Registra nel Pokédex Chikorita, Cyndaquil e Totodile.",()=>msDx([152,155,158]),()=>3),
+mk(30,3,"Uova Pokémon?","Registra nel Pokédex tutti i Baby Pokémon di Johto, Togepi escluso.",()=>msDx([172,173,174,236,238,239,240]),()=>7),
+mk(31,3,"Pokémon dalle stelle","Registra nel Pokédex Cleffa, Clefairy e Clefable.",()=>msDx([173,35,36]),()=>3),
+mk(32,3,"Artwork master","Completa 50 carte diverse illustrate da Ken Sugimori.",()=>msD(c=>{const o=rdOf(c);return!!(o&&o.i>=0&&RD.ill[o.i]==="Ken Sugimori")}),()=>50),
+mk(33,3,"Metalcoperta","Ottieni 3 carte Scyther qualunque.",()=>msN(c=>c.kd==="p"&&c.dex===123),()=>3),
+mk(34,3,"L’incantesimo degli Unown","Completa un set della serie Neo.",()=>msBest(["G","D","V","T"]).n,()=>msBest(["G","D","V","T"]).N),
+mk(35,3,"Un Pikachu in famiglia","Ottieni 5 carte promo Pikachu qualunque.",()=>msN(c=>c.sid==="Q"&&c.kd==="p"&&c.dex===25,1),()=>5),
+mk(36,3,"Ninna nanna di famiglia","Registra nel Pokédex Igglybuff, Jigglypuff e Wigglytuff.",()=>msDx([174,39,40]),()=>3),
+mk(37,3,"Maestro del dojo karate","Registra Hitmonchan, Hitmonlee, Tyrogue e Hitmontop.",()=>msDx([106,107,236,237]),()=>4),
+mk(38,3,"Un alfabeto antico","Completa l’alfabeto Unown: tutte le lettere disponibili.",()=>msUw().n,()=>msUw().N),
+mk(39,3,"Pokémon dall’oltretomba","Completa tutte le carte dei Pokémon spettro di prima generazione.",()=>msE(["B","J","F","R","Y","Z"],c=>c.kd==="p"&&[92,93,94].includes(c.dex)).n,()=>msE(["B","J","F","R","Y","Z"],c=>c.kd==="p"&&[92,93,94].includes(c.dex)).N),
+mk(40,2,"Pokémon Center","Completa 50 carte Addestramento diverse.",()=>Math.min(50,msD(c=>c.kd==="t")),()=>50),
+mk(41,2,"Arena degli eroi","Completa 3 carte ciascuno di Brock, Misty, Lt. Surge ed Erika.",lead([/Brock/,/Misty/,/Lt\. Surge/,/Erika/]),()=>12),
+mk(42,2,"Torre delle sfide","Completa 3 carte ciascuno di Koga, Sabrina, Blaine e Giovanni.",lead([/Koga/,/Sabrina/,/Blaine/,/Giovanni/]),()=>12),
+mk(43,2,"Evoluzione tramite scambio","Dai o ricevi un Machoke qualunque tramite scambio.",tr1(67),()=>1),
+mk(44,2,"Scambio a tre #1","Dai o ricevi un Electabuzz qualunque tramite scambio.",tr1(125),()=>1),
+mk(45,2,"Scambio a tre #2","Dai o ricevi un Magmar qualunque tramite scambio.",tr1(126),()=>1),
+mk(46,2,"Scambio a tre #3","Dai o ricevi un Scyther qualunque tramite scambio.",tr1(123),()=>1),
+mk(47,2,"#151","Apri il gioco in 151 giorni diversi.",()=>Math.min(151,Object.keys(msSt().dp||{}).length),()=>151),
+mk(48,2,"Il primo del trio","Completa le carte degli uccelli leggendari dei set Gym.",()=>msE(["Y","Z"],c=>c.kd==="p"&&[144,145,146].includes(c.dex)).n,()=>msE(["Y","Z"],c=>c.kd==="p"&&[144,145,146].includes(c.dex)).N),
+mk(49,3,"Pokéflauto","Ottieni 200 carte Pokémon di tipo Incolore.",()=>msN(c=>c.kd==="p"&&msTy(c)==="C"),()=>200),
+mk(50,3,"Il protettore del Bosco di Lecci","Completa il Pokédex di Johto: registra tutti i 100 Pokémon.",()=>msDx(msRg(152,251)),()=>100),
+mk(51,3,"Carbonella di Azalina","Ottieni 40 carte Pokémon di tipo Fuoco della serie Neo.",()=>msN(c=>"GDVT".includes(c.sid)&&c.kd==="p"&&msTy(c)==="R"),()=>40),
+mk(52,3,"Il Pokémon arcobaleno","Completa tutte le carte di Raikou, Entei e Suicune della serie Neo.",()=>msE(["G","D","V","T"],c=>c.kd==="p"&&[243,244,245].includes(c.dex)).n,()=>msE(["G","D","V","T"],c=>c.kd==="p"&&[243,244,245].includes(c.dex)).N),
+mk(53,3,"Il Pokémon errante di Johto","Ottieni 400 carte Pokémon di seconda generazione (serie Neo).",()=>msN(c=>"GDVT".includes(c.sid)&&c.kd==="p"),()=>400),
+mk(54,3,"La forza di uno","Completa tutte le carte Lugia della serie Neo.",()=>msE(["G","D","V","T"],c=>c.kd==="p"&&c.dex===249).n,()=>msE(["G","D","V","T"],c=>c.kd==="p"&&c.dex===249).N,{off:1})
+];
+L.forEach(m=>{if(!m.ok)m.ok=(CARDS[m.r]?CARDS[m.r].name:"Carta")+" "+ok1});
+return L.sort((a,b)=>a.ph-b.ph||a.num-b.num)})(),
 MSD={id:"dev",t:"Missione di prova",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp||0),N:()=>3,r:"XT",dev:1,ok:"Bulbasaur di prova aggiunto all’album Promo"},
 MSD2={id:"dev2",t:"Missione di prova 2",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp2||0),N:()=>3,r:"XV",sec:1,dev:1,dk:"2",ok:"Venusaur holo di prova aggiunto all’album Promo"},
-msAll=()=>PKDEV?[...MSB,MSD,MSD2]:MSB,
+msAll=()=>PKDEV?[...MSB.filter(x=>!x.off),MSD,MSD2]:MSB.filter(x=>x.ph<=MSPH&&!x.off),
 msDone=m=>!!msSt()[m.id==="mew"?"mew":"c_"+m.id],
 msTitle=m=>{const c=CARDS[m.r];if(m.sec&&!msDone(m))return "Carta segreta – Promo "+(c?c.num:0);if(!c)return "";return c.name+" – Promo "+(m.dev?"prova":c.num)};
 function msClaim(id){const m=msAll().find(x=>x.id===id),M=msSt();if(!m||msDone(m)||m.n()<m.N())return false;
@@ -2898,7 +2972,7 @@ function msReveal(cc,sec,done){let fin=0;const end=()=>{if(fin)return;fin=1;done
       const bb=A(bk,[{filter:"brightness(1)"},{filter:"brightness(1.4)"}],{duration:1400,easing:"ease-in",fill:"forwards"});
       sh.onfinish=()=>{if(sk)return;sh.cancel();bb.cancel();flip("translate(10px,-4px) rotate(2.8deg) rotateY(180deg) scale(1.04)")}},950)};
   }catch(e){end()}}
-function msBuild(){const sy0=(()=>{const w=document.querySelector("#msp .msw2");return w?w.scrollTop:0})();msBuild0();const w=document.querySelector("#msp .msw2");if(w)w.scrollTop=sy0}
+function msBuild(){const sy0=(()=>{const w=document.querySelector("#msp .msw2");return w?w.scrollTop:0})();msBuild0();const w=document.querySelector("#msp .msw2");if(w)w.scrollTop=sy0;try{msBadge(msReady().length)}catch(e){}}
 function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createElement("div");m.id="msp";m.hidden=true;e.appendChild(m);m.addEventListener("click",ev=>{if(ev.target.closest("#msx")||ev.target===m){m.hidden=true;return}
     const b=ev.target.closest(".msc");if(b){const mm=msAll().find(x=>x.id===b.dataset.m);if(msClaim(b.dataset.m)){msBuild();const cc=CARDS[mm.r],n0=cryN;try{acUnlock();const u=cryUrls(cc);if(u)cryLoad(u)}catch(x){}msReveal(cc,!!mm.sec,()=>{try{pkView(cc)}catch(x){}setTimeout(()=>{try{if(cryN===n0&&!$("#vw").hidden)cry(cc)}catch(x){}},1100);setTimeout(()=>toast(mm.ok),500)})}return}
     const d=ev.target.closest(".msi.dv");if(d&&PKDEV){const M=msSt(),x=msAll().find(y=>y.id===d.dataset.x)||MSD,k=x.dk||"";if(msDone(x)){M["tr"+k]=(M["tr"+k]||0)+1;msSv(M);if(M["tr"+k]>=3){msRegen(x);toast("Missione di prova rigenerata")}msBuild()}else if((M["tp"+k]||0)<3){M["tp"+k]=(M["tp"+k]||0)+1;msSv(M);msBuild()}}})}
@@ -2909,6 +2983,37 @@ function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createEle
     const cmp=done;
     const cl=!done&&ok;return '<div class="msi'+dv+(cmp?" dn":"")+(cl?" cl":"")+'" data-x="'+x.id+'"><div class="msr">'+th+'<div class="msx"><b>'+x.t+'</b><span>'+x.d+'</span><span class="msw">'+msTitle(x)+'</span></div></div>'+(cmp?'<s class="msk" aria-label="Completata"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 12.5l4.2 4.2L18.5 7.8"/></svg></s>'+(x.dev?'<em>Tocca 3 volte per rigenerarla: '+pr+' / 3</em>':''):(cl?'<s class="msk" aria-label="Da riscattare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v7.5"/><path d="M12 18v.01"/></svg></s>':'')+'<i><u style="width:'+Math.round(100*pr/PR)+'%"></u></i><em>'+(done&&x.dev?"Completata · tocca 3 volte per rigenerarla: "+pr+" / 3":pr+" / "+PR)+'</em>')+(done?'':ok?'<button class="msb on msc" data-m="'+x.id+'">Riscatta la ricompensa</button>':'')+'</div>'};
   m.innerHTML='<i class="mhd"></i><button class="pkx" id="msx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><h2>Missioni</h2><div class="msw2"><div class="msl">'+act.map(card).join("")+(dn.length?'<p class="msn" style="margin:14px 0 8px">Completate</p>'+dn.map(card).join(""):"")+'</div><p class="msn">Altre missioni in arrivo.</p></div>';m.hidden=false}
+
+/* ===== v491: contatori scambi, giorni, avviso di missione completata ===== */
+function msTrade(give,get,id){const M=msSt();M.tid=M.tid||{};M.trd=M.trd||{};if(id&&M.tid[id])return;if(id)M.tid[id]=1;M.tn=(M.tn||0)+1;M.tc=(M.tc||0)+(give||[]).length;[...(give||[]),...(get||[])].forEach(i=>{const c=CARDS[i];if(c&&c.dex)M.trd[c.dex]=1});msSv(M);msSoon()}
+let msBfB=0;
+async function msBf(){if(msBfB||!FR.me||!navigator.onLine||msSt().bf)return;msBfB=1;try{
+  const r=await sbReq("/rest/v1/trades?select=id,from_user,to_user,give,get,status&status=eq.accepted&order=created_at.asc&limit=1000");
+  const ap=new Set(frapGet()),me=FR.me.uid,M=msSt();M.tid=M.tid||{};M.trd=M.trd||{};
+  (r||[]).forEach(t=>{if(!t||!ap.has(t.id)||M.tid[t.id])return;const mine=t.from_user===me,gv=(mine?t.give:t.get)||[],gt=(mine?t.get:t.give)||[];M.tid[t.id]=1;M.tn=(M.tn||0)+1;M.tc=(M.tc||0)+gv.length;[...gv,...gt].forEach(i=>{const c=CARDS[i];if(c&&c.dex)M.trd[c.dex]=1})});
+  try{(trSt().d||[]).forEach(i=>{if(!M.tid[i]){M.tid[i]=1;M.tn=(M.tn||0)+1}})}catch(e){}
+  M.bf=1;msSv(M)}catch(e){}msBfB=0;msSoon()}
+function msDay(){try{const M=msSt(),d=pkDay();M.dp=M.dp||{};Object.keys(M.days||{}).forEach(k=>{M.dp[k]=1});if(!M.dp[d]){M.dp[d]=1}msSv(M)}catch(e){}}
+(function(){const c=document.createElement("style");c.textContent="#pkms .msbn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:11px;background:#ff453a;color:#fff;font:700 13px/22px system-ui,-apple-system,sans-serif;text-align:center;box-shadow:0 0 0 2px rgba(10,12,28,.9)}.msi.msfl{animation:mshl 1.1s ease-out 3}@keyframes mshl{0%{box-shadow:0 0 0 0 rgba(255,214,10,.9)}100%{box-shadow:0 0 0 18px rgba(255,214,10,0)}}.msmy{width:84px;height:118px;margin:4px auto 10px;position:relative}.msmy .mys{position:absolute;inset:0}";document.head.appendChild(c)})();
+let msTm=0,msPop=0;
+function msSoon(){clearTimeout(msTm);msTm=setTimeout(msCheck,450)}
+function msReady(){try{return msAll().filter(x=>!msDone(x)&&x.n()>=x.N())}catch(e){return[]}}
+function msBadge(n){try{const b=document.getElementById("pkms");if(b){let e=b.querySelector(".msbn");if(!n){if(e)e.remove()}else{if(!e){e=document.createElement("em");e.className="msbn";b.appendChild(e)}e.textContent=n}}
+  document.querySelectorAll("button[data-t=b]").forEach(T=>{let d=T.querySelector(".msd");const has=T.querySelector(".fdt:not(.msd)");if(!n||has){if(d)d.remove();return}if(!d){d=document.createElement("span");d.className="fdt msd";T.appendChild(d)}})}catch(e){}}
+function msBusy(){const hid=id=>{const e=document.getElementById(id);return!e||e.hidden};return document.hidden||(typeof pkBusy!=="undefined"&&pkBusy)||document.querySelector(".msrv")||!hid("trm")||!hid("cvs")||document.getElementById("gate")||!hid("vw")}
+function msCheck(){try{msDay();const L=msReady(),M=msSt();msBadge(L.length);const nw=L.filter(x=>!M["nt_"+x.id]);if(!nw.length||msPop)return;
+  if(msBusy()){clearTimeout(msTm);msTm=setTimeout(msCheck,2000);return}
+  nw.forEach(x=>{M["nt_"+x.id]=1});msSv(M);
+  const m=document.getElementById("msp");if(m&&!m.hidden){msBuild();return}
+  msPop=1;const one=nw.length===1,go=()=>{msPop=0;msGo(nw[0].id)},cl=()=>{msPop=0};
+  const e=trSheet({t:one?"Missione completata!":nw.length+" missioni completate!",n:one?"«"+nw[0].t+"»":nw.slice(0,4).map(x=>"«"+x.t+"»").join(" · ")+(nw.length>4?" …":""),h:'<div class="msmy">'+MYS+"</div>",b:[{t:one?"Vai alla missione":"Vai alle missioni",p:1,f:go},{t:"Più tardi",f:cl}]});
+  const x=e.querySelector(".cvx");if(x){const o=x.onclick;x.onclick=()=>{cl();o&&o()}}
+  e.addEventListener("click",ev=>{if(ev.target===e)cl()},{once:true});
+  try{sfx("nuova")}catch(x2){}}catch(e){msPop=0}}
+function msGo(id){const p=document.getElementById("pk"),open=p&&!p.hidden&&!p.classList.contains("pkfo");const run=()=>{try{msBuild();setTimeout(()=>msFocus(id),80)}catch(e){}};if(open)run();else{try{goTab("b")}catch(e){}setTimeout(run,1000)}}
+function msFocus(id){const w=document.querySelector("#msp .msw2"),el=w&&w.querySelector('.msi[data-x="'+id+'"]');if(!el)return;w.scrollTop+=el.getBoundingClientRect().top-w.getBoundingClientRect().top-(w.clientHeight-el.offsetHeight)/2;el.classList.add("msfl");setTimeout(()=>el.classList.remove("msfl"),3600)}
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)msSoon()});
+setTimeout(msSoon,2500);
 function pkCnt(sid){const L=(st["g"+sid]||[]).filter(x=>x.id);return L.filter(x=>x.o).length+" / "+L.length}
 function pkSetTtl(){const t=$("#pkp .pkpt");if(t)t.innerHTML=`<b>${esc(PKSET[PKCUR].n)}</b><em>${pkCnt(PKCUR)}</em>`}
 document.addEventListener("click",e=>{const t=e.target.closest&&e.target;if(t&&t.closest("#pkms"))msBuild();else if(t&&t.closest("#pknv button[data-t],#nvp button[data-t]")){const m=$("#msp");if(m)m.hidden=true}},true);
@@ -3002,9 +3107,9 @@ function trPaste(){const S=trSt(),np=Object.keys(S.p).length;const e=trSheet({t:
 function trIn(txt){const d=trDec(txt),S=trSt();if(!d){toast("Codice non valido");return}if(S.d.includes(d.id)){toast("Scambio già concluso");return}const p=S.p[d.id];
   if(d.t==="o"){if(p){toast("Questa è la tua offerta");return}if(!d.a.length){toast("Offerta vuota");return}TR.reply={id:d.id,a:d.a,need:trTally(d.a)};trTab("t");return}
   if(d.t==="r"){if(!p||p.r!=="a"||trMs(p.a)!==trMs(d.a)){toast("Risposta non trovata tra le tue offerte");return}if(!trSame(d.a,d.b)||!d.b.length){toast("Risposta non valida");return}if(!trSpare(p.a)){toast("Non hai più quelle doppie");return}
-    trSheet({t:"Conferma scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.a)+'<div class="trl">Ricevi</div>'+trFaces(d.b),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.a)){toast("Non hai più quelle doppie");return}trApply(p.a,d.b);delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");const code=trEnc("f",d.id,p.a,d.b);trCodeSheet("Scambio fatto","Manda la ricevuta al tuo amico: incollandola completa lo scambio anche per lui.",[],d.b,code,"Ricevuta dello scambio")}},{t:"Annulla"}]});return}
+    trSheet({t:"Conferma scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.a)+'<div class="trl">Ricevi</div>'+trFaces(d.b),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.a)){toast("Non hai più quelle doppie");return}trApply(p.a,d.b);try{msTrade(p.a,d.b,d.id)}catch(e){}delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");const code=trEnc("f",d.id,p.a,d.b);trCodeSheet("Scambio fatto","Manda la ricevuta al tuo amico: incollandola completa lo scambio anche per lui.",[],d.b,code,"Ricevuta dello scambio")}},{t:"Annulla"}]});return}
   if(d.t==="f"){if(!p||p.r!=="b"||trMs(p.a)!==trMs(d.a)||trMs(p.b)!==trMs(d.b)){toast("Ricevuta non trovata tra i tuoi scambi");return}if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}
-    trSheet({t:"Completa scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.b)+'<div class="trl">Ricevi</div>'+trFaces(p.a),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}trApply(p.b,p.a);delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");toast("Scambio completato!")}},{t:"Annulla"}]})}}
+    trSheet({t:"Completa scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.b)+'<div class="trl">Ricevi</div>'+trFaces(p.a),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}trApply(p.b,p.a);try{msTrade(p.b,p.a,d.id)}catch(e){}delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");toast("Scambio completato!")}},{t:"Annulla"}]})}}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
   e.innerHTML='<div class="cvhd"><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="f">Scambia<i class="frd"></i></button></div><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><p class="cvds"><span id="cvdt"></span><button id="cvq" aria-label="Informazioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></svg></button></p><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Ricevi</button><button id="tro" disabled>Offri</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
@@ -3072,7 +3177,7 @@ function pkBadge(){const n=pkAvail(),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkToAlbum(){const sid=PKCUR,k="g"+sid;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(e){}pkClose();if(MODE!=="g")setMode("g");if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync();try{aqEnter(k)}catch(x){errRep(x,"aqEnter")}}
-function pkScreen(){try{sdPkTabs()}catch(e){}const e=pkBuild();try{frDots(FR.n)}catch(x){}e.classList.remove("pkfo");pkChoose()}
+function pkScreen(){try{sdPkTabs()}catch(e){}try{msSoon()}catch(e){}const e=pkBuild();try{frDots(FR.n)}catch(x){}e.classList.remove("pkfo");pkChoose()}
 function pkChoose(){requestAnimationFrame(pkTtl);setTimeout(pkTtl,120);setTimeout(pkTtl,450);pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
   $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
   e.classList.remove("holo","close","god","lucky","sm","gband");e.classList.add("studio");pkTheme(STC());e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
@@ -3144,7 +3249,7 @@ function pkDvShow(){if(!PKDEV)return;let d=$("#pkdv");if(!d){d=document.createEl
 function pkDvSync(){const d=$("#pkdv");if(d)d.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.k===pkForce))}
 function pkDvHide(){const d=$("#pkdv");if(d)d.hidden=true}
 function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");if(pkTs&&!pkForce)pkTestEnd();const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
-  const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));{res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
+  const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));try{const M=msSt();M.hs=draw.some(c=>c&&(c.h||c.hz))?0:(M.hs||0)+1;M.hm=Math.max(M.hm||0,M.hs);msSv(M)}catch(e){}{res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
   w.classList.remove("cutting");w.querySelectorAll(".pkct,.pkcl").forEach(f=>{try{f.animate([{opacity:1},{opacity:0}],{duration:140,fill:"forwards"})}catch(e){}setTimeout(()=>{f.style.display="none"},160)});
@@ -3438,22 +3543,31 @@ function stTot(){let sl=0,st=0;try{const raw=dxRaw("g");GCOLS.forEach(c=>{if(!st
 function usrStats(){const o=stGet(),tt=stTot(),C=2*Math.PI*26.5,
   T=(n,t,tot,sub)=>{const f=tot?Math.max(0,Math.min(1,n/tot)):1;return '<div><b'+((tot?Math.max(String(n).length,String(tot).length)>3:String(n).length>3)?' class="sm"':'')+'><svg viewBox="0 0 56 56" aria-hidden="true"><circle class="tk" cx="28" cy="28" r="26.5"/><circle class="pg" cx="28" cy="28" r="26.5" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+(C*(1-f)).toFixed(1)+'"/></svg><i'+(tot?' class="fr"':'')+'>'+(tot?'<u>'+n+'</u><u class="t">'+tot+'</u>':n)+'</i></b><span>'+t+'</span></div>'};
   return '<div class="stg">'+T(o.p||0,"Bustine aperte")+T(o.c||0,"Carte ottenute")+T(stUniq(),"Carte scoperte",tt.sl)+T(stSets(),"Set completati",tt.st)+'</div>'}
+
+/* ===== v491: compleanno (si sceglie una volta sola) ===== */
+const BDM=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const bdOk=(m,d)=>m>=1&&m<=12&&d>=1&&d<=[31,29,31,30,31,30,31,31,30,31,30,31][m-1];
+function bdSel(id){return '<div class="row bdr" style="display:flex;align-items:center;gap:8px"><span style="flex:1">Compleanno</span><select id="'+id+'d" aria-label="Giorno">'+'<option value="">Giorno</option>'+Array.from({length:31},(_,i)=>'<option value="'+(i+1)+'">'+(i+1)+'</option>').join("")+'</select><select id="'+id+'m" aria-label="Mese"><option value="">Mese</option>'+BDM.map((x,i)=>'<option value="'+(i+1)+'">'+x+'</option>').join("")+'</select></div>'}
+function bdRead(root,id){const d=+((root.querySelector("#"+id+"d")||{}).value),m=+((root.querySelector("#"+id+"m")||{}).value);if(!d||!m||!bdOk(m,d))return"";return String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0")}
+function bdSave(u,bd){const t=new Date();u.bd=bd;u.bs=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0")}
+function bdTxt(u){return u.bd?(+u.bd.slice(3,5))+" "+BDM[+u.bd.slice(0,2)-1]:""}
 let USV="",PNS="na";
 function usrCard(){const u=usrGet(),n=(u.n||"").trim(),c=cuGet(),esc=t=>String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
   const av=n?esc(n[0].toUpperCase()):'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg>';
   let sub,rows="";const R=(k,t)=>'<button class="row act" data-u="'+k+'">'+t+'</button>';
   if(c){sub=c.er?'Non salvato: '+esc(c.er)+' · riprovo da solo':!c.ack?'Salva il tuo codice di accesso, serve per ritrovare i dati':'Tutto salvato nel cloud';
-    rows=R("co","Codice di accesso");
+    rows=R("co","Codice di accesso");{const uu=usrGet();rows+=uu.bd?'<div class="row" style="opacity:.75">Compleanno: '+bdTxt(uu)+'</div>':bdSel('ubd')+R("bd","Salva il compleanno")}
     if(USV==="code")rows+='<div class="row ucp"><b>'+esc(cuFmt(c.code||""))+'</b><button class="ucl" data-u="cp">Copia</button><button class="ucl" data-u="ok">L’ho salvato</button></div><div class="ucn">Conservalo: serve per ritrovare i tuoi dati se cambi telefono. Non darlo a nessuno.</div>';
     rows+=R("hi","Cronologia e salvataggio");rows+=R("ex","Esci")}
   else{sub="Salva la tua collezione nel cloud: la ritrovi anche se cambi telefono";
-    rows=R("cr","Crea account")+R("lg","Ho già un codice");
+    rows=(usrGet().bd?'<div class="row" style="opacity:.75">Compleanno: '+bdTxt(usrGet())+'</div>':bdSel('ubd'))+R("cr","Crea account")+R("lg","Ho già un codice");
     if(USV==="login")rows+='<div class="row ucp"><input id="ulc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="ucl" data-u="go">Accedi</button></div>'}
   return '<div class="ucw"><div class="ucd'+(c?" hasf":"")+'"><div class="uav">'+av+'</div><div class="uin"><input id="unm" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Scegli il tuo nome" value="'+esc(n)+'"><small>'+sub+'</small></div>'+(c?'<button class="ufr" data-u="fr" aria-label="Community"><i><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 21V19C22 17.1362 20.7252 15.5701 19 15.126M15.5 3.29076C16.9659 3.88415 18 5.32131 18 7C18 8.67869 16.9659 10.1159 15.5 10.7092M17 21C17 19.1362 17 18.2044 16.6955 17.4693C16.2895 16.4892 15.5108 15.7105 14.5307 15.3045C13.7956 15 12.8638 15 11 15H8C6.13623 15 5.20435 15 4.46927 15.3045C3.48915 15.7105 2.71046 16.4892 2.30448 17.4693C2 18.2044 2 19.1362 2 21M13.5 7C13.5 9.20914 11.7091 11 9.5 11C7.29086 11 5.5 9.20914 5.5 7C5.5 4.79086 7.29086 3 9.5 3C11.7091 3 13.5 4.79086 13.5 7Z" stroke="currentColor" stroke-width="2.57" stroke-linecap="round" stroke-linejoin="round"/></svg></i>'+(frReq()>0?'<span class="fdt"></span>':"")+'<span>Community</span></button>':"")+'</div>'+usrStats()+'<div class="ush">Account</div><div class="sgt">Salvataggio</div><div class="sgr ucg">'+rows+'</div>'+'</div>'}
 function usrBind(e){const w=e.querySelector(".ucw");if(!w)return;const un=w.querySelector("#unm");
   if(un)un.onchange=()=>{const v=un.value.trim().slice(0,16);try{const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u))}catch(x){}const a=w.querySelector(".uav");if(a)a.textContent=v?v[0].toUpperCase():"?";toast(v?"Nome salvato":"Nome rimosso")};
   w.onclick=async ev=>{const b=ev.target.closest("button[data-u]");if(!b)return;const k=b.dataset.u,busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
-    try{if(k==="cr"){const v=(un&&un.value.trim()||"").slice(0,16);if(!v){toast("Scrivi prima il tuo nome");if(un)un.focus();return}const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);USV="code";toast("Account creato: salva il tuo codice");cuUi()}
+    try{if(k==="cr"){const v=(un&&un.value.trim()||"").slice(0,16);if(!v){toast("Scrivi prima il tuo nome");if(un)un.focus();return}const u=usrGet();if(!u.bd){const bd=bdRead(w,'ubd');if(!bd){toast("Scegli il tuo compleanno: non si potrà cambiare");return}bdSave(u,bd)}u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);USV="code";toast("Account creato: salva il tuo codice");cuUi()}
+      else if(k==="bd"){const bd=bdRead(w,'ubd');if(!bd){toast("Scegli giorno e mese");return}confirmSheet("Compleanno: "+(+bd.slice(3,5))+" "+BDM[+bd.slice(0,2)-1]+". Non potrai più cambiarlo.",()=>{const u=usrGet();bdSave(u,bd);localStorage.setItem("carddex_user",JSON.stringify(u));cuUi();toast("Compleanno salvato");msSoon()})}
       else if(k==="lg"){USV=USV==="login"?"":"login";cuUi()}
       else if(k==="fr"){frOpen("a")}
       else if(k==="go"){const i=w.querySelector("#ulc");busy(1);await cuLogin(i&&i.value);USV="";toast("Accesso eseguito");cuUi()}
@@ -3580,7 +3694,7 @@ async function frPub(force){if(!cuGet()||FR.bz)return;const co=frColl(),pf=pfPub
     await sbReq("/rest/v1/collections?on_conflict=user_id",{m:"POST",h:{Prefer:"resolution=merge-duplicates,return=minimal"},b:{user_id:me.uid,data:{...co,_f:pf,_l:frLk()},updated_at:new Date().toISOString()}});FR.ph=h}catch(e){}}
 async function frLoad(){if(!cuGet()||FR.bz)return false;FR.bz=1;let ok=false;
   try{const me=await frEnsure();const a=await Promise.all([sbReq("/rest/v1/friendships?select=id,requester,addressee,status"),sbReq("/rest/v1/trades?select=*&order=created_at.desc&limit=60"),sbReq("/rest/v1/profiles?user_id=eq."+me.uid+"&select=status,is_admin")]);
-    FR.fs=a[0]||[];FR.tr=a[1]||[];if(a[2]&&a[2][0]){me.st=a[2][0].status||me.st;me.ad=!!a[2][0].is_admin;gtSet(me.st)}
+    FR.fs=a[0]||[];FR.tr=a[1]||[];try{msBf()}catch(e){}if(a[2]&&a[2][0]){me.st=a[2][0].status||me.st;me.ad=!!a[2][0].is_admin;gtSet(me.st)}
     FR.pd=me.ad&&me.st==="approved"?(await sbReq("/rest/v1/profiles?status=eq.pending&select=user_id,name,code")||[]):[];const ids=[...new Set(FR.fs.map(f=>f.requester===me.uid?f.addressee:f.requester))];
     if(ids.length){const ps=await sbReq("/rest/v1/profiles?user_id=in.("+ids.join(",")+")&select=user_id,name,code");(ps||[]).forEach(p=>FR.pr[p.user_id]=p)}
     FR.ts=Date.now();ok=true}catch(e){}
@@ -3589,7 +3703,7 @@ function frNew(t){const me=FR.me&&FR.me.uid;return !!me&&t.status==="accepted"&&
 function frApplyDone(){try{frDoneShow()}catch(e){}}
 /* v463: lo scambio accettato dall'altro si applica solo quando si preme Vedi in Posta */
 async function frSee(t){if(!t)return;if(!trSpare(t.give)){frapAdd(t.id);toast("Le tue carte per questo scambio non sono più disponibili",1);frBadge();return}
-  const R=trApply(t.give,t.get);frapAdd(t.id);FR.dn={who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx};FR.v="anim";FR.dnA=null;try{cuSync("push")}catch(e){}frBadge(1);frDraw()}
+  const R=trApply(t.give,t.get);try{msTrade(t.give,t.get,t.id)}catch(e){}frapAdd(t.id);FR.dn={who:frNm(t.to_user),give:t.give.slice(),get:t.get.slice(),nw:R.nw,dx:R.dx};FR.v="anim";FR.dnA=null;try{cuSync("push")}catch(e){}frBadge(1);frDraw()}
 function frCount(){const me=FR.me&&FR.me.uid;if(!me)return 0;return (FR.pd||[]).length+FR.tr.filter(t=>t.status==="pending"&&t.to_user===me&&!frExp(t)).length+FR.tr.filter(frNew).length}
 function frReq(){return (FR.pd||[]).length}
 function frDots(n){const r=frReq();document.querySelectorAll(".cvtb button[data-m=f]").forEach(b=>b.classList.toggle("dot",n>0));document.querySelectorAll("#pkbc,.nvp button[data-t=b],.nvp button[data-t=s],.ufr").forEach(b=>{const q=b.matches(".ufr,[data-t=s]")?r:n;let d=b.querySelector(":scope>.fdt");if(q>0){if(!d){d=document.createElement("span");d.className="fdt";b.appendChild(d)}}else if(d)d.remove()})}
@@ -3606,7 +3720,7 @@ async function frAnswer(t,st2){const r=await sbReq("/rest/v1/trades?id=eq."+t.id
 async function frAccept(t){if(frExp(t)){toast("Proposta scaduta");return}if(!trSpare(t.get)){toast("Non hai più le carte richieste");return}
   let r;try{r=await frAnswer(t,"accepted")}catch(e){toast(e.message||"Errore");return}
   if(!r){toast("Proposta non più valida");return}
-  const R=trApply(t.get,t.give);frapAdd(t.id);FR.dn={who:frNm(t.from_user),give:t.get.slice(),get:t.give.slice(),nw:R.nw,dx:R.dx};FR.v="anim";FR.dnA=null;try{cuSync("push")}catch(e){}frDraw()}
+  const R=trApply(t.get,t.give);try{msTrade(t.get,t.give,t.id)}catch(e){}frapAdd(t.id);FR.dn={who:frNm(t.from_user),give:t.get.slice(),get:t.give.slice(),nw:R.nw,dx:R.dx};FR.v="anim";FR.dnA=null;try{cuSync("push")}catch(e){}frDraw()}
 /* ---- schermate ---- */
 const frX='<button class="cvx" data-a="x" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button>';
 const frAv=n=>'<span class="fra">'+esc((n||"?")[0].toUpperCase())+"</span>";
@@ -3734,15 +3848,15 @@ function gtDraw(){if(!gtOn())return;const st=gtGet();let e=document.querySelecto
   if(st==="unknown"&&cuGet()){gtCheck();if(!e)return}
   if(!e){e=document.createElement("div");e.id="gate";document.body.appendChild(e);e.onclick=gtClick}
   const c=cuGet(),u=usrGet(),n=(u.n||"").trim();let h='<div class="gtc"><div class="gtl">PullTime</div>';
-  if(!c){h+='<h2>Community privata</h2><p>Per giocare devi far parte della community. Scegli il tuo nome e chiedi di entrare: l’admin deve approvarti.</p><input id="gtn" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Il tuo nome" value="'+gtEsc(n)+'"><button class="gtb p" data-g="cr">Chiedi di entrare</button>'+
+  if(!c){h+='<h2>Community privata</h2><p>Per giocare devi far parte della community. Scegli il tuo nome e chiedi di entrare: l’admin deve approvarti.</p><input id="gtn" maxlength="16" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Il tuo nome" value="'+gtEsc(n)+'">'+(u.bd?'':bdSel('gbd'))+'<button class="gtb p" data-g="cr">Chiedi di entrare</button>'+
     '<button class="gtb" data-g="lg">Ho già un codice</button>'+(gtV==="login"?'<input id="gtc" maxlength="24" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX"><button class="gtb p" data-g="go">Accedi</button>':"")}
   else if(st==="rejected"){h+='<h2>Accesso non approvato</h2><p>L’admin non ti ha accettato nella community.</p><button class="gtb" data-g="ex">Esci</button>'}
   else{h+='<h2>In attesa di approvazione</h2><p>L’admin deve accettare il tuo ingresso. Questa schermata si aggiorna da sola.</p>'+(!c.ack?'<div class="gtk"><small>Il tuo codice di accesso: salvalo, serve se cambi telefono</small><b>'+gtEsc(cuFmt(c.code||""))+'</b><button class="gtb" data-g="cp">Copia e salva</button></div>':"")+'<button class="gtb" data-g="ex">Esci</button>'}
-  const k=e.querySelector("input");const kv=k&&k.value,kid=k&&k.id,foc=document.activeElement===k;e.innerHTML=h+"</div>";
+  const k=e.querySelector("input");const kv=k&&k.value,kid=k&&k.id,foc=document.activeElement===k,sv0=[...e.querySelectorAll("select")].map(x=>[x.id,x.value]);e.innerHTML=h+"</div>";sv0.forEach(([i,v])=>{const q=e.querySelector("#"+i);if(q&&v)q.value=v});
   if(kid){const k2=e.querySelector("#"+kid);if(k2&&kv&&!k2.value)k2.value=kv}}
 async function gtCheck(){if(gtBz||!cuGet()||!navigator.onLine)return;gtBz=1;try{const me=await frEnsure0();const r=await sbReq("/rest/v1/profiles?user_id=eq."+me.uid+"&select=status,is_admin");if(r&&r[0]){me.st=r[0].status;me.ad=!!r[0].is_admin;gtSet(me.st);if(me.st==="approved")frLoad()}}catch(e){}gtBz=0}
 async function gtClick(ev){const b=ev.target.closest("button[data-g]");if(!b)return;const k=b.dataset.g,e=document.querySelector("#gate"),busy=on=>{b.disabled=on;b.style.opacity=on?.5:""};
-  try{if(k==="cr"){const v=(e.querySelector("#gtn").value||"").trim().slice(0,16);if(!v){toast("Scrivi prima il tuo nome");return}const u=usrGet();u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);await frEnsure0();gtSet(FR.me.st);gtDraw()}
+  try{if(k==="cr"){const v=(e.querySelector("#gtn").value||"").trim().slice(0,16);if(!v){toast("Scrivi prima il tuo nome");return}const u=usrGet();if(!u.bd){const bd=bdRead(e,'gbd');if(!bd){toast("Scegli il tuo compleanno: non si potrà cambiare");return}bdSave(u,bd)}u.n=v;localStorage.setItem("carddex_user",JSON.stringify(u));busy(1);await cuCreate(v);await frEnsure0();gtSet(FR.me.st);gtDraw()}
     else if(k==="lg"){gtV=gtV==="login"?"":"login";gtDraw()}
     else if(k==="go"){busy(1);await cuLogin(e.querySelector("#gtc").value);gtV="";FR.me=null;FR.pr={};try{cuUi()}catch(x){}await frEnsure0();gtSet(FR.me.st);gtDraw()}
     else if(k==="cp"){const c=cuGet();try{await navigator.clipboard.writeText(cuFmt(c.code))}catch(x){}c.ack=1;cuSet(c);toast("Codice copiato: conservalo bene");gtDraw()}

@@ -4,7 +4,7 @@ let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
 async function open(b){const c=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));
   await p.route(/^https?:\/\/(?!localhost|.*supabase)/,r=>r.abort());await mock(p);await p.addInitScript(()=>{sessionStorage.cdmode='g';localStorage.setItem('carddex_env','app');localStorage.setItem('cd_gate','on')});
   await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1200);return p}
-const join=async(p,n)=>{await p.fill('#gtn',n);await p.click('#gate [data-g=cr]');await p.waitForTimeout(1500)};
+const join=async(p,n)=>{await p.fill('#gtn',n);await p.selectOption('#gbdd','15');await p.selectOption('#gbdm','6');await p.click('#gate [data-g=cr]');await p.waitForTimeout(1500)};
 (async()=>{const b=await chromium.launch();
 const A=await open(b);ok(await A.evaluate(()=>!!document.querySelector('#gate')&&/Community privata/.test(document.querySelector('#gate').innerText)),'senza account: porta chiusa');
 await join(A,'Anna');ok(await A.evaluate(()=>!document.querySelector('#gate')),'il primo (admin) entra subito');

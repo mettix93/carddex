@@ -4,7 +4,7 @@ let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
 async function ctx(b,name){const c=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));
   await p.route(/^https?:\/\/(?!localhost|.*supabase)/,r=>r.abort());await mock(p);await p.addInitScript(()=>{sessionStorage.cdmode='g';localStorage.setItem('carddex_env','app')});
   await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1200);await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(700);
-  await p.fill('#unm',name);await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);return p}
+  await p.fill('#unm',name);await p.dispatchEvent('#unm','change');await p.selectOption('#ubdd','15');await p.selectOption('#ubdm','6');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);return p}
 (async()=>{const b=await chromium.launch();const A=await ctx(b,'Anna'),B=await ctx(b,'Bruno');
 await A.evaluate(()=>cuSync("push"));await B.evaluate(()=>cuSync("push"));
 await A.evaluate(()=>frOpen());await A.waitForTimeout(1200);const codeA=await A.evaluate(()=>FR.me.code);

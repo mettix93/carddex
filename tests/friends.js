@@ -4,7 +4,7 @@ let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad++};
 async function ctx(b,name){const c=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(e.message));
   await p.route(/^https?:\/\/(?!localhost|.*supabase)/,r=>r.abort());await mock(p);await p.addInitScript(()=>{sessionStorage.cdmode='g';localStorage.setItem('carddex_env','app')});
   await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1200);await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(700);
-  await p.fill('#unm',name);await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);return p}
+  await p.fill('#unm',name);await p.dispatchEvent('#unm','change');await p.selectOption('#ubdd','15');await p.selectOption('#ubdm','6');await p.click('button[data-u=cr]');await p.waitForTimeout(1300);return p}
 // segna come possedute (con doppie) alcune carte di rarità C: restituisce gli id
 async function seed(p,from,n,q,own){return p.evaluate(([from,n,q,own])=>{const ids=[];for(const co of GCOLS){for(const s of st[co.k]){const c=trCard(s.id);if(c&&trK(c)==="C"&&ids.length<from+n+30&&!ids.includes(s.id))ids.push(s.id)}}
   const pick=ids.slice(from,from+n);pick.forEach(i=>{const s=trSlot(i);s.o=1;s.a=0;s.q=q});save();return pick},[from,n,q,own])}
