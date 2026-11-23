@@ -1,3 +1,6 @@
+## v504
+- Tic bustine: suono nello stile dei suoni v2 (triangolo morbido + ottava, pentatonica) e nessun limite artificiale di velocità: un tic per ogni bustina che passa, quindi segue la velocità del dito. Varianti A/B/C in PKTICK (tools/suoni/gen_tick.py).
+
 ## v503
 - Missioni: bordino blu sulle missioni da riscattare.
 - Rivelazione carta segreta: tolto il primo "bip"; la carta continua a tremare a serie con pause finché non la giri col dito (scritta guida); un tap non salta più la rivelazione.
