@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v491";
+const APPV="v492";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2994,7 +2994,7 @@ async function msBf(){if(msBfB||!FR.me||!navigator.onLine||msSt().bf)return;msBf
   try{(trSt().d||[]).forEach(i=>{if(!M.tid[i]){M.tid[i]=1;M.tn=(M.tn||0)+1}})}catch(e){}
   M.bf=1;msSv(M)}catch(e){}msBfB=0;msSoon()}
 function msDay(){try{const M=msSt(),d=pkDay();M.dp=M.dp||{};Object.keys(M.days||{}).forEach(k=>{M.dp[k]=1});if(!M.dp[d]){M.dp[d]=1}msSv(M)}catch(e){}}
-(function(){const c=document.createElement("style");c.textContent="#pkms .msbn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:11px;background:#ff453a;color:#fff;font:700 13px/22px system-ui,-apple-system,sans-serif;text-align:center;box-shadow:0 0 0 2px rgba(10,12,28,.9)}.msi.msfl{animation:mshl 1.1s ease-out 3}@keyframes mshl{0%{box-shadow:0 0 0 0 rgba(255,214,10,.9)}100%{box-shadow:0 0 0 18px rgba(255,214,10,0)}}.msmy{width:84px;height:118px;margin:4px auto 10px;position:relative}.msmy .mys{position:absolute;inset:0}";document.head.appendChild(c)})();
+(function(){const c=document.createElement("style");c.textContent="#pkms .msbn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:11px;background:#0a84ff;color:#fff;font:700 13px/22px system-ui,-apple-system,sans-serif;text-align:center;box-shadow:0 0 0 2px var(--fdb,#fff)}.msi.msfl{animation:mshl 1.1s ease-out 3}@keyframes mshl{0%{box-shadow:0 0 0 0 rgba(255,214,10,.9)}100%{box-shadow:0 0 0 18px rgba(255,214,10,0)}}.msmy{width:84px;height:118px;margin:4px auto 10px;position:relative}.msmy .mys{position:absolute;inset:0}";document.head.appendChild(c)})();
 let msTm=0,msPop=0;
 function msSoon(){clearTimeout(msTm);msTm=setTimeout(msCheck,450)}
 function msReady(){try{return msAll().filter(x=>!msDone(x)&&x.n()>=x.N())}catch(e){return[]}}

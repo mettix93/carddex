@@ -1,3 +1,6 @@
+## v492 (PullTime)
+- Numerino del tasto Missioni ora blu come tutti gli altri indicatori. Fasi 2 e 3 delle missioni visibili solo in Dev (test tests/missions_promo.js).
+
 ## v491 (PullTime)
 - Missioni promo: 55 missioni (carte promo 0–54), tutte segrete (carta sigillata, nessuna anteprima), pubblicate a fasi: per ora solo la Fase 1 (19 missioni), ordinate per fase e numero di carta. Le 5 missioni già esistenti sono state rinominate e mantengono il progresso.
 - Nuove promo 50–53 (Celebi, Rapidash, Ho-Oh, Suicune). La 54 (carta jumbo) è pronta ma disattivata finché non c'è l'immagine.

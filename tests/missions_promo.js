@@ -31,4 +31,10 @@ console.log(JSON.stringify(C));ok(C.a&&C.own&&C.done,'riscatto: carta promo nell
 await p.evaluate(()=>{localStorage.removeItem('carddex_user')});await p.reload();await p.waitForTimeout(2200);await p.evaluate(()=>document.querySelector('#nvp button[data-t=s]').click());await p.waitForTimeout(700);
 await p.evaluate(()=>{const t=document.getElementById('trm');if(t)t.hidden=true});await p.fill('#unm','Anna');await p.dispatchEvent('#unm','change');await p.click('button[data-u=cr]');await p.waitForTimeout(900);
 const NB=await p.evaluate(()=>({acc:!!cuGet(),sel:!!document.querySelector('#ubdd')}));ok(!NB.acc&&NB.sel,'senza compleanno l\'account non si crea');
+// fasi 2 e 3: visibili solo in Dev, bloccate in App
+const DV=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),q=await DV.newPage();await q.route(/^https?:\/\/(?!localhost)/,r=>r.abort());await q.addInitScript(()=>{localStorage.setItem('carddex_env','dev')});await q.goto('http://localhost:8765/carddex-album.html');await q.waitForTimeout(2200);
+const dv=await q.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(dv.n===54&&dv.ph==='1,2,3','Dev: tutte le fasi visibili ('+JSON.stringify(dv)+')');
+const ap=await p.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(ap.n===19&&ap.ph==='1','App: solo Fase 1 ('+JSON.stringify(ap)+')');
+// numerino blu
+await q.close();
 const ee=e.filter(x=>!/decode audio/.test(x));ok(!ee.length,'nessun errore '+ee.join('|'));await b.close();process.exit(bad?1:0)})();
