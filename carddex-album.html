@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v492";
+const APPV="v493";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1753,7 +1753,7 @@ function parse(sid){const S=SETS[sid],out=[];
       const c={id:sid+m[1],sid,num:+m[1],name:IT[m[2]]||IT[m[2].replace(/'/g,"’")]||itN(m[2],kd),dex:d,kd,h:!!m[3],tot:S.t};if(m[3]==='**')c.hz=1;if(go)c.go=1;if(sid==="S")c.back=["https://archives.bulbagarden.net/wiki/Special:FilePath/Topps_series_"+(c.num<=76?1:c.num<=117?2:3)+"_"+c.num+"_back.jpg?width=500",TOPPSB];CARDS[c.id]=c;out.push(c)}}
   return out.filter(genOk)}
 CARDS.XV={id:"XV",sid:"X",num:98,name:"Venusaur",dex:0,kd:"p",h:1,tot:0,img:"https://assets.tcgdex.net/en/base/base1/15/high.webp",back:DEFBACK};
-CARDS.XT={id:"XT",sid:"X",num:99,name:"Bulbasaur",dex:0,kd:"p",tot:0,img:"https://assets.tcgdex.net/en/base/base1/44/high.webp",back:DEFBACK};
+CARDS.XC={id:"XC",sid:"X",num:97,name:"Charizard",dex:0,kd:"p",h:1,tot:0,img:"https://assets.tcgdex.net/en/base/base1/4/high.webp",back:DEFBACK};CARDS.XT={id:"XT",sid:"X",num:99,name:"Bulbasaur",dex:0,kd:"p",tot:0,img:"https://assets.tcgdex.net/en/base/base1/44/high.webp",back:DEFBACK};
 function orderSet(col){const L=parse(col.s[0]).sort((a,b)=>a.num-b.num).map(c=>({id:c.id,o:0,n:""}));if(col.k==="gQ"&&CARDS.X1)L.unshift({id:"X1",o:0,n:""});return L}
 function order(col){if(col.set)return orderSet(col);return genA(col)}
 /* ===== album personali: configurazione, ordini, conversione ===== */
@@ -2466,7 +2466,7 @@ function cryLoad(urls){const k=urls[0];if(CB[k])return Promise.resolve(CB[k]);if
   const one=u=>fetch(u,{mode:"cors"}).then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(ab=>new Promise((ok,ko)=>AC.decodeAudioData(ab,ok,ko)));
   const p=(async()=>{for(const u of urls){try{const b=await one(u);CB[k]=b;return b}catch(e){}}return null})().then(b=>{delete CBP[k];return b});CBP[k]=p;return p}
 const DEXG3="Treecko,Grovyle,Sceptile,Torchic,Combusken,Blaziken,Mudkip,Marshtomp,Swampert,Poochyena,Mightyena,Zigzagoon,Linoone,Wurmple,Silcoon,Beautifly,Cascoon,Dustox,Lotad,Lombre,Ludicolo,Seedot,Nuzleaf,Shiftry,Taillow,Swellow,Wingull,Pelipper,Ralts,Kirlia,Gardevoir,Surskit,Masquerain,Shroomish,Breloom,Slakoth,Vigoroth,Slaking,Nincada,Ninjask,Shedinja,Whismur,Loudred,Exploud,Makuhita,Hariyama,Azurill,Nosepass,Skitty,Delcatty,Sableye,Mawile,Aron,Lairon,Aggron,Meditite,Medicham,Electrike,Manectric,Plusle,Minun,Volbeat,Illumise,Roselia,Gulpin,Swalot,Carvanha,Sharpedo,Wailmer,Wailord,Numel,Camerupt,Torkoal,Spoink,Grumpig,Spinda,Trapinch,Vibrava,Flygon,Cacnea,Cacturne,Swablu,Altaria,Zangoose,Seviper,Lunatone,Solrock,Barboach,Whiscash,Corphish,Crawdaunt,Baltoy,Claydol,Lileep,Cradily,Anorith,Armaldo,Feebas,Milotic,Castform,Kecleon,Shuppet,Banette,Duskull,Dusclops,Tropius,Chimecho,Absol,Wynaut,Snorunt,Glalie,Spheal,Sealeo,Walrein,Clamperl,Huntail,Gorebyss,Relicanth,Luvdisc,Bagon,Shelgon,Salamence,Beldum,Metang,Metagross,Regirock,Regice,Registeel,Latias,Latios,Kyogre,Groudon,Rayquaza,Jirachi,Deoxys".split(",");
-function cryUrls(c){if(!c||c.kd!=="p")return null;const dx=c.dex||(c.id==="XT"?1:c.id==="XV"?3:0);if(!dx)return null;const n=dx<=151?DEXN[dx-1]:dx<=251?DEXG2[dx-152]:DEXG3[dx-252];if(!n)return null;
+function cryUrls(c){if(!c||c.kd!=="p")return null;const dx=c.dex||(c.id==="XT"?1:c.id==="XV"?3:c.id==="XC"?6:0);if(!dx)return null;const n=dx<=151?DEXN[dx-1]:dx<=251?DEXG2[dx-152]:DEXG3[dx-252];if(!n)return null;
   const id=n.toLowerCase().replace("♀","f").replace("♂","m").replace(/[^a-z0-9]/g,"");
   return ["https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"+dx+".ogg","https://play.pokemonshowdown.com/audio/cries/"+id+".mp3"]}
 function cry(c,dl){if(!CRYON){cryTok++;try{if(cryS){cryS.stop();cryS=null}}catch(e){}return}const u=cryUrls(c);if(u)playCry(u,dl?performance.now()+dl:0)}
@@ -2482,7 +2482,7 @@ let navB=0;function navCard(d){if(navB)return;const L=LIST();for(let j=curI+d;j>
     try{stg.animate([{transform:"none",opacity:1},{transform:"translateX("+(-d*W)+"px)",opacity:0}],{duration:170,easing:"ease-in"}).onfinish=()=>{openCard(j,1);stg.animate([{transform:"translateX("+(d*W)+"px)",opacity:0},{transform:"none",opacity:1}],{duration:230,easing:"cubic-bezier(.2,.8,.2,1)"}).onfinish=()=>{navB=0}}}catch(e){openCard(j,1);navB=0}return}}}
 const TYP="GGGRRRWWWGGGGGGCCCCCCCGGLLFFGGGGGGCCRRCCGGGGGGGGGFFCCWWFFRRWWWPPPFFFGGGWWFFFRRPPLLCCCWWGGWWPPPFPPWWLLGGFFFFCGGFFCGCWWWWWWPGPLRGCWWWCCWLRCWWFFFCWLRCCCPPGGGRRRWWWCCCCGGGGGWWLCCCCPPLLLGWWFWGGGCGGGWWPDDPPPPCGMCFMCCWMGGDCCRRWWWWWWWMDDWFFCCCFFPLRCCLRWFFDPRGGGGRRRWWWDDCCGGGGGWWWGGGCCWWPPPGGGGCCCGGGCCCFFCFCCDMMMMFFLLLLGGGGGWWWWRRRPPCFCCGGCCCGPFWWWWFFGGFFWWWCPPPPGPDPWWWWWWWWWWCCCMMPFWMCCWFCPP";
 const TCOL={G:"#27c24c",R:"#ff4a1c",W:"#1f86ff",L:"#ffd60a",P:"#b845e0",F:"#d2691e",C:"#d3d8e2",D:"#6a52a8",M:"#a7bad0",T:"#8d98ae"};
-function cardCol(c){if(c.id==="XT"||c.id==="XV")return TCOL.G;if(c.kd==="p"&&c.dex){const rt=(rdOf(c)||{}).t,t=TCOL[rt]?rt:TYP[c.dex-1];return TCOL[t]||TCOL.C}
+function cardCol(c){if(c.id==="XC")return TCOL.R;if(c.id==="XT"||c.id==="XV")return TCOL.G;if(c.kd==="p"&&c.dex){const rt=(rdOf(c)||{}).t,t=TCOL[rt]?rt:TYP[c.dex-1];return TCOL[t]||TCOL.C}
   const n=(c.name||"").toLowerCase();if(c.kd==="e"){const m=[["fire","R"],["fuoco","R"],["water","W"],["acqua","W"],["grass","G"],["erba","G"],["lightning","L"],["lampo","L"],["elettr","L"],["psychic","P"],["psich","P"],["psico","P"],["fighting","F"],["combatt","F"],["lotta","F"],["darkness","D"],["oscur","D"],["metal","M"]].find(x=>n.includes(x[0]));return TCOL[m?m[1]:"C"]}
   return n.includes("fire")||n.includes("fuoco")?TCOL.R:n.includes("water")||n.includes("acqua")?TCOL.W:n.includes("grass")||n.includes("erba")?TCOL.G:n.includes("lightning")||n.includes("elettr")?TCOL.L:n.includes("psychic")||n.includes("psico")?TCOL.P:n.includes("fighting")||n.includes("lotta")?TCOL.F:n.includes("darkness")?TCOL.D:n.includes("metal")?TCOL.M:TCOL.T}
 
@@ -2931,7 +2931,8 @@ L.forEach(m=>{if(!m.ok)m.ok=(CARDS[m.r]?CARDS[m.r].name:"Carta")+" "+ok1});
 return L.sort((a,b)=>a.ph-b.ph||a.num-b.num)})(),
 MSD={id:"dev",t:"Missione di prova",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp||0),N:()=>3,r:"XT",dev:1,ok:"Bulbasaur di prova aggiunto all’album Promo"},
 MSD2={id:"dev2",t:"Missione di prova 2",d:"Solo Dev: tocca 3 volte per completarla.",n:()=>Math.min(3,msSt().tp2||0),N:()=>3,r:"XV",sec:1,dev:1,dk:"2",ok:"Venusaur holo di prova aggiunto all’album Promo"},
-msAll=()=>PKDEV?[...MSB.filter(x=>!x.off),MSD,MSD2]:MSB.filter(x=>x.ph<=MSPH&&!x.off),
+MSD3={id:"dev3",t:"Missione di prova 3",d:"Solo Dev: tocca la scheda Pokédex 3 volte, anche da fuori da questa pagina.",n:()=>Math.min(3,msSt().tp3||0),N:()=>3,r:"XC",sec:1,dev:1,ext:1,dk:"3",ok:"Charizard holo di prova aggiunto all’album Promo"},
+msAll=()=>PKDEV?[...MSB.filter(x=>!x.off),MSD,MSD2,MSD3]:MSB.filter(x=>x.ph<=MSPH&&!x.off),
 msDone=m=>!!msSt()[m.id==="mew"?"mew":"c_"+m.id],
 msTitle=m=>{const c=CARDS[m.r];if(m.sec&&!msDone(m))return "Carta segreta – Promo "+(c?c.num:0);if(!c)return "";return c.name+" – Promo "+(m.dev?"prova":c.num)};
 function msClaim(id){const m=msAll().find(x=>x.id===id),M=msSt();if(!m||msDone(m)||m.n()<m.N())return false;
@@ -2943,7 +2944,7 @@ function msClaim(id){const m=msAll().find(x=>x.id===id),M=msSt();if(!m||msDone(m
 function msRegen(x){x=x||MSD;const k=x.dk||"";const M=msSt();let raw={};try{raw=JSON.parse(localStorage.getItem(GK("carddex2g")))||{}}catch(e){}
   const S=MODE==="g"?st:raw;if(S.gQ)S.gQ=S.gQ.filter(y=>!(y&&y.id===x.r));
   try{if(MODE==="g")save();else localStorage.setItem(GK("carddex2g"),JSON.stringify(raw))}catch(e){}
-  M["tp"+k]=0;M["tr"+k]=0;delete M["c_"+x.id];delete M["t_"+x.id];msSv(M)}
+  M["tp"+k]=0;M["tr"+k]=0;delete M["c_"+x.id];delete M["t_"+x.id];delete M["nt_"+x.id];msSv(M)}
 /* animazione di riscatto missione: "mostrata" = retro che sale e si gira; "segreta" = sagoma sigillata che trema ed esplode */
 function msReveal(cc,sec,done){let fin=0;const end=()=>{if(fin)return;fin=1;done()};
   try{if(!document.getElementById("msrcss")){const st=document.createElement("style");st.id="msrcss";st.textContent=".msrv{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 45%,rgba(30,34,70,.94),rgba(4,5,12,.97) 70%);perspective:1100px;overflow:hidden}.msrv .mrw{position:relative;width:min(76vw,calc(56vh*63/88));aspect-ratio:63/88;transform-style:preserve-3d}.msrv .mrf,.msrv .mrb,.msrv .mrq{position:absolute;inset:0;border-radius:5%;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}.msrv .mrf img,.msrv .mrf .ph{width:100%;height:100%;object-fit:fill;display:block}.msrv .mrb{transform:rotateY(180deg);background-size:100% 100%;box-shadow:0 0 40px rgba(255,214,10,.35)}.msrv .mrq{background:#101015;box-shadow:0 0 50px rgba(255,214,10,.4);container-type:inline-size}.msrv .mrq .mys{opacity:1;background:#17171b}.msrv .mrq .mys::after{display:none}.msrv .mry{position:absolute;left:50%;top:50%;width:min(150vw,720px);aspect-ratio:1;margin:calc(min(150vw,720px)/-2) 0 0 calc(min(150vw,720px)/-2);pointer-events:none}.msrv .mrl{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}";document.head.appendChild(st)}
@@ -2975,7 +2976,7 @@ function msReveal(cc,sec,done){let fin=0;const end=()=>{if(fin)return;fin=1;done
 function msBuild(){const sy0=(()=>{const w=document.querySelector("#msp .msw2");return w?w.scrollTop:0})();msBuild0();const w=document.querySelector("#msp .msw2");if(w)w.scrollTop=sy0;try{msBadge(msReady().length)}catch(e){}}
 function msBuild0(){const e=$("#pk");let m=$("#msp");if(!m){m=document.createElement("div");m.id="msp";m.hidden=true;e.appendChild(m);m.addEventListener("click",ev=>{if(ev.target.closest("#msx")||ev.target===m){m.hidden=true;return}
     const b=ev.target.closest(".msc");if(b){const mm=msAll().find(x=>x.id===b.dataset.m);if(msClaim(b.dataset.m)){msBuild();const cc=CARDS[mm.r],n0=cryN;try{acUnlock();const u=cryUrls(cc);if(u)cryLoad(u)}catch(x){}msReveal(cc,!!mm.sec,()=>{try{pkView(cc)}catch(x){}setTimeout(()=>{try{if(cryN===n0&&!$("#vw").hidden)cry(cc)}catch(x){}},1100);setTimeout(()=>toast(mm.ok),500)})}return}
-    const d=ev.target.closest(".msi.dv");if(d&&PKDEV){const M=msSt(),x=msAll().find(y=>y.id===d.dataset.x)||MSD,k=x.dk||"";if(msDone(x)){M["tr"+k]=(M["tr"+k]||0)+1;msSv(M);if(M["tr"+k]>=3){msRegen(x);toast("Missione di prova rigenerata")}msBuild()}else if((M["tp"+k]||0)<3){M["tp"+k]=(M["tp"+k]||0)+1;msSv(M);msBuild()}}})}
+    const d=ev.target.closest(".msi.dv");if(d&&PKDEV){const M=msSt(),x=msAll().find(y=>y.id===d.dataset.x)||MSD,k=x.dk||"";if(msDone(x)){M["tr"+k]=(M["tr"+k]||0)+1;msSv(M);if(M["tr"+k]>=3){msRegen(x);toast("Missione di prova rigenerata")}msBuild()}else if(!x.ext&&(M["tp"+k]||0)<3){M["tp"+k]=(M["tp"+k]||0)+1;msSv(M);msBuild()}}})}
   const L=msAll(),act=L.filter(x=>!msDone(x)),dn=L.filter(msDone).sort((a,b)=>(msSt()["t_"+a.id]||0)-(msSt()["t_"+b.id]||0));
   const card=x=>{const n=Math.min(x.n(),x.N()),N=x.N(),done=msDone(x),ok=n>=N,c=CARDS[x.r],dv=x.dev?" dv":"",
     th=(x.sec&&!done)?'<div class="mss my">'+MYS+'</div>':'<div class="mss'+(done?"":" gr")+'">'+(c?face(c,1):"")+'</div>',
@@ -2996,6 +2997,7 @@ async function msBf(){if(msBfB||!FR.me||!navigator.onLine||msSt().bf)return;msBf
 function msDay(){try{const M=msSt(),d=pkDay();M.dp=M.dp||{};Object.keys(M.days||{}).forEach(k=>{M.dp[k]=1});if(!M.dp[d]){M.dp[d]=1}msSv(M)}catch(e){}}
 (function(){const c=document.createElement("style");c.textContent="#pkms .msbn{position:absolute;right:-6px;top:-8px;min-width:22px;height:22px;padding:0 6px;box-sizing:border-box;border-radius:11px;background:#0a84ff;color:#fff;font:700 13px/22px system-ui,-apple-system,sans-serif;text-align:center;box-shadow:0 0 0 2px var(--fdb,#fff)}.msi.msfl{animation:mshl 1.1s ease-out 3}@keyframes mshl{0%{box-shadow:0 0 0 0 rgba(255,214,10,.9)}100%{box-shadow:0 0 0 18px rgba(255,214,10,0)}}.msmy{width:84px;height:118px;margin:4px auto 10px;position:relative}.msmy .mys{position:absolute;inset:0}";document.head.appendChild(c)})();
 let msTm=0,msPop=0;
+function msDev3(){try{if(!PKDEV)return;const M=msSt();if(msDone(MSD3)||(M.tp3||0)>=3)return;M.tp3=(M.tp3||0)+1;msSv(M);msSoon()}catch(e){}}
 function msSoon(){clearTimeout(msTm);msTm=setTimeout(msCheck,450)}
 function msReady(){try{return msAll().filter(x=>!msDone(x)&&x.n()>=x.N())}catch(e){return[]}}
 function msBadge(n){try{const b=document.getElementById("pkms");if(b){let e=b.querySelector(".msbn");if(!n){if(e)e.remove()}else{if(!e){e=document.createElement("em");e.className="msbn";b.appendChild(e)}e.textContent=n}}
@@ -3678,7 +3680,7 @@ const FR={ex:new Set(),hold:0,anV:null,anT:[],anA:[],cf:{},dq:(()=>{try{const a=
 const frCode=()=>{const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(6);crypto.getRandomValues(r);return Array.from(r,x=>A[x%32]).join("")};
 const frExp=t=>Date.parse(t.expires_at)<=Date.now();
 const frNm=u=>(FR.pr[u]&&FR.pr[u].name)||"Un amico";
-function frColl(){const o={};try{const raw=dxRaw("g");GCOLS.forEach(c=>(raw[c.k]||[]).forEach(x=>{if(x&&x.o&&x.id&&x.id!=="XT"&&x.id!=="XV"&&CARDS[x.id])o[x.id]=(o[x.id]||0)+Math.max(1,x.q||1)}))}catch(e){}return o}
+function frColl(){const o={};try{const raw=dxRaw("g");GCOLS.forEach(c=>(raw[c.k]||[]).forEach(x=>{if(x&&x.o&&x.id&&x.id!=="XT"&&x.id!=="XV"&&x.id!=="XC"&&CARDS[x.id])o[x.id]=(o[x.id]||0)+Math.max(1,x.q||1)}))}catch(e){}return o}
 function frResv(){const n={};if(!FR.me)return n;FR.tr.forEach(t=>{if(t.from_user===FR.me.uid&&t.status==="pending"&&!frExp(t))t.give.forEach(i=>n[i]=(n[i]||0)+1)});return n}
 function frSpareOf(co,rv){const o={};Object.keys(co||{}).forEach(i=>{const k=(co[i]||0)-1-((rv||{})[i]||0);if(k>0&&CARDS[i])o[i]=k});return o}
 let FRO=null;function frOrd(){if(!FRO){FRO={};let n=0;GCOLS.forEach(co=>(st[co.k]||[]).forEach(s=>{if(s&&s.id&&FRO[s.id]==null)FRO[s.id]=n++}))}return FRO}
@@ -4012,7 +4014,7 @@ function goTab(t,direct){try{if(PFM&&!(PFGO&&direct===2))pfOff()}catch(e){}const
   if(t==="b"){if(op&&!sett){pkReset();return}navSet($("#nvp"),"b",1);vt(()=>{NAVB=1;B.classList.add("pkNv");if(sett)setOpen(0);setMode("g");pkScreen();navSync()});return}
   if(t==="c"&&!direct){if(asl&&!op){if(!$("#set .aslw")){try{bcPkEnd()}catch(e){}drawAsl()}return}if(!sett&&!op){aslOpen();return}if(ALAST==="g"||ALAST==="c")t=ALAST;else{aslOpen();return}}
   if(t==="c"||t==="g"){const m=t;ALAST=m;try{localStorage.setItem("carddex_alast",m)}catch(e){}if(m===MODE&&!op&&!sett)return;navSet($("#nvp"),"c",1);vt(()=>{NAVB=0;if(sett)setOpen(0);if(op)pkHide();if(m!==MODE)setMode(m,!op&&!sett);if(direct===2){if(PFGO){PFGO=0;pfOn()}else{cur=COLS[0].k;pg=0;sp=0;FLT="a";PREV=cur;SR=[];SQ="";tabs();render()}}navSync();if(m==="g")try{aqEnter()}catch(x){errRep(x,"aqEnter")}})}}
-document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b){if(BCK)bcPkEnd();goTab(b.dataset.t)}});
+document.addEventListener("click",e=>{const b=e.target.closest(".nvp button[data-t]");if(b){if(BCK)bcPkEnd();if(b.dataset.t==="d")msDev3();goTab(b.dataset.t)}});
 function pkObs(pk){new MutationObserver(topRefresh).observe(pk,{attributes:true,attributeFilter:["hidden","class","style"]});const f=()=>{const q=$("#pkp"),on=!pk.hidden&&q&&!q.hidden&&!q.classList.contains("go");if(document.body.classList.contains("pkNv")===on)return;document.body.classList.toggle("pkNv",on);NAVB=on?1:0;navSync()};new MutationObserver(f).observe(pk,{attributes:true,subtree:true,attributeFilter:["hidden","class"]})}
 applyMode();navSync();
 {const x=$("#acx");if(x)x.onclick=aslOpen}

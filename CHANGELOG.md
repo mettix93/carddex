@@ -1,3 +1,6 @@
+## v493
+- Solo Dev: nuova missione di prova 3 con Charizard holo del Set Base (carta segreta). Si completa toccando 3 volte la scheda Pokédex da qualsiasi schermata: compare il pop-up «Missione completata» con numerino blu su Missioni e pallino blu su Bustine; si riscatta con l'animazione della carta segreta
+
 ## v492 (PullTime)
 - Numerino del tasto Missioni ora blu come tutti gli altri indicatori. Fasi 2 e 3 delle missioni visibili solo in Dev (test tests/missions_promo.js).
 

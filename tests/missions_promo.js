@@ -35,6 +35,11 @@ const NB=await p.evaluate(()=>({acc:!!cuGet(),sel:!!document.querySelector('#ubd
 const DV=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),q=await DV.newPage();await q.route(/^https?:\/\/(?!localhost)/,r=>r.abort());await q.addInitScript(()=>{localStorage.setItem('carddex_env','dev')});await q.goto('http://localhost:8765/carddex-album.html');await q.waitForTimeout(2200);
 const dv=await q.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(dv.n===54&&dv.ph==='1,2,3','Dev: tutte le fasi visibili ('+JSON.stringify(dv)+')');
 const ap=await p.evaluate(()=>({n:msAll().filter(x=>x.ph).length,ph:[...new Set(msAll().filter(x=>x.ph).map(x=>x.ph))].join()}));ok(ap.n===19&&ap.ph==='1','App: solo Fase 1 ('+JSON.stringify(ap)+')');
-// numerino blu
+// missione di prova 3 (Dev): 3 tocchi sulla scheda Pokédex da fuori Missioni -> pop-up + indicatori blu
+for(let i=0;i<3;i++){await q.evaluate(()=>{const bt=document.querySelector('.nvp button[data-t="d"]');bt.click()});await q.waitForTimeout(500)}
+await q.evaluate(()=>goTab("b"));await q.waitForTimeout(2200);
+const D3=await q.evaluate(()=>{const t=document.getElementById('trm');const bd=document.querySelector('#pkms .msbn');return{rdy:msReady().map(x=>x.id),vis:!!t&&!t.hidden,txt:t?t.textContent:'',bd:bd?bd.textContent:'',col:bd?getComputedStyle(bd).backgroundColor:''}});
+console.log(JSON.stringify(D3));ok(D3.rdy.includes('dev3')&&D3.vis&&/Charizard|prova 3/.test(D3.txt)&&/Vai alla mission/.test(D3.txt),'Dev3: pop-up dopo 3 tocchi su Pokédex');ok(D3.bd==='1'&&/10, ?132, ?255/.test(D3.col),'Dev3: numerino blu su Missioni '+D3.bd+' '+D3.col);
+const R3=await q.evaluate(()=>{msClaim('dev3');const M=msSt();const d1=msDone(MSD3);for(let k=0;k<3;k++){M["tr3"]=(M["tr3"]||0)+1;}if(M.tr3>=3)msRegen(MSD3);return{d1,d2:msDone(MSD3),n:MSD3.n()}});ok(R3.d1&&!R3.d2&&R3.n===0,'Dev3: riscatto e rigenerazione '+JSON.stringify(R3));
 await q.close();
 const ee=e.filter(x=>!/decode audio/.test(x));ok(!ee.length,'nessun errore '+ee.join('|'));await b.close();process.exit(bad?1:0)})();
