@@ -1,3 +1,7 @@
+## v514
+- Effetto luce promo: ora su TUTTE le carte promo (holo e non holo), anche nella rivelazione da missione.
+- Alone uniforme: tolta l ombra nera che la carta proiettava sotto (12px in giù) e che deformava l alone in basso in un ovale; finché l effetto è attivo la luce ha la stessa forma su tutti i lati.
+
 ## v513
 - Promo holo: la luce si vede anche col retro della carta (alone esterno + chiarore del bordo interno sul retro); tolto l alone largo sfasato; il respiro ora usa solo opacità/transform (compositor) e non più box-shadow animata, quindi è fluido e non va a scatti.
 
