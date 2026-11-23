@@ -1,3 +1,6 @@
+## v502
+- Lucky Pack: sfondo argento più brillante (centro bianco, bordi argento chiaro) e fascia alta in tinta, stesso colore usato da meta/html.
+
 ## v501
 - Su iPhone aprendo una bustina compariva il toast "Errore (promessa): Decoding failed": Safari restituisce una promessa anche da decodeAudioData con callback e, quando il verso OGG non si decodifica, la promessa non gestita finiva nel gestore globale degli errori. Ora la promessa è gestita (il fallback MP3 funzionava già).
 
