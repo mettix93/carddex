@@ -1615,7 +1615,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v493";
+const APPV="v495";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3380,6 +3380,7 @@ setInterval(()=>{if(!document.hidden)navGuard()},1500);
 /* area sicura in basso: iOS a volte la legge a 0 (barra che "cade"). La memorizzo quando è valida e la riuso. */
 let sabP=null;function vhSync(){try{const R=document.documentElement,v=window.visualViewport,ae=document.activeElement;if(!v||innerHeight<=innerWidth){if(R.style.getPropertyValue("--vh")){R.style.removeProperty("--vh");try{pkAlign()}catch(e){}}return}
   if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName))return;const h=Math.round(v.height);if(h<300)return;if(R.style.getPropertyValue("--vh")!==h+"px"){R.style.setProperty("--vh",h+"px");try{pkAlign()}catch(e){}}}catch(e){}}
+(function(){try{if(!PKDEV)return;const d=document.createElement("div");d.id="dbgl";d.style.cssText="position:fixed;left:4px;bottom:1px;z-index:2147483646;font:8px/1 ui-monospace,Menlo,monospace;color:#e5530a;pointer-events:none;text-shadow:0 0 2px #fff";document.body.appendChild(d);setInterval(()=>{try{const n=document.getElementById("nvp"),r=n?n.getBoundingClientRect():null,cs=getComputedStyle(document.documentElement),pk=document.getElementById("pk");d.textContent=APPV+" iH"+innerHeight+" sab"+(cs.getPropertyValue("--sab")||"-")+" pkb"+(cs.getPropertyValue("--pkb")||"-")+" pk"+(pk&&pk.style.getPropertyValue("--pkb")||"-")+" nvB"+(r?Math.round(innerHeight-r.bottom):"-")+" ls"+(localStorage.getItem("cd_sab")||"-")}catch(e){}},700)}catch(e){}})();
 function sabSync(){try{const R=document.documentElement;if(innerHeight<=innerWidth){if(R.style.getPropertyValue("--sab")){R.style.removeProperty("--sab");try{pkAlign()}catch(e){}}return}
   if(!sabP){sabP=document.createElement("div");sabP.style.cssText="position:fixed;left:0;bottom:0;width:1px;height:env(safe-area-inset-bottom,0px);visibility:hidden;pointer-events:none";document.body.appendChild(sabP)}
   const h=Math.round(sabP.getBoundingClientRect().height);let o=0;try{o=+localStorage.getItem("cd_sab")||0}catch(e){}

@@ -1,3 +1,6 @@
+## v495
+- Solo Dev: riga di diagnostica minuscola in basso a sinistra (versione e misure della barra in basso) per trovare la causa della barra che scende. Nessuna modifica per App.
+
 ## v493
 - Solo Dev: nuova missione di prova 3 con Charizard holo del Set Base (carta segreta). Si completa toccando 3 volte la scheda Pokédex da qualsiasi schermata: compare il pop-up «Missione completata» con numerino blu su Missioni e pallino blu su Bustine; si riscatta con l'animazione della carta segreta
 
