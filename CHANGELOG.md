@@ -1,3 +1,6 @@
+## v508
+- Missioni: quelle completate e da riscattare salgono in cima, dalla più vecchia alla più recente (si salva il momento in cui diventano pronte).
+
 ## v507
 - Conversione: una bustina costa 40 Pokédollari (prima 20; costante PKCOST). Missione "Giorno di paga": 5 bustine invece di 3; "Piccolo sgraffignatore": 200 Pokédollari invece di 60.
 
