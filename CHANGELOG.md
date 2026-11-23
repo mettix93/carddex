@@ -1,3 +1,6 @@
+## v498
+- Fascia alta durante l'animazione di riscatto missione: ora diventa scura insieme all'overlay (a metà dissolvenza) e torna chiara all'uscita, con la logica centrale topRefresh. Nessuna transizione CSS su html. Nuovo test tests/msreveal_band.js.
+
 ## v497
 - Barra in basso su Bustine: quando si apre la scheda l'allineamento viene rieseguito (subito e dopo 350 ms). Con la v496 il valore era già giusto (20 px) ma la barra restava 8 px sotto lo schermo perché nessuno lo riapplicava alla scheda.
 
