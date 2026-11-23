@@ -1,3 +1,6 @@
+## v501
+- Su iPhone aprendo una bustina compariva il toast "Errore (promessa): Decoding failed": Safari restituisce una promessa anche da decodeAudioData con callback e, quando il verso OGG non si decodifica, la promessa non gestita finiva nel gestore globale degli errori. Ora la promessa è gestita (il fallback MP3 funzionava già).
+
 ## v500
 - Fascia alta durante il reveal missione con le bustine visibili sotto: ora segue l'overlay anche su html (iOS segue html, non la meta) e torna chiara all'uscita. Test msreveal_band controlla anche html. Riga di debug Dev spostata per essere leggibile.
 
