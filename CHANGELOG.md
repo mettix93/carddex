@@ -1,3 +1,11 @@
+## v532
+- Bacheche: swipe orizzontale ovunque sullo schermo cambia bacheca.
+- Stile "Quadro" sostituito da "Neon" (cornice luminosa a gradiente, fondo scuro a griglia).
+- Pokédollari: pallino blu quando c'è abbastanza per una bustina.
+- Carta missione: glow con angoli arrotondati (niente angoli netti durante la luce).
+- Ricerca: campo vuoto chiuso anche quando la tastiera si chiude (Fine/Cerca) senza Invio.
+- Pokédex: pastiglia contatore alta 44px e allineata a filtro/cerca.
+
 ## v531
 - Slider album: pallino espanso ora tondo; contatore pagina centrato tra pallini e pagine.
 - Bacheche: popup uniforme (X, elimina bacheca in modifica, aperto subito dal tasto ⋯); via descrizione sotto titolo; bacheca al centro schermo, titolo centrato tra "Bacheche" e cornice, pallini alla stessa altezza degli album.
