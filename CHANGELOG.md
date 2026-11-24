@@ -1,3 +1,6 @@
+## v527
+- Bacheche, scelta carte: barra «Scegli la carta» / «Scegli le carte n/m» con Annulla e Conferma. Si selezionano tutte le carte (1, 2 o 3) con contorno blu (riclic = deseleziona), niente messaggio di conferma per ogni carta; Conferma attiva già con una sola carta. La x in alto a destra equivale ad Annulla e riporta alla bacheca.
+
 ## v526
 - Pokédex/Album: durante la ricerca la pagina non rimbalza più sotto il dito (niente tremolio né cursore che sale e scende) quando i risultati non bastano per scorrere.
 - Album: il testo cercato compare al posto del nome del set (non più accanto al contatore di pagina).

@@ -901,6 +901,7 @@ html body #set .bcb.bcx{position:absolute;right:0;top:50%;margin-top:-22px;width
 #set:has(.bst) .bchd{position:absolute;left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));top:calc(6px + env(safe-area-inset-top,0px));z-index:5;pointer-events:none}#set:has(.bst) .bchd h2{font-size:24px!important;line-height:40px!important;margin:0!important}#set:has(.bst) .bchd .bcb{pointer-events:auto}
 #set:has(.bst) .bst{flex:1;min-height:0;margin:0;padding:6px 0 0}#set:has(.bst) .bcase{--cw:calc((100vh - 120px)/1.8)}#set:has(.bst) .bcase.n2{--cw:min(calc((100vh - 120px)/1.8),28vw)}#set:has(.bst) .bcase.n3{--cw:min(calc((100vh - 120px)/1.8),19vw)}
 #set:has(.bst) .bcnv{padding:0 0 4px}#set:has(.bst) .bchint{display:none}#set:has(.bst) .bcinf{min-height:0}#set:has(.bst) .bcdt{margin-top:6px}#set:has(.bst) .bcn b{font-size:17px}}
+.slot.bsel{outline:3px solid #0a84ff;outline-offset:1px;box-shadow:0 0 14px rgba(10,132,255,.55)!important;border-radius:6px}#bcpb button.no{background:rgba(120,130,150,.22)!important;color:inherit!important}#bcpb button.ok{background:#0a84ff}#bcpb button[disabled]{opacity:.4}#bcpb{gap:6px!important;padding-left:18px!important;font-size:14px!important}#bcpb::before{display:none!important}#bcpb button{padding:8px 13px!important;font-size:14px!important}
 #bcpb{position:fixed;left:50%;z-index:200;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;bottom:calc(var(--fbb,10px) + 52px + 16px);padding:10px 10px 10px 14px;border-radius:999px;background:rgba(20,26,46,.97);border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 34px rgba(0,0,0,.45);color:#fff;font:700 15px/1.25 -apple-system,"SF Pro Text",system-ui,sans-serif;display:flex;align-items:center;gap:10px;transform:translateX(-50%);animation:bcpIn .38s cubic-bezier(.2,1.4,.4,1)}@keyframes bcpIn{from{opacity:0;transform:translateX(-50%) translateY(14px) scale(.94)}}
 #bcpb::before{content:"";flex:none;width:24px;height:24px;border-radius:50%;background:#0a84ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 6v8'/%3E%3Cpath d='M12 18.2v.1'/%3E%3C/svg%3E") center/16px no-repeat}
 #bcpb span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#bcpb button{flex:none;border:0;border-radius:999px;padding:8px 16px;background:#0a84ff;color:#fff;font:700 14px -apple-system,system-ui,sans-serif}
@@ -1625,7 +1626,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v526";
+const APPV="v527";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1891,7 +1892,7 @@ function albMenu(k){const A=PCOLS.find(a=>a.k===k);if(!A)return;sheet([["Modific
 const $=s=>document.querySelector(s),book=$("#book");
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 const nmH=n=>esc(n).replace(/♀/g,'<span class="gs f">♀</span>').replace(/♂/g,'<span class="gs m">♂</span>');
-let st={},cur="a",pg=0,np=1,SR=[],SQ="";
+let BCK=null;let st={},cur="a",pg=0,np=1,SR=[],SQ="";
 let FLT="a";
 const BASE=()=>cur==="?"?SR.map(r=>st[r.c][r.i]):st[cur];
 let DXL=null;
@@ -1957,7 +1958,7 @@ const FVB='<span class="fvb"><svg viewBox="0 0 24 24" fill="none" xmlns="http://
 const MYS='<div class="mys"><div class="dxf"></div><div class="dxy"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13M12 17H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><s></s></div>';
 function slot(i){const s=LIST()[i],c=s.id&&eff(s),my=c&&!s.o&&MODE==="g"&&ENV!=="dev"&&(c.sid==="Q"||c.sid==="X");
   if(my)return `<div class="slot my" data-i="${i}">${MYS}</div>`;
-  return `<div class="slot ${s.o&&c&&!(cur!=="?"&&aqHas(cur,s.id))?"on":""} ${c?"":"em"} ${c&&!s.o&&s.a?"ar":""}" data-i="${i}">${c?face(c):""}${c&&c.h?HOLO:""}<u class="sn">${i+1}</u>${s.n?NOTE:""}${s.fav?FVB:""}${s.id&&s.q>1?`<span class="cp">${s.q}x</span>`:""}</div>`}
+  return `<div class="slot ${s.o&&c&&!(cur!=="?"&&aqHas(cur,s.id))?"on":""}${BCK&&BCK.sel&&BCK.sel.length&&s.id&&BCK.sel.includes(bcRes(s))?" bsel":""} ${c?"":"em"} ${c&&!s.o&&s.a?"ar":""}" data-i="${i}">${c?face(c):""}${c&&c.h?HOLO:""}<u class="sn">${i+1}</u>${s.n?NOTE:""}${s.fav?FVB:""}${s.id&&s.q>1?`<span class="cp">${s.q}x</span>`:""}</div>`}
 
 /* ===== pagine: copertina, piega dall'angolo, doppia pagina ===== */
 let LS=false,sp=0,PG=[],busy=0,D=null;
@@ -3548,16 +3549,26 @@ function bcList(anim){const e=$("#set");e.onclick=null;e.scrollTop=0;e.onscroll=
   nv.onpointerup=nup;nv.onpointercancel=()=>{w=null;sl.style.transition="transform .3s,opacity .3s";sl.style.transform="";sl.style.opacity=1};
   stg.onpointerup=up;stg.onpointercancel=()=>{const t=q;q=null;BCD=0;if(t)clearTimeout(t.h);sl.style.transition="transform .3s,opacity .3s";sl.style.transform="";sl.style.opacity=1;if(cs){cs.style.transition="transform .3s";BCT.ax=0;BCT.ay=0;bcApply(cs)}}}
 function bcDetail(id){const i=BCH.findIndex(b=>b.id===id);BCI=i<0?0:i;bcList()}
-let BCK=null;
+
 function bcPkBar(){let o=$("#bcpb");if(!BCK){if(o)o.remove();return}if(!o){o=document.createElement("div");o.id="bcpb";document.body.appendChild(o)}
-  const b=BCK.b,n=b.sz>1?" · slot "+(BCK.i+1)+"/"+b.sz:"";o.innerHTML='<span>Scegli la carta per «'+esc(b.nm)+'»'+n+'</span><button>Annulla</button>';o.querySelector("button").onclick=()=>{bcPkEnd();bcBack()}}
+  const n=BCK.sel.length,cap=BCK.cap;o.innerHTML='<span>'+(cap>1?"Scegli le carte "+n+"/"+cap:"Scegli la carta")+'</span><button class="no">Annulla</button><button class="ok"'+(n?"":" disabled")+'>Conferma</button>';
+  o.querySelector(".no").onclick=bcPkCancel;o.querySelector(".ok").onclick=bcPkOk}
+document.addEventListener("click",e=>{if(BCK&&e.target.closest&&e.target.closest("#acx,#set button[aria-label=Chiudi]")){e.stopPropagation();e.preventDefault();bcPkCancel()}},true);
+function bcPkCancel(){bcPkEnd();bcBack()}
+function bcPkOk(){if(!BCK||!BCK.sel.length)return;const b=BCK.b,sel=BCK.sel.slice();
+  if(b.cards[BCK.i]&&!BCK.chain){b.cards[BCK.i]=sel[0]}else{const em=[];for(let j=0;j<b.sz;j++){const k=(BCK.i+j)%b.sz;if(!b.cards[k])em.push(k)}sel.forEach((id,j)=>{if(em[j]!=null)b.cards[em[j]]=id})}
+  bcSave();sfx("own");hap(1);bcPkEnd();BCI=Math.max(0,BCH.indexOf(b));bcBack()}
 function bcPkEnd(){BCK=null;bcPkBar()}
 function bcBack(){const go=()=>{bcList()};if(document.body.classList.contains("asl")&&$("#set .aslw")){go();return}aslOpen();let n=0;const w=()=>{if(document.body.classList.contains("asl")&&$("#set .aslw")||++n>30){go();return}setTimeout(w,80)};setTimeout(w,200)}
-function bcPick(b,i){BCK={b,i,chain:!b.cards[i]};const m=b.o==="g"?"g":"c";aslGo(m);
+function bcPick(b,i){let em=0;for(let j=0;j<b.sz;j++)if(!b.cards[j])em++;BCK={b,i,chain:!b.cards[i],sel:[],cap:b.cards[i]?1:Math.max(1,em)};const m=b.o==="g"?"g":"c";aslGo(m);
   let n=0;const w=()=>{if(!BCK)return;if(MODE===m&&!document.body.classList.contains("asl")&&!document.body.classList.contains("sett")||++n>30){if(b.o==="c"&&COLS.some(c=>c.k===b.al)){cur=b.al;FLT="a";SR=[];SQ="";pg=0;sp=0;tabs();render()}bcPkBar();return}setTimeout(w,80)};setTimeout(w,250)}
-function bcPkTap(i){const s=LIST()[i];if(!s||!s.id){return}if(!s.o){toast("Non hai ancora questa carta");return}const g=BCK.b.o==="g";let c=CARDS[s.id];if(!c)return;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];if(!c)return;
-  const b=BCK.b,ix=BCK.i;if(b.cards.some((x,j)=>x===c.id&&j!==ix)){toast("È già in questa bacheca");return}
-  sheet([["Sì, mettila in bacheca",()=>{b.cards[ix]=c.id;bcSave();sfx("own");hap(1);const nx=BCK.chain?b.cards.findIndex(x=>!x):-1;if(nx>=0){BCK.i=nx;bcPkBar()}else{bcPkEnd();BCI=Math.max(0,BCH.indexOf(b));bcBack()}},1]],"Mettere «"+c.name+"» nella bacheca «"+b.nm+"»?")}
+function bcRes(s){if(!s||!s.id||!s.o)return null;const g=BCK.b.o==="g";let c=CARDS[s.id];if(!c)return null;if(c.opts)c=CARDS[c.opts.includes(s.v)?s.v:c.opts[0]];else if(c.alt&&!g&&s.v==="n")c=CARDS[c.alt];return c?c.id:null}
+function bcPkTap(i){const s=LIST()[i];if(!s||!s.id){return}if(!s.o){toast("Non hai ancora questa carta");return}const id=bcRes(s);if(!id)return;
+  const b=BCK.b,ix=BCK.i,el=document.querySelector('#book .slot[data-i="'+i+'"]'),k=BCK.sel.indexOf(id);
+  if(k>=0){BCK.sel.splice(k,1);if(el)el.classList.remove("bsel");bcPkBar();return}
+  if(b.cards.some((x,j)=>x===id&&!(j===ix&&b.cards[ix]&&!BCK.chain))){toast("È già in questa bacheca");return}
+  if(BCK.sel.length>=BCK.cap){if(BCK.cap===1){const o=document.querySelector("#book .slot.bsel");if(o)o.classList.remove("bsel");BCK.sel=[]}else{toast("Hai già scelto "+BCK.cap+" carte");return}}
+  BCK.sel.push(id);if(el)el.classList.add("bsel");hap(1);bcPkBar()}
 function bcModal(eid){const ed=eid?bcFind(eid):null;let M=ed?{nm:ed.nm,st:ed.st}:{nm:"Bacheca "+(BCH.length+1),o:"g",al:null,st:"g",sz:1};
   let o=$("#bcm");if(!o){o=document.createElement("div");o.id="bcm";o.className="bcov";document.body.appendChild(o)}
   const seg=(k,arr)=>'<div class="bsg">'+arr.map(([v,t])=>`<button data-k="${k}" data-v="${v}" class="${String(M[k])===String(v)?"on":""}">${t}</button>`).join("")+"</div>";

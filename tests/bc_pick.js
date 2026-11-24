@@ -1,0 +1,23 @@
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+const c=await b.newContext(devices['iPhone 13']);const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await c.addInitScript(()=>{try{localStorage.setItem('carddex_devok','1');localStorage.setItem('carddex_env','dev')}catch(x){}});
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(2300);
+await p.evaluate(()=>{BCH.length=0;BCH.push({id:'t1',nm:'Tripla',o:'g',al:null,st:'g',sz:3,cards:[null,null,null]});BCH.push({id:'t2',nm:'Singola',o:'g',al:null,st:'g',sz:1,cards:['B4']});aslOpen()});await p.waitForTimeout(900);
+await p.evaluate(()=>{BCI=0;bcList();bcPick(BCH[0],0)});await p.waitForTimeout(2500);
+const t=()=>p.evaluate(()=>({bar:document.getElementById('bcpb')&&document.getElementById('bcpb').textContent,ok:document.querySelector('#bcpb .ok')&&document.querySelector('#bcpb .ok').disabled,sel:document.querySelectorAll('#book .slot.bsel').length,sel2:BCK&&BCK.sel.length}));
+let s=await t();ok(/Scegli le carte 0\/3/.test(s.bar)&&s.ok,'barra multipla, Conferma disattiva '+JSON.stringify(s));
+const owned=await p.evaluate(()=>{const L=LIST();return L.map((x,i)=>x.o?i:-1).filter(i=>i>=0).slice(0,4)});
+await p.evaluate(()=>{const L=LIST();L.slice(0,4).forEach(x=>{x.o=1})});
+for(const i of [0,1])await p.evaluate(i=>bcPkTap(i),i);s=await t();ok(s.sel2===2&&s.sel===2&&!s.ok,'2 selezionate con contorno, Conferma attiva '+JSON.stringify(s));
+await p.evaluate(()=>bcPkTap(1));s=await t();ok(s.sel2===1&&s.sel===1,'riclic annulla selezione');
+await p.evaluate(()=>{bcPkTap(1);bcPkTap(2);bcPkTap(3)});s=await t();ok(s.sel2===3,'max 3 ('+s.sel2+')');
+await p.evaluate(()=>bcPkTap(0));await p.evaluate(()=>bcPkTap(0));
+await p.evaluate(()=>document.querySelector('#bcpb .ok').click());await p.waitForTimeout(1500);
+ok(await p.evaluate(()=>BCH[0].cards.filter(Boolean).length)===3&&await p.evaluate(()=>!BCK&&!document.getElementById('bcpb')),'conferma riempie 3 slot e chiude barra');
+// annulla con X
+await p.evaluate(()=>{bcPick(BCH[1],0)});await p.waitForTimeout(2200);
+s=await t();ok(/^Scegli la carta(?!e)/.test(s.bar),'singola: "Scegli la carta"');
+await p.evaluate(()=>document.getElementById('acx')&&document.getElementById('acx').click());await p.waitForTimeout(1200);
+ok(await p.evaluate(()=>!BCK&&!!document.querySelector('#set .bst')),'X = Annulla, torna alla bacheca');
+ok(!p.errs.length,'nessun errore '+p.errs.join('|'));await b.close();process.exit(bad)})();
