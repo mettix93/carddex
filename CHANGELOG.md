@@ -1,3 +1,10 @@
+## v531
+- Slider album: pallino espanso ora tondo; contatore pagina centrato tra pallini e pagine.
+- Bacheche: popup uniforme (X, elimina bacheca in modifica, aperto subito dal tasto ⋯); via descrizione sotto titolo; bacheca al centro schermo, titolo centrato tra "Bacheche" e cornice, pallini alla stessa altezza degli album.
+- Schermo intero: aggiunta X (torna al menu album) oltre al tasto esci.
+- Stile "Legno" → "Quadro": cornice nera sottile, passepartout bianco, senza targhetta.
+- Ricerca: Invio con campo vuoto chiude la ricerca.
+
 ## v530
 - Slider a pallini: pallino selezionato più piccolo (come nelle bacheche); tenendo premuto o toccando un altro pallino diventa una pillola «liquid glass» come il vecchio puntatore.
 - Bacheche a schermo intero: fascia in alto nera (barra di stato e sfondo). LED del Museo fermi e più nitidi. Vera prospettiva (distorsione prospettica) quando la bacheca ruota.
