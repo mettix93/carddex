@@ -1,3 +1,9 @@
+## v525
+- Ricerca: la pillola in alto diventa la casella di ricerca (stesso stile, stessa dimensione in Album e Pokédex, dopo il titolo), la x tonda a destra chiude la ricerca. Durante la ricerca i set/regioni restano ma grigi e non selezionabili, il nome del set e il contatore del Pokédex spariscono senza spostare nulla.
+- Fix: le pagine dell'album non si muovono più durante la ricerca (lo spazio del nome del set resta riservato).
+- Pokédex: la ricerca non mostra più i Pokémon non registrati; con pochi risultati la lista non è più scrollabile (niente tremolio).
+- Barra del menu: dopo la ricerca ricontrollo posizione e area sicura; se la misura è errata riuso l'ultima valida.
+
 ## v524
 - Ricerca: barra live al posto dei set (tastiera sotto, risultati a ogni lettera, x per chiudere); funziona anche nel Pokédex. Uscendo si torna alla stessa pagina dell'album, la pagina non scorre.
 - Ricerca: le promo non ancora sbloccate dalle missioni non compaiono più nei risultati (in App).
