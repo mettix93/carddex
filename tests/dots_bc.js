@@ -9,8 +9,8 @@ const n=await p.evaluate(()=>document.querySelectorAll('#sld i').length);ok(n>=5
 const W=box.w,sp=Math.min(W,(n-1)*18),x0=(W-sp)/2;
 await p.mouse.move(box.x+x0,box.y);await p.mouse.down();await p.mouse.move(box.x+x0+sp*.5,box.y,{steps:6});await p.waitForTimeout(500);
 let v=await p.evaluate(()=>pg);ok(v>=4&&v<=7,'drag a metà → pagina '+v);
-await p.mouse.move(box.x+x0+sp,box.y,{steps:6});await p.waitForTimeout(500);v=await p.evaluate(()=>pg);ok(v===n-1,'drag a fine → ultima pagina '+v);await p.mouse.up();
-ok(await p.evaluate(()=>[...document.querySelectorAll('#sld i')].findIndex(x=>x.classList.contains('on'))===pg),'pallino grande = pagina');
+await p.mouse.move(box.x+x0+sp,box.y,{steps:6});await p.waitForTimeout(500);v=await p.evaluate(()=>pg);ok(v===n-1,'drag a fine → ultima pagina '+v);ok(await p.evaluate(()=>document.getElementById('sdk').classList.contains('dn')),'durante il drag: liquid glass');await p.mouse.up();await p.waitForTimeout(400);ok(await p.evaluate(()=>!document.getElementById('sdk').classList.contains('dn')),'rilascio: torna pallino');
+ok(await p.evaluate(()=>{const k=document.getElementById('sdk'),i=[...document.querySelectorAll('#sld i')][pg];return !!k&&Math.abs(parseFloat(k.style.left)-parseFloat(i.style.left))<1.5}),'pallino grande = pagina');
 ok(await p.evaluate(()=>/Pagina \d+ \/ \d+/.test(document.getElementById('pn').textContent)),'contatore invariato');
 // bacheche
 await p.evaluate(()=>{const K=Object.keys(CARDS).filter(k=>/^B\d/.test(k));BCH.length=0;for(let i=0;i<4;i++)BCH.push({id:'t'+i,nm:'B'+i,o:'g',al:null,st:'g',sz:1,cards:[K[i]]});aslOpen()});await p.waitForTimeout(900);

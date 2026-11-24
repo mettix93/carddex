@@ -1,0 +1,15 @@
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+const c=await b.newContext({...devices['iPhone 13'],viewport:{width:390,height:844}});const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await c.addInitScript(()=>{try{localStorage.setItem('carddex_devok','1');if(!localStorage.getItem('carddex_env'))localStorage.setItem('carddex_env','app')}catch(x){}});
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(2300);
+await p.evaluate(()=>{const K=Object.keys(CARDS).filter(k=>/^B\d/.test(k));BCH.length=0;for(let i=0;i<6;i++)BCH.push({id:'t'+i,nm:'B'+i,o:'g',al:null,st:'gwm'[i%3],sz:1+i%3,cards:Array(1+i%3).fill(null).map((_,j)=>K[i+j])});bcSave()});
+await p.reload();await p.waitForTimeout(2300);
+ok(await p.evaluate(()=>BCH.length)===6,'6 bacheche dopo il riavvio ('+await p.evaluate(()=>BCH.length)+')');
+await p.evaluate(()=>{aslOpen()});await p.waitForTimeout(800);await p.evaluate(()=>{BCI=2;bcList();document.querySelector('.bcfsb').click()});await p.waitForTimeout(400);
+const f=await p.evaluate(()=>({vwo:document.documentElement.classList.contains('vwo'),tc:document.querySelector('meta[name=theme-color]').content,bg:getComputedStyle(document.documentElement).backgroundColor,tr:getComputedStyle(document.querySelector('#bcfs .bcase')).transform.slice(0,30)}));
+ok(f.vwo&&/^#?0{6}|rgb\(0, 0, 0\)|#000/.test(f.tc),'fullscreen: fascia nera ('+JSON.stringify(f)+')');
+await p.evaluate(()=>document.querySelector('#bcfs .bfx').click());await p.waitForTimeout(400);
+ok(await p.evaluate(()=>!document.documentElement.classList.contains('vwo')&&!document.getElementById('bcfs')),'uscita: classe tolta');
+ok(await p.evaluate(()=>{BCI=0;bcList();const c=document.querySelector('#set .bcase');BCT={ax:0,ay:20};bcApply(c);return /perspective/.test(c.style.transform)}),'prospettiva nella trasformazione');
+ok(!p.errs.length,'nessun errore '+p.errs.join('|'));await b.close();process.exit(bad)})();

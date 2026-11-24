@@ -1,3 +1,9 @@
+## v530
+- Slider a pallini: pallino selezionato più piccolo (come nelle bacheche); tenendo premuto o toccando un altro pallino diventa una pillola «liquid glass» come il vecchio puntatore.
+- Bacheche a schermo intero: fascia in alto nera (barra di stato e sfondo). LED del Museo fermi e più nitidi. Vera prospettiva (distorsione prospettica) quando la bacheca ruota.
+- Fix: le bacheche oltre la terza non venivano ricaricate alla riapertura dell'app (e venivano perse al salvataggio); ora fino a 10.
+- Inserimento carte: le carte da trascinare sono centrate in verticale tra titolo e pagina.
+
 ## v529
 - Promo: Mew Antico ora è l'ultima carta dell'album Promo (i numeri delle tasche e delle carte coincidono). Le carte promo ottenute da missione entrano nella sequenza «Trascina ogni carta nel suo spazio» come le altre carte nuove.
 - Inserimento carte: il numero della tasca è un pallino sulla carta (stesso stile e posizione delle tasche) invece del testo sotto; carte leggermente più grandi.
