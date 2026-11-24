@@ -1,3 +1,8 @@
+## v536
+- Pallini di scorrimento (album e bacheche) leggermente più distanziati; negli album il suono "pagina" anche quando si scorre/clicca sui pallini.
+- Titolo bacheche: posizione fissa per tutte (singola/doppia/tripla), quella della singola.
+- Bacheca "Legno": vero oggetto 3D CSS (pilastri, architrave, davanzale, basamento a gradini, tetto a due falde con timpani e gronda, fondo arretrato con reticolo e luce calda, vetro davanti), inclinazione di base per mostrare la profondità, meno alta.
+
 ## v535
 - Bacheca "Legno": ora è un tempietto giapponese 3D in legno (tetto a pagoda con mensole, pilastri, basamento a gradini, fondo con reticolo kumiko) che ospita le carte, chiuso dal vetro. Centratura e schermo intero tengono conto di tetto e basamento.
 
