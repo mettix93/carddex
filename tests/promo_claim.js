@@ -1,0 +1,13 @@
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+const c=await b.newContext({...devices['iPhone 13'],viewport:{width:390,height:844}});const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await c.addInitScript(()=>{try{localStorage.setItem('carddex_devok','1');localStorage.setItem('carddex_env','app')}catch(x){}});
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(2400);
+const r=await p.evaluate(()=>{const o=MSB.find(m=>m.r&&m.r!=='X1'&&m.ph<=relPh()&&!m.dev);const o2=MSB.find(m=>m.r==='X1');const n0=PKAQ.length;const on=o.n,oN=o.N;o.n=()=>1;o.N=()=>1;const ok=msClaim(o.id);o.n=on;o.N=oN;const L=st.gQ.map(x=>x.id);return {id:o.r,ok,aq:PKAQ.some(q=>q.id===o.r&&q.k==='gQ'),x1pos:L.indexOf('X1'),len:L.length,last:L.slice(-2)}});
+ok(r.ok&&r.aq,'missione promo → carta in coda di inserimento '+JSON.stringify(r));
+ok(r.x1pos>=r.len-2,'Mew antico in fondo ('+r.x1pos+'/'+r.len+')');
+await p.evaluate(()=>{goTab('a');cur='gQ';pg=0;sp=0;tabs();render();aqpStart('gQ')});await p.waitForTimeout(1200);
+const s=await p.evaluate(()=>{const e=document.querySelector('#aqp .aqc s');return e?{t:e.textContent,pos:getComputedStyle(e).position,br:getComputedStyle(e).borderRadius,sh:getComputedStyle(document.querySelector('#aqp .aqpa em')||document.body).textShadow}:null});
+ok(s&&/^\d+$/.test(s.t)&&s.pos==='absolute','numero sulla carta come pallino ('+JSON.stringify(s)+')');
+await p.screenshot({path:'/tmp/aq.png'});
+ok(!p.errs.length,'nessun errore '+p.errs.join('|'));await b.close();process.exit(bad)})();

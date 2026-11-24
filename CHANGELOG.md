@@ -1,3 +1,8 @@
+## v529
+- Promo: Mew Antico ora è l'ultima carta dell'album Promo (i numeri delle tasche e delle carte coincidono). Le carte promo ottenute da missione entrano nella sequenza «Trascina ogni carta nel suo spazio» come le altre carte nuove.
+- Inserimento carte: il numero della tasca è un pallino sulla carta (stesso stile e posizione delle tasche) invece del testo sotto; carte leggermente più grandi.
+- Pulsante «Auto»: testo e simbolo senza ombra.
+
 ## v528
 - Bacheche: in alto 3 puntini, schermo intero e x; testi centrati sotto, tolto «scorri qui…». Schermo intero con sfondo nero, bacheca alla massima grandezza possibile (si riadatta se giri il telefono), non ruotabile, con la luce in movimento.
 - Bacheca Vetro: solo vetro (niente nero). Bacheca Museo: LED sui bordi interni che illuminano verso l'interno. Più prospettiva 3D nel movimento.
