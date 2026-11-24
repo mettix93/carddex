@@ -1,3 +1,6 @@
+## v537
+- Legno: tetto a padiglione chiuso (4 falde, colmo, gronda) con pendenza corretta; inquadratura di default frontale; carte sospese a metà profondità davanti a una parete di fondo separata (niente più carte che spariscono ruotando).
+
 ## v536
 - Pallini di scorrimento (album e bacheche) leggermente più distanziati; negli album il suono "pagina" anche quando si scorre/clicca sui pallini.
 - Titolo bacheche: posizione fissa per tutte (singola/doppia/tripla), quella della singola.
