@@ -1,3 +1,9 @@
+## v533
+- Bustine: stesso suono "swipe" delle bacheche quando si scorre il carosello.
+- Bacheche: pallino attivo si ingrandisce a vetro tondo mentre lo tieni premuto (come negli album).
+- Pokédex: contatore generale come testo centrato, senza pastiglia.
+- Bacheca "Neon" sostituita da "Legno" in stile giapponese (cornice in legno scuro, fondo hinoki).
+
 ## v532
 - Bacheche: swipe orizzontale ovunque sullo schermo cambia bacheca.
 - Stile "Quadro" sostituito da "Neon" (cornice luminosa a gradiente, fondo scuro a griglia).
