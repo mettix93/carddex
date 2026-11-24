@@ -6,7 +6,7 @@ await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(
 await p.evaluate(()=>goTab('a'));await p.waitForTimeout(900);
 const box=await p.evaluate(()=>{const r=document.getElementById('sld').getBoundingClientRect();return {x:r.left,y:r.top+r.height/2,w:r.width}});
 const n=await p.evaluate(()=>document.querySelectorAll('#sld i').length);ok(n>=5,'pallini presenti '+n);
-const W=box.w,sp=Math.min(W,(n-1)*18),x0=(W-sp)/2;
+const W=box.w,sp=Math.min(W,(n-1)*20),x0=(W-sp)/2;
 await p.mouse.move(box.x+x0,box.y);await p.mouse.down();await p.mouse.move(box.x+x0+sp*.5,box.y,{steps:6});await p.waitForTimeout(500);
 let v=await p.evaluate(()=>pg);ok(v>=4&&v<=7,'drag a metà → pagina '+v);
 await p.mouse.move(box.x+x0+sp,box.y,{steps:6});await p.waitForTimeout(500);v=await p.evaluate(()=>pg);ok(v===n-1,'drag a fine → ultima pagina '+v);ok(await p.evaluate(()=>document.getElementById('sdk').classList.contains('dn')),'durante il drag: liquid glass');await p.mouse.up();await p.waitForTimeout(400);ok(await p.evaluate(()=>!document.getElementById('sdk').classList.contains('dn')),'rilascio: torna pallino');
