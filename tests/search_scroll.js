@@ -1,0 +1,18 @@
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+const c=await b.newContext(devices['iPhone 13']);const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await c.addInitScript(()=>{try{localStorage.setItem('carddex_devok','1');localStorage.setItem('carddex_env','dev')}catch(x){}});
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(2300);
+const tm=sel=>p.evaluate(s=>{const t=document.querySelector(s)||document.body;const ev=new Event('touchmove',{bubbles:true,cancelable:true});t.dispatchEvent(ev);return ev.defaultPrevented},sel);
+await p.evaluate(()=>goTab('d'));await p.waitForTimeout(900);
+ok(!(await tm('#set')),'senza ricerca: scroll normale');
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);await p.keyboard.type('zzzz');await p.waitForTimeout(400);
+ok(await tm('#set'),'dex ricerca pochi risultati: touchmove bloccato');
+await p.keyboard.press('Backspace');await p.keyboard.press('Backspace');await p.keyboard.press('Backspace');await p.keyboard.press('Backspace');await p.waitForTimeout(400);
+ok(!(await tm('#set')),'dex con lista lunga: scroll consentito');
+await p.evaluate(()=>document.getElementById('sbx').click());
+await p.evaluate(()=>goTab('a'));await p.waitForTimeout(800);
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);await p.keyboard.type('porygon');await p.waitForTimeout(500);
+const r=await p.evaluate(()=>({sn:document.getElementById('sn').textContent,vis:getComputedStyle(document.getElementById('sn')).visibility,pn:document.getElementById('pn').textContent}));
+ok(/porygon/.test(r.sn)&&r.vis==='visible','album: testo ricerca al posto del nome set ('+r.sn+')');ok(!/porygon/.test(r.pn),'album: non più accanto al contatore pagina ('+r.pn+')');
+ok(!p.errs.length,'nessun errore');await b.close();process.exit(bad)})();

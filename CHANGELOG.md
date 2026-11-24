@@ -1,3 +1,7 @@
+## v526
+- Pokédex/Album: durante la ricerca la pagina non rimbalza più sotto il dito (niente tremolio né cursore che sale e scende) quando i risultati non bastano per scorrere.
+- Album: il testo cercato compare al posto del nome del set (non più accanto al contatore di pagina).
+
 ## v525
 - Ricerca: la pillola in alto diventa la casella di ricerca (stesso stile, stessa dimensione in Album e Pokédex, dopo il titolo), la x tonda a destra chiude la ricerca. Durante la ricerca i set/regioni restano ma grigi e non selezionabili, il nome del set e il contatore del Pokédex spariscono senza spostare nulla.
 - Fix: le pagine dell'album non si muovono più durante la ricerca (lo spazio del nome del set resta riservato).
