@@ -1,3 +1,9 @@
+## v534
+- Bacheche: pallino ingrandito sopra ai vicini; spaziatura pallini uguale agli album (18px).
+- Legno giapponese più profondo: teca a siparietto con bordo interno in rilievo (parallasse), ombre interne, chiusa dal vetro.
+- Bustine: scorrimento continuo solo con gesto da margine a margine (velocità = velocità del dito); altrimenti una alla volta.
+- Pokédex: tolto il numero accanto ai divisori delle regioni; contatore generale allineato alla base del titolo, stile dei divisori.
+
 ## v533
 - Bustine: stesso suono "swipe" delle bacheche quando si scorre il carosello.
 - Bacheche: pallino attivo si ingrandisce a vetro tondo mentre lo tieni premuto (come negli album).
