@@ -1,3 +1,8 @@
+## v528
+- Bacheche: in alto 3 puntini, schermo intero e x; testi centrati sotto, tolto «scorri qui…». Schermo intero con sfondo nero, bacheca alla massima grandezza possibile (si riadatta se giri il telefono), non ruotabile, con la luce in movimento.
+- Bacheca Vetro: solo vetro (niente nero). Bacheca Museo: LED sui bordi interni che illuminano verso l'interno. Più prospettiva 3D nel movimento.
+- Prova: slider degli album a pallini (pallino nero grande = pagina, si trascina per scorrere velocemente; si stringono se sono tanti); stessi pallini trascinabili anche nelle bacheche. Contatore pagina invariato.
+
 ## v527
 - Bacheche, scelta carte: barra «Scegli la carta» / «Scegli le carte n/m» con Annulla e Conferma. Si selezionano tutte le carte (1, 2 o 3) con contorno blu (riclic = deseleziona), niente messaggio di conferma per ogni carta; Conferma attiva già con una sola carta. La x in alto a destra equivale ad Annulla e riporta alla bacheca.
 
