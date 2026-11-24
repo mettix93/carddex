@@ -1,3 +1,10 @@
+## v524
+- Ricerca: barra live al posto dei set (tastiera sotto, risultati a ogni lettera, x per chiudere); funziona anche nel Pokédex. Uscendo si torna alla stessa pagina dell'album, la pagina non scorre.
+- Ricerca: le promo non ancora sbloccate dalle missioni non compaiono più nei risultati (in App).
+- Messaggio «Scegli la carta per…» nello stile dei toast, con pulsante Annulla.
+- Bacheche: movimento identico alla carta aperta (stessa sensibilità, rotazione limitata, ritorno morbido), luce che segue, vetro sopra più marcato e uniforme tra Vetro/Legno/Museo.
+- Bacheche con iPhone orizzontale: schermo intero.
+
 ## v523
 - Fix: i contatori delle missioni sui set non ancora pubblicati (Neo, Unown) ora mostrano il totale reale anche in App, senza progressi falsi.
 

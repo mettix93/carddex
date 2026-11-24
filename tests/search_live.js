@@ -1,0 +1,25 @@
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+for(const env of ['app','dev']){const c=await b.newContext(devices['iPhone 13']);const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await c.addInitScript(e=>{try{localStorage.setItem('carddex_devok','1');localStorage.setItem('carddex_env',e)}catch(x){}},env);
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(2300);
+await p.evaluate(()=>goTab('a'));await p.waitForTimeout(800);
+const pg0=await p.evaluate(()=>{pg=1;render();return pg});
+const th0=await p.evaluate(()=>document.getElementById('tabs').getBoundingClientRect().top);
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);
+ok(await p.evaluate(()=>!document.getElementById('sbar').hidden&&document.activeElement.id==='sri2'),env+': barra aperta e a fuoco');
+await p.keyboard.type('porygon',{delay:40});await p.waitForTimeout(500);
+const r=await p.evaluate(()=>({cur,n:SR.length,my:SR.filter(x=>{const s=st[x.c][x.i];const k=CARDS[s.id];return !s.o&&(k.sid==='Q'||k.sid==='X')}).length,sc:scrollY}));
+ok(r.cur==='?'&&r.n>0,env+': risultati live ('+r.n+')');
+if(env==='app')ok(r.my===0,'app: nessuna promo bloccata nei risultati');
+ok(r.sc===0,env+': pagina non scrollata');
+await p.keyboard.press('Backspace');await p.waitForTimeout(300);
+await p.evaluate(()=>{const i=document.getElementById('sri2');i.value='';i.dispatchEvent(new Event('input'))});await p.waitForTimeout(300);
+ok(await p.evaluate(()=>cur!=='?'),env+': campo vuoto torna all\'album');
+await p.keyboard.type('porygon');await p.waitForTimeout(300);
+await p.evaluate(()=>document.getElementById('sbx').click());await p.waitForTimeout(400);
+const e=await p.evaluate(()=>({cur,pg,th:document.getElementById('tabs').getBoundingClientRect().top,hid:document.getElementById('sbar').hidden}));
+ok(e.cur!=='?'&&e.hid&&e.pg===pg0,env+': x chiude e torna alla stessa pagina ('+e.pg+')');
+ok(Math.abs(e.th-th0)<1,env+': set nella stessa posizione');
+ok(!p.errs.length,env+': nessun errore '+p.errs.join('|'));await c.close()}
+await b.close();process.exit(bad)})();
