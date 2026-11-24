@@ -1,3 +1,6 @@
+## v535
+- Bacheca "Legno": ora è un tempietto giapponese 3D in legno (tetto a pagoda con mensole, pilastri, basamento a gradini, fondo con reticolo kumiko) che ospita le carte, chiuso dal vetro. Centratura e schermo intero tengono conto di tetto e basamento.
+
 ## v534
 - Bacheche: pallino ingrandito sopra ai vicini; spaziatura pallini uguale agli album (18px).
 - Legno giapponese più profondo: teca a siparietto con bordo interno in rilievo (parallasse), ombre interne, chiusa dal vetro.
