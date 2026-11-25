@@ -1,3 +1,7 @@
+## v538
+- Legno: parete di fondo in stile giapponese antico (washi, rami di ciliegio in fiore, petali, sole rosso, onde seigaiha, filetto dorato); carte un po' più piccole per lasciarla vedere.
+- Bacheche: contatore "Bacheca n/x" nella stessa posizione e stile del contatore pagine degli album; tolta la scritta "Crea una nuova bacheca" nella pagina del +.
+
 ## v537
 - Legno: tetto a padiglione chiuso (4 falde, colmo, gronda) con pendenza corretta; inquadratura di default frontale; carte sospese a metà profondità davanti a una parete di fondo separata (niente più carte che spariscono ruotando).
 
