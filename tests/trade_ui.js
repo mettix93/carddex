@@ -44,5 +44,14 @@ ok(await p.evaluate(()=>document.querySelector('#sh').hidden&&st.zPF.every(x=>x.
 await p.click('#pfrb');await p.waitForTimeout(500);
 ok(await p.evaluate(()=>!PFRO&&!PFM&&FR.v==="fr"&&!document.querySelector('#frm').hidden&&!document.getElementById('pfrb')),'indietro torna alla Community');
 ok(mine0===await p.evaluate(()=>JSON.stringify([localStorage.getItem('carddex_gord_d')||localStorage.getItem('carddex_gord'),localStorage.getItem('carddex_gcu_d')||localStorage.getItem('carddex_gcu')])),'i miei preferiti non sono cambiati');
+// Vai all'album: primo set (da sinistra) con carte da aggiungere
+await p.evaluate(()=>{FRS.on||FRS.setup();const e=frEl();e.hidden=false;const ks=GCOLS.map(c=>c.k),pick=k=>{const s=st[k].find(x=>x&&x.id);s.o=1;return s.id};
+  PKAQ=[{k:ks[3],id:pick(ks[3])},{k:ks[1],id:pick(ks[1])}];window.__ks=ks;FR.dn={who:"Giulia",give:[],get:[st[ks[3]].find(x=>x&&x.id).id],nw:[st[ks[3]].find(x=>x&&x.id).id],dx:[]};FR.v="done";frDraw()});
+await p.click('#frm [data-a=alb]');await p.waitForTimeout(700);
+ok(await p.evaluate(()=>cur===__ks[1]),'"Vai all\'album" apre il primo set con carte da aggiungere ('+await p.evaluate(()=>cur+' invece di '+__ks[3])+')');
+// pagina amico: tasti fissi + scambi sotto l'amico
+await p.evaluate(()=>{frOpen("t")});await p.waitForTimeout(300);await p.evaluate(()=>{FRS.on||FRS.setup();FR.u="sim-g";FR.v="fr";frDraw()});
+ok(await p.evaluate(()=>!!document.querySelector('#frm .frft.frpk [data-a=prop]')&&!!document.querySelector('#frm .frft.frpk [data-a=coll]')&&document.querySelectorAll('#frm .frxw,#frm [data-a=vt]').length>0),'pagina amico: scambi sotto, tasti fissi in fondo');
+ok(await p.evaluate(()=>{FR.v="home";frDraw();return !document.querySelector('#frm [data-a=mail]')&&!!document.querySelector('#frm .frb')}),'elenco amici: niente Posta, numerino sull\'amico');
 ok(errs.length===0,'nessun errore JS '+errs.join('|'));
 await b.close();console.log(bad?'FALLITO':'TUTTO OK');process.exit(bad?1:0)})();

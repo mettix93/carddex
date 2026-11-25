@@ -22,9 +22,9 @@ for(const k of['a1','a3','a8','an']){await p.click('#frm [data-a=sx][data-k='+k+
   await p.evaluate(()=>{FR.v="sim";frDraw()});}
 // flusso: proposta in arrivo -> Posta -> accetto -> animazione
 await p.click('#frm [data-a=sx][data-k=ri]');await p.waitForTimeout(300);
-await p.click('#frm [data-a=sx][data-k=mail]');await p.waitForTimeout(300);
+await p.click('#frm [data-a=sx][data-k=og]');await p.waitForTimeout(300);
 const nrc=await p.evaluate(()=>FR.tr.filter(t=>t.status==="pending"&&t.to_user==="sim-me").length);
-ok(nrc>=2,'Posta: '+nrc+' proposte da rispondere');
+ok(nrc>=2,'Pagina amico: '+nrc+' proposte da rispondere');
 await p.evaluate(()=>{const t=FR.tr.find(t=>t.status==="pending"&&t.to_user==="sim-me");FR.ex.add(t.id);frDraw()});await p.waitForTimeout(200);
 await p.click('#frm [data-a=acc]');await p.waitForTimeout(700);
 ok(await p.evaluate(()=>FR.v==="anim"&&!!document.querySelector('#frm .anst')),'accetta -> parte l\'animazione');
@@ -32,8 +32,8 @@ await p.evaluate(()=>frSkip());await p.waitForTimeout(400);await p.click('#frm [
 // la mia proposta viene accettata -> Vedi
 await p.evaluate(()=>{FR.v="sim";frDraw()});
 await p.click('#frm [data-a=sx][data-k=ac]');await p.waitForTimeout(300);
-await p.click('#frm [data-a=sx][data-k=mail]');await p.waitForTimeout(300);
-ok(await p.evaluate(()=>!!document.querySelector('#frm [data-a=vt]')),'Posta: compare "Vedi" per lo scambio accettato');
+await p.click('#frm [data-a=sx][data-k=og]');await p.waitForTimeout(300);
+ok(await p.evaluate(()=>!!document.querySelector('#frm [data-a=vt]')),'Pagina amico: compare "Vedi" per lo scambio accettato');
 await p.click('#frm [data-a=vt]');await p.waitForTimeout(700);
 ok(await p.evaluate(()=>FR.v==="anim"),'Vedi -> animazione');
 await p.evaluate(()=>frSkip());await p.waitForTimeout(400);await p.click('#frm [data-a=dn]');await p.waitForTimeout(300);

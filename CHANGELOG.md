@@ -1,3 +1,8 @@
+## v546 (PullTime)
+- Scambi: via la Posta. Le proposte e gli scambi (da rispondere, in corso, conclusi) stanno ora nella pagina di ogni amico, sotto le statistiche; l'elenco amici mostra il numerino sull'amico con novità e li mette in cima. "Vedi i preferiti" e "Proponi uno scambio" sono fissi in fondo (la pagina scorre dietro).
+- "Vai all'album" dal riepilogo bustine e dal riepilogo scambio: apre il primo set (da sinistra, in ordine di uscita) che ha carte nuove da aggiungere.
+- Test: tests/pk_toalbum.js; trade_ui e trade_sim aggiornati.
+
 ## v545 (PullTime) — Scambi
 - Riepilogo "Scambio concluso" come quello delle buste: pillola con **Vai all'album** + **Fatto** (l'album si apre sul set della prima carta nuova ricevuta).
 - Animazione: carte sempre dritte (prima e dopo), più lenta (movimento 3 s), i due mazzi si incrociano di lato e restano tutti visibili; le carte di ogni mazzo sono sovrapposte in ventaglio ordinato con la carta principale (più rara) davanti, tutte visibili. Corretto un bug per cui il mazzo dell'altro compariva già in basso dall'inizio.
