@@ -1,3 +1,8 @@
+## v541 + c36 (PullBinder)
+- Menu carta: "In arrivo" diventa "Segna come in arrivo"; pressione per il menu un po' più lunga (circa 1s in totale).
+- Pokédex: non si blocca più arrivando da un album aperto (l'overflow veniva misurato con il pannello ancora nascosto).
+- Bacheche: il pallino espanso in trascinamento è ora un elemento a livello di pagina (non più dentro il pannello), quindi non può essere ritagliato.
+
 ## v540 + c35 (PullBinder)
 - Pressione lunga su una carta (anche PullBinder): a 0,35s la carta si solleva restando dov'è (ingrandita dal centro) e segue il dito; se non si muove il dito, a 0,8s compare il menu (con il dito ancora giù). Rilasciando prima non succede nulla. Corretto il "click fantasma" che a volte attivava "In arrivo" o aggiungeva uno slot vuoto: i fogli ignorano i tocchi nei primi 0,45s e subito dopo il rilascio.
 - Bacheche: titolo e contatore "Bacheca n/x" ora hanno la stessa posizione in tutte le bacheche (calcolata sul riferimento della bacheca singola più alta); il contatore usa la stessa posizione del contatore pagine degli album.
