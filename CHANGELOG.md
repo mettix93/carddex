@@ -1,3 +1,10 @@
+## v544 (PullTime)
+- Scambio lampo: nuovo suono 3A in stile vetro (soffio che scende), al posto dell'onda quadra. Ora tutti i suoni sono vetro/morbidi.
+- Dev: **Simulatore scambi** (Scambia > Community, solo in Dev). Amici finti (Giulia, Marco), proposte in arrivo/inviate/accettate/rifiutate/scadute, Posta, "Vedi", annuncio e animazione 1/3/8 carte e "tutte nuove nel Pokédex". Nessuna rete, la collezione non cambia. Test: tests/trade_sim.js.
+
+## v543 + c40 (PullBinder)
+- Suoni vetro (scansione, moneta, scambio partenza/attesa/fanfara) resi identici alle versioni approvate: stesso inviluppo e stessa brillantezza (prima il soffio d'aria era troppo forte, la moneta più scura e la nota finale della fanfara più bassa). Volume sempre calibrato sugli attuali.
+
 ## v542 + c39 (PullBinder)
 - Suoni in stile vetro (sinusoidi morbide, ottava leggera, soffio d'aria, note finali a campanella) al posto dell'onda quadra: scansione Pokédex e moneta in entrambe le app; scambio (partenza, attesa, fanfara) in PullTime. Melodie e tempi invariati, volume calibrato sugli attuali. Proposte in tools/suoni/proposte_v4/.
 

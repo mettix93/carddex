@@ -1391,7 +1391,7 @@ const APPK="col";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="c39";
+const APPV="c40";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2242,6 +2242,9 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden)acBack()})
 /* effetti sonori sintetizzati (nessun file audio): seguono l'interruttore "Effetti sonori" e il silenzioso */
 const SFXN=()=>{if(!AC)return null;if(!SFXN.b){const n=AC.sampleRate,b=AC.createBuffer(1,n,n),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()*2-1;SFXN.b=b}return SFXN.b};
 function sxGl(t,f,d,v){sxT(t,f,0,d,"sine",v,.008);sxT(t,f*2,0,d*.55,"sine",v*.45,.008);sxT(t,f*2.76,0,d*.3,"sine",v*.2,.008)}
+function sxP(t,f,d,v,at,K,f1){const o=AC.createOscillator(),g=AC.createGain(),a=at||.008,e=Math.max(.0001/v,1e-5);o.type="sine";o.frequency.setValueAtTime(f,t);if(f1)o.frequency.linearRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(1e-5,t);g.gain.linearRampToValueAtTime(K*Math.pow(e,a/d),t+a);g.gain.exponentialRampToValueAtTime(K*e,t+d);g.gain.setValueAtTime(K*e,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
+function sxPG(t,f,d,v,K){sxP(t,f,d,v,.008,K);sxP(t,f*2,d*.55,v*.45,.008,K);sxP(t,f*2.76,d*.3,v*.2,.008,K)}
+function sxPA(t,d,v,f0,f1,K){const R=44100,n=Math.floor(d*R),b=AC.createBuffer(1,n,R),x=b.getChannelData(0);let l=0,l2=0,m=1e-9;for(let i=0;i<n;i++){const w=Math.random()+Math.random()+Math.random()+Math.random()+Math.random()+Math.random()-3,a=Math.min(1,6.2832*(f0+(f1-f0)*i/n)/R);l+=a*(w*1.414-l);l2+=a*(l-l2);x[i]=l-l2;m=Math.max(m,Math.abs(x[i]))}for(let i=0;i<n;i++){const s=Math.sin(Math.PI*Math.min(1,i/R/d));x[i]=x[i]/m*v*s*s*K}const s=AC.createBufferSource();s.buffer=b;s.connect(AC.destination);s.start(t)}
 function sxC(t,f,d,v,duty){const o=AC.createOscillator(),g=AC.createGain();try{const n=32,re=new Float32Array(n),im=new Float32Array(n);for(let k=1;k<n;k++)im[k]=2*Math.sin(Math.PI*k*(duty||.5))/(Math.PI*k);o.setPeriodicWave(AC.createPeriodicWave(re,im))}catch(e){o.type="square"}
   o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.004);g.gain.setValueAtTime(v,t+Math.max(.01,d-.02));g.gain.linearRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
 function sxT(t,f0,f1,d,ty,v,at){const o=AC.createOscillator(),g=AC.createGain();g.gain.value=.0001;o.type=ty||"sine";o.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.15,t+(at||.008));g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
@@ -2253,13 +2256,13 @@ const SFX={
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- scan:t=>{const N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxT(t+k*.118,f,0,.14,"sine",.2*.24,.006);if(k%2==0)sxT(t+k*.118,f/2,0,.14,"sine",.07*.24,.006)});sxN(t,1.4,1500,4200,.12*.24,"bandpass",.5,.4);sxGl(t+1.198,2637,.6,.12*.24)},
+ scan:t=>{const K=0.036,N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxP(t+k*.118,f,.14,.2,.006,K);if(k%2==0)sxP(t+k*.118,f/2,.14,.07,.006,K)});sxPA(t,1.4,.12,1500,4200,K);sxPG(t+1.198,2637,.6,.12,K)},
  land:t=>{sxN(t,.46,750,1700,.072,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.022,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.058,"bandpass",.4,.07)},
  page:t=>{sxN(t,.12,2600,1400,.07,"bandpass",.6);sxN(t+.09,.08,3400,2000,.04,"bandpass",.6)},
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
  unfav:t=>{sxT(t,700,430,.12,"sine",.12)},
- coin:t=>{sxT(t,1318,0,.13,"sine",.2*.32,.008);sxGl(t+.08,1760,.55,.2*.32)},
+ coin:t=>{const K=0.054;sxP(t,1318,.13,.2,.008,K);sxPG(t+.08,1760,.55,.2,K)},
  gain:t=>{[523,659,784,1047].forEach((f,i)=>sxT(t+i*.09,f,0,.4,"triangle",.17,.01))}};
 function sfx(n,dl){if(!CRYON)return;try{acUnlock();if(!AC)return;audAmb();const t=AC.currentTime+.02+(dl||0);if(SFX[n])SFX[n](t)}catch(e){}}
 const CBP={};
