@@ -1,3 +1,6 @@
+## c37 (PullBinder)
+- Album e regioni del Pokédex completati come in PullTime: contorno oro sulla linguetta, anello di avanzamento sulla linguetta selezionata, effetto (anello dorato, scintille, banner "Album completato" / "Pokédex completato", suono e tatto) una sola volta, flag salvato.
+
 ## v541 + c36 (PullBinder)
 - Menu carta: "In arrivo" diventa "Segna come in arrivo"; pressione per il menu un po' più lunga (circa 1s in totale).
 - Pokédex: non si blocca più arrivando da un album aperto (l'overflow veniva misurato con il pannello ancora nascosto).
