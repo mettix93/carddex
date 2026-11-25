@@ -1,3 +1,11 @@
+## v548 (PullTime)
+- **Animazione scambio**: il centro del bianco coincide col momento in cui le pile sono perfettamente sovrapposte al centro e girano (movimento simmetrico, giro, lampo, raggio e anelli sincronizzati).
+- **Luce più pulita**: via i filtri di luminosità (bordi frastagliati, neri che restavano neri); ora un velo bianco sopra ogni carta, che copre anche i neri, con lampeggi morbidi.
+- **Fascia in alto bianca** durante l'animazione: sfondo/theme-color scuro per tutta la durata, ripristinato dopo.
+- **Ordine carte** (ventaglio prima di partire e riepilogo Hai dato/Hai ricevuto): holo, rare, non comuni, comuni, addestramento, energie; poi ordine di set e numero. La più rara è a sinistra in cima, le altre sotto verso destra.
+- **Preferiti amico**: via la pastiglia vuota, la X torna nella sua posizione normale.
+- **Pagina amico**: uscendo e rientrando gli scambi espansi tornano compressi.
+
 ## v547 + c41 (PullBinder)
 - **Barra in basso**: dopo la visita ai preferiti di un amico la barra si spostava in basso (nascondevo i comandi con display:none, falsando il layout): ora i comandi si nascondono senza cambiare il layout.
 - **Slider sempre presente**: anche con una sola pagina c'è il pallino e "Pagina 1 / 1" (PullTime e PullBinder). Bacheche già a posto ("Bacheca 1/1" + pallino).
