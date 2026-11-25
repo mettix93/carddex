@@ -8,7 +8,7 @@ await p.goto('http://localhost:8765/collezione.html');await p.waitForTimeout(180
 await p.evaluate(()=>{goTab('c')});await p.waitForTimeout(500);await p.evaluate(()=>{const a=document.querySelector('.asc[data-m=c]');if(a)a.click()});await p.waitForTimeout(900);
 // quasi completo: tutte tranne una
 const k=await p.evaluate(()=>{const k=cur;st[k].forEach(s=>{if(s.id)s.o=1});const last=st[k].filter(s=>s.id).pop();last.o=0;save();render();return k});await p.waitForTimeout(500);
-ok(await p.evaluate(k=>!!document.querySelector('#tabs .tab.on[data-pr]'),k),'anello di avanzamento sulla linguetta');
+ok(await p.evaluate(()=>!document.querySelector('#tabs .tab[data-pr]')),'nessun anello blu');
 await p.evaluate(()=>{const last=st[cur].filter(s=>s.id).pop();last.o=1;done(LIST().indexOf(last))});await p.waitForTimeout(1500);
 ok(await p.evaluate(()=>document.querySelectorAll('.sdfx').length>3),'effetto di celebrazione');
 ok(await p.evaluate(k=>sdGet().includes('s:'+k),k),'flag salvato');

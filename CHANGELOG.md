@@ -1,3 +1,6 @@
+## c38 (PullBinder)
+- Tolto l'anello blu di avanzamento dalle linguette degli album: restano solo il contorno oro e l'effetto a completamento.
+
 ## c37 (PullBinder)
 - Album e regioni del Pokédex completati come in PullTime: contorno oro sulla linguetta, anello di avanzamento sulla linguetta selezionata, effetto (anello dorato, scintille, banner "Album completato" / "Pokédex completato", suono e tatto) una sola volta, flag salvato.
 
