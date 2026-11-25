@@ -1699,7 +1699,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v548";
+const APPV="v549";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3835,9 +3835,10 @@ function pfRoExit(){const u=PFRO&&PFRO.u;try{pfOff()}catch(e){}try{tabs();render
 function frFav(u){const l=(FR.cf[u]||[]).filter(i=>CARDS[i]);if(!l.length){toast("Non ha ancora preferiti");return}const e=$("#frm");e.hidden=true;const c=$("#cvs");if(c)c.hidden=true;PFRO={u,n:frNm(u),l};document.body.classList.add("pfro");PFGO=1;aslGo(MODE);setTimeout(()=>{if(PFRO&&!PFM)try{pfOn()}catch(x){}},900)}
 function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.zPF=PFRO?PFRO.l.map(id=>({id,o:1,q:1,fav:1,n:""})):pfList(st);cur="zPF";PREV="zPF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
 function pfOff(){if(PFRO){PFRO=null;document.body.classList.remove("pfro");const b=document.getElementById("pfrb");if(b)b.remove()}if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.zPF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
-function frSkip(q){try{topRefresh()}catch(x){}FR.anT.forEach(clearTimeout);FR.anT=[];FR.anA.forEach(a=>{try{a.cancel()}catch(x){}});FR.anA=[];if(FR.v!=="anim")return;FR.v="done";FR.dnA=null;if(!q)frDraw();else{FR.v="home"}}
+function frTh(){try{if(!FR.thS)return;const e=$("#frm"),hx=v=>{const m=(v||"").match(/[\d.]+/g)||[0,0,0];return"#"+[0,1,2].map(i=>(+m[i]|0).toString(16).padStart(2,"0")).join("")};pkTheme(hx(e&&!e.hidden&&FR.v!=="anim"?getComputedStyle(e).backgroundColor:FR.thS));FR.thS=null}catch(x){}}
+function frSkip(q){try{topRefresh()}catch(x){}FR.anT.forEach(clearTimeout);FR.anT=[];FR.anA.forEach(a=>{try{a.cancel()}catch(x){}});FR.anA=[];if(FR.v!=="anim")return;FR.v="done";FR.dnA=null;if(!q)frDraw();else{FR.v="home"}frTh();try{topRefresh()}catch(x){}}
 function frStage(){const e=$("#frm"),sc=e&&e.querySelector(".anst");if(!sc||FR.v!=="anim"||!sc.animate){if(FR.v==="anim"){FR.v="done";FR.dnA=null;frDraw()}return}
-  try{pkTheme("#0a1226")}catch(x){}
+  try{FR.thS=getComputedStyle(document.documentElement).backgroundColor;pkTheme("#0a1226")}catch(x){}
   const my=sc.querySelector(".anMine"),th=sc.querySelector(".anTheirs"),bm=sc.querySelector(".anbm"),fl=sc.querySelector(".anfl"),ray=sc.querySelector(".anray"),rg=[...sc.querySelectorAll(".anrg")],A=FR.anA=[],T=FR.anT=[],run=(el,kf,o)=>{const a=el.animate(kf,o);A.push(a);return a},n=Math.max(my.children.length,th.children.length);
   const tr=(x,r)=>"translate("+x+"px,0px) rotate("+r+"deg)",E=950+(n-1)*110,G0=E+200,GD=900,FK=G0+GD+100,T0=FK+900,M=3000,Y="27vh",TM=T0+M*.5;
   [[my,1],[th,-1]].forEach(([g,d])=>[...g.children].forEach((c,i)=>{const x=+c.dataset.x,r=+c.dataset.r;c.style.transform=tr(x,r);

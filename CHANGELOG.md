@@ -1,3 +1,6 @@
+## v549 (PullTime)
+- Riepilogo scambio concluso: la fascia in alto restava in parte scura (sfondo dell'animazione non ripristinato); ora prende il colore della schermata e, uscendo, quello originale.
+
 ## v548 (PullTime)
 - **Animazione scambio**: il centro del bianco coincide col momento in cui le pile sono perfettamente sovrapposte al centro e girano (movimento simmetrico, giro, lampo, raggio e anelli sincronizzati).
 - **Luce più pulita**: via i filtri di luminosità (bordi frastagliati, neri che restavano neri); ora un velo bianco sopra ogni carta, che copre anche i neri, con lampeggi morbidi.
