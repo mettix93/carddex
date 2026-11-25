@@ -1,3 +1,12 @@
+## v547 + c41 (PullBinder)
+- **Barra in basso**: dopo la visita ai preferiti di un amico la barra si spostava in basso (nascondevo i comandi con display:none, falsando il layout): ora i comandi si nascondono senza cambiare il layout.
+- **Slider sempre presente**: anche con una sola pagina c'è il pallino e "Pagina 1 / 1" (PullTime e PullBinder). Bacheche già a posto ("Bacheca 1/1" + pallino).
+- Preferiti amico: la X (come ovunque) esce e torna alla pagina dell'amico; via la freccia. Pagina amico: solo la X, che torna all'elenco amici.
+- Album: targhetta Preferiti "Il tuo album con le tue carte preferite, visibili alla tua community." (PullTime).
+- Animazione scambio: pile a ventaglio (prima carta in cima a destra, le altre sotto e a sinistra, centrate), poi si riuniscono dietro la prima al centro, si incontrano, si illuminano e si girano di nascosto nella luce, finendo girate verso il nuovo proprietario.
+- "Vai all'album" dal riepilogo scambio: ora porta davvero alla scheda Album (restava la schermata Bustine).
+- Test: tests/slider1.js; trade_ui aggiornato.
+
 ## v546 (PullTime)
 - Scambi: via la Posta. Le proposte e gli scambi (da rispondere, in corso, conclusi) stanno ora nella pagina di ogni amico, sotto le statistiche; l'elenco amici mostra il numerino sull'amico con novità e li mette in cima. "Vedi i preferiti" e "Proponi uno scambio" sono fissi in fondo (la pagina scorre dietro).
 - "Vai all'album" dal riepilogo bustine e dal riepilogo scambio: apre il primo set (da sinistra, in ordine di uscita) che ha carte nuove da aggiungere.
