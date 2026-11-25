@@ -1545,7 +1545,7 @@ html body #frm .frcl2{min-height:50px}
 html body #frm.anm{background:radial-gradient(ellipse at 50% 50%,#142347,#05070d 72%)!important;color:#fff}
 .anst{position:absolute;inset:0;overflow:hidden;--aw:min(36vw,150px);--ah:calc(var(--aw)*88/63)}
 .anS{position:absolute;left:50%;top:50%;width:var(--aw);height:var(--ah);margin:calc(var(--ah)/-2) 0 0 calc(var(--aw)/-2);will-change:transform}
-.anMine{transform:translateY(27vh)}.anTheirs{transform:translateY(-27vh) rotate(180deg)}
+.anMine{transform:translateY(27vh)}.anTheirs{transform:translateY(-27vh)}
 .anc{position:absolute;inset:0;border-radius:6px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.55);background:#222;opacity:0}
 .anc .cvf{position:absolute;inset:0;width:100%;height:100%}
 .anbm{position:absolute;left:-10%;right:-10%;top:50%;height:8px;margin-top:-4px;border-radius:4px;background:linear-gradient(90deg,transparent,#fff 30%,#fff 70%,transparent);box-shadow:0 0 36px 16px rgba(255,255,255,.8),0 0 120px 60px rgba(110,170,255,.55);opacity:0;pointer-events:none}
@@ -1554,7 +1554,7 @@ html body #frm.anm{background:radial-gradient(ellipse at 50% 50%,#142347,#05070d
 html body #frm .frann svg{width:54px;height:54px;opacity:.8;color:#0a84ff}
 html body #frm .frxw{margin-top:8px}html body #frm .frxw .frr{margin-top:0}html body #frm .frx i{transition:transform .2s}html body #frm .frxw.open .frx i{transform:rotate(90deg)}html body #frm .frxw.open .frx{border-radius:18px 18px 0 0}
 html body #frm .frxb{padding:2px 14px 14px;border-radius:0 0 18px 18px;background:rgba(120,120,128,.1)}html.gml body #frm .frxb{background:#fff}html:not(.gml) body #frm .frxb{background:rgba(255,255,255,.08)}
-html body #frm .frx .frpl{margin-right:4px}
+html body #frm .frx .frpl{margin-right:0}
 html body #frm .frch small{margin-left:0}html body #frm .frcs .trfc{width:calc((100% - 25px)/6)}
 html body #frm .frpl{font-style:normal;font-size:12px;font-weight:600;padding:4px 10px;border-radius:12px;background:rgba(120,120,128,.18);color:#8e8e93}
 html body #frm .frpl{display:inline-flex;align-items:center;height:34px;padding:0 12px;border-radius:17px;font-size:13px;box-sizing:border-box}
@@ -1641,6 +1641,15 @@ html body #frm .frbx>div.bad{border-color:#ff9f0a;box-shadow:inset 0 0 0 1px #ff
 /* v463: animazione scambio più luminosa */
 .anray{position:absolute;left:50%;top:50%;width:190vmax;height:190vmax;margin:-95vmax 0 0 -95vmax;pointer-events:none;opacity:0;background:repeating-conic-gradient(from 0deg,rgba(255,244,190,0) 0 7deg,rgba(255,236,170,.34) 7deg 10deg,rgba(150,200,255,.2) 10deg 13deg,rgba(255,244,190,0) 13deg 18deg);-webkit-mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.6) 18%,transparent 48%);mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.6) 18%,transparent 48%)}
 .anrg{position:absolute;left:50%;top:50%;width:min(90vw,380px);aspect-ratio:1;margin:calc(min(90vw,380px)/-2) 0 0 calc(min(90vw,380px)/-2);border-radius:50%;border:5px solid rgba(255,255,255,.9);box-shadow:0 0 40px 10px rgba(255,236,170,.7),inset 0 0 40px 8px rgba(150,200,255,.6);opacity:0;pointer-events:none}
+/* preferiti di un amico: solo lettura */
+body.pfro #acx,body.pfro #sty,body.pfro #so,body.pfro #sq,body.pfro #mo,body.pfro #sn,body.pfro #vsh{display:none!important}
+/* scambi: riepilogo come quello delle buste (Vai all'album + Fatto) */
+html body #frm .frft.frpk{padding:0 7px;gap:8px}
+html body #frm .frft.frpk .frb2{flex:1;width:auto;height:50px;margin:0;padding:0 12px;border-radius:25px;font:600 14px -apple-system,system-ui,sans-serif;white-space:nowrap}
+html body #frm .frft.frpk .frb2:not(.p){background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 18px rgba(40,70,140,.12);color:#1b2a49}
+html:not(.gml) body #frm .frft.frpk .frb2:not(.p){background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);box-shadow:none;color:#fff}
+html body #frm .frft.frpk .frb2.p{background:#0a84ff;color:#fff;border:0}
+html body #frm .frr i.frph{visibility:hidden}
 .anrg.r2{border-color:rgba(150,200,255,.9);border-width:3px}
 .ansp{position:absolute;border-radius:1px;background:#fff;box-shadow:0 0 8px 2px rgba(255,236,170,.9);opacity:0;pointer-events:none}
 .anMine .anc{box-shadow:0 0 26px 6px rgba(255,205,90,.75),0 8px 22px rgba(0,0,0,.55)}
@@ -1689,7 +1698,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v544";
+const APPV="v545";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -1964,8 +1973,8 @@ const VIEW=()=>cur==="?"||FLT!=="a"||HID();
 let MODE="g",SKEY=MODE==="g"?GK("carddex2g"):CK("carddex2");
 let COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;
 try{st=JSON.parse(localStorage.getItem(SKEY))||{}}catch(e){}
-let PFM=0,PFGO=0;
-const save=()=>{try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}try{msSoon()}catch(e){}};
+let PFM=0,PFGO=0,PFRO=null;
+const save=()=>{if(PFRO)return;try{if(PFM&&st.zPF)pfSync();const o=st.zPF?{...st,zPF:void 0}:st;localStorage.setItem(SKEY,JSON.stringify(o))}catch(e){}try{albWatch()}catch(e){}try{msSoon()}catch(e){}};
 function fillSt(){[...PCOLS,...GCOLS].forEach(c=>order(c));(MODE==="g"?GCOLS:COLS).forEach(c=>{if(!st[c.k])st[c.k]=order(c);else{const hx=[];st[c.k]=st[c.k].filter(x=>{if(!x.id)return true;const k=CARDS[x.id];if(!k)return false;if(genOk(k))return true;if(x.o||x.n||x.q>1)hx.push(x);return false});if(hx.length)try{const H=JSON.parse(localStorage.getItem(CK("carddex_hidx"))||"{}");H[SKEY+":"+c.k]=[...(H[SKEY+":"+c.k]||[]),...hx];localStorage.setItem(CK("carddex_hidx"),JSON.stringify(H))}catch(e){}}});{const q=st.gQ,gc=GCOLS.find(c=>c.k==="gQ");if(q&&gc){const want=orderSet(gc),have=new Map(),ids=new Set(want.map(x=>x.id));q.forEach(x=>{if(x&&x.id&&!have.has(x.id))have.set(x.id,x)});st.gQ=[...want.map(w=>have.get(w.id)||w),...q.filter(x=>!(x&&x.id&&ids.has(x.id)))]}}}
 albLoad();fillSt();cur=COLS[0].k;
 if(CARDS.J18)CARDS.J18.img="https://assets.tcgdex.net/en/base/base2/2/high.webp";
@@ -2199,7 +2208,7 @@ book.addEventListener("pointerup",e=>{try{if(!$("#sh").hidden)SHBT=Date.now()+35
 book.addEventListener("pointercancel",()=>{if(!g)return;clearTimeout(g.t);if(g.lift){const x=g;dgEnd(x,null,1);g=null;return}const d=g.drag;g=null;if(d)dragEnd(0,0)});
 book.addEventListener("contextmenu",e=>e.preventDefault());
 /* trascinamento carte nell'album: tieni premuto, trascina, rilascia tra due carte (linea blu verticale); bordo schermo = cambio pagina */
-const dgOk=()=>!DXL&&!BCK&&cur!=="?"&&!VIEW()&&!!st[cur]&&LIST().length>1&&!busy;
+const dgOk=()=>!DXL&&!PFRO&&!BCK&&cur!=="?"&&!VIEW()&&!!st[cur]&&LIST().length>1&&!busy;
 function dgPages(){return(!LS?[pg]:[Lof(sp),Rof(sp)]).filter(k=>k>=0&&k<np&&PG[k])}
 function dgRects(){const m={};dgPages().forEach(k=>PG[k].e.querySelectorAll(".slot[data-i]").forEach(e=>{m[+e.dataset.i]={e,r:e.getBoundingClientRect()}}));return m}
 function dgLine(x,r){let l=document.getElementById("dgl");if(x==null){if(l)l.style.opacity=0;return}
@@ -2255,7 +2264,7 @@ function tap(i){if(BCK){bcPkTap(i);return}const n=Date.now();clearTimeout(tm);
   if(last.i===i&&n-last.t<320){last={i:-1,t:0};toggle(i)}
   else{last={i,t:n};tm=setTimeout(()=>{const s=LIST()[i];if(s&&s.id&&s.o)openCard(i)},320)}}
 const twOf=s=>{const A=PCOLS.find(a=>st[a.k]&&st[a.k].includes(s));return !A||!A.full};
-function toggle(i){if(DXL)return;const s=LIST()[i];if(!s||!s.id)return;if(MODE==="g"){toast("Nel Gioco le carte arrivano dalle bustine");return}const c=CARDS[s.id];
+function toggle(i){if(DXL||PFRO)return;const s=LIST()[i];if(!s||!s.id)return;if(MODE==="g"){toast("Nel Gioco le carte arrivano dalle bustine");return}const c=CARDS[s.id];
   if(s.o){s.o=0;s.v="h";done(i);return}s.a=0;
   if(c.opts){askGroup(i);return}
   if(c.alt&&MODE!=="g"&&twOf(s)){askVariant(i);return}
@@ -2306,7 +2315,7 @@ function frontMenu(i){const s=LIST()[i];if(!s)return;const it=[[URLS[s.id]?"Camb
   if(URLS[s.id])it.push(["Rimuovi foto",()=>{URL.revokeObjectURL(URLS[s.id]);delete URLS[s.id];op("del",s.id);render()}]);sheet(it,"Foto del fronte")}
 function backMenu(){const it=[["Carica retro (per tutte le carte)",()=>{fb.value="";fb.click()}]];
   if(URLS.BACK)it.push(["Ripristina retro standard",()=>{URL.revokeObjectURL(URLS.BACK);delete URLS.BACK;op("del","BACK");applyBack(window.__vc)}]);sheet(it,"Retro delle carte")}
-function menu(i,inV){if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("scene")],["Solo carta",()=>shareCard("card")]],"Condividi");return}
+function menu(i,inV){if(PFRO)return;if(DXL){if(inV)sheet([["Immagine completa",()=>shareCard("scene")],["Solo carta",()=>shareCard("card")]],"Condividi");return}
   const L=LIST(),s=L[i],c=s.id&&CARDS[s.id],it=[];
   if(s.id)it.push([s.o?"Segna come non ottenuta":"Segna come ottenuta",()=>toggle(i)]);
   if(s.id&&!s.o)it.push([s.a?"Togli da In arrivo":"Segna come in arrivo",()=>{s.a=s.a?0:1;done(i)}]);
@@ -2460,7 +2469,7 @@ const HEARTI='<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000
 let FAVH=new Set();
 function favUpd(){const b=$("#vsh"),sl=(!DXL&&curI>=0)?LIST()[curI]:null;b.style.display=sl&&sl.id?"":"none";b.classList.toggle("fv",!!(sl&&sl.fav));b.setAttribute("aria-label",sl&&sl.fav?"Rimuovi dai preferiti":"Aggiungi ai preferiti")}
 $("#vsh").innerHTML=HEARTI;
-$("#vsh").onclick=()=>{if(DXL)return;const sl=LIST()[curI];if(!sl||!sl.id)return;sl.fav=sl.fav?0:1;sfx(sl.fav?"fav":"unfav");hap(1);if(!sl.fav)delete sl.fav;FAVH.add(sl);save();favUpd();if(FLT!=="p"){try{const e=book.querySelector('.slot[data-i="'+curI+'"]');if(e)e.outerHTML=slot(curI)}catch(x){}}}
+$("#vsh").onclick=()=>{if(DXL||PFRO)return;const sl=LIST()[curI];if(!sl||!sl.id)return;sl.fav=sl.fav?0:1;sfx(sl.fav?"fav":"unfav");hap(1);if(!sl.fav)delete sl.fav;FAVH.add(sl);save();favUpd();if(FLT!=="p"){try{const e=book.querySelector('.slot[data-i="'+curI+'"]');if(e)e.outerHTML=slot(curI)}catch(x){}}}
 
 
 /* alone dalle carte stesse (stile trasparente) */
@@ -3819,29 +3828,32 @@ function pfList(S){const cols=MODE==="g"?GCOLS:PCOLS,seen=new Set(),nat=[];
 function frLk(){try{const m={};Object.values(CARDS).forEach(c=>{if(c&&c.sid&&!(c.sid in m))m[c.sid]=pkLkS(c.sid)?1:0});return Object.keys(m).filter(k=>m[k])}catch(e){return[]}}
 function pfPub(){try{return pfList(dxRaw(MODE==="g"?"g":"c")).filter(x=>x.id&&x.o).map(x=>x.id)}catch(e){return[]}}
 function pfPers(){try{localStorage.setItem("carddex_gord",JSON.stringify(GORD));localStorage.setItem("carddex_gcu",JSON.stringify(GCU))}catch(e){}}
-function pfSync(){const ids=st.zPF.map(x=>x.id||"");let ch=JSON.stringify(GCU.zPF)!==JSON.stringify(ids);GCU.zPF=ids;if(GORD.zPF!=="dex"&&GORD.zPF!=="cu"&&st.zPF.some(x=>!x.id)){GORD.zPF="cu";ch=1}if(ch)pfPers()}
-function pfRefresh(){const fresh=pfList(st),fs=new Set(fresh),keep=(st.zPF||[]).filter(x=>!x.id||fs.has(x)),ks=new Set(keep);fresh.forEach(x=>{if(!ks.has(x))keep.push(x)});st.zPF=keep}
-function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.zPF=pfList(st);cur="zPF";PREV="zPF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
-function pfOff(){if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.zPF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
+function pfSync(){if(PFRO)return;const ids=st.zPF.map(x=>x.id||"");let ch=JSON.stringify(GCU.zPF)!==JSON.stringify(ids);GCU.zPF=ids;if(GORD.zPF!=="dex"&&GORD.zPF!=="cu"&&st.zPF.some(x=>!x.id)){GORD.zPF="cu";ch=1}if(ch)pfPers()}
+function pfRefresh(){if(PFRO)return;const fresh=pfList(st),fs=new Set(fresh),keep=(st.zPF||[]).filter(x=>!x.id||fs.has(x)),ks=new Set(keep);fresh.forEach(x=>{if(!ks.has(x))keep.push(x)});st.zPF=keep}
+function pfBack(){if(document.getElementById("pfrb"))return;const x=document.getElementById("acx");if(!x)return;const b=x.cloneNode(false);b.id="pfrb";b.type="button";b.setAttribute("aria-label","Torna alla Community");b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5L8 12L15 19"/></svg>';
+  b.onclick=()=>{const u=PFRO&&PFRO.u;try{pfOff()}catch(e){}try{tabs();render();navSync()}catch(e){}if(u!=null){const e=frEl();FR.u=u;FR.v="fr";e.hidden=false;frDraw()}};x.parentNode.insertBefore(b,x.nextSibling)}
+function frFav(u){const l=(FR.cf[u]||[]).filter(i=>CARDS[i]);if(!l.length){toast("Non ha ancora preferiti");return}const e=$("#frm");e.hidden=true;const c=$("#cvs");if(c)c.hidden=true;PFRO={u,n:frNm(u),l};document.body.classList.add("pfro");PFGO=1;aslGo(MODE);setTimeout(()=>{if(PFRO&&!PFM)try{pfOn()}catch(x){}},900)}
+function pfOn(){PFM=1;document.body.classList.add("pfm");COLS=[PFCOL];st.zPF=PFRO?PFRO.l.map(id=>({id,o:1,q:1,fav:1,n:""})):pfList(st);if(PFRO)pfBack();cur="zPF";PREV="zPF";pg=0;sp=0;FLT="a";SR=[];SQ="";tabs();render();navSync()}
+function pfOff(){if(PFRO){PFRO=null;document.body.classList.remove("pfro");const b=document.getElementById("pfrb");if(b)b.remove()}if(!PFM)return;PFM=0;document.body.classList.remove("pfm");COLS=MODE==="g"?GCOLS.filter(c=>c.k!=="gS"):PCOLS;delete st.zPF;cur=COLS[0].k;PREV=cur;pg=0;sp=0;SR=[];SQ=""}
 function frSkip(q){FR.anT.forEach(clearTimeout);FR.anT=[];FR.anA.forEach(a=>{try{a.cancel()}catch(x){}});FR.anA=[];if(FR.v!=="anim")return;FR.v="done";FR.dnA=null;if(!q)frDraw();else{FR.v="home"}}
 function frStage(){const e=$("#frm"),sc=e&&e.querySelector(".anst");if(!sc||FR.v!=="anim"||!sc.animate){if(FR.v==="anim"){FR.v="done";FR.dnA=null;frDraw()}return}
   const my=sc.querySelector(".anMine"),th=sc.querySelector(".anTheirs"),bm=sc.querySelector(".anbm"),fl=sc.querySelector(".anfl"),ray=sc.querySelector(".anray"),rg=[...sc.querySelectorAll(".anrg")],A=FR.anA=[],T=FR.anT=[],run=(el,kf,o)=>{const a=el.animate(kf,o);A.push(a);return a},n=Math.max(my.children.length,th.children.length);
-  [[my,1],[th,-1]].forEach(([g,d])=>[...g.children].forEach((c,i,arr)=>{const k=i-(arr.length-1)/2;c.style.transform=c.dataset.t;run(c,[{transform:"translate("+(k*58)+"px,"+(d*28)+"px) rotate("+(k*8)+"deg) scale(.82)",opacity:0},{transform:c.dataset.t,opacity:1}],{duration:650,delay:i*70,easing:"cubic-bezier(.2,.8,.3,1)",fill:"both"})}));
-  const T0=1500+n*70,M=1700,Y="27vh",TM=T0+M*.5;
+  [[my,1],[th,-1]].forEach(([g,d])=>[...g.children].forEach((c,i)=>{c.style.transform=c.dataset.t;run(c,[{transform:c.dataset.t+" translateY("+(d*30)+"px) scale(.8)",opacity:0},{transform:c.dataset.t,opacity:1}],{duration:950,delay:i*110,easing:"cubic-bezier(.2,.8,.3,1)",fill:"both"})}));
+  const T0=2100+n*110,M=3000,Y="27vh",TM=T0+M*.5,AX=Math.round((my.offsetWidth||120)*.62);
   /* luce di fondo: raggi che ruotano */
   run(ray,[{opacity:0,transform:"rotate(0deg) scale(.5)"},{opacity:.55,transform:"rotate(90deg) scale(.8)",offset:.4},{opacity:1,transform:"rotate(200deg) scale(1)",offset:.62},{opacity:.35,transform:"rotate(300deg) scale(1.1)"}],{duration:T0+M+1700,delay:300,easing:"ease-in-out",fill:"both"});
   /* le pile vibrano e lampeggiano in bianco, come l'evoluzione */
   const fk=(on,off)=>{const k=[],steps=22;for(let i=0;i<=steps;i++){const p=i/steps,on1=(i%2===0);k.push({filter:on1?"brightness(1)":"brightness(7) saturate(0)",offset:Math.pow(p,1.8)*.98+(i===steps?.02:0),easing:"steps(1)"})}return k};
   [my,th].forEach(g=>run(g,fk(),{duration:900,delay:T0-900,fill:"backwards"}));
-  run(my,[{transform:"translateY("+Y+") rotate(0deg)"},{transform:"translateY(-"+Y+") rotate(180deg)"}],{duration:M,delay:T0,easing:"cubic-bezier(.55,0,.25,1)",fill:"both"});
-  run(th,[{transform:"translateY(-"+Y+") rotate(180deg)"},{transform:"translateY("+Y+") rotate(360deg)"}],{duration:M,delay:T0,easing:"cubic-bezier(.55,0,.25,1)",fill:"both"});
+  run(my,[{transform:"translate(0px,"+Y+")"},{transform:"translate(-"+AX+"px,0px)",offset:.5},{transform:"translate(0px,-"+Y+")"}],{duration:M,delay:T0,easing:"cubic-bezier(.45,0,.3,1)",fill:"both"});
+  run(th,[{transform:"translate(0px,-"+Y+")"},{transform:"translate("+AX+"px,0px)",offset:.5},{transform:"translate(0px,"+Y+")"}],{duration:M,delay:T0,easing:"cubic-bezier(.45,0,.3,1)",fill:"both"});
   run(bm,[{opacity:0,transform:"scaleX(.1)"},{opacity:0,transform:"scaleX(.3)",offset:.25},{opacity:1,transform:"scaleX(1)",offset:.5},{opacity:0,transform:"scaleX(1.5)"}],{duration:M,delay:T0,fill:"both"});
   run(fl,[{opacity:0,transform:"scale(1)"},{opacity:0,offset:.4},{opacity:1,transform:"scale(1.6)",offset:.5},{opacity:.0,transform:"scale(2.4)"}],{duration:M*1.1,delay:T0,fill:"both"});
   rg.forEach((r,i)=>run(r,[{opacity:0,transform:"scale(.05)"},{opacity:0,transform:"scale(.05)",offset:.48},{opacity:.95,transform:"scale(.4)",offset:.52},{opacity:0,transform:"scale(3.2)"}],{duration:M*(1.1+i*.25),delay:T0+i*120,easing:"ease-out",fill:"both"}));
   /* scossa dello schermo all'incrocio */
   run(sc,[{transform:"translate(0,0)"},{transform:"translate(-7px,5px)",offset:.15},{transform:"translate(8px,-6px)",offset:.3},{transform:"translate(-5px,-4px)",offset:.45},{transform:"translate(4px,5px)",offset:.6},{transform:"translate(0,0)"}],{duration:520,delay:TM-60,fill:"none"});
   run(my,[{opacity:1},{opacity:0}],{duration:450,delay:T0+M,fill:"forwards"});
-  run(th,[{filter:"brightness(1)",transform:"translateY("+Y+") rotate(360deg) scale(1)"},{filter:"brightness(1.9)",transform:"translateY("+Y+") rotate(360deg) scale(1.12)",offset:.3},{filter:"brightness(1)",transform:"translateY("+Y+") rotate(360deg) scale(1)"}],{duration:1100,delay:T0+M,easing:"ease-out",fill:"both"});
+  run(th,[{filter:"brightness(1)",transform:"translateY("+Y+") scale(1)"},{filter:"brightness(1.9)",transform:"translateY("+Y+") scale(1.12)",offset:.3},{filter:"brightness(1)",transform:"translateY("+Y+") scale(1)"}],{duration:1100,delay:T0+M,easing:"ease-out",fill:"forwards"});
   /* scintille */
   const sp=(x,y,cnt,R,dur,dl)=>{for(let i=0;i<cnt;i++){const d=document.createElement("i");d.className="ansp";const a=Math.random()*6.283,r=R*(.35+Math.random()*.75),sz=3+Math.random()*7;d.style.cssText="left:"+x+";top:"+y+";width:"+sz+"px;height:"+sz+"px";sc.appendChild(d);const a2=d.animate([{opacity:0,transform:"translate(0,0) scale(.3)"},{opacity:1,offset:.15},{opacity:0,transform:"translate("+(Math.cos(a)*r)+"px,"+(Math.sin(a)*r)+"px) scale(1)"}],{duration:dur*(.6+Math.random()*.6),delay:dl+Math.random()*120,easing:"cubic-bezier(.1,.7,.3,1)",fill:"both"});a2.onfinish=()=>d.remove();A.push(a2)}};
   T.push(setTimeout(()=>{if(FR.v==="anim")sp("50%","50%",46,Math.min(innerWidth,520)*.62,1100,0)},TM));
@@ -3926,6 +3938,8 @@ async function frLoad(){if(FRS.on){FR.ts=Date.now();return true}if(!cuGet()||FR.
     if(ids.length){const ps=await sbReq("/rest/v1/profiles?user_id=in.("+ids.join(",")+")&select=user_id,name,code");(ps||[]).forEach(p=>FR.pr[p.user_id]=p)}
     FR.ts=Date.now();ok=true}catch(e){}
   FR.bz=0;if(ok){frApplyDone();frBadge()}return ok}
+const frByT=(a,b)=>(Date.parse(b.updated_at||b.created_at)||0)-(Date.parse(a.updated_at||a.created_at)||0);
+function frDt(x){const d=new Date(x);if(isNaN(d))return"";const n=new Date(),o={day:"numeric",month:"short"};if(d.getFullYear()!==n.getFullYear())o.year="numeric";return d.toLocaleDateString("it-IT",o).replace(/\./g,"")+", "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"})}
 function frNew(t){const me=FR.me&&FR.me.uid;return !!me&&t.status==="accepted"&&t.from_user===me&&!frapGet().includes(t.id)}
 function frApplyDone(){try{frDoneShow()}catch(e){}}
 /* v463: lo scambio accettato dall'altro si applica solo quando si preme Vedi in Posta */
@@ -3965,6 +3979,10 @@ function frSets(ids){const m={};GCOLS.forEach((co,ci)=>(st[co.k]||[]).forEach(s=
   ids.forEach(i=>{const ci=m[i]??99;(g[ci]=g[ci]||[]).push(i)});
   return Object.keys(g).map(Number).sort((a,b)=>a-b).map(ci=>({ci,ids:g[ci].sort((a,b)=>{const x=trCard(a),y=trCard(b);return rr(x)-rr(y)||(x.num||0)-(y.num||0)})}))}
 function frCvt(id,sp,k,room,nw,lk){const c=trCard(id);if(!c)return"";return'<button class="cvt'+(k?" on":"")+(room>0?"":" z")+(lk?" lkd":"")+'" data-a="tg" data-i="'+id+'"><div class="cvf">'+face(c,0)+"</div>"+(nw?'<i class="frnw"></i>':"")+'<span class="cvr">'+trSym(c)+'</span><div class="cvc"><span class="cvm" data-d="-1">−</span><b>'+k+"<em>/"+sp+'</em></b><span class="cvm" data-d="1">+</span></div></button>'}
+function frAlb(){const D=FR.dn;if(!D)return;const e=$("#frm");if(FR.dq[0]===D){FR.dq.shift();frDqSave()}
+  const id=(D.nw&&D.nw[0])||D.get[0],co=GCOLS.find(c=>(st[c.k]||[]).some(x=>x&&x.id===id));FR.dn=null;FR.v=FRS.on?"sim":"home";if(e)e.hidden=true;const c=$("#cvs");if(c)c.hidden=true;
+  if(!co){try{pkBarUpd()}catch(x){}return}const k=co.k;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(x){}try{if(MODE!=="g")setMode("g")}catch(x){}
+  cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;try{tabs();render();const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(x){}try{navSync()}catch(x){}try{aqEnter(k)}catch(x){}}
 function frDoneShow(){if(!FR.dq.length||document.hidden)return;const p=$("#pk"),busy=(p&&!p.hidden&&(p.classList.contains("opening")||p.classList.contains("sm")||p.classList.contains("go")))||(typeof aqRun!=="undefined"&&aqRun)||dxFilling,e=frEl();if(busy||(!e.hidden&&FR.v!=="done"))return;if(!e.hidden&&FR.dn&&FR.dn!==FR.dnA)return;
   if(FR.hold)return;FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;e.hidden=false;frDraw()}
 function frAnim(){const e=$("#frm");if(!e||!e.animate||FR.v!=="done")return;const g=[...e.querySelectorAll(".frdg .frdc")],r=[...e.querySelectorAll(".frdr .frdc")];
@@ -3988,7 +4006,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
       return W("Community","",h)}
     let h='<button class="frr" data-a="mail"><span class="frpi">'+ENV+'</span><span class="frn1">Posta<small>Proposte ricevute e inviate</small></span>'+(nm?'<em class="frb">'+nm+"</em>":"")+CH+"</button>"+reqs;
     h+='<div class="trl">Scegli un amico</div>'+(fr.length?fr.map(rowF).join(""):'<p class="trn frem">Nella community ci sei solo tu, per ora.</p>');
-    h+='<div class="trl">Altro</div><button class="frr" data-a="cod"><span class="frpi g">'+IC('<path d="M9 15l6-6M10 7.5l1.2-1.2a3.5 3.5 0 015 5L15 12.5M14 16.5l-1.2 1.2a3.5 3.5 0 01-5-5L9 11.5"/>')+'</span><span class="frn1">Scambio con codice</span>'+CH+"</button>"+frDevBtn();return HD2()+'<p class="cvds"><span>Scambia doppie con i tuoi amici!</span><button data-a="inf" aria-label="Informazioni">'+IC('<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/>')+'</button></p><div class="frbody">'+h+"</div>"}
+    h+=frDevBtn();return HD2()+'<p class="cvds"><span>Scambia doppie con i tuoi amici!</span><button data-a="inf" aria-label="Informazioni">'+IC('<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/>')+'</button></p><div class="frbody">'+h+"</div>"}
   if(v==="fr"){const p=FR.pr[u]||{name:"?"},co=FR.co[u],nm=esc(p.name);
     if(!co)return W(nm,"home",'<p class="trn frem">Carico…</p>');
     const my=frColl(),fs=frSpareOf(co),ms=frSpareOf(my,frResv()),sum=o=>Object.keys(o).reduce((a,i)=>a+o[i],0),tot=Object.keys(co).length,dbl=sum(fs),need=Object.keys(fs).filter(i=>!my[i]).length,gv=Object.keys(ms).filter(i=>!co[i]).length,can=sum(ms)>0&&dbl>0;
@@ -4005,28 +4023,29 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
     if(!X.ga.length&&!X.ta.length)hint="Scegli cosa offri e cosa chiedi";else if(X.same)hint="Pronto: "+X.ga.length+" per "+X.ta.length;else hint="Servono le stesse rarità";
     const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Offri "+g+" · Chiedi "+t+"</b></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
-    h+='<p class="frlg"><i class="frnw s"></i>'+(give?"nuova per "+nm:"nuova per te")+"</p>";
-    h+='<div class="frscr">'+(ids.length?'<section class="cvw cvtot"><div class="sgt">Doppie totali<em>'+ids.reduce((a,i)=>a+(src[i]||0),0)+"</em></div></section>"+frSets(ids).map(S=>{const co=GCOLS[S.ci];return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+'</div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),give?!X.co[i]:!X.mc[i],frLkd(i,give))).join("")+"</div></section>"}).join(""):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
+    const nwf=i=>give?!X.co[i]:!X.mc[i],gA=ids.filter(nwf),gB=ids.filter(i=>!nwf(i));
+    const grp=(t,L)=>L.length?'<section class="cvw cvtot"><div class="sgt">'+t+'<em>'+L.reduce((a,i)=>a+(src[i]||0),0)+"</em></div></section>"+frSets(L).map(S=>{const co=GCOLS[S.ci];return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+'</div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),0,frLkd(i,give))).join("")+"</div></section>"}).join(""):"";
+    h+='<div class="frscr">'+(ids.length?grp(give?"Mancanti per "+nm:"Mancanti per te",gA)+grp(give?"Le ha già":"Le hai già",gB):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
     h+='<div class="frdock">'+bx+'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div></div>";
     return hdr+'<div class="frbody frpr">'+h+"</div>"}
   if(v==="ann"){const D=FR.dn;if(!D)return"";return W("Scambio concluso","",'<div class="frem2 frann">'+IC('<path d="M7 7h12l-3-3M17 17H5l3 3"/>',2)+"<b>Scambio con "+esc(D.who)+'</b><span>La tua proposta è stata accettata: '+D.give.length+(D.give.length===1?" carta data":" carte date")+" · "+D.get.length+(D.get.length===1?" ricevuta":" ricevute")+".</span></div>",'<div class="frft"><button class="frb2 p" data-a="see">Vedi</button></div>')}
-  if(v==="anim"){const D=FR.dn;if(!D)return"";const rk=i=>{const c=trCard(i);return c?TRO.indexOf(trK(c))*2+(trHolo(c)?1:0):0},stk=(ids,cl)=>{const L=ids.slice().sort((a,b)=>rk(a)-rk(b)).slice(-8),n=L.length;return'<div class="anS '+cl+'">'+L.map((i,x)=>{const c=trCard(i);if(!c)return"";const k=x-(n-1)/2;return'<div class="anc" data-t="translate('+(k*2.2).toFixed(1)+"px,"+(-x*3)+"px) rotate("+((x%3-1)*1.6)+'deg)"><div class="cvf">'+face(c,0)+"</div></div>"}).join("")+"</div>"};
+  if(v==="anim"){const D=FR.dn;if(!D)return"";const rk=i=>{const c=trCard(i);return c?TRO.indexOf(trK(c))*2+(trHolo(c)?1:0):0},stk=(ids,cl)=>{const L=ids.slice().sort((a,b)=>rk(b)-rk(a)),n=L.length,W=Math.min(innerWidth,520),aw=n===1?Math.min(.36*W,150):Math.min(.3*W,120),mm=Math.ceil((n-1)/2),sp=mm?Math.min(aw*.36,(W*.46-aw/2)/mm):0;return'<div class="anS '+cl+'" style="--aw:'+aw.toFixed(1)+'px;--ah:'+(aw*88/63).toFixed(1)+'px">'+L.map((i,x)=>{const c=trCard(i);if(!c)return"";const dx=x?(x%2?-1:1)*Math.ceil(x/2)*sp:0;return'<div class="anc" style="z-index:'+(60-x)+'" data-t="translate('+dx.toFixed(1)+'px,0px)"><div class="cvf">'+face(c,0)+"</div></div>"}).join("")+"</div>"};
     return'<div class="anst" data-a="skip"><div class="anray"></div><div class="anrg"></div><div class="anrg r2"></div>'+stk(D.get,"anTheirs")+stk(D.give,"anMine")+'<div class="anbm"></div><div class="anfl"></div><p class="anhint">Scambio con '+esc(D.who)+" · tocca per saltare</p></div>"}
   if(v==="done"){const D=FR.dn;if(!D)return"";const f=(i,t)=>{const c=trCard(i);if(!c)return"";const nw=D.nw.includes(i),dx=D.dx.includes(i);return'<div class="frdc"><div class="cvf">'+face(c,0)+"</div>"+(t&&nw?pkBadgeH({nw:1,q:1,dx:dx?1:0},0):"")+"</div>"};
     let h='<p class="trn frem">Con '+esc(D.who)+'</p><div class="trl">Hai dato</div><div class="frdg">'+D.give.map(i=>f(i,0)).join("")+'</div><div class="trl">Hai ricevuto</div><div class="frdr">'+D.get.map(i=>f(i,1)).join("")+"</div>";
     if(D.nw.length||D.dx.length)h+='<p class="trn frem">Le carte nuove ti aspettano nell’album'+(D.dx.length?" e nel Pokédex":"")+": cerca il pallino blu.</p>";
-    return W("Scambio concluso!","",h,'<div class="frft"><button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button></div>")}
+    return W("Scambio concluso!","",h,'<div class="frft frpk"><button class="frb2" data-a="alb">Vai all’album</button><button class="frb2 p" data-a="dn">'+(FR.dq.length?"Avanti":"Fatto")+"</button></div>")}
   if(v==="sim")return frSimView(W,IC);
-  if(v==="mail"){const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),fn=FR.tr.filter(frNew),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)&&!fn.includes(t)).slice(0,15);let h="";
+  if(v==="mail"){const rc=FR.tr.filter(t=>t.status==="pending"&&t.to_user===me.uid&&!frExp(t)),sn=FR.tr.filter(t=>t.status==="pending"&&t.from_user===me.uid&&!frExp(t)),fn=FR.tr.filter(frNew),cl=FR.tr.filter(t=>!rc.includes(t)&&!sn.includes(t)&&!fn.includes(t)).sort(frByT).slice(0,15);rc.sort(frByT);sn.sort(frByT);fn.sort(frByT);let h="";
     const row=(t,k)=>{const m=t.from_user===me.uid,who=frNm(m?t.to_user:t.from_user),op=FR.ex.has(t.id),ac=t.status==="accepted";let sub,body="";
       if(k==="rc"){sub=t.give.length+(t.give.length===1?" carta":" carte")+" · "+frLeft(t);const okk=trSpare(t.get);body='<div class="frcs"><em>Ti offre</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiede</em>'+frFaces(t.get)+"</div>"+(okk?"":'<p class="trn">Non hai più le carte richieste.</p>')+'<div class="frbr">'+(okk?'<button class="frs p" data-a="acc" data-t="'+t.id+'">Accetta</button>':"")+'<button class="frs" data-a="dec" data-t="'+t.id+'">Rifiuta</button></div>'}
       else if(k==="sn"){sub=t.give.length+(t.give.length===1?" carta":" carte")+" · "+frLeft(t);body='<div class="frcs"><em>Offri</em>'+frFaces(t.give)+'</div><div class="frcs"><em>Chiedi</em>'+frFaces(t.get)+'</div><div class="frbr"><button class="frs" data-a="can" data-t="'+t.id+'">Annulla</button></div>'}
-      else{const s2=t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata",gv=m?t.give:t.get,gt=m?t.get:t.give;sub=(m?"Inviata":"Ricevuta")+" · "+s2;
+      else{const s2=t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata",gv=m?t.give:t.get,gt=m?t.get:t.give;sub=(m?"Inviata":"Ricevuta")+" · "+frDt(t.updated_at||t.created_at);
         body='<div class="frcs"><em>'+(ac?"Hai dato":m?"Offrivi":"Ti offriva")+"</em>"+frFaces(m?t.give:t.get)+'</div><div class="frcs"><em>'+(ac?"Hai ricevuto":m?"Chiedevi":"Chiedeva")+"</em>"+frFaces(m?t.get:t.give)+"</div>"}
       return'<div class="frxw'+(op?" open":"")+'"><button class="frr frx" data-a="ex" data-t="'+t.id+'">'+frAv(who)+'<span class="frn1">'+(k==="cl"&&!m?"Da ":k==="cl"?"A ":"")+esc(who)+"<small>"+sub+"</small></span>"+(k==="cl"?'<em class="frpl'+(ac?" ok":"")+'">'+(t.status==="pending"?"scaduta":ac?"completato":t.status==="declined"?"rifiutata":"annullata")+"</em>":k==="sn"?'<em class="frpl wt">in attesa</em>':k==="rc"?'<em class="frpl '+(op?"wt":"go")+'">Vedi</em>':"")+"<i>›</i></button>"+(op?'<div class="frxb">'+body+"</div>":"")+"</div>"};
     const ok=cl.filter(t=>t.status==="accepted"),ot=cl.filter(t=>t.status!=="accepted"),cn=sn.length+fn.length;
     if(rc.length)h+='<div class="trl">Da rispondere ('+rc.length+")</div>"+rc.map(t=>row(t,"rc")).join("");
-    if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Concludi</button></div>').join("")+sn.map(t=>row(t,"sn")).join("");
+    if(cn)h+='<div class="trl">Scambi in corso ('+cn+")</div>"+fn.map(t=>'<div class="frr">'+frAv(frNm(t.to_user))+'<span class="frn1">'+esc(frNm(t.to_user))+"<small>ha accettato la tua proposta</small></span>"+'<button class="frs p" data-a="vt" data-t="'+t.id+'">Concludi</button><i class="frph">›</i></div>').join("")+sn.map(t=>row(t,"sn")).join("");
     if(cl.length)h+='<div class="trl">Scambi conclusi</div>'+cl.map(t=>row(t,"cl")).join("");
     if(!h)h='<div class="frem2">'+ENV+'<b>Nessuna proposta</b><span>Le proposte di scambio ricevute e inviate compaiono qui.</span></div>';
     return W("Posta","home",h)}
@@ -4046,7 +4065,7 @@ function frEl(){let e=$("#frm");
       else if(a==="add"){const v=(e.querySelector("#frin").value||"").trim();if(!v){toast("Scrivi il codice del tuo amico");return}b.disabled=true;try{const r=await frAskFriend(v);toast(r.state==="sent"?"Richiesta inviata a "+r.name:r.state==="accepted"?"Ora sei amico di "+r.name:r.state==="already"?"Siete già amici":"Richiesta già inviata");e.querySelector("#frin").value=""}catch(x){toast(x.message||"Errore")}b.disabled=false;await frLoad();frDraw()}
       else if(a==="cok"||a==="cno"){b.disabled=true;try{await sbReq("/rest/v1/rpc/community_decide",{m:"POST",b:{p_user:d.u,p_ok:a==="cok"}});toast(a==="cok"?"Nuovo membro accettato":"Richiesta rifiutata")}catch(x){toast(x.message||"Errore")}await frLoad();frDraw()}
       else if(a==="op"){FR.u=d.u;FR.v="fr";frDraw();await frCo(d.u);frDraw()}
-      else if(a==="coll"){FR.v="co";frDraw()}
+      else if(a==="coll"){frFav(FR.u)}
       else if(a==="rm"){confirmSheet("Rimuovere "+frNm(d.u)+" dalla community? Non potrà più giocare né scambiare.",async()=>{try{await sbReq("/rest/v1/rpc/community_decide",{m:"POST",b:{p_user:d.u,p_ok:false}});FR.v="home";await frLoad();frDraw()}catch(x){toast(x.message||"Errore")}})}
       else if(a==="prop"){FR.gv={};FR.gt={};FR.tab="give";FR.v="pr";frDraw()}
       else if(a==="tab"){FR.tab=d.t;frDraw()}
@@ -4054,7 +4073,7 @@ function frEl(){let e=$("#frm");
         if(dir>0&&frLkd(id,FR.tab==="give")){toast(FR.tab==="give"?frNm(FR.u)+" non ha ancora sbloccato questo set":"Non hai ancora sbloccato questo set");return}
         if(dir>0&&frRoom(id)<=0){const c=trCard(id),q=c?trK(c):"C",X=frCtx();if(FR.tab==="get"&&!(X.tg[q]||0))toast("Per chiedere "+(TRN[q]?TRN[q][0]:"questa carta")+" devi darne una");else if(FR.tab==="get"&&(X.tt[q]||0)>=(X.tg[q]||0))toast("Hai già chiesto tutte le "+TRN[q][1]+" che dai");else toast("Non hai altre copie doppie");return}
         if(k<0)k=0;if(k)o[id]=k;else delete o[id];try{hap(1)}catch(x){}frDraw()}
-      else if(a==="dn"){if(FRS.on){FR.dn=null;FR.v="sim";frDraw()}else if(FR.dq.length){FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
+      else if(a==="alb"){frAlb()}else if(a==="dn"){if(FRS.on){FR.dn=null;FR.v="sim";frDraw()}else if(FR.dq.length){FR.dn=FR.dq[0];FR.v="ann";FR.dnA=null;frDraw()}else{FR.dn=null;e.hidden=true;FR.v="home";frLoad()}}
       else if(a==="send"){const tl=o=>{const r=[];Object.keys(o).forEach(i=>{for(let k=0;k<o[i];k++)r.push(i)});return r};b.disabled=true;try{await frSend(FR.u,tl(FR.gv),tl(FR.gt));toast("Proposta inviata: vale 24 ore");FR.v="mail"}catch(x){toast(x.message||"Errore")}frDraw()}
       else if(a==="see"){if(FR.dq[0]===FR.dn)FR.dq.shift();frDqSave();FR.v="anim";FR.dnA=null;frDraw()}else if(a==="skip"){frSkip()}else if(a==="ex"){if(FR.ex.has(d.t))FR.ex.delete(d.t);else FR.ex.add(d.t);frDraw()}else if(a==="cvc"){e.hidden=true;trTab("c")}else if(a==="inf"){cvInfo("t")}else if(a==="mail"){FR.v="mail";frDraw()}else if(a==="cod"){e.hidden=true;trTab("t")}
       else if(a==="vt"){const t=FR.tr.find(x=>x.id===d.t);if(t){b.disabled=true;await frSee(t)}}
@@ -4217,7 +4236,7 @@ function navSet(r,on,anim){if(!r)return;let tg=null;r.querySelectorAll("button[d
   if(anim&&l.dataset.p){r.classList.add("mv");clearTimeout(r._t);r._t=setTimeout(()=>r.classList.remove("mv"),420)}else{l.style.transition="none";void l.offsetWidth;requestAnimationFrame(()=>{l.style.transition=""})}l.dataset.p="1"}
 let NAVB=0;
 function navOn(){const B=document.body;return B.classList.contains("sett")?(B.classList.contains("dex")?"d":B.classList.contains("asl")?"c":"s"):NAVB?"b":"c"}
-function navSync(){try{const t=$("#ttl"),B=document.body;if(t)t.textContent=B.classList.contains("dex")&&B.classList.contains("sett")?"Pokédex":PFM?"Preferiti":MODE==="g"?"Album":"Collezione"}catch(e){}const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH("a");try{pkBadge()}catch(e){}}navSet(n,navOn(),1);mdSync();dxBadge()}
+function navSync(){try{const t=$("#ttl"),B=document.body;if(t)t.textContent=B.classList.contains("dex")&&B.classList.contains("sett")?"Pokédex":PFM?(PFRO?"Preferiti di "+PFRO.n:"Preferiti"):MODE==="g"?"Album":"Collezione"}catch(e){}const n=$("#nvp");if(!n)return;if(!n.firstChild){n.innerHTML=NAVH("a");try{pkBadge()}catch(e){}}navSet(n,navOn(),1);mdSync();dxBadge()}
 function mdLook(m,anim){const e=$("#md");if(!e)return;if(!e.firstChild)e.innerHTML='<i class="lens"></i><button data-t="b" aria-label="Bustine">'+PKI+'</button>';e.classList.add("off");e.style.visibility=m==="g"?"":"hidden"}
 function mdSync(anim){mdLook(MODE,anim===undefined?1:anim)}
 addEventListener("resize",()=>{const n=$("#nvp");if(n)navSet(n,navOn(),0);mdSync(0)})

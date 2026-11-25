@@ -1,3 +1,12 @@
+## v545 (PullTime) — Scambi
+- Riepilogo "Scambio concluso" come quello delle buste: pillola con **Vai all'album** + **Fatto** (l'album si apre sul set della prima carta nuova ricevuta).
+- Animazione: carte sempre dritte (prima e dopo), più lenta (movimento 3 s), i due mazzi si incrociano di lato e restano tutti visibili; le carte di ogni mazzo sono sovrapposte in ventaglio ordinato con la carta principale (più rara) davanti, tutte visibili. Corretto un bug per cui il mazzo dell'altro compariva già in basso dall'inizio.
+- Posta: tastini allineati (anche "Concludi", segnaposto del >); elenchi in ordine cronologico (più recente in cima); dopo Inviata/Ricevuta compare la data e l'ora al posto di "completato/rifiutata/...".
+- Offri/Chiedi: via i pallini blu; due sezioni: Offri = "Mancanti per <amico>" / "Le ha già"; Chiedi = "Mancanti per te" / "Le hai già"; sempre divise per set.
+- "Vedi i suoi preferiti": ora è il suo album Preferiti (stesse pagine), in sola lettura: si scorre, si aprono le carte, si torna alla Community con la freccia; niente menu, drag, ricerca, filtri, ordine, stili.
+- Tolto "Scambio con codice" dalla Community.
+- Test: tests/trade_ui.js (nuovo) e trade_sim.js.
+
 ## v544 (PullTime)
 - Scambio lampo: nuovo suono 3A in stile vetro (soffio che scende), al posto dell'onda quadra. Ora tutti i suoni sono vetro/morbidi.
 - Dev: **Simulatore scambi** (Scambia > Community, solo in Dev). Amici finti (Giulia, Marco), proposte in arrivo/inviate/accettate/rifiutate/scadute, Posta, "Vedi", annuncio e animazione 1/3/8 carte e "tutte nuove nel Pokédex". Nessuna rete, la collezione non cambia. Test: tests/trade_sim.js.
