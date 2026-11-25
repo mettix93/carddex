@@ -1,3 +1,9 @@
+## c34 (PullBinder)
+- Allineata a PullTime: ricerca live con barra nel footer (Album e Pokédex), chiusura con X / Invio a campo vuoto, ritorno alla stessa pagina.
+- Pokédex: contatore totale come testo centrato allineato al titolo, divisori regione senza numero, ricerca solo sui Pokémon posseduti.
+- Slider pagine a pallini con pallino tondo trascinabile, contatore pagina centrato, suono al cambio pagina.
+- Bacheche riscritte: fino a 10, scelta carte con barra, schermo intero (X / esci), stili Vetro / Legno (tempietto 3D con ciliegi) / Museo, popup con elimina, swipe da bordo a bordo, contatore "Bacheca n/x", fascia nera in schermo intero.
+
 ## v539
 - Legno: parete di fondo più stilizzata, ciliegi più piccoli e frequenti (motivo ripetuto), petali che cadono, onde seigaiha in basso.
 
