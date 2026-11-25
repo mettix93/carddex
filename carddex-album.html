@@ -1689,7 +1689,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v541";
+const APPV="v542";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2543,7 +2543,7 @@ const SFX={
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- scan:t=>{const N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxC(t+k*.118,f,.065,.045,.5);if(k%2==0)sxC(t+k*.118,f/2,.065,.02,.25)});sxT(t,1500,3200,1.3,"square",.012,.05)},
+ scan:t=>{const N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxT(t+k*.118,f,0,.14,"sine",.2*.24,.006);if(k%2==0)sxT(t+k*.118,f/2,0,.14,"sine",.07*.24,.006)});sxN(t,1.4,1500,4200,.12*.24,"bandpass",.5,.4);sxGl(t+1.198,2637,.6,.12*.24)},
  land:t=>{sxN(t,.46,750,1700,.072,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.022,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.058,"bandpass",.4,.07)},
  tickA:t=>{sxT(t,N5(84),0,.05,"triangle",.2,.008);sxT(t,N5(84)*2,0,.035,"sine",.05,.006)},
  tickB:t=>{const m=[72,74,76,79,81,84][pkTkI%6]+((pkTkI/6|0)%2?12:0);sxT(t,N5(m),0,.07,"triangle",.18,.008);sxT(t,N5(m)*2,0,.045,"sine",.05,.006)},
@@ -2552,15 +2552,16 @@ const SFX={
  own:t=>{sxT(t,420,780,.11,"sine",.16);sxT(t+.06,1170,0,.12,"sine",.05)},
  fav:t=>{sxT(t,740,1110,.1,"sine",.14);sxT(t+.07,1480,0,.18,"sine",.06)},
  unfav:t=>{sxT(t,700,430,.12,"sine",.12)},
- coin:t=>{sxT(t,1318,0,.12,"square",.05);sxT(t+.08,1760,0,.45,"square",.05);sxT(t+.08,3520,0,.3,"sine",.04)},
+ coin:t=>{sxT(t,1318,0,.13,"sine",.2*.32,.008);sxGl(t+.08,1760,.55,.2*.32)},
  lkc:t=>{[1568,2093,2637,3136].forEach((f,i)=>sxT(t+i*.07,f,0,.7,"triangle",.14,.01));sxN(t,.9,5000,9000,.07,"highpass",.5)},
  gdc:t=>{[523,659,784,1047,1319,1568,2093,2637].forEach((f,i)=>{sxT(t+i*.09,f,0,1.1,"triangle",.17,.01);sxT(t+i*.09,f*2,0,.7,"sine",.06,.01)});sxN(t,1.6,4000,9500,.1,"highpass",.5);sxN(t+.5,1.2,6000,9500,.07,"highpass",.4)},
  gain:t=>{[523,659,784,1047].forEach((f,i)=>sxT(t+i*.09,f,0,.4,"triangle",.17,.01))},
  /* v463: suoni 8-bit per lo scambio (onda quadra, stile Game Boy) */
- trs:t=>{[523,659,784,1047,784,1047,1319].forEach((f,i)=>sxC(t+i*.075,f,.07,.07,.25))},
- trw:t=>{const N=[392,523,392,587,392,659,440,784,523,880,587,988,659,1047,784,1175,880,1319];N.forEach((f,i)=>sxC(t+i*.085,f,.075,.065,.5));sxC(t,98,1.6,.05,.5);sxC(t+.05,131,1.6,.04,.25)},
+ trs:t=>{[523,659,784,1047,784,1047,1319].forEach((f,i)=>{sxT(t+i*.075,f,0,.11,"sine",.2*.4,.006);sxT(t+i*.075,f*2,0,.07,"sine",.05*.4,.006)});sxN(t+.3,.4,3000,7000,.05*.4,"bandpass",.5,.15)},
+ trw:t=>{const N=[392,523,392,587,392,659,440,784,523,880,587,988,659,1047,784,1175,880,1319];N.forEach((f,i)=>{sxT(t+i*.085,f,0,.12,"sine",.17*.56,.006);sxT(t+i*.085,f*2,0,.07,"sine",.04*.56,.006)});sxT(t,98,0,1.6,"sine",.1*.56,.05);sxT(t+.05,131,0,1.6,"sine",.06*.56,.05);sxN(t+.4,1.2,3000,8000,.05*.56,"bandpass",.5,.4)},
  trf:t=>{sxN(t,.5,6000,300,.2,"lowpass",.7,.01);sxT(t,1568,90,.45,"square",.1,.004);sxT(t,2093,180,.5,"square",.06,.004);sxN(t+.04,.7,9000,3000,.09,"highpass",.4,.01)},
- trj:t=>{const M=[[784,.09],[784,.09],[784,.09],[1047,.34],[880,.1],[1047,.1],[1319,.5],[1175,.1],[1319,.1],[1568,.1],[2093,.9]];let x=0;M.forEach(([f,d])=>{sxC(t+x,f,d*.92,.07,.5);sxC(t+x,f/2,d*.92,.05,.25);x+=d});sxN(t+x-.9,1,5000,9500,.06,"highpass",.5)}};
+ trj:t=>{const M=[[784,.09],[784,.09],[784,.09],[1047,.34],[880,.1],[1047,.1],[1319,.5],[1175,.1],[1319,.1],[1568,.1],[2093,.9]];let x=0;M.forEach(([f,d],i)=>{if(i===M.length-1)sxGl(t+x,f,1.4,.13*.5);else sxT(t+x,f,0,d*1.4,"sine",.2*.5,.006);sxT(t+x,f/2,0,d*1.2,"sine",.08*.5,.006);x+=d});sxN(t+x-.9,1.2,4000,9500,.06*.5,"bandpass",.5,.4)}};
+function sxGl(t,f,d,v){sxT(t,f,0,d,"sine",v,.008);sxT(t,f*2,0,d*.55,"sine",v*.45,.008);sxT(t,f*2.76,0,d*.3,"sine",v*.2,.008)}
 function sxC(t,f,d,v,duty){const o=AC.createOscillator(),g=AC.createGain();try{const n=32,re=new Float32Array(n),im=new Float32Array(n);for(let k=1;k<n;k++)im[k]=2*Math.sin(Math.PI*k*(duty||.5))/(Math.PI*k);o.setPeriodicWave(AC.createPeriodicWave(re,im))}catch(e){o.type="square"}
   o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.004);g.gain.setValueAtTime(v,t+Math.max(.01,d-.02));g.gain.linearRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.03)}
 function sfx(n,dl){if(!CRYON)return;try{acUnlock();if(!AC)return;audAmb();const t=AC.currentTime+.02+(dl||0);if(SFX[n])SFX[n](t)}catch(e){}}

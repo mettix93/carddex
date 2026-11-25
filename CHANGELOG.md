@@ -1,3 +1,6 @@
+## v542 + c39 (PullBinder)
+- Suoni in stile vetro (sinusoidi morbide, ottava leggera, soffio d'aria, note finali a campanella) al posto dell'onda quadra: scansione Pokédex e moneta in entrambe le app; scambio (partenza, attesa, fanfara) in PullTime. Melodie e tempi invariati, volume calibrato sugli attuali. Proposte in tools/suoni/proposte_v4/.
+
 ## c38 (PullBinder)
 - Tolto l'anello blu di avanzamento dalle linguette degli album: restano solo il contorno oro e l'effetto a completamento.
 
