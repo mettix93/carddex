@@ -1,0 +1,27 @@
+// PullBinder: barra di ricerca live (Album e Pokédex)
+const {chromium,devices}=require('playwright');
+(async()=>{const b=await chromium.launch();let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+const c=await b.newContext({...devices['iPhone 13'],viewport:{width:390,height:844},serviceWorkers:'block'});const p=await c.newPage();p.errs=[];p.on('pageerror',e=>p.errs.push(String(e)));
+await p.route(/^https?:\/\/(?!localhost)/,r=>r.fulfill({status:200,contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==','base64')}));
+await c.addInitScript(()=>{localStorage['col_carddex_env']='app'});
+await p.goto('http://localhost:8765/collezione.html');await p.waitForTimeout(1800);
+await p.evaluate(()=>{st[cur].slice(0,40).forEach(s=>{if(s.id)s.o=1});save();render()});
+await p.evaluate(()=>{goTab('c')});await p.waitForTimeout(600);await p.evaluate(()=>{const a=document.querySelector('.asc[data-m=c]');if(a)a.click()});await p.waitForTimeout(900);
+const nm=await p.evaluate(()=>{const s=st[cur].find(x=>x.id&&CARDS[x.id]&&CARDS[x.id].name);return CARDS[s.id].name.split(' ')[0].toLowerCase()});
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);
+ok(await p.evaluate(()=>!document.getElementById('sbar').hidden&&document.activeElement.id==='sri2'),'barra aperta e a fuoco');
+await p.keyboard.type(nm,{delay:40});await p.waitForTimeout(500);
+ok(await p.evaluate(()=>cur==='?'&&SR.length>0),'risultati live ('+nm+')');
+await p.evaluate(()=>document.getElementById('sbx').click());await p.waitForTimeout(400);
+ok(await p.evaluate(()=>cur!=='?'&&document.getElementById('sbar').hidden),'x chiude');
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);
+await p.keyboard.press('Enter');await p.waitForTimeout(400);
+ok(await p.evaluate(()=>document.getElementById('sbar').hidden&&!document.body.classList.contains('srch')),'Invio a campo vuoto chiude');
+await p.evaluate(()=>goTab('d'));await p.waitForTimeout(900);
+await p.evaluate(()=>document.getElementById('sq').click());await p.waitForTimeout(300);
+await p.keyboard.type('a',{delay:30});await p.waitForTimeout(500);
+const d=await p.evaluate(()=>({ph:document.querySelectorAll('.dxg .ph, .dxg .dxph').length,em:document.querySelectorAll('.dxw>.sgt em').length,tot:document.querySelectorAll('.dxg>*').length}));
+ok(d.em===0,'divisori regione senza numero');
+await p.evaluate(()=>document.getElementById('sbx').click());await p.waitForTimeout(400);
+ok(!p.errs.length,'nessun errore JS '+p.errs.join('|'));
+await b.close();process.exit(bad)})();

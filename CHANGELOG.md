@@ -1,3 +1,6 @@
+## v539
+- Legno: parete di fondo più stilizzata, ciliegi più piccoli e frequenti (motivo ripetuto), petali che cadono, onde seigaiha in basso.
+
 ## v538
 - Legno: parete di fondo in stile giapponese antico (washi, rami di ciliegio in fiore, petali, sole rosso, onde seigaiha, filetto dorato); carte un po' più piccole per lasciarla vedere.
 - Bacheche: contatore "Bacheca n/x" nella stessa posizione e stile del contatore pagine degli album; tolta la scritta "Crea una nuova bacheca" nella pagina del +.
