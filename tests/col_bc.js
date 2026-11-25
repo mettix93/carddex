@@ -17,10 +17,16 @@ await p.evaluate(()=>{document.querySelector('.bcfsb').click()});await p.waitFor
 ok(await p.evaluate(()=>!!document.querySelector('#bcfs')&&document.querySelector('meta[name=theme-color]').content.toLowerCase().includes('000')),'fullscreen + fascia nera');
 await p.evaluate(()=>document.querySelector('#bcfs .bfx').click());await p.waitForTimeout(400);
 ok(await p.evaluate(()=>!document.querySelector('#bcfs')),'X chiude fullscreen');
-// modale nuova bacheca con scelta album
+// modale nuova bacheca: niente scelta album, Crea attivo
 await p.evaluate(()=>bcModal());await p.waitForTimeout(300);
-ok(await p.evaluate(()=>{const m=document.querySelector('#bcm .bcmd');return !!m&&m.classList.contains('ptc')&&!!m.querySelector('.bcal')&&m.querySelector('.p').disabled}),'modale: scelta album, Crea disabilitato');
-await p.evaluate(()=>{document.querySelector('#bcm .bcal').click()});await p.waitForTimeout(300);
-await p.screenshot({path:'/tmp/cb2.png'});
+ok(await p.evaluate(()=>{const m=document.querySelector('#bcm .bcmd');return !!m&&m.classList.contains('ptc')&&!m.querySelector('.bcal')&&!m.querySelector('.p').disabled}),'modale: nessuna scelta album, Crea attivo');
+await p.evaluate(()=>document.querySelector('#bcm .p').click());await p.waitForTimeout(600);
+ok(await p.evaluate(()=>BCH.length)===7,'bacheca creata (7)');
+// titolo e contatore fissi tra bacheche diverse
+const pos=[];for(let i=0;i<4;i++){await p.evaluate(i=>{BCI=i;bcList()},i);await p.waitForTimeout(600);pos.push(await p.evaluate(()=>{const f=s=>{const e=document.querySelector(s);if(!e)return null;const r=e.getBoundingClientRect();return Math.round(r.top)};return f('.bcinf')+'/'+f('.bcpn')}))}
+ok(new Set(pos).size===1,'titolo e contatore fissi: '+pos.join(' '));
+// pick: selezione carta da album
+await p.evaluate(()=>{BCI=6;bcList();bcPick(BCH[6],0)});await p.waitForTimeout(1500);
+ok(await p.evaluate(()=>!!BCK&&!!document.getElementById('bcpb')),'pick bar attiva dopo bcPick');
 ok(!p.errs.length,'nessun errore '+p.errs.join('|'));
 await b.close();process.exit(bad)})();
