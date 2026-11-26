@@ -1,3 +1,6 @@
+## v569
+- Scambi Offri/Chiedi: "Massimo 10 carte delle stesse rarità" sostituisce "Servono le stesse rarità" nella barra in basso; tolta la riga extra sotto la barra, barra di nuovo nella posizione originale.
+
 ## v568
 - Scambi: limite di 10 carte per lato. Contatori Offri (n/10) / Chiedi (n/10), toast "Limite di 10 carte raggiunto" se provi ad aggiungerne, nota "Massimo 10 carte delle stesse rarità" in fondo. Togliere resta sempre possibile.
 

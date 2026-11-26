@@ -1659,7 +1659,7 @@ html body #frm .frdock{position:absolute;left:0;right:0;bottom:0;padding:70px 16
 html:not(.gml) body #frm .frdock{background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.92) 62%,#000)}
 html body #frm .frdock>*{pointer-events:auto}
 html body #frm .frdock .frbx{margin:0}
-html body #frm .frdock .frft{margin:8px 0 6px}html body #frm .frmx{margin:0 0 calc(var(--fbb,20px) - 6px);text-align:center;font:500 12px -apple-system,system-ui,sans-serif;color:#6c6c70;pointer-events:none}html:not(.gml) body #frm .frmx{color:rgba(235,235,245,.6)}
+html body #frm .frdock .frft{margin:8px 0 var(--fbb,20px)}
 #pgp .pgn{margin:10px 0 8px}
 html body #frm .frbx>div{background:var(--gbg);border:1px solid var(--gbd);box-shadow:inset 0 1px 0 var(--ghi),var(--gsh);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);color:var(--gtx);box-sizing:border-box}
 html body #frm .frbx>div.ok{border-color:#34c759;box-shadow:inset 0 0 0 1px #34c759,var(--gsh)}
@@ -1726,7 +1726,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v568";
+const APPV="v569";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -4076,13 +4076,13 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   if(v==="pr"){const X=frCtx(),p=FR.pr[u]||{name:"?"},nm=esc(p.name),cap=t=>t[0].toUpperCase()+t.slice(1),give=FR.tab==="give";
     const hdr='<div class="cvhd frhd hdt"><div class="cvtb frtb"><button data-a="tab" data-t="give" class="'+(give?"on":"")+'">Offri ('+X.ga.length+'/'+FRMAXC+')</button><button data-a="tab" data-t="get" class="'+(!give?"on":"")+'">Chiedi ('+X.ta.length+'/'+FRMAXC+')</button></div><button class="cvx" data-a="bk" data-v="fr" aria-label="Indietro">'+IC('<path d="M18 6L6 18M6 6L18 18"/>')+"</button></div>";let h="";
     const rows=TRO;let hint;
-    if(!X.ga.length&&!X.ta.length)hint="Scegli cosa offri e cosa chiedi";else if(X.same)hint="Pronto: "+X.ga.length+" per "+X.ta.length;else hint="Servono le stesse rarità";
+    if(!X.ga.length&&!X.ta.length)hint="Scegli cosa offri e cosa chiedi";else if(X.same)hint="Pronto: "+X.ga.length+" per "+X.ta.length;else hint="Massimo "+FRMAXC+" carte delle stesse rarità";
     const bx='<div class="frbx">'+rows.map(k=>{const g=X.tg[k]||0,t=X.tt[k]||0;return'<div class="'+(g||t?(g===t?"ok":"bad"):"")+'"><span class="frbs">'+RCOIN(k)+"</span><em>"+cap(TRN[k][1])+"</em><b>Offri "+g+" · Chiedi "+t+"</b></div>"}).join("")+"</div>";
     const src=give?X.my:X.fs,sel=give?X.G:X.T,ids=Object.keys(src);
     const nwf=i=>give?!X.co[i]:!X.mc[i],gA=ids.filter(nwf),gB=ids.filter(i=>!nwf(i));
     const grp=(t,L)=>L.length?'<section class="cvw cvtot"><div class="sgt">'+t+'<em>'+L.reduce((a,i)=>a+(src[i]||0),0)+"</em></div></section>"+frSets(L).map(S=>{const co=GCOLS[S.ci];return'<section class="cvw"><div class="sgt">'+esc(co?co.t:"Altre")+'</div><div class="cvgg">'+S.ids.map(i=>frCvt(i,src[i],sel[i]||0,frRoom(i,X),0,frLkd(i,give))).join("")+"</div></section>"}).join(""):"";
     h+='<div class="frscr">'+(ids.length?grp(give?"Mancanti per "+nm:"Mancanti per te",gA)+grp(give?"Le ha già":"Le hai già",gB):'<p class="trn frem">'+(give?"Non hai doppie da dare.":nm+" non ha doppie da darti.")+"</p>")+"</div>";
-    h+='<div class="frdock">'+bx+'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div><p class=\"frmx\">Massimo "+FRMAXC+" carte delle stesse rarità</p></div>";
+    h+='<div class="frdock">'+bx+'<div class="frft"><span class="'+(X.same?"ok":"")+'">'+hint+'</span><button class="frb2 p" data-a="send"'+(X.same?"":" disabled")+">Invia</button></div></div>";
     return hdr+'<div class="frbody frpr">'+h+"</div>"}
   if(v==="ann"){const D=FR.dn;if(!D)return"";return W("Scambio concluso","",'<div class="frem2 frann">'+IC('<path d="M7 7h12l-3-3M17 17H5l3 3"/>',2)+"<b>Scambio con "+esc(D.who)+'</b><span>La tua proposta è stata accettata: '+D.give.length+(D.give.length===1?" carta data":" carte date")+" · "+D.get.length+(D.get.length===1?" ricevuta":" ricevute")+".</span></div>",'<div class="frft"><button class="frb2 p" data-a="see">Vedi</button></div>')}
   if(v==="anim"){const D=FR.dn;if(!D)return"";const stk=(ids,cl,r0)=>{const L=trSrt(ids),n=L.length,W=Math.min(innerWidth,520),aw=Math.min(.3*W,118),sp=n>1?Math.min(aw*.36,(W*.9-aw)/(n-1)):0,span=(n-1)*sp;return'<div class="anS '+cl+'" style="--aw:'+aw.toFixed(1)+'px;--ah:'+(aw*88/63).toFixed(1)+'px">'+L.map((i,x)=>{const c=trCard(i);if(!c)return"";return'<div class="anc" style="z-index:'+(60-x)+'" data-x="'+(x*sp-span/2).toFixed(1)+'" data-r="'+r0+'"><div class="cvf">'+face(c,0)+'</div><i class="anw"></i></div>'}).join("")+"</div>"};
