@@ -1726,7 +1726,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v565";
+const APPV="v566";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2580,7 +2580,7 @@ const SFX={
  nuova:t=>{sxT(t,880,0,.22,"sine",.26);sxT(t+.09,1320,0,.3,"sine",.23)},
  rare:t=>{[1047,1319,1568].forEach((f,i)=>sxT(t+i*.1,f,0,.55,"triangle",.24,.01))},
  holo:t=>{[784,988,1175,1480,1760,2349].forEach((f,i)=>{sxT(t+i*.075,f,0,.9,"triangle",.2,.01);sxT(t+i*.075,f*2,0,.5,"sine",.07,.01)});sxN(t+.2,.9,6000,9000,.08,"highpass",.4)},
- scan:t=>{const K=0.036,N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxP(t+k*.118,f,.14,.2,.006,K);if(k%2==0)sxP(t+k*.118,f/2,.14,.07,.006,K)});sxPA(t,1.4,.12,1500,4200,K);sxPG(t+1.198,2637,.6,.12,K)},
+ scan:t=>{const K=0.047,N=[659,784,880,988,1175,1319,1568,1760,1976,2349,2637];N.forEach((f,k)=>{sxP(t+k*.118,f,.14,.2,.006,K);if(k%2==0)sxP(t+k*.118,f/2,.14,.07,.006,K)});sxPA(t,1.4,.12,1500,4200,K);sxPG(t+1.198,2637,.6,.12,K)},
  land:t=>{sxN(t,.46,750,1700,.072,"bandpass",.35,.24);sxN(t+.09,.34,1400,2100,.022,"bandpass",.35,.2);sxN(t+.28,.22,1500,400,.058,"bandpass",.4,.07)},
  tickA:t=>{sxT(t,N5(84),0,.05,"triangle",.2,.008);sxT(t,N5(84)*2,0,.035,"sine",.05,.006)},
  tickB:t=>{const m=[72,74,76,79,81,84][pkTkI%6]+((pkTkI/6|0)%2?12:0);sxT(t,N5(m),0,.07,"triangle",.18,.008);sxT(t,N5(m)*2,0,.045,"sine",.05,.006)},
@@ -2800,7 +2800,7 @@ function aqpStart(k){if(aqpOn)return;if(FLT!=="a"){FLT="a";tabs();render()}
 function aqpHint(on){
   if(!on){const b=$("#aqh");if(b){try{b.animate([{opacity:1},{opacity:0}],{duration:240}).onfinish=()=>b.remove()}catch(x){b.remove()}setTimeout(()=>b.remove(),300)}const a=$("#aqp");if(a)a.classList.remove("hint");return}
   const a=$("#aqp");if(a)a.classList.add("hint");
-  setTimeout(()=>{if(!aqpOn||!$("#aqp.hint")||$("#aqh"))return;const bk=$("#book"),br=bk.getBoundingClientRect(),bo=document.body.getBoundingClientRect(),b=document.createElement("div");b.id="aqh";
+  setTimeout(()=>{if(!aqpOn||!$("#aqp.hint")||$("#aqh")||window.AQHS)return;window.AQHS=1;const bk=$("#book"),br=bk.getBoundingClientRect(),bo=document.body.getBoundingClientRect(),b=document.createElement("div");b.id="aqh";
     b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"/></svg><div><b>Trascina ogni carta nel suo spazio</b><small>oppure toccala: va da sola</small></div>';
     b.style.cssText="left:"+(br.left-bo.left+br.width/2)+"px;top:"+(br.top-bo.top+br.height*.42)+"px";document.body.appendChild(b);
     try{b.animate([{opacity:0,transform:"translate(-50%,-40%)"},{opacity:1,transform:"translate(-50%,-50%)"}],{duration:320,easing:"ease-out"})}catch(x){}

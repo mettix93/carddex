@@ -1,3 +1,7 @@
+## v566
+- Suggerimento "Trascina ogni carta nel suo spazio": compare solo al primo set con carte nuove della sessione.
+- Suono della scansione Pokédex leggermente più alto (+30%).
+
 ## v565
 - Lucky Pack: la rara extra sostituisce una comune (non più una non comune): 3 non comuni + 2 rare. Probabilità delle rare invariate (prima rara 1/3 holo, seconda holo garantita).
 
