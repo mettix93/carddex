@@ -1,3 +1,6 @@
+## v567
+- Preferiti di un amico: sopra le pagine "ALBUM PREFERITI DI <nome>" + numero carte.
+
 ## v566
 - Suggerimento "Trascina ogni carta nel suo spazio": compare solo al primo set con carte nuove della sessione.
 - Suono della scansione Pokédex leggermente più alto (+30%).
