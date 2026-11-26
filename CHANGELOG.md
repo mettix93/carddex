@@ -1,3 +1,6 @@
+## v563
+- Fascetta Pop Pack: la cornice ha ai lati la stessa distanza dal testo che ha in verticale (meno larga).
+
 ## v562
 - Pop Pack: la scritta "POP PACK · 5 CARTE" sparisce subito al tocco della bustina scelta.
 - Preferiti: sopra le pagine "ALBUM PREFERITI" + numero di carte presenti (senza completamento).
