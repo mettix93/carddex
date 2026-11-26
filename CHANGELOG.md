@@ -1,3 +1,7 @@
+## v562
+- Pop Pack: la scritta "POP PACK · 5 CARTE" sparisce subito al tocco della bustina scelta.
+- Preferiti: sopra le pagine "ALBUM PREFERITI" + numero di carte presenti (senza completamento).
+
 ## v561 (PullTime)
 - Fascetta POP PACK: scritta centrata nella fascia (anche in verticale, secondo le misure del font) e contorno a riquadro attorno alla scritta, stesso blu e stessa texture da timbro; scritta un po' più piccola.
 - Scambio: carte della stessa dimensione con qualsiasi numero di carte (prima la singola era più grande); nomi utente sempre alla stessa distanza dalle carte, sopra e sotto.
