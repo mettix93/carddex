@@ -1726,7 +1726,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v570";
+const APPV="v571";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3933,7 +3933,7 @@ FRS.anim=(n,forceNew)=>{const p=FRS.pick("sim-me","sim-g",n,"C"),real=(()=>{cons
   FR.dn={who:"Giulia",give:p.give.slice(0,get.length),get:get.slice(0,p.give.length),nw,dx};FR.v="anim";FR.dnA=null;const e=frEl();e.hidden=false;frDraw()};
 FRS.apply=(give,get)=>{const real={};try{const raw=dxRaw("g");GCOLS.forEach(c=>(raw[c.k]||[]).forEach(x=>{if(x&&x.o&&x.id)real[x.id]=1}))}catch(e){}const nw=get.filter(i=>!real[i]);let dx=[];try{const sn=pkDxSeen();dx=nw.filter(i=>pkDxNew(trCard(i),sn))}catch(e){}give.forEach(i=>{if(FRS.my[i]>1)FRS.my[i]--});return{nw,dx}};
 FRS.act=k=>{const e=frEl();
-  if(k==="a1")return FRS.anim(1);if(k==="a3")return FRS.anim(3);if(k==="a8")return FRS.anim(8);if(k==="an")return FRS.anim(4,1);
+  if(k==="a1")return FRS.anim(1);if(k==="a3")return FRS.anim(3);if(k==="a10")return FRS.anim(10);if(k==="an")return FRS.anim(4,1);
   if(k==="ri"||k==="rm"){const u=k==="ri"?"sim-g":"sim-m";FRS.mk(u,"sim-me",1+Math.floor(Math.random()*3),"pending");toast("Proposta di scambio da "+frNm(u));try{sfx("nuova");hap(1)}catch(x){}frBadge(1);return}
   if(k==="ac"){const t=FR.tr.find(x=>x.from_user==="sim-me"&&x.status==="pending");if(!t){toast("Nessuna tua proposta in attesa: inviane una da un amico");return}t.status="accepted";toast(frNm(t.to_user)+" ha accettato il tuo scambio!");try{sfx("nuova");hap(1)}catch(x){}frBadge(1);return}
   if(k==="rf"){const t=FR.tr.find(x=>x.from_user==="sim-me"&&x.status==="pending");if(!t){toast("Nessuna tua proposta in attesa");return}t.status="declined";toast(frNm(t.to_user)+" ha rifiutato");frBadge(1);return}
@@ -3947,7 +3947,7 @@ function frDevBtn(){return PKDEV?'<div class="trl">Dev</div><button class="frr" 
 function frSimView(W,IC){const row=(k,t,sm)=>'<button class="frr" data-a="sx" data-k="'+k+'"><span class="frn1">'+t+(sm?"<small>"+sm+"</small>":"")+"</span><i>›</i></button>";
   const n=FR.tr.filter(t=>t.status==="pending"&&t.to_user==="sim-me"&&!frExp(t)).length;
   let h='<p class="trn frem">Tutto finto: non usa la rete e non cambia la tua collezione. Amici: Giulia e Marco. Hai '+n+' propost'+(n===1?"a":"e")+' da rispondere.</p>';
-  h+='<div class="trl">Animazione dello scambio</div>'+row("a1","1 carta contro 1")+row("a3","3 contro 3")+row("a8","8 contro 8 (massimo)")+row("an","4 contro 4, tutte nuove e nel Pokédex","Per vedere i pallini blu");
+  h+='<div class="trl">Animazione dello scambio</div>'+row("a1","1 carta contro 1")+row("a3","3 contro 3")+row("a10","10 contro 10 (massimo)")+row("an","4 contro 4, tutte nuove e nel Pokédex","Per vedere i pallini blu");
   h+='<div class="trl">Flusso con un amico</div>'+row("ri","Giulia ti propone uno scambio","Poi rispondi dalla sua pagina")+row("rm","Marco ti propone uno scambio")+row("ac","Accettano la tua ultima proposta","Poi premi Concludi nella sua pagina")+row("rf","Rifiutano la tua ultima proposta")+row("ex2","Fai scadere una proposta in attesa")+row("ann","Mostra l’annuncio «Scambio concluso»");
   h+='<div class="trl">Vai a</div>'+row("og","Pagina di Giulia","Scambi, proposte e preferiti")+row("om","Pagina di Marco")+row("amici","Elenco amici");
   h+='<div class="trl">Gestione</div>'+row("rs","Rigenera la simulazione")+row("x","Esci dalla simulazione");

@@ -1,3 +1,6 @@
+## v571
+- Simulatore scambi (dev): prova animazione "10 contro 10 (massimo)" al posto di 8 contro 8; test aggiornati.
+
 ## v570
 - Scambi: testo barra "Massimo 10 carte, delle stesse rarità" (con virgola).
 

@@ -12,7 +12,7 @@ ok(await p.evaluate(()=>FR.v==="need"&&!!document.querySelector('#frm [data-a=si
 await p.click('#frm [data-a=sim]');await p.waitForTimeout(300);
 ok(await p.evaluate(()=>FR.v==="sim"&&FR.tr.length===4&&FR.fs.length===2),'simulazione attiva: 2 amici, 4 scambi preimpostati');
 // animazioni
-for(const k of['a1','a3','a8','an']){await p.click('#frm [data-a=sx][data-k='+k+']');await p.waitForTimeout(600);
+for(const k of['a1','a3','a10','an']){await p.click('#frm [data-a=sx][data-k='+k+']');await p.waitForTimeout(600);
   const o=await p.evaluate(()=>({v:FR.v,g:FR.dn.give.length,t:FR.dn.get.length,st:!!document.querySelector('#frm .anst')}));
   ok(o.v==='anim'&&o.st&&o.g===o.t&&o.g>0,'animazione '+k+': '+o.g+' vs '+o.t);
   await p.evaluate(()=>frSkip());await p.waitForTimeout(500);

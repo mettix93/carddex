@@ -8,12 +8,12 @@ await p.evaluate(()=>{frOpen("t")});await p.waitForTimeout(300);await p.click('#
 await p.evaluate(()=>{FR.v="home";frDraw()});
 ok(await p.evaluate(()=>!document.querySelector('#frm [data-a=cod]')&&!/codice/i.test(document.querySelector('#frm').textContent)),'nessun "scambio con codice"');
 // animazione: tutte le carte presenti, dritte a inizio e fine
-await p.evaluate(()=>{FR.v="sim";frDraw()});await p.click('#frm [data-a=sx][data-k=a8]');await p.waitForTimeout(1200);
+await p.evaluate(()=>{FR.v="sim";frDraw()});await p.click('#frm [data-a=sx][data-k=a10]');await p.waitForTimeout(1200);
 const rot=()=>p.evaluate(()=>{const f=s=>{const e=document.querySelector(s+' .anc');const m=getComputedStyle(e).transform.match(/matrix\(([^)]+)\)/)[1].split(',').map(Number);return Math.round(Math.atan2(m[1],m[0])*180/Math.PI)};return{m:f('.anMine'),t:f('.anTheirs'),nm:document.querySelectorAll('.anMine .anc').length,nt:document.querySelectorAll('.anTheirs .anc').length,xs:[...document.querySelectorAll('.anMine .anc')].map(e=>Math.round(new DOMMatrix(getComputedStyle(e).transform).e))}});
 const a0=await rot();
-ok(a0.nm===8&&a0.nt===8,'animazione: tutte le carte presenti ('+a0.nm+' e '+a0.nt+')');
+ok(a0.nm===10&&a0.nt===10,'animazione: tutte le carte presenti ('+a0.nm+' e '+a0.nt+')');
 ok(Math.abs(a0.m)<2&&Math.abs(Math.abs(a0.t)-180)<2,'all\'inizio le carte guardano il proprietario (mie '+a0.m+'°, sue '+a0.t+'°)');
-ok(a0.xs[0]<a0.xs[1]&&a0.xs[1]<a0.xs[7]&&Math.abs(a0.xs[0]+a0.xs[7])<4,'ventaglio centrato: prima carta (più rara) a sinistra, le altre a destra '+a0.xs.join(','));
+ok(a0.xs[0]<a0.xs[1]&&a0.xs[1]<a0.xs[9]&&Math.abs(a0.xs[0]+a0.xs[9])<4,'ventaglio centrato: prima carta (più rara) a sinistra, le altre a destra '+a0.xs.join(','));
 {const g=await p.evaluate(()=>{const q=s=>document.querySelector(s).getBoundingClientRect(),me=q('.annm.anme'),th=q('.annm.anth'),cm=q('.anMine .anc'),ct=q('.anTheirs .anc');return[Math.round(me.top-cm.bottom),Math.round(ct.top-th.bottom)]});ok(Math.abs(g[0]-g[1])<=2&&g[0]>10,'nomi utente a distanza uguale dalle carte, sopra e sotto ('+g+')')}
 await p.evaluate(()=>FR.anA.forEach(a=>a.finish()));await p.waitForTimeout(300);
 const a1=await rot();
