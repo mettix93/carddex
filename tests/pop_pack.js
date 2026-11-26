@@ -49,4 +49,7 @@ await p.evaluate(()=>pkSelect(Math.round(pkCPos||0)));await p.waitForTimeout(180
 ok(await p.evaluate(()=>getComputedStyle(document.querySelector('.pkci.sel .pkpopb')||document.body).visibility==='hidden'||!document.querySelector('.pkci.sel')),'nessuna fascetta ferma nel carosello dopo la selezione');
 await p.evaluate(()=>pkOpen());await p.waitForTimeout(6000);await p.evaluate(()=>pkSummary());await p.waitForTimeout(1000);await p.evaluate(()=>pkX());await p.waitForTimeout(2500);
 ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'finiti i Pop Pack, chiudendo il riepilogo si torna a PokéBank');
+await p.evaluate(()=>{const o=pkSt();o.pts=95;o.pp=0;pkSv(o);PKPOP=0;document.querySelector('#cvs').hidden=true;document.querySelector('#pk').hidden=true;goTab("b")});await p.waitForTimeout(900);
+await p.click('#pkbp');await p.waitForTimeout(800);
+ok(await p.evaluate(()=>document.querySelector('#cvh').textContent==='15'),'contatore Pokédollari in fondo aggiornato subito dopo la conversione automatica');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
