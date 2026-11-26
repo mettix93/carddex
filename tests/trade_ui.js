@@ -14,6 +14,7 @@ const a0=await rot();
 ok(a0.nm===8&&a0.nt===8,'animazione: tutte le carte presenti ('+a0.nm+' e '+a0.nt+')');
 ok(Math.abs(a0.m)<2&&Math.abs(Math.abs(a0.t)-180)<2,'all\'inizio le carte guardano il proprietario (mie '+a0.m+'°, sue '+a0.t+'°)');
 ok(a0.xs[0]<a0.xs[1]&&a0.xs[1]<a0.xs[7]&&Math.abs(a0.xs[0]+a0.xs[7])<4,'ventaglio centrato: prima carta (più rara) a sinistra, le altre a destra '+a0.xs.join(','));
+{const g=await p.evaluate(()=>{const q=s=>document.querySelector(s).getBoundingClientRect(),me=q('.annm.anme'),th=q('.annm.anth'),cm=q('.anMine .anc'),ct=q('.anTheirs .anc');return[Math.round(me.top-cm.bottom),Math.round(ct.top-th.bottom)]});ok(Math.abs(g[0]-g[1])<=2&&g[0]>10,'nomi utente a distanza uguale dalle carte, sopra e sotto ('+g+')')}
 await p.evaluate(()=>FR.anA.forEach(a=>a.finish()));await p.waitForTimeout(300);
 const a1=await rot();
 ok(Math.abs(Math.abs(a1.m)-180)<2&&Math.abs(a1.t)<2,'alla fine guardano il nuovo proprietario (mie '+a1.m+'°, sue '+a1.t+'°)');

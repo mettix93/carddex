@@ -1,3 +1,7 @@
+## v561 (PullTime)
+- Fascetta POP PACK: scritta centrata nella fascia (anche in verticale, secondo le misure del font) e contorno a riquadro attorno alla scritta, stesso blu e stessa texture da timbro; scritta un po' più piccola.
+- Scambio: carte della stessa dimensione con qualsiasi numero di carte (prima la singola era più grande); nomi utente sempre alla stessa distanza dalle carte, sopra e sotto.
+
 ## v560 (PullTime)
 - Fascetta POP PACK: effetto carta (grana, bordi e piega), leggera ombra sul pacchetto, esattamente a metà altezza; la scritta ha sempre la stessa proporzione in tutti i set.
 - Popup bustine classiche: "3 bustine ogni giorno" al posto di "Bustine".
