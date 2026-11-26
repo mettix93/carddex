@@ -1,3 +1,7 @@
+## v558 (PullTime)
+- Fascetta POP PACK: via "5 CARTE"; scritta stencil più grande (adattata alla fascia) con effetto timbro (inchiostro consumato) nel blu pieno; scompare la fascetta ferma del carosello quando scegli il pacchetto.
+- Pop Pack esauriti: chiudendo il riepilogo si torna a PokéBank (se ne hai altri, resti nei Pop Pack).
+
 ## v557 (PullTime)
 - Pop Pack: corretto un difetto per cui in alcuni set (Base, Rocket) poteva uscire un'energia speciale come non comune/rara; ora mai energie. Test su 1800 estrazioni.
 

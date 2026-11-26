@@ -43,4 +43,10 @@ await p.evaluate(()=>{const o=pkSt();o.pp=1;pkSv(o);pkQ(pkAvail())});ok(await p.
 await p.evaluate(()=>pkChoose());await p.waitForTimeout(500);
 await p.click('#nvp button[data-t=b]');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===0&&document.querySelector('#pkbar .pbt').textContent==='Bustine'),'icona Bustine dal menu riporta alle bustine classiche');
 ok(await p.evaluate(()=>{for(const sid of Object.keys(PKSET))for(let i=0;i<200;i++){const d=pkDrawPop(sid),r=d.map(c=>(rdOf(c)||{}).r).sort().join('');if(d.length!==5||r!=='CCRUU'||d.some(c=>c.kd==='e')||new Set(d.map(pkKey)).size!==5)return false}return true}),'1800 estrazioni: sempre 5 carte uniche 1R 2U 2C senza energie');
+await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=1;pkSv(o);PKPOP=0;document.querySelector('#pk').hidden=true;goTab("b")});await p.waitForTimeout(900);
+await p.click('#pkbp');await p.waitForTimeout(500);await p.click('#cvpp');await p.waitForTimeout(1000);
+await p.evaluate(()=>pkSelect(Math.round(pkCPos||0)));await p.waitForTimeout(1800);
+ok(await p.evaluate(()=>getComputedStyle(document.querySelector('.pkci.sel .pkpopb')||document.body).visibility==='hidden'||!document.querySelector('.pkci.sel')),'nessuna fascetta ferma nel carosello dopo la selezione');
+await p.evaluate(()=>pkOpen());await p.waitForTimeout(6000);await p.evaluate(()=>pkSummary());await p.waitForTimeout(1000);await p.evaluate(()=>pkX());await p.waitForTimeout(2500);
+ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'finiti i Pop Pack, chiudendo il riepilogo si torna a PokéBank');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
