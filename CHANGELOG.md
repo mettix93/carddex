@@ -1,3 +1,8 @@
+## v559 (PullTime)
+- Messaggio con 0 Pop Pack: "Non hai Pop Pack da aprire. Converti Pokédollari."
+- Sotto i pacchetti Pop Pack: "POP PACK · 5 CARTE" in maiuscolo.
+- PokéBank: il contatore Pokédollari in fondo si aggiorna subito dopo la conversione automatica in Pop Pack.
+
 ## v558 (PullTime)
 - Fascetta POP PACK: via "5 CARTE"; scritta stencil più grande (adattata alla fascia) con effetto timbro (inchiostro consumato) nel blu pieno; scompare la fascetta ferma del carosello quando scegli il pacchetto.
 - Pop Pack esauriti: chiudendo il riepilogo si torna a PokéBank (se ne hai altri, resti nei Pop Pack).
