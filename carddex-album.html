@@ -117,9 +117,11 @@ html body #pkbar #ppx{box-sizing:border-box;width:44px!important;height:44px!imp
 html body #pkbar #ppx svg{width:18px;height:18px}
 #ppp{position:relative;display:flex;align-items:center;justify-content:center;flex:none}
 html body #pkbar #ppp{width:40px;height:40px;color:var(--gtx)}
-.pkpopb{display:none;position:absolute;left:-1.5%;right:-1.5%;top:46%;height:14%;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(40,60,110,.5) 0,rgba(255,255,255,.62) 7%,rgba(255,255,255,.82) 30%,rgba(255,255,255,.88) 50%,rgba(255,255,255,.8) 70%,rgba(255,255,255,.6) 93%,rgba(40,60,110,.5) 100%);border-radius:2px;box-shadow:0 3px 6px rgba(0,0,0,.4),inset 0 2px 2px rgba(255,255,255,.9),inset 0 -3px 4px rgba(20,40,90,.28);color:#1646b5;font:900 11px/1 Impact,"Arial Black","Helvetica Neue",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 0 1px rgba(22,70,181,.6),.6px .6px 0 rgba(22,70,181,.5);pointer-events:none;font-style:normal;z-index:3;transform:rotate(-1.2deg);overflow:hidden}
-.pkpopb::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,0) 0 2px,rgba(255,255,255,.12) 2px 3px);pointer-events:none}
-#pk.pop .pkpopb{display:flex}#pk.pop #pkw .pkpopb{font-size:calc(var(--pw)*.1)}
+.pkpopb{display:none;position:absolute;left:-1.2%;right:-1.2%;top:45%;height:17%;flex-direction:column;align-items:center;justify-content:center;gap:.12em;background:linear-gradient(90deg,rgba(150,165,200,.95) 0,rgba(255,255,255,.93) 6%,rgba(255,255,255,.9) 50%,rgba(255,255,255,.93) 94%,rgba(150,165,200,.95) 100%);border-radius:2px;box-shadow:0 3px 5px rgba(0,0,0,.4),inset 0 2px 2px rgba(255,255,255,.95),inset 0 -3px 3px rgba(20,40,90,.22);color:#0a84ff;font-style:normal;pointer-events:none;z-index:3;overflow:hidden;text-align:center}
+.pkpopb b{font:700 1em/1 "Stardos Stencil","Rockwell","Georgia",serif;letter-spacing:.07em;white-space:nowrap}
+.pkpopb small{font:700 .46em/1 "Stardos Stencil","Rockwell","Georgia",serif;letter-spacing:.3em;white-space:nowrap;padding-left:.3em}
+.pkci .pkpopb{font-size:17px}
+#pk.pop .pkpopb{display:flex}#pk.pop #pkw .pkpopb{font-size:calc(var(--pw)*.17)}
 #pkpop5{display:none;position:absolute;left:0;right:0;bottom:calc(var(--pkb,20px) + 104px);margin:0;text-align:center;font:600 14px -apple-system,system-ui,sans-serif;color:#4e5d7c;letter-spacing:.02em;pointer-events:none}#pk.pop #pkpop5{display:block}html:not(.gml) #pkpop5{color:rgba(235,235,245,.7)}
 .pkci{position:relative}
 html body #cvs .cvhd b{color:var(--gtx)!important}
@@ -1686,7 +1688,8 @@ html body #frm .frr i.frph{visibility:hidden}
 #frm .frdc .pkn{font-size:9px;padding:2px 6px;white-space:nowrap}
 #frm .frdc .pkn.dxc{padding:0}
 #frm .frdr{padding-top:12px}
-</style></head><body><div id="bgl"></div>
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stardos+Stencil:wght@700&display=swap&text=POPACKRTE%205%20-">
+</head><body><div id="bgl"></div>
 <div id="app">
 <header><div class="tabs" id="tabs"></div><div id="sn"></div></header>
 <div id="book"></div>
@@ -1721,7 +1724,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v555";
+const APPV="v556";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2972,7 +2975,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   for(let i=24;i>=0;i--)tr.push((i*100/24).toFixed(2)+"% "+(10.7+pkJ[i]).toFixed(2)+"%");
   const ca="polygon(0 0,100% 0,"+tr.join(",")+")",bo="polygon("+tb.join(",")+",100% 100%,0 100%)";
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
-  return `<div class="pkbody">${fc(bo)}<i class="pkpopb">POP PACK</i></div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
+  return `<div class="pkbody">${fc(bo)}<i class="pkpopb"><b>POP PACK</b><small>5 CARTE</small></i></div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
 const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D"],["V","T"],["H","I"],["K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo Genesis e Neo Discovery","Neo Revelation e Neo Destiny","EX Rubino e Zaffiro e EX Tempesta di Sabbia"];
 const PKIDS={};let pkCvC=null;
@@ -3205,7 +3208,7 @@ function pkCnt(sid){const L=(st["g"+sid]||[]).filter(x=>x.id);return L.filter(x=
 const PKU=n=>PKPOP?(n===1?"1 Pop Pack disponibile":n+" Pop Pack disponibili"):(n===1?"1 bustina disponibile":n+" bustine disponibili");
 function pkSetTtl(){const t=$("#pkp .pkpt");if(t)t.innerHTML=`<b>${esc(PKSET[PKCUR].n)}</b><em>${pkCnt(PKCUR)}</em>`}
 document.addEventListener("click",e=>{const t=e.target.closest&&e.target;if(t&&t.closest("#pkms"))msBuild();else if(t&&t.closest("#pknv button[data-t],#nvp button[data-t]")){const m=$("#msp");if(m)m.hidden=true}},true);
-function pkCarBuild(){const c=$("#pkcar");c.innerHTML=pkP().map((x,i)=>`<div class="pkci" data-i="${i}" aria-label="${esc(x.n)}"><img alt="" src="${pkImg(x)}"><i class="pkpopb">POP PACK</i><span class="pkcnm">${esc(x.n)}</span></div>`).join("");pkSetTtl();pkCLast=null;pkCarPos(0);requestAnimationFrame(pkTtl);
+function pkCarBuild(){const c=$("#pkcar");c.innerHTML=pkP().map((x,i)=>`<div class="pkci" data-i="${i}" aria-label="${esc(x.n)}"><img alt="" src="${pkImg(x)}"><i class="pkpopb"><b>POP PACK</b><small>5 CARTE</small></i><span class="pkcnm">${esc(x.n)}</span></div>`).join("");pkSetTtl();pkCLast=null;pkCarPos(0);requestAnimationFrame(pkTtl);
   if(c._g)return;c._g=1;let g=null;
   c.addEventListener("pointerdown",e=>{if($("#pkp").classList.contains("go"))return;cancelAnimationFrame(pkCRaf);g={mov:pkCMov,x:e.clientX,t:performance.now(),p:pkCPos,mv:0,lx:e.clientX,lt:performance.now(),v:0,el:e.target.closest(".pkci")};try{c.setPointerCapture(e.pointerId)}catch(x){}});
   c.addEventListener("pointermove",e=>{if(!g)return;const dx=e.clientX-g.x;g.mv=Math.max(g.mv,Math.abs(dx));const now=performance.now();g.v=(e.clientX-g.lx)/Math.max(1,now-g.lt)*.5+g.v*.5;g.lx=e.clientX;g.lt=now;if(g.mv>6)pkCarPos(g.p-dx/pkCarStep())});
@@ -3283,7 +3286,7 @@ async function trShare(code,sum){const txt="🎴 PullTime · scambio\n"+sum+"\n"
 async function trCopy(txt){try{await navigator.clipboard.writeText(txt);toast("Codice copiato");return}catch(e){}try{const t=document.createElement("textarea");t.value=txt;t.style.cssText="position:fixed;opacity:0";document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();toast("Codice copiato")}catch(e){toast("Impossibile copiare")}}
 function trCodeSheet(t,n,give,get,code,sum){let h="";if(give.length)h+='<div class="trl">Dai</div>'+trFaces(give);if(get.length)h+='<div class="trl">Ricevi</div>'+trFaces(get);
   trSheet({t,n,h,b:[{t:"Condividi codice",p:1,k:1,f:()=>trShare(code,sum)},{t:"Copia codice",k:1,f:()=>trCopy("🎴 PullTime · scambio\n"+sum+"\n"+code+"\nApp: "+TRURL)},{t:"Chiudi"}]})}
-function trTab(m,quiet){TRM=m;{const t=$("#cvdt");if(t)t.textContent=m==="t"?"Scambia doppie con i tuoi amici!":"Doppie → Pokédollari: ogni "+PKCOST+", un Pop Pack!"}if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m||(m==="t"&&b.dataset.m==="f")));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
+function trTab(m,quiet){TRM=m;{const t=$("#cvdt");if(t)t.textContent=m==="t"?"Scambia doppie con i tuoi amici!":"Converti doppie in Pokédollari: ogni "+PKCOST+", un Pop Pack!"}if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m||(m==="t"&&b.dataset.m==="f")));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
 function trBanner(){const b=$("#cvs .trb");if(!b)return;const r=TR.reply;b.hidden=!r;if(!r){b.innerHTML="";return}b.innerHTML='<div class="trbh"><b>Offerta ricevuta</b><button class="trbx">Annulla</button></div>'+trFaces(r.a)+'<p>Scegli dalle tue doppie: '+trTxt(r.a)+"</p>";b.querySelector(".trbx").onclick=()=>{TR.reply=null;cvSel={};trBanner();cvDraw();trUpd()}}
 function trSel(){const o=[];for(const x of cvList()){const k=cvSel[x.c.id]||0;for(let i=0;i<k;i++)o.push(x.c.id)}return o}
 function trUpd(){const a=trSel(),r=TR.reply;let ok;if(r){const nd=r.a.length;$("#trsl").textContent="Scelte";$("#trs").textContent=a.length+"/"+nd;ok=a.length===nd&&trSame(a,r.a);$("#tro").textContent="Rispondi"}else{$("#trsl").textContent=a.length?trTxt(a):"Nessuna carta";$("#trs").textContent=a.length;ok=a.length>0;$("#tro").textContent="Offri"}$("#tro").disabled=!ok}

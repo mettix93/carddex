@@ -1,3 +1,7 @@
+## v556 (PullTime)
+- Fascia POP PACK: dritta, quasi opaca (si intravede solo un po' il sotto), senza righe; "POP PACK" grande in font stencil (Stardos Stencil, da Google Fonts) in blu pieno, "5 CARTE" sotto.
+- PokéBank: descrizione "Converti doppie in Pokédollari: ogni 40, un Pop Pack!" su una riga.
+
 ## v555 (PullTime)
 - Fascia POP PACK sul pacchetto: più visibile e 3D (fascetta bianca traslucida che avvolge, bordi ombreggiati, scritta blu stile timbro).
 - PokéBank: descrizione su una riga e testo della (i) accorciato.
