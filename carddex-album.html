@@ -109,6 +109,18 @@ body.gm #sl::-webkit-slider-runnable-track{background:rgba(27,42,73,.28)}
 body.gm #sl::-webkit-slider-thumb{box-shadow:0 1px 6px rgba(27,42,73,.45),0 0 0 1px rgba(27,42,73,.12)}
 body.gm #hud{color:#1b2a49}
 #vw,body.gm #vw{background:#05060a!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+
+/* PokéBank / Pop Pack */
+.pkpopb{display:none;position:absolute;left:0;right:0;top:47%;height:13%;align-items:center;justify-content:center;background:rgba(8,16,40,.34);border-top:1px solid rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.3);color:#fff;font:800 11px/1 -apple-system,system-ui,sans-serif;letter-spacing:.22em;text-shadow:0 1px 4px rgba(0,0,0,.45);pointer-events:none;font-style:normal;z-index:3}
+#pk.pop .pkpopb{display:flex}#pk.pop #pkw .pkpopb{font-size:calc(var(--pw)*.085)}
+.pkci{position:relative}
+html body #cvs .cvhd .cvbt{margin-left:auto;margin-right:52px;display:flex;gap:8px;flex:none}
+html body #cvs .cvhd .cvx.cvx2{position:relative;right:auto;top:auto;flex:none}
+html body #cvs .cvhd .cvx2 svg{width:22px;height:22px}
+.cvx2 .cvn2{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:#0a84ff;color:#fff;font:700 11px/18px -apple-system,system-ui,sans-serif;text-align:center;font-style:normal}
+.cvx2 .cvn2:empty{display:none}
+.cvx2 .cvdot{position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:#0a84ff;box-shadow:0 0 0 2px #fff}
+html:not(.gml) .cvx2 .cvdot{box-shadow:0 0 0 2px #1c1c1e}
 </style><style>
 header{padding:8px 14px 2px}
 .tabs{margin-top:6px}
@@ -1398,7 +1410,7 @@ html body :is(.tabs,#pkst) .tab.tpl,html body :is(.tabs,#pkst) .tab:has(.si):not
 .tabs .dv,#pkst .dv{flex:none;align-self:stretch;width:1px;margin:0;background:rgba(120,130,150,.38);border-radius:1px}
 
 /* v283: Doppie con titolo, titoli a sinistra, Pokédex miniature come Doppie */
-html body #cvs .cvhd{justify-content:flex-start!important;gap:10px;padding:var(--hbt,62px) 78px 6px 16px!important}
+html body #cvs .cvhd{justify-content:flex-start!important;gap:10px;padding:var(--hbt,62px) 66px 6px 16px!important}
 html body #cvs .cvhd b{font:700 32px/44px -apple-system,"SF Pro Display",system-ui,sans-serif!important;letter-spacing:-.02em;margin:0}
 html body #cvs .cvhd .cvtb{margin:0 0 0 auto;padding:2px;flex:none}
 html body #cvs .cvhd .cvtb button{height:32px;padding:0 12px;font-size:13px}
@@ -1699,7 +1711,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v549";
+const APPV="v550";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2707,17 +2719,18 @@ const pkP=()=>PKSET[PKCUR].p,pkImg=x=>PKIMG[x.k]||x.img;
 const pkDay=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
 const pkSt=()=>{let o={};try{o=JSON.parse(localStorage.getItem(GK("carddex_pk"))||"{}")||{}}catch(e){}if(ENV==="dev"&&!((o.pts||0)>=1000))o.pts=1000;return o};
 const pkSv=o=>{try{localStorage.setItem(GK("carddex_pk"),JSON.stringify(o))}catch(e){}try{msSoon()}catch(e){}};
-const PKTEST=false,PKDEV=ENV==="dev",PKDAILY=3;
+const PKTEST=false,PKDEV=ENV==="dev",PKDAILY=3;let PKPOP=0;
 const PKCAP=6;
 function pkSync(o){const d=pkDay();let ch=0;if(!o.lim3){let raw=o.start==null?PKDAILY:(d-o.start+1)*PKDAILY-Object.values(o.op||{}).reduce((a,b)=>a+b,0);if(raw<0){o.bonus=Math.max(0,(o.bonus||0)+raw);raw=0}o.dl=Math.min(PKCAP,raw);o.dd=d;o.lim3=1;ch=1}
   if(!o.lim4){o.dl=(o.dl||0)+(o.bonus||0);o.bonus=0;o.lim4=1;ch=1}
   if(o.dd<d){if((o.dl||0)<PKCAP)o.dl=Math.min(PKCAP,(o.dl||0)+PKDAILY*(d-o.dd));o.dd=d;ch=1}return ch}
-function pkAvail(){const o=pkSt();if(PKDEV)return PKCAP+(o.dl||0);if(pkSync(o))pkSv(o);return o.dl||0}
-function pkSpend(o){if(PKDEV)return;pkSync(o);if((o.dl||0)>0)o.dl--}
+function pkAvail(){const o=pkSt();if(PKPOP)return PKDEV?PKCAP+(o.pp||0):(o.pp||0);if(PKDEV)return PKCAP+(o.dl||0);if(pkSync(o))pkSv(o);return o.dl||0}
+function pkSpend(o){if(PKDEV)return;if(PKPOP){if((o.pp||0)>0)o.pp--;return}pkSync(o);if((o.dl||0)>0)o.dl--}
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 const pkKey=c=>c.name.replace(/ \[.\]$/,"");
 function pkPick(arr,k,u){u=u||new Set();const a=arr.slice(),o=[];while(o.length<k&&a.length){let p=a.filter(c=>!u.has(pkKey(c)));if(!p.length)p=a;const c=p[rndI(p.length)];a.splice(a.indexOf(c),1);u.add(pkKey(c));o.push(c)}return o}
-function pkDraw(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};
+function pkDrawPop(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};const com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:(ra.length?ra[rndI(ra.length)]:ho[rndI(ho.length)]),u=new Set([pkKey(rare)]);return[...pkPick(com,2,u),...pkPick(un,2,u),rare]}
+function pkDraw(sid){if(PKPOP)return pkDrawPop(sid);const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};
   const en=P.filter(c=>c.kd==="e"&&R(c)==="C"),com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);
   const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:ra[rndI(ra.length)];
   const u=new Set([pkKey(rare)]);
@@ -2949,7 +2962,7 @@ function pkPack(){const tr=[],tb=[];for(let i=0;i<=24;i++){tb.push((i*100/24).to
   for(let i=24;i>=0;i--)tr.push((i*100/24).toFixed(2)+"% "+(10.7+pkJ[i]).toFixed(2)+"%");
   const ca="polygon(0 0,100% 0,"+tr.join(",")+")",bo="polygon("+tb.join(",")+",100% 100%,0 100%)";
   const fc=clip=>`<div class="pkr f" style="clip-path:${clip};-webkit-clip-path:${clip}"><b class="pkrm"><i class="pkrs"></i><i class="pkrw"></i></b></div>`;
-  return `<div class="pkbody">${fc(bo)}</div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
+  return `<div class="pkbody">${fc(bo)}<i class="pkpopb">POP PACK</i></div><div class="pkcap">${fc(ca)}</div><div class="pkgl0"></div><div class="pkcl"></div>`}
 function pkFace(S){return `<div class="pkct">✂ taglia</div><div class="pkgl"></div><div class="pksw"></div><div class="pkpf"></div>`}
 const PKBLK=[["B","J","F"],["R","Y","Z"],["G","D"],["V","T"],["H","I"],["K","M","N"]],PKTH=.8,PKBN=["Base, Jungle e Fossil","Team Rocket e Gym","Neo Genesis e Neo Discovery","Neo Revelation e Neo Destiny","EX Rubino e Zaffiro e EX Tempesta di Sabbia"];
 const PKIDS={};let pkCvC=null;
@@ -2964,7 +2977,7 @@ let pkCMov=0;function pkCarGo(t,fn,fl,q){pkCQ=q?1:0;cancelAnimationFrame(pkCRaf)
 const msSt=()=>{try{return JSON.parse(localStorage.getItem(GK("carddex_ms"))||"{}")||{}}catch(e){return{}}};
 const msSv=M=>{try{localStorage.setItem(GK("carddex_ms"),JSON.stringify(M))}catch(e){}};
 function msKanto(){const D=dxData();let n=0;for(let d=1;d<=150;d++)if((D.own.g[d]||[]).length)n++;return n}
-const msOp=()=>Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0),
+const msOp=()=>Object.values(pkSt().op||{}).reduce((a,b)=>a+(+b||0),0)+(pkSt().ppo||0),
 msArtL=()=>["B","J","F"].flatMap(x=>PKSET[x].p.map(p=>p.k)),
 msArtN=()=>{const A=msSt().art||{};return msArtL().filter(k=>A[k]).length};
 /* ===== v491: 55 missioni promo, tutte segrete, pubblicate a fasi ===== */
@@ -3179,9 +3192,10 @@ function msFocus(id){const w=document.querySelector("#msp .msw2"),el=w&&w.queryS
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)msSoon()});
 setTimeout(msSoon,2500);
 function pkCnt(sid){const L=(st["g"+sid]||[]).filter(x=>x.id);return L.filter(x=>x.o).length+" / "+L.length}
-function pkSetTtl(){const t=$("#pkp .pkpt");if(t)t.innerHTML=`<b>${esc(PKSET[PKCUR].n)}</b><em>${pkCnt(PKCUR)}</em>`}
+const PKU=n=>PKPOP?(n===1?"1 Pop Pack disponibile":n+" Pop Pack disponibili"):(n===1?"1 bustina disponibile":n+" bustine disponibili");
+function pkSetTtl(){const t=$("#pkp .pkpt");if(t)t.innerHTML=`<b>${esc(PKSET[PKCUR].n)}</b><em>${PKPOP?"Pop Pack · 5 carte":pkCnt(PKCUR)}</em>`}
 document.addEventListener("click",e=>{const t=e.target.closest&&e.target;if(t&&t.closest("#pkms"))msBuild();else if(t&&t.closest("#pknv button[data-t],#nvp button[data-t]")){const m=$("#msp");if(m)m.hidden=true}},true);
-function pkCarBuild(){const c=$("#pkcar");c.innerHTML=pkP().map((x,i)=>`<div class="pkci" data-i="${i}" aria-label="${esc(x.n)}"><img alt="" src="${pkImg(x)}"><span class="pkcnm">${esc(x.n)}</span></div>`).join("");pkSetTtl();pkCLast=null;pkCarPos(0);requestAnimationFrame(pkTtl);
+function pkCarBuild(){const c=$("#pkcar");c.innerHTML=pkP().map((x,i)=>`<div class="pkci" data-i="${i}" aria-label="${esc(x.n)}"><img alt="" src="${pkImg(x)}"><i class="pkpopb">POP PACK</i><span class="pkcnm">${esc(x.n)}</span></div>`).join("");pkSetTtl();pkCLast=null;pkCarPos(0);requestAnimationFrame(pkTtl);
   if(c._g)return;c._g=1;let g=null;
   c.addEventListener("pointerdown",e=>{if($("#pkp").classList.contains("go"))return;cancelAnimationFrame(pkCRaf);g={mov:pkCMov,x:e.clientX,t:performance.now(),p:pkCPos,mv:0,lx:e.clientX,lt:performance.now(),v:0,el:e.target.closest(".pkci")};try{c.setPointerCapture(e.pointerId)}catch(x){}});
   c.addEventListener("pointermove",e=>{if(!g)return;const dx=e.clientX-g.x;g.mv=Math.max(g.mv,Math.abs(dx));const now=performance.now();g.v=(e.clientX-g.lx)/Math.max(1,now-g.lt)*.5+g.v*.5;g.lx=e.clientX;g.lt=now;if(g.mv>6)pkCarPos(g.p-dx/pkCarStep())});
@@ -3200,11 +3214,11 @@ function pkRender0(){if(pkLk(PKCUR))PKCUR="B";const p=$("#pkp");pkCarBuild();
   T.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{const sid=b.dataset.s;if(sid===PKCUR||p.classList.contains("go"))return;{const lk=pkLk(sid);if(lk){toast("Set bloccato: completa l’80% di "+(PKBN[lk-1]||"quelli precedenti")+" per sbloccarlo (ora "+Math.floor(pkCov(lk-1)*100)+"%)",1);return}}PKCUR=sid;try{localStorage.setItem(GK("carddex_pks"),sid)}catch(e){}pkRender();$("#pk").style.setProperty("--cc",PKSET[sid].c1);$("#pkn").textContent=PKSET[sid].n})}
 function pkBuild(){let el=$("#pk");if(el)return el;pkCloneCss();el=document.createElement("div");el.id="pk";el.hidden=true;pkObs(el);
   el.innerHTML=`<i id="pktc"></i><button class="pkx pkhm" id="pkhm" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M5.5 9.8V20h4.5v-5.5h4V20h4.5V9.8"/></svg></button><button class="pkx" id="pkcls" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><div class="pkt1"><b id="pkn"></b><small id="pkcnt"></small></div><div id="pkstudio"></div><div class="pkdots">${pkDots()}</div><div id="pks"><div id="pkzm"><div id="pkwr"><div id="pkw">${pkPack()}</div></div></div></div><div id="pkq"></div><p id="pkm"></p><div id="pkg"></div><div id="pkd" hidden></div><div id="pkc2"></div><div id="pkp" hidden></div><div id="pksum" hidden></div>`;
-  document.body.appendChild(el);
+  document.body.appendChild(el);try{new MutationObserver(()=>{if(el.hidden)PKPOP=0}).observe(el,{attributes:true,attributeFilter:["hidden"]})}catch(x){}
   $("#pkcls").onclick=pkX;$("#pkhm").onclick=homeBack;
-  const p=$("#pkp");p.innerHTML=`<div id="pkst" class="pkst"></div><p class="pkpt">Scegli la tua bustina</p><div id="pkcar" class="pkcar"></div><div id="pknv"><div class="nvp">${NAVH("b")}</div></div><button id="pkms" class="pkms" aria-label="Missioni">${MSI}<span>Missioni</span></button><div id="pkbar"><h2 class="pbt">Bustine</h2><div class="pbg"><button id="pkbc" aria-label="Converti doppie">${CVI}</button><button id="pkbp" aria-label="Pokédollari"><span id="pkbpn"></span></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div></div>`;
+  const p=$("#pkp");p.innerHTML=`<div id="pkst" class="pkst"></div><p class="pkpt">Scegli la tua bustina</p><div id="pkcar" class="pkcar"></div><div id="pknv"><div class="nvp">${NAVH("b")}</div></div><button id="pkms" class="pkms" aria-label="Missioni">${MSI}<span>Missioni</span></button><div id="pkbar"><h2 class="pbt">Bustine</h2><div class="pbg"><button id="pkbc" aria-label="Scambi">${CVI}</button><button id="pkbp" aria-label="PokéBank"><span id="pkbpn"></span></button><div id="pkbk" aria-label="Bustine disponibili">${PKI}<i id="pkbkn"></i></div></div></div>`;
   
-  $("#pkbc").onclick=cvOpen;$("#pkbp").onclick=ptOpen;$("#pkbk").onclick=bkOpen;
+  $("#pkbc").onclick=()=>frOpen("t");$("#pkbp").onclick=cvOpen;$("#pkbk").onclick=()=>{if(PKPOP){PKPOP=0;pkScreen();return}bkOpen()};
   pkRender();
   pkGestures();return el}
 
@@ -3226,8 +3240,8 @@ let PKG=0;function pkAlign(){try{const R=document.documentElement.style,f0=docum
   const f=$("#nvp");if(!f)return;const a=f.getBoundingClientRect();if(!a.height)return;let v=Math.max(0,innerHeight-a.bottom);{const on=document.body.classList.contains("pkNv");if(!on){if(v>=9){PKG=v;try{localStorage.setItem("cd_pkg",String(v))}catch(x){}}else{if(!PKG){try{PKG=+localStorage.getItem("cd_pkg")||0}catch(x){}}if(PKG&&innerHeight>innerWidth)v=PKG}}else{if(!PKG){try{PKG=+localStorage.getItem("cd_pkg")||0}catch(x){}}if(PKG)v=PKG}}R.setProperty("--fbb",v+"px");R.setProperty("--pkb",v+"px");
   const e=$("#pk");if(e&&!e.hidden){const b=e.getBoundingClientRect();if(b.height){const w=Math.max(0,b.bottom-(innerHeight-v));if(Math.abs(w-v)>1)e.style.setProperty("--pkb",w+"px");else e.style.removeProperty("--pkb")}}}catch(x){}}
 addEventListener("resize",pkAlign);addEventListener("orientationchange",()=>setTimeout(pkAlign,300));addEventListener("pageshow",pkAlign);try{visualViewport.addEventListener("resize",pkAlign)}catch(e){}
-function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL;const bp=$("#pkbp");if(bp){let d=bp.querySelector(":scope>.fdt");if(v>=PKCOST){if(!d){d=document.createElement("span");d.className="fdt";bp.appendChild(d)}}else if(d)d.remove()}}if(b)b.textContent=PKTEST?"∞":pkAvail();if(MODE==="g")try{tabs()}catch(e){}pkNone();requestAnimationFrame(pkTtl)}
-function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail()<1,t=p.querySelector(".pkpt");p.classList.toggle("none",z);if(t){if(z)t.textContent="Prossima bustina tra "+pkLeft();else pkSetTtl()}}
+function pkBarUpd(){pkAlign();const a=$("#pkbpn"),b=$("#pkbkn");if(a){const v=pkSt().pts||0;a.innerHTML=COINL;const bp=$("#pkbp");if(bp){let d=bp.querySelector(":scope>.fdt");if(v>=PKCOST||(pkSt().pp||0)>0){if(!d){d=document.createElement("span");d.className="fdt";bp.appendChild(d)}}else if(d)d.remove()}}if(b)b.textContent=PKTEST?"∞":pkAvail();if(MODE==="g")try{tabs()}catch(e){}pkNone();requestAnimationFrame(pkTtl)}
+function pkNone(){const p=$("#pkp");if(!p)return;const z=!PKTEST&&pkAvail()<1,t=p.querySelector(".pkpt");p.classList.toggle("none",z);if(t){if(z)t.textContent=PKPOP?"Nessun Pop Pack: ottienilo in PokéBank":"Prossima bustina tra "+pkLeft();else pkSetTtl()}}
 
 /* ===== scambio doppie con codici (solo carte delle bustine) ===== */
 let TRM="c",TR={reply:null};
@@ -3259,7 +3273,7 @@ async function trShare(code,sum){const txt="🎴 PullTime · scambio\n"+sum+"\n"
 async function trCopy(txt){try{await navigator.clipboard.writeText(txt);toast("Codice copiato");return}catch(e){}try{const t=document.createElement("textarea");t.value=txt;t.style.cssText="position:fixed;opacity:0";document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();toast("Codice copiato")}catch(e){toast("Impossibile copiare")}}
 function trCodeSheet(t,n,give,get,code,sum){let h="";if(give.length)h+='<div class="trl">Dai</div>'+trFaces(give);if(get.length)h+='<div class="trl">Ricevi</div>'+trFaces(get);
   trSheet({t,n,h,b:[{t:"Condividi codice",p:1,k:1,f:()=>trShare(code,sum)},{t:"Copia codice",k:1,f:()=>trCopy("🎴 PullTime · scambio\n"+sum+"\n"+code+"\nApp: "+TRURL)},{t:"Chiudi"}]})}
-function trTab(m,quiet){TRM=m;{const t=$("#cvdt");if(t)t.textContent=m==="t"?"Scambia doppie con i tuoi amici!":"Converti doppie in Pokédollari per ottenere bustine!"}if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m||(m==="t"&&b.dataset.m==="f")));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
+function trTab(m,quiet){TRM=m;{const t=$("#cvdt");if(t)t.textContent=m==="t"?"Scambia doppie con i tuoi amici!":"Converti le doppie in Pokédollari: ogni "+PKCOST+" ottieni un Pop Pack!"}if(m==="c")TR.reply=null;cvSel={};const e=$("#cvs");e.classList.toggle("tr",m==="t");e.querySelectorAll(".cvtb button").forEach(b=>b.classList.toggle("on",b.dataset.m===m||(m==="t"&&b.dataset.m==="f")));$("#cvf").hidden=m==="t";$("#trf").hidden=m!=="t";trBanner();cvDraw();if(m==="t")trUpd()}
 function trBanner(){const b=$("#cvs .trb");if(!b)return;const r=TR.reply;b.hidden=!r;if(!r){b.innerHTML="";return}b.innerHTML='<div class="trbh"><b>Offerta ricevuta</b><button class="trbx">Annulla</button></div>'+trFaces(r.a)+'<p>Scegli dalle tue doppie: '+trTxt(r.a)+"</p>";b.querySelector(".trbx").onclick=()=>{TR.reply=null;cvSel={};trBanner();cvDraw();trUpd()}}
 function trSel(){const o=[];for(const x of cvList()){const k=cvSel[x.c.id]||0;for(let i=0;i<k;i++)o.push(x.c.id)}return o}
 function trUpd(){const a=trSel(),r=TR.reply;let ok;if(r){const nd=r.a.length;$("#trsl").textContent="Scelte";$("#trs").textContent=a.length+"/"+nd;ok=a.length===nd&&trSame(a,r.a);$("#tro").textContent="Rispondi"}else{$("#trsl").textContent=a.length?trTxt(a):"Nessuna carta";$("#trs").textContent=a.length;ok=a.length>0;$("#tro").textContent="Offri"}$("#tro").disabled=!ok}
@@ -3275,12 +3289,12 @@ function trIn(txt){const d=trDec(txt),S=trSt();if(!d){toast("Codice non valido")
   if(d.t==="f"){if(!p||p.r!=="b"||trMs(p.a)!==trMs(d.a)||trMs(p.b)!==trMs(d.b)){toast("Ricevuta non trovata tra i tuoi scambi");return}if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}
     trSheet({t:"Completa scambio",n:"Controlla e conferma.",h:'<div class="trl">Dai</div>'+trFaces(p.b)+'<div class="trl">Ricevi</div>'+trFaces(p.a),b:[{t:"Conferma",p:1,f:()=>{const q=trSt();if(!trSpare(p.b)){toast("Non hai più quelle doppie");return}trApply(p.b,p.a);try{msTrade(p.b,p.a,d.id)}catch(e){}delete q.p[d.id];q.d.push(d.id);trSv(q);trTab("t");toast("Scambio completato!")}},{t:"Annulla"}]})}}
 function cvBuild(){let e=$("#cvs");if(e)return e;e=document.createElement("div");e.id="cvs";e.hidden=true;
-  e.innerHTML='<div class="cvhd"><div class="cvtb"><button data-m="c" class="on">Converti</button><button data-m="f">Scambia<i class="frd"></i></button></div><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><p class="cvds"><span id="cvdt"></span><button id="cvq" aria-label="Informazioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></svg></button></p><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Ricevi</button><button id="tro" disabled>Offri</button></div>';
+  e.innerHTML='<div class="cvhd"><b>PokéBank</b><div class="cvbt"><button class="cvx cvx2" id="cvcv" aria-label="Converti Pokédollari in Pop Pack">'+COINL+'<i class="cvdot" hidden></i></button><button class="cvx cvx2" id="cvpp" aria-label="Pop Pack">'+PKI+'<i class="cvn2"></i></button></div><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button></div><p class="cvds"><span id="cvdt"></span><button id="cvq" aria-label="Informazioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></svg></button></p><div class="trb" hidden></div><div class="cvg"></div><div class="cvf2" id="cvf"><div class="cvn"><small>Pokédollari</small><b id="cvh">0</b></div><div class="cvn cvmid"><small>Da convertire</small><b id="cvp" class="z">0</b></div><button id="cvok">Converti</button></div><div class="cvf2" id="trf" hidden><div class="cvn"><small id="trsl">Nessuna carta</small><b id="trs">0</b></div><button id="trp">Ricevi</button><button id="tro" disabled>Offri</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true;pkBarUpd()};
   $("#cvq").onclick=()=>cvInfo(TRM);
-  e.querySelector(".cvtb").onclick=ev=>{const b=ev.target.closest("button");if(!b)return;if(b.dataset.m==="f"){frOpen("t");return}trTab(b.dataset.m)};
+  $("#cvcv").onclick=ptOpen;$("#cvpp").onclick=()=>{if(!(pkSt().pp||0)){toast("Nessun Pop Pack: ogni "+PKCOST+" Pokédollari ne ottieni uno",1);return}ppGo()};
   $("#trp").onclick=trPaste;$("#tro").onclick=trGo;
-  $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt();o.pts=(o.pts||0)+tot;pkSv(o);{const M=msSt();M.earn=(M.earn||0)+tot;msSv(M)}cvSel={};cvSync();pkBarUpd();toast("+"+tot+(tot===1?" Pokédollaro":" Pokédollari")+" ("+n+(n===1?" carta":" carte")+")!")};
+  $("#cvok").onclick=()=>{let tot=0,n=0;for(const x of cvList()){const k=cvSel[x.c.id]||0;if(k>0){x.s.q-=k;tot+=k*cvPt(x.c);n+=k}}if(!tot)return;save();const o=pkSt(),b0=o.pts||0,g=Math.floor((b0+tot)/PKCOST)-Math.floor(b0/PKCOST);o.pts=b0+tot;pkSv(o);{const M=msSt();M.earn=(M.earn||0)+tot;msSv(M)}cvSel={};cvSync();if(g>0){ppGive(g);ptDone=g;ptOpen(1);sfx("coin");sfx("gain",.45)}else toast("+"+tot+(tot===1?" Pokédollaro":" Pokédollari")+" ("+n+(n===1?" carta":" carte")+")!");cvPb();pkBarUpd()};
   e.querySelector(".cvg").onclick=ev=>{const b=ev.target.closest(".cvt");if(!b)return;const id=b.dataset.id,x=cvList().find(y=>y.c.id===id);if(!x)return;const k=cvSel[id]||0,m=ev.target.closest(".cvm");if(!m)return;if(m.dataset.d==="-1"){if(k>0)cvSel[id]=k-1}else if(cvRoom(x,k)>0)cvSel[id]=k+1;try{navigator.vibrate&&navigator.vibrate(8)}catch(q){}cvUpd()};
   return e}
 function cvNum(el,v){if(!el)return;const o=el.textContent;el.textContent=v;if(el.id==="cvp")el.classList.toggle("z",!v);if(String(v)!==o&&el.dataset.i&&(el.id!=="cvp"||v>0)){try{el.animate([{transform:"scale(1)"},{transform:"scale(1.3)"},{transform:"scale(1)"}],{duration:280,easing:"ease-out"})}catch(e){}}el.dataset.i=1}
@@ -3302,9 +3316,9 @@ const RSY={C:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.3"/></svg>',
 function cvInfo(m){let e=$("#cvi2");if(!e){e=document.createElement("div");e.id="cvi2";e.hidden=true;document.body.appendChild(e);e.onclick=ev=>{if(ev.target===e||ev.target.closest(".cvx"))e.hidden=true}}
   const X='<button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button>',AR='<svg class="cva" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg>';
   if(m==="t")e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Scambio doppie</b><ol class="cvst"><li><i>1</i><span>Scegli un <b>amico della community</b>.</span></li><li><i>2</i><span>Premi <b>Proponi</b>, scegli cosa <b>offri</b> e cosa <b>chiedi</b>, poi <b>Invia</b>.</span></li><li><i>3</i><span>Lui la trova nella tua pagina e può accettarla o rifiutarla: se accetta, lo scambio è fatto!</span></li></ol><p class="cvnt">Si scambia carta per carta con la <b>stessa rarità</b>. Solo <b>doppie</b>.</p></div>';
-  else e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Converti doppie</b><div class="cvrt"><div><span class="rs">'+RSY.C+'</span><em>Comune</em><b>1 '+COINL+'</b></div><div><span class="rs">'+RSY.U+'</span><em>Non comune</em><b>2 '+COINL+'</b></div><div><span class="rs">'+RSY.R+'</span><em>Rara</em><b>3 '+COINL+'</b></div></div><div class="cvfl"><b>'+PKCOST+'</b>'+COINL+AR+'<b>+1</b>'+PKI+'</div><p class="cvnt">Si convertono solo le <b>doppie</b>: una per carta resta sempre nell’album. Energie e carte senza rarità valgono 1.</p></div>';
+  else e.innerHTML='<div class="ptc">'+X+'<small>Come funziona</small><b class="cvit">Converti doppie</b><div class="cvrt"><div><span class="rs">'+RSY.C+'</span><em>Comune</em><b>1 '+COINL+'</b></div><div><span class="rs">'+RSY.U+'</span><em>Non comune</em><b>2 '+COINL+'</b></div><div><span class="rs">'+RSY.R+'</span><em>Rara</em><b>3 '+COINL+'</b></div></div><div class="cvfl"><b>'+PKCOST+'</b>'+COINL+AR+'<b>+1</b>'+PKI+'<b>POP</b></div><p class="cvnt">Si convertono solo le <b>doppie</b>: una per carta resta sempre nell’album. Energie e carte senza rarità valgono 1. Un Pop Pack ha 5 carte: 1 rara, 2 non comuni, 2 comuni.</p></div>';
   e.style.zIndex="95";e.hidden=false}
-function cvOpen(){pkAlign();const e=cvBuild();cvSel={};TR.reply=null;trTab("c",1);e.hidden=false}
+function cvOpen(){pkAlign();const e=cvBuild();cvSel={};TR.reply=null;trTab("c",1);e.hidden=false;cvPb();if(!PKDEV){const k=Math.floor((pkSt().pts||0)/PKCOST);if(k>0){ppGive(k);ptDone=k;cvPb();pkBarUpd();ptOpen(1)}}}
 
 let bkT=0;
 function bkBuild(){let e=$("#bks");if(e)return e;e=document.createElement("div");e.id="bks";e.className="ptsw";e.hidden=true;
@@ -3317,13 +3331,16 @@ function bkOpen(){const e=bkBuild();bkDraw();e.hidden=false;clearInterval(bkT);b
 function ptBuild(){let e=$("#pts");if(e)return e;e=document.createElement("div");e.id="pts";e.hidden=true;
   e.innerHTML='<div class="ptc"><button class="cvx" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6L18 18"/></svg></button><small>I tuoi Pokédollari</small><b id="ptn">0</b><div class="ptb"><i id="ptf"></i></div><p id="ptt"></p><button id="ptx"><span class="pxn">'+PKCOST+'</span>'+COINL+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg><span class="pxn">+1</span>'+PKI+'</button></div>';
   document.body.appendChild(e);e.querySelector(".cvx").onclick=()=>{e.hidden=true};e.onclick=ev=>{if(ev.target===e)e.hidden=true};
-  $("#ptx").onclick=()=>{if(ptDone){e.hidden=true;ptDone=0;pkScreen();return}const o=pkSt();if((o.pts||0)<PKCOST)return;o.pts-=PKCOST;pkSync(o);o.dl=(o.dl||0)+1;pkSv(o);{const M=msSt();M.conv=(M.conv||0)+1;msSv(M)}ptDraw();pkBarUpd();pkBadge();const c=$("#pkcnt");if(c&&!PKTEST)c.textContent=pkAvail()===1?"1 bustina disponibile":pkAvail()+" bustine disponibili";ptDone=1;ptDraw();sfx("coin");sfx("gain",.45)};
+  $("#ptx").onclick=()=>{if(ptDone){ppGo();return}if(!ppGive(1))return;ptDone=1;ptDraw();cvPb();pkBarUpd();sfx("coin");sfx("gain",.45)};
   return e}
-let ptDone=0;const PTX0=()=>'<span class="pxn">'+PKCOST+'</span>'+COINL+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg><span class="pxn">+1</span>'+PKI;
-function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/PKCOST),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Conversione completata":"I tuoi Pokédollari";
-  if(ptDone){$("#ptn").innerHTML='+1<span class="ptp">'+PKC+'</span>';$("#ptf").style.width=(k>0?100:p*100/PKCOST)+"%";$("#ptt").textContent="Hai guadagnato una bustina! Ti restano "+p+" Pokédollari";$("#ptx").innerHTML="Apri ora";$("#ptx").disabled=false;return}
-  $("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*100/PKCOST)+"%";$("#ptt").textContent=k>0?"Puoi scambiare "+k+(k===1?" bustina":" bustine"):"Ti "+(PKCOST-p===1?"manca 1 Pokédollaro":"mancano "+(PKCOST-p)+" Pokédollari")+" per una bustina";$("#ptx").innerHTML=PTX0();$("#ptx").disabled=p<PKCOST}
-function ptOpen(){const e=ptBuild();ptDone=0;ptDraw();e.hidden=false}
+function ppGive(n){const o=pkSt();if(!n||(o.pts||0)<n*PKCOST)return 0;o.pts-=n*PKCOST;o.pp=(o.pp||0)+n;pkSv(o);const M=msSt();M.conv=(M.conv||0)+n;msSv(M);return n}
+function ppGo(){const t=$("#pts");if(t)t.hidden=true;const c=$("#cvs");if(c)c.hidden=true;ptDone=0;PKPOP=1;pkScreen();pkBarUpd()}
+function cvPb(){const o=pkSt(),d=$("#cvcv .cvdot"),n=$("#cvpp .cvn2");if(d)d.hidden=(o.pts||0)<PKCOST;if(n){n.textContent=o.pp||"";n.hidden=!(o.pp||0)}}
+let ptDone=0;const PTX0=()=>'<span class="pxn">'+PKCOST+'</span>'+COINL+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12H20M20 12L14 6M20 12L14 18"/></svg><span class="pxn">+1</span>'+PKI+'<span class="pxn">POP</span>';
+function ptDraw(){const p=pkSt().pts||0,k=Math.floor(p/PKCOST),e=$("#pts");e.classList.toggle("done",!!ptDone);e.querySelector("small").textContent=ptDone?"Pop Pack ottenuti":"I tuoi Pokédollari";
+  if(ptDone){$("#ptn").innerHTML='+'+ptDone+'<span class="ptp">'+PKC+'</span>';$("#ptf").style.width=(k>0?100:p*100/PKCOST)+"%";$("#ptt").textContent=(ptDone>1?"Hai guadagnato "+ptDone+" Pop Pack!":"Hai guadagnato un Pop Pack!")+" Ti restano "+p+" Pokédollari";$("#ptx").innerHTML="Apri ora";$("#ptx").disabled=false;return}
+  $("#ptn").textContent=p;$("#ptf").style.width=(k>0?100:p*100/PKCOST)+"%";$("#ptt").textContent=k>0?"Puoi convertire in "+k+(k===1?" Pop Pack":" Pop Pack"):"Ti "+(PKCOST-p===1?"manca 1 Pokédollaro":"mancano "+(PKCOST-p)+" Pokédollari")+" per un Pop Pack";$("#ptx").innerHTML=PTX0();$("#ptx").disabled=p<PKCOST}
+function ptOpen(d){const e=ptBuild();if(d!==1)ptDone=0;ptDraw();e.hidden=false}
 function pkArt(i){pkSel=i;const w=$("#pkw"),u=`url(${pkImg(pkP()[i])})`,v=`url(${PKIMG.bk})`;w.querySelectorAll(".pkr.f").forEach(l=>{l.style.backgroundImage=u;l.firstChild.style.webkitMaskImage=u;l.firstChild.style.maskImage=u});w.querySelectorAll(".pkr.b").forEach(l=>{l.style.backgroundImage=v;l.firstChild.style.webkitMaskImage=v;l.firstChild.style.maskImage=v})}
 function pkX(){if(!$("#pks").hidden&&$("#pkd").hidden&&$("#pksum").hidden&&!pkBusy){pkChoose();return}if(!$("#pkd").hidden&&$("#pksum").hidden&&pkCards.length){pkCur=null;pkSummary()}else if(!$("#pksum").hidden){if(!pkFlyB)pkDexOut()}else pkClose()}
 function topC(c){return c==="#ffffff"?"#f2f2f7":c}
@@ -3338,23 +3355,23 @@ let TPH=null,TPE=0,TPC=null,PKD=null,PKT=0,MSRT=0;function topRefresh(){try{if(M
 ["vw","pk"].forEach(id=>{const el=document.getElementById(id);if(el)new MutationObserver(topRefresh).observe(el,{attributes:true,attributeFilter:["hidden","class","style"]})});
 ["visibilitychange","pageshow","orientationchange","resize"].forEach(t=>addEventListener(t,topRefresh))
 function pkClose(){const e=$("#pk");if(!e||e.hidden||e.classList.contains("pkfo"))return;e.classList.add("pkfo");setTimeout(()=>{if(e.classList.contains("pkfo")){e.hidden=true;e.classList.remove("pkfo")}},180);pkTheme(isL()?"#ffffff":"#000000");cancelAnimationFrame(pkRaf);pkBusy=0;render();pkBadge();[60,250,700,1400].forEach(ms=>setTimeout(()=>{try{window.scrollTo(0,0);pkAlign()}catch(x){}},ms))}
-function pkBadge(){const n=pkAvail(),b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
+function pkBadge(){const t0=PKPOP;PKPOP=0;let n;try{n=pkAvail()}finally{PKPOP=t0}const b=$("#pkbn");if(b)b.textContent=PKTEST?"∞":n>0?n:""}
 function pkApply(){const w=$("#pkw");w.style.transform=`rotateX(${pkRX}deg) rotateY(${pkRY}deg)`;w.style.setProperty("--sx",(50-pkRY*.9)+"%")}
 function pkFront(){const a=((pkRY%360)+540)%360-180;return Math.abs(a)<40}
 function pkToAlbum(){const sid=PKCUR;let k="g"+sid;ALAST="g";try{localStorage.setItem("carddex_alast","g")}catch(e){}pkClose();if(MODE!=="g")setMode("g");try{aqClean();const f=aqFirst(null);if(f)k=f}catch(e){}if(COLS.some(c=>c.k===k)){cur=k;SR=[];SQ="";FLT="a";pg=0;sp=0;tabs();render();try{const T=$("#tabs"),t=T.querySelector(".tab.on");if(t)T.scrollLeft=t.offsetLeft-(T.clientWidth-t.offsetWidth)/2}catch(e){}}navSync();try{aqEnter(k)}catch(x){errRep(x,"aqEnter")}}
 function pkScreen(){try{sdPkTabs()}catch(e){}try{msSoon()}catch(e){}const e=pkBuild();try{frDots(FR.n)}catch(x){}e.classList.remove("pkfo");pkChoose()}
-function pkChoose(){requestAnimationFrame(pkTtl);setTimeout(pkTtl,120);setTimeout(pkTtl,450);pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
-  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n===1?"1 bustina disponibile":n+" bustine disponibili";pkNone();
+function pkChoose(){if(PKPOP&&!PKDEV&&!(pkSt().pp||0))PKPOP=0;{const k=$("#pk");if(k)k.classList.toggle("pop",!!PKPOP)}requestAnimationFrame(pkTtl);setTimeout(pkTtl,120);setTimeout(pkTtl,450);pkMul={n:1,left:0,all:[]};const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkBarUpd();requestAnimationFrame(pkAlign);setTimeout(pkAlign,350);e.hidden=false;pkBusy=0;$("#pkhm").hidden=false;
+  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":PKU(n);pkNone();
   e.classList.remove("holo","close","god","lucky","sm","gband");e.classList.add("studio");pkTheme(STC());e.style.setProperty("--cc",S.c1);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(x){}
   $("#pks").hidden=true;$("#pkm").hidden=true;$("#pkq").innerHTML="";$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   $("#pkp").hidden=false;requestAnimationFrame(()=>navSet(document.querySelector("#pknv .nvp"),"b",0))}
 function pkQ(n){const q=$("#pkq");q.innerHTML="";if(n<1)return;const mx=PKTEST?5:PKDEV?Math.min(n,3):n,go=k=>{if(pkPh!=="show"||pkBusy)return;pkMul={n:k,left:k,all:[]};pkZoom()};const a=document.createElement("button");a.className="pkgo"+(mx>1?"":" solo");a.textContent="Apri ×1";a.onclick=()=>go(1);q.appendChild(a);if(mx>1){const b=document.createElement("button");b.className="pkmx";b.textContent="×"+mx;b.onclick=()=>go(mx);q.appendChild(b)}}
 function pkChain(){$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";pkStage(pkSel);const pk=$("#pk"),zm=$("#pkzm");pk.classList.add("chain");zm.style.transition="none";pk.classList.add("close");pkPh="close";$("#pkm").textContent="Scorri lungo la linea per tagliare la bustina";pkBusy=0;try{$("#pkwr").getAnimations().forEach(a=>a.cancel())}catch(e){}void zm.offsetWidth;zm.style.transition="";try{$("#pkwr").animate([{opacity:0},{opacity:1}],{duration:240})}catch(e){}}
 function pkStage(i,from){const e=pkBuild(),S=PKSET[PKCUR],n=pkAvail();pkArt(i);e.hidden=false;pkBusy=0;pkRY=0;pkRX=0;$("#pkhm").hidden=true;pkPre=pkDraw(PKCUR);pkPreload(pkPre);if(!from)$("#pkp").hidden=true;$("#pkm").hidden=false;;
-  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n>0?(n===1?"1 bustina disponibile":n+" bustine disponibili"):"Nessuna bustina disponibile";
+  $("#pkn").textContent=S.n;$("#pkcnt").textContent=PKTEST?"Bustine illimitate (prova)":n>0?PKU(n):(PKPOP?"Nessun Pop Pack disponibile":"Nessuna bustina disponibile");
   const pk0=$("#pk");pk0.classList.remove("holo");pk0.classList.remove("god","lucky","sm","gband");pkForce="";pkDvHide();pk0.style.setProperty("--cc",pkP()[i].c);try{$("#pkw").getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}$("#pks").hidden=false;$("#pkd").hidden=true;$("#pkd").innerHTML="";$("#pksum").hidden=true;$("#pksum").innerHTML="";$("#pkg").classList.remove("on");$("#pkc2").textContent="";
   const w=$("#pkw");w.style.display="";w.style.opacity=n>0?1:.45;w.style.transition="none";w.querySelectorAll(".pkcap,.pkbody,.pkct,.pkcl").forEach(f=>{f.style.opacity="";f.style.display=""});pkApply();w.style.setProperty("--cut",0);w.classList.remove("rl","cutting");
-  $("#pkm").textContent=n>0?"":"Prossima bustina tra "+pkLeft()+" (a mezzanotte)";pk0.classList.remove("chain");pkQ(n);
+  $("#pkm").textContent=n>0?"":(PKPOP?"Nessun Pop Pack: ottienilo in PokéBank":"Prossima bustina tra "+pkLeft()+" (a mezzanotte)");pk0.classList.remove("chain");pkQ(n);
   void w.offsetWidth;w.style.transition="";pkPh="show";pk0.classList.remove("close");pk0.classList.add("studio");pkTheme(STC());
   if(from){const t=$("#pkw").getBoundingClientRect(),k=from.width/t.width,dx=from.left+from.width/2-(t.left+t.width/2),dy=from.top+from.height/2-(t.top+t.height/2);try{$("#pkwr").animate([{transform:`translate(${dx}px,${dy}px) scale(${k})`},{transform:"none"}],{duration:980,easing:"cubic-bezier(.3,.7,.25,1)"})}catch(e){}return}
   try{$("#pkwr").animate([{transform:"translateY(-110vh) rotate(18deg)",easing:"cubic-bezier(.45,0,.9,.6)"},{transform:"translateY(16px) rotate(-3deg)",offset:.6,easing:"ease-out"},{transform:"translateY(-6px) rotate(1deg)",offset:.8},{transform:"none"}],{duration:1100})}catch(e){}}
@@ -3387,7 +3404,7 @@ function pkTestEnd(){if(!pkTs)return;const T=pkTs;pkTs=null;for(const k in T.o){
 document.addEventListener("click",ev=>{if(!pkTs||!ev.target.closest||!ev.target.closest(".nvp,#nvp"))return;if(aqRun||dxFilling||PKAQ.length||PKDQ.length)return;setTimeout(()=>{if(pkTs&&!aqRun&&!dxFilling&&!PKAQ.length&&!PKDQ.length)pkTestEnd()},350)},true);
 let pkForce="";
 const PKLK={p:20,g:100};
-function pkRoll(){const t=pkForce;pkForce="";if(t)return{k:t,t:1};if(rndI(PKLK.g)===0)return{k:"g"};const o=pkSt();if((o.lk||0)>=PKLK.p||rndI(PKLK.p)===0)return{k:"l"};return{k:"n"}}
+function pkRoll(){const t=pkForce;pkForce="";if(t)return{k:t,t:1};if(PKPOP)return{k:"n"};if(rndI(PKLK.g)===0)return{k:"g"};const o=pkSt();if((o.lk||0)>=PKLK.p||rndI(PKLK.p)===0)return{k:"l"};return{k:"n"}}
 function pkNw(c){for(const co of COLS){const s=(st[co.k]||[]).find(x=>x.id===c.id);if(s)return s.o?0:1}return 1}
 function pkRarePool(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};return{ho:P.filter(c=>R(c)==="R"&&c.h),ra:P.filter(c=>R(c)==="R"&&!c.h)}}
 function pkDrawK(sid,k){const base=pkDraw(sid),N=base.length,{ho,ra}=pkRarePool(sid),all=ho.concat(ra);if(!ho.length||N<3)return base;
@@ -3413,7 +3430,7 @@ function pkLgFx(k){const p=$("#pk"),w=$("#pkw");if(!p||!w)return;const g=k==="g"
 function pkDvShow(){if(!PKDEV)return;let d=$("#pkdv");if(!d){d=document.createElement("div");d.id="pkdv";d.innerHTML='<button data-k="">Normale</button><button data-k="l">Lucky</button><button data-k="g">God</button>';$("#pk").appendChild(d);d.onclick=e=>{const b=e.target.closest("button");if(!b)return;e.stopPropagation();pkForce=b.dataset.k;pkDvSync()};d.addEventListener("pointerdown",e=>e.stopPropagation())}d.hidden=false;pkDvSync()}
 function pkDvSync(){const d=$("#pkdv");if(d)d.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.k===pkForce))}
 function pkDvHide(){const d=$("#pkdv");if(d)d.hidden=true}
-function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");if(pkTs&&!pkForce)pkTestEnd();const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1;try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
+function pkOpen(){if(pkBusy||pkAvail()<1)return;pkBusy=1;sfx("rip");pkPh="open";$("#pk").classList.add("opening");if(pkTs&&!pkForce)pkTestEnd();const K=pkRoll(),o=pkSt(),S=PKSET[PKCUR];pkKind=K.k;pkDvHide();if(K.t)pkTestBegin();{if(PKPOP)o.ppo=(o.ppo||0)+1;else{o.op=o.op||{};o.op[PKCUR]=(o.op[PKCUR]||0)+1}try{const p=PKSET[PKCUR].p[pkSel];if(p){const M=msSt();M.art=M.art||{};M.art[p.k]=1;msSv(M)}{const M=msSt();M.days=M.days||{};M.days[pkDay()]=1;msSv(M)}}catch(e){}pkSpend(o);if(!PKPOP)o.lk=K.k==="n"?(o.lk||0)+1:0;pkSv(o)}if(K.k!=="n")pkLgFx(K.k);
   const draw=K.k==="n"?(pkPre||pkDraw(PKCUR)):pkDrawK(PKCUR,K.k);pkPre=null;const dxs=pkDxSeen(),res=draw.map(c=>({c,dx:pkDxNew(c,dxs),...pkAdd(c)}));try{const M=msSt();M.hs=draw.some(c=>c&&(c.h||c.hz))?0:(M.hs||0)+1;M.hm=Math.max(M.hm||0,M.hs);msSv(M)}catch(e){}{res.forEach(x=>{if(x.dx&&!PKDQ.includes(x.c.dex))PKDQ.push(x.c.dex);if(x.nw&&x.k&&!aqHas(x.k,x.c.id))PKAQ.push({k:x.k,id:x.c.id})});dxQSave();aqSave();save();try{stBump(1,res.length)}catch(e){}}pkCards=res;pkIdx=0;pkMul.all=pkMul.all.concat(res);pkBadge();pkSumBuild();
   $("#pkm").textContent="";$("#pkcnt").textContent="";
   const w=$("#pkw"),a=w.querySelector(".pkcap"),b=w.querySelector(".pkbody");
@@ -4010,7 +4027,7 @@ function frView(){const me=FR.me,v=FR.v,u=FR.u;
   const IC=(d,w)=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(w||2)+'" stroke-linecap="round" stroke-linejoin="round">'+d+"</svg>";
   const HD=(t,to)=>'<div class="cvhd frhd'+(to?" sub":"")+'">'+(to?'<button class="cvx cvbk" data-a="bk" data-v="'+to+'" aria-label="Indietro">'+IC('<path d="M15 5L8 12L15 19"/>')+"</button>":"")+"<b>"+t+"</b>"+frX+"</div>";
   const W=(t,to,b,f,cl)=>HD(t,to)+'<div class="frbody'+(cl?" "+cl:"")+'">'+b+"</div>"+(f||"");
-  const HD2=()=>'<div class="cvhd frhd hdt"><div class="cvtb frtb"><button data-a="cvc">Converti</button><button class="on" data-a="tabs">Scambia<i class="frd"></i></button></div>'+frX+"</div>";
+  const HD2=()=>'<div class="cvhd frhd hdt"><b>Scambi</b>'+frX+"</div>";
   const CH='<i>›</i>',ENV=IC('<path d="M2 7L10.1649 12.7154C10.8261 13.1783 11.1567 13.4097 11.5163 13.4993C11.8339 13.5785 12.1661 13.5785 12.4837 13.4993C12.8433 13.4097 13.1739 13.1783 13.8351 12.7154L22 7M6.8 20H17.2C18.8802 20 19.7202 20 20.362 19.673C20.9265 19.3854 21.3854 18.9265 21.673 18.362C22 17.7202 22 16.8802 22 15.2V8.8C22 7.11984 22 6.27976 21.673 5.63803C21.3854 5.07354 20.9265 4.6146 20.362 4.32698C19.7202 4 18.8802 4 17.2 4H6.8C5.11984 4 4.27976 4 3.63803 4.32698C3.07354 4.6146 2.6146 5.07354 2.32698 5.63803C2 6.27976 2 7.11984 2 8.8V15.2C2 16.8802 2 17.7202 2.32698 18.362C2.6146 18.9265 3.07354 19.3854 3.63803 19.673C4.27976 20 5.11984 20 6.8 20Z"/>');
   if(v==="need")return W("Community","",'<p class="trn frem">'+(!cuGet()?"Serve l’account della community: crealo nelle Impostazioni.":"Scegli prima il tuo nome nelle Impostazioni, così gli altri ti riconoscono.")+'</p><button class="frb2 p" data-a="gs">Vai alle Impostazioni</button>'+frDevBtn());
   if(!me)return W("Community","",'<p class="trn frem">'+(FR.ld?"Carico…":"Non riesco a collegarmi. Riprova tra poco.")+"</p>"+frDevBtn());

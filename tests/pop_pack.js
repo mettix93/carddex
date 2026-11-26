@@ -1,0 +1,17 @@
+// Pop Pack / PokéBank: conversione, apertura, contatori separati
+const {chromium}=require('playwright');let bad=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)bad=1};
+(async()=>{const b=await chromium.launch(),c=await b.newContext({viewport:{width:402,height:874},serviceWorkers:'block'}),p=await c.newPage();
+p.on('pageerror',e=>{console.log('ERR',e.message);bad=1});await p.route(/^https?:\/\/(?!localhost)/,r=>r.abort());await p.addInitScript(()=>localStorage.setItem('carddex_env','app'));
+await p.goto('http://localhost:8765/carddex-album.html');await p.waitForTimeout(1800);
+await p.evaluate(()=>{const o=pkSt();o.pts=95;o.pp=0;o.start=pkDay();o.lim3=0;pkSv(o);goTab("b")});await p.waitForTimeout(900);
+const dl0=await p.evaluate(()=>pkSt().dl);
+await p.click('#pkbp');await p.waitForTimeout(600);
+let s=await p.evaluate(()=>({pp:pkSt().pp,pts:pkSt().pts,t:document.querySelector('#cvs .cvhd b').textContent,btn:!!document.querySelector('#cvcv')&&!!document.querySelector('#cvpp')}));
+ok(s.t==='PokéBank'&&s.btn,'PokéBank con convertitore e contatore in alto');ok(s.pp===2&&s.pts===15,'95 Pokédollari -> 2 Pop Pack, avanzo 15 ('+s.pp+','+s.pts+')');
+await p.click('#ptx');await p.waitForTimeout(1500);
+s=await p.evaluate(()=>({pop:PKPOP,cls:document.querySelector('#pk').className,pp:pkSt().pp}));ok(s.pop===1&&/pop/.test(s.cls),'Apri ora porta ai Pop Pack');
+await p.evaluate(()=>pkStage(pkSel||0));await p.waitForTimeout(1500);await p.evaluate(()=>pkOpen());await p.waitForTimeout(5500);
+s=await p.evaluate(()=>({pp:pkSt().pp,dl:pkSt().dl,ppo:pkSt().ppo,n:pkCards.length,r:pkCards.map(x=>(rdOf(x.c)||{}).r).join(''),en:pkCards.some(x=>x.c.kd==='e'),opened:msOp()}));
+ok(s.n===5&&s.r.split('').sort().join('')==='CCRUU'&&!s.en,'5 carte: 1 rara, 2 non comuni, 2 comuni, niente energie ('+s.r+')');
+ok(s.pp===1&&s.dl===dl0,'scala un Pop Pack, le bustine classiche restano ('+s.dl+'/'+dl0+')');ok(s.ppo===1&&s.opened===1,'conta come bustina aperta');
+console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();

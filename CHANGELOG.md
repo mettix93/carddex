@@ -1,3 +1,10 @@
+## v550 (PullTime)
+- **PokéBank** (ex Converti): pagina col solo convertitore carte -> Pokédollari. In alto a destra, prima della X: convertitore Pokédollari -> Pop Pack (pallino se hai 40+) e contatore Pop Pack.
+- **Pop Pack**: ogni 40 Pokédollari = 1 Pop Pack (si ottiene in automatico appena si arriva a 40, con "Apri ora"; il resto resta come credito). 5 carte: 1 rara (holo con la probabilità normale del set), 2 non comuni, 2 comuni; niente energie, niente Lucky/God pack. Scegli il set come per le bustine, con fascia trasparente "POP PACK" sulla grafica.
+- Contatori separati: i Pop Pack non toccano le bustine classiche (né i giorni/limiti), ma contano come bustine aperte per missioni e statistiche. "Giorno di paga" conta i Pop Pack ottenuti.
+- Icone nella schermata Bustine: il Pokédollaro apre PokéBank, le due frecce aprono direttamente Scambi. Pagina Scambi: titolo "Scambi", senza tab Converti. Pokédollari già accumulati (40+) diventano subito Pop Pack aprendo PokéBank.
+- Test: tests/pop_pack.js.
+
 ## v549 (PullTime)
 - Riepilogo scambio concluso: la fascia in alto restava in parte scura (sfondo dell'animazione non ripristinato); ora prende il colore della schermata e, uscendo, quello originale.
 
