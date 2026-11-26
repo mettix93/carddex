@@ -1,3 +1,6 @@
+## v552 (PullTime)
+- Pagina Pop Pack: clone della pagina Bustine ma intitolata "Pop Pack", con pastiglia [Pokédollari · contatore Pop Pack · X] come PokéBank (la X riporta a PokéBank) e senza tasto Missioni.
+
 ## v551 (PullTime)
 - PokéBank: pulsanti in alto nella stessa pastiglia di vetro della home Bustine, insieme alla X (stesse dimensioni e stile); il titolo non viene più coperto e i pulsanti rispondono al tocco.
 - Icona bustina del contatore Pop Pack con "POP" scritto in verticale al centro.

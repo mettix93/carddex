@@ -21,4 +21,8 @@ ok(!r.ov&&r.x===384,'pastiglia in alto con X, senza sovrapporre il titolo');
 await p.click('#cvcv');await p.waitForTimeout(400);ok(await p.evaluate(()=>!document.querySelector('#pts').hidden),'il pulsante Pokédollari apre il convertitore');
 await p.evaluate(()=>document.querySelector('#pts').hidden=true);
 await p.click('#cvpp');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===1&&document.querySelector('#cvs').hidden),'il contatore Pop Pack apre i Pop Pack');
+await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=3;pkSv(o)});await p.waitForTimeout(300);
+r=await p.evaluate(()=>({t:document.querySelector('#pkbar .pbt').textContent,ms:getComputedStyle(document.querySelector('#pkms')).display,x:!!document.querySelector('#ppx')&&getComputedStyle(document.querySelector('#ppx')).display!=='none'}));
+ok(r.t==='Pop Pack'&&r.ms==='none'&&r.x,'pagina Pop Pack: titolo, X, niente Missioni');
+await p.click('#ppx');await p.waitForTimeout(800);ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'la X riporta a PokéBank');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
