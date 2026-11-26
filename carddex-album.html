@@ -1726,7 +1726,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v564";
+const APPV="v565";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -3430,8 +3430,8 @@ function pkRarePool(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.
 function pkDrawK(sid,k){const base=pkDraw(sid),N=base.length,{ho,ra}=pkRarePool(sid),all=ho.concat(ra);if(!ho.length||N<3)return base;
   const used=new Set(),take=(arr,pool)=>{let a=arr.filter(c=>!used.has(pkKey(c)));if(!a.length)a=pool.filter(c=>!used.has(pkKey(c)));if(!a.length)a=arr.length?arr:pool;if(!a.length)return null;const c=a[rndI(a.length)];used.add(pkKey(c));return c};
   const slot=()=>rndI(3)===0&&ho.length?take(ho,all):take(ra.length?ra:ho,all);
-  if(k==="l")base.slice(0,N-2).forEach(c=>used.add(pkKey(c)));const last=take(ho,all);
-  if(k==="l"){const pen=slot();return[...base.slice(0,N-2),pen,last].filter(Boolean)}
+  const lb=k==="l"?[...base.slice(0,Math.max(0,N-5)),...base.slice(N-4,N-1)]:null;if(lb)lb.forEach(c=>used.add(pkKey(c)));const last=take(ho,all);
+  if(k==="l"){const pen=slot();return[...lb,pen,last].filter(Boolean)}
   const o=[];for(let i=0;i<N-1;i++)o.push(slot());o.push(last);return o.filter(Boolean)}
 let pkKind="n";
 const pkSTC=()=>{const p=$("#pk");return p&&p.classList.contains("god")?"#a06c12":p&&p.classList.contains("lucky")?"#b3bfd3":STC()};

@@ -1,3 +1,6 @@
+## v565
+- Lucky Pack: la rara extra sostituisce una comune (non più una non comune): 3 non comuni + 2 rare. Probabilità delle rare invariate (prima rara 1/3 holo, seconda holo garantita).
+
 ## v564
 - Registrazione carta Pokédex: dopo la fascia di luce attende 0,45 s prima del suono e dell'animazione di carta completata (niente più sovrapposizione col campanellino).
 
