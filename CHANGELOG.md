@@ -1,3 +1,8 @@
+## v551 (PullTime)
+- PokéBank: pulsanti in alto nella stessa pastiglia di vetro della home Bustine, insieme alla X (stesse dimensioni e stile); il titolo non viene più coperto e i pulsanti rispondono al tocco.
+- Icona bustina del contatore Pop Pack con "POP" scritto in verticale al centro.
+- Dopo la conversione carte: "2 carte → +2 Pokédollari".
+
 ## v550 (PullTime)
 - **PokéBank** (ex Converti): pagina col solo convertitore carte -> Pokédollari. In alto a destra, prima della X: convertitore Pokédollari -> Pop Pack (pallino se hai 40+) e contatore Pop Pack.
 - **Pop Pack**: ogni 40 Pokédollari = 1 Pop Pack (si ottiene in automatico appena si arriva a 40, con "Apri ora"; il resto resta come credito). 5 carte: 1 rara (holo con la probabilità normale del set), 2 non comuni, 2 comuni; niente energie, niente Lucky/God pack. Scegli il set come per le bustine, con fascia trasparente "POP PACK" sulla grafica.

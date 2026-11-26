@@ -14,4 +14,11 @@ await p.evaluate(()=>pkStage(pkSel||0));await p.waitForTimeout(1500);await p.eva
 s=await p.evaluate(()=>({pp:pkSt().pp,dl:pkSt().dl,ppo:pkSt().ppo,n:pkCards.length,r:pkCards.map(x=>(rdOf(x.c)||{}).r).join(''),en:pkCards.some(x=>x.c.kd==='e'),opened:msOp()}));
 ok(s.n===5&&s.r.split('').sort().join('')==='CCRUU'&&!s.en,'5 carte: 1 rara, 2 non comuni, 2 comuni, niente energie ('+s.r+')');
 ok(s.pp===1&&s.dl===dl0,'scala un Pop Pack, le bustine classiche restano ('+s.dl+'/'+dl0+')');ok(s.ppo===1&&s.opened===1,'conta come bustina aperta');
+await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=3;pkSv(o);PKPOP=0;document.querySelector('#pk').hidden=true;goTab("b")});await p.waitForTimeout(900);
+await p.click('#pkbp');await p.waitForTimeout(600);
+let r=await p.evaluate(()=>{const q=s=>document.querySelector(s).getBoundingClientRect();const h=q('#cvs .cvhd b'),pl=q('#cvs .cvpl');return{ov:h.right>pl.left,x:Math.round(q('#cvs .cvx').right)}});
+ok(!r.ov&&r.x===384,'pastiglia in alto con X, senza sovrapporre il titolo');
+await p.click('#cvcv');await p.waitForTimeout(400);ok(await p.evaluate(()=>!document.querySelector('#pts').hidden),'il pulsante Pokédollari apre il convertitore');
+await p.evaluate(()=>document.querySelector('#pts').hidden=true);
+await p.click('#cvpp');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===1&&document.querySelector('#cvs').hidden),'il contatore Pop Pack apre i Pop Pack');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
