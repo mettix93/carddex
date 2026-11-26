@@ -1,3 +1,6 @@
+## v570
+- Scambi: testo barra "Massimo 10 carte, delle stesse rarità" (con virgola).
+
 ## v569
 - Scambi Offri/Chiedi: "Massimo 10 carte delle stesse rarità" sostituisce "Servono le stesse rarità" nella barra in basso; tolta la riga extra sotto la barra, barra di nuovo nella posizione originale.
 

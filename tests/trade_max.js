@@ -15,6 +15,6 @@ if(tot===10){
  ok(t.n===10,'non si può aggiungere oltre 10 ('+t.n+') toast: '+t.toast);
  const t2=await p.evaluate(()=>{const b=document.querySelector('#frm .cvt.on .cvm[data-d="-1"]');b.click();return new Promise(r=>setTimeout(()=>r(frCtx().ga.length),200))});
  ok(t2===9,'si può togliere ('+t2+')');
- const h=await p.evaluate(()=>{const e=document.querySelector('#frm .frft span'),f=document.querySelector('#frm .frft').getBoundingClientRect();return{t:e.textContent,bt:Math.round(innerHeight-f.bottom),h:Math.round(f.height)}});ok(/Massimo 10 carte delle stesse rarità/.test(h.t),'barra: '+JSON.stringify(h));await p.screenshot({path:'/tmp/tmax.png'});
+ const h=await p.evaluate(()=>{const e=document.querySelector('#frm .frft span'),f=document.querySelector('#frm .frft').getBoundingClientRect();return{t:e.textContent,bt:Math.round(innerHeight-f.bottom),h:Math.round(f.height)}});ok(/Massimo 10 carte, delle stesse rarità/.test(h.t),'barra: '+JSON.stringify(h));await p.screenshot({path:'/tmp/tmax.png'});
 }else console.log('SKIP: servono >=10 doppie nel simulatore ('+tot+')');
 await b.close();process.exit(bad)})();
