@@ -630,6 +630,7 @@ body.cp footer button{width:34px;height:34px}
 
 body.pv #book{flex:none!important;height:var(--bh)}
 body.pv #app{row-gap:var(--G)}body.pv #app #nv{margin-top:auto!important}body.pv #app #slw{margin-top:var(--g1,0)!important;margin-bottom:var(--g2,0)!important}
+@media (orientation:portrait){html body.pv #app #nv{position:absolute!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;margin-top:0!important}}
 body.pv header{padding-bottom:0}
 body.pv .tabs{margin-top:var(--G)!important}
 body.pv #slw{padding-bottom:0}
@@ -1726,7 +1727,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v571";
+const APPV="v572";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();

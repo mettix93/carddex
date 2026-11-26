@@ -1,3 +1,6 @@
+## v572
+- PullTime: barra menu in basso ancorata al fondo della pagina (come PullBinder c43), non più nel flusso del layout: non può essere spinta giù cambiando pagina. Posizione e aspetto identici in 8 schermate (verificato pixel per pixel); fascia in alto intatta.
+
 ## PullBinder c43
 - Barra menu in basso ancorata al fondo della pagina (non più nel flusso del layout, come in PullTime): non può più essere spinta giù cambiando tra Album/Pokédex. Posizione e aspetto identici (verificato pixel per pixel), fascia in alto intatta. Test tests/navpin.js.
 
