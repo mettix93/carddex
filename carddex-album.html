@@ -1724,7 +1724,7 @@ const APPK="cd";
   S.removeItem=function(k){return this===L||this===window.sessionStorage?rm.call(this,P+k):rm.call(this,k)};
 })();
 /* diagnostica: ogni errore viene salvato (Impostazioni › Copia ultimo errore) e mostrato in un avviso, così niente resta bloccato in silenzio */
-const APPV="v556";
+const APPV="v557";
 function errRep(x,w){try{const m=String((x&&x.message)||x||"errore"),o={v:APPV,t:new Date().toISOString(),w:w||"",m:m,s:String((x&&x.stack)||"").split("\n").slice(0,5).join(" | ")};localStorage.setItem("carddex_err",JSON.stringify(o));try{if(typeof aqRun!=="undefined"&&aqRun)aqRun=0}catch(e){}try{const xo=document.getElementById("xo");if(xo)xo.classList.remove("on");document.body.classList.remove("xf")}catch(e){}try{if(typeof toast==="function")toast("Errore ("+(w||"app")+"): "+m.slice(0,80),1)}catch(e){}}catch(e){}}
 addEventListener("error",e=>errRep(e.error||e.message,"script"));addEventListener("unhandledrejection",e=>errRep(e.reason,"promessa"));
 const DEVOK=(()=>{try{return localStorage.getItem("carddex_devok")==="1"||/^(localhost|127\.0\.0\.1)$/.test(location.hostname)}catch(e){return false}})();
@@ -2742,7 +2742,7 @@ function pkSpend(o){if(PKPOP){if((o.pp||0)>0)o.pp--;return}if(PKDEV)return;pkSyn
 const rndI=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
 const pkKey=c=>c.name.replace(/ \[.\]$/,"");
 function pkPick(arr,k,u){u=u||new Set();const a=arr.slice(),o=[];while(o.length<k&&a.length){let p=a.filter(c=>!u.has(pkKey(c)));if(!p.length)p=a;const c=p[rndI(p.length)];a.splice(a.indexOf(c),1);u.add(pkKey(c));o.push(c)}return o}
-function pkDrawPop(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};const com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:(ra.length?ra[rndI(ra.length)]:ho[rndI(ho.length)]),u=new Set([pkKey(rare)]);return[...pkPick(com,2,u),...pkPick(un,2,u),rare]}
+function pkDrawPop(sid){const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};const com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"&&c.kd!=="e"),ho=P.filter(c=>R(c)==="R"&&c.h&&c.kd!=="e"),ra=P.filter(c=>R(c)==="R"&&!c.h&&c.kd!=="e");const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:(ra.length?ra[rndI(ra.length)]:ho[rndI(ho.length)]),u=new Set([pkKey(rare)]);return[...pkPick(com,2,u),...pkPick(un,2,u),rare]}
 function pkDraw(sid){if(PKPOP)return pkDrawPop(sid);const P=Object.values(CARDS).filter(c=>c.sid===sid&&!c.go&&!c.opts),R=c=>{const d=rdOf(c);return d?d.r:""};
   const en=P.filter(c=>c.kd==="e"&&R(c)==="C"),com=P.filter(c=>c.kd!=="e"&&R(c)==="C"),un=P.filter(c=>R(c)==="U"),ho=P.filter(c=>R(c)==="R"&&c.h),ra=P.filter(c=>R(c)==="R"&&!c.h);
   const rare=rndI(3)===0&&ho.length?ho[rndI(ho.length)]:ra[rndI(ra.length)];

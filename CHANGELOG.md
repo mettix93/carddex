@@ -1,3 +1,6 @@
+## v557 (PullTime)
+- Pop Pack: corretto un difetto per cui in alcuni set (Base, Rocket) poteva uscire un'energia speciale come non comune/rara; ora mai energie. Test su 1800 estrazioni.
+
 ## v556 (PullTime)
 - Fascia POP PACK: dritta, quasi opaca (si intravede solo un po' il sotto), senza righe; "POP PACK" grande in font stencil (Stardos Stencil, da Google Fonts) in blu pieno, "5 CARTE" sotto.
 - PokéBank: descrizione "Converti doppie in Pokédollari: ogni 40, un Pop Pack!" su una riga.

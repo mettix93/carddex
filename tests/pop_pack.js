@@ -42,4 +42,5 @@ ok(await p.evaluate(()=>[...document.querySelectorAll('#pkq button')].map(b=>b.t
 await p.evaluate(()=>{const o=pkSt();o.pp=1;pkSv(o);pkQ(pkAvail())});ok(await p.evaluate(()=>document.querySelectorAll('#pkq button').length===1),'con 1 solo Pop Pack: niente ×');
 await p.evaluate(()=>pkChoose());await p.waitForTimeout(500);
 await p.click('#nvp button[data-t=b]');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===0&&document.querySelector('#pkbar .pbt').textContent==='Bustine'),'icona Bustine dal menu riporta alle bustine classiche');
+ok(await p.evaluate(()=>{for(const sid of Object.keys(PKSET))for(let i=0;i<200;i++){const d=pkDrawPop(sid),r=d.map(c=>(rdOf(c)||{}).r).sort().join('');if(d.length!==5||r!=='CCRUU'||d.some(c=>c.kd==='e')||new Set(d.map(pkKey)).size!==5)return false}return true}),'1800 estrazioni: sempre 5 carte uniche 1R 2U 2C senza energie');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
