@@ -1,3 +1,6 @@
+## v553 (PullTime)
+- PokéBank e Pop Pack: stessa struttura dell'Album (pastiglia con le icone + X in cerchio separato), stesse dimensioni e posizioni in entrambe le pagine; icona bustina Pop Pack grande come quella classica, pallini negli stessi punti; titolo PokéBank nero come Bustine/Pop Pack.
+
 ## v552 (PullTime)
 - Pagina Pop Pack: clone della pagina Bustine ma intitolata "Pop Pack", con pastiglia [Pokédollari · contatore Pop Pack · X] come PokéBank (la X riporta a PokéBank) e senza tasto Missioni.
 

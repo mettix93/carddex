@@ -17,7 +17,7 @@ ok(s.pp===1&&s.dl===dl0,'scala un Pop Pack, le bustine classiche restano ('+s.dl
 await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=3;pkSv(o);PKPOP=0;document.querySelector('#pk').hidden=true;goTab("b")});await p.waitForTimeout(900);
 await p.click('#pkbp');await p.waitForTimeout(600);
 let r=await p.evaluate(()=>{const q=s=>document.querySelector(s).getBoundingClientRect();const h=q('#cvs .cvhd b'),pl=q('#cvs .cvpl');return{ov:h.right>pl.left,x:Math.round(q('#cvs .cvx').right)}});
-ok(!r.ov&&r.x===384,'pastiglia in alto con X, senza sovrapporre il titolo');
+ok(!r.ov&&r.x===386,'pastiglia in alto con X, senza sovrapporre il titolo');
 await p.click('#cvcv');await p.waitForTimeout(400);ok(await p.evaluate(()=>!document.querySelector('#pts').hidden),'il pulsante Pokédollari apre il convertitore');
 await p.evaluate(()=>document.querySelector('#pts').hidden=true);
 await p.click('#cvpp');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===1&&document.querySelector('#cvs').hidden),'il contatore Pop Pack apre i Pop Pack');
