@@ -1,3 +1,6 @@
+## v568
+- Scambi: limite di 10 carte per lato. Contatori Offri (n/10) / Chiedi (n/10), toast "Limite di 10 carte raggiunto" se provi ad aggiungerne, nota "Massimo 10 carte delle stesse rarità" in fondo. Togliere resta sempre possibile.
+
 ## v567
 - Preferiti di un amico: sopra le pagine "ALBUM PREFERITI DI <nome>" + numero carte.
 
