@@ -1,3 +1,7 @@
+## PullBinder c42
+- Preferiti: "ALBUM PREFERITI" + numero carte sopra le pagine.
+- Registrazione Pokédex: pausa 0,45 s prima di suono/animazione carta completata; suono scansione +30%.
+
 ## v571
 - Simulatore scambi (dev): prova animazione "10 contro 10 (massimo)" al posto di 8 contro 8; test aggiornati.
 
