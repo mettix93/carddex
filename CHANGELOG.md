@@ -1,3 +1,6 @@
+## PullBinder c43
+- Barra menu in basso ancorata al fondo della pagina (non più nel flusso del layout, come in PullTime): non può più essere spinta giù cambiando tra Album/Pokédex. Posizione e aspetto identici (verificato pixel per pixel), fascia in alto intatta. Test tests/navpin.js.
+
 ## PullBinder c42
 - Preferiti: "ALBUM PREFERITI" + numero carte sopra le pagine.
 - Registrazione Pokédex: pausa 0,45 s prima di suono/animazione carta completata; suono scansione +30%.
