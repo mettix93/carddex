@@ -25,4 +25,15 @@ await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=3;pkSv(o)});await p.waitForTi
 r=await p.evaluate(()=>({t:document.querySelector('#pkbar .pbt').textContent,ms:getComputedStyle(document.querySelector('#pkms')).display,x:!!document.querySelector('#ppx')&&getComputedStyle(document.querySelector('#ppx')).display!=='none'}));
 ok(r.t==='Pop Pack'&&r.ms==='none'&&r.x,'pagina Pop Pack: titolo, X, niente Missioni');
 await p.click('#ppx');await p.waitForTimeout(800);ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'la X riporta a PokéBank');
+await p.evaluate(()=>{const o=pkSt();o.pts=50;o.pp=3;pkSv(o);cvPb();pkBarUpd()});
+const dp=sel=>p.evaluate(sel=>{const d=document.querySelector(sel+' .fdt'),b=document.querySelector(sel);if(!d)return null;const q=d.getBoundingClientRect(),w=b.getBoundingClientRect();return[Math.round(q.top-w.top),Math.round(w.right-q.right)]},sel);
+let r2=await dp('#cvcv');
+await p.click('#cvpp');await p.waitForTimeout(900);await p.evaluate(()=>pkBarUpd());
+r=await dp('#ppc');
+ok(r&&r2&&r[0]===r2[0]&&r[1]===r2[1],'pallino blu nella stessa posizione in PokéBank e Pop Pack '+JSON.stringify([r,r2]));
+await p.click('#ppx');await p.waitForTimeout(600);await p.evaluate(()=>{const e=document.querySelector('#pts');if(e)e.hidden=true});
+r=await p.evaluate(()=>({lk:document.querySelectorAll('#pkst .tab.lk').length,lkN:Object.keys(PKSET).filter(k=>pkLk(k)).length}));
+ok(r.lk===r.lkN&&r.lkN>0,'set bloccati come nelle bustine normali ('+r.lk+'/'+r.lkN+')');
+await p.evaluate(()=>{const o=pkSt();o.pp=0;o.pts=30;pkSv(o);cvPb()});
+await p.click('#cvpp');await p.waitForTimeout(500);ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'con 0 Pop Pack resta in PokéBank');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();
