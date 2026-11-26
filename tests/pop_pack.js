@@ -36,4 +36,10 @@ r=await p.evaluate(()=>({lk:document.querySelectorAll('#pkst .tab.lk').length,lk
 ok(r.lk===r.lkN&&r.lkN>0,'set bloccati come nelle bustine normali ('+r.lk+'/'+r.lkN+')');
 await p.evaluate(()=>{const o=pkSt();o.pp=0;o.pts=30;pkSv(o);cvPb()});
 await p.click('#cvpp');await p.waitForTimeout(500);ok(await p.evaluate(()=>PKPOP===0&&!document.querySelector('#cvs').hidden),'con 0 Pop Pack resta in PokéBank');
+await p.evaluate(()=>{const o=pkSt();o.pts=30;o.pp=3;pkSv(o);cvPb()});await p.click('#cvpp');await p.waitForTimeout(1000);
+await p.evaluate(()=>pkStage(pkSel||0));await p.waitForTimeout(1500);
+ok(await p.evaluate(()=>[...document.querySelectorAll('#pkq button')].map(b=>b.textContent).join(',')==='Apri ×1,×3'),'con 3 Pop Pack: Apri ×1 e ×3 (nessun limite)');
+await p.evaluate(()=>{const o=pkSt();o.pp=1;pkSv(o);pkQ(pkAvail())});ok(await p.evaluate(()=>document.querySelectorAll('#pkq button').length===1),'con 1 solo Pop Pack: niente ×');
+await p.evaluate(()=>pkChoose());await p.waitForTimeout(500);
+await p.click('#nvp button[data-t=b]');await p.waitForTimeout(900);ok(await p.evaluate(()=>PKPOP===0&&document.querySelector('#pkbar .pbt').textContent==='Bustine'),'icona Bustine dal menu riporta alle bustine classiche');
 console.log(bad?'FALLITO':'TUTTO OK');await b.close();process.exit(bad)})();

@@ -1,3 +1,9 @@
+## v555 (PullTime)
+- Fascia POP PACK sul pacchetto: più visibile e 3D (fascetta bianca traslucida che avvolge, bordi ombreggiati, scritta blu stile timbro).
+- PokéBank: descrizione su una riga e testo della (i) accorciato.
+- Pop Pack: icona Bustine nel menu riporta alle bustine classiche con una breve dissolvenza. Titolo set + completamento come in Bustine; "Pop Pack · 5 carte" sotto i pacchetti.
+- Pop Pack: ×2/×3… solo con più Pop Pack disponibili, senza limiti (anche in dev).
+
 ## v554 (PullTime)
 - Pallino blu sull'icona Pokédollaro: stessa posizione in PokéBank, Pop Pack e Bustine.
 - Con 0 Pop Pack, il contatore in PokéBank non apre la pagina e mostra un messaggio. I set bloccati nei Pop Pack sono gli stessi delle bustine normali.
