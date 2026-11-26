@@ -1,3 +1,6 @@
+## v564
+- Registrazione carta Pokédex: dopo la fascia di luce attende 0,45 s prima del suono e dell'animazione di carta completata (niente più sovrapposizione col campanellino).
+
 ## v563
 - Fascetta Pop Pack: la cornice ha ai lati la stessa distanza dal testo che ha in verticale (meno larga).
 
