@@ -1,3 +1,8 @@
+## v560 (PullTime)
+- Fascetta POP PACK: effetto carta (grana, bordi e piega), leggera ombra sul pacchetto, esattamente a metà altezza; la scritta ha sempre la stessa proporzione in tutti i set.
+- Popup bustine classiche: "3 bustine ogni giorno" al posto di "Bustine".
+- Scambio: la riga in mezzo è ora una sottile striscia di luce (niente più parti scure né allungamento ai lati); via il testo "tocca per saltare" (si salta ancora toccando): al suo posto il tuo nome utente sotto e quello dell'amico sopra.
+
 ## v559 (PullTime)
 - Messaggio con 0 Pop Pack: "Non hai Pop Pack da aprire. Converti Pokédollari."
 - Sotto i pacchetti Pop Pack: "POP PACK · 5 CARTE" in maiuscolo.
