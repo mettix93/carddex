@@ -1,3 +1,8 @@
+## v573
+- Carte nuove (promo/missioni) da inserire nelle tasche: le tasche con il punto interrogativo mostrano ora il numero di posizione, e la carta in attesa resta "?" (nessuna anteprima) con la luce pulsante, finché non la metti dentro; poi appare la carta vera.
+- Messaggio "Trascina ogni carta nel suo spazio": sparisce appena tocchi un punto qualsiasi dello schermo (anche prima che compaia). Compare una volta per ogni gruppo di carte nuove, quindi anche dopo PopPack → "Vai all'album" nella stessa sessione.
+- Test tests/aq_my.js.
+
 ## v572
 - PullTime: barra menu in basso ancorata al fondo della pagina (come PullBinder c43), non più nel flusso del layout: non può essere spinta giù cambiando pagina. Posizione e aspetto identici in 8 schermate (verificato pixel per pixel); fascia in alto intatta.
 
